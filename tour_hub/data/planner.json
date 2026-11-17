@@ -1,0 +1,435 @@
+{
+ "note": "현장 추가금은 상품 상세페이지에 금액이 적힌 '필수' 지불 항목만 원화로 환산한 값입니다. 불포함 식사·선택관광·쇼핑처럼 사람마다 달라지는 지출은 금액에 넣지 않고 항목만 적었습니다.",
+ "fx": {
+  "USD": 1420,
+  "JPY100": 940,
+  "EUR": 1620,
+  "TWD": 44,
+  "VND100": 5.5,
+  "AUD": 930,
+  "NZD": 820,
+  "asof": "2026-11-17",
+  "note": "해외 결제는 카드사 환율·수수료로 달라집니다. 계산에는 위 기준환율을 썼습니다."
+ },
+ "regions": [
+  {
+   "id": "kr",
+   "label": "국내",
+   "sub": "제주·부산·강원",
+   "countries": [
+    "kr"
+   ]
+  },
+  {
+   "id": "jp",
+   "label": "일본",
+   "sub": "오사카·도쿄",
+   "countries": [
+    "jp"
+   ]
+  },
+  {
+   "id": "sea",
+   "label": "동남아·중화권",
+   "sub": "다낭·방콕·타이베이",
+   "countries": [
+    "vn",
+    "th",
+    "tw",
+    "cn"
+   ]
+  },
+  {
+   "id": "west",
+   "label": "유럽·미주",
+   "sub": "이탈리아·하와이·괌",
+   "countries": [
+    "eu",
+    "us",
+    "gu",
+    "oc"
+   ]
+  }
+ ],
+ "styles": [
+  {
+   "id": "value",
+   "label": "가성비 자유",
+   "sub": "항공+숙소만, 현지는 내 맘대로"
+  },
+  {
+   "id": "nosh",
+   "label": "노쇼핑 프리미엄",
+   "sub": "쇼핑 0회·노팁, 인솔자 동행"
+  },
+  {
+   "id": "family",
+   "label": "가족·효도",
+   "sub": "입장료·식사 포함, 이동 짧게"
+  },
+  {
+   "id": "active",
+   "label": "액티비티",
+   "sub": "요트·스키·트래킹 중심"
+  }
+ ],
+ "extras": {
+  "os_g": {
+   "krw": 9400,
+   "basis": "은각사·청수사 입장료 1,000엔(성인)",
+   "aside": "점심 자유식 약 1.5만원",
+   "partial": false
+  },
+  "os_p1": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "선택관광·개인 경비",
+   "partial": false
+  },
+  "os_p2": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "선택관광·개인 경비",
+   "partial": false
+  },
+  "tk_g": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "입장료(금액 미표시)·점심 자유식",
+   "partial": false
+  },
+  "tk_p1": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "선택관광",
+   "partial": false
+  },
+  "tk_p2": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "디즈니 입장권 선택 시 약 9만원",
+   "partial": false
+  },
+  "fk_g": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "점심 자유식·온천 입욕비(금액 미표시)",
+   "partial": false
+  },
+  "fk_p1": {
+   "krw": 28200,
+   "basis": "가이드·기사 경비 3,000엔(필수)",
+   "aside": "쇼핑 1회",
+   "partial": false
+  },
+  "fk_p2": {
+   "krw": 40000,
+   "basis": "가이드·기사 경비 40,000원(필수)",
+   "aside": "불포함 식사 3회",
+   "partial": false
+  },
+  "sp_g": {
+   "krw": 4700,
+   "basis": "사계채의 언덕 입장료 500엔",
+   "aside": "점심 자유식(비에이)",
+   "partial": false
+  },
+  "sp_p1": {
+   "krw": 40000,
+   "basis": "가이드·기사 경비 40,000원(필수)",
+   "aside": "쇼핑 1회",
+   "partial": false
+  },
+  "sp_p3": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음(에어텔)",
+   "aside": "식사·관광지 입장료 전부 별도",
+   "partial": false
+  },
+  "dn_p1": {
+   "krw": 0,
+   "basis": "노팁·노옵션 — 필수 현장 지불 없음",
+   "aside": "개인 경비·선택 관광",
+   "partial": false
+  },
+  "dn_p2": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "개인 경비·선택 관광",
+   "partial": false
+  },
+  "dn_p3": {
+   "krw": 0,
+   "basis": "노팁·노옵션 — 필수 현장 지불 없음",
+   "aside": "쇼핑 2회(강매 없음)",
+   "partial": false
+  },
+  "nt_g": {
+   "krw": 2750,
+   "basis": "가이드팁 5만동(약 2,750원)",
+   "aside": "카페 음료",
+   "partial": false
+  },
+  "na_p1": {
+   "krw": 0,
+   "basis": "매너팁 자율",
+   "aside": "리조트 써차지·갈라디너(성수기), 쇼핑 3회",
+   "partial": false
+  },
+  "na_p2": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음(에어텔)",
+   "aside": "매너팁 $2~5, 식사",
+   "partial": false
+  },
+  "bk_p1": {
+   "krw": 0,
+   "basis": "노팁·노옵션 — 필수 현장 지불 없음",
+   "aside": "매너팁·개인 경비, 쇼핑 3회",
+   "partial": false
+  },
+  "bk_p2": {
+   "krw": 71000,
+   "basis": "투어매니저·기사 경비 US$50(필수)",
+   "aside": "매너팁, 쇼핑 3회",
+   "partial": false
+  },
+  "bk_p3": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "선택관광·매너팁",
+   "partial": false
+  },
+  "tw_g": {
+   "krw": 14080,
+   "basis": "예류 120 + 천등 150 + 광부체험 50 = 320NTD",
+   "aside": "황금박물관 80NTD(선택)",
+   "partial": false
+  },
+  "tw_p1": {
+   "krw": 56800,
+   "basis": "가이드·기사 경비 US$40(필수)",
+   "aside": "입국신고 대행 10,000원(선택)",
+   "partial": false
+  },
+  "tw_p2": {
+   "krw": 42600,
+   "basis": "가이드·기사 경비 US$30(필수)",
+   "aside": "선택관광",
+   "partial": false
+  },
+  "it_p1": {
+   "krw": 145800,
+   "basis": "가이드·기사 경비 €90(필수)",
+   "aside": "선택관광(고르너그라트 등), 쇼핑 3회",
+   "partial": false
+  },
+  "it_p2": {
+   "krw": 145800,
+   "basis": "가이드·기사 경비 €90(필수)",
+   "aside": "14명 이하 출발 시 €20 추가, 매너팁",
+   "partial": false
+  },
+  "it_p3": {
+   "krw": 0,
+   "basis": "가이드·기사 경비 금액 미표시(현지 지불)",
+   "aside": "선택관광·개인비용",
+   "partial": true
+  },
+  "gu_p1": {
+   "krw": 28400,
+   "basis": "가이드 픽업 경비 성인 $20(필수)",
+   "aside": "개인 경비",
+   "partial": false
+  },
+  "gu_p2": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "개인 경비",
+   "partial": false
+  },
+  "gu_p3": {
+   "krw": 0,
+   "basis": "노팁 상품 — 필수 현장 지불 없음",
+   "aside": "선택 활동",
+   "partial": false
+  },
+  "use_ca10_oz": {
+   "krw": 312400,
+   "basis": "기사·가이드 경비+식사팁 $180 + ESTA $40",
+   "aside": "식사 2회",
+   "partial": false
+  },
+  "sw_it9_noshop": {
+   "krw": 0,
+   "basis": "노팁 상품 — 필수 현장 지불 없음",
+   "aside": "일정표 외 식사",
+   "partial": false
+  },
+  "use_ca10_ke": {
+   "krw": 312400,
+   "basis": "기사·가이드 경비+식사팁 $180 + ESTA $40",
+   "aside": "식사 2회",
+   "partial": false
+  },
+  "au_nz10": {
+   "krw": 117000,
+   "basis": "호주 ETA AUD20 + 뉴질랜드 NZeTA NZD 117~123",
+   "aside": "가이드·기사 경비(현지 지불, 금액 미표시)",
+   "partial": false
+  },
+  "hi_hyatt8": {
+   "krw": 179400,
+   "basis": "현지가이드·기사 경비 $70 + ESTA 대행 8만원",
+   "aside": "자유일정 식사·테이블팁",
+   "partial": false
+  },
+  "hi_sheraton7": {
+   "krw": 80000,
+   "basis": "ESTA 대행 8만원",
+   "aside": "자유일정 식사·매너팁",
+   "partial": false
+  },
+  "eu4_10": {
+   "krw": 232000,
+   "basis": "가이드·기사 경비 €100 + 영국 ETA 대행 7만원",
+   "aside": "1일차 석식",
+   "partial": false
+  },
+  "sp_pt11": {
+   "krw": 194400,
+   "basis": "가이드·기사 경비 €120(필수)",
+   "aside": "자유식 1회",
+   "partial": false
+  },
+  "usw9": {
+   "krw": 335120,
+   "basis": "기사·가이드 경비 $196(식사팁 포함) + ESTA $40",
+   "aside": "자유식 2회",
+   "partial": false
+  },
+  "sp_pt9_bob": {
+   "krw": 145800,
+   "basis": "가이드·기사 경비 €90(인원별 90~120)",
+   "aside": "선택관광",
+   "partial": false
+  },
+  "it9_classic": {
+   "krw": 165800,
+   "basis": "가이드·기사 경비 €90(필수) + 8일차 중식 약 2만원",
+   "aside": "선택관광",
+   "partial": false
+  },
+  "hk4_cju": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "매너팁(자율)",
+   "partial": false
+  },
+  "dn_golf54": {
+   "krw": 163300,
+   "basis": "캐디팁 $15×3라운드 + 가이드팁 $50 + 중식·주말 서차지 $20",
+   "aside": "그린피·카트는 상품가 포함",
+   "partial": false
+  },
+  "pqc_golf36": {
+   "krw": 142000,
+   "basis": "캐디팁 $15×2라운드 + 가이드팁 $50 + 중식·주말 서차지 $20",
+   "aside": "그린피·카트는 상품가 포함",
+   "partial": false
+  },
+  "zgj5": {
+   "krw": 0,
+   "basis": "노팁·노옵션 — 필수 현장 지불 없음",
+   "aside": "매너팁 자율, 외국 국적 1인 7만원",
+   "partial": false
+  },
+  "jeju_p3": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "입장료 상세 확인",
+   "partial": false
+  },
+  "jeju_p4": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "입장료 상세 확인",
+   "partial": false
+  },
+  "jeju_air": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음(에어카텔)",
+   "aside": "식사·입장료·주유비",
+   "partial": false
+  },
+  "ulleung_p3": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "입장료 상세 확인",
+   "partial": false
+  },
+  "busan_withyacht": {
+   "krw": 0,
+   "basis": "승선권 포함 — 현장 추가금 없음",
+   "aside": "",
+   "partial": false
+  },
+  "busan_lanayacht": {
+   "krw": 0,
+   "basis": "승선권 포함 — 현장 추가금 없음",
+   "aside": "",
+   "partial": false
+  },
+  "busan_rivercruise": {
+   "krw": 0,
+   "basis": "승선권 포함 — 현장 추가금 없음",
+   "aside": "",
+   "partial": false
+  },
+  "busan_lana_private": {
+   "krw": 0,
+   "basis": "대여료 포함 — 현장 추가금 없음",
+   "aside": "",
+   "partial": false
+  },
+  "gangwon_vivaldi_lift": {
+   "krw": 0,
+   "basis": "리프트+렌탈 포함",
+   "aside": "식사·보증금",
+   "partial": false
+  },
+  "gangwon_james_shuttle": {
+   "krw": 0,
+   "basis": "리프트+장비+렌탈 포함",
+   "aside": "식사·보증금",
+   "partial": false
+  },
+  "gangwon_bustour": {
+   "krw": 0,
+   "basis": "필수 현장 지불 없음",
+   "aside": "입장료 일부 별도(금액 미표시)",
+   "partial": false
+  },
+  "gangwon_gariwangsan": {
+   "krw": 0,
+   "basis": "케이블카·유람선 포함",
+   "aside": "식사",
+   "partial": false
+  }
+ },
+ "essMul": {
+  "공항픽업": "vehicle",
+  "입장권": "person",
+  "eSIM": "person",
+  "교통패스": "person",
+  "교통": "person"
+ },
+ "courseByCity": {
+  "osaka": "osaka",
+  "tokyo": "tokyo",
+  "danang": "danang",
+  "nhatrang": "danang",
+  "sapporo": "sapporo",
+  "jeju": "jeju"
+ }
+}

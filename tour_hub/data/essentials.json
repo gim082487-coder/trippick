@@ -1,0 +1,559 @@
+{
+ "source": {
+  "method": "curl -sIL (iPhone Safari UA) 로 각 naver.me 단축링크 추적",
+  "result": "신규 12건 전부 HTTP 200, brandconnect.naver.com/affiliates/{affiliateId}?channelProductNo={상품번호} 로 리다이렉트",
+  "patternNote": "쇼핑 커넥트 링크의 실제 리다이렉트 경로는 /affiliates/{affiliateId}?channelProductNo=... (여행 커넥트의 /connect/{id} 패턴과 다름). 두 패턴 모두 brandconnect.naver.com 도메인.",
+  "checkedAt": "2026-11-16 13:0x KST",
+  "coupang": {
+   "method": "partners.coupang.com 상품검색 → 상품 카드 '링크 생성' → 단축 URL(link.coupang.com/a/...) 발급",
+   "affiliateId": "AF1746171",
+   "checkedAt": "2026-11-17 14:5x KST",
+   "note": "단축 URL 1건(멀티어댑터)은 실제 클릭으로 www.coupang.com/vp/products/8220548823 착지 확인. 나머지는 단축 URL 페이지 HTTP 200 및 상품 파라미터(productId·판매가·이미지) 대조."
+  }
+ },
+ "disclosure": "모든 링크는 네이버 쇼핑 커넥트(어필리에이트) 활동 링크입니다. 게시물에는 공정위 기준에 맞는 확정 표현('이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 구매 발생 시 수수료를 제공받습니다')을 제목 또는 본문 첫 부분에 표기해야 합니다.",
+ "changePolicy": "쇼핑 커넥트 수수료·진행 상태는 매월 1일 판매자 설정으로 변경될 수 있음(상향은 즉시 반영). 사이트에 요율을 하드코딩하지 말고 월 1회 재확인 필요.",
+ "products": [
+  {
+   "id": "jp-esim-usimsa-1d",
+   "category": "eSIM",
+   "categoryLabel": "일본 eSIM(1일)",
+   "name": "일본 이심 eSIM 도쿄 오사카 소프트뱅크 완전 무제한 1일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 3300,
+   "listPrice": 3300,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 396,
+   "naverMe": "https://naver.me/GvWRklAt",
+   "affiliateId": "1017854020860704",
+   "channelProductNo": "12109754098",
+   "cities": [
+    "오사카",
+    "도쿄"
+   ],
+   "courses": [
+    "osaka",
+    "tokyo"
+   ],
+   "reviews": 20760,
+   "reviewNote": "네이버 쇼핑 리뷰 약 2.0만건(검색 카드 표기)",
+   "pitch": "도착 즉시 켜는 소프트뱅크 완전무제한 1일 eSIM. 3,300원·수수료 12%(쇼핑 커넥트 최고 요율 구간).",
+   "usage": "짧은 일정(1~2일) 또는 서브 회선용. 4일 일정이면 3일 투게더팩과 조합.",
+   "caution": "상품명에 '완전 무제한 1일' — 일수 단위 상품이라 4일 여행에는 부족."
+  },
+  {
+   "id": "jp-esim-usimsa-3d",
+   "category": "eSIM",
+   "categoryLabel": "일본 eSIM(3일·투게더팩)",
+   "name": "[투게더팩]일본 이심 eSIM 후쿠오카 오사카 소프트뱅크 완전 무제한 3일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 16830,
+   "listPrice": 19800,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 2019,
+   "naverMe": "https://naver.me/5DZ0H2Wv",
+   "affiliateId": "1017854059031072",
+   "channelProductNo": "12977119932",
+   "cities": [
+    "오사카",
+    "도쿄"
+   ],
+   "courses": [
+    "osaka",
+    "tokyo"
+   ],
+   "reviews": null,
+   "pitch": "3일 완전무제한 16,830원(정가 19,800원)·12%. 오사카·교토 4일 코스의 메인 eSIM.",
+   "usage": "4일 일정 기준 3일 커버 + 마지막 날은 공항 와이파이/로밍으로 충분.",
+   "caution": "상품명 표기는 '후쿠오카 오사카' — 도쿄 언급 없음. 도쿄 코스 카드에는 1일 상품(GvWRklAt)을 쓰고, 이 상품은 오사카 코스에 배치하는 편이 안전."
+  },
+  {
+   "id": "jp-esim-lingsim-1d",
+   "category": "eSIM",
+   "categoryLabel": "일본 eSIM(16%, 링심)",
+   "name": "일본 이심 eSIM 오사카 후쿠오카 도쿄 데이터 무제한 5G 매일 500MB 1일 링심",
+   "store": "링심",
+   "price": 590,
+   "listPrice": 620,
+   "commissionRate": 16,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 94,
+   "naverMe": "https://naver.me/FG39oTmT",
+   "affiliateId": "1017854093339392",
+   "channelProductNo": "8325650968",
+   "cities": [
+    "오사카",
+    "도쿄"
+   ],
+   "courses": [
+    "osaka",
+    "tokyo"
+   ],
+   "reviews": null,
+   "pitch": "확인된 eSIM 중 최고 요율 16%(590원→94원). 단가가 낮으니 '가성비 1일' 대안 카드로.",
+   "usage": "1일 500MB 매일형(무제한 아님) — 지도·메신저 위주 사용자용.",
+   "caution": "590원은 1일 최저가. 요율은 높지만 건당 금액은 작아 보조 카드 성격."
+  },
+  {
+   "id": "vn-esim-usimsa-1d",
+   "category": "eSIM",
+   "categoryLabel": "베트남 eSIM(1일)",
+   "name": "베트남 이심 eSIM 나트랑 다낭 비나폰 매일 500MB 무제한 1일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 200,
+   "listPrice": 200,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 24,
+   "naverMe": "https://naver.me/GEdHAbXu",
+   "affiliateId": "1017854152940224",
+   "channelProductNo": "5656285946",
+   "cities": [
+    "다낭"
+   ],
+   "courses": [
+    "danang"
+   ],
+   "reviews": 18254,
+   "reviewNote": "네이버 쇼핑 리뷰 약 1.8만건",
+   "pitch": "다낭 도착일 1일 커버. 200원·12%로 진입 장벽이 사실상 0원.",
+   "usage": "출발 전날/도착일에 1일분만 켜고, 이후 투게더팩 3일로 이어가는 구성.",
+   "caution": "1일 상품. 5일 일정에는 단독으로 부족."
+  },
+  {
+   "id": "vn-esim-usimsa-3d",
+   "category": "eSIM",
+   "categoryLabel": "베트남 eSIM(3일·투게더팩)",
+   "name": "[투게더팩]베트남 이심 eSIM 다낭 나트랑 비나폰 완전 무제한 3일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 17850,
+   "listPrice": 21000,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 2142,
+   "naverMe": "https://naver.me/FuN2VsmR",
+   "affiliateId": "1017854188931456",
+   "channelProductNo": "12977172994",
+   "cities": [
+    "다낭"
+   ],
+   "courses": [
+    "danang"
+   ],
+   "reviews": null,
+   "pitch": "다낭 5일 코스의 메인 eSIM. 17,850원(정가 21,000원)·12%·예상 2,142원.",
+   "usage": "3일 완전무제한 + 도착일 1일 상품 조합이면 4일 커버, 5일째는 숙소 와이파이.",
+   "caution": "5일 여행 전체를 덮지는 않음(3일권)."
+  },
+  {
+   "id": "osaka-amazing-pass",
+   "category": "교통패스",
+   "categoryLabel": "오사카 주유패스",
+   "name": "일본 OSAKA AMAZING PASS｜오사카 주유패스｜E-티켓",
+   "store": "뜨거운청춘",
+   "price": 37200,
+   "listPrice": 37200,
+   "commissionRate": 5,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 1860,
+   "naverMe": "https://naver.me/GzdN5ZAt",
+   "affiliateId": "1017853486983072",
+   "channelProductNo": "6989828714",
+   "productPage": "https://brandconnect.naver.com/1017789444902400/affiliate/products/858372723780516",
+   "storeProductUrl": "https://smartstore.naver.com/here2go/products/6989828714",
+   "cities": [
+    "오사카"
+   ],
+   "courses": [
+    "osaka"
+   ],
+   "reviews": 0,
+   "reviewNote": "스마트스토어 상품 페이지 '0.0 / 0건 리뷰' (2026-11-16 확인)",
+   "options": [
+    "오사카 주유패스 1일권",
+    "오사카 주유패스 2일권",
+    "오사카 e-패스(1일/2일)"
+   ],
+   "pitch": "오사카 40여 개 명소 무료입장 + 지하철·시티버스 무제한. 오사카 코스 2~3일차 '이동+입장'을 한 장으로.",
+   "usage": "상품 페이지 확인값: 대표가 37,200원, 옵션은 1일권/2일권/e-패스(교통 미포함). 1일권은 난카이 공항역에서 사용 시작 불가(공항→시내는 라피트/하루카 별도).",
+   "caution": "[확인 필요] 2026-11-18 판매 페이지 확인: 상세문구에 ‘교환기간 2023-04-01~2024-06-30’, ‘사용기한 2024-06-30’, 옵션명 ‘[~2024/3/31]’·‘[2024/4/1~]’이 남아 있어 2024년 발권분 문구가 지워지지 않았습니다. 가격은 37,200원으로 유지. 2026년 발권분 사용 가능 여부는 확인되지 않아 대표 카드로 쓰지 않고, 카드·코스 패널·약관 고지·가이드(osaka-amazing-pass)에 확인 안내를 표시 중. 리뷰 0건도 감점 요인."
+  },
+  {
+   "id": "osaka-nankai-rapit",
+   "category": "교통",
+   "categoryLabel": "공항→시내 특급(라피트)",
+   "name": "일본 오사카 간사이 공항 난카이 라피트 익스프레스 티켓",
+   "store": "뜨거운청춘",
+   "price": 16800,
+   "listPrice": 16800,
+   "commissionRate": 5,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 840,
+   "naverMe": "https://naver.me/GhwUEB9M",
+   "affiliateId": "1017854227478592",
+   "channelProductNo": "7291627173",
+   "cities": [
+    "오사카"
+   ],
+   "courses": [
+    "osaka"
+   ],
+   "reviews": 12,
+   "pitch": "간사이공항→난바 38분 지정석. 공항 도착 첫 동선에 바로 붙는 티켓(5%).",
+   "usage": "편도/왕복 옵션 확인 필요. 리뷰 12건으로 판매 이력은 적음.",
+   "caution": "리뷰 수가 적은 상품 — 카드에 '리뷰 적음' 리스크를 감안해 노출 위치 조정."
+  },
+  {
+   "id": "osaka-usj-pickup",
+   "category": "공항픽업",
+   "categoryLabel": "공항/시내↔USJ 단독차량",
+   "name": "[오사카 USJ 픽업/샌딩] 일본 간사이공항/오사카시 - 유니버셜스튜디오재팬 편도 이동 서비스 (단독차량, 정식업체)",
+   "store": "에이솝월드",
+   "price": 86900,
+   "listPrice": 150000,
+   "commissionRate": 8,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 6952,
+   "naverMe": "https://naver.me/GJZorPwZ",
+   "affiliateId": "1017854270425248",
+   "channelProductNo": "11812401694",
+   "cities": [
+    "오사카"
+   ],
+   "courses": [
+    "osaka"
+   ],
+   "reviews": null,
+   "pitch": "이번 12건 중 건당 예상 수익 1위(6,952원). 간사이공항·오사카시 ↔ USJ 편도 단독차량, 8%.",
+   "usage": "가족·4인 동반이면 1건으로 이동 전부 해결. USJ 방문일 카드에 배치.",
+   "caution": "정가 150,000원 → 86,900원 표기. 편도 기준이므로 왕복은 2건 필요할 수 있음."
+  },
+  {
+   "id": "osaka-usj-shuttle-existing",
+   "category": "교통",
+   "categoryLabel": "USJ 셔틀버스(기존 발급)",
+   "name": "일본 오사카 유니버셜 스튜디오 셔틀버스 티켓",
+   "store": "뜨거운청춘",
+   "price": 15800,
+   "listPrice": 15800,
+   "commissionRate": 5,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 790,
+   "naverMe": "https://naver.me/FWTZJNDH",
+   "affiliateId": "1017852367542176",
+   "channelProductNo": "4816817196",
+   "cities": [
+    "오사카"
+   ],
+   "courses": [
+    "osaka"
+   ],
+   "alreadyIssued": true,
+   "pitch": "(이전 작업에서 발급) USJ행 셔틀버스 15,800원·5%. 단독차량(8%)보다 저렴한 대안.",
+   "usage": "예산형 옵션으로 단독차량과 나란히 배치.",
+   "caution": null
+  },
+  {
+   "id": "tokyo-skyliner",
+   "category": "교통",
+   "categoryLabel": "나리타→우에노 특급(스카이라이너)",
+   "name": "일본 도쿄 나리타 공항(NRT)에서 우에노・닛포리 | 스카이라이너 티켓",
+   "store": "뜨거운청춘",
+   "price": 12200,
+   "listPrice": 112200,
+   "commissionRate": 5,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 610,
+   "naverMe": "https://naver.me/5LQ63EOh",
+   "affiliateId": "1017854372576032",
+   "channelProductNo": "6739820552",
+   "cities": [
+    "도쿄"
+   ],
+   "courses": [
+    "tokyo"
+   ],
+   "reviews": null,
+   "pitch": "나리타→우에노 41분. 도쿄 도착일 첫 동선 티켓(5%).",
+   "usage": "편도 기준 12,200원. 할인 전 표기 112,200원은 다인·왕복 옵션가로 보임 — 카드에는 '1인 편도 12,200원~' 형태로 표기.",
+   "caution": "할인 전 가격(112,200원)이 비정상적으로 커 옵션 구성 차이로 추정. 단정 표기 금지."
+  },
+  {
+   "id": "tokyo-metro-pass",
+   "category": "교통패스",
+   "categoryLabel": "도쿄 메트로 패스",
+   "name": "일본 도쿄 메트로(지하철) 패스 (24시간, 48시간, 72시간)",
+   "store": "뜨거운청춘",
+   "price": 5600,
+   "listPrice": 5600,
+   "commissionRate": 5,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 280,
+   "naverMe": "https://naver.me/xB704kvC",
+   "affiliateId": "1017854430435680",
+   "channelProductNo": "4817538167",
+   "cities": [
+    "도쿄"
+   ],
+   "courses": [
+    "tokyo"
+   ],
+   "reviews": 292,
+   "pitch": "도쿄 메트로 24/48/72시간 무제한. 도쿄 2~4일차 이동 전부 커버(5%).",
+   "usage": "일정 일수에 맞춰 24h/48h/72h 선택. 5,600원은 24시간 옵션 최저가로 추정.",
+   "caution": "가격은 카드 최저가(24시간 옵션). 72시간 선택 시 금액 상승."
+  },
+  {
+   "id": "danang-bana-hills",
+   "category": "입장권",
+   "categoryLabel": "바나힐 입장권·케이블카",
+   "name": "다낭 바나힐 단독투어 입장권 케이블카 티켓 단독차량 픽업샌딩 자유일정",
+   "store": "피크타임:PEAKTIME",
+   "price": 4890,
+   "listPrice": 7800,
+   "commissionRate": 5,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 244,
+   "naverMe": "https://naver.me/GHLPEpx0",
+   "affiliateId": "1017854495840416",
+   "channelProductNo": "12044321309",
+   "cities": [
+    "다낭"
+   ],
+   "courses": [
+    "danang"
+   ],
+   "reviews": 273,
+   "pitch": "바나힐 케이블카·입장권 E-티켓. 다낭 코스의 핵심 방문지(5%).",
+   "usage": "픽업샌딩·단독차량 옵션 포함 상품이라 1건으로 이동까지 해결되는 구성.",
+   "caution": "4,890원은 최저 옵션가(입장권 단독/부분 구성). 실제 2인·차량 포함 시 금액 상승 — 금액 단정 표기 주의."
+  },
+  {
+   "id": "danang-airport-pickup",
+   "category": "공항픽업",
+   "categoryLabel": "다낭 공항 픽업(단독차량)",
+   "name": "[단독 차량] 다낭 공항 픽업 차량(야간 추가금 없음)",
+   "store": "스테이앤모어",
+   "price": 14600,
+   "listPrice": 14600,
+   "commissionRate": 10,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 1460,
+   "naverMe": "https://naver.me/xYNwQVQc",
+   "affiliateId": "1017854578517952",
+   "channelProductNo": "11864234796",
+   "cities": [
+    "다낭"
+   ],
+   "courses": [
+    "danang"
+   ],
+   "reviews": null,
+   "pitch": "다낭 공항→호텔 단독차량, 야간 추가금 없음. 이번 12건 중 요율 2위(10%·1,460원).",
+   "usage": "심야 도착 항공편에도 추가금 없음이 셀링포인트. 도착일 카드에 배치.",
+   "caution": null
+  },
+  {
+   "id": "singapore-usj-existing",
+   "category": "입장권",
+   "categoryLabel": "싱가포르 USJ 입장권(기존 발급)",
+   "name": "싱가포르 유니버설 스튜디오 입장권",
+   "store": "뜨거운청춘",
+   "price": 77000,
+   "listPrice": 77000,
+   "commissionRate": 5,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 3850,
+   "naverMe": "https://naver.me/xbK2wy9m",
+   "affiliateId": "1017852420479392",
+   "channelProductNo": "9852412125",
+   "cities": [
+    "싱가포르"
+   ],
+   "courses": [],
+   "alreadyIssued": true,
+   "pitch": "(이전 작업에서 발급) 싱가포르 USJ 입장권 77,000원·5%.",
+   "usage": "이번 3개 코스(오사카·도쿄·다낭)에는 해당 없음 — 참고 보관.",
+   "caution": null
+  },
+  {
+   "id": "cp-adapter-nemotab",
+   "category": "여행용품",
+   "categoryLabel": "해외 멀티어댑터",
+   "name": "네모탭 해외여행용 멀티어댑터 PD35W 5포트",
+   "officialName": "네모탭 해외여행용 멀티어댑터 PD35W 5포트 고속충전 여행용 멀티충전기, 1개, 단품, 블랙",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 12900,
+   "listPrice": 28000,
+   "discountRate": 53,
+   "url": "https://link.coupang.com/a/iKiDFEr6wm",
+   "productId": "8220548823",
+   "image": "assets/ess/cp-adapter-nemotab.png",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "110·220V 겸용 5포트(USB-C 35W 포함). 미국·영국·유럽·일본형 플러그가 한 몸에 있어 나라가 바뀌어도 충전기만 갈아 끼우면 됩니다.",
+   "usage": "휴대폰·보조배터리·카메라를 한 번에. 어댑터 1개 + C타입 케이블 1개면 대부분 해결됩니다.",
+   "caution": "지원 국가표는 상품 상세에서 확인. 고출력 노트북(65W 이상) 충전은 별도 PD 충전기가 필요합니다."
+  },
+  {
+   "id": "cp-carrier-botn-20",
+   "category": "여행용품",
+   "categoryLabel": "기내용 캐리어 20인치",
+   "name": "보튼캐리어 CL15 하드 캐리어 20인치",
+   "officialName": "보튼캐리어 CL15 어드벤쳐 여행용 하드 캐리어 20인치 24인치 28인치",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 29900,
+   "listPrice": 42900,
+   "discountRate": 30,
+   "url": "https://link.coupang.com/a/iKiHMeYyES",
+   "productId": "9153218416",
+   "image": "assets/ess/cp-carrier-botn.jpg",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "기내 반입 기준(20인치·약 2.6kg대) 하드 캐리어. 진에어·제주항공 등 LCC 기내 규격(55×40×20cm)에 맞춰 고르는 게 핵심입니다.",
+   "usage": "2박3일~3박4일 1인 여행에 적합. 24·28인치는 위탁수하물용으로 같은 상품군에서 사이즈만 다릅니다.",
+   "caution": "표시가는 20인치 옵션 기준. 24·28인치는 금액이 올라가고, 항공사별 기내 규격은 탑승 전 확인이 필요합니다."
+  },
+  {
+   "id": "cp-compress-urbantrip",
+   "category": "여행용품",
+   "categoryLabel": "압축 파우치 5종",
+   "name": "어반트립 부피제로 여행용 압축 파우치 5종 세트",
+   "officialName": "어반트립 부피제로 여행용 압축 파우치 5종 세트",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 12000,
+   "listPrice": 29900,
+   "discountRate": 59,
+   "url": "https://link.coupang.com/a/iKiJGbykx2",
+   "productId": "9397763305",
+   "image": "assets/ess/cp-compress-urbantrip.png",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "지퍼로 눌러 부피를 줄이는 압축 파우치 5종. 캐리어 한 칸을 의류·속옷·세면도구로 나눠 담을 수 있습니다.",
+   "usage": "겨울 옷처럼 부피 큰 옷을 넣을 때 효과가 큽니다. 3박4일 기준 5종이면 1인분은 충분.",
+   "caution": "압축은 지퍼형(진공청소기 불필요). 세트 구성(사이즈별 개수)은 상품 상세 확인."
+  },
+  {
+   "id": "cp-powerbank-spidy",
+   "category": "여행용품",
+   "categoryLabel": "보조배터리 10000mAh",
+   "name": "스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블",
+   "officialName": "스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블, BND-2PCPPB100A, 블랙",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 8990,
+   "listPrice": 33000,
+   "discountRate": 72,
+   "url": "https://link.coupang.com/a/iKiLyrquui",
+   "productId": "7869821820",
+   "image": "assets/ess/cp-powerbank-spidy.jpg",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "10,000mAh(약 37Wh) 슬림형. 기내 반입 허용 용량(100Wh 이하) 안에 들어 항공기 cabin bag에 넣고 탈 수 있습니다.",
+   "usage": "휴대폰 1.5~2회 충전. C타입 케이블 동봉이라 eSIM 개통·지도 검색용으로 하루를 버팁니다.",
+   "caution": "보조배터리는 위탁수하물에 넣을 수 없고 기내 반입만 가능합니다(항공사 규정). 100Wh 초과 제품은 별도 승인 대상."
+  },
+  {
+   "id": "cp-neckpillow-rango",
+   "category": "여행용품",
+   "categoryLabel": "메모리폼 목베개",
+   "name": "랑고 올인원 메모리폼 목베개 (파우치 포함)",
+   "officialName": "랑고 휴대용 올인원 메모리폼 목베개 멜로우 파우치 세트",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 13520,
+   "listPrice": 17900,
+   "discountRate": 24,
+   "url": "https://link.coupang.com/a/iKiNv5XIMC",
+   "productId": "9244534005",
+   "image": "assets/ess/cp-neckpillow-rango.jpg",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "메모리폼 목베개 + 수납 파우치 세트. 3시간 이상 비행에서 목이 꺾이는 걸 막아줍니다.",
+   "usage": "파우치에 접어 넣어 캐리어 손잡이에 걸 수 있습니다. 야간 비행·장거리 버스에서 유용.",
+   "caution": "메모리폼은 세탁기 사용 불가(커버만 세탁). 냄새에 민감하면 도착 후 1~2일 통풍."
+  },
+  {
+   "id": "cp-passport-reindeer",
+   "category": "여행용품",
+   "categoryLabel": "RFID 여권지갑",
+   "name": "레인디어 RFID 차단 여권지갑 (크로스백형)",
+   "officialName": "레인디어 여행용 크로스백형 RFID 차단 여권지갑",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 13900,
+   "listPrice": 19900,
+   "discountRate": 30,
+   "url": "https://link.coupang.com/a/iKiP8FH93s",
+   "productId": "9794093883",
+   "image": "assets/ess/cp-passport-reindeer.jpg",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "여권·카드·지폐를 한곳에, RFID 차단 소재. 스트랩을 달아 크로스백으로 쓸 수 있습니다.",
+   "usage": "유럽처럼 소매치기 위험이 있는 곳에서 가슴 앞으로 두는 용도. 탑승권·카드 수납칸 분리.",
+   "caution": "RFID 차단은 전자 스캔만 막습니다. 실제 분실·소매치기는 별개라 몸 앞쪽 착용이 기본."
+  },
+  {
+   "id": "cp-washbag-bromi",
+   "category": "여행용품",
+   "categoryLabel": "스탠딩 세면도구 파우치",
+   "name": "브로미 스탠딩 세면도구 파우치 (메쉬, 블랙)",
+   "officialName": "브로미 세워서 바로쓰는 세면도구 파우치 스탠딩 메쉬 여행 출장, 1개, 블랙",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 4900,
+   "listPrice": 25000,
+   "discountRate": 80,
+   "url": "https://link.coupang.com/a/iKiSl9e5SK",
+   "productId": "9699153330",
+   "image": "assets/ess/cp-washbag-bromi.png",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "세워서 쓰는 메쉬 파우치. 숙소 욕실에 그대로 세워두면 화장품·면도기·칫솔을 한 번에 꺼내 씁니다.",
+   "usage": "기내 반입 액체류(100ml 이하 1L 지퍼백)와 별개로 숙소용 세면도구를 담는 용도.",
+   "caution": "메쉬 소재라 완전 방수는 아닙니다. 액체 용기는 따로 밀봉해 넣으세요."
+  },
+  {
+   "id": "cp-sleepmask-slipfit",
+   "category": "여행용품",
+   "categoryLabel": "암막 수면안대",
+   "name": "슬립핏 4D 고급 암막 수면안대",
+   "officialName": "슬립핏 4D 고급 암막 수면안대",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 5900,
+   "listPrice": 35000,
+   "discountRate": 83,
+   "url": "https://link.coupang.com/a/iKiUoBTOAm",
+   "productId": "9553443096",
+   "image": "assets/ess/cp-sleepmask-slipfit.png",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "눈가가 뜨지 않는 4D 입체 구조. 야간 비행·시차 적응 첫날 숙면용으로 가장 값이 싼 준비물입니다.",
+   "usage": "목베개와 함께 기내 가방에. 숙소 커튼이 얇은 곳(일본 비즈니스호텔 등)에서도 유용.",
+   "caution": "눈가 압박이 싫으면 3D 입체형을, 완전 차광이 우선이면 이 모델이 맞습니다."
+  }
+ ],
+ "coupangDisclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+}

@@ -1,0 +1,151 @@
+{
+  "source": {
+    "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
+    "aid": "11407530",
+    "sid": "336341874",
+    "site": "https://trippick-kr.netlify.app",
+    "checked": "2026-11-18",
+    "method": "파트너스 어필리에이트 링크 생성기(한국어 링크 · Hotels page / Flights page)에서 도시·노선별로 발급",
+    "rate": "호텔 5%(예약 0~199건) → 6%(200~999) → 7%(1000+), 국제선 항공 0.5%(0~299) → 0.8%(300+), 투어·티켓 4%, 어트랙션·쇼 1.5%"
+  },
+  "hotels": [
+    {
+      "city": "오사카",
+      "flag": "jp",
+      "sub": "난바·우메다 · 오사카·교토 3박4일",
+      "note": "라피트 종점 난바 주변",
+      "url": "https://kr.trip.com/hotels/list?city=219&display=%EC%98%A4%EC%82%AC%EC%B9%B4&optionId=219&optionType=City&optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_osaka&trip_sub3=D21275837"
+    },
+    {
+      "city": "교토",
+      "flag": "jp",
+      "sub": "가와라마치·교토역 · 후시미·청수사",
+      "note": "버스 동선의 중심",
+      "url": "https://kr.trip.com/hotels/list?city=734&display=%EA%B5%90%ED%86%A0&optionId=734&optionType=City&optionName=%EA%B5%90%ED%86%A0&Allianceid=11407530&SID=336341874&trip_sub1=hotel_kyoto&trip_sub3=D21275837"
+    },
+    {
+      "city": "도쿄",
+      "flag": "jp",
+      "sub": "우에노·신주쿠 · 후지 day trip",
+      "note": "스카이라이너 종점 우에노",
+      "url": "https://kr.trip.com/hotels/list?city=228&display=%EB%8F%84%EC%BF%84&optionId=228&optionType=City&optionName=%EB%8F%84%EC%BF%84&Allianceid=11407530&SID=336341874&trip_sub1=hotel_tokyo&trip_sub3=D21275837"
+    },
+    {
+      "city": "후쿠오카",
+      "flag": "jp",
+      "sub": "하카타·텐진 · 유후인 1박",
+      "note": "공항에서 지하철 5분",
+      "url": "https://kr.trip.com/hotels/list?city=248&display=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&optionId=248&optionType=City&optionName=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_fukuoka&trip_sub3=D21275837"
+    },
+    {
+      "city": "삿포로",
+      "flag": "jp",
+      "sub": "스스키노·삿포로역 · 비에이 당일",
+      "note": "2월 눈축제 시즌은 조기 마감",
+      "url": "https://kr.trip.com/hotels/list?city=641&display=%EC%82%BF%ED%8F%AC%EB%A1%9C&optionId=641&optionType=City&optionName=%EC%82%BF%ED%8F%AC%EB%A1%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_sapporo&trip_sub3=D21275837"
+    },
+    {
+      "city": "다낭",
+      "flag": "vn",
+      "sub": "미케비치 · 호이안 30분",
+      "note": "5성급 3박이 기본인 도시",
+      "url": "https://kr.trip.com/hotels/list?city=1356&display=%EB%8B%A4%EB%82%AD&optionId=1356&optionType=City&optionName=%EB%8B%A4%EB%82%AD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_danang&trip_sub3=D21275837"
+    },
+    {
+      "city": "나트랑",
+      "flag": "vn",
+      "sub": "쩐푸·나짱 비치 · 달랏 이동",
+      "note": "리조트형 숙소가 많은 해변 도시",
+      "url": "https://kr.trip.com/hotels/list?city=1777&display=%EB%82%98%ED%8A%B8%EB%9E%91&optionId=1777&optionType=City&optionName=%EB%82%98%ED%8A%B8%EB%9E%91&Allianceid=11407530&SID=336341874&trip_sub1=hotel_nhatrang&trip_sub3=D21275837"
+    },
+    {
+      "city": "방콕",
+      "flag": "th",
+      "sub": "수쿰빗·실롬 · 파타야 2시간",
+      "note": "공항철도·BTS 역세권",
+      "url": "https://kr.trip.com/hotels/list?city=359&display=%EB%B0%A9%EC%BD%95&optionId=359&optionType=City&optionName=%EB%B0%A9%EC%BD%95&Allianceid=11407530&SID=336341874&trip_sub1=hotel_bangkok&trip_sub3=D21275837"
+    },
+    {
+      "city": "치앙마이",
+      "flag": "th",
+      "sub": "올드시티·님만해민",
+      "note": "11~2월 건기가 성수기",
+      "url": "https://kr.trip.com/hotels/list?city=623&display=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&optionId=623&optionType=City&optionName=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_chiangmai&trip_sub3=D21275837"
+    },
+    {
+      "city": "타이베이",
+      "flag": "tw",
+      "sub": "시먼·타이베이역 · 지우펀 당일",
+      "note": "MRT 한 장으로 시내 이동",
+      "url": "https://kr.trip.com/hotels/list?city=617&display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&optionId=617&optionType=City&optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_taipei&trip_sub3=D21275837"
+    },
+    {
+      "city": "괌",
+      "flag": "gu",
+      "sub": "투몬베이 · 리조트형",
+      "note": "패키지에 숙소가 묶이는 지역",
+      "url": "https://kr.trip.com/hotels/list?city=753&display=%EA%B4%8C&optionId=753&optionType=City&optionName=%EA%B4%8C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_guam&trip_sub3=D21275837"
+    },
+    {
+      "city": "호놀룰루",
+      "flag": "us",
+      "sub": "와이키키 · 하와이",
+      "note": "리조트피 별도 확인",
+      "url": "https://kr.trip.com/hotels/list?city=757&display=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&optionId=757&optionType=City&optionName=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&Allianceid=11407530&SID=336341874&trip_sub1=hotel_honolulu&trip_sub3=D21275837"
+    },
+    {
+      "city": "제주",
+      "flag": "kr",
+      "sub": "제주시·공항 근처",
+      "note": "서귀포는 중문·색달 권역",
+      "url": "https://kr.trip.com/hotels/list?city=737&display=%EC%A0%9C%EC%A3%BC%EC%8B%9C&optionId=737&optionType=City&optionName=%EC%A0%9C%EC%A3%BC%EC%8B%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_jeju&trip_sub3=D21275837"
+    },
+    {
+      "city": "부산",
+      "flag": "kr",
+      "sub": "해운대·광안리·서면",
+      "note": "요트투어는 광안리 탑승",
+      "url": "https://kr.trip.com/hotels/list?city=253&display=%EB%B6%80%EC%82%B0&optionId=253&optionType=City&optionName=%EB%B6%80%EC%82%B0&Allianceid=11407530&SID=336341874&trip_sub1=hotel_busan&trip_sub3=D21275837"
+    },
+    {
+      "city": "평창",
+      "flag": "kr",
+      "sub": "알펜시아·용평 · 강원 스키",
+      "note": "리조트 안 숙소면 리프트 도보",
+      "url": "https://kr.trip.com/hotels/list?city=35792&display=%ED%8F%89%EC%B0%BD&optionId=35792&optionType=City&optionName=%ED%8F%89%EC%B0%BD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_pyeongchang&trip_sub3=D21275837"
+    }
+  ],
+  "flights": [
+    {
+      "route": "서울 → 오사카",
+      "sub": "인천·김포 출발 · 간사이(KIX)",
+      "url": "https://kr.trip.com/flights/Seoul-to-Osaka/tickets-SEL-OSA?flighttype=S&dcity=SEL&acity=OSA&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_osa&trip_sub3=D21275837"
+    },
+    {
+      "route": "서울 → 도쿄",
+      "sub": "나리타·하네다",
+      "url": "https://kr.trip.com/flights/Seoul-to-Tokyo/tickets-SEL-TYO?flighttype=S&dcity=SEL&acity=TYO&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_tyo&trip_sub3=D21275837"
+    },
+    {
+      "route": "서울 → 다낭",
+      "sub": "다낭(DAD) 직항",
+      "url": "https://kr.trip.com/flights/Seoul-to-Da%20Nang/tickets-SEL-DAD?flighttype=S&dcity=SEL&acity=DAD&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_dad&trip_sub3=D21275837"
+    },
+    {
+      "route": "서울 → 방콕",
+      "sub": "수완나품·돈므앙",
+      "url": "https://kr.trip.com/flights/Seoul-to-Bangkok/tickets-SEL-BKK?flighttype=S&dcity=SEL&acity=BKK&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_bkk&trip_sub3=D21275837"
+    },
+    {
+      "route": "서울 → 삿포로",
+      "sub": "신치토세(CTS)",
+      "url": "https://kr.trip.com/flights/Seoul-to-Sapporo/tickets-SEL-SPK?flighttype=S&dcity=SEL&acity=SPK&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_cts&trip_sub3=D21275837"
+    },
+    {
+      "route": "서울 → 제주",
+      "sub": "김포(GMP) 출발 국내선",
+      "url": "https://kr.trip.com/flights/Seoul-to-Jeju%20City/tickets-SEL-CJU?flighttype=S&dcity=SEL&acity=CJU&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_cju&trip_sub3=D21275837"
+    }
+  ],
+  "disclosure": "이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 예약이 이루어지면 일정액의 수수료를 제공받습니다. 숙소·항공권 가격과 예약 조건은 트립닷컴에서 그대로 결제되며, 수수료 때문에 가격이 올라가지 않습니다."
+}

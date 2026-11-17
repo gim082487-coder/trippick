@@ -1,0 +1,26 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+
+# 빌드·배포 임시 파일
+*.zip
+*.log
+*.tmp
+tmp_*/
+
+# 이전 버전 백업 (소스에 포함하지 않음)
+*.bak
+*.bak-*
+index_v2_backup.html
+
+# 로컬 미리보기 도구
+_preview390.html
+
+# 실행 환경 캐시
+.cache/
+.npm/
+.venv/
