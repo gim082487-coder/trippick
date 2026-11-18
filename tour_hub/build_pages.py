@@ -55,6 +55,7 @@ NAV = [
     ("index.html#checklist", "출국 준비", "checklist"),
     ("index.html#regions", "지역·투어", "regions"),
     ("guides/index.html", "여행 가이드", "guides"),
+    ("index.html#foods", "맛집", "foods"),
     ("index.html#essentials", "여행 필수품", "essentials"),
     ("index.html#alert", "특가 알림", "alert"),
     ("index.html#howto", "예약 전 체크", "howto"),

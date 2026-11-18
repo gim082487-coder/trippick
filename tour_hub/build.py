@@ -42,6 +42,8 @@ PREMIUM_FLOOR = 3_000_000
 
 GIFT_COUNTRIES = 0   # data/gifts.json 로드 시 채운다(main).
 GUIDES_COUNT = 0     # data/guides.json 로드 시 채운다(main).
+FOOD_COUNT = 0       # data/restaurants.json 로드 시 채운다(main).
+FOOD_CITY = 0
 
 ESS_GROUPS = [
     ("여행용품", "🧳 여행 준비물 · 쿠팡", "출발 3일 전에 주문하면 배송일 안에 도착"),
@@ -412,6 +414,7 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
         '<a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>',
         f'<a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>{len(essentials["products"])}개</i></a>',
         f'<a class="qn" href="#gifts"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-ticket"/></svg></span><b>선물·기념품</b><i>{GIFT_COUNTRIES}개국</i></a>',
+        f'<a class="qn" href="#foods"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><b>맛집</b><i>{FOOD_COUNT}곳</i></a>',
         f'<a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>{GUIDES_COUNT}편</i></a>',
         '<a class="qn" href="#alert"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><b>특가 알림</b><i>무료</i></a>',
         f'<a class="qn" href="#courses"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-image"/></svg></span><b>여행 코스</b><i>{len(courses["courses"])}개</i></a>',
@@ -833,6 +836,102 @@ def render_gifts(data: dict, gifts: dict, essentials: dict, tripcom: dict, guide
 
 
 # ---------------------------------------------------------------- 출국 준비 체크리스트
+def render_restaurants(data: dict, rest: dict, guides: dict, tripcom: dict) -> str:
+    """도시 탭 6개 + 맛집 카드. 카드마다 오전 투어 → 식사 → 선물 → 숙소 동선 링크를 붙인다.
+
+    투어·숙소·가이드 링크는 새 URL 을 만들지 않고 tours.json · tripcom.json ·
+    guides.json 에 실제로 있는 항목만 참조한다(없는 id 는 조용히 건너뛴다).
+    """
+    tours = {t["id"]: t for t in data["tours"]}
+    hotels = {h.get("cityId"): h for h in tripcom["hotels"] if h.get("cityId")}
+    gby = {g["slug"]: g for g in guides.get("guides", [])}
+
+    def tour_short(t: dict) -> str:
+        return re.split(r"\s*[(（]", t["title"])[0].strip()
+
+    tabs, panels = [], []
+    for n, c in enumerate(rest["cities"]):
+        cid = c["id"]
+        on = n == 0
+        tabs.append(
+            f'<button class="food-tab{" on" if on else ""}" type="button" role="tab" id="ftab-{cid}"'
+            f' aria-controls="fpanel-{cid}" aria-selected="{"true" if on else "false"}" data-food-tab="{cid}">'
+            f'{flag_svg(c["flag"], 15, 10.5)}<b>{esc(c["name"])}</b><span>{len(c["items"])}</span></button>'
+        )
+
+        # --- 동선: 오전 투어 → 점심 → 선물·쇼핑 → 저녁 → 숙소
+        steps = []
+        t = tours.get(c.get("tour"))
+        if t:
+            steps.append(
+                f'<li><span class="fr-k">오전</span><a href="{esc(t["url"])}" target="_blank" rel="noopener sponsored">'
+                f'{esc(tour_short(t))}</a><span class="fr-m">{won(t["sale"])}원~</span></li>'
+            )
+        for slot, label in (("점심", "점심"), ("저녁", "저녁")):
+            pick = next((i for i in c["items"] if i.get("slot") == slot), None)
+            if pick:
+                steps.append(
+                    f'<li><span class="fr-k">{label}</span><a class="js-food-jump" href="#{esc(pick["id"])}">'
+                    f'{esc(pick["nameKo"])}</a><span class="fr-m">{esc(pick["price"].split(" · ")[-1])}</span></li>'
+                )
+        g = gby.get(c.get("gift"))
+        if g:
+            steps.append(
+                f'<li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 {esc(c["name"])}</a>'
+                f'<span class="fr-m">{g["read"]}분 가이드</span></li>'
+            )
+        h = hotels.get(c.get("hotel"))
+        if h:
+            steps.append(
+                f'<li><span class="fr-k">숙소</span><a href="#tripcom">{esc(h["city"])} 숙소 최저가</a>'
+                f'<span class="fr-m">트립닷컴</span></li>'
+            )
+
+        cards = []
+        for it in c["items"]:
+            links = [
+                f'<a href="https://www.google.com/maps/place/?q=place_id:{esc(it["place"])}" target="_blank" rel="noopener nofollow">'
+                f'<svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a>'
+            ]
+            if t:
+                links.append(f'<a href="{esc(t["url"])}" target="_blank" rel="noopener sponsored">이 도시 투어</a>')
+            if g:
+                links.append(f'<a href="guides/{esc(g["slug"])}.html">선물 동선</a>')
+            if h:
+                links.append(f'<a href="#tripcom">숙소</a>')
+            cards.append(f"""<article class="food" id="{esc(it['id'])}">
+            <div class="food-top"><span class="food-area">{esc(it['area'])}</span><span class="food-slot">{esc(it['slot'])}</span></div>
+            <h3 class="food-name">{esc(it['name'])}<span>{esc(it['nameKo'])} · {esc(it['category'])}</span></h3>
+            <div class="food-dish"><b>{esc(it['dish'])}</b><span>{esc(it['price'])}</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>{esc(it['hours'])}</li>
+              <li><i>휴무</i>{esc(it['closed'])}</li>
+              <li><i>대기</i>{esc(it['wait'])}</li>
+            </ul>
+            <p class="food-tip">{esc(it['tip'])}</p>
+            <span class="food-cau">{esc(it['caution'])}</span>
+            <div class="food-foot">{''.join(links)}<span class="food-rate">구글 {esc(it['rating'])} · {esc(it['reviews'])}</span></div>
+          </article>""")
+
+        panels.append(f"""<div class="food-panel" id="fpanel-{cid}" role="tabpanel" aria-labelledby="ftab-{cid}"{' hidden' if not on else ''}>
+          <div class="food-intro"><p>{c['intro']}</p></div>
+          <ol class="food-route" aria-label="{esc(c['name'])} 하루 동선">{''.join(steps)}</ol>
+          <div class="food-grid">
+          {''.join(cards)}
+          </div>
+        </div>""")
+
+    total = sum(len(c["items"]) for c in rest["cities"])
+    return (
+        '<div class="food-card">\n'
+        '  <div class="food-tabs" role="tablist" aria-label="도시별 현지 맛집">\n    '
+        + "\n    ".join(tabs)
+        + '\n  </div>\n  '
+        + "\n  ".join(panels)
+        + f'\n  <p class="food-note">가게 {total}곳은 2026년 11월 18일 구글 지도에서 영업 중(OPERATIONAL)임을 확인했고, 가격은 공식 메뉴판·공식 안내 또는 2026년 10~11월 방문 기록이 일치하는 값만 적었습니다. 환율은 {esc(rest["fx"])}이고, 영업시간·휴무는 시장 휴시일이나 임시휴무로 달라질 수 있으니 출발 전에 가게 지도 링크로 한 번 더 확인하세요.</p>\n</div>'
+    )
+
+
 def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
     """나라를 고르면 입국서류·기내반입·준비물 체크가 바뀌는 인터랙티브 섹션.
 
@@ -1632,6 +1731,10 @@ def main() -> int:
     checklist = json.loads((DATA / "checklist.json").read_text(encoding="utf-8"))
     gifts = json.loads((DATA / "gifts.json").read_text(encoding="utf-8"))
     guides = json.loads((DATA / "guides.json").read_text(encoding="utf-8"))
+    rest = json.loads((DATA / "restaurants.json").read_text(encoding="utf-8"))
+    global FOOD_COUNT, FOOD_CITY
+    FOOD_COUNT = sum(len(c["items"]) for c in rest["cities"])
+    FOOD_CITY = len(rest["cities"])
     GIFT_COUNTRIES = len(gifts["countries"])
     GUIDES_COUNT = len(guides["guides"])
 
@@ -1671,6 +1774,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @TYPEBAR -->", render_typebar(data))
     html = replace_block(html, "<!-- @CITIES -->", render_sections(data))
     html = replace_block(html, "<!-- @ESSENTIALS -->", render_essentials(essentials))
+    html = replace_block(html, "<!-- @RESTAURANTS -->", render_restaurants(data, rest, guides, tripcom))
     html = replace_block(html, "<!-- @GIFTS -->", render_gifts(data, gifts, essentials, tripcom, guides))
     html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
     html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom))

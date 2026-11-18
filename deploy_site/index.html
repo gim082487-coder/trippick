@@ -1484,6 +1484,73 @@
   .cl-fold>summary,.cl-calc-box>summary{list-style:none;cursor:pointer}
   .cl-fold>summary::-webkit-details-marker,.cl-calc-box>summary::-webkit-details-marker{display:none}
   .cl-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  /* ============================== 도시별 현지 맛집 ============================== */
+  .food-card{border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:var(--sh-1);overflow:hidden}
+  .food-tabs{display:flex;gap:6px;overflow-x:auto;padding:13px 18px 0;scrollbar-width:thin}
+  .food-tabs::-webkit-scrollbar{height:4px}
+  .food-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;border:1px solid var(--line);
+    background:#fff;border-radius:999px;padding:7px 12px;cursor:pointer;font-size:12.4px;color:var(--ink-2);transition:.16s}
+  .food-tab b{font-weight:820;color:var(--navy);letter-spacing:-.02em}
+  .food-tab span{font-size:10px;font-weight:800;color:var(--ink-3);background:var(--line-2);border-radius:6px;padding:1px 6px}
+  .food-tab:hover{border-color:var(--blue-line)}
+  .food-tab.on{border-color:var(--blue);background:var(--blue-soft);box-shadow:0 0 0 3px rgba(15,92,151,.08)}
+  .food-tab.on span{background:#fff;color:var(--blue-600)}
+  .food-panel[hidden]{display:none}
+  .food-intro{padding:14px 18px 0}
+  .food-intro p{margin:0;font-size:13px;line-height:1.72;color:var(--ink-2)}
+  .food-intro p b{color:var(--blue-700);font-weight:800}
+  .food-route{display:flex;align-items:stretch;gap:8px;overflow-x:auto;padding:12px 18px 0;margin:0;list-style:none;scrollbar-width:thin}
+  .food-route::-webkit-scrollbar{height:4px}
+  .food-route li{position:relative;flex:0 0 auto;display:flex;flex-direction:column;gap:2px;min-width:136px;max-width:224px;
+    border:1px solid var(--line);border-radius:12px;padding:8px 11px;background:#fff}
+  .food-route li:not(:last-child)::after{content:"→";position:absolute;right:-8px;top:50%;transform:translateY(-50%);
+    font-size:11px;font-weight:800;color:var(--ink-3);background:#fff;line-height:1;padding:1px 2px}
+  .food-route .fr-k{font-size:9.6px;font-weight:850;letter-spacing:.08em;color:var(--blue-600)}
+  .food-route a{font-size:11.6px;font-weight:800;color:var(--navy);line-height:1.35;text-decoration:none;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .food-route a:hover{text-decoration:underline}
+  .food-route .fr-m{font-size:10px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .food-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:12px 18px 4px}
+  .food{border:1px solid var(--line);border-radius:14px;padding:12px 13px;background:#fff;display:flex;flex-direction:column;gap:6px;scroll-margin-top:90px}
+  .food:target{border-color:var(--blue);box-shadow:0 0 0 3px rgba(15,92,151,.1)}
+  .food-top{display:flex;align-items:center;justify-content:space-between;gap:6px}
+  .food-area{font-size:10px;font-weight:800;color:var(--blue-600);background:var(--blue-soft);border-radius:6px;padding:2px 7px;white-space:nowrap}
+  .food-slot{font-size:10px;font-weight:850;color:var(--ink-3);letter-spacing:.02em}
+  .food-name{margin:0;font-size:14.4px;font-weight:850;letter-spacing:-.03em;color:var(--navy);line-height:1.3}
+  .food-name span{display:block;margin-top:2px;font-size:10.4px;font-weight:700;color:var(--ink-3);line-height:1.4}
+  .food-dish{display:flex;flex-direction:column;gap:1px;border-top:1px dashed var(--line);padding-top:6px}
+  .food-dish b{font-size:12px;font-weight:800;color:var(--ink);line-height:1.42}
+  .food-dish span{font-size:12.6px;font-weight:850;color:var(--blue-700);font-variant-numeric:tabular-nums}
+  .food-facts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+  .food-facts li{display:flex;gap:5px;font-size:11px;line-height:1.5;color:var(--ink-2)}
+  .food-facts i{font-style:normal;flex:0 0 26px;font-size:9.6px;font-weight:850;color:var(--ink-3)}
+  .food-tip{margin:0;font-size:11.2px;line-height:1.6;color:var(--ink-2)}
+  .food-cau{margin-top:auto;font-size:10.2px;font-weight:800;color:#B33A2B;line-height:1.45}
+  .food-cau::before{content:"! ";color:var(--coral)}
+  .food-foot{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;border-top:1px solid var(--line-2);padding-top:7px;margin-top:2px}
+  .food-foot a{display:inline-flex;align-items:center;gap:3px;font-size:10.4px;font-weight:800;color:var(--blue-600);text-decoration:none}
+  .food-foot a:hover{text-decoration:underline}
+  .food-foot .ic{width:11px;height:11px}
+  .food-rate{margin-left:auto;font-size:9.8px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .food-note{margin:0;padding:9px 18px 15px;font-size:10.6px;line-height:1.62;color:var(--ink-3)}
+  @media (max-width:768px){
+    .food-tabs{gap:5px;padding:9px 12px 0;scrollbar-width:none}
+    .food-tabs::-webkit-scrollbar{display:none}
+    .food-tab{padding:6px 10px;font-size:11.4px;gap:4px}
+    .food-intro{padding:11px 12px 0}
+    .food-intro p{font-size:12px;line-height:1.66}
+    .food-route{padding:9px 12px 0;gap:6px;scrollbar-width:none}
+    .food-route::-webkit-scrollbar{display:none}
+    .food-route li{min-width:118px;max-width:190px;padding:7px 9px}
+    .food-route a{font-size:11.2px}
+    .food-grid{grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 12px 2px}
+    .food{border-radius:13px;padding:11px 12px;gap:5px}
+    .food-name{font-size:14px}
+    .food-dish span{font-size:12.4px}
+    .food-tip{font-size:11px}
+    .food-note{padding:8px 12px 13px}
+  }
+
   /* ============================== 나라별 선물·기념품 ============================== */
   .gift-card{border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:var(--sh-1);overflow:hidden}
   .gift-tabs{display:flex;gap:6px;overflow-x:auto;padding:13px 14px 0;scrollbar-width:thin}
@@ -1907,6 +1974,7 @@
       <a href="#checklist" data-nav="checklist">출국 준비</a>
       <a href="#regions" data-nav="regions">지역·투어</a>
       <a href="guides/">여행 가이드</a>
+      <a href="#foods" data-nav="foods">맛집</a>
       <a href="#essentials" data-nav="essentials">여행 필수품</a>
       <a href="#alert" data-nav="alert">특가 알림</a>
       <a href="#howto" data-nav="howto" data-hide-sm>예약 전 체크</a>
@@ -2025,7 +2093,8 @@
     <a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>
     <a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>22개</i></a>
     <a class="qn" href="#gifts"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-ticket"/></svg></span><b>선물·기념품</b><i>6개국</i></a>
-    <a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>40편</i></a>
+    <a class="qn" href="#foods"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><b>맛집</b><i>30곳</i></a>
+    <a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>44편</i></a>
     <a class="qn" href="#alert"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><b>특가 알림</b><i>무료</i></a>
     <a class="qn" href="#courses"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-image"/></svg></span><b>여행 코스</b><i>5개</i></a>
     <button class="qn" type="button" data-quick-scope="kr"><span class="qn-ic"><svg class="flag-ic" aria-hidden="true"><use href="#f-kr"/></svg></span><b>국내</b><i>12개</i></button>
@@ -6573,6 +6642,432 @@
   </div>
 </section>
 
+<section class="foods" id="foods">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t">
+        <span class="kicker">LOCAL FOOD &amp; DAY ROUTE</span>
+        <h2>현지 맛집, <em>실제 가격과 영업시간</em>까지</h2>
+        <p>오사카·도쿄·후쿠오카·다낭·방콕·타이베이 6개 도시에서 실제로 영업 중인 가게 30곳을 골랐습니다. 공식 메뉴판의 대표 메뉴 가격과 원화 환산, 영업시간·휴무, 대기 팁, 구글 지도 링크를 카드마다 적었고, 카드 위 동선은 <b>오전 투어 → 점심·저녁 맛집 → 선물·쇼핑 → 숙소</b> 순서로 바로 이어집니다.</p>
+      </div>
+      <div class="sh-meta">2026.11.18 확인 · 공식 메뉴판 기준</div>
+    </div>
+    <div class="food-card">
+  <div class="food-tabs" role="tablist" aria-label="도시별 현지 맛집">
+    <button class="food-tab on" type="button" role="tab" id="ftab-osaka" aria-controls="fpanel-osaka" aria-selected="true" data-food-tab="osaka"><b>오사카</b><span>5</span></button>
+    <button class="food-tab" type="button" role="tab" id="ftab-tokyo" aria-controls="fpanel-tokyo" aria-selected="false" data-food-tab="tokyo"><b>도쿄</b><span>5</span></button>
+    <button class="food-tab" type="button" role="tab" id="ftab-fukuoka" aria-controls="fpanel-fukuoka" aria-selected="false" data-food-tab="fukuoka"><b>후쿠오카</b><span>5</span></button>
+    <button class="food-tab" type="button" role="tab" id="ftab-danang" aria-controls="fpanel-danang" aria-selected="false" data-food-tab="danang"><b>다낭</b><span>5</span></button>
+    <button class="food-tab" type="button" role="tab" id="ftab-bangkok" aria-controls="fpanel-bangkok" aria-selected="false" data-food-tab="bangkok"><b>방콕</b><span>5</span></button>
+    <button class="food-tab" type="button" role="tab" id="ftab-taipei" aria-controls="fpanel-taipei" aria-selected="false" data-food-tab="taipei"><b>타이베이</b><span>5</span></button>
+  </div>
+  <div class="food-panel" id="fpanel-osaka" role="tabpanel" aria-labelledby="ftab-osaka">
+          <div class="food-intro"><p>도톤보리·난바는 걸어서 15분, 우메다는 지하철 2정거장. 간사이공항에서 난카이 라피트로 난바에 내리면 <b>점심 한 끼는 도톤보리 안에서 끝납니다</b>. 값은 모두 2026년 11월 공식 메뉴판 기준입니다.</p></div>
+          <ol class="food-route" aria-label="오사카 하루 동선"><li><span class="fr-k">오전</span><a href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored">오사카·교토 일일 버스투어</a><span class="fr-m">56,050원~</span></li><li><span class="fr-k">점심</span><a class="js-food-jump" href="#os-jiyuken">지유켄 난바 본점</a><span class="fr-m">약 9,300원</span></li><li><span class="fr-k">저녁</span><a class="js-food-jump" href="#os-daruma">간조 쿠시카츠 다루마 도톤보리점</a><span class="fr-m">세트 1,683엔 (약 15,800원)</span></li><li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 오사카</a><span class="fr-m">9분 가이드</span></li><li><span class="fr-k">숙소</span><a href="#tripcom">오사카 숙소 최저가</a><span class="fr-m">트립닷컴</span></li></ol>
+          <div class="food-grid">
+          <article class="food" id="os-jiyuken">
+            <div class="food-top"><span class="food-area">난바</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">自由軒 難波本店<span>지유켄 난바 본점 · 양식·카레</span></h3>
+            <div class="food-dish"><b>명물 카레 (밥과 루를 미리 비빈 카레 + 생달걀)</b><span>990엔 · 약 9,300원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:00~20:00 (L.O. 19:45)</li>
+              <li><i>휴무</i>월요일 (공휴일이면 다음날)</li>
+              <li><i>대기</i>회전 빠름 · 38석이라 피크엔 합석</li>
+            </ul>
+            <p class="food-tip">달걀을 풀어 섞고 우스터소스 두세 방울. 카레 990엔은 2026년 7월 14일 개정가입니다.</p>
+            <span class="food-cau">카드 불가 · 현금</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJsUhGQWvnAGAR0R_XRzz1EQU" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.0 · 3,493</span></div>
+          </article><article class="food" id="os-mizuno">
+            <div class="food-top"><span class="food-area">도톤보리</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">美津の<span>미즈노 · 오코노미야키</span></h3>
+            <div class="food-dish"><b>야마이모야키 (밀가루 없이 산마 100%, 토핑 2가지 선택)</b><span>1,950~2,150엔 · 약 18,300~20,200원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:00~22:00 (L.O. 21:00)</li>
+              <li><i>휴무</i>없음 (2026년 2월부터 목요일 휴무 폐지)</li>
+              <li><i>대기</i>30분 안팎 · 줄 서는 동안 주문</li>
+            </ul>
+            <p class="food-tip">기본 1,150엔에 토핑 400엔(돼지고기·오징어)·500엔(관자·새우·굴) 2개를 더하는 방식. 자리에 앉은 뒤 추가 주문은 안 됩니다.</p>
+            <span class="food-cau">예약 불가 · 카드는 3,000엔부터</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJp6r1whTnAGARQi9RHXsUEtA" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 3.8 · 3,316</span></div>
+          </article><article class="food" id="os-daruma">
+            <div class="food-top"><span class="food-area">도톤보리</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">元祖串かつ だるま 道頓堀店<span>간조 쿠시카츠 다루마 도톤보리점 · 쿠시카츠</span></h3>
+            <div class="food-dish"><b>쿠시카츠 꼬치 · 도톤보리 세트</b><span>꼬치 143엔~ (약 1,300원) · 세트 1,683엔 (약 15,800원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>평일 11:00~22:30 · 주말·공휴일 10:30~22:30 (L.O. 30분 전)</li>
+              <li><i>휴무</i>연중무휴</li>
+              <li><i>대기</i>140석 · 저녁 피크 20~30분</li>
+            </ul>
+            <p class="food-tip">소스는 한 번만 찍는 규칙(두 번 찍기 금지). 1인 1드링크 주문이 필요합니다.</p>
+            <span class="food-cau">예약은 평일 18시까지 2인부터</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ2YfF7RTnAGARvwILJIgrP7c" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 3.8 · 2,398</span></div>
+          </article><article class="food" id="os-imai">
+            <div class="food-top"><span class="food-area">도톤보리</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">道頓堀 今井 本店<span>도톤보리 이마이 본점 · 우동</span></h3>
+            <div class="food-dish"><b>키츠네 우동 · 니신 우동 (곤부·가쓰오 다시)</b><span>1인 예산 1,000~2,000엔 · 약 9,400~18,800원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:30~21:30 (L.O. 21:00)</li>
+              <li><i>휴무</i>수요일(공휴일이면 영업) · 매월 넷째 화요일</li>
+              <li><i>대기</i>점심 피크 20~30분</li>
+            </ul>
+            <p class="food-tip">국물은 만들지 않고 그때마다 내는 방식. 가게가 밝힌 가격표가 메뉴별로 따로 없어 1인 예산으로 적었습니다.</p>
+            <span class="food-cau">냄비 요리는 L.O. 19:30에 끝납니다</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJBYsUkxTnAGARg1G8qmcdWf8" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.3 · 2,735</span></div>
+          </article><article class="food" id="os-kiji">
+            <div class="food-top"><span class="food-area">우메다</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">お好み焼 きじ 本店<span>오코노미야키 키지 본점 · 오코노미야키</span></h3>
+            <div class="food-dish"><b>모던야키 · 믹스타마 (신바타이 식도가이 안)</b><span>모던야키 1,100엔 · 약 10,300원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:30~21:00</li>
+              <li><i>휴무</i>일요일</li>
+              <li><i>대기</i>예약 불가 · 12~13시 대기</li>
+            </ul>
+            <p class="food-tip">가쓰오·곤부 다시로 반죽하고 시소 잎을 올려 굽는 스타일. 우메다·오사카역에서 걸어서 5분.</p>
+            <span class="food-cau">카드·전자화폐 불가 · 현금</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJgwKKQpLmAGAR8gTfdMBDo9g" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 3.7 · 1,520</span></div>
+          </article>
+          </div>
+        </div>
+  <div class="food-panel" id="fpanel-tokyo" role="tabpanel" aria-labelledby="ftab-tokyo" hidden>
+          <div class="food-intro"><p>츠키지 장외시장은 <b>오전 6시 반부터 13시 반까지</b>가 진짜 승부처입니다. 아침을 츠키지에서 먹고, 점심은 신주쿠 츠케멘, 저녁은 시부야 스시로 이어지는 하루가 이동이 가장 적습니다.</p></div>
+          <ol class="food-route" aria-label="도쿄 하루 동선"><li><span class="fr-k">오전</span><a href="https://naver.me/FJOuGLAP" target="_blank" rel="noopener sponsored">도쿄 후지산 1일 버스투어</a><span class="fr-m">65,550원~</span></li><li><span class="fr-k">점심</span><a class="js-food-jump" href="#tk-fuunji">츠케멘 후운지 신주쿠 본점</a><span class="fr-m">토쿠세이 1,300엔 (약 12,200원)</span></li><li><span class="fr-k">저녁</span><a class="js-food-jump" href="#tk-midori">우메가오카 스시노미도리 시부야점</a><span class="fr-m">세금 포함 4,180엔 (약 39,300원)</span></li><li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 도쿄</a><span class="fr-m">9분 가이드</span></li><li><span class="fr-k">숙소</span><a href="#tripcom">도쿄 숙소 최저가</a><span class="fr-m">트립닷컴</span></li></ol>
+          <div class="food-grid">
+          <article class="food" id="tk-fuunji">
+            <div class="food-top"><span class="food-area">신주쿠</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">つけ麺 風雲児 新宿本店<span>츠케멘 후운지 신주쿠 본점 · 라멘·츠케멘</span></h3>
+            <div class="food-dish"><b>츠케멘 (닭 백탕 + 어개 W스프)</b><span>츠케멘 1,000엔 (약 9,400원) · 토쿠세이 1,300엔 (약 12,200원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:00~15:00 · 17:00~21:00</li>
+              <li><i>휴무</i>없음 (스프 소진 시 조기 종료)</li>
+              <li><i>대기</i>공원 쪽에 줄 · 15석뿐이라 20~40분</li>
+            </ul>
+            <p class="food-tip">자리에 앉아서 식권기를 쓰는 방식. 면은 보통·대를 고를 수 있고, 먹고 난 뒤 스프割り를 부탁하면 됩니다.</p>
+            <span class="food-cau">예약 불가 · 현금·교통카드</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ508frs-MGGARnIKrb_tkai0" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FJOuGLAP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.3 · 5,799</span></div>
+          </article><article class="food" id="tk-sushisei">
+            <div class="food-top"><span class="food-area">츠키지</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">築地寿司清 本店<span>츠키지 스시세이 본점 · 스시</span></h3>
+            <div class="food-dish"><b>오마카세 니기리 12관 · 다쿠미</b><span>오마카세 4,500엔 (약 42,300원) · 다쿠미 3,500엔 (약 32,900원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>평일 10:00~14:00 · 17:00~20:00 / 주말 10:00~20:00</li>
+              <li><i>휴무</i>수요일 (공휴일이면 영업)</li>
+              <li><i>대기</i>점심 20~30분 · 1층 카운터가 회전 빠름</li>
+            </ul>
+            <p class="food-tip">낮 평균 예산은 2,500엔. 오마카세-극-은 6,000엔이고, 17시 이후는 예약을 받습니다.</p>
+            <span class="food-cau">시장 휴시일(수·일·공휴일 다수)에는 장외도 한산합니다</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJz4fNKt-LGGARHrewpxKDz7s" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FJOuGLAP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.3 · 1,235</span></div>
+          </article><article class="food" id="tk-torito">
+            <div class="food-top"><span class="food-area">츠키지</span><span class="food-slot">아침</span></div>
+            <h3 class="food-name">鳥めし 鳥藤 分店<span>토리메시 토리토 분점 · 오야코동</span></h3>
+            <div class="food-dish"><b>오야코동 (1906년 창업 닭고기 도매 직영)</b><span>오야코동 950엔 · 약 8,900원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>10:30~13:30 (토요일 7:30~)</li>
+              <li><i>휴무</i>수요일·일요일·공휴일·휴시일</li>
+              <li><i>대기</i>점심 15~30분</li>
+            </ul>
+            <p class="food-tip">닭백탕 스프로 만든 계란물이 포인트. 특상 오야코동·시오 오야코동·모쓰 오야코동도 있습니다.</p>
+            <span class="food-cau">13:30에 문을 닫습니다 · 늦으면 헛걸음</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJdVREHt-LGGARi3hVITEhN9E" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FJOuGLAP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.2 · 771</span></div>
+          </article><article class="food" id="tk-kitsuneya">
+            <div class="food-top"><span class="food-area">츠키지</span><span class="food-slot">아침</span></div>
+            <h3 class="food-name">きつねや<span>키쓰네야 · 호르몬동</span></h3>
+            <div class="food-dish"><b>호르몬동 (하치미소 베이스로 조린 소 내장)</b><span>호르몬동 900엔 · 약 8,500원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>6:30~13:30</li>
+              <li><i>휴무</i>일요일·공휴일·휴시일</li>
+              <li><i>대기</i>서서 먹는 자리 · 10~20분</li>
+            </ul>
+            <p class="food-tip">밥이 떨어지면 그날 영업이 끝납니다. 12시 전에 가는 게 안전하고, 소고기동·니쿠도후도 같이 팝니다.</p>
+            <span class="food-cau">현금만 · 앉을 자리 없음</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJP0yI3d6LGGARAvFhG-bnXJU" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FJOuGLAP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 3,008</span></div>
+          </article><article class="food" id="tk-midori">
+            <div class="food-top"><span class="food-area">시부야</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">梅丘寿司の美登利 渋谷店<span>우메가오카 스시노미도리 시부야점 · 스시</span></h3>
+            <div class="food-dish"><b>초특선 니기리 (세금 포함 4,180엔)</b><span>3,800엔 · 세금 포함 4,180엔 (약 39,300원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:00~21:00 (L.O. 20:30)</li>
+              <li><i>휴무</i>1월 1일</li>
+              <li><i>대기</i>10시부터 정리권 발권 · LINE으로 원격 대기</li>
+            </ul>
+            <p class="food-tip">마크시티 이스트 4층. 정리권은 매장 반경 1km 안에서만 뽑히니 시부야에 도착한 뒤 발권하세요.</p>
+            <span class="food-cau">2시간 이내 식사 협조 · 예약은 좌석만 별도</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJu9W4zVeLGGARXn0xCjGINF8" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FJOuGLAP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.3 · 4,488</span></div>
+          </article>
+          </div>
+        </div>
+  <div class="food-panel" id="fpanel-fukuoka" role="tabpanel" aria-labelledby="ftab-fukuoka" hidden>
+          <div class="food-intro"><p>하카타역·텐진·나카스가 지하철 두 정거장 안에 모여 있어 <b>라멘 두 그릇과 모쓰나베 한 판</b>을 하루에 넣을 수 있습니다. 1,080엔 라멘부터 1,771엔 모쓰나베까지, 값은 공식 안내 기준입니다.</p></div>
+          <ol class="food-route" aria-label="후쿠오카 하루 동선"><li><span class="fr-k">오전</span><a href="https://naver.me/Fhu7pqMl" target="_blank" rel="noopener sponsored">후쿠오카 유후인 일일 버스투어</a><span class="fr-m">56,050원~</span></li><li><span class="fr-k">점심</span><a class="js-food-jump" href="#fk-hyotan">효탄 스시 텐진 본점</a><span class="fr-m">추천 10관 3,960엔 (약 37,200원)</span></li><li><span class="fr-k">저녁</span><a class="js-food-jump" href="#fk-issou">하카타 잇소 하카타역히가시 본점</a><span class="fr-m">약 9,000원</span></li><li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 후쿠오카</a><span class="fr-m">9분 가이드</span></li><li><span class="fr-k">숙소</span><a href="#tripcom">후쿠오카 숙소 최저가</a><span class="fr-m">트립닷컴</span></li></ol>
+          <div class="food-grid">
+          <article class="food" id="fk-ichiran">
+            <div class="food-top"><span class="food-area">나카스</span><span class="food-slot">야식</span></div>
+            <h3 class="food-name">一蘭 本社総本店<span>이치란 본사 총본점 · 돈코츠 라멘</span></h3>
+            <div class="food-dish"><b>천연 돈코츠 라멘 · 카에다마</b><span>라멘 1,080엔 (약 10,200원) · 카에다마 210엔 (약 2,000원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>24시간</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>맛집중 카운터 40석 · 심야는 대기 적음</li>
+            </ul>
+            <p class="food-tip">주문서에 면 익힘·비법 다레·마늘 양을 적는 방식. 22시~6시는 심야요금이 붙습니다.</p>
+            <span class="food-cau">중주카와바타역 2번 출구에서 30m</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJSc8jdZORQTURu6BMwxrKbGg" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/Fhu7pqMl" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.2 · 13,502</span></div>
+          </article><article class="food" id="fk-issou">
+            <div class="food-top"><span class="food-area">하카타역 동쪽</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">博多一双 博多駅東本店<span>하카타 잇소 하카타역히가시 본점 · 돈코츠 라멘</span></h3>
+            <div class="food-dish"><b>라멘 (거품 낀 &#x27;돈코츠 카푸치노&#x27; 스프)</b><span>라멘 960엔 · 약 9,000원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:00~24:00 (스프 소진 시 종료)</li>
+              <li><i>휴무</i>부정휴</li>
+              <li><i>대기</i>개점 전부터 줄 · 30~40분</li>
+            </ul>
+            <p class="food-tip">하카타역 지쿠시 출구에서 도보 6~7분. 현금만 되니 지폐를 준비하세요.</p>
+            <span class="food-cau">카운터 8석+테이블 12석 · 유모차 입장 불가</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJAQDdFLaRQTURIXKdwYPcIdA" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/Fhu7pqMl" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.0 · 7,337</span></div>
+          </article><article class="food" id="fk-rakutenchi">
+            <div class="food-top"><span class="food-area">텐진</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">元祖もつ鍋楽天地 天神本店<span>간소 모쓰나베 라쿠텐치 텐진 본점 · 모쓰나베</span></h3>
+            <div class="food-dish"><b>모쓰나베 1인분 · 만족 코스</b><span>1인분 1,771엔 (약 16,600원) · 만족 코스 3,399엔 (약 31,900원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:00~22:00 (L.O. 21:30)</li>
+              <li><i>휴무</i>시설 휴관일 (12/31~1/2 휴무)</li>
+              <li><i>대기</i>예약 가능 · 주말은 예약 권장</li>
+            </ul>
+            <p class="food-tip">아크로스 후쿠오카 지하 2층. 만족 코스는 1.5인분에 짬뽕면·두부 무한리필이 붙습니다.</p>
+            <span class="food-cau">코스는 인원수만큼 주문 · 점심 한정 세트 2,178엔</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ___8H46RQTURLusiwCoEPo0" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/Fhu7pqMl" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.7 · 22,343</span></div>
+          </article><article class="food" id="fk-makino">
+            <div class="food-top"><span class="food-area">하카타역</span><span class="food-slot">아침</span></div>
+            <h3 class="food-name">牧のうどん 博多バスターミナル店<span>마키노 우동 하카타버스터미널점 · 우동</span></h3>
+            <div class="food-dish"><b>고보텐 우동 · 카시와고한</b><span>고보텐 우동 490엔 (약 4,600원) · 카시와고한 210엔 (약 2,000원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>10:00~23:00 (L.O. 22:30)</li>
+              <li><i>휴무</i>없음 (전점 휴무일에도 영업)</li>
+              <li><i>대기</i>거의 없음 · 버스터미널 B1</li>
+            </ul>
+            <p class="food-tip">면 익힘을 야와멘·나카멘·가타멘에서 고르고, 국물이 줄면 알아서 더 부어주는 방식. 2026년 6월 1일 가격 개정.</p>
+            <span class="food-cau">현금만 · 이 매장은 본사 메뉴판과 가격이 다릅니다</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJtTPCpMWRQTURLjmCmBs-6oo" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/Fhu7pqMl" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.2 · 3,247</span></div>
+          </article><article class="food" id="fk-hyotan">
+            <div class="food-top"><span class="food-area">텐진</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">ひょうたん寿司 天神本店<span>효탄 스시 텐진 본점 · 스시</span></h3>
+            <div class="food-dish"><b>점심 정식 · 오늘의 추천 니기리 10관</b><span>효탄 정식 1,628엔 (약 15,300원) · 추천 10관 3,960엔 (약 37,200원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:30~15:00 (L.O. 14:30) · 17:00~21:30</li>
+              <li><i>휴무</i>부정휴</li>
+              <li><i>대기</i>평일 12:30 15분 · 주말 40분~1시간</li>
+            </ul>
+            <p class="food-tip">2·3층 120석. 줄은 1층 계단 옆 의자에서 서고, 전원 모여야 안내합니다. 한국어 메뉴판이 2층 입구에 있습니다.</p>
+            <span class="food-cau">낮은 현금만 · 예약 불가</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJp8rFoo-RQTURXgrlDgjG8ho" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/Fhu7pqMl" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/japan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.2 · 5,285</span></div>
+          </article>
+          </div>
+        </div>
+  <div class="food-panel" id="fpanel-danang" role="tabpanel" aria-labelledby="ftab-danang" hidden>
+          <div class="food-intro"><p>한시장 반경 1km에 반미·반쎄오·미꽝이 다 있고, 미케비치는 해산물, 호이안은 카오러우 한 그릇입니다. <b>한 끼 2,000~5,000원대</b>가 대부분이라 하루 세 끼를 다 현지식으로 채워도 2만원이 안 됩니다.</p></div>
+          <ol class="food-route" aria-label="다낭 하루 동선"><li><span class="fr-k">오전</span><a href="https://naver.me/GqfhOUUP" target="_blank" rel="noopener sponsored">인천 출발 다낭·호이안 5일</a><span class="fr-m">322,905원~</span></li><li><span class="fr-k">점심</span><a class="js-food-jump" href="#dn-baduong">반쎄오 바 즈엉</a><span class="fr-m">넴루이 5개 35,000동 (약 1,900원)</span></li><li><span class="fr-k">저녁</span><a class="js-food-jump" href="#dn-beman">하이산 베 맨</a><span class="fr-m">소라 57,000동/냥</span></li><li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 다낭</a><span class="fr-m">8분 가이드</span></li><li><span class="fr-k">숙소</span><a href="#tripcom">다낭 숙소 최저가</a><span class="fr-m">트립닷컴</span></li></ol>
+          <div class="food-grid">
+          <article class="food" id="dn-balan">
+            <div class="food-top"><span class="food-area">한시장 인근</span><span class="food-slot">간식</span></div>
+            <h3 class="food-name">Bánh mì Bà Lan<span>반미 바 란 · 반미</span></h3>
+            <div class="food-dish"><b>반미 티차 (파테·챠·냉육·사후인 후춧가루소금)</b><span>25,000~35,000동 · 약 1,400~1,900원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>15:00~23:00</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>17~19시 줄 · 회전 빠름</li>
+            </ul>
+            <p class="food-tip">오후에만 문을 엽니다. 30년 넘게 같은 자리(62 Trưng Nữ Vương)에서 굽고, 반미 께(막대형)는 10,000동.</p>
+            <span class="food-cau">테이블 없이 사서 먹는 형태 · 지점마다 영업시간 다름</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ25InOcwZQjERnYokrniHXTQ" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GqfhOUUP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/vietnam-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 925</span></div>
+          </article><article class="food" id="dn-baduong">
+            <div class="food-top"><span class="food-area">한시장 남쪽</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">Bánh Xèo Bà Dưỡng<span>반쎄오 바 즈엉 · 반쎄오</span></h3>
+            <div class="food-dish"><b>반쎄오 4장 · 넴루이 (간·땅콩 소스가 이름값)</b><span>4장 65,000~80,000동 (약 3,600~4,400원) · 넴루이 5개 35,000동 (약 1,900원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>9:30~21:00</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>웬만하면 만석 · 10~20분</li>
+            </ul>
+            <p class="food-tip">Hoàng Diệu에서 골목(K280/23)으로 들어가 끝까지. 미쉐린 가이드 선정이고, 20시 전에 반죽이 떨어지는 날이 있습니다.</p>
+            <span class="food-cau">골목이 좁아 차로는 진입 불가 · 오토바이는 밖에</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJrSiIJ8oZQjERn2-PvhzOCuU" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GqfhOUUP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/vietnam-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.3 · 10,912</span></div>
+          </article><article class="food" id="dn-beman">
+            <div class="food-top"><span class="food-area">미케비치</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">Hải sản Bé Mặn<span>하이산 베 맨 · 해산물</span></h3>
+            <div class="food-dish"><b>똠띳(쏙) 소금구이 · 게 메소스 · 가리비 파기름</b><span>1인 200,000~400,000동 (약 11,000~22,000원) · 소라 57,000동/냥</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>9:00~23:00</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>16:30~17:00에 가야 자리·수족관 상태 좋음</li>
+            </ul>
+            <p class="food-tip">수족관에서 직접 고르고 무게를 달아 조리합니다. 소라·가리비는 냥 단위 가격이 비싼 편이라 인원과 양을 먼저 정하세요.</p>
+            <span class="food-cau">계량·계산서 오류 제보가 반복되는 집입니다. 저울 앞에서 무게를 확인하고, 계산서를 한 줄씩 대조하세요.</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJRbc3I34XQjERVJhz7jDCiRQ" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GqfhOUUP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/vietnam-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 3.7 · 7,897</span></div>
+          </article><article class="food" id="dn-beptrang">
+            <div class="food-top"><span class="food-area">하이쩌우</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">Mì Quảng Ếch Bếp Trang<span>미꽝 에치 벱 짱 · 미꽝(국수)</span></h3>
+            <div class="food-dish"><b>미꽝 에치 (개구리 간장조림을 곁들인 미꽝)</b><span>50,000~120,000동 · 약 2,800~6,600원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>6:30~22:15</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>점심 10~20분</li>
+            </ul>
+            <p class="food-tip">대나무 쟁반에 국수·채소·라이스페이퍼를 깔고, 흙냄비에 따로 나온 개구리 조림을 부어 비벼 먹습니다.</p>
+            <span class="food-cau">특별 세트는 100,000동대 · 1인분 기준으로 주문</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJHRmt7soZQjERhuei1xWj9Xs" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GqfhOUUP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/vietnam-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.4 · 3,303</span></div>
+          </article><article class="food" id="dn-caolau">
+            <div class="food-top"><span class="food-area">호이안 구시가지</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">Cao lầu Thanh<span>카오러우 타인 · 카오러우</span></h3>
+            <div class="food-dish"><b>카오러우 (호이안 우물물로 반죽한 면 + 차슈·돼지껍질)</b><span>35,000~50,000동 · 약 1,900~2,800원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>7:00~19:00</li>
+              <li><i>휴무</i>없음 (일정 없이 쉬는 날 있음)</li>
+              <li><i>대기</i>오전 늦게 10~15분 · 12시 넘으면 붐빕니다</li>
+            </ul>
+            <p class="food-tip">26 Thái Phiên. 27번에도 비슷한 이름의 집이 있으니 간판 숫자를 확인하세요. 30년 넘게 한 메뉴만 팝니다.</p>
+            <span class="food-cau">현금만 · 오후엔 닫는 경우가 있어 오전 방문 권장</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJVfRmEnkOQjER78PSHGeyTW0" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GqfhOUUP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/vietnam-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.6 · 2,658</span></div>
+          </article>
+          </div>
+        </div>
+  <div class="food-panel" id="fpanel-bangkok" role="tabpanel" aria-labelledby="ftab-bangkok" hidden>
+          <div class="food-intro"><p>올드타운(마하차이 로드)에 미쉐린 게 오믈렛과 팟타이, 야오와랏에 해산물, 에까마이에 40년 된 소고기 국수가 있습니다. <b>1인 4,000~12,000원</b>대가 중심이고, 파인다이닝만 값이 뜁니다.</p></div>
+          <ol class="food-route" aria-label="방콕 하루 동선"><li><span class="fr-k">오전</span><a href="https://naver.me/GDQGv2YF" target="_blank" rel="noopener sponsored">인천 출발 방콕·파타야 5일</a><span class="fr-m">920,530원~</span></li><li><span class="fr-k">점심</span><a class="js-food-jump" href="#bk-thipsamai">팁사마이</a><span class="fr-m">기본 팟타이 90밧 (약 3,600원)</span></li><li><span class="fr-k">저녁</span><a class="js-food-jump" href="#bk-jayfai">란 제이파이</a><span class="fr-m">스페셜 4,000밧 (약 160,000원)</span></li><li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 방콕</a><span class="fr-m">8분 가이드</span></li><li><span class="fr-k">숙소</span><a href="#tripcom">방콕 숙소 최저가</a><span class="fr-m">트립닷컴</span></li></ol>
+          <div class="food-grid">
+          <article class="food" id="bk-jayfai">
+            <div class="food-top"><span class="food-area">올드타운</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">Raan Jay Fai<span>란 제이파이 · 게 오믈렛</span></h3>
+            <div class="food-dish"><b>게 오믈렛 (crab omelette)</b><span>1,500밧 (약 60,000원) · 스페셜 4,000밧 (약 160,000원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>수~토 9:00~19:30</li>
+              <li><i>휴무</i>일·월·화</li>
+              <li><i>대기</i>예약은 사실상 안 됨 · 줄 1~3시간</li>
+            </ul>
+            <p class="food-tip">미쉐린 1스타(2027 가이드 기준). 현금만 되고, 주문 전에 1,500밧짜리인지 4,000밧 스페셜인지 확인하세요.</p>
+            <span class="food-cau">2025년 8월 가격 표시 문제로 당국 과태료를 받은 이력이 있습니다. 계산서를 반드시 확인하세요.</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJaxq89xaZ4jARQtKhE1uqq9c" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GDQGv2YF" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/thailand-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 3.6 · 5,155</span></div>
+          </article><article class="food" id="bk-thipsamai">
+            <div class="food-top"><span class="food-area">올드타운</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">Thipsamai<span>팁사마이 · 팟타이</span></h3>
+            <div class="food-dish"><b>슈퍼브 팟타이 (달걀 지단으로 싼 팟타이)</b><span>150밧 (약 6,000원) · 기본 팟타이 90밧 (약 3,600원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>9:00~24:00</li>
+              <li><i>휴무</i>화요일</li>
+              <li><i>대기</i>저녁 20~40분</li>
+            </ul>
+            <p class="food-tip">1939년부터. 오렌지주스(139밧)를 같이 시키는 게 이 집의 공식. 아이콘시암·시암파라곤에도 지점이 있습니다.</p>
+            <span class="food-cau">카드는 1,000밧부터 · 그 아래는 현금</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJxU5YeBaZ4jARvm8EVZYGjGk" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GDQGv2YF" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/thailand-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.2 · 12,861</span></div>
+          </article><article class="food" id="bk-wattana">
+            <div class="food-top"><span class="food-area">에까마이</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">Wattana Panich<span>왓타나 파닛 · 소고기 국수</span></h3>
+            <div class="food-dish"><b>쿠아이티오 느어 (40년 이어 끓인 진한 소고기 국물)</b><span>100밧 (약 4,000원) · 염소찜 200밧 (약 8,000원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>9:00~19:00</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>점심 10~20분</li>
+            </ul>
+            <p class="food-tip">면은 세면·넓은면·유리면 중 선택. 국물이 진해 소화가 부담되면 염소찜 쪽이 낫습니다.</p>
+            <span class="food-cau">에어컨 없음 · 현금</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ-eIsmEme4jARJj2YJYuFOAA" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GDQGv2YF" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/thailand-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.2 · 4,888</span></div>
+          </article><article class="food" id="bk-jeho">
+            <div class="food-top"><span class="food-area">반탓통</span><span class="food-slot">야식</span></div>
+            <h3 class="food-name">Jeh O Chula<span>제 오 쭐라 · 통툼 마마</span></h3>
+            <div class="food-dish"><b>통툼 마마 (인스턴트 면 + 해산물 · 계란 2개)</b><span>해산물 220밧 (약 8,800원) · 믹스 300밧 (약 12,000원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>16:30~24:00</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>QUEiQ 앱 대기 · 피크 2시간</li>
+            </ul>
+            <p class="food-tip">미쉐린 빕구르망 2025. 한 그릇이 2인분이라 2명이면 이것 하나에 새우 오믈렛을 더하는 정도가 맞습니다.</p>
+            <span class="food-cau">맵기 조절 요청 필수 · 줄이 길면 근처 야시장으로 대체</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJFVMU6y6Z4jARfM273-HwetM" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GDQGv2YF" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/thailand-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 8,882</span></div>
+          </article><article class="food" id="bk-tk">
+            <div class="food-top"><span class="food-area">야오와랏</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">T&amp;K Seafood<span>티앤케이 씨푸드 · 해산물</span></h3>
+            <div class="food-dish"><b>새우 숯불구이 · 게 찜 · 톰얌</b><span>새우구이 200/300밧 (약 8,000/12,000원) · 게찜 350/800밧 · 톰얌 150밧</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>16:30~02:00</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>19시 전 도착 권장 · 이후 30분 이상</li>
+            </ul>
+            <p class="food-tip">초록색 폴로 셔츠가 이 집 표식. 1인 200~350밧 선이면 충분하고, 게·랍스터는 500밧을 넘습니다.</p>
+            <span class="food-cau">노상 테이블 · 더운 날은 포장이 낫습니다</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJLyZrciGZ4jARC1iQWHQDdOU" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GDQGv2YF" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/thailand-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 3,731</span></div>
+          </article>
+          </div>
+        </div>
+  <div class="food-panel" id="fpanel-taipei" role="tabpanel" aria-labelledby="ftab-taipei" hidden>
+          <div class="food-intro"><p>융캉제·시먼딩·라오허제가 지하철로 20분 안쪽입니다. <b>아침은 화산시장, 점심은 융캉제, 저녁은 야시장</b>으로 시간대를 갈라 쓰면 하루에 다섯 곳을 소화할 수 있습니다.</p></div>
+          <ol class="food-route" aria-label="타이베이 하루 동선"><li><span class="fr-k">오전</span><a href="https://naver.me/GM3uACc1" target="_blank" rel="noopener sponsored">타이베이 예스진지 1일 버스투어</a><span class="fr-m">35,000원~</span></li><li><span class="fr-k">점심</span><a class="js-food-jump" href="#tw-dtf">딘타이펑 신성점</a><span class="fr-m">볶음밥 320대만달러 (약 14,100원)</span></li><li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 타이베이</a><span class="fr-m">8분 가이드</span></li><li><span class="fr-k">숙소</span><a href="#tripcom">타이베이 숙소 최저가</a><span class="fr-m">트립닷컴</span></li></ol>
+          <div class="food-grid">
+          <article class="food" id="tw-dtf">
+            <div class="food-top"><span class="food-area">신이·융캉 인근</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">鼎泰豐 新生店<span>딘타이펑 신성점 · 샤오롱바오</span></h3>
+            <div class="food-dish"><b>샤오롱바오 10개 · 새우 볶음밥</b><span>290대만달러 (약 12,800원) · 볶음밥 320대만달러 (약 14,100원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:00~20:30</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>현장 번호표 · 피크 40~60분</li>
+            </ul>
+            <p class="food-tip">융캉제 옆 원점(信義店)은 지금 포장 전용입니다. 앉아서 먹으려면 길 건너 新生店(신이루 2단 277호)으로 가세요. 내점은 10% 서비스료 별도.</p>
+            <span class="food-cau">가격은 2026년 6월 22일 인상분 · 반죽은 5개(145대만달러)도 가능</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJA-U6X-epQjQR-T9BLmEfUlc" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GM3uACc1" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/taiwan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.6 · 7,308</span></div>
+          </article><article class="food" id="tw-yongkang">
+            <div class="food-top"><span class="food-area">융캉제</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">永康牛肉麵<span>융캉 우육면 · 우육면</span></h3>
+            <div class="food-dish"><b>홍사오 반근반육 우육면 · 진짜갈비찜</b><span>220~280대만달러 · 약 9,700~12,300원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:00~20:30</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>12~13시 30분 · 15시가 가장 한산</li>
+            </ul>
+            <p class="food-tip">1963년부터. 국물이 짜면 미리 &#x27;清淡&#x27;을 요청할 수 있고, 테이블 산채(酸菜)를 넣으면 훨씬 부드러워집니다.</p>
+            <span class="food-cau">미쉐린 비브구르망 · 현금 권장</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJgRdW94KpQjQRODiapkz_DB0" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GM3uACc1" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/taiwan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 3.7 · 12,202</span></div>
+          </article><article class="food" id="tw-fuhang">
+            <div class="food-top"><span class="food-area">화산시장</span><span class="food-slot">아침</span></div>
+            <h3 class="food-name">阜杭豆漿<span>푸항 도우장 · 아침·사오빙</span></h3>
+            <div class="food-dish"><b>허우빙지압단(厚餅夾蛋) · 셴도우장(鹹豆漿)</b><span>50대만달러 (약 2,200원) · 셴도우장 50대만달러</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>5:30~12:30 (재료 소진 시 조기 마감)</li>
+              <li><i>휴무</i>월요일</li>
+              <li><i>대기</i>평일 7~9시 30~50분 · 주말 60~90분</li>
+            </ul>
+            <p class="food-tip">화산시장 2층, 선다오사 5번 출구에서 1분. 주문은 &#x27;음료 → 빵 → 계산&#x27; 순서로 세 명이 나눠 받습니다.</p>
+            <span class="food-cau">카드 불가 · 11:30 넘으면 떨어진 메뉴가 생깁니다</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJff6pZXCpQjQRHi3vcbjQip8" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GM3uACc1" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/taiwan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 24,638</span></div>
+          </article><article class="food" id="tw-aychung">
+            <div class="food-top"><span class="food-area">시먼딩</span><span class="food-slot">간식</span></div>
+            <h3 class="food-name">阿宗麵線<span>아쭝 몐셴 · 대장면선</span></h3>
+            <div class="food-dish"><b>따창 몐셴 (돼지 대창이 든 걸쭉한 국수)</b><span>소 65대만달러 (약 2,900원) · 대 80대만달러 (약 3,500원)</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>7:30~22:30 (금·토 ~23:00)</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>줄은 길어도 5~10분</li>
+            </ul>
+            <p class="food-tip">메뉴는 대장면선 하나뿐. 자리가 없어 서서 먹는 게 기본이고, 식초·마늘·고추기름은 셀프입니다.</p>
+            <span class="food-cau">시먼역 6번 출구 도보 3~5분</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJQXy1aAmpQjQR7UZhdHZCnLE" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GM3uACc1" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/taiwan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 18,685</span></div>
+          </article><article class="food" id="tw-pepperbun">
+            <div class="food-top"><span class="food-area">라오허제 야시장</span><span class="food-slot">야식</span></div>
+            <h3 class="food-name">福州世祖胡椒餅<span>푸저우 스쭈 후자오빙 · 후추빵</span></h3>
+            <div class="food-dish"><b>후자오빵 (화덕에 붙여 굽는 후추 돼지고기 빵)</b><span>65대만달러 · 약 2,900원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>15:30~23:30</li>
+              <li><i>휴무</i>없음</li>
+              <li><i>대기</i>10~20분 · 갓 구운 것만 나옵니다</li>
+            </ul>
+            <p class="food-tip">라오허제 입구 쑹산츠유궁 옆, 249호 앞. 미쉐린 비브구르망 단골이고 한 개만 팔아 회전이 빠릅니다.</p>
+            <span class="food-cau">현금만 · 뜨거울 때 먹어야 합니다</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ5w5U9purQjQRJAjF-Pc-FfY" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/GM3uACc1" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="guides/taiwan-souvenir-list">선물 동선</a><a href="#tripcom">숙소</a><span class="food-rate">구글 3.7 · 2,760</span></div>
+          </article>
+          </div>
+        </div>
+  <p class="food-note">가게 30곳은 2026년 11월 18일 구글 지도에서 영업 중(OPERATIONAL)임을 확인했고, 가격은 공식 메뉴판·공식 안내 또는 2026년 10~11월 방문 기록이 일치하는 값만 적었습니다. 환율은 100엔 = 940원 · 100동 = 5.5원 · 1밧 = 40원 · 100대만달러 = 4,400원이고, 영업시간·휴무는 시장 휴시일이나 임시휴무로 달라질 수 있으니 출발 전에 가게 지도 링크로 한 번 더 확인하세요.</p>
+</div>
+  </div>
+</section>
+
 <section class="gifts" id="gifts">
   <div class="wrap">
     <div class="sec-head">
@@ -7879,6 +8374,60 @@ if (searchForm) {
   try { last = localStorage.getItem(KEY) || 'jp'; } catch (e) {}
   if (!document.getElementById('gpanel-' + last)) last = tabs[0].dataset.giftTab;
   setCountry(last);
+})();
+
+/* ============================== 도시별 현지 맛집 ============================== */
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-food-tab]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.food-panel'));
+  if (!tabs.length || !panels.length) return;
+
+  var KEY = 'trippick.food.city';
+
+  function setCity(cid) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.foodTab === cid;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function (p) { p.hidden = p.id !== 'fpanel-' + cid; });
+    try { localStorage.setItem(KEY, cid); } catch (e) {}
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { setCity(t.dataset.foodTab); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var n = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      setCity(tabs[n].dataset.foodTab);
+      tabs[n].focus();
+    });
+  });
+
+  /* 카드 id 로 들어오면 그 카드가 있는 도시 탭을 먼저 연다 */
+  function cityOf(el) {
+    var panel = el && el.closest ? el.closest('.food-panel') : null;
+    return panel ? panel.id.replace('fpanel-', '') : '';
+  }
+
+  var last = 'osaka';
+  try { last = localStorage.getItem(KEY) || 'osaka'; } catch (e) {}
+  if (!document.getElementById('fpanel-' + last)) last = tabs[0].dataset.foodTab;
+
+  var hash = (location.hash || '').replace('#', '');
+  var target = hash ? document.getElementById(hash) : null;
+  if (target && cityOf(target)) last = cityOf(target);
+  setCity(last);
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('.js-food-jump') : null;
+    if (!a) return;
+    var id = (a.getAttribute('href') || '').replace('#', '');
+    var el = id ? document.getElementById(id) : null;
+    if (el && cityOf(el)) setCity(cityOf(el));
+  });
 })();
 
 /* ============================== 출국 준비 체크리스트 ============================== */
