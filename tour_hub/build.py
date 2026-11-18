@@ -768,7 +768,11 @@ def _gift_links(links: list, data: dict, essentials: dict, tripcom: dict, guides
             out.append((h["url"], "숙소", f"{h['city']} 숙소 최저가", "트립닷컴"))
         elif kind == "ess" and i in ess:
             e = ess[i]
-            out.append((e.get("url") or e["naverMe"], "준비물", e["name"], f"{won(e['price'])}원"))
+            name = re.sub(r"^\[[^\]]+\]\s*", "", e["name"])
+            name = re.split(r"\s{2,}|\s*\(", name)[0].strip()
+            if len(name) > 24:
+                name = name[:24].rstrip() + "…"
+            out.append((e.get("url") or e["naverMe"], "준비물", name, f"{won(e['price'])}원"))
         elif kind == "guide" and i in gby:
             g = gby[i]
             out.append((f"guides/{g['slug']}.html", "가이드", g["navTitle"], f"{g['read']}분"))

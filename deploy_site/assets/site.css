@@ -1795,7 +1795,7 @@
     .gift-cau{grid-area:cau;padding-top:3px;font-size:9.4px}
     .gift-links{grid-template-columns:1fr 1fr;gap:5px;padding:9px 10px 2px}
     .gift-link{padding:7px 9px;border-radius:9px}
-    .gift-link b{font-size:10.6px;-webkit-line-clamp:1}
+    .gift-link b{font-size:10.6px;-webkit-line-clamp:2}
     .gift-link span{font-size:9.4px}
     .gift-note{padding:7px 11px 11px;font-size:9.4px;line-height:1.5}
 
