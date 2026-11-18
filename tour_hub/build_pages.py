@@ -814,8 +814,9 @@ def hub_food_route(city: dict, tour, guide, hotel, hub_name: str) -> str:
     steps = []
     if tour:
         title = re.split(r"\s*[(（]", tour["title"])[0].strip()
+        tour_k = "오전" if tour["id"].endswith("_g") else "패키지"
         steps.append(
-            f'<li><span class="fr-k">오전</span><a href="{esc(tour["url"])}" target="_blank" rel="noopener sponsored">'
+            f'<li><span class="fr-k">{tour_k}</span><a href="{esc(tour["url"])}" target="_blank" rel="noopener sponsored">'
             f'{esc(title)}</a><span class="fr-m">{won(tour["sale"])}원~</span></li>'
         )
     for slot in ("점심", "저녁"):
