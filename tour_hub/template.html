@@ -1031,6 +1031,29 @@
   @media print{ .site-head,.ctabs,.pcard .book,.hero .search,.catbar,.picker,.trust{display:none!important} body{font-size:11pt} }
 
   /* ================================================================
+     v15 — 홈 실시간 검색 드롭다운 (가이드·투어·도시 색인)
+     ================================================================ */
+  .sdrop{position:fixed;z-index:140;display:none;background:#fff;border:1px solid var(--line);
+    border-radius:14px;box-shadow:0 22px 56px rgba(6,15,27,.3);padding:6px;max-height:min(62vh,430px);
+    overflow:auto;color:var(--ink);text-align:left}
+  .sdrop.on{display:block}
+  .sd-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 9px 7px;font-size:11.4px;color:var(--ink-3)}
+  .sd-h b{color:var(--blue-700);font-weight:850;font-size:11.6px}
+  .sd-item{display:flex;align-items:flex-start;gap:9px;padding:9px 10px;border-radius:10px;cursor:pointer;transition:background .12s}
+  .sd-item:hover,.sd-item.on{background:var(--blue-soft)}
+  .sd-k{flex:0 0 auto;margin-top:1px;font-size:10px;font-weight:850;letter-spacing:.02em;color:#fff;background:var(--blue);
+    border-radius:5px;padding:2px 6px;min-width:38px;text-align:center}
+  .sd-k.k-tour{background:#0B7A6A}
+  .sd-k.k-city{background:#8A5E1C}
+  .sd-t{font-size:13.2px;font-weight:750;line-height:1.45;color:var(--ink);
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .sd-m{display:block;margin-top:2px;font-size:11.2px;color:var(--ink-3)}
+  .sd-empty{padding:14px 12px;font-size:12.6px;color:var(--ink-2)}
+  .sd-all{display:block;margin:4px 0 0;padding:10px 11px;border-top:1px solid var(--line-2);font-size:12.4px;font-weight:800;color:var(--blue-600)}
+  .sd-all:hover{color:var(--blue-700)}
+  .sd-hint{font-size:11.4px;color:var(--ink-3);white-space:nowrap}
+
+  /* ================================================================
      Toss 스타일 리스타일 (v4.1)
      회색 캔버스(#F4F6F8) + 흰 라운드 카드 + 큰 숫자 + 1탭 행동 버튼
      ================================================================ */
@@ -2124,6 +2147,7 @@
         </label>
         <button class="sbtn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg> 검색</button>
       </form>
+      <div class="sdrop" id="sdrop" role="listbox" aria-label="검색 결과" hidden></div>
     </div>
   </div>
 </section>
@@ -2196,7 +2220,7 @@
   <summary><b>제휴·대가성 고지</b><span>쿠팡 파트너스 · 트립닷컴 · 네이버 커넥트</span></summary>
   <div class="disc-body">
   이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (여행 준비물 8종 링크)<br />
-  이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 숙소·항공권 예약 시 일정액의 수수료를 제공받습니다. 결제 금액에는 영향이 없습니다. (맨 아래 트립닷컴 숙소·항공권 섹션)<br />
+  이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 숙소·항공권·입장권·공항픽업·렌터카·eSIM·공항철도 예약 시 일정액의 수수료를 제공받습니다. 결제 금액에는 영향이 없습니다. (맨 아래 트립닷컴 섹션)<br />
   이 포스팅은 네이버 여행 커넥트 활동의 일환으로, 예약 발생 시 수수료를 제공받습니다. 구매자 결제 금액에는 영향이 없습니다. 표시 가격은 출발일 기준 최저가이며, 날짜·좌석 상황에 따라 달라질 수 있습니다.<br />
   이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. (부산·강원 레저, eSIM·패스 등 쇼핑 커넥트 링크)
   </div>
@@ -2616,6 +2640,7 @@
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
 <!-- @TP_DATA -->
+<!-- @SEARCH_INDEX -->
 <script>
 const state = { scope: 'all', type: 'all', notip: false, korean: false, noshop: false, premium: false, privateOnly: false, sort: 'recommend', query: '' };
 
@@ -3600,6 +3625,111 @@ applyFilters();
     more.setAttribute('aria-expanded', String(open));
     more.textContent = open ? '일정 접기' : more.dataset.moreLabel;
   });
+})();
+</script>
+<script>
+/* ================= 홈 실시간 검색 드롭다운 (v15) =================
+   data/guides.json·tours.json·city_hubs.json 색인을 그대로 써서
+   입력하는 순간 가이드·투어·도시를 같이 찾아 준다. */
+(function () {
+  var form = document.getElementById('searchForm');
+  if (!form) return;
+  var q = document.getElementById('q');
+  var box = document.getElementById('sdrop');
+  var dataEl = document.getElementById('tpSearch');
+  if (!q || !box || !dataEl) return;
+
+  var IDX = [];
+  try { IDX = JSON.parse(dataEl.textContent || '[]'); } catch (e) { return; }
+  if (!IDX.length) return;
+  var RANK = { '가이드': 0, '도시': 1, '투어': 2 };
+  var items = [];
+  var sel = -1;
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function place() {
+    var r = form.getBoundingClientRect();
+    box.style.left = Math.round(r.left) + 'px';
+    box.style.width = Math.round(Math.min(r.width, 680)) + 'px';
+    box.style.top = Math.round(r.bottom + 6) + 'px';
+  }
+  function hide() {
+    box.classList.remove('on');
+    box.hidden = true;
+    sel = -1;
+  }
+  function render(s) {
+    var html = '<div class="sd-h"><b>' + items.length + '개 결과</b><span class="sd-hint">↑↓ 이동 · Enter 열기</span></div>';
+    items.forEach(function (it, i) {
+      var kc = it.k === '투어' ? 'k-tour' : (it.k === '도시' ? 'k-city' : '');
+      html += '<a class="sd-item' + (i === sel ? ' on' : '') + '" role="option" href="' + esc(it.u) + '" data-i="' + i + '">' +
+        '<span class="sd-k ' + kc + '">' + esc(it.k) + '</span>' +
+        '<span><span class="sd-t">' + esc(it.t) + '</span><span class="sd-m">' + esc(it.m) + '</span></span></a>';
+    });
+    html += '<a class="sd-all" href="guides/?q=' + encodeURIComponent(s) + '">가이드 44편에서 “‘' + esc(s) + '” 더 찾기 →</a>';
+    box.innerHTML = html;
+  }
+  function search() {
+    var s = (q.value || '').trim().toLowerCase();
+    if (!s) { hide(); return; }
+    var toks = s.split(/\s+/).filter(Boolean);
+    var found = IDX.filter(function (it) {
+      var hay = it.q || '';
+      return toks.every(function (t) { return hay.indexOf(t) > -1; });
+    });
+    found.sort(function (a, b) {
+      var ra = RANK[a.k] == null ? 9 : RANK[a.k];
+      var rb = RANK[b.k] == null ? 9 : RANK[b.k];
+      if (ra !== rb) return ra - rb;
+      var ta = (a.t || '').toLowerCase().indexOf(toks[0]) === 0 ? 0 : 1;
+      var tb = (b.t || '').toLowerCase().indexOf(toks[0]) === 0 ? 0 : 1;
+      return ta - tb;
+    });
+    items = found.slice(0, 7);
+    sel = -1;
+    if (!items.length) {
+      box.innerHTML = '<div class="sd-empty">“‘' + esc(s) + '”에 맞는 가이드·투어가 없습니다.  예: 오사카 · eSIM · 우기 · 패스</div>';
+      place();
+      box.hidden = false;
+      box.classList.add('on');
+      return;
+    }
+    render(s);
+    place();
+    box.hidden = false;
+    box.classList.add('on');
+  }
+
+  q.addEventListener('input', search);
+  q.addEventListener('focus', function () { if (q.value.trim()) search(); });
+  q.addEventListener('keydown', function (e) {
+    if (box.hidden || !items.length) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      sel = (sel + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+      render(q.value.trim().toLowerCase());
+      return;
+    }
+    if (e.key === 'Enter' && sel > -1) {
+      e.preventDefault();
+      window.location.href = items[sel].u;
+      return;
+    }
+    if (e.key === 'Escape') hide();
+  });
+  box.addEventListener('click', function (e) {
+    var a = e.target.closest('.sd-item, .sd-all');
+    if (a) hide();
+  });
+  document.addEventListener('click', function (e) {
+    if (!box.hidden && !form.contains(e.target) && !box.contains(e.target)) hide();
+  });
+  window.addEventListener('scroll', function () { if (!box.hidden) place(); }, { passive: true });
+  window.addEventListener('resize', function () { if (!box.hidden) place(); });
 })();
 </script>
 </body>

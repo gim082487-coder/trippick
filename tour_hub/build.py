@@ -40,6 +40,14 @@ FLAG_SYMBOL = {c: f for c, _, f in COUNTRIES}
 TYPE_ORDER = ["가이드투어", "풀패키지", "세미패키지", "에어텔", "골프패키지", "국내패키지", "레저·액티비티"]
 PREMIUM_FLOOR = 3_000_000
 
+# v15: 출국 체크리스트의 나라별 패널에 붙일 트립닷컴 실링크(발급된 것만)
+DEPART_LINKS = {
+    "jp": ["esim_tokyo", "rail_skyliner"],
+    "vn": ["esim_danang"],
+    "th": ["esim_bangkok"],
+    "tw": ["esim_taipei"],
+}
+
 GIFT_COUNTRIES = 0   # data/gifts.json 로드 시 채운다(main).
 GUIDES_COUNT = 0     # data/guides.json 로드 시 채운다(main).
 FOOD_COUNT = 0       # data/restaurants.json 로드 시 채운다(main).
@@ -971,6 +979,10 @@ def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
     JS 가 보이는 패널만 바꾼다. 스크립트가 꺼져 있어도 첫 나라 내용은 읽을 수 있다.
     """
     tc_by_city = {h.get("cityId"): h for h in tripcom["hotels"] if h.get("cityId")}
+    tc_act = {}
+    for key in ("tickets", "transfers", "cars", "esims", "rails"):
+        for it in tripcom.get(key) or []:
+            tc_act[it["id"]] = it
     pb = check["powerbank"]
     liquid = check["liquid"]
     tabs, panels = [], []
@@ -1022,6 +1034,16 @@ def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
                 f'<a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="{esc(tc_city)}">'
                 f'<span class="cl-link-k">숙소·항공</span><b>{esc(h["city"])} 숙소 최저가(트립닷컴)</b>'
                 f'<span class="cl-link-p">{esc(h["sub"])}</span></a>'
+            )
+        # v15: 나라별 eSIM·공항철도 실링크 (발급된 링크가 있는 나라만)
+        for pid in DEPART_LINKS.get(c["id"], []):
+            it = tc_act.get(pid)
+            if not it:
+                continue
+            links.append(
+                f'<a class="cl-link cl-link--tc" href="{esc(it["url"])}" target="_blank" rel="noopener sponsored">'
+                f'<span class="cl-link-k">{esc(it["label"])}</span><b>{esc(it["title"])}</b>'
+                f'<span class="cl-link-p">{esc(it.get("highlight") or "")}</span></a>'
             )
 
         notes = "".join(f"<li>{esc(n)}</li>" for n in c.get("notes", []))
@@ -1203,14 +1225,18 @@ def render_tripcom(tc: dict) -> str:
     tickets = tc.get("tickets") or []
     transfers = tc.get("transfers") or []
     cars = tc.get("cars") or []
+    esims = tc.get("esims") or []
+    rails = tc.get("rails") or []
     acts = tc.get("activitySource") or {}
     ticket_cards = "".join(tc_act_card(a) for a in tickets)
     pickup_cards = "".join(tc_act_card(a) for a in transfers + cars)
+    esim_cards = "".join(tc_act_card(a, "유심·eSIM 보기") for a in esims)
+    rail_cards = "".join(tc_act_card(a, "기차표 보기") for a in rails)
     ticket_order = " · ".join(a["city"] for a in tickets)
     transfer_order = " · ".join(dict.fromkeys(a["city"] for a in transfers))
     return f"""<div class="tc-filter">
-      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터">{tabs}<a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>{len(tickets)}</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>{len(transfers) + len(cars)}</span></a></div>
-      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선에 입장권 {len(tickets)}개 도시·공항픽업 {len(transfers)}개 공항·렌터카 {len(cars)}곳을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
+      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터">{tabs}<a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>{len(tickets)}</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>{len(transfers) + len(cars)}</span></a><a class="tc-tab tc-tab--jump" href="#tcEsim">eSIM·유심 <span>{len(esims)}</span></a><a class="tc-tab tc-tab--jump" href="#tcRail">공항철도 <span>{len(rails)}</span></a></div>
+      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선에 입장권 {len(tickets)}개 도시·공항픽업 {len(transfers)}개 공항·렌터카 {len(cars)}곳, eSIM·유심 {len(esims)}개 도시·공항철도 {len(rails)}개 노선을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
     </div>
     <div class="tc-group" data-tc-group="flight">
       <div class="ess-ghead"><h3>✈️ 항공권 검색</h3><span class="n">{len(tc["flights"])}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">편도 기준 · 실시간 최저가</span></div>
@@ -1231,6 +1257,16 @@ def render_tripcom(tc: dict) -> str:
       <div class="ess-ghead"><h3>🚗 공항픽업·렌터카</h3><span class="n">{len(transfers) + len(cars)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(transfer_order)}{" · 렌터카 " + str(len(cars)) + "곳" if cars else ""}</span></div>
       <div class="tc-acts">{pickup_cards}</div>
       <p class="ess-cp-note">공항픽업은 도착 공항과 시내 목적지를, 렌터카는 인수·반납 지점과 날짜를 넣어야 실제 요금이 나옵니다. 표시 요금은 트립닷컴 페이지 기준이고 차종·시간대에 따라 달라집니다. {esc(acts.get("rate", ""))}</p>
+    </div>
+    <div class="tc-group tc-group--act" data-tc-group="esim" id="tcEsim">
+      <div class="ess-ghead"><h3>📶 eSIM·유심</h3><span class="n">{len(esims)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">도착 전 설치 · 무료 취소 조건은 상품마다 다릅니다</span></div>
+      <div class="tc-acts">{esim_cards}</div>
+      <p class="ess-cp-note">eSIM은 기기가 eSIM을 지원해야 하고, 설치에 인터넷이 필요해 출발 6~12시간 전 설치가 안전합니다. 1일 500MB·1GB·2GB와 총량형이 같이 팔리므로, 테더링이 필요한 날이 있으면 무제한형을 고르세요.</p>
+    </div>
+    <div class="tc-group tc-group--act" data-tc-group="rail" id="tcRail">
+      <div class="ess-ghead"><h3>🚄 공항철도·기차표</h3><span class="n">{len(rails)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">나리타 스카이라이너 · 간사이공항 라피트</span></div>
+      <div class="tc-acts">{rail_cards}</div>
+      <p class="ess-cp-note">공항철도는 전자 바우처를 역 발매기·창구에서 실물 승차권으로 교환하는 방식입니다. 같은 구간을 현장에서 사는 값과 비교하려면 공항 이동 가이드를 함께 보세요.</p>
     </div>"""
 
 
@@ -1693,6 +1729,60 @@ def faq_tokens(data: dict, courses: dict, essentials: dict) -> dict:
     }
 
 
+def render_search_index(data: dict, guides: dict, hubs: list) -> str:
+    """홈 검색창 드롭다운용 색인 — 가이드 44편 + 투어 57개 + 도시 7곳.
+
+    URL 은 Cloudflare Pages 가 200 으로 서빙하는 확장자 없는 주소로 직접 적는다.
+    """
+    extra = {}
+    p = DATA / "guide_extra.json"
+    if p.exists():
+        extra = json.loads(p.read_text(encoding="utf-8")).get("guides") or {}
+    region_names = {r["code"]: r["name"] for r in (json.loads(p.read_text(encoding="utf-8")).get("regions") or [])} if p.exists() else {}
+
+    def norm(s: str) -> str:
+        return re.sub(r"\s+", " ", str(s or "")).strip().lower()
+
+    items = []
+    for g in guides.get("guides", []):
+        ex = extra.get(g["slug"]) or {}
+        q = " ".join([
+            g.get("navTitle", ""),
+            re.sub(r"<[^>]+>", "", g.get("h1", "")),
+            g.get("dek", ""),
+            g.get("keywords", ""),
+            g.get("category", ""),
+            " ".join(ex.get("tags") or []),
+            " ".join(region_names.get(c, c) for c in (ex.get("regions") or [])),
+            ex.get("takeaway") or "",
+        ])
+        items.append({
+            "t": g["navTitle"],
+            "k": "가이드",
+            "m": f'{g["category"]} · {g["read"]}분 · 최종 검증 {g["updated"].replace("-", ".")}',
+            "u": f'guides/{g["slug"]}',
+            "q": norm(q)[:420],
+        })
+    for t in data["tours"]:
+        items.append({
+            "t": t["title"],
+            "k": "투어",
+            "m": f'{t.get("city_label", "")} · {won(t["sale"])}원~ · {t["type"]}',
+            "u": "#regions",
+            "q": norm(" ".join([t["title"], t.get("city_label", ""), t.get("seller", ""), t["type"], t.get("country", "")]))[:280],
+        })
+    for h in hubs:
+        items.append({
+            "t": f'{h["name"]} 여행 페이지',
+            "k": "도시",
+            "m": "투어·맛집·선물·숙소 한 화면",
+            "u": h["slug"],
+            "q": norm(" ".join([h["name"], h.get("keywords", ""), h.get("nav", "")])),
+        })
+    payload = json.dumps(items, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return '<script type="application/json" id="tpSearch">' + payload + "</script>"
+
+
 def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
     tours = data["tours"]
     FAQ_TOKENS = faq_tokens(data, courses, essentials)
@@ -1951,6 +2041,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @PLAN_BODY -->", render_planner_default(plans, tours_by_id, ess_by_id, courses_by_city))
     html = replace_block(html, "<!-- @FAQ -->", render_faq(FAQ["items"], faq_tokens(data, courses, essentials)))
     html = replace_block(html, "<!-- @TP_DATA -->", render_tp_data(data, essentials, courses) + "\n" + render_plans_json(plans, plan_notes))
+    html = replace_block(html, "<!-- @SEARCH_INDEX -->", render_search_index(data, guides, HUB_LIST))
     html = replace_block(html, "<!-- @JSONLD -->", render_jsonld(data, courses, essentials))
     for marker, slot_html in render_ad_slots().items():
         html = replace_block(html, marker, slot_html)

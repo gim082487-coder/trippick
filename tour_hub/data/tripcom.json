@@ -491,6 +491,109 @@
     "issued": "2026-11-18 14:30~14:36 KST · 파트너스 대시보드 Affiliate Link > Create links (한국어 / Customized)",
     "groups": "D21285812 (입장권 7·픽업 7·렌터카 1) · D21286001 (하네다 픽업 1)",
     "verified": "2026-11-18 14:40~14:45 브라우저에서 HTTP 200 + 한국어 페이지 + 도시·공항명 일치 확인, 같은 날 15:0x curl 재확인(HTTP 200)",
-    "rate": "투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%"
-  }
+    "rate": "투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%",
+    "esim_note": "2026-11-18 18:4x KST 파트너스 Custom link로 eSIM 5건·공항철도 2건 추가 발급(D21303312). 7건 전부 HTTP 200 + 한국어 + Allianceid/SID 유지 확인."
+  },
+  "esims": [
+    {
+      "id": "esim_osaka",
+      "city": "오사카",
+      "cityId": "osaka",
+      "country": "일본",
+      "flag": "jp",
+      "category": "esim",
+      "label": "eSIM·유심",
+      "title": "오사카 유심·eSIM",
+      "highlight": "일본 eSIM 31개 상품 · 1일 2GB/3GB부터",
+      "summary": "오사카 도착 전 설치하는 일본 eSIM·유심 31개 상품. 1일 2GB·3GB 요금제와 3~30일 총량형이 함께 팔리고, 도착 후 QR 설치·무료 취소 조건이 상품마다 다릅니다.",
+      "url": "https://kr.trip.com/things-to-do/experiences/osaka-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_osaka&trip_sub3=D21303312",
+      "status": "verified_200_ko"
+    },
+    {
+      "id": "esim_tokyo",
+      "city": "도쿄",
+      "cityId": "tokyo",
+      "country": "일본",
+      "flag": "jp",
+      "category": "esim",
+      "label": "eSIM·유심",
+      "title": "도쿄 유심·eSIM",
+      "highlight": "일본 eSIM 31개 상품 · SoftBank·docomo",
+      "summary": "도쿄·나리타 도착 전에 설치하는 일본 eSIM·유심. SoftBank·docomo·KDDI 요금제가 같이 올라 있고, 500MB/일 저가형과 무제한형의 하루 단가 차이를 비교할 수 있습니다.",
+      "url": "https://kr.trip.com/things-to-do/experiences/tokyo-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_tokyo&trip_sub3=D21303312",
+      "status": "verified_200_ko"
+    },
+    {
+      "id": "esim_danang",
+      "city": "다낭",
+      "cityId": "danang",
+      "country": "베트남",
+      "flag": "vn",
+      "category": "esim",
+      "label": "eSIM·유심",
+      "title": "다낭 유심·eSIM",
+      "highlight": "베트남 eSIM · 1일 500MB부터",
+      "summary": "다낭 도착 즉시 쓰는 베트남 eSIM·유심. 1일 500MB 요금제가 200원대부터 있고, 3일 무제한형과 로밍을 같은 기준으로 비교할 수 있습니다.",
+      "url": "https://kr.trip.com/things-to-do/experiences/danang-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_danang&trip_sub3=D21303312",
+      "status": "verified_200_ko"
+    },
+    {
+      "id": "esim_bangkok",
+      "city": "방콕",
+      "cityId": "bangkok",
+      "country": "태국",
+      "flag": "th",
+      "category": "esim",
+      "label": "eSIM·유심",
+      "title": "방콕 유심·eSIM",
+      "highlight": "태국 eSIM · AIS·True 이동통신",
+      "summary": "방콕·수완나품 도착 전에 설치하는 태국 eSIM·유심. 공항 카운터 수령형과 QR 설치형이 함께 있고, 7일 총량형이 대표 상품입니다.",
+      "url": "https://kr.trip.com/things-to-do/experiences/bangkok-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_bangkok&trip_sub3=D21303312",
+      "status": "verified_200_ko"
+    },
+    {
+      "id": "esim_taipei",
+      "city": "타이베이",
+      "cityId": "taipei",
+      "country": "대만",
+      "flag": "tw",
+      "category": "esim",
+      "label": "eSIM·유심",
+      "title": "타이베이 유심·eSIM",
+      "highlight": "대만 eSIM · 공항 수령·QR 설치",
+      "summary": "타이베이·타오위안 공항 도착 후 쓰는 대만 eSIM·유심. 공항 카운터 수령형과 QR 설치형을 나란히 비교할 수 있습니다.",
+      "url": "https://kr.trip.com/things-to-do/experiences/taipei-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_taipei&trip_sub3=D21303312",
+      "status": "verified_200_ko"
+    }
+  ],
+  "rails": [
+    {
+      "id": "rail_skyliner",
+      "city": "도쿄",
+      "cityId": "tokyo",
+      "country": "일본",
+      "flag": "jp",
+      "category": "rail",
+      "label": "공항철도",
+      "title": "나리타공항 → 우에노 스카이라이너",
+      "highlight": "41분 · 전 좌석 지정석 · 4.9/5",
+      "summary": "게이세이 스카이라이너 공식 티켓. 나리타 제1·2터미널에서 우에노·닛포리까지 41분, 전 좌석 지정석이고 도쿄 지하철 24/48/72시간권과 묶은 패키지도 있습니다. 전자 바우처를 역 발매기에서 교환합니다.",
+      "url": "https://kr.trip.com/things-to-do/detail/47313759/?Allianceid=11407530&SID=336341874&trip_sub1=rail_skyliner&trip_sub3=D21303312",
+      "status": "verified_200_ko"
+    },
+    {
+      "id": "rail_osaka",
+      "city": "오사카",
+      "cityId": "osaka",
+      "country": "일본",
+      "flag": "jp",
+      "category": "rail",
+      "label": "공항철도·패스",
+      "title": "오사카 기차표 — 난카이 라피트",
+      "highlight": "간사이공항→난바 34분 · 4.8/5 · 1.68만 예약",
+      "summary": "간사이공항에서 난바로 바로 들어가는 난카이 특급 라피트(34분)를 포함한 오사카 기차표 22종. 간사이 레일패스·JR 패스까지 같은 화면에서 비교됩니다.",
+      "url": "https://kr.trip.com/things-to-do/experiences/osaka-jiaotong/?Allianceid=11407530&SID=336341874&trip_sub1=rail_osaka&trip_sub3=D21303312",
+      "status": "verified_200_ko"
+    }
+  ]
 }

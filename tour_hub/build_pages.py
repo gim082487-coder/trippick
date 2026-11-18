@@ -418,6 +418,254 @@ def side_common(up: str) -> str:
 
 
 # ----------------------------------------------------------------------
+# v15: 가이드 요약 박스 · 도시 연결 블록 · 가이드 검색 메타
+# ----------------------------------------------------------------------
+def guide_extra(slug: str) -> dict:
+    return (EXTRA.get("guides") or {}).get(slug) or {}
+
+
+def hub_by_slug(slug):
+    if not slug:
+        return None
+    return next((h for h in hub_list() if h["slug"] == slug), None)
+
+
+def guide_summary(g: dict) -> str:
+    """본문 맨 위 요약 박스 — 결론 한 줄 + 확인한 값 2개 + 최종 검증일."""
+    ex = guide_extra(g["slug"])
+    take = ex.get("takeaway")
+    if not take:
+        return ""
+    facts = "".join(
+        f'<li><span>{esc(k)}</span><b>{esc(v)}</b></li>' for k, v in (ex.get("facts") or [])[:2]
+    )
+    hub = hub_by_slug(ex.get("hub"))
+    hub_link = ""
+    if hub:
+        hub_link = (
+            f'<a class="g-sum-hub" href="../{hub["slug"]}.html">'
+            f'<span>{esc(hub["name"])} 페이지</span>'
+            f'<b>투어·맛집·선물·숙소를 한 화면에</b>'
+            f'<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        )
+    fact_list = f'<ul class="g-sum-facts">{facts}</ul>' if facts else ""
+    return f"""<div class="g-sum">
+  <div class="g-sum-top"><b>3줄 요약</b><span class="g-sum-date">최종 검증일 {g['updated'].replace('-', '.')} · {esc(g.get('fxNote') or '가격 확인 2026.11')}</span></div>
+  <p class="g-sum-lead">{esc(take)}</p>
+  {fact_list}
+  {hub_link}
+</div>"""
+
+
+# 가이드 → 도시 허브 하단에 붙일 실제 판매 링크(tripcom id · essentials id)
+HUB_NEXT = {
+    "osaka": {"trip": ["ticket_osaka", "rail_osaka", "transfer_kix", "esim_osaka"], "ess": []},
+    "tokyo": {"trip": ["rail_skyliner", "ticket_tokyo", "esim_tokyo"], "ess": ["tokyo-metro-pass"]},
+    "fukuoka": {"trip": ["ticket_fukuoka", "transfer_fuk"], "ess": ["jp-esim-usimsa-3d"]},
+    "danang": {"trip": ["ticket_danang", "transfer_dad", "esim_danang"], "ess": ["danang-bana-hills"]},
+    "bangkok": {"trip": ["ticket_bangkok", "transfer_bkk", "esim_bangkok"], "ess": []},
+    "taipei": {"trip": ["ticket_taipei", "transfer_tpe", "esim_taipei"], "ess": []},
+    "jeju": {"trip": ["ticket_jeju", "transfer_cju", "car_jeju"], "ess": []},
+}
+
+
+def tripcom_items() -> dict:
+    out = {}
+    for key in ("tickets", "transfers", "cars", "esims", "rails"):
+        for it in TRIPCOM.get(key) or []:
+            out[it["id"]] = it
+    return out
+
+
+def guide_next(g: dict) -> str:
+    """가이드 하단 — 해당 도시 허브 + 실수익 상품 3 + 같은 도시 가이드 3."""
+    ex = guide_extra(g["slug"])
+    hub = hub_by_slug(ex.get("hub"))
+    tc = tripcom_items()
+    ess = {e["id"]: e for e in ESSENTIALS}
+
+    prods = []
+    if hub:
+        conf = HUB_NEXT.get(hub["slug"], {"trip": [], "ess": []})
+        for pid in conf["trip"]:
+            it = tc.get(pid)
+            if not it:
+                continue
+            prods.append(
+                f'<a class="gnext-p" href="{esc(it["url"])}" target="_blank" rel="noopener sponsored">'
+                f'<span class="gnext-k">{esc(it["label"])}</span>'
+                f'<b>{esc(it["title"])}</b>'
+                f'<span class="gnext-m">{esc(it.get("highlight") or "")}</span>'
+                f'<span class="gnext-go">예약 페이지 →</span></a>'
+            )
+            if len(prods) == 3:
+                break
+        if len(prods) < 3:
+            for eid in conf["ess"]:
+                e = ess.get(eid)
+                if not e:
+                    continue
+                prods.append(
+                    f'<a class="gnext-p" href="{esc(e.get("url") or e["naverMe"])}" target="_blank" rel="noopener sponsored">'
+                    f'<span class="gnext-k">{esc(e["categoryLabel"])}</span>'
+                    f'<b>{esc(e["name"])}</b>'
+                    f'<span class="gnext-m">{esc(e["store"])} · {won(e["price"])}원</span>'
+                    f'<span class="gnext-go">구매 페이지 →</span></a>'
+                )
+                if len(prods) == 3:
+                    break
+    grid = "".join(prods)
+    grid_html = f'<div class="gnext-grid">{grid}</div>' if grid else ""
+
+    # 같은 도시(없으면 같은 지역) 가이드 3편
+    region_codes = set(ex.get("regions") or [])
+    pool = []
+    for other in GUIDES_LIST:
+        if other["slug"] == g["slug"]:
+            continue
+        oex = guide_extra(other["slug"])
+        if hub and oex.get("hub") == hub["slug"]:
+            pool.append(other)
+        elif not hub and region_codes & set(oex.get("regions") or []):
+            pool.append(other)
+    # 관련 글에 적힌 순서를 먼저
+    related = [s for s in (g.get("related") or [])]
+    pool.sort(key=lambda x: (related.index(x["slug"]) if x["slug"] in related else 99, x["read"]))
+    picks = pool[:3]
+    glinks = "".join(
+        f'<a href="{p["slug"]}.html"><span>{esc(p["category"])}</span>{esc(p["navTitle"])}<i>{p["read"]}분</i></a>'
+        for p in picks
+    )
+    gtitle = f"{esc(hub['name'])} 가이드 더 보기" if hub else "같은 지역 가이드 더 보기"
+    head_link = (
+        f'<a href="../{hub["slug"]}.html">{esc(hub["name"])} 도시 페이지 전체 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        if hub
+        else '<a href="../cities/index.html">도시별 페이지 7곳 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+    )
+    sub = (
+        f'<span>{esc(hub["name"])} · 제휴 링크는 실제 예약·구매 페이지로 연결됩니다</span>'
+        if hub
+        else '<span>이 지역 글은 도시 허브로 이어지지 않아, 같은 지역 가이드와 필수품으로 연결했습니다</span>'
+    )
+    return f"""<section class="gnext" aria-label="이 여행에서 바로 쓰는 것">
+  <div class="gnext-head"><div><b>이 여행에서 바로 쓰는 것</b>{sub}</div>{head_link}</div>
+{grid_html}
+  <div class="gnext-g"><b>{gtitle}</b>{glinks}</div>
+</section>"""
+
+
+def guide_search_blob(g: dict) -> str:
+    ex = guide_extra(g["slug"])
+    parts = [
+        g["navTitle"],
+        strip_tags(g["h1"]),
+        g.get("dek", ""),
+        g.get("keywords", ""),
+        g["category"],
+        " ".join(ex.get("tags") or []),
+        " ".join(ex.get("regions") or []),
+        ex.get("takeaway") or "",
+    ]
+    for k, v in ex.get("facts") or []:
+        parts += [k, v]
+    return re.sub(r"\s+", " ", " ".join(parts)).strip().lower()
+
+
+def guide_filter_script() -> str:
+    """가이드 인덱스 실시간 검색·필터 (서버 없이 카드 data 속성만 사용)."""
+    return """<script>
+(function () {
+  var bar = document.querySelector('.gfind');
+  if (!bar) return;
+  var q = document.getElementById('gq');
+  var clearBtn = document.getElementById('gqClear');
+  var countEl = document.getElementById('gcount');
+  var emptyEl = document.getElementById('gempty');
+  var resetBtn = document.getElementById('greset');
+  var cards = [].slice.call(document.querySelectorAll('.gcard'));
+  var secs = [].slice.call(document.querySelectorAll('.gi-sec'));
+  var st = { q: '', region: 'all', tag: 'all' };
+
+  function norm(s) { return (s || '').toLowerCase().replace(/\\s+/g, ' ').trim(); }
+
+  function apply() {
+    var tokens = norm(st.q).split(' ').filter(Boolean);
+    var n = 0;
+    cards.forEach(function (c) {
+      var hay = c.getAttribute('data-q') || '';
+      var okQ = tokens.every(function (t) { return hay.indexOf(t) > -1; });
+      var okR = st.region === 'all' || (' ' + (c.getAttribute('data-region') || '') + ' ').indexOf(' ' + st.region + ' ') > -1;
+      var okT = st.tag === 'all' || (' ' + (c.getAttribute('data-tags') || '') + ' ').indexOf(' ' + st.tag + ' ') > -1;
+      var on = okQ && okR && okT;
+      c.hidden = !on;
+      if (on) n++;
+    });
+    secs.forEach(function (s) {
+      var any = [].slice.call(s.querySelectorAll('.gcard')).some(function (c) { return !c.hidden; });
+      s.hidden = !any;
+    });
+    if (countEl) countEl.textContent = n;
+    if (emptyEl) emptyEl.hidden = n > 0;
+    if (clearBtn) clearBtn.hidden = !st.q;
+  }
+
+  function syncUrl() {
+    if (!window.history || !history.replaceState) return;
+    var p = [];
+    if (st.q) p.push('q=' + encodeURIComponent(st.q));
+    if (st.region !== 'all') p.push('region=' + st.region);
+    if (st.tag !== 'all') p.push('tag=' + encodeURIComponent(st.tag));
+    history.replaceState(null, '', location.pathname + (p.length ? '?' + p.join('&') : '') + location.hash);
+  }
+
+  function setRegion(v) {
+    st.region = v;
+    bar.querySelectorAll('.gf-chip[data-region]').forEach(function (b) {
+      b.classList.toggle('on', b.getAttribute('data-region') === v);
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-region') === v));
+    });
+  }
+  function setTag(v) {
+    st.tag = v;
+    bar.querySelectorAll('.gf-chip[data-tag]').forEach(function (b) {
+      b.classList.toggle('on', b.getAttribute('data-tag') === v);
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-tag') === v));
+    });
+  }
+
+  bar.addEventListener('click', function (e) {
+    var chip = e.target.closest('.gf-chip');
+    if (!chip) return;
+    if (chip.hasAttribute('data-region')) setRegion(chip.getAttribute('data-region'));
+    if (chip.hasAttribute('data-tag')) setTag(chip.getAttribute('data-tag'));
+    apply(); syncUrl();
+  });
+
+  if (q) {
+    q.addEventListener('input', function () { st.q = q.value; apply(); syncUrl(); });
+    q.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { q.value = ''; st.q = ''; apply(); syncUrl(); }
+    });
+  }
+  if (clearBtn) clearBtn.addEventListener('click', function () { q.value = ''; st.q = ''; q.focus(); apply(); syncUrl(); });
+  if (resetBtn) resetBtn.addEventListener('click', function () {
+    q.value = ''; st.q = ''; setRegion('all'); setTag('all'); apply(); syncUrl();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== q) { e.preventDefault(); q.focus(); }
+  });
+
+  var params = new URLSearchParams(location.search);
+  if (params.get('q')) { st.q = params.get('q'); q.value = st.q; }
+  if (params.get('region')) setRegion(params.get('region'));
+  if (params.get('tag')) setTag(params.get('tag'));
+  apply();
+})();
+</script>"""
+
+
+# ----------------------------------------------------------------------
 # 가이드 페이지
 # ----------------------------------------------------------------------
 def guide_page(out_root: Path, g: dict, base: str) -> Path:
@@ -478,7 +726,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
       <p class="dek">{esc(g['dek'])}</p>
       <div class="pg-meta">
         <span><b>트립픽 편집</b></span><i></i>
-        <span>업데이트 {g['updated'].replace('-', '.')}</span><i></i>
+        <span>최종 검증일 {g['updated'].replace('-', '.')}</span><i></i>
         <span>읽는 시간 약 {g['read']}분</span><i></i>
         <span>{esc(g.get('fxNote') or '가격 확인 2026.11.17')}</span>
       </div>
@@ -491,6 +739,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
   <div class="wrap">
     <div class="pg-grid">
       <article class="doc">
+{guide_summary(g)}
 {body_html}
       </article>
       <aside class="pg-side">
@@ -499,6 +748,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
 {side_common('../')}
       </aside>
     </div>
+{guide_next(g)}
 {cta_band('../', g.get('ctaTitle', '이 글의 계산, 내 일정으로 해보기'), g.get('ctaText', '인원과 지역을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 총액을 계산합니다.'))}
   </div>
 </div>"""
@@ -549,23 +799,29 @@ def guides_index(out_root: Path, base: str) -> Path:
         if g["category"] not in cats:
             cats.append(g["category"])
 
+    region_names = {r["code"]: r["name"] for r in EXTRA.get("regions", [])}
+
     sections = []
     for cat in cats:
         cards = []
         for g in [x for x in GUIDES_LIST if x["category"] == cat]:
+            ex = guide_extra(g["slug"])
             thumb = (
                 f'<div class="thumb"><img src="../{esc(g["image"])}" alt="{esc(g["imageAlt"])}" loading="lazy" width="640" height="360" /></div>'
                 if g.get("image")
                 else '<div class="thumb noimg">TRIPPICK GUIDE</div>'
             )
+            tags = "".join(f'<span class="gc-tag">{esc(t)}</span>' for t in (ex.get("tags") or [])[:2])
+            regions = " ".join(ex.get("regions") or [])
             cards.append(
-                f"""        <a class="gcard" href="{g['slug']}.html">
+                f"""        <a class="gcard" href="{g['slug']}.html" data-q="{esc(guide_search_blob(g))}" data-region="{esc(regions)}" data-tags="{esc(' '.join(ex.get('tags') or []))}">
           {thumb}
           <div class="gc-body">
             <span class="tag">{esc(g['category'])}</span>
             <h3>{esc(g['navTitle'])}</h3>
             <p>{esc(g['dek'])}</p>
-            <div class="gc-foot"><b>{g['read']}분</b> · {g['updated'].replace('-', '.')} 업데이트</div>
+            <div class="gc-foot"><b>{g['read']}분</b> · 최종 검증 {g['updated'].replace('-', '.')}</div>
+            <div class="gc-tags">{tags}</div>
           </div>
         </a>"""
             )
@@ -599,6 +855,15 @@ def guides_index(out_root: Path, base: str) -> Path:
         ensure_ascii=False,
     )
 
+    region_chips = "".join(
+        f'<button class="gf-chip" type="button" data-region="{esc(r["code"])}">{esc(r["name"])}</button>'
+        for r in EXTRA.get("regions", [])
+    )
+    tag_chips = "".join(
+        f'<button class="gf-chip" type="button" data-tag="{esc(t)}">{esc(t)}</button>'
+        for t in EXTRA.get("tags", [])
+    )
+
     body = f"""<div class="pg-hero">
   <div class="wrap">
     <nav class="pg-crumb" aria-label="위치"><a href="../index.html">홈</a><i></i><b>여행 가이드</b></nav>
@@ -609,7 +874,7 @@ def guides_index(out_root: Path, base: str) -> Path:
       <div class="pg-meta">
         <span><b>트립픽 편집</b></span><i></i>
         <span>전체 {len(GUIDES_LIST)}편</span><i></i>
-        <span>최근 업데이트 {TODAY.strftime('%Y.%m.%d')}</span>
+        <span>최종 검증 {TODAY.strftime('%Y.%m.%d')}</span>
       </div>
     </div>
   </div>
@@ -617,16 +882,40 @@ def guides_index(out_root: Path, base: str) -> Path:
 
 <div class="pg-body">
   <div class="wrap">
+    <div class="gfind" role="search" aria-label="가이드 검색">
+      <div class="gfind-row">
+        <label class="gfind-in">
+          <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="gq" type="search" placeholder="예: 오사카, eSIM, 우기, 리조트, 100엔" autocomplete="off" aria-label="가이드 검색어" />
+          <button id="gqClear" class="gfind-x" type="button" hidden aria-label="검색 지우기">×</button>
+        </label>
+        <span class="gfind-count"><b id="gcount">{len(GUIDES_LIST)}</b>편</span>
+      </div>
+      <div class="gfind-chips" role="group" aria-label="여행지 필터">
+        <button class="gf-chip on" type="button" data-region="all">전체 여행지</button>
+        {region_chips}
+      </div>
+      <div class="gfind-chips gfind-chips--tag" role="group" aria-label="주제 필터">
+        <button class="gf-chip on" type="button" data-tag="all">전체 주제</button>
+        {tag_chips}
+      </div>
+    </div>
     <div class="gi-intro">
       <div><b>가격은 ‘실질 1인가’로</b><p>표시가에 현장 추가금(입장료·팁·가이드 경비)을 더한 금액으로 비교합니다. 싼 상품이 실제로 싼지 여기서 갈립니다.</p></div>
       <div><b>패스는 손익분기부터</b><p>주유패스·지하철패스는 “하루 몇 번 타면 본전”을 먼저 계산합니다. 일정이 3일이어도 매일 타지 않으면 손해입니다.</p></div>
       <div><b>기준 시점을 밝힙니다</b><p>모든 글에 확인 날짜와 환율을 적었습니다. 요금은 개정되므로 결제 직전에 공식 안내를 한 번 더 확인하세요.</p></div>
     </div>
 {chr(10).join(sections)}
+    <div class="gfind-empty" id="gempty" hidden>
+      <b>조건에 맞는 글이 없습니다.</b>
+      <p>검색어를 줄이거나 필터를 ‘전체’로 바꿔 보세요. 예: 오사카 · eSIM · 우기 · 리조트 · 패스</p>
+      <button type="button" id="greset">필터 초기화</button>
+    </div>
 {ad_slot("guides-index-bottom", "이 글들의 계산, 내 날짜로 해보기", "지역·인원·스타일을 넣으면 항공+숙소+투어+eSIM을 한 번에 계산합니다.", "../index.html#planner", "예산 계산기")}
 {cta_band('../', '읽고 끝내지 말고, 내 날짜로 계산하기', '지역·인원·스타일을 넣으면 항공+숙소+투어+eSIM을 한 번에 계산해 A/B/C안으로 보여줍니다.')}
   </div>
-</div>"""
+</div>
+{guide_filter_script()}"""
 
     return page(
         out_root,
@@ -1011,10 +1300,12 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     flight = next((f for f in TRIPCOM["flights"] if hub.get("flight") and hub["flight"] in f["route"]), None)
     hub_acts = [
         a for a in (TRIPCOM.get("tickets") or []) + (TRIPCOM.get("transfers") or []) + (TRIPCOM.get("cars") or [])
+        + (TRIPCOM.get("esims") or []) + (TRIPCOM.get("rails") or [])
         if a.get("cityId") == slug
     ]
     hub_tickets = [a for a in hub_acts if a["category"] == "ticket"]
     hub_pickups = [a for a in hub_acts if a["category"] in ("transfer", "car")]
+    hub_net = [a for a in hub_acts if a["category"] in ("esim", "rail")]
     lowest = min((t["sale"] for t in tours), default=0)
     tour_first = tours[0] if tours else None
     hotel_first = hotels[0] if hotels else None
@@ -1144,11 +1435,17 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     <div class="tc-acts tc-acts--hub">{''.join(B.tc_act_card(a) for a in hub_pickups)}</div>
   </div>"""
         act_html = ticket_block + pickup_block
+        if hub_net:
+            net_label = f"{esc(hub['name'])} eSIM·공항철도"
+            act_html += f"""<div class="tc-group tc-group--act">
+    <div class="ess-ghead"><h3>📶 {net_label}</h3><span class="n">{len(hub_net)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">도착 전에 설치·발권하는 것들</span></div>
+    <div class="tc-acts tc-acts--hub">{''.join(B.tc_act_card(a, '유심·eSIM 보기' if a['category'] == 'esim' else '기차표 보기') for a in hub_net)}</div>
+  </div>"""
     stay_html = f"""<section class="hub-sec" id="stay">
   <div class="hub-sec-head">
     <div><span class="hub-k">STAY &amp; FLIGHT &amp; TICKET</span>
       <h2>{esc(hub['name'])} 숙소·항공권·입장권</h2>
-      <p>트립닷컴에서 직접 예약하는 숙소·항공권과, 현지에서 쓸 입장권·공항픽업입니다. 체크인 날짜와 방문일을 넣으면 그날 요금으로 열리고, 예약·결제는 트립닷컴에서 그대로 이루어집니다.</p></div>
+      <p>트립닷컴에서 직접 예약하는 숙소·항공권과, 현지에서 쓸 입장권·공항픽업·eSIM·공항철도입니다. 체크인 날짜와 방문일을 넣으면 그날 요금으로 열리고, 예약·결제는 트립닷컴에서 그대로 이루어집니다.</p></div>
   </div>
   <div class="tc-group">
     <div class="ess-ghead"><h3>🏨 {esc(hub['name'])} 숙소</h3><span class="n">{len(hotels)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜 기준 최저가</span></div>
@@ -1433,7 +1730,7 @@ def check_links(out_root: Path) -> int:
 # ----------------------------------------------------------------------
 def main():
     global SPRITE, TOTAL, TOURS, ESSENTIALS, GUIDES_LIST, CAT_NOTE
-    global RESTAURANTS, GIFTS, TRIPCOM
+    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT), help="출력 디렉터리 (기본: tour_hub)")
@@ -1460,6 +1757,7 @@ def main():
     gspec = load_json("guides.json")
     GUIDES_LIST = gspec["guides"]
     CAT_NOTE = gspec.get("categoryNotes", {})
+    EXTRA = load_json("guide_extra.json")
 
     write_assets(style, out_root)
 
