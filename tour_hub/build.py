@@ -1094,6 +1094,38 @@ def abs_url(path: str) -> str:
     return SITE + "/" + path.lstrip("/")
 
 
+def clean_site_urls(text: str, site: str = SITE) -> str:
+    """Cloudflare Pages 는 `*.html` 주소를 확장자 없는 주소로 308 리다이렉트한다.
+
+    정본(canonical)·og:url·JSON-LD·내부 링크·사이트맵을 실제로 200 이 오는
+    확장자 없는 주소로 맞춘다. 폴더의 index.html 은 폴더 주소(`/guides/`)로 바꾼다.
+    """
+
+    def _abs(m: "re.Match") -> str:
+        path = m.group(1)
+        if path.endswith("index.html"):
+            path = path[: -len("index.html")]
+        else:
+            path = path[:-len(".html")]
+        return site + "/" + path
+
+    text = re.sub(re.escape(site) + r"/([A-Za-z0-9_\-./]*\.html)", _abs, text)
+
+    def _rel(m: "re.Match") -> str:
+        path = m.group(2)
+        if path.endswith("index.html"):
+            path = path[: -len("index.html")] or "./"
+        else:
+            path = path[: -len(".html")]
+        return m.group(1) + path + m.group(3) + m.group(4)
+
+    return re.sub(
+        r'(href=")(?!https?:|mailto:|tel:|data:|javascript:|#)([^"#?]*?\.html)([^"]*)(")',
+        _rel,
+        text,
+    )
+
+
 def faq_tokens(data: dict, courses: dict, essentials: dict) -> dict:
     tours = data["tours"]
     return {
@@ -1338,6 +1370,9 @@ def main() -> int:
     if "{{" in html:
         raise SystemExit("치환되지 않은 토큰이 있습니다: " + str(re.findall(r"\{\{\w+\}\}", html)))
 
+    # Cloudflare Pages 가 200 으로 서빙하는 확장자 없는 주소로 정본·내부 링크를 맞춘다
+    html = clean_site_urls(html)
+
     out_path = INDEX
     for i, a in enumerate(sys.argv):
         if a == "--out" and i + 1 < len(sys.argv):
@@ -1350,7 +1385,7 @@ def main() -> int:
         return 0 if same else 2
 
     out_path.write_text(html, encoding="utf-8")
-    (ROOT / "sitemap.xml").write_text(render_sitemap(data, courses), encoding="utf-8")
+    (ROOT / "sitemap.xml").write_text(clean_site_urls(render_sitemap(data, courses)), encoding="utf-8")
     print(f"index.html 생성 완료 — 상품 {len(data['tours'])}개, 도시 {len(data['cities'])}곳, "
           f"코스 {len(courses['courses'])}개, 필수품 {len(essentials['products'])}개, {len(html) // 1024}KB")
     return 0

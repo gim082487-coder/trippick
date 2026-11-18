@@ -189,6 +189,39 @@ def footer_html(up: str) -> str:
 </script>"""
 
 
+def clean_site_urls(text: str, site: str) -> str:
+    """Cloudflare Pages 는 `*.html` 주소를 확장자 없는 주소로 308 리다이렉트한다.
+
+    정본(canonical)·og:url·JSON-LD·내부 링크·사이트맵을 실제로 200 이 오는
+    확장자 없는 주소로 맞춘다. 폴더의 index.html 은 폴더 주소(`/guides/`)로 바꾼다.
+    """
+    site = site.rstrip("/")
+
+    def _abs(m: "re.Match") -> str:
+        path = m.group(1)
+        if path.endswith("index.html"):
+            path = path[: -len("index.html")]
+        else:
+            path = path[: -len(".html")]
+        return site + "/" + path
+
+    text = re.sub(re.escape(site) + r"/([A-Za-z0-9_\-./]*\.html)", _abs, text)
+
+    def _rel(m: "re.Match") -> str:
+        path = m.group(2)
+        if path.endswith("index.html"):
+            path = path[: -len("index.html")] or "./"
+        else:
+            path = path[: -len(".html")]
+        return m.group(1) + path + m.group(3) + m.group(4)
+
+    return re.sub(
+        r'(href=")(?!https?:|mailto:|tel:|data:|javascript:|#)([^"#?]*?\.html)([^"]*)(")',
+        _rel,
+        text,
+    )
+
+
 def page(
     out_root: Path,
     rel_path: str,
@@ -252,7 +285,7 @@ def page(
 """
     target = out_root / rel_path
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(head, encoding="utf-8")
+    target.write_text(clean_site_urls(head, base), encoding="utf-8")
     return target
 
 
@@ -670,7 +703,7 @@ def write_sitemap(out_root: Path, base: str):
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         f"{items}\n</urlset>\n"
     )
-    (out_root / "sitemap.xml").write_text(xml, encoding="utf-8")
+    (out_root / "sitemap.xml").write_text(clean_site_urls(xml, b), encoding="utf-8")
 
 
 def write_assets(style: str, out_root: Path):
@@ -718,6 +751,11 @@ def check_links(out_root: Path) -> int:
                     bad.append((f, href, "페이지 내 앵커 없음"))
                 continue
             target = (f.parent / path).resolve()
+            if not target.exists() and not path.endswith("/"):
+                # Cloudflare Pages 의 확장자 없는 주소 → 같은 이름의 .html 파일
+                alt = Path(str(target) + ".html")
+                if alt.exists():
+                    target = alt
             if target.is_dir():
                 target = target / "index.html"
             if not target.exists():
