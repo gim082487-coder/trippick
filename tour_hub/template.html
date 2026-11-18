@@ -1927,6 +1927,52 @@
     body.cmp-on{padding-bottom:96px}
     .toast{bottom:72px}
   }
+
+  /* ============================== 도시 페이지 바로가기 · 접이식 지역 ============================== */
+  .hub-strip{margin:18px 0 0;max-width:780px}
+  .hs-k{display:block;font-size:11px;font-weight:850;letter-spacing:.08em;color:rgba(255,255,255,.62);margin-bottom:8px}
+  .hs-row{display:flex;gap:6px;flex-wrap:wrap}
+  .hub-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);text-decoration:none;transition:.16s}
+  .hub-chip:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.34)}
+  .hc-fl{display:inline-flex;flex:0 0 auto}
+  .hc-t b{display:block;font-size:12.6px;font-weight:800;color:#fff;line-height:1.2;letter-spacing:-0.02em}
+  .hc-t i{display:block;font-style:normal;font-size:10.2px;color:rgba(255,255,255,.7);margin-top:2px}
+  .hs-all{display:inline-flex;align-items:center;gap:5px;margin-top:9px;font-size:11.6px;font-weight:800;color:rgba(255,255,255,.86)}
+  .hs-all b{color:#fff}
+  .hs-all .ic{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
+  .hs-all:hover{color:#fff;text-decoration:underline}
+  .city-hub{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:11.4px;font-weight:820;
+    color:var(--blue-600);background:var(--blue-soft);border-radius:999px;padding:4px 10px;white-space:nowrap}
+  .city-hub:hover{background:#DFEBF4}
+  .city-hub .ic{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.2}
+  .regions-more{margin:16px 0 10px;border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden}
+  .regions-more>summary{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;
+    cursor:pointer;list-style:none;transition:.15s}
+  .regions-more>summary::-webkit-details-marker{display:none}
+  .regions-more>summary:hover{background:var(--soft)}
+  .regions-more .rm-t b{display:block;font-size:14.4px;font-weight:850;color:var(--ink);letter-spacing:-0.02em}
+  .regions-more .rm-t span{display:block;margin-top:3px;font-size:11.6px;color:var(--ink-3);line-height:1.55}
+  .regions-more .rm-go{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;color:var(--blue-600);white-space:nowrap}
+  .regions-more .rm-go .ic{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.2;transition:.2s}
+  .regions-more[open] .rm-go{color:var(--ink-3)}
+  .regions-more[open] .rm-go .ic{transform:rotate(180deg)}
+  .rm-body{padding:0 18px 16px}
+  .rm-body .city{padding:22px 0 6px}
+  @media (max-width:620px){
+    .hub-strip{margin:14px 0 0}
+    .hs-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+    .hs-row::-webkit-scrollbar{display:none}
+    .hub-chip{flex:0 0 auto;padding:7px 10px;gap:6px;border-radius:11px}
+    .hc-t b{font-size:12px}
+    .hc-t i{font-size:9.6px}
+    .city-hub{margin-left:0;font-size:10.8px;padding:3px 8px}
+    .regions-more{border-radius:16px}
+    .regions-more>summary{padding:13px 14px;gap:8px}
+    .regions-more .rm-t b{font-size:13.4px}
+    .regions-more .rm-t span{font-size:11px}
+    .rm-body{padding:0 10px 12px}
+  }
 </style>
 <noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}</style></noscript>
 </head>
@@ -1998,6 +2044,13 @@
       <div class="hero-cta">
         <a class="primary" href="#courses">추천 코스 {{COURSE_COUNT}}개 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="ghost" href="#planner">내 예산으로 총액 계산</a>
+      </div>
+      <div class="hub-strip" aria-label="도시별 여행 페이지">
+        <span class="hs-k">도시 이름으로 바로 찾기</span>
+        <div class="hs-row">
+        <!-- @HUB_STRIP -->
+        </div>
+        <a class="hs-all" href="cities/">도시 페이지 전체 <b>7곳</b> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <form class="search" id="searchForm" role="search" aria-label="투어 검색">
         <label class="sf">
@@ -2413,6 +2466,7 @@
           <a href="#essentials">여행 필수품</a>
           <a href="#gifts">선물·기념품</a>
           <a href="#planner">예산 계산기</a>
+          <a href="cities/">도시별 여행 페이지</a>
           <a href="guides/index.html">여행 가이드</a>
           <a href="#alert">특가 알림</a>
         </div>
@@ -2425,7 +2479,8 @@
         </div>
         <div class="fl-col">
           <span class="fl-group">지역·도움말</span>
-          <a href="#jeju">제주·울릉</a>
+          <a href="jeju">제주</a>
+          <a href="#ulleung">울릉도·독도</a>
           <a href="#busan">부산 요트</a>
           <a href="#gangwon">강원 스키</a>
           <a href="#faq">자주 묻는 질문</a>
@@ -2510,6 +2565,11 @@ const SCOPE_LABEL = {
 };
 
 let toastTimer = null;
+function openFolds(el) {
+  var d = el && el.closest ? el.closest('details') : null;
+  while (d) { d.open = true; d = d.parentElement ? d.parentElement.closest('details') : null; }
+}
+
 function toast(msg) {
   const t = document.querySelector('[data-toast]');
   if (!t) return;
@@ -2571,6 +2631,12 @@ function applyFilters() {
     section.hidden = shown === 0;
   });
 
+  const moreBox = document.getElementById('more-regions');
+  if (moreBox && !moreBox.open
+      && [...moreBox.querySelectorAll('section.city')].some((s) => !s.hidden)) {
+    moreBox.open = true;
+  }
+
   const total = [...document.querySelectorAll('.pcard')].filter((c) => !c.hidden).length;
   const label = document.querySelector('[data-count-label]');
   if (label) label.textContent = total + '개 상품' + (state.query ? ` · ‘${state.query}’ 검색` : '');
@@ -2592,6 +2658,7 @@ function applyFilters() {
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
+  openFolds(el);
   const head = document.querySelector('.site-head');
   const off = (head ? head.offsetHeight : 0) + 8;
   const top = el.getBoundingClientRect().top + window.scrollY - off;
@@ -2601,6 +2668,7 @@ function scrollToSection(id) {
 function scrollToResults(scope) {
   const city = SCOPE_LABEL[scope] && !COUNTRIES.includes(scope) ? document.getElementById(scope) : null;
   if (city && !city.hidden) {
+    openFolds(city);
     const head = document.querySelector('.site-head');
     const tabs = document.getElementById('ctabs');
     const off = (head ? head.offsetHeight : 0) + (tabs ? tabs.offsetHeight : 0) + 10;
@@ -2713,6 +2781,25 @@ document.addEventListener('change', (e) => {
     scrollToResults(e.target.value);
   }
 });
+
+/* 접어 둔 지역 <details> — 해시 링크로 들어와도 내용이 보이게 */
+(function () {
+  function openHash() {
+    if (!location.hash || location.hash.length < 2) return;
+    var t = document.getElementById(location.hash.slice(1));
+    if (t) openFolds(t);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    var t = document.getElementById(id);
+    if (t) openFolds(t);
+  });
+  window.addEventListener('hashchange', openHash);
+  openHash();
+})();
 
 const searchForm = document.getElementById('searchForm');
 if (searchForm) {

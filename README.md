@@ -13,14 +13,15 @@
 | `deploy_site/` | 배포본. 이 폴더를 그대로 서빙하면 사이트가 됩니다. |
 | `tour_hub/` | 소스. 빌드 스크립트·데이터·본문·이미지 |
 | `tour_hub/build.py` | `index.html`(홈) 생성: 상품 카드, 예산 계산기, JSON-LD, 광고 슬롯 |
-| `tour_hub/build_pages.py` | 가이드 40편·신뢰 페이지 4종·`sitemap.xml`·`assets/site.css` 생성 |
+| `tour_hub/build_pages.py` | 가이드 44편·신뢰 페이지 4종·도시 페이지 7곳·`cities/`·`sitemap.xml`·`assets/site.css` 생성 |
 | `tour_hub/template.html` | 홈 템플릿(디자인 토큰·CSS·섹션 마커) |
 | `tour_hub/data/tours.json` | 여행 상품 57개 (가격·포함·불포함·취소 규정·제휴 링크) |
 | `tour_hub/data/essentials.json` | 여행 필수품·교통패스·eSIM·공항픽업 22종 |
 | `tour_hub/data/gifts.json` | 나라별 선물·기념품 6개 지역 35종(가격·구매처·반입 주의) |
 | `tour_hub/data/tripcom.json` | 트립닷컴 숙소 15개 도시·항공 6개 노선 제휴 링크 |
 | `tour_hub/data/courses.json` | 추천 코스 5개(일차별 구성) |
-| `tour_hub/data/guides.json` | 가이드 40편 메타데이터(제목·설명·관련 상품) |
+| `tour_hub/data/guides.json` | 가이드 44편 메타데이터(제목·설명·관련 상품) |
+| `tour_hub/data/city_hubs.json` | 도시별 페이지 7곳 정의(오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주) — 제목·설명·연결할 상품/맛집/선물/숙소/가이드 |
 | `tour_hub/content/guides/*.html` | 가이드 본문 (HTML 조각) |
 | `tour_hub/content/pages/*.html` | 소개·문의·개인정보·약관 본문 |
 | `tour_hub/tools/` | 데이터 가공 스크립트 |
@@ -52,6 +53,15 @@ python3 build_pages.py --out ../deploy_site --base https://trippick-kr.netlify.a
 - 출력 디렉터리: `deploy_site`
 
 로 지정하면 빌드 없이 `deploy_site/`가 그대로 서빙됩니다.
+
+## 도시별 페이지와 사이트맵
+
+`build_pages.py`는 `/osaka`·`/tokyo`·`/fukuoka`·`/danang`·`/bangkok`·`/taipei`·`/jeju`(루트의 `osaka.html` 등)와 `/cities/` 인덱스를 만듭니다.
+각 페이지는 그 도시의 투어·패키지, 검증한 현지 맛집, 나라별 선물·기념품, 트립닷컴 숙소·항공권, 관련 가이드를 한 화면에 모읍니다.
+`sitemap.xml`은 홈1 + `cities/`1 + 도시 7 + 가이드 인덱스1 + 가이드 44 + 신뢰 페이지 4 = **58 URL**입니다.
+
+홈의 ‘지역·투어’ 섹션은 도시 페이지가 있는 7개 도시만 먼저 펼치고, 나머지 15개 도시 36개 상품은 한 번 접어 둡니다(`<details>`).
+접힌 안에도 카드·비교표·제휴 링크가 그대로 있어 크롤링에는 영향이 없고, 도시 칩·검색·해시 링크로 들어오면 JS가 해당 접기를 자동으로 엽니다.
 
 ## 광고 슬롯
 

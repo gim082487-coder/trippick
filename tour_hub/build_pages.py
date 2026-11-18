@@ -35,6 +35,8 @@ import sys
 from datetime import date
 from pathlib import Path
 
+import build as B  # 상품 카드·비교표·추가금 계산을 홈과 똑같이 쓰기 위해
+
 ROOT = Path(__file__).resolve().parent
 TEMPLATE = ROOT / "template.html"
 DATA = ROOT / "data"
@@ -54,17 +56,18 @@ NAV = [
     ("index.html#planner", "예산 계산기", "planner"),
     ("index.html#checklist", "출국 준비", "checklist"),
     ("index.html#regions", "지역·투어", "regions"),
+    ("cities/index.html", "도시별", "cities"),
     ("guides/index.html", "여행 가이드", "guides"),
     ("index.html#foods", "맛집", "foods"),
     ("index.html#essentials", "여행 필수품", "essentials"),
     ("index.html#alert", "특가 알림", "alert"),
-    ("index.html#howto", "예약 전 체크", "howto"),
 ]
 
 VERIFY_META = """<meta name="google-site-verification" content="LcZmYDzmsn2pIDvvwDXtLezOnQi8dEOjQ67-xBWdfCw" />
 <meta name="google-site-verification" content="Y3lrh6zGKCcwxVcFKL8ujJ1QK1Xi4HjHaL2KhZLku78" />
 <meta name="naver-site-verification" content="de9b4241355a3ab6e83e5c102d1f6f1e6f244302" />
-<meta name="naver-site-verification" content="ab10e600052c8a46301698e6f7c1dd39c3c2aa95" />"""
+<meta name="naver-site-verification" content="ab10e600052c8a46301698e6f7c1dd39c3c2aa95" />
+<meta name="naver-site-verification" content="ed075b14e9af849ab81ed9569f8e97f418a88c83" />"""
 
 FAVICON = (
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
@@ -145,6 +148,7 @@ def footer_html(up: str) -> str:
           <a href="{up}index.html#gifts">선물·기념품</a>
           <a href="{up}index.html#planner">예산 계산기</a>
           <a href="{up}index.html#checklist">출국 준비 체크</a>
+          <a href="{up}cities/index.html">도시별 여행 페이지</a>
           <a href="{up}guides/index.html">여행 가이드</a>
           <a href="{up}index.html#alert">특가 알림</a>
         </div>
@@ -400,6 +404,8 @@ def inject_mid_ad(body_html: str, slot_html: str) -> str:
 def side_common(up: str) -> str:
     return f"""    <div class="side-card">
       <h3>바로가기</h3>
+      <p>도시별 페이지에서 투어·맛집·선물·숙소를 한 번에 볼 수 있습니다.</p>
+      <a class="go" href="{up}cities/index.html">도시별 여행 페이지 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <p>코스·상품·필수품을 한 화면에서 같은 기준으로 비교합니다.</p>
       <a class="go" href="{up}index.html#planner">내 예산으로 총액 계산 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#essentials">여행 필수품 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -692,11 +698,602 @@ def content_page(out_root: Path, spec: dict, base: str) -> Path:
 
 
 # ----------------------------------------------------------------------
+# 도시별 허브 페이지 (/osaka · /tokyo …) + /cities/
+# ----------------------------------------------------------------------
+_hub_cache = None
+HUB_ORDER = ["osaka", "tokyo", "fukuoka", "danang", "bangkok", "taipei", "jeju"]
+
+
+def hub_specs() -> dict:
+    global _hub_cache
+    if _hub_cache is None:
+        _hub_cache = load_json("city_hubs.json")
+    return _hub_cache
+
+
+def hub_list() -> list:
+    order = {s: i for i, s in enumerate(HUB_ORDER)}
+    return sorted(hub_specs()["cities"], key=lambda h: order.get(h["slug"], 99))
+
+
+def hub_tours(hub: dict) -> list:
+    ids = set(hub.get("cityIds") or [hub["slug"]])
+    return [t for t in TOURS if t["city"] in ids]
+
+
+def hub_city_rest(hub: dict):
+    rid = hub.get("restaurants")
+    if not rid:
+        return None
+    return next((c for c in RESTAURANTS["cities"] if c["id"] == rid), None)
+
+
+def hub_country(hub: dict):
+    cid = hub.get("giftCountry")
+    if not cid:
+        return None
+    return next((c for c in GIFTS["countries"] if c["id"] == cid), None)
+
+
+def hub_guides(hub: dict) -> list:
+    by = {g["slug"]: g for g in GUIDES_LIST}
+    return [by[s] for s in hub.get("guides", []) if s in by]
+
+
+def hub_cards(tours: list) -> str:
+    """홈과 같은 .pcard 카드. 비교 바구니 버튼(홈 전용 JS)만 뺀다."""
+    out = []
+    for i, t in enumerate(tours):
+        card = B.card_html(t, i)
+        card = re.sub(r'\s*<button class="cmp-btn".*?</button>', "", card, flags=re.S)
+        out.append(card)
+    return "\n        ".join(out)
+
+
+def hub_compare(tours_count: int, rows: str, name: str) -> str:
+    return f"""<details class="cmp">
+        <summary>
+          <span class="lhs"><svg class="ic" aria-hidden="true"><use href="#i-ticket"/></svg><span>{esc(name)} {tours_count}개 상품, 가격·조건 한눈에 비교표</span></span>
+          <span class="hint">표 펼치기</span>
+        </summary>
+        <div class="table-wrap">
+          <table class="compare">
+            <caption class="sr-only">{esc(name)} 네이버 여행 상품 {tours_count}개 비교표</caption>
+            <thead>
+              <tr>
+                <th scope="col">상품</th>
+                <th scope="col">가격(1인)</th>
+                <th scope="col">소요·가이드</th>
+                <th scope="col">미팅·시각</th>
+                <th scope="col">포함 사항</th>
+                <th scope="col">현장 추가금</th>
+                <th scope="col">최소/최대 인원</th>
+                <th scope="col">취소 규정</th>
+              </tr>
+            </thead>
+            <tbody>
+            {rows}
+            </tbody>
+          </table>
+        </div>
+        <p class="scroll-hint">표는 좌우로 넘길 수 있습니다. ‘상세페이지 확인 필요’는 판매 페이지에 값이 표기되지 않은 항목입니다.</p>
+      </details>"""
+
+
+def hub_food_card(it: dict, tour, guide, has_hotel: bool) -> str:
+    links = [
+        f'<a href="https://www.google.com/maps/place/?q=place_id:{esc(it["place"])}" target="_blank" rel="noopener nofollow">'
+        f'<svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a>'
+    ]
+    if tour:
+        links.append(f'<a href="{esc(tour["url"])}" target="_blank" rel="noopener sponsored">이 도시 투어</a>')
+    if guide:
+        links.append(f'<a href="guides/{esc(guide["slug"])}.html">맛집 동선</a>')
+    if has_hotel:
+        links.append('<a href="#stay">숙소</a>')
+    return f"""<article class="food" id="food-{esc(it['id'])}">
+            <div class="food-top"><span class="food-area">{esc(it['area'])}</span><span class="food-slot">{esc(it['slot'])}</span></div>
+            <h3 class="food-name">{esc(it['name'])}<span>{esc(it['nameKo'])} · {esc(it['category'])}</span></h3>
+            <div class="food-dish"><b>{esc(it['dish'])}</b><span>{esc(it['price'])}</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>{esc(it['hours'])}</li>
+              <li><i>휴무</i>{esc(it['closed'])}</li>
+              <li><i>대기</i>{esc(it['wait'])}</li>
+            </ul>
+            <p class="food-tip">{esc(it['tip'])}</p>
+            <span class="food-cau">{esc(it['caution'])}</span>
+            <div class="food-foot">{''.join(links)}<span class="food-rate">구글 {esc(it['rating'])} · {esc(it['reviews'])}</span></div>
+          </article>"""
+
+
+def hub_food_route(city: dict, tour, guide, hotel) -> str:
+    def short(s: str) -> str:
+        segs = s.split(" · ")
+        return " · ".join(segs[:2]) if len(segs) > 1 and segs[1].startswith("약") else segs[0]
+
+    steps = []
+    if tour:
+        title = re.split(r"\s*[(（]", tour["title"])[0].strip()
+        steps.append(
+            f'<li><span class="fr-k">오전</span><a href="{esc(tour["url"])}" target="_blank" rel="noopener sponsored">'
+            f'{esc(title)}</a><span class="fr-m">{won(tour["sale"])}원~</span></li>'
+        )
+    for slot in ("점심", "저녁"):
+        pick = next((i for i in city["items"] if i.get("slot") == slot), None)
+        if not pick:
+            continue
+        steps.append(
+            f'<li><span class="fr-k">{slot}</span><a class="js-food-jump" href="#food-{esc(pick["id"])}">'
+            f'{esc(pick["nameKo"])}</a><span class="fr-m">{esc(short(pick["price"]))}</span></li>'
+        )
+        if slot == "점심":
+            extra = (f'<li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 {esc(city["name"])}</a>'
+                     f'<span class="fr-m">{esc(guide["read"])}분 가이드</span></li>' if guide else "")
+            steps.append(extra)
+    if hotel:
+        steps.append(
+            f'<li><span class="fr-k">숙소</span><a href="#stay">{esc(hotel["city"])} 숙소 최저가</a>'
+            f'<span class="fr-m">트립닷컴</span></li>'
+        )
+    return "".join(s for s in steps if s)
+
+
+def hub_gift_cards(country: dict) -> str:
+    cards = []
+    for it in country["items"]:
+        lvl = " warn" if it.get("level") == "warn" else ""
+        cards.append(f"""<article class="gift">
+            <div class="gift-name"><b>{esc(it['name'])}</b><span>{esc(it.get('local', ''))}</span></div>
+            <div class="gift-price"><b>{esc(it['price'])}</b><span>{esc(it['krw'])}</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>{esc(it['where'])}</div>
+            <p class="gift-tip">{esc(it['tip'])}</p>
+            <span class="gift-cau{lvl}">{esc(it['caution'])}</span>
+          </article>""")
+    return '<div class="gift-grid">' + "".join(cards) + "</div>"
+
+
+def hub_gift_links(country: dict) -> str:
+    rows = []
+    for url, kind, title, meta in B._gift_links(
+        country.get("links", []),
+        {"tours": TOURS},
+        {"products": ESSENTIALS},
+        TRIPCOM,
+        {"guides": GUIDES_LIST},
+    ):
+        ext = ' target="_blank" rel="noopener sponsored"' if url.startswith("http") else ""
+        rows.append(
+            f'<a class="gift-link" href="{esc(url)}"{ext}><i>{kind}</i><b>{esc(title)}</b><span>{esc(meta)}{" · 제휴" if ext else ""}</span></a>'
+        )
+    return '<div class="gift-links">' + "".join(rows) + "</div>" if rows else ""
+
+
+def hub_ess_cards(pick: int = 4) -> str:
+    rows = []
+    for e in [x for x in ESSENTIALS if x["category"] == "여행용품"][:pick]:
+        thumb = ""
+        if e.get("image"):
+            thumb = (f'<span class="ess-thumb"><img src="{esc(e["image"])}" alt="{esc(e["name"])}"'
+                     f' width="400" height="400" loading="lazy" /></span>')
+        rows.append(f"""<a class="ess" href="{esc(e.get('url') or e['naverMe'])}" target="_blank" rel="noopener sponsored">
+              {thumb}
+              <span class="ess-k">준비물 · {esc(e.get('categoryLabel') or e['category'])}</span>
+              <b>{esc(e['name'])}</b>
+              <span class="ess-store">{esc(e['store'])}</span>
+              <span class="ess-foot"><span class="ess-price">{won(e['price'])}원<small>~</small></span>
+                <span class="ess-go">{esc(B.ess_cta(e))} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
+            </a>""")
+    return '<div class="ess-grid ess-grid-4">' + "".join(rows) + "</div>"
+
+
+def hub_hotel_cards(hotels: list) -> str:
+    return "".join(
+        f'<a class="tc-card" href="{esc(h["url"])}" target="_blank" rel="noopener sponsored">'
+        f'<span class="tc-city">{esc(h["city"])}{B.flag_svg(h["flag"], 14, 9.8)}</span>'
+        f'<span class="tc-sub">{esc(h["sub"])}</span>'
+        f'<span class="tc-note">{esc(h["note"])}</span>'
+        f'<span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>'
+        f'</a>'
+        for h in hotels
+    )
+
+
+def hub_guide_cards(guides: list) -> str:
+    cards = []
+    for g in guides:
+        thumb = (
+            f'<div class="thumb"><img src="{esc(g["image"])}" alt="{esc(g["imageAlt"])}" loading="lazy" width="640" height="360" /></div>'
+            if g.get("image")
+            else '<div class="thumb noimg">TRIPPICK GUIDE</div>'
+        )
+        cards.append(
+            f"""        <a class="gcard" href="guides/{g['slug']}.html">
+          {thumb}
+          <div class="gc-body">
+            <span class="tag">{esc(g['category'])}</span>
+            <h3>{esc(g['navTitle'])}</h3>
+            <p>{esc(g['dek'])}</p>
+            <div class="gc-foot"><b>{g['read']}분</b> · {g['updated'].replace('-', '.')} 업데이트</div>
+          </div>
+        </a>"""
+        )
+    return '<div class="gi-grid">' + "".join(cards) + "</div>"
+
+
+def hub_jsonld(hub: dict, tours: list, guides: list, base: str) -> str:
+    b = base.rstrip("/")
+    url = f"{b}/{hub['slug']}"
+    dest = {
+        "@type": "TouristDestination",
+        "@id": url + "#destination",
+        "name": hub["name"],
+        "description": hub["metaDesc"],
+        "url": url,
+        "image": f"{b}/{hub['image']}",
+        "touristType": "여행",
+    }
+    page_ld = {
+        "@type": "CollectionPage",
+        "@id": url + "#page",
+        "url": url,
+        "name": hub["seoTitle"],
+        "description": hub["metaDesc"],
+        "inLanguage": "ko",
+        "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": b + "/"},
+        "about": {"@id": url + "#destination"},
+        "mainEntity": {"@id": url + "#tours"},
+    }
+    tour_ld = {
+        "@type": "ItemList",
+        "@id": url + "#tours",
+        "name": f"{hub['name']} 투어·패키지 {len(tours)}개",
+        "numberOfItems": len(tours),
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": i,
+                "item": {
+                    "@type": "TouristTrip",
+                    "name": t["title"],
+                    "description": f'{t["theme"]} · {t["type"]} · {t["duration"]}',
+                    "url": t["url"],
+                    "touristType": t["type"],
+                    "provider": {"@type": "Organization", "name": t["seller"]},
+                },
+            }
+            for i, t in enumerate(tours, start=1)
+        ],
+    }
+    guide_ld = {
+        "@type": "ItemList",
+        "@id": url + "#guides",
+        "name": f"{hub['name']} 관련 가이드 {len(guides)}편",
+        "numberOfItems": len(guides),
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": i,
+                "item": {"@type": "Article", "headline": g["navTitle"], "url": f"{b}/guides/{g['slug']}"},
+            }
+            for i, g in enumerate(guides, start=1)
+        ],
+    }
+    crumb = {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "트립픽", "item": b + "/"},
+            {"@type": "ListItem", "position": 2, "name": "도시별 여행", "item": f"{b}/cities/"},
+            {"@type": "ListItem", "position": 3, "name": hub["name"]},
+        ],
+    }
+    graph = {"@context": "https://schema.org", "@graph": [page_ld, dest, tour_ld, guide_ld, crumb]}
+    raw = json.dumps(graph, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return f'<script type="application/ld+json">{raw}</script>'
+
+
+def hub_page(out_root: Path, hub: dict, base: str) -> Path:
+    slug = hub["slug"]
+    tours = hub_tours(hub)
+    rest = hub_city_rest(hub)
+    country = hub_country(hub)
+    guides = hub_guides(hub)
+    hotels = [h for h in TRIPCOM["hotels"] if h.get("cityId") in (hub.get("hotels") or [])]
+    flight = next((f for f in TRIPCOM["flights"] if hub.get("flight") and hub["flight"] in f["route"]), None)
+    lowest = min((t["sale"] for t in tours), default=0)
+    tour_first = tours[0] if tours else None
+    hotel_first = hotels[0] if hotels else None
+    food_guide = next((g for g in guides if g["slug"].endswith("food-route")), None)
+
+    # 위쪽 빠른 이동
+    jumps = [("#tours", "투어·패키지", len(tours))]
+    if rest:
+        jumps.append(("#food", "현지 맛집", len(rest["items"])))
+    if country:
+        jumps.append(("#gifts", "선물·기념품", len(country["items"])))
+    jumps.append(("#stay", "숙소·항공", len(hotels) + (1 if flight else 0)))
+    jumps.append(("#guides", "관련 가이드", len(guides)))
+    jump_html = "".join(
+        f'<a href="{h}">{esc(n)} <b>{c}</b></a>' for h, n, c in jumps if c
+    )
+
+    meta = [f'<span><b>트립픽 편집</b></span>', '<i></i>', '<span>업데이트 2026.11.18</span>', '<i></i>']
+    meta.append(f'<span>투어·패키지 {len(tours)}개</span><i></i>')
+    meta.append(f'<span>1인 {won(lowest)}원~</span>')
+    if rest:
+        meta.append(f'<i></i><span>맛집 {len(rest["items"])}곳</span>')
+    meta.append(f'<i></i><span>가이드 {len(guides)}편</span>')
+
+    # 투어 섹션
+    tour_rows = "\n            ".join(B.table_row(t) for t in tours)
+    tours_html = f"""<section class="hub-sec" id="tours">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">TOURS &amp; PACKAGES</span>
+      <h2>{esc(hub['name'])} 투어·패키지 <em>{len(tours)}개</em></h2>
+      <p>네이버 여행에서 지금 판매 중인 상품입니다. 표시 가격은 1인 기준 최저가이고, 미팅 장소·입장료 포함 여부·현장 추가금·취소 마감일을 카드에 그대로 적었습니다.</p></div>
+  </div>
+  <div class="pgrid hub-grid">
+    {hub_cards(tours)}
+  </div>
+  {hub_compare(len(tours), tour_rows, hub['name']) if tours else ''}
+  <p class="hub-aff">투어·패키지 링크는 <b>네이버 여행 커넥트</b> 제휴 링크입니다. 예약이 이루어지면 판매자로부터 수수료를 받지만, 결제 금액은 같습니다.</p>
+</section>"""
+
+    # 맛집 섹션
+    if rest:
+        cards = "\n          ".join(
+            hub_food_card(it, tour_first, food_guide, bool(hotel_first)) for it in rest["items"]
+        )
+        route = hub_food_route(rest, tour_first, food_guide, hotel_first)
+        food_html = f"""<section class="hub-sec" id="food">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">LOCAL FOOD</span>
+      <h2>{esc(rest['name'])} 현지 맛집 <em>{len(rest['items'])}곳</em></h2>
+      <p>{rest['intro']}</p></div>
+    <div class="hub-fx">2026.11.18 확인 · {esc(RESTAURANTS['fx'])}</div>
+  </div>
+  <ol class="food-route" aria-label="{esc(rest['name'])} 하루 동선">{route}</ol>
+  <div class="food-grid hub-food-grid">
+          {cards}
+  </div>
+  <p class="hub-note">{esc(RESTAURANTS['note'])}</p>
+</section>"""
+    else:
+        guide_links = "".join(
+            f'<li><a href="guides/{esc(g["slug"])}.html">{esc(g["navTitle"])}<span>{g["read"]}분</span></a></li>'
+            for g in guides[:3]
+        )
+        food_html = f"""<section class="hub-sec" id="food">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">LOCAL FOOD</span>
+      <h2>{esc(hub['name'])} 현지 맛집</h2></div>
+  </div>
+  <div class="hub-pending">
+    <b>맛집 5곳은 아직 검증을 마치지 않았습니다.</b>
+    <p>영업 중인지(구글 지도 OPERATIONAL), 공식 메뉴판 가격이 맞는지 확인한 가게만 싣기 때문에 국내 도시는 다음 업데이트에 넣습니다. 그전까지는 아래 가이드에서 식비와 동선을 볼 수 있습니다.</p>
+    <ul class="side-list">{guide_links}</ul>
+  </div>
+</section>"""
+
+    # 선물 섹션
+    if country:
+        gift_html = f"""<section class="hub-sec" id="gifts">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">SOUVENIR &amp; GIFT</span>
+      <h2>{esc(country['name'])} 선물·기념품 <em>{len(country['items'])}종</em></h2>
+      <p>{country['intro']}</p></div>
+    <div class="hub-fx">2026.11 현지 정가 · {esc(GIFTS['fx'])}</div>
+  </div>
+  <div class="gift-card hub-gift">
+    {hub_gift_cards(country)}
+    <div class="gift-duty"><b>{esc(country['name'])} 반입·면세 한 줄</b><span>{esc(country['duty'])}</span></div>
+    {hub_gift_links(country)}
+  </div>
+</section>"""
+    else:
+        gift_html = f"""<section class="hub-sec" id="gifts">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">BEFORE YOU GO</span>
+      <h2>{esc(hub['name'])} 출발 전 준비물</h2>
+      <p>국내 여행이라 면세 한도·반입 규정이 따로 없습니다. 대신 현지에서 사기 번거로운 준비물을 집에서 미리 주문하는 링크만 모았습니다.</p></div>
+  </div>
+  {hub_ess_cards(4)}
+  <p class="hub-aff">준비물 링크는 <b>쿠팡 파트너스</b> 제휴 링크입니다. 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+</section>"""
+
+    # 숙소·항공
+    flight_html = ""
+    if flight:
+        flight_html = f"""<div class="tc-flights hub-flight">
+      <a class="tc-flight" href="{esc(flight['url'])}" target="_blank" rel="noopener sponsored">
+        <span class="tc-fr">{esc(flight['route'])}</span>
+        <span class="tc-fs">{esc(flight['sub'])}</span>
+        <span class="tc-go">항공권 검색 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>"""
+    stay_html = f"""<section class="hub-sec" id="stay">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">STAY &amp; FLIGHT</span>
+      <h2>{esc(hub['name'])} 숙소·항공권</h2>
+      <p>트립닷컴에서 직접 예약하는 숙소와 항공권입니다. 체크인 날짜를 넣으면 그날 최저가로 열리고, 예약·결제는 트립닷컴에서 그대로 이루어집니다.</p></div>
+  </div>
+  <div class="tc-group">
+    <div class="ess-ghead"><h3>🏨 {esc(hub['name'])} 숙소</h3><span class="n">{len(hotels)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜 기준 최저가</span></div>
+    <div class="tc-grid hub-tc">{hub_hotel_cards(hotels)}</div>
+  </div>
+  {flight_html}
+  <p class="hub-note">{esc(TRIPCOM['disclosure'])}</p>
+</section>"""
+
+    # 가이드
+    guides_html = f"""<section class="hub-sec" id="guides">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">READ NEXT</span>
+      <h2>{esc(hub['name'])} 관련 가이드 <em>{len(guides)}편</em></h2>
+      <p>같은 도시의 교통패스 본전, 공항에서 시내까지 실제 요금, 패키지 실지출을 숫자로 계산한 글입니다.</p></div>
+    <a class="hub-more" href="guides/index.html">가이드 전체 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+  {hub_guide_cards(guides)}
+</section>"""
+
+    others = "".join(
+        f'<a class="hub-city-chip" href="{esc(o["slug"])}">{B.flag_svg(o["flag"], 15, 10.5)}<b>{esc(o["nav"])}</b></a>'
+        for o in hub_list() if o["slug"] != slug
+    )
+
+    body = f"""<div class="pg-hero hub-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><a href="cities/index.html">도시별 여행</a><i></i><b>{esc(hub['name'])}</b></nav>
+    <span class="pg-kicker">{esc(hub['kicker'])} · {esc(hub['name'])}</span>
+    <div class="pg-head">
+      <h1>{hub['h1']}</h1>
+      <p class="dek">{hub['intro']}</p>
+      <div class="pg-meta">{''.join(meta)}</div>
+    </div>
+    <figure class="pg-hero-img">
+      <img src="{esc(hub['image'])}" alt="{esc(hub['imageAlt'])}" width="1600" height="1000" loading="eager" />
+      <figcaption>사진: 트립픽 · {esc(hub['name'])}</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="pg-body">
+  <div class="wrap">
+    <nav class="hub-jump" aria-label="이 페이지 목차">{jump_html}</nav>
+{ad_slot(f"hub-{slug}-top", "이 도시 숙소·항공 최저가", "체크인 날짜만 넣으면 트립닷컴 최저가로 열립니다.", "#stay", "숙소 보기")}
+{tours_html}
+{ad_slot(f"hub-{slug}-mid", "이 도시 일정, 내 예산으로 계산", "인원·지역·스타일만 넣으면 항공·숙소·투어·eSIM 총액을 A/B/C안으로 보여줍니다.", "index.html#planner", "예산 계산기")}
+{food_html}
+{gift_html}
+{stay_html}
+{ad_slot(f"hub-{slug}-bottom", "특가가 뜨면 가장 먼저 알려드릴게요", "원하는 여행지와 예산만 남기면 특가·땡처리 소식을 메일로 보내드립니다.", "index.html#alert", "알림 신청")}
+{guides_html}
+
+    <div class="hub-others">
+      <b>다른 도시 여행 페이지</b>
+      <div class="hub-city-row">{others}<a class="hub-city-chip" href="cities/index.html"><b>도시 전체 보기</b></a></div>
+    </div>
+
+{cta_band('', hub['name'] + ' 일정, 내 날짜로 계산하기', '인원과 스타일을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 총액을 계산합니다.')}
+  </div>
+</div>"""
+
+    return page(
+        out_root,
+        f"{slug}.html",
+        title=hub["seoTitle"],
+        desc=hub["metaDesc"],
+        body=body,
+        base=base,
+        active="cities",
+        keywords=hub.get("keywords", ""),
+        og_image=f"{base.rstrip('/')}/{hub['image']}",
+        jsonld=hub_jsonld(hub, tours, guides, base),
+    )
+
+
+def cities_index(out_root: Path, base: str) -> Path:
+    b = base.rstrip("/")
+    hubs = hub_list()
+    cards = []
+    for h in hubs:
+        tours = hub_tours(h)
+        rest = hub_city_rest(h)
+        country = hub_country(h)
+        guides = hub_guides(h)
+        lowest = min((t["sale"] for t in tours), default=0)
+        bits = [f"투어 {len(tours)}"]
+        if rest:
+            bits.append(f"맛집 {len(rest['items'])}")
+        if country:
+            bits.append(f"선물 {len(country['items'])}")
+        bits.append(f"가이드 {len(guides)}")
+        cards.append(f"""        <a class="gcard hub-card" href="../{h['slug']}.html">
+          <div class="thumb"><img src="../{esc(h['image'])}" alt="{esc(h['imageAlt'])}" loading="lazy" width="800" height="500" /></div>
+          <div class="gc-body">
+            <span class="tag">{esc(h['nav'])}</span>
+            <h3>{esc(h['name'])} 여행 — 투어·맛집·선물·숙소</h3>
+            <p>{esc(h['metaDesc'][:118])}…</p>
+            <div class="gc-foot"><b>{won(lowest)}원~</b> · {' · '.join(bits)}</div>
+          </div>
+        </a>""")
+
+    listing = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "도시별 여행 페이지",
+            "description": hub_specs()["indexDesc"],
+            "url": f"{b}/cities/",
+            "inLanguage": "ko",
+            "hasPart": [
+                {"@type": "WebPage", "name": f"{h['name']} 여행", "url": f"{b}/{h['slug']}"}
+                for h in hubs
+            ],
+        },
+        ensure_ascii=False,
+    )
+    crumb = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "트립픽", "item": b + "/"},
+                {"@type": "ListItem", "position": 2, "name": "도시별 여행", "item": f"{b}/cities/"},
+            ],
+        },
+        ensure_ascii=False,
+    )
+
+    body = f"""<div class="pg-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="../index.html">홈</a><i></i><b>도시별 여행</b></nav>
+    <span class="pg-kicker">CITY GUIDES · {len(hubs)}곳</span>
+    <div class="pg-head">
+      <h1>도시 이름으로 찾는 <em>여행 준비</em> 페이지</h1>
+      <p class="dek">{hub_specs()['indexDesc']}</p>
+      <div class="pg-meta"><span><b>트립픽 편집</b></span><i></i><span>도시 {len(hubs)}곳</span><i></i><span>업데이트 2026.11.18</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="pg-body">
+  <div class="wrap">
+    <div class="hub-intro"><p>{hub_specs()['indexIntro']}</p></div>
+    <div class="gi-grid hub-grid-3">
+{chr(10).join(cards)}
+    </div>
+    <div class="hub-others">
+      <b>아직 도시 페이지가 없는 지역</b>
+      <p>삿포로·나트랑·괌·이탈리아·미서부·장가계 등 나머지 지역 상품은 홈의 지역 섹션에서 같은 기준으로 비교할 수 있습니다.</p>
+      <a class="hub-more" href="../index.html#regions">홈에서 전체 상품 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+{cta_band('../', '도시를 정했으면, 내 날짜로 총액 계산', '인원과 스타일을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 계산합니다.')}
+  </div>
+</div>"""
+
+    return page(
+        out_root,
+        "cities/index.html",
+        title=hub_specs()["indexTitle"],
+        desc=hub_specs()["indexDesc"],
+        body=body,
+        base=base,
+        active="cities",
+        keywords="도시별 여행, 오사카 여행, 도쿄 여행, 후쿠오카 여행, 다낭 여행, 방콕 여행, 타이베이 여행, 제주 여행, 도시별 맛집, 도시별 선물",
+        jsonld=f'<script type="application/ld+json">{listing}</script>\n<script type="application/ld+json">{crumb}</script>',
+    )
+
+
+# ----------------------------------------------------------------------
 # sitemap
 # ----------------------------------------------------------------------
 def write_sitemap(out_root: Path, base: str):
     b = base.rstrip("/")
     urls = [(f"{b}/", "1.0", "weekly")]
+    urls += [
+        (f"{b}/cities/", "0.9", "weekly"),
+    ]
+    urls += [(f"{b}/{h['slug']}.html", "0.9", "weekly") for h in hub_list()]
     urls += [
         (f"{b}/guides/", "0.9", "weekly"),
     ]
@@ -795,12 +1392,13 @@ def check_links(out_root: Path) -> int:
 # ----------------------------------------------------------------------
 def main():
     global SPRITE, TOTAL, TOURS, ESSENTIALS, GUIDES_LIST, CAT_NOTE
+    global RESTAURANTS, GIFTS, TRIPCOM
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT), help="출력 디렉터리 (기본: tour_hub)")
     ap.add_argument("--base", default="https://trippick.pages.dev", help="정본 URL")
     ap.add_argument("--check-links", action="store_true")
-    ap.add_argument("--only", default="", help="'pages' 또는 'guides' 만 생성")
+    ap.add_argument("--only", default="", help="'pages'·'guides'·'hubs' 중 하나만 생성")
     args = ap.parse_args()
 
     out_root = Path(args.out).resolve()
@@ -810,7 +1408,13 @@ def main():
     tours = load_json("tours.json")
     TOTAL = len(tours["tours"])
     TOURS = tours["tours"]
+    city_label = {c["id"]: c["name"] for c in tours.get("cities", [])}
+    for t in TOURS:
+        t["city_label"] = city_label.get(t["city"], "")
     ESSENTIALS = load_json("essentials.json")["products"]
+    RESTAURANTS = load_json("restaurants.json")
+    GIFTS = load_json("gifts.json")
+    TRIPCOM = load_json("tripcom.json")
 
     gspec = load_json("guides.json")
     GUIDES_LIST = gspec["guides"]
@@ -826,6 +1430,10 @@ def main():
         made.append(guides_index(out_root, args.base))
         for g in GUIDES_LIST:
             made.append(guide_page(out_root, g, args.base))
+    if args.only in ("", "hubs"):
+        made.append(cities_index(out_root, args.base))
+        for hub in hub_list():
+            made.append(hub_page(out_root, hub, args.base))
 
     write_sitemap(out_root, args.base)
     print(f"[build_pages] {len(made)}개 페이지 + sitemap.xml + assets/site.css → {out_root}")

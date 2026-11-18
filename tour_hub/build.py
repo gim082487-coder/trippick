@@ -44,6 +44,9 @@ GIFT_COUNTRIES = 0   # data/gifts.json 로드 시 채운다(main).
 GUIDES_COUNT = 0     # data/guides.json 로드 시 채운다(main).
 FOOD_COUNT = 0       # data/restaurants.json 로드 시 채운다(main).
 FOOD_CITY = 0
+HUB_LIST = []        # data/city_hubs.json 의 도시 페이지 7곳(main).
+HUB_OF_CITY = {}     # tours.json 의 도시 id → 도시 페이지 slug(main).
+HUB_CITY_IDS = set()  # 도시 페이지가 있는 도시 id. 이 도시들은 홈에서 접지 않고 먼저 보여준다(main).
 
 ESS_GROUPS = [
     ("여행용품", "🧳 여행 준비물 · 쿠팡", "출발 3일 전에 주문하면 배송일 안에 도착"),
@@ -297,6 +300,21 @@ def promo_tile(city: dict, count: int, wide: bool = False) -> str:
       </button>"""
 
 
+def render_hub_strip(data: dict) -> str:
+    """첫 화면 CTA 아래에 붙는 도시 페이지 7곳 바로가기(홈 → 허브 내부 링크)."""
+    chips = []
+    for hub in HUB_LIST:
+        ids = set(hub.get("cityIds") or [hub["slug"]])
+        items = [t for t in data["tours"] if t["city"] in ids]
+        low = min((t["sale"] for t in items), default=0)
+        chips.append(
+            f'<a class="hub-chip" href="{hub["slug"]}">'
+            f'<span class="hc-fl">{flag_svg(hub["flag"], 16, 11.2)}</span>'
+            f'<span class="hc-t"><b>{esc(hub["nav"])}</b><i>투어 {len(items)} · {won(low)}원~</i></span></a>'
+        )
+    return ("\n        ").join(chips)
+
+
 def city_section(city: dict, items: list, tours: list) -> str:
     lowest = min(t["sale"] for t in items)
     korean_n = sum(1 for t in items if "한국어" in t["guide"])
@@ -329,6 +347,11 @@ def city_section(city: dict, items: list, tours: list) -> str:
     else:
         guide_stat = "가이드 언어 확인"
 
+    hub_slug = HUB_OF_CITY.get(city["id"])
+    hub_link = (
+        f'<a class="city-hub" href="{hub_slug}">도시 페이지 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        if hub_slug else ""
+    )
     stats = [
         f'<span class="stat low">최저 {won(lowest)}원</span>',
         f'<span class="stat">상품 {len(items)}개 · {"·".join(types)}</span>',
@@ -348,6 +371,7 @@ def city_section(city: dict, items: list, tours: list) -> str:
           <span class="flag" aria-hidden="true">{flag_svg(city['country'], 25, 17.5)}</span>
           <h2>{esc(city['title'])}</h2>
           <span class="cnt">{len(items)}개 상품</span>
+          {hub_link}
         </div>
         <p class="sub">{esc(city['tagline'])}</p>
         <div class="city-stats">
@@ -409,6 +433,7 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
 
     items = [
         f'<a class="qn accent" href="#regions"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></span><b>투어 찾기</b><i>{len(tours)}개</i></a>',
+        f'<a class="qn" href="cities/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>도시 페이지</b><i>{len(HUB_LIST)}곳</i></a>',
         f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공</b><i>{len(tc_flights) + len(tc_hotels)}개</i></a>',
         f'<a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>',
         '<a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>',
@@ -1477,17 +1502,50 @@ def render_faq(items: list, tokens: dict) -> str:
 
 # ---------------------------------------------------------------- 렌더
 def render_sections(data: dict) -> str:
+    """도시 페이지가 있는 7개 도시만 먼저 펼치고, 나머지 도시는 한 번 접어 둔다.
+
+    접은 안에도 상품 카드·비교표·제휴 링크가 그대로 있어(스크립트 없이도 크롤링됨)
+    첫 화면 길이만 줄인다. 도시 칩·검색·해시 링크로 들어오면 template.html 의 JS 가
+    해당 <details> 를 자동으로 연다.
+    """
     tours = data["tours"]
     city_label = {c["id"]: c["name"] for c in data["cities"]}
     for t in tours:
         t["city_label"] = city_label.get(t["city"], "")
 
-    blocks = []
+    first, rest = [], []
+    rest_cards = 0
+    rest_names = []
     for city in data["cities"]:
         items = [t for t in tours if t["city"] == city["id"]]
-        if items:
-            blocks.append(city_section(city, items, tours))
-    return "\n\n".join(blocks)
+        if not items:
+            continue
+        block = city_section(city, items, tours)
+        if city["id"] in HUB_CITY_IDS:
+            first.append(block)
+        else:
+            rest.append(block)
+            rest_cards += len(items)
+            rest_names.append(city["name"])
+
+    out = "\n\n".join(first)
+    if rest:
+        names = " · ".join(rest_names[:7]) + (" …" if len(rest_names) > 7 else "")
+        out += f"""
+
+<details class="regions-more" id="more-regions">
+  <summary>
+    <span class="rm-t"><b>그 밖의 지역 {len(rest)}개 도시 · {rest_cards}개 상품 더 보기</b>
+      <span>{esc(names)}</span></span>
+    <span class="rm-go">펼치기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+  </summary>
+  <div class="rm-body">
+
+{chr(10).join(rest)}
+
+  </div>
+</details>"""
+    return out
 
 
 DEFAULT_REGION, DEFAULT_STYLE, DEFAULT_PAX = "jp", "value", 2
@@ -1653,6 +1711,11 @@ def render_sitemap(data: dict, courses: dict) -> str:
     # 사이트맵에는 정규 URL만 넣는다(중복·무효 URL 경고 방지).
     # 가이드·필수 페이지(data/guides.json)가 있으면 그 URL도 함께 넣는다.
     urls = [(SITE + "/", "1.0", "weekly")]
+    hpath = DATA / "city_hubs.json"
+    if hpath.exists():
+        hs = json.loads(hpath.read_text(encoding="utf-8"))["cities"]
+        urls.append((SITE + "/cities/", "0.9", "weekly"))
+        urls += [(f"{SITE}/{h['slug']}.html", "0.9", "weekly") for h in hs]
     gpath = DATA / "guides.json"
     if gpath.exists():
         gspec = json.loads(gpath.read_text(encoding="utf-8"))
@@ -1739,6 +1802,10 @@ def main() -> int:
     gifts = json.loads((DATA / "gifts.json").read_text(encoding="utf-8"))
     guides = json.loads((DATA / "guides.json").read_text(encoding="utf-8"))
     rest = json.loads((DATA / "restaurants.json").read_text(encoding="utf-8"))
+    global HUB_LIST, HUB_OF_CITY, HUB_CITY_IDS
+    HUB_LIST = json.loads((DATA / "city_hubs.json").read_text(encoding="utf-8"))["cities"]
+    HUB_CITY_IDS = {cid for h in HUB_LIST for cid in (h.get("cityIds") or [h["slug"]])}
+    HUB_OF_CITY = {cid: h["slug"] for h in HUB_LIST for cid in (h.get("cityIds") or [h["slug"]])}
     global FOOD_COUNT, FOOD_CITY
     FOOD_COUNT = sum(len(c["items"]) for c in rest["cities"])
     FOOD_CITY = len(rest["cities"])
@@ -1785,6 +1852,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @GIFTS -->", render_gifts(data, gifts, essentials, tripcom, guides))
     html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
     html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom))
+    html = replace_block(html, "<!-- @HUB_STRIP -->", render_hub_strip(data))
     html = replace_block(html, "<!-- @QUICKSTRIP -->", render_quickstrip(data, courses, essentials, tripcom))
     html = replace_block(html, "<!-- @HOTSTRIP -->", render_hot_strip(data, courses, essentials, tripcom))
     html = replace_block(html, "<!-- @REGION_CHIPS -->", render_region_chips())
