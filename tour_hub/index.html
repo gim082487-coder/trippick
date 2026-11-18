@@ -1929,19 +1929,22 @@
   }
 
   /* ============================== 도시 페이지 바로가기 · 접이식 지역 ============================== */
-  .hub-strip{margin:18px 0 0;max-width:780px}
-  .hs-k{display:block;font-size:11px;font-weight:850;letter-spacing:.08em;color:rgba(255,255,255,.62);margin-bottom:8px}
-  .hs-row{display:flex;gap:6px;flex-wrap:wrap}
-  .hub-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;
-    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);text-decoration:none;transition:.16s}
-  .hub-chip:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.34)}
+  .hub-strip{background:#fff;border-bottom:1px solid var(--line);padding:11px 0}
+  .hub-strip .wrap{display:flex;align-items:center;gap:12px}
+  .hs-k{flex:0 0 auto;font-size:11.5px;font-weight:850;letter-spacing:.01em;color:var(--ink-3);white-space:nowrap}
+  .hs-row{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;padding:1px 0}
+  .hs-row::-webkit-scrollbar{display:none}
+  .hub-chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;
+    background:var(--soft);border:1px solid var(--line);text-decoration:none;transition:.16s}
+  .hub-chip:hover{background:var(--blue-soft);border-color:var(--blue-line)}
   .hc-fl{display:inline-flex;flex:0 0 auto}
-  .hc-t b{display:block;font-size:12.6px;font-weight:800;color:#fff;line-height:1.2;letter-spacing:-0.02em}
-  .hc-t i{display:block;font-style:normal;font-size:10.2px;color:rgba(255,255,255,.7);margin-top:2px}
-  .hs-all{display:inline-flex;align-items:center;gap:5px;margin-top:9px;font-size:11.6px;font-weight:800;color:rgba(255,255,255,.86)}
-  .hs-all b{color:#fff}
+  .hc-t b{display:block;font-size:12.4px;font-weight:800;color:var(--ink);line-height:1.2;letter-spacing:-0.02em}
+  .hc-t i{display:block;font-style:normal;font-size:10.2px;color:var(--ink-3);margin-top:2px}
+  .hs-all{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;font-size:11.8px;font-weight:820;
+    color:var(--blue-600);white-space:nowrap}
+  .hs-all b{color:var(--blue-700)}
   .hs-all .ic{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
-  .hs-all:hover{color:#fff;text-decoration:underline}
+  .hs-all:hover{text-decoration:underline}
   .city-hub{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:11.4px;font-weight:820;
     color:var(--blue-600);background:var(--blue-soft);border-radius:999px;padding:4px 10px;white-space:nowrap}
   .city-hub:hover{background:#DFEBF4}
@@ -1960,12 +1963,13 @@
   .rm-body{padding:0 18px 16px}
   .rm-body .city{padding:22px 0 6px}
   @media (max-width:620px){
-    .hub-strip{margin:14px 0 0}
-    .hs-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
-    .hs-row::-webkit-scrollbar{display:none}
-    .hub-chip{flex:0 0 auto;padding:7px 10px;gap:6px;border-radius:11px}
-    .hc-t b{font-size:12px}
-    .hc-t i{font-size:9.6px}
+    .hub-strip{padding:9px 0}
+    .hub-strip .wrap{gap:8px}
+    .hs-k{display:none}
+    .hub-chip{padding:6px 10px;gap:6px}
+    .hc-t b{font-size:11.8px}
+    .hc-t i{font-size:9.4px}
+    .hs-all{font-size:11.2px}
     .city-hub{margin-left:0;font-size:10.8px;padding:3px 8px}
     .regions-more{border-radius:16px}
     .regions-more>summary{padding:13px 14px;gap:8px}
@@ -2045,19 +2049,6 @@
         <a class="primary" href="#courses">추천 코스 5개 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="ghost" href="#planner">내 예산으로 총액 계산</a>
       </div>
-      <div class="hub-strip" aria-label="도시별 여행 페이지">
-        <span class="hs-k">도시 이름으로 바로 찾기</span>
-        <div class="hs-row">
-        <a class="hub-chip" href="osaka"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="hc-t"><b>오사카·교토</b><i>투어 3 · 56,050원~</i></span></a>
-        <a class="hub-chip" href="tokyo"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="hc-t"><b>도쿄</b><i>투어 3 · 65,550원~</i></span></a>
-        <a class="hub-chip" href="fukuoka"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="hc-t"><b>후쿠오카</b><i>투어 3 · 56,050원~</i></span></a>
-        <a class="hub-chip" href="danang"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-vn"/></svg></span><span class="hc-t"><b>다낭·호이안</b><i>투어 3 · 322,905원~</i></span></a>
-        <a class="hub-chip" href="bangkok"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-th"/></svg></span><span class="hc-t"><b>방콕</b><i>투어 3 · 591,603원~</i></span></a>
-        <a class="hub-chip" href="taipei"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-tw"/></svg></span><span class="hc-t"><b>타이베이</b><i>투어 3 · 35,000원~</i></span></a>
-        <a class="hub-chip" href="jeju"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="hc-t"><b>제주</b><i>투어 3 · 159,000원~</i></span></a>
-        </div>
-        <a class="hs-all" href="cities/">도시 페이지 전체 <b>7곳</b> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
       <form class="search" id="searchForm" role="search" aria-label="투어 검색">
         <label class="sf">
           <span>여행지</span>
@@ -2107,6 +2098,22 @@
     </div>
   </div>
 </section>
+
+<div class="hub-strip" aria-label="도시별 여행 페이지">
+  <div class="wrap">
+    <span class="hs-k">도시 이름으로 바로 찾기</span>
+    <div class="hs-row">
+      <a class="hub-chip" href="osaka"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="hc-t"><b>오사카·교토</b><i>투어 3 · 56,050원~</i></span></a>
+        <a class="hub-chip" href="tokyo"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="hc-t"><b>도쿄</b><i>투어 3 · 65,550원~</i></span></a>
+        <a class="hub-chip" href="fukuoka"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="hc-t"><b>후쿠오카</b><i>투어 3 · 56,050원~</i></span></a>
+        <a class="hub-chip" href="danang"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-vn"/></svg></span><span class="hc-t"><b>다낭·호이안</b><i>투어 3 · 322,905원~</i></span></a>
+        <a class="hub-chip" href="bangkok"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-th"/></svg></span><span class="hc-t"><b>방콕</b><i>투어 3 · 591,603원~</i></span></a>
+        <a class="hub-chip" href="taipei"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-tw"/></svg></span><span class="hc-t"><b>타이베이</b><i>투어 3 · 35,000원~</i></span></a>
+        <a class="hub-chip" href="jeju"><span class="hc-fl"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="hc-t"><b>제주</b><i>투어 3 · 159,000원~</i></span></a>
+    </div>
+    <a class="hs-all" href="cities/">도시 페이지 전체 <b>7곳</b> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</div>
 
 <div class="catbar" aria-label="카테고리 바로가기">
   <div class="wrap">
