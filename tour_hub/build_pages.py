@@ -1625,6 +1625,51 @@ def cities_index(out_root: Path, base: str) -> Path:
 # ----------------------------------------------------------------------
 # sitemap
 # ----------------------------------------------------------------------
+def not_found_page(out_root: Path, base: str) -> Path:
+    """없는 주소용 404.html — 홈으로 되돌리는 동선과 인기 페어지를 둔다(noindex)."""
+    links = "".join(
+        f'<a href="{u}">{esc(n)}</a>'
+        for u, n in [
+            ("/", "홈"),
+            ("/guides/", f"여행 가이드 {len(GUIDES_LIST)}편"),
+            ("/cities/", "도시별 페이지 7곳"),
+            ("/osaka", "오사카·교토"),
+            ("/tokyo", "도쿄"),
+            ("/danang", "다낭·호이안"),
+            ("/jeju", "제주"),
+            ("/#checklist", "출국 체크리스트"),
+            ("/#planner", "예산 계산기"),
+        ]
+    )
+    body = f"""<div class="pg-body">
+  <div class="wrap">
+    <div class="nf-box">
+      <b class="nf-no">404</b>
+      <h1>이 주소에는 글이 없습니다</h1>
+      <p>링크가 바뀌었거나 주소를 잘못 입력했습니다. 아래에서 다시 찾으시면 바로 이어집니다.</p>
+      <div class="nf-links">{links}</div>
+      <p class="nf-hint">찾는 글이 있으면 가이드 검색창에 도시나 주제를 넣어 보세요. 예: <a href="/guides/?q=오사카">오사카</a> · <a href="/guides/?q=eSIM">eSIM</a> · <a href="/guides/?q=우기">우기</a></p>
+    </div>
+  </div>
+</div>"""
+    p = page(
+        out_root,
+        "404.html",
+        title="페이지를 찾을 수 없습니다 (404) | 트립픽",
+        desc="요청한 주소가 없습니다. 여행 가이드 44편·도시별 페이지 7곳·출국 체크리스트로 연결합니다.",
+        body=body,
+        base=base,
+    )
+    t = p.read_text(encoding="utf-8")
+    t = t.replace(
+        '<meta name="robots" content="index, follow, max-image-preview:large" />',
+        '<meta name="robots" content="noindex, follow" />',
+        1,
+    )
+    p.write_text(t, encoding="utf-8")
+    return p
+
+
 def write_sitemap(out_root: Path, base: str):
     b = base.rstrip("/")
     urls = [(f"{b}/", "1.0", "weekly")]
@@ -1691,14 +1736,17 @@ def check_links(out_root: Path) -> int:
                 continue  # index.html 의 JS 문자열 템플릿
             total += 1
             path, _, frag = href.partition("#")
-            path = urllib.parse.unquote(path)
+            path = urllib.parse.unquote(path).split("?")[0]
             if not path:
                 if frag and f.resolve() not in ids:
                     anchor_only.append((f, href))
                 elif frag and frag not in ids[f.resolve()]:
                     bad.append((f, href, "페이지 내 앵커 없음"))
                 continue
-            target = (f.parent / path).resolve()
+            if path.startswith("/"):
+                target = (out_root / path.lstrip("/")).resolve()
+            else:
+                target = (f.parent / path).resolve()
             if not target.exists() and not path.endswith("/"):
                 # Cloudflare Pages 의 확장자 없는 주소 → 같은 이름의 .html 파일
                 alt = Path(str(target) + ".html")
@@ -1775,6 +1823,7 @@ def main():
             made.append(hub_page(out_root, hub, args.base))
 
     write_sitemap(out_root, args.base)
+    not_found_page(out_root, args.base)
     print(f"[build_pages] {len(made)}개 페이지 + sitemap.xml + assets/site.css → {out_root}")
     for p in made:
         print("  ·", p.relative_to(out_root))
