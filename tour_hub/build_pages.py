@@ -402,7 +402,7 @@ def inject_mid_ad(body_html: str, slot_html: str) -> str:
 
 
 def side_common(up: str) -> str:
-    return f"""    <div class="side-card">
+    return f"""    <div class="side-card side-common">
       <h3>바로가기</h3>
       <p>도시별 페이지에서 투어·맛집·선물·숙소를 한 번에 볼 수 있습니다.</p>
       <a class="go" href="{up}cities/index.html">도시별 여행 페이지 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -758,7 +758,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         ad_slot(
             "guide-top",
             "숙소·항공은 도시별 최저가로",
-            "트립닷컴 파트너스 링크로 도시 15곳 숙소·항공 6개 노선에 입장권·공항픽업·렌터카 16종을 더했습니다.",
+            "트립닷컴 파트너스 링크로 도시 15곳 숙소·항공 6개 노선에 입장권·공항픽업·렌터카 16종, eSIM 5개 도시·공항철도 2개 노선을 더했습니다.",
             "../index.html#tripcom",
             "숙소·항공 보기",
         )

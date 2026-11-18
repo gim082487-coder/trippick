@@ -412,3 +412,8 @@
   .gfind{padding:10px 11px 6px}
   .gfind-count{font-size:11.6px}
 }
+
+/* 모바일: 사이드바 '바로가기' 카드는 하단 도시 연결 블록과 역할이 겹치므로 숨긴다 */
+@media (max-width:720px){
+  .pg-side .side-common{display:none}
+}
