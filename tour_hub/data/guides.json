@@ -23,8 +23,8 @@
       "published": "2026-11-18",
       "updated": "2026-11-18",
       "read": 9,
-      "image": "images/courses/osaka.jpg",
-      "imageAlt": "오사카 도톤보리 운하와 상점가 풍경",
+      "image": "images/courses/osaka_d3.jpg",
+      "imageAlt": "오사카 성 천수각과 가을 나무 풍경",
       "tours": [
         "os_g"
       ],
@@ -55,7 +55,7 @@
       "updated": "2026-11-18",
       "read": 9,
       "image": "images/courses/tokyo.jpg",
-      "imageAlt": "도쿄 도심과 빌딩가 풍경",
+      "imageAlt": "후지산과 충레이탑이 보이는 전망",
       "tours": [
         "tk_g"
       ],
@@ -86,7 +86,7 @@
       "updated": "2026-11-18",
       "read": 9,
       "image": "images/card_danang_hoian.jpg",
-      "imageAlt": "다낭과 호이안의 강변 풍경",
+      "imageAlt": "호이안 강변의 등불과 우산 쓴 여행자들",
       "tours": [
         "dn_p2"
       ],
@@ -117,7 +117,7 @@
       "updated": "2026-11-18",
       "read": 9,
       "image": "images/n_tw_g.jpg",
-      "imageAlt": "타이베이 시내와 야시장 풍경",
+      "imageAlt": "지우펀 골목에 걸린 홍등",
       "tours": [
         "tw_g"
       ],
