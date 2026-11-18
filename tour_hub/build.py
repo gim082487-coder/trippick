@@ -308,9 +308,9 @@ def render_hub_strip(data: dict) -> str:
         items = [t for t in data["tours"] if t["city"] in ids]
         low = min((t["sale"] for t in items), default=0)
         chips.append(
-            f'<a class="hub-chip" href="{hub["slug"]}">'
+            f'<a class="hub-chip" href="{hub["slug"]}" title="{esc(hub["name"])} 투어 {len(items)}개 · {won(low)}원~">'
             f'<span class="hc-fl">{flag_svg(hub["flag"], 16, 11.2)}</span>'
-            f'<span class="hc-t"><b>{esc(hub["nav"])}</b><i>투어 {len(items)} · {won(low)}원~</i></span></a>'
+            f'<span class="hc-t"><b>{esc(hub["nav"])}</b><i>투어 {len(items)}</i></span></a>'
         )
     return ("\n        ").join(chips)
 
