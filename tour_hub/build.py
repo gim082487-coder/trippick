@@ -859,27 +859,34 @@ def render_restaurants(data: dict, rest: dict, guides: dict, tripcom: dict) -> s
             f'{flag_svg(c["flag"], 15, 10.5)}<b>{esc(c["name"])}</b><span>{len(c["items"])}</span></button>'
         )
 
-        # --- 동선: 오전 투어 → 점심 → 선물·쇼핑 → 저녁 → 숙소
+        # --- 동선: 오전 투어 → 점심 → 오후 선물·쇼핑 → 저녁 → 숙소
+        def meal_step(slot: str, label: str) -> str:
+            pick = next((i for i in c["items"] if i.get("slot") == slot), None)
+            if not pick:
+                return ""
+            segs = pick["price"].split(" · ")
+            short = " · ".join(segs[:2]) if len(segs) > 1 and segs[1].startswith("약") else segs[0]
+            return (
+                f'<li><span class="fr-k">{label}</span><a class="js-food-jump" href="#{esc(pick["id"])}">'
+                f'{esc(pick["nameKo"])}</a><span class="fr-m">{esc(short)}</span></li>'
+            )
+
         steps = []
         t = tours.get(c.get("tour"))
         if t:
+            label = "오전" if c.get("tour", "").endswith("_g") else "패키지"
             steps.append(
-                f'<li><span class="fr-k">오전</span><a href="{esc(t["url"])}" target="_blank" rel="noopener sponsored">'
+                f'<li><span class="fr-k">{label}</span><a href="{esc(t["url"])}" target="_blank" rel="noopener sponsored">'
                 f'{esc(tour_short(t))}</a><span class="fr-m">{won(t["sale"])}원~</span></li>'
             )
-        for slot, label in (("점심", "점심"), ("저녁", "저녁")):
-            pick = next((i for i in c["items"] if i.get("slot") == slot), None)
-            if pick:
-                steps.append(
-                    f'<li><span class="fr-k">{label}</span><a class="js-food-jump" href="#{esc(pick["id"])}">'
-                    f'{esc(pick["nameKo"])}</a><span class="fr-m">{esc(pick["price"].split(" · ")[-1])}</span></li>'
-                )
+        steps.append(meal_step("점심", "점심"))
         g = gby.get(c.get("gift"))
         if g:
             steps.append(
                 f'<li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 {esc(c["name"])}</a>'
                 f'<span class="fr-m">{g["read"]}분 가이드</span></li>'
             )
+        steps.append(meal_step("저녁", "저녁"))
         h = hotels.get(c.get("hotel"))
         if h:
             steps.append(
