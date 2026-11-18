@@ -141,6 +141,7 @@ def footer_html(up: str) -> str:
           <a href="{up}index.html#courses">추천 코스</a>
           <a href="{up}index.html#regions">지역·투어</a>
           <a href="{up}index.html#essentials">여행 필수품</a>
+          <a href="{up}index.html#gifts">선물·기념품</a>
           <a href="{up}index.html#planner">예산 계산기</a>
           <a href="{up}index.html#checklist">출국 준비 체크</a>
           <a href="{up}guides/index.html">여행 가이드</a>
@@ -400,6 +401,8 @@ def side_common(up: str) -> str:
       <h3>바로가기</h3>
       <p>코스·상품·필수품을 한 화면에서 같은 기준으로 비교합니다.</p>
       <a class="go" href="{up}index.html#planner">내 예산으로 총액 계산 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="{up}index.html#essentials">여행 필수품 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="{up}index.html#gifts">나라별 선물·기념품 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#checklist">출국 준비 체크리스트 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#tripcom">도시별 숙소·항공권 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#regions">지역별 투어 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -626,12 +629,12 @@ def guides_index(out_root: Path, base: str) -> Path:
             f"나리타·하네다 공항에서 시내까지, 교토 버스투어 vs 자유일정, 오사카 주유패스·도쿄 지하철패스 본전, "
             f"오사카·교토 3박4일 실경비, 방콕·이탈리아 패키지 실지출, 괌 리조트 조식 비교, 다낭 우기, 제주·울릉·강원, "
             f"일본·베트남 eSIM, 미서부·미동부·스페인·포르투갈·호주·뉴질랜드 장거리 실지출, 다낭 54홀 vs 푸꾸옥 36홀 골프, "
-            f"장가계 특별약관, 보조배터리·액체류 기내 규정까지. 예약 전에 숫자로 확인하는 여행 가이드 {len(GUIDES_LIST)}편."
+            f"장가계 특별약관, 보조배터리·액체류 기내 규정, 일본·베트남·대만·태국 기념품 리스트까지. 예약 전에 숫자로 확인하는 여행 가이드 {len(GUIDES_LIST)}편."
         ),
         body=body,
         base=base,
         active="guides",
-        keywords="여행 가이드, 나리타 공항 시내 이동, 교토 버스투어 비교, 오사카 주유패스 본전, 도쿄 지하철 패스, 오사카 교토 3박4일 경비, 방콕 패키지 실지출, 이탈리아 패키지 비교, 괌 리조트 비교, 다낭 우기, 제주 3박4일, 울릉도 배편, 강원 스키장 비교, 일본 eSIM, 베트남 eSIM",
+        keywords="여행 가이드, 나리타 공항 시내 이동, 교토 버스투어 비교, 오사카 주유패스 본전, 도쿄 지하철 패스, 오사카 교토 3박4일 경비, 방콕 패키지 실지출, 이탈리아 패키지 비교, 괌 리조트 비교, 다낭 우기, 제주 3박4일, 울릉도 배편, 강원 스키장 비교, 일본 eSIM, 베트남 eSIM, 일본 기념품 리스트, 다낭 기념품, 대만 펑리수, 태국 기념품",
         jsonld=f'<script type="application/ld+json">{listing}</script>',
     )
 

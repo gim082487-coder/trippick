@@ -1063,11 +1063,12 @@
   .disclosure-bar b{color:var(--ink-2)}
 
   /* 섹션 공통 */
-  .courses,.planner,.regions,.essentials,.howto,.faq,.alertbox{background:transparent;border-top:0}
+  .courses,.planner,.regions,.essentials,.gifts,.howto,.faq,.alertbox{background:transparent;border-top:0}
   .courses{padding:52px 0 56px}
   .planner{padding:8px 0 56px}
   .regions{padding:44px 0 8px}
   .essentials{padding:52px 0}
+  .gifts{padding:52px 0}
   .howto{padding:48px 0 56px}
   .faq{padding:48px 0 56px}
   .alertbox{padding:48px 0 56px}
@@ -1483,6 +1484,49 @@
   .cl-fold>summary,.cl-calc-box>summary{list-style:none;cursor:pointer}
   .cl-fold>summary::-webkit-details-marker,.cl-calc-box>summary::-webkit-details-marker{display:none}
   .cl-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  /* ============================== 나라별 선물·기념품 ============================== */
+  .gift-card{border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:var(--sh-1);overflow:hidden}
+  .gift-tabs{display:flex;gap:6px;overflow-x:auto;padding:13px 14px 0;scrollbar-width:thin}
+  .gift-tabs::-webkit-scrollbar{height:4px}
+  .gift-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;border:1px solid var(--line);
+    background:#fff;border-radius:999px;padding:7px 12px;cursor:pointer;font-size:12.4px;color:var(--ink-2);transition:.16s}
+  .gift-tab b{font-weight:820;color:var(--navy);letter-spacing:-.02em}
+  .gift-tab span{font-size:10px;font-weight:800;color:var(--ink-3);background:var(--line-2);border-radius:6px;padding:1px 6px}
+  .gift-tab:hover{border-color:var(--blue-line)}
+  .gift-tab.on{border-color:var(--blue);background:var(--blue-soft);box-shadow:0 0 0 3px rgba(15,92,151,.08)}
+  .gift-tab.on span{background:#fff;color:var(--blue-600)}
+  .gift-panel[hidden]{display:none}
+  .gift-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.72fr);gap:12px;align-items:start;padding:15px 18px 0}
+  .gift-intro p{margin:0;font-size:13px;line-height:1.72;color:var(--ink-2)}
+  .gift-intro p b{color:var(--blue-700);font-weight:800}
+  .gift-duty{padding:10px 12px;border-radius:11px;background:var(--amber-soft);border:1px solid var(--amber-line);
+    font-size:11.4px;line-height:1.62;color:#6B4A12}
+  .gift-duty b{display:block;font-size:10.4px;font-weight:850;letter-spacing:.04em;margin-bottom:3px;opacity:.9}
+  .gift-duty span{display:block}
+  .gift-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:12px 18px 2px}
+  .gift{border:1px solid var(--line);border-radius:13px;padding:11px 12px;background:#fff;display:flex;flex-direction:column;gap:4px}
+  .gift-name{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+  .gift-name b{font-size:13.2px;font-weight:820;letter-spacing:-.03em;color:var(--navy);line-height:1.35}
+  .gift-name span{font-size:10.2px;color:var(--ink-3);line-height:1.3}
+  .gift-price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+  .gift-price b{font-size:14.2px;font-weight:840;color:var(--blue-700);letter-spacing:-.03em}
+  .gift-price span{font-size:10.8px;font-weight:700;color:var(--ink-2)}
+  .gift-where{display:flex;align-items:center;gap:4px;font-size:10.6px;color:var(--ink-3);line-height:1.4}
+  .gift-where .ic{width:11px;height:11px}
+  .gift-tip{margin:1px 0 0;font-size:11.4px;line-height:1.6;color:var(--ink-2)}
+  .gift-cau{align-self:flex-start;margin-top:auto;padding-top:5px;font-size:10.2px;font-weight:800;border-radius:6px;color:var(--ink-2)}
+  .gift-cau::before{content:"✓ ";color:var(--ok)}
+  .gift-cau.warn{color:#B33A2B}
+  .gift-cau.warn::before{content:"! ";color:var(--coral)}
+  .gift-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;padding:12px 18px 4px}
+  .gift-link{display:flex;flex-direction:column;gap:1px;border:1px solid var(--line);border-radius:11px;padding:9px 11px;background:#fff;transition:.16s;min-width:0}
+  .gift-link:hover{border-color:var(--blue-line);box-shadow:var(--sh-1);transform:translateY(-1px)}
+  .gift-link i{font-style:normal;font-size:9.2px;font-weight:850;letter-spacing:.08em;color:var(--blue-600)}
+  .gift-link b{font-size:11.4px;font-weight:800;color:var(--navy);line-height:1.36;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .gift-link span{font-size:10.2px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .gift-note{margin:0;padding:8px 18px 15px;font-size:10.6px;line-height:1.62;color:var(--ink-3)}
+
   @media (min-width:769px){ .cl-calc-box>summary{display:none} .qn[data-quick-scope]{display:none} }
 
   @media (max-width:768px){
@@ -1560,6 +1604,7 @@
     .flow>#courses{order:10}
     .flow>#regions{order:20}
     .flow>#essentials{order:30}
+    .flow>#gifts{order:35}
     .flow>#tripcom{order:40}
     .flow>#planner{order:50}
     .flow>#checklist{order:60}
@@ -1574,7 +1619,7 @@
     /* ---- 섹션 헤더 다이어트 ---- */
     .courses{padding:18px 0 22px}
     .regions{padding:18px 0 6px}
-    .essentials,.tripcom{padding:20px 0}
+    .essentials,.gifts,.tripcom{padding:20px 0}
     .planner{padding:20px 0 22px}
     .checklist{padding:20px 0}
     .alertbox,.howto,.faq{padding:22px 0}
@@ -1761,6 +1806,36 @@
     .tc-note,.tc-fs{font-size:9.6px}
     .tc-go{font-size:10px;padding-top:6px}
     .tc-tab{font-size:11px;padding:6px 10px}
+
+    /* ---- 나라별 선물·기념품 (모바일 컴팩트) ---- */
+    .gift-card{border-radius:16px}
+    .gift-tabs{gap:5px;padding:9px 10px 0;scrollbar-width:none}
+    .gift-tabs::-webkit-scrollbar{display:none}
+    .gift-tab{padding:6px 10px;font-size:11.4px;gap:4px}
+    .gift-tab span{font-size:9.4px;padding:1px 5px}
+    .gift-intro{grid-template-columns:1fr;gap:7px;padding:10px 11px 0}
+    .gift-intro p{font-size:11.4px;line-height:1.62;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .gift-duty{padding:8px 10px;font-size:10.4px;line-height:1.55;border-radius:9px}
+    .gift-duty b{font-size:9.4px;margin-bottom:2px}
+    .gift-grid{grid-template-columns:1fr;gap:5px;padding:9px 10px 0}
+    .gift{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name price" "where price" "tip tip" "cau cau";
+      column-gap:8px;row-gap:1px;padding:8px 10px;border-radius:11px}
+    .gift-name{grid-area:name}
+    .gift-name b{font-size:12.2px}
+    .gift-name span{font-size:9.4px}
+    .gift-price{grid-area:price;flex-direction:column;align-items:flex-end;gap:0;text-align:right}
+    .gift-price b{font-size:12.6px}
+    .gift-price span{font-size:9.6px;font-weight:700}
+    .gift-where{grid-area:where;font-size:9.6px}
+    .gift-where .ic{width:9px;height:9px}
+    .gift-tip{grid-area:tip;font-size:10.2px;line-height:1.5;margin-top:2px;
+      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .gift-cau{grid-area:cau;padding-top:3px;font-size:9.4px}
+    .gift-links{grid-template-columns:1fr 1fr;gap:5px;padding:9px 10px 2px}
+    .gift-link{padding:7px 9px;border-radius:9px}
+    .gift-link b{font-size:10.6px;-webkit-line-clamp:1}
+    .gift-link span{font-size:9.4px}
+    .gift-note{padding:7px 11px 11px;font-size:9.4px;line-height:1.5}
 
     /* ---- 특가 알림·체크·FAQ ---- */
     .alert-card{padding:16px 14px;border-radius:16px;gap:14px}
@@ -1949,7 +2024,8 @@
     <a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>
     <a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>
     <a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>22개</i></a>
-    <a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>36편</i></a>
+    <a class="qn" href="#gifts"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-ticket"/></svg></span><b>선물·기념품</b><i>6개국</i></a>
+    <a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>40편</i></a>
     <a class="qn" href="#alert"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><b>특가 알림</b><i>무료</i></a>
     <a class="qn" href="#courses"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-image"/></svg></span><b>여행 코스</b><i>5개</i></a>
     <button class="qn" type="button" data-quick-scope="kr"><span class="qn-ic"><svg class="flag-ic" aria-hidden="true"><use href="#f-kr"/></svg></span><b>국내</b><i>12개</i></button>
@@ -6497,6 +6573,312 @@
   </div>
 </section>
 
+<section class="gifts" id="gifts">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t">
+        <span class="kicker">SOUVENIR &amp; GIFT GUIDE</span>
+        <h2>나라별 선물·기념품, <em>어디서 얼마에</em> 사는지</h2>
+        <p>일본·베트남·태국·대만·미국·유럽 6개 지역에서 실제로 가장 많이 사가는 35개 품목을 현지 정가와 원화 환산, 구매처까지 같이 적었습니다. 액체류·검역·면세 한도처럼 공항에서 걸리는 조건도 카드마다 표시했습니다.</p>
+      </div>
+      <div class="sh-meta">가격은 2026.11 현지 매장 정가·공식 판매가 · 환율 100엔=940원 기준</div>
+    </div>
+    <div class="gift-card">
+  <div class="gift-tabs" role="tablist" aria-label="나라별 선물·기념품">
+    <button class="gift-tab on" type="button" role="tab" id="gtab-jp" aria-controls="gpanel-jp" aria-selected="true" data-gift-tab="jp"><svg class="flag-ic" style="width:15px;height:10.5px" aria-hidden="true"><use href="#f-jp"/></svg><b>일본</b><span>6</span></button>
+    <button class="gift-tab" type="button" role="tab" id="gtab-vn" aria-controls="gpanel-vn" aria-selected="false" data-gift-tab="vn"><svg class="flag-ic" style="width:15px;height:10.5px" aria-hidden="true"><use href="#f-vn"/></svg><b>베트남</b><span>6</span></button>
+    <button class="gift-tab" type="button" role="tab" id="gtab-th" aria-controls="gpanel-th" aria-selected="false" data-gift-tab="th"><svg class="flag-ic" style="width:15px;height:10.5px" aria-hidden="true"><use href="#f-th"/></svg><b>태국</b><span>6</span></button>
+    <button class="gift-tab" type="button" role="tab" id="gtab-tw" aria-controls="gpanel-tw" aria-selected="false" data-gift-tab="tw"><svg class="flag-ic" style="width:15px;height:10.5px" aria-hidden="true"><use href="#f-tw"/></svg><b>대만</b><span>6</span></button>
+    <button class="gift-tab" type="button" role="tab" id="gtab-us" aria-controls="gpanel-us" aria-selected="false" data-gift-tab="us"><svg class="flag-ic" style="width:15px;height:10.5px" aria-hidden="true"><use href="#f-us"/></svg><b>미국</b><span>5</span></button>
+    <button class="gift-tab" type="button" role="tab" id="gtab-eu" aria-controls="gpanel-eu" aria-selected="false" data-gift-tab="eu"><svg class="flag-ic" style="width:15px;height:10.5px" aria-hidden="true"><use href="#f-eu"/></svg><b>유럽</b><span>6</span></button>
+  </div>
+  <div class="gift-panel" id="gpanel-jp" role="tabpanel" aria-labelledby="gtab-jp">
+          <div class="gift-intro">
+            <p>돈키호테와 드럭스토어, 공항 면세점 세 곳이면 끝납니다. 다만 2026년 11월 1일 구매분부터 면세가 '매장에서 바로 빼주는' 방식이 아니라 <b>출국할 때 공항에서 돌려받는 리펀드 방식</b>으로 바뀌었습니다. 계산은 세금 포함으로 하고, 수하물 위탁 전에 세관 키오스크에서 여권을 찍어야 환급됩니다.</p>
+            <div class="gift-duty"><b>일본 반입·면세 한 줄</b><span>면세는 같은 매장·같은 날 세전 5,000엔부터. 액체류는 100ml 이하·1L 지퍼백. 육류·육가공품은 한국 반입 금지(신고 대상).</span></div>
+          </div>
+          <div class="gift-grid">
+          <article class="gift">
+            <div class="gift-name"><b>시로이코이비토</b><span>白い恋人 12枚</span></div>
+            <div class="gift-price"><b>1,036엔</b><span>약 9,700원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>공항 면세점·돈키호테·백화점</div>
+            <p class="gift-tip">정가가 12개입 1,036엔으로 올랐습니다. 24개입(2,073엔)도 개당 86.4엔으로 12개입과 같은 단가입니다.</p>
+            <span class="gift-cau warn">초콜릿이라 25도 이상에서 녹습니다</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>로이스 생초콜릿</b><span>ロイズ 生チョコレート</span></div>
+            <div class="gift-price"><b>800~864엔</b><span>약 7,500~8,100원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>공항 면세점·돈키호테·로이스 매장</div>
+            <p class="gift-tip">면세점 800엔, 시내 매장 864엔. 냉장 제품이라 마지막 날 사서 아이스팩과 함께.</p>
+            <span class="gift-cau warn">냉장 보관 · 여름엔 보냉 필수</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>동전파스(로이히츠보코)</b><span>ロイヒつぼ膏 78枚</span></div>
+            <div class="gift-price"><b>658엔(세금 포함 724엔)</b><span>약 6,800원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>돈키호테·마쓰모토키요시</div>
+            <p class="gift-tip">78매는 큰 원형, 156매는 작은 기본형. 부모님 선물 1순위인데 156매는 1,000엔 안팎입니다.</p>
+            <span class="gift-cau">의약외품 · 자가사용 범위</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>휴족시간</b><span>休足時間 18枚</span></div>
+            <div class="gift-price"><b>650~980엔</b><span>약 6,100~9,200원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>돈키호테·마쓰모토키요시·드럭스토어</div>
+            <p class="gift-tip">돈키호테 698~848엔, 마쓰모토 980엔. 국내 올리브영 12,900원보다 40%가량 쌉니다.</p>
+            <span class="gift-cau">시트형 · 기내 반입 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>이치란 라멘 5식</b><span>一蘭 ラーメン 5食</span></div>
+            <div class="gift-price"><b>1,998엔</b><span>약 18,800원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>돈키호테·이치란 매장·공항</div>
+            <p class="gift-tip">2식 740엔(개당 370엔), 5식 1,998엔(개당 400엔). 개당은 2식이 싸고, 나눠 줄 땐 5식이 낫습니다.</p>
+            <span class="gift-cau warn">액상 스프 · 위탁 수하물 권장</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>일본주·우메슈 720ml</b><span>日本酒 720ml</span></div>
+            <div class="gift-price"><b>2,000~5,000엔</b><span>약 18,800~47,000원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>돈키호테·공항 면세점</div>
+            <p class="gift-tip">한국 주류 면세는 병 수 제한 없이 합계 2L·400달러 이하입니다. 720ml 두 병이 딱 1.44L.</p>
+            <span class="gift-cau warn">주류 · 위탁 수하물</span>
+          </article>
+          </div>
+          <div class="gift-links">
+          <a class="gift-link" href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored"><i>투어</i><b>오사카·교토 일일 버스투어</b><span>56,050원~ · 제휴</span></a><a class="gift-link" href="https://kr.trip.com/hotels/list?city=228&amp;display=%EB%8F%84%EC%BF%84&amp;optionId=228&amp;optionType=City&amp;optionName=%EB%8F%84%EC%BF%84&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_tokyo&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><i>숙소</i><b>도쿄 숙소 최저가</b><span>트립닷컴 · 제휴</span></a><a class="gift-link" href="https://link.coupang.com/a/iKiJGbykx2" target="_blank" rel="noopener sponsored"><i>준비물</i><b>어반트립 부피제로 여행용 압축 파우치 5종 세트</b><span>12,000원 · 제휴</span></a><a class="gift-link" href="guides/japan-souvenir-list"><i>가이드</i><b>일본 선물·기념품 리스트 (돈키호테·면세 환급 2026)</b><span>9분</span></a>
+          </div>
+        </div>
+  <div class="gift-panel" id="gpanel-vn" role="tabpanel" aria-labelledby="gtab-vn" hidden>
+          <div class="gift-intro">
+            <p>한시장(다낭)과 롯데마트, GO!(옛 빅씨)가 축입니다. 한시장은 정찰제가 아니어서 부르는 값에서 15~20% 조정이 일반적이고, 카드가 안 되는 가게가 많습니다. 견과류·커피는 무겁고 부피가 커서 캐리어 무게를 먼저 확인하세요.</p>
+            <div class="gift-duty"><b>베트남 반입·면세 한 줄</b><span>한국 면세 800달러. 생과일·채소 반입 금지, 육류·육가공품은 신고 대상(ASF 발생국 돼지 제품은 1회 500만원). 액체류 100ml.</span></div>
+          </div>
+          <div class="gift-grid">
+          <article class="gift">
+            <div class="gift-name"><b>G7 인스턴트 커피</b><span>Cà phê G7 3in1</span></div>
+            <div class="gift-price"><b>34,000~70,000동</b><span>약 1,900~3,900원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>롯데마트·한시장·GO!</div>
+            <p class="gift-tip">롯데마트 18개입 34,000동이 기준가. 한시장은 묶음으로 18만~22만동을 부릅니다.</p>
+            <span class="gift-cau">분말 · 기내 반입 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>콘삭 다람쥐 커피</b><span>Cà phê Chồn</span></div>
+            <div class="gift-price"><b>65,000~150,000동</b><span>약 3,600~8,300원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>한시장·롯데마트</div>
+            <p class="gift-tip">드립백 10개입 65,000~80,000동. 헤이즐넛향(갈색)과 블랙(파란색)이 인기입니다.</p>
+            <span class="gift-cau">분말·드립백 · 기내 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>캐슈넛 500g</b><span>Hạt điều</span></div>
+            <div class="gift-price"><b>90,000~180,000동</b><span>약 5,000~9,900원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>한시장 1층·롯데마트</div>
+            <p class="gift-tip">A등급 껍질 통견과 500g이 90,000~110,000동. 진공 포장 상태와 바삭함을 시식으로 확인하세요.</p>
+            <span class="gift-cau">가공 견과 · 검역 대상 아님</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>건망고 500g</b><span>Xoài sấy</span></div>
+            <div class="gift-price"><b>100,000~150,000동</b><span>약 5,500~8,300원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>한시장·롯데마트</div>
+            <p class="gift-tip">설탕 범벅이 아닌 무설탕(soft) 제품이 100,000~120,000동. 생망고는 반입 금지, 건조품은 됩니다.</p>
+            <span class="gift-cau">건조 과일 OK · 생과일 금지</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>마카다미아 250g</b><span>Hạt mắc ca</span></div>
+            <div class="gift-price"><b>89,000~250,000동</b><span>약 4,900~13,800원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>롯데마트 초이스L·한시장</div>
+            <p class="gift-tip">롯데마트 PB 초이스L 250g이 89,000동. 한시장은 12만~15만동을 부릅니다.</p>
+            <span class="gift-cau">가공 견과 · 기내 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>탑젤리·망고젤리</b><span>Kẹo dẻo xoài</span></div>
+            <div class="gift-price"><b>23,000~25,000동</b><span>약 1,300~1,400원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>한시장 14·16·37번</div>
+            <p class="gift-tip">10봉 묶음이면 봉당 22,000동까지. 젤류는 기내에서 액체류로 분류되니 위탁하세요.</p>
+            <span class="gift-cau warn">젤류 = 액체류 · 위탁</span>
+          </article>
+          </div>
+          <div class="gift-links">
+          <a class="gift-link" href="https://naver.me/GqfhOUUP" target="_blank" rel="noopener sponsored"><i>투어</i><b>인천 출발 다낭·호이안 5일</b><span>322,905원~ · 제휴</span></a><a class="gift-link" href="https://kr.trip.com/hotels/list?city=1356&amp;display=%EB%8B%A4%EB%82%AD&amp;optionId=1356&amp;optionType=City&amp;optionName=%EB%8B%A4%EB%82%AD&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_danang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><i>숙소</i><b>다낭 숙소 최저가</b><span>트립닷컴 · 제휴</span></a><a class="gift-link" href="https://naver.me/FuN2VsmR" target="_blank" rel="noopener sponsored"><i>준비물</i><b>[투게더팩]베트남 이심 eSIM 다낭 나트랑 비나폰 완전 무제한 3일 유심사 알림톡</b><span>17,850원 · 제휴</span></a><a class="gift-link" href="guides/vietnam-souvenir-list"><i>가이드</i><b>베트남 다낭 기념품 리스트 (한시장·롯데마트 시세)</b><span>8분</span></a>
+          </div>
+        </div>
+  <div class="gift-panel" id="gpanel-th" role="tabpanel" aria-labelledby="gtab-th" hidden>
+          <div class="gift-intro">
+            <p>빅씨(Big C) 랏차담리점이 관광객 동선의 중심이고, 약국·왓슨스에서 야돔·타이거밤을, 짜뚜짝 시장에서 코끼리 바지를 사는 구성이 가장 효율적입니다. 빅씨는 5+1 묶음 행사가 자주 있어 여러 명에게 나눌 때 유리합니다.</p>
+            <div class="gift-duty"><b>태국 반입·면세 한 줄</b><span>태국 출국 VAT 환급은 같은 매장 2,000밧부터(공항 환급). 한국 면세 800달러, 의약품은 6병 기준이 적용될 수 있습니다.</span></div>
+          </div>
+          <div class="gift-grid">
+          <article class="gift">
+            <div class="gift-name"><b>포이시안 야돔</b><span>โป๊ยเซียนยาดม</span></div>
+            <div class="gift-price"><b>23~25밧</b><span>약 900~1,000원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>로터스·왓슨스·편의점</div>
+            <p class="gift-tip">한 줄(6개) 통째로 사면 동료 선물이 끝납니다. 흡입제라 의약품 6병 기준을 확인하세요.</p>
+            <span class="gift-cau warn">의약품 분류 가능 · 수량 조절</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>타이거밤</b><span>ยาหม่องตราเสือ</span></div>
+            <div class="gift-price"><b>58밧(10g)~150밧</b><span>약 2,300~6,000원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>로터스·약국·빅씨 Pure</div>
+            <p class="gift-tip">10g 58밧이 선물용으로 적당. 연고류도 의약품 6병 기준에 걸릴 수 있습니다.</p>
+            <span class="gift-cau warn">연고 · 위탁 권장</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>벤또 오징어포</b><span>เบนโตะ ปลาหมึก</span></div>
+            <div class="gift-price"><b>5~30밧</b><span>약 200~1,200원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>편의점·빅씨</div>
+            <p class="gift-tip">개당 20밧 안팎. 수산 가공품이라 육류 검역에는 걸리지 않지만, 매운맛은 호불호가 갈립니다.</p>
+            <span class="gift-cau">수산 가공 · 반입 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>건망고(쿤나·도이캄)</b><span>มะม่วงอบแห้ง</span></div>
+            <div class="gift-price"><b>62~220밧</b><span>약 2,500~8,800원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>빅씨·로터스·세븐일레븐</div>
+            <p class="gift-tip">쿤나 70밧대가 무난하고, 도이캄 140g은 로터스 129밧. 5+1 묶음이면 개당 20% 싸집니다.</p>
+            <span class="gift-cau">건조 과일 OK · 생망고 금지</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>차트라뮤 타이티</b><span>ชาตรามือ</span></div>
+            <div class="gift-price"><b>90밧(400g)~130밧</b><span>약 3,600~5,200원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>빅씨·차트라뮤 매장</div>
+            <p class="gift-tip">빨간 통이 타이 밀크티, 초록 통이 그린 밀크티. 틴케이스라 부서질 걱정이 없습니다.</p>
+            <span class="gift-cau">분말 · 기내 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>코끼리 바지</b><span>กางเกงช้าง</span></div>
+            <div class="gift-price"><b>100~250밧</b><span>약 4,000~10,000원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>짜뚜짝 시장·야시장</div>
+            <p class="gift-tip">가볍고 부피가 적어 캐리어 여유가 없을 때 유용. 100밧대는 봉제가 거친 경우가 있습니다.</p>
+            <span class="gift-cau">의류 · 반입 제한 없음</span>
+          </article>
+          </div>
+          <div class="gift-links">
+          <a class="gift-link" href="https://naver.me/5Qsgp7vv" target="_blank" rel="noopener sponsored"><i>투어</i><b>인천 출발 방콕·파타야 5일</b><span>1,085,430원~ · 제휴</span></a><a class="gift-link" href="https://kr.trip.com/hotels/list?city=359&amp;display=%EB%B0%A9%EC%BD%95&amp;optionId=359&amp;optionType=City&amp;optionName=%EB%B0%A9%EC%BD%95&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_bangkok&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><i>숙소</i><b>방콕 숙소 최저가</b><span>트립닷컴 · 제휴</span></a><a class="gift-link" href="https://link.coupang.com/a/iKiHMeYyES" target="_blank" rel="noopener sponsored"><i>준비물</i><b>보튼캐리어 CL15 하드 캐리어 20인치</b><span>29,900원 · 제휴</span></a><a class="gift-link" href="guides/thailand-souvenir-list"><i>가이드</i><b>태국 방콕 기념품 리스트 (빅씨·야돔·의약품 6병)</b><span>8분</span></a>
+          </div>
+        </div>
+  <div class="gift-panel" id="gpanel-tw" role="tabpanel" aria-labelledby="gtab-tw" hidden>
+          <div class="gift-intro">
+            <p>펑리수는 브랜드에 따라 가격이 2배 차이 나고, 유통기한이 15~40일로 짧습니다. 일정 초반에 사면 마지막 날 유통기한이 줄어 있으니, 귀국 1~2일 전에 사는 편이 안전합니다. 까르푸 시먼딩점은 24시간이라 일정 끝나고 들르기 좋습니다.</p>
+            <div class="gift-duty"><b>대만 반입·면세 한 줄</b><span>한국 면세 800달러. 육포·육가공품 반입 금지, 생과일 금지. 대만 출국 VAT 환급은 같은 날 같은 매장 2,000대만달러부터.</span></div>
+          </div>
+          <div class="gift-grid">
+          <article class="gift">
+            <div class="gift-name"><b>치아더 펑리수</b><span>佳德鳳梨酥</span></div>
+            <div class="gift-price"><b>228/456/760대만달러</b><span>6개 1만 · 12개 2만 · 20개 3만 3,400원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>난징동로 본점·미쓰코시·까르푸</div>
+            <p class="gift-tip">본점 12개입 456대만달러, 까르푸는 520대만달러로 더 비쌉니다. 기본맛 유통기한 40일, 크렌베리 15일.</p>
+            <span class="gift-cau warn">유통기한 15~40일 · 부서짐</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>써니힐스 펑리수</b><span>微熱山丘</span></div>
+            <div class="gift-price"><b>345/550대만달러</b><span>6개 1만 5,200 · 10개 2만 4,200원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>민성공원 본점·타오위안 공항 3터미널</div>
+            <p class="gift-tip">치아더보다 30% 비싸지만 파인애플 함량이 높습니다. 공항 3개 터미널 모두 판매합니다.</p>
+            <span class="gift-cau warn">유통기한 짧음 · 부서짐</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>누가크래커</b><span>牛軋餅</span></div>
+            <div class="gift-price"><b>299대만달러(20개입)</b><span>약 1만 3,200원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지우펀 수신방·융캉제이</div>
+            <p class="gift-tip">수신방 20개입 299대만달러. 눅눅해지기 쉬워 지퍼백에 넣어 두세요.</p>
+            <span class="gift-cau">습기 주의 · 기내 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>흑진주팩(시트마스크)</b><span>我的美麗日記</span></div>
+            <div class="gift-price"><b>200~400대만달러(10매)</b><span>약 8,800~1만 7,600원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>까르푸·코스메드·편의점</div>
+            <p class="gift-tip">10매 박스가 기본. 액체가 든 시트라 기내에서는 액체류로 볼 수 있어 위탁이 편합니다.</p>
+            <span class="gift-cau warn">액체 포함 · 위탁 권장</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>3시15분 밀크티</b><span>3點1刻</span></div>
+            <div class="gift-price"><b>150~250대만달러</b><span>약 6,600~1만 1,000원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>까르푸·PX마트·편의점</div>
+            <p class="gift-tip">티백형이라 뜨거운 물만 있으면 됩니다. 까르푸가 편의점보다 20~30% 쌉니다.</p>
+            <span class="gift-cau">분말·티백 · 기내 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>까르푸 PB 펑리수·닥터큐 젤리</b><span>家樂福 鳳梨酥</span></div>
+            <div class="gift-price"><b>100~200대만달러</b><span>약 4,400~8,800원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>까르푸 시먼딩점(24시간)</div>
+            <p class="gift-tip">직장 동료에게 나눌 대량용. 브랜드 펑리수보다 맛은 떨어지지만 개당 값이 절반입니다.</p>
+            <span class="gift-cau">유통기한 확인 · 기내 가능</span>
+          </article>
+          </div>
+          <div class="gift-links">
+          <a class="gift-link" href="https://naver.me/GM3uACc1" target="_blank" rel="noopener sponsored"><i>투어</i><b>타이베이 예스진지 1일 버스투어</b><span>35,000원~ · 제휴</span></a><a class="gift-link" href="https://kr.trip.com/hotels/list?city=617&amp;display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&amp;optionId=617&amp;optionType=City&amp;optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_taipei&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><i>숙소</i><b>타이베이 숙소 최저가</b><span>트립닷컴 · 제휴</span></a><a class="gift-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><i>준비물</i><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span>12,900원 · 제휴</span></a><a class="gift-link" href="guides/taiwan-souvenir-list"><i>가이드</i><b>대만 펑리수·기념품 리스트 (치아더·유통기한 40일)</b><span>8분</span></a>
+          </div>
+        </div>
+  <div class="gift-panel" id="gpanel-us" role="tabpanel" aria-labelledby="gtab-us" hidden>
+          <div class="gift-intro">
+            <p>트레이더조는 온라인 판매를 하지 않아 매장에서만 살 수 있고, 인기 토트백은 1인 5개 제한이 붙기도 합니다. 약국·코스트코 제품은 가격이 확실히 싸지만, 육포·양귀비씨 시즈닝처럼 한국에 못 들고 들어가는 물건이 섞여 있어 성분표를 봐야 합니다.</p>
+            <div class="gift-duty"><b>미국 반입·면세 한 줄</b><span>한국 면세 800달러. 육포·육가공품·양귀비씨(poppy seed) 함유 제품은 반입 금지, 건강기능식품은 6병 이내.</span></div>
+          </div>
+          <div class="gift-grid">
+          <article class="gift">
+            <div class="gift-name"><b>트레이더조 캔버스 토트백</b><span>Canvas Tote</span></div>
+            <div class="gift-price"><b>4.99달러 (미니 2.99달러)</b><span>약 7,100원 (미니 4,200원)</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>트레이더조 매장만</div>
+            <p class="gift-tip">공식 온라인몰이 없어 리셀만 돌아다닙니다. 평일 오전에 가면 재고가 있습니다.</p>
+            <span class="gift-cau warn">1인 5개 제한 · 품절 잦음</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>트레이더조 핸드크림</b><span>Hand Cream</span></div>
+            <div class="gift-price"><b>4.99달러</b><span>약 7,100원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>트레이더조 매장</div>
+            <p class="gift-tip">승무원 선물로 알려진 제품. 오후에는 품절되니 오전에 사세요.</p>
+            <span class="gift-cau warn">크림 = 액체류 · 위탁 권장</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>기라델리 스퀘어 초콜릿</b><span>Ghirardelli Squares</span></div>
+            <div class="gift-price"><b>4~6달러</b><span>약 5,700~8,500원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>타깃·월마트·코스트코</div>
+            <p class="gift-tip">개별 포장이라 나눠주기 좋습니다. 여름엔 녹으니 보냉 파우치를 쓰세요.</p>
+            <span class="gift-cau">여름 녹음 주의</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>종합비타민(센트룸)</b><span>Centrum Adult</span></div>
+            <div class="gift-price"><b>15~25달러</b><span>약 2만 1,300~3만 5,500원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>코스트코·타깃·CVS</div>
+            <p class="gift-tip">코스트코 대용량이 개당 가장 쌉니다. 건강기능식품은 6병 이내까지만 자가사용으로 봅니다.</p>
+            <span class="gift-cau warn">건강기능식품 6병 이내</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>유세린 크림</b><span>Eucerin</span></div>
+            <div class="gift-price"><b>10~15달러</b><span>약 1만 4,200~2만 1,300원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>타깃·월그린스</div>
+            <p class="gift-tip">국내 정가의 절반 수준. 튜브형은 100ml를 넘는 제품이 있어 위탁이 안전합니다.</p>
+            <span class="gift-cau warn">100ml 초과분 위탁</span>
+          </article>
+          </div>
+          <div class="gift-links">
+          <a class="gift-link" href="https://naver.me/xM532FBd" target="_blank" rel="noopener sponsored"><i>투어</i><b>미서부 9일</b><span>3,200,030원~ · 제휴</span></a><a class="gift-link" href="https://kr.trip.com/hotels/list?city=757&amp;display=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&amp;optionId=757&amp;optionType=City&amp;optionName=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_honolulu&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><i>숙소</i><b>호놀룰루 숙소 최저가</b><span>트립닷컴 · 제휴</span></a><a class="gift-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><i>준비물</i><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span>8,990원 · 제휴</span></a><a class="gift-link" href="guides/packing-powerbank-liquid"><i>가이드</i><b>보조배터리 2개·액체 100ml, 2026년 4월에 바뀐 기내 규정</b><span>10분</span></a>
+          </div>
+        </div>
+  <div class="gift-panel" id="gpanel-eu" role="tabpanel" aria-labelledby="gtab-eu" hidden>
+          <div class="gift-intro">
+            <p>마트(dm·Rewe·Conad)와 약국이 가격 기준입니다. 같은 마르비스 치약도 마트 4유로, 관광지 약국 7~8유로로 갈립니다. 택스리펀은 나라마다 최소 금액이 달라서, 프랑스 100유로·독일 50유로·이탈리아 70유로를 넘기지 못하면 환급 자체가 없습니다.</p>
+            <div class="gift-duty"><b>유럽 반입·면세 한 줄</b><span>한국 면세 800달러. 육류·치즈 등 동물성 제품은 반입 제한, 액체류 100ml. 택스리펀 실환급률은 수수료를 빼고 10~15% 수준입니다.</span></div>
+          </div>
+          <div class="gift-grid">
+          <article class="gift">
+            <div class="gift-name"><b>마르비스 치약</b><span>Marvis</span></div>
+            <div class="gift-price"><b>마트 4유로 / 약국 7~8유로</b><span>약 6,500원 / 1만 1,300~1만 3,000원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>이탈리아 마트·약국</div>
+            <p class="gift-tip">관광지 약국이 두 배입니다. 숙소 근처 대형 마트를 먼저 들르세요.</p>
+            <span class="gift-cau">75ml · 기내 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>카밀 핸드크림</b><span>Kamill</span></div>
+            <div class="gift-price"><b>1.25~1.95유로</b><span>약 2,000~3,200원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>독일 dm·Rossmann</div>
+            <p class="gift-tip">20~30ml 미니가 1유로 미만. 단체 선물용으로 개수 맞추기 좋습니다.</p>
+            <span class="gift-cau">크림 = 액체류</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>아요나 고농축 치약</b><span>Ajona</span></div>
+            <div class="gift-price"><b>1.45~1.75유로</b><span>약 2,300~2,800원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>독일 dm·Rossmann</div>
+            <p class="gift-tip">25ml 고농축이라 콩알만큼만 씁니다. 국내 4,500~6,000원보다 절반 이하.</p>
+            <span class="gift-cau">25ml · 기내 가능</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>리터스포트 초콜릿</b><span>Ritter Sport</span></div>
+            <div class="gift-price"><b>1.19~1.99유로</b><span>약 1,900~3,200원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Rewe·Edeka·리터스포트 매장</div>
+            <p class="gift-tip">낱개 1.19유로면 살 만하고, 400g 번들 6.29유로가 개당 가장 쌉니다.</p>
+            <span class="gift-cau">여름 녹음 주의</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>포켓커피</b><span>Pocket Coffee</span></div>
+            <div class="gift-price"><b>5~7유로(18개)</b><span>약 8,100~1만 1,300원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>이탈리아 마트·약국</div>
+            <p class="gift-tip">초콜릿 안에 액상 커피가 들어 있어 더위에 약합니다. 마지막 날 사세요.</p>
+            <span class="gift-cau warn">액상 필링 · 녹음 주의</span>
+          </article><article class="gift">
+            <div class="gift-name"><b>엑스트라버진 올리브오일</b><span>Olio extravergine</span></div>
+            <div class="gift-price"><b>8~12유로(500ml~1L)</b><span>약 1만 3,000~1만 9,400원</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>마트·식료품점</div>
+            <p class="gift-tip">수확 연도와 &#x27;extra vergine&#x27; 표기를 확인. 100ml를 넘으니 반드시 위탁하세요.</p>
+            <span class="gift-cau warn">액체류 · 위탁 필수</span>
+          </article>
+          </div>
+          <div class="gift-links">
+          <a class="gift-link" href="https://naver.me/xUZ5o8zB" target="_blank" rel="noopener sponsored"><i>투어</i><b>스위스·이탈리아 2국 9일</b><span>3,103,030원~ · 제휴</span></a><a class="gift-link" href="https://naver.me/5AuvmV2u" target="_blank" rel="noopener sponsored"><i>투어</i><b>서유럽 4개국 10일</b><span>3,695,500원~ · 제휴</span></a><a class="gift-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><i>준비물</i><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span>12,900원 · 제휴</span></a>
+          </div>
+        </div>
+  <p class="gift-note">가격은 2026년 11월 현지 매장 정가·공식 판매가 기준이고 환율은 100엔 = 940원 · 100동 = 5.5원 · 1밧 = 40원 · 100대만달러 = 4,400원 · 1달러 = 1,420원 · 1유로 = 1,620원입니다. 매장·시기에 따라 달라지고, 면세·환급 절차와 반입 규정은 출국 전 관세청·검역본부 안내로 한 번 더 확인하세요.</p>
+</div>
+  </div>
+</section>
+
 <section class="tripcom" id="tripcom">
   <div class="wrap">
     <div class="sec-head">
@@ -6699,6 +7081,7 @@
           <a href="#courses">추천 코스</a>
           <a href="#regions">지역·투어</a>
           <a href="#essentials">여행 필수품</a>
+          <a href="#gifts">선물·기념품</a>
           <a href="#planner">예산 계산기</a>
           <a href="guides/">여행 가이드</a>
           <a href="#alert">특가 알림</a>
@@ -7460,6 +7843,42 @@ if (searchForm) {
   });
 
   renderBar();
+})();
+
+/* ============================== 나라별 선물·기념품 ============================== */
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-gift-tab]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.gift-panel'));
+  if (!tabs.length || !panels.length) return;
+
+  var KEY = 'trippick.gift.country';
+
+  function setCountry(cid) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.giftTab === cid;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function (p) { p.hidden = p.id !== 'gpanel-' + cid; });
+    try { localStorage.setItem(KEY, cid); } catch (e) {}
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { setCountry(t.dataset.giftTab); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var n = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      setCountry(tabs[n].dataset.giftTab);
+      tabs[n].focus();
+    });
+  });
+
+  var last = 'jp';
+  try { last = localStorage.getItem(KEY) || 'jp'; } catch (e) {}
+  if (!document.getElementById('gpanel-' + last)) last = tabs[0].dataset.giftTab;
+  setCountry(last);
 })();
 
 /* ============================== 출국 준비 체크리스트 ============================== */

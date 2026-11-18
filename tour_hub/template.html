@@ -1063,11 +1063,12 @@
   .disclosure-bar b{color:var(--ink-2)}
 
   /* 섹션 공통 */
-  .courses,.planner,.regions,.essentials,.howto,.faq,.alertbox{background:transparent;border-top:0}
+  .courses,.planner,.regions,.essentials,.gifts,.howto,.faq,.alertbox{background:transparent;border-top:0}
   .courses{padding:52px 0 56px}
   .planner{padding:8px 0 56px}
   .regions{padding:44px 0 8px}
   .essentials{padding:52px 0}
+  .gifts{padding:52px 0}
   .howto{padding:48px 0 56px}
   .faq{padding:48px 0 56px}
   .alertbox{padding:48px 0 56px}
@@ -1483,6 +1484,49 @@
   .cl-fold>summary,.cl-calc-box>summary{list-style:none;cursor:pointer}
   .cl-fold>summary::-webkit-details-marker,.cl-calc-box>summary::-webkit-details-marker{display:none}
   .cl-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  /* ============================== 나라별 선물·기념품 ============================== */
+  .gift-card{border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:var(--sh-1);overflow:hidden}
+  .gift-tabs{display:flex;gap:6px;overflow-x:auto;padding:13px 14px 0;scrollbar-width:thin}
+  .gift-tabs::-webkit-scrollbar{height:4px}
+  .gift-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;border:1px solid var(--line);
+    background:#fff;border-radius:999px;padding:7px 12px;cursor:pointer;font-size:12.4px;color:var(--ink-2);transition:.16s}
+  .gift-tab b{font-weight:820;color:var(--navy);letter-spacing:-.02em}
+  .gift-tab span{font-size:10px;font-weight:800;color:var(--ink-3);background:var(--line-2);border-radius:6px;padding:1px 6px}
+  .gift-tab:hover{border-color:var(--blue-line)}
+  .gift-tab.on{border-color:var(--blue);background:var(--blue-soft);box-shadow:0 0 0 3px rgba(15,92,151,.08)}
+  .gift-tab.on span{background:#fff;color:var(--blue-600)}
+  .gift-panel[hidden]{display:none}
+  .gift-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.72fr);gap:12px;align-items:start;padding:15px 18px 0}
+  .gift-intro p{margin:0;font-size:13px;line-height:1.72;color:var(--ink-2)}
+  .gift-intro p b{color:var(--blue-700);font-weight:800}
+  .gift-duty{padding:10px 12px;border-radius:11px;background:var(--amber-soft);border:1px solid var(--amber-line);
+    font-size:11.4px;line-height:1.62;color:#6B4A12}
+  .gift-duty b{display:block;font-size:10.4px;font-weight:850;letter-spacing:.04em;margin-bottom:3px;opacity:.9}
+  .gift-duty span{display:block}
+  .gift-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:12px 18px 2px}
+  .gift{border:1px solid var(--line);border-radius:13px;padding:11px 12px;background:#fff;display:flex;flex-direction:column;gap:4px}
+  .gift-name{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+  .gift-name b{font-size:13.2px;font-weight:820;letter-spacing:-.03em;color:var(--navy);line-height:1.35}
+  .gift-name span{font-size:10.2px;color:var(--ink-3);line-height:1.3}
+  .gift-price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+  .gift-price b{font-size:14.2px;font-weight:840;color:var(--blue-700);letter-spacing:-.03em}
+  .gift-price span{font-size:10.8px;font-weight:700;color:var(--ink-2)}
+  .gift-where{display:flex;align-items:center;gap:4px;font-size:10.6px;color:var(--ink-3);line-height:1.4}
+  .gift-where .ic{width:11px;height:11px}
+  .gift-tip{margin:1px 0 0;font-size:11.4px;line-height:1.6;color:var(--ink-2)}
+  .gift-cau{align-self:flex-start;margin-top:auto;padding-top:5px;font-size:10.2px;font-weight:800;border-radius:6px;color:var(--ink-2)}
+  .gift-cau::before{content:"✓ ";color:var(--ok)}
+  .gift-cau.warn{color:#B33A2B}
+  .gift-cau.warn::before{content:"! ";color:var(--coral)}
+  .gift-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;padding:12px 18px 4px}
+  .gift-link{display:flex;flex-direction:column;gap:1px;border:1px solid var(--line);border-radius:11px;padding:9px 11px;background:#fff;transition:.16s;min-width:0}
+  .gift-link:hover{border-color:var(--blue-line);box-shadow:var(--sh-1);transform:translateY(-1px)}
+  .gift-link i{font-style:normal;font-size:9.2px;font-weight:850;letter-spacing:.08em;color:var(--blue-600)}
+  .gift-link b{font-size:11.4px;font-weight:800;color:var(--navy);line-height:1.36;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .gift-link span{font-size:10.2px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .gift-note{margin:0;padding:8px 18px 15px;font-size:10.6px;line-height:1.62;color:var(--ink-3)}
+
   @media (min-width:769px){ .cl-calc-box>summary{display:none} .qn[data-quick-scope]{display:none} }
 
   @media (max-width:768px){
@@ -1560,6 +1604,7 @@
     .flow>#courses{order:10}
     .flow>#regions{order:20}
     .flow>#essentials{order:30}
+    .flow>#gifts{order:35}
     .flow>#tripcom{order:40}
     .flow>#planner{order:50}
     .flow>#checklist{order:60}
@@ -1574,7 +1619,7 @@
     /* ---- 섹션 헤더 다이어트 ---- */
     .courses{padding:18px 0 22px}
     .regions{padding:18px 0 6px}
-    .essentials,.tripcom{padding:20px 0}
+    .essentials,.gifts,.tripcom{padding:20px 0}
     .planner{padding:20px 0 22px}
     .checklist{padding:20px 0}
     .alertbox,.howto,.faq{padding:22px 0}
@@ -1761,6 +1806,36 @@
     .tc-note,.tc-fs{font-size:9.6px}
     .tc-go{font-size:10px;padding-top:6px}
     .tc-tab{font-size:11px;padding:6px 10px}
+
+    /* ---- 나라별 선물·기념품 (모바일 컴팩트) ---- */
+    .gift-card{border-radius:16px}
+    .gift-tabs{gap:5px;padding:9px 10px 0;scrollbar-width:none}
+    .gift-tabs::-webkit-scrollbar{display:none}
+    .gift-tab{padding:6px 10px;font-size:11.4px;gap:4px}
+    .gift-tab span{font-size:9.4px;padding:1px 5px}
+    .gift-intro{grid-template-columns:1fr;gap:7px;padding:10px 11px 0}
+    .gift-intro p{font-size:11.4px;line-height:1.62;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .gift-duty{padding:8px 10px;font-size:10.4px;line-height:1.55;border-radius:9px}
+    .gift-duty b{font-size:9.4px;margin-bottom:2px}
+    .gift-grid{grid-template-columns:1fr;gap:5px;padding:9px 10px 0}
+    .gift{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name price" "where price" "tip tip" "cau cau";
+      column-gap:8px;row-gap:1px;padding:8px 10px;border-radius:11px}
+    .gift-name{grid-area:name}
+    .gift-name b{font-size:12.2px}
+    .gift-name span{font-size:9.4px}
+    .gift-price{grid-area:price;flex-direction:column;align-items:flex-end;gap:0;text-align:right}
+    .gift-price b{font-size:12.6px}
+    .gift-price span{font-size:9.6px;font-weight:700}
+    .gift-where{grid-area:where;font-size:9.6px}
+    .gift-where .ic{width:9px;height:9px}
+    .gift-tip{grid-area:tip;font-size:10.2px;line-height:1.5;margin-top:2px;
+      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .gift-cau{grid-area:cau;padding-top:3px;font-size:9.4px}
+    .gift-links{grid-template-columns:1fr 1fr;gap:5px;padding:9px 10px 2px}
+    .gift-link{padding:7px 9px;border-radius:9px}
+    .gift-link b{font-size:10.6px;-webkit-line-clamp:1}
+    .gift-link span{font-size:9.4px}
+    .gift-note{padding:7px 11px 11px;font-size:9.4px;line-height:1.5}
 
     /* ---- 특가 알림·체크·FAQ ---- */
     .alert-card{padding:16px 14px;border-radius:16px;gap:14px}
@@ -2097,6 +2172,20 @@
   </div>
 </section>
 
+<section class="gifts" id="gifts">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t">
+        <span class="kicker">SOUVENIR &amp; GIFT GUIDE</span>
+        <h2>나라별 선물·기념품, <em>어디서 얼마에</em> 사는지</h2>
+        <p>일본·베트남·태국·대만·미국·유럽 6개 지역에서 실제로 가장 많이 사가는 35개 품목을 현지 정가와 원화 환산, 구매처까지 같이 적었습니다. 액체류·검역·면세 한도처럼 공항에서 걸리는 조건도 카드마다 표시했습니다.</p>
+      </div>
+      <div class="sh-meta">가격은 2026.11 현지 매장 정가·공식 판매가 · 환율 100엔=940원 기준</div>
+    </div>
+    <!-- @GIFTS -->
+  </div>
+</section>
+
 <section class="tripcom" id="tripcom">
   <div class="wrap">
     <div class="sec-head">
@@ -2240,6 +2329,7 @@
           <a href="#courses">추천 코스</a>
           <a href="#regions">지역·투어</a>
           <a href="#essentials">여행 필수품</a>
+          <a href="#gifts">선물·기념품</a>
           <a href="#planner">예산 계산기</a>
           <a href="guides/index.html">여행 가이드</a>
           <a href="#alert">특가 알림</a>
@@ -3000,6 +3090,42 @@ if (searchForm) {
   });
 
   renderBar();
+})();
+
+/* ============================== 나라별 선물·기념품 ============================== */
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-gift-tab]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.gift-panel'));
+  if (!tabs.length || !panels.length) return;
+
+  var KEY = 'trippick.gift.country';
+
+  function setCountry(cid) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.giftTab === cid;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(function (p) { p.hidden = p.id !== 'gpanel-' + cid; });
+    try { localStorage.setItem(KEY, cid); } catch (e) {}
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { setCountry(t.dataset.giftTab); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var n = (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      setCountry(tabs[n].dataset.giftTab);
+      tabs[n].focus();
+    });
+  });
+
+  var last = 'jp';
+  try { last = localStorage.getItem(KEY) || 'jp'; } catch (e) {}
+  if (!document.getElementById('gpanel-' + last)) last = tabs[0].dataset.giftTab;
+  setCountry(last);
 })();
 
 /* ============================== 출국 준비 체크리스트 ============================== */

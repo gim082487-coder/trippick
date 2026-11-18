@@ -40,6 +40,9 @@ FLAG_SYMBOL = {c: f for c, _, f in COUNTRIES}
 TYPE_ORDER = ["가이드투어", "풀패키지", "세미패키지", "에어텔", "골프패키지", "국내패키지", "레저·액티비티"]
 PREMIUM_FLOOR = 3_000_000
 
+GIFT_COUNTRIES = 0   # data/gifts.json 로드 시 채운다(main).
+GUIDES_COUNT = 0     # data/guides.json 로드 시 채운다(main).
+
 ESS_GROUPS = [
     ("여행용품", "🧳 여행 준비물 · 쿠팡", "출발 3일 전에 주문하면 배송일 안에 도착"),
     ("eSIM", "📶 eSIM · 데이터", "도착 전에 설치하고 내리면 바로 켭니다"),
@@ -408,7 +411,8 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
         f'<a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>',
         '<a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>',
         f'<a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>{len(essentials["products"])}개</i></a>',
-        '<a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>36편</i></a>',
+        f'<a class="qn" href="#gifts"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-ticket"/></svg></span><b>선물·기념품</b><i>{GIFT_COUNTRIES}개국</i></a>',
+        f'<a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>{GUIDES_COUNT}편</i></a>',
         '<a class="qn" href="#alert"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><b>특가 알림</b><i>무료</i></a>',
         f'<a class="qn" href="#courses"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-image"/></svg></span><b>여행 코스</b><i>{len(courses["courses"])}개</i></a>',
         f'<button class="qn" type="button" data-quick-scope="kr"><span class="qn-ic"><svg class="flag-ic" aria-hidden="true"><use href="#f-kr"/></svg></span><b>국내</b><i>{kr_n}개</i></button>',
@@ -738,6 +742,90 @@ def render_essentials(essentials: dict) -> str:
       {cp_note}
     </div>""")
     return "\n    ".join(blocks)
+
+
+# ---------------------------------------------------------------- 나라별 선물·기념품
+def _gift_links(links: list, data: dict, essentials: dict, tripcom: dict, guides: dict) -> list:
+    """gifts.json 의 링크 id 를 이미 검증된 제휴 링크로 바꾼다.
+
+    새 URL 을 만들지 않고 tours.json·tripcom.json·essentials.json·guides.json 에
+    실제로 있는 항목만 참조한다(없는 id 는 조용히 건너뛴다).
+    """
+    tours = {t["id"]: t for t in data["tours"]}
+    ess = {e["id"]: e for e in essentials["products"]}
+    hotels = {h.get("cityId"): h for h in tripcom["hotels"] if h.get("cityId")}
+    gby = {g["slug"]: g for g in guides.get("guides", [])}
+    out = []
+    for ln in links:
+        kind = ln.get("kind")
+        i = ln.get("id")
+        if kind == "tour" and i in tours:
+            t = tours[i]
+            title = re.split(r"\s*[(（]", t["title"])[0].strip()
+            out.append((t["url"], "투어", title, f"{won(t['sale'])}원~"))
+        elif kind == "hotel" and i in hotels:
+            h = hotels[i]
+            out.append((h["url"], "숙소", f"{h['city']} 숙소 최저가", "트립닷컴"))
+        elif kind == "ess" and i in ess:
+            e = ess[i]
+            out.append((e.get("url") or e["naverMe"], "준비물", e["name"], f"{won(e['price'])}원"))
+        elif kind == "guide" and i in gby:
+            g = gby[i]
+            out.append((f"guides/{g['slug']}.html", "가이드", g["navTitle"], f"{g['read']}분"))
+    return out
+
+
+def render_gifts(data: dict, gifts: dict, essentials: dict, tripcom: dict, guides: dict) -> str:
+    """나라 탭 6개 + 카드 리스트. 탭 전환은 template.html 의 JS 가 처리한다."""
+    tabs, panels = [], []
+    for n, c in enumerate(gifts["countries"]):
+        cid = c["id"]
+        on = n == 0
+        tabs.append(
+            f'<button class="gift-tab{" on" if on else ""}" type="button" role="tab" id="gtab-{cid}"'
+            f' aria-controls="gpanel-{cid}" aria-selected="{"true" if on else "false"}" data-gift-tab="{cid}">'
+            f'{flag_svg(c["flag"], 15, 10.5)}<b>{esc(c["name"])}</b><span>{len(c["items"])}</span></button>'
+        )
+
+        cards = []
+        for it in c["items"]:
+            lvl = " warn" if it.get("level") == "warn" else ""
+            cards.append(f"""<article class="gift">
+            <div class="gift-name"><b>{esc(it['name'])}</b><span>{esc(it.get('local', ''))}</span></div>
+            <div class="gift-price"><b>{esc(it['price'])}</b><span>{esc(it['krw'])}</span></div>
+            <div class="gift-where"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>{esc(it['where'])}</div>
+            <p class="gift-tip">{esc(it['tip'])}</p>
+            <span class="gift-cau{lvl}">{esc(it['caution'])}</span>
+          </article>""")
+
+        link_rows = []
+        for url, kind, title, meta in _gift_links(c.get("links", []), data, essentials, tripcom, guides):
+            ext = ' target="_blank" rel="noopener sponsored"' if url.startswith("http") else ""
+            link_rows.append(
+                f'<a class="gift-link" href="{esc(url)}"{ext}><i>{kind}</i><b>{esc(title)}</b><span>{esc(meta)}{" · 제휴" if ext else ""}</span></a>'
+            )
+
+        panels.append(f"""<div class="gift-panel" id="gpanel-{cid}" role="tabpanel" aria-labelledby="gtab-{cid}"{' hidden' if not on else ''}>
+          <div class="gift-intro">
+            <p>{c['intro']}</p>
+            <div class="gift-duty"><b>{esc(c['name'])} 반입·면세 한 줄</b><span>{esc(c['duty'])}</span></div>
+          </div>
+          <div class="gift-grid">
+          {''.join(cards)}
+          </div>
+          <div class="gift-links">
+          {''.join(link_rows)}
+          </div>
+        </div>""")
+
+    return (
+        '<div class="gift-card">\n'
+        '  <div class="gift-tabs" role="tablist" aria-label="나라별 선물·기념품">\n    '
+        + "\n    ".join(tabs)
+        + '\n  </div>\n  '
+        + "\n  ".join(panels)
+        + f'\n  <p class="gift-note">가격은 2026년 11월 현지 매장 정가·공식 판매가 기준이고 환율은 {esc(gifts["fx"])}입니다. 매장·시기에 따라 달라지고, 면세·환급 절차와 반입 규정은 출국 전 관세청·검역본부 안내로 한 번 더 확인하세요.</p>\n</div>'
+    )
 
 
 # ---------------------------------------------------------------- 출국 준비 체크리스트
@@ -1531,12 +1619,17 @@ def render_ad_slots() -> dict:
 
 
 def main() -> int:
+    global GIFT_COUNTRIES, GUIDES_COUNT
     check = "--check" in sys.argv
     data = json.loads((DATA / "tours.json").read_text(encoding="utf-8"))
     courses = json.loads((DATA / "courses.json").read_text(encoding="utf-8"))
     essentials = json.loads((DATA / "essentials.json").read_text(encoding="utf-8"))
     tripcom = json.loads((DATA / "tripcom.json").read_text(encoding="utf-8"))
     checklist = json.loads((DATA / "checklist.json").read_text(encoding="utf-8"))
+    gifts = json.loads((DATA / "gifts.json").read_text(encoding="utf-8"))
+    guides = json.loads((DATA / "guides.json").read_text(encoding="utf-8"))
+    GIFT_COUNTRIES = len(gifts["countries"])
+    GUIDES_COUNT = len(guides["guides"])
 
     TC_CITY.clear()
     for h in tripcom["hotels"]:
@@ -1574,6 +1667,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @TYPEBAR -->", render_typebar(data))
     html = replace_block(html, "<!-- @CITIES -->", render_sections(data))
     html = replace_block(html, "<!-- @ESSENTIALS -->", render_essentials(essentials))
+    html = replace_block(html, "<!-- @GIFTS -->", render_gifts(data, gifts, essentials, tripcom, guides))
     html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
     html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom))
     html = replace_block(html, "<!-- @QUICKSTRIP -->", render_quickstrip(data, courses, essentials, tripcom))
