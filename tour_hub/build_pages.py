@@ -508,7 +508,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         ad_slot(
             "guide-top",
             "숙소·항공은 도시별 최저가로",
-            "트립닷컴 파트너스 링크로 도시 15곳 숙소와 항공 6개 노선을 모았습니다.",
+            "트립닷컴 파트너스 링크로 도시 15곳 숙소·항공 6개 노선에 입장권·공항픽업·렌터카 16종을 더했습니다.",
             "../index.html#tripcom",
             "숙소·항공 보기",
         )
@@ -1008,6 +1008,12 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     guides = hub_guides(hub)
     hotels = [h for h in TRIPCOM["hotels"] if h.get("cityId") in (hub.get("hotels") or [])]
     flight = next((f for f in TRIPCOM["flights"] if hub.get("flight") and hub["flight"] in f["route"]), None)
+    hub_acts = [
+        a for a in (TRIPCOM.get("tickets") or []) + (TRIPCOM.get("transfers") or []) + (TRIPCOM.get("cars") or [])
+        if a.get("cityId") == slug
+    ]
+    hub_tickets = [a for a in hub_acts if a["category"] == "ticket"]
+    hub_pickups = [a for a in hub_acts if a["category"] in ("transfer", "car")]
     lowest = min((t["sale"] for t in tours), default=0)
     tour_first = tours[0] if tours else None
     hotel_first = hotels[0] if hotels else None
@@ -1019,7 +1025,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
         jumps.append(("#food", "현지 맛집", len(rest["items"])))
     if country:
         jumps.append(("#gifts", "선물·기념품", len(country["items"])))
-    jumps.append(("#stay", "숙소·항공", len(hotels) + (1 if flight else 0)))
+    jumps.append(("#stay", "숙소·항공·입장권", len(hotels) + (1 if flight else 0) + len(hub_acts)))
     jumps.append(("#guides", "관련 가이드", len(guides)))
     jump_html = "".join(
         f'<a href="{h}">{esc(n)} <b>{c}</b></a>' for h, n, c in jumps if c
@@ -1030,6 +1036,8 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     meta.append(f'<span>1인 {won(lowest)}원~</span>')
     if rest:
         meta.append(f'<i></i><span>맛집 {len(rest["items"])}곳</span>')
+    if hub_acts:
+        meta.append(f'<i></i><span>입장권·픽업 {len(hub_acts)}</span>')
     meta.append(f'<i></i><span>가이드 {len(guides)}편</span>')
 
     # 투어 섹션
@@ -1119,17 +1127,34 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
         <span class="tc-go">항공권 검색 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
     </div>"""
+    act_html = ""
+    if hub_acts:
+        ticket_block = ""
+        if hub_tickets:
+            ticket_block = f"""<div class="tc-group tc-group--act">
+    <div class="ess-ghead"><h3>🎟️ {esc(hub['name'])} 입장권·액티비티</h3><span class="n">{len(hub_tickets)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">한국어 페이지 · 방문일을 넣어야 가격이 확정됩니다</span></div>
+    <div class="tc-acts tc-acts--hub">{''.join(B.tc_act_card(a) for a in hub_tickets)}</div>
+  </div>"""
+        pickup_block = ""
+        if hub_pickups:
+            pickup_label = f"{esc(hub['name'])} 공항픽업·렌터카" if any(a["category"] == "car" for a in hub_pickups) else f"{esc(hub['name'])} 공항픽업·샌딩"
+            pickup_block = f"""<div class="tc-group tc-group--act">
+    <div class="ess-ghead"><h3>🚗 {pickup_label}</h3><span class="n">{len(hub_pickups)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">도착 공항·목적지를 넣어야 요금이 확정됩니다</span></div>
+    <div class="tc-acts tc-acts--hub">{''.join(B.tc_act_card(a) for a in hub_pickups)}</div>
+  </div>"""
+        act_html = ticket_block + pickup_block
     stay_html = f"""<section class="hub-sec" id="stay">
   <div class="hub-sec-head">
-    <div><span class="hub-k">STAY &amp; FLIGHT</span>
-      <h2>{esc(hub['name'])} 숙소·항공권</h2>
-      <p>트립닷컴에서 직접 예약하는 숙소와 항공권입니다. 체크인 날짜를 넣으면 그날 최저가로 열리고, 예약·결제는 트립닷컴에서 그대로 이루어집니다.</p></div>
+    <div><span class="hub-k">STAY &amp; FLIGHT &amp; TICKET</span>
+      <h2>{esc(hub['name'])} 숙소·항공권·입장권</h2>
+      <p>트립닷컴에서 직접 예약하는 숙소·항공권과, 현지에서 쓸 입장권·공항픽업입니다. 체크인 날짜와 방문일을 넣으면 그날 요금으로 열리고, 예약·결제는 트립닷컴에서 그대로 이루어집니다.</p></div>
   </div>
   <div class="tc-group">
     <div class="ess-ghead"><h3>🏨 {esc(hub['name'])} 숙소</h3><span class="n">{len(hotels)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜 기준 최저가</span></div>
     <div class="tc-grid hub-tc">{hub_hotel_cards(hotels)}</div>
   </div>
   {flight_html}
+  {act_html}
   <p class="hub-note">{esc(TRIPCOM['disclosure'])}</p>
 </section>"""
 
@@ -1210,11 +1235,17 @@ def cities_index(out_root: Path, base: str) -> Path:
         country = hub_country(h)
         guides = hub_guides(h)
         lowest = min((t["sale"] for t in tours), default=0)
+        act_n = len([
+            a for a in (TRIPCOM.get("tickets") or []) + (TRIPCOM.get("transfers") or []) + (TRIPCOM.get("cars") or [])
+            if a.get("cityId") == h["slug"]
+        ])
         bits = [f"투어 {len(tours)}"]
         if rest:
             bits.append(f"맛집 {len(rest['items'])}")
         if country:
             bits.append(f"선물 {len(country['items'])}")
+        if act_n:
+            bits.append(f"입장권·픽업 {act_n}")
         bits.append(f"가이드 {len(guides)}")
         cards.append(f"""        <a class="gcard hub-card" href="../{h['slug']}.html">
           <div class="thumb"><img src="../{esc(h['image'])}" alt="{esc(h['imageAlt'])}" loading="lazy" width="800" height="500" /></div>

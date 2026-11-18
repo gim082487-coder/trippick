@@ -563,6 +563,23 @@
   .tc-note{font-size:10.6px;color:var(--ink-3);line-height:1.45}
   .tc-go{display:inline-flex;align-items:center;gap:4px;margin-top:auto;padding-top:9px;font-size:11.2px;font-weight:820;color:var(--blue-600)}
   .tc-go .ic{width:12px;height:12px}
+  .tc-group--act{margin-top:26px}
+  .tc-acts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  @media (max-width:1080px){ .tc-acts{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:960px){ .tc-acts{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  .tc-act{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid var(--line);border-radius:13px;
+    padding:12px 13px;transition:.16s;text-decoration:none}
+  .tc-act:hover{border-color:var(--blue-line);box-shadow:var(--sh-1);transform:translateY(-2px)}
+  .tc-act-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .tc-act-k{font-size:9.8px;font-weight:850;letter-spacing:.02em;color:var(--blue-600);background:var(--blue-soft);
+    border-radius:6px;padding:2px 6px}
+  .tc-act-city{display:inline-flex;align-items:center;gap:4px;font-size:10.8px;font-weight:750;color:var(--ink-3)}
+  .tc-act-t{font-size:12.6px;font-weight:820;letter-spacing:-0.02em;color:var(--navy);line-height:1.35}
+  .tc-act-h{font-size:10.8px;color:var(--ink-3);line-height:1.5}
+  .tc-act .tc-go{font-size:11px;padding-top:7px}
+  .tc-acts.tc-acts--hub{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:960px){ .tc-acts.tc-acts--hub{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:620px){ .tc-acts.tc-acts--hub{grid-template-columns:1fr} }
 
   /* ============================== 특가 알림 ============================== */
   .alertbox{background:linear-gradient(180deg,#EAF2F8 0%,#EAF2F8 100%);border-top:1px solid var(--line);padding:60px 0}
@@ -613,6 +630,10 @@
     font-size:12.2px;font-weight:750;color:var(--ink-2);cursor:pointer;transition:.16s}
   .tc-tab:hover{border-color:var(--blue-line);color:var(--blue-600)}
   .tc-tab.on{background:var(--blue);border-color:var(--blue);color:#fff}
+  .tc-tab--jump{display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:var(--blue-soft);
+    border-color:var(--blue-line);color:var(--blue-700)}
+  .tc-tab--jump span{font-size:10.2px;font-weight:850;background:#fff;border-radius:6px;padding:1px 6px;color:var(--blue-600)}
+  .tc-tab--jump:hover{background:#fff}
   .tc-filter-note{margin:9px 0 0;font-size:11.4px;color:var(--ink-3);line-height:1.55}
   .tc-card[hidden]{display:none}
   .tc-card.is-city{border-color:var(--blue);box-shadow:0 0 0 3px rgba(15,92,151,.16)}
@@ -718,6 +739,42 @@
   .cl-table .num{text-align:right;font-variant-numeric:tabular-nums}
   .cl-src{margin:8px 0 0;font-size:10.6px;color:var(--ink-3);line-height:1.55}
   .cl-note{margin:12px 2px 0;font-size:11px;color:var(--ink-3);line-height:1.6}
+
+  /* ============================== 출국 전 보험·환전 비교 ============================== */
+  .dk{margin-top:14px;display:grid;gap:12px}
+  .dk-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:17px 18px}
+  .dk-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:13px}
+  .dk-head h3{margin:0 0 4px;font-size:15.5px;font-weight:850;letter-spacing:-0.035em;color:var(--navy)}
+  .dk-head p{margin:0;font-size:11.6px;color:var(--ink-2);line-height:1.62}
+  .dk-tag{flex:0 0 auto;font-size:10px;font-weight:800;color:var(--blue-600);background:var(--blue-soft);
+    border-radius:7px;padding:4px 8px;white-space:nowrap}
+  .dk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+  @media (max-width:900px){ .dk-grid{grid-template-columns:1fr} }
+  .dk-col{display:flex;flex-direction:column;gap:9px;border:1px solid var(--line);border-radius:14px;padding:13px 14px;background:#FBFCFD}
+  .dk-col.is-best{border-color:var(--blue-line);background:var(--blue-soft)}
+  .dk-name{font-size:13.4px;font-weight:850;letter-spacing:-0.025em;color:var(--navy);line-height:1.35}
+  .dk-issuer{font-size:10.4px;color:var(--ink-3);margin-top:-6px}
+  .dk-big{font-size:14.6px;font-weight:850;letter-spacing:-0.035em;color:var(--blue-700);line-height:1.3}
+  .dk-big small{display:block;font-size:10.2px;font-weight:700;color:var(--ink-3);letter-spacing:0}
+  .dk-rows{margin:0;display:grid;gap:6px}
+  .dk-rows div{display:grid;gap:1px;padding-top:6px;border-top:1px dashed var(--line)}
+  .dk-rows dt{font-size:9.6px;font-weight:850;color:var(--ink-3);letter-spacing:.02em}
+  .dk-rows dd{margin:0;font-size:11.2px;color:var(--ink-2);line-height:1.55}
+  .dk-pick{margin-top:auto;font-size:10.6px;font-weight:800;color:var(--blue-700);background:#fff;border:1px solid var(--blue-line);
+    border-radius:8px;padding:6px 8px;line-height:1.45}
+  .dk-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:11px}
+  .dk-go{display:inline-flex;align-items:center;gap:4px;font-size:11.4px;font-weight:820;color:var(--blue-600);text-decoration:none}
+  .dk-go .ic{width:12px;height:12px}
+  .dk-go:hover{text-decoration:underline}
+  .dk-src{font-size:10.2px;color:var(--ink-3);line-height:1.55}
+  .dk-verdict{margin:0 0 12px;border-radius:12px;padding:10px 12px;background:var(--soft);border:1px solid var(--line);
+    font-size:11.8px;color:var(--ink-2);line-height:1.62}
+  .dk-verdict b{color:var(--navy);font-weight:850}
+  .dk-checks{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  @media (max-width:900px){ .dk-checks{grid-template-columns:1fr} }
+  .dk-checks li{border:1px solid var(--line);border-radius:11px;padding:9px 11px;background:#fff}
+  .dk-checks b{display:block;font-size:11.4px;font-weight:830;color:var(--navy);letter-spacing:-0.02em;margin-bottom:2px}
+  .dk-checks span{font-size:11px;color:var(--ink-2);line-height:1.58}
 
   /* ============================== 예약 전 체크 ============================== */
   .howto{background:#fff;padding:60px 0 66px;border-top:1px solid var(--line)}
@@ -1865,7 +1922,10 @@
     .ess .ess-go{font-size:9.8px}
     .ess-cp-note{font-size:10px;padding:8px 10px}
     .tc-group{margin-top:12px}
-    .tc-flights,.tc-grid{grid-template-columns:1fr 1fr;gap:6px}
+    .tc-flights,.tc-grid,.tc-acts{grid-template-columns:1fr 1fr;gap:6px}
+    .tc-act{padding:9px 10px;border-radius:11px}
+    .tc-act-t{font-size:11.6px}
+    .tc-act-h{font-size:10px}
     .tc-flight,.tc-card{padding:9px 10px;border-radius:11px}
     .tc-city{font-size:12.6px}
     .tc-fr{font-size:12px}
@@ -2156,12 +2216,12 @@
   <div class="wrap">
     <a class="qn accent" href="#regions"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></span><b>투어 찾기</b><i>57개</i></a>
     <a class="qn" href="cities/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>도시 페이지</b><i>7곳</i></a>
-    <a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공</b><i>21개</i></a>
+    <a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>37개</i></a>
     <a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>
     <a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>
     <a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>22개</i></a>
     <a class="qn" href="#gifts"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-ticket"/></svg></span><b>선물·기념품</b><i>6개국</i></a>
-    <a class="qn" href="#foods"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><b>맛집</b><i>30곳</i></a>
+    <a class="qn" href="#foods"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><b>맛집</b><i>35곳</i></a>
     <a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>44편</i></a>
     <a class="qn" href="#alert"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><b>특가 알림</b><i>무료</i></a>
     <a class="qn" href="#courses"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-image"/></svg></span><b>여행 코스</b><i>5개</i></a>
@@ -2302,9 +2362,9 @@
       <div class="t">
         <span class="kicker">DEPARTURE KIT</span>
         <h2>출국 준비 <em>체크리스트</em>와 입국서류 계산기</h2>
-        <p>나라를 고르면 입국서류·수수료, 기내반입 규정, 준비물 목록이 한 번에 바뀝니다. 체크는 이 브라우저에 저장되고, eSIM·어댑터·보조배터리는 바로 구매 링크로 이어집니다.</p>
+        <p>나라를 고르면 입국서류·수수료, 기내반입 규정, 준비물 목록이 한 번에 바뀝니다. 체크는 이 브라우저에 저장되고, eSIM·어댑터·보조배터리는 바로 구매 링크로 이어집니다. 맨 아래에는 출국 전에 비교하는 <b>환전 카드 3종과 여행자보험 3곳</b>을 카드사·보험사 공식 조건으로 정리했습니다.</p>
       </div>
-      <div class="sh-meta">수수료·규정은 2026.11.18 확인 · 정부 공식 사이트 기준 · 결제 전 재확인</div>
+      <div class="sh-meta">수수료·규정·보험 조건은 2026.11.18 확인 · 카드사·보험사 공식 안내 기준 · 결제 전 재확인</div>
     </div>
     <div class="cl-card">
       <div class="cl-tabs" role="tablist" aria-label="나라 선택"><button class="cl-tab on" type="button" role="tab" id="cltab-jp" aria-controls="clpanel-jp" aria-selected="true" data-cl-tab="jp"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg><b>일본</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-vn" aria-controls="clpanel-vn" aria-selected="false" data-cl-tab="vn"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-vn"/></svg><b>베트남</b><span>무비자 45일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-th" aria-controls="clpanel-th" aria-selected="false" data-cl-tab="th"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-th"/></svg><b>태국</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-tw" aria-controls="clpanel-tw" aria-selected="false" data-cl-tab="tw"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-tw"/></svg><b>대만</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-us" aria-controls="clpanel-us" aria-selected="false" data-cl-tab="us"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-us"/></svg><b>미국</b><span>ESTA 필요</span></button><button class="cl-tab" type="button" role="tab" id="cltab-eu" aria-controls="clpanel-eu" aria-selected="false" data-cl-tab="eu"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-eu"/></svg><b>유럽</b><span>무비자 90/180일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-oc" aria-controls="clpanel-oc" aria-selected="false" data-cl-tab="oc"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-oc"/></svg><b>호주·뉴질랜드</b><span>ETA·NZeTA 필요</span></button><button class="cl-tab" type="button" role="tab" id="cltab-kr" aria-controls="clpanel-kr" aria-selected="false" data-cl-tab="kr"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-kr"/></svg><b>국내</b><span>신분증</span></button></div>
@@ -2603,6 +2663,29 @@
     </details>
     <p class="cl-note">수수료·규정은 2026-11-18 확인 기준입니다. 정부 요금은 예고 없이 바뀌므로 결제·출국 직전에 각 공식 사이트에서 다시 확인하세요. 체크 상태는 이 브라우저에만 저장되며 서버로 보내지 않습니다.</p>
     </div>
+    <div class="dk">
+  <section class="dk-card" id="fxcards" aria-labelledby="fxcards-t">
+    <div class="dk-head">
+      <div><h3 id="fxcards-t">💳 해외결제·환전 카드 3종 비교</h3><p>수수료는 ① 환전할 때 ② 결제할 때 ③ ATM에서 찾을 때 ④ 남은 외화를 원화로 되돌릴 때 — 네 번 붙습니다. 아래 값은 카드사·은행 공식 안내(2026년 9~11월 확인)의 카드사 몫이고, 현지 ATM 운영사 수수료는 어느 카드도 면제하지 않습니다.</p></div>
+      <span class="dk-tag">2026-11-18 확인</span>
+    </div>
+    <p class="dk-verdict">세 장 모두 <b>해외 결제 수수료는 0원</b>에 가깝습니다. 실제 차이는 ① 어떤 통화를 쓰는지 ② 현금을 얼마나 자주 찾는지 ③ 남은 외화를 원화로 돌릴 때 붙는 비용입니다.</p>
+    <div class="dk-grid"><div class="dk-col"><div class="dk-name">트래블월렛</div><div class="dk-issuer">트래블월렛 · 비자 선불 충전형</div><div class="dk-big">달러·엔·유로 환전 0%<small>기타 통화는 0.5~2.5%</small></div><dl class="dk-rows"><div><dt>지원 통화</dt><dd>46종 이상 (충전한 통화로만 결제)</dd></div><div><dt>해외 결제</dt><dd>모든 통화 0%</dd></div><div><dt>ATM 카드사 수수료</dt><dd>월 500달러 상당까지 면제 · 초과분 2%(앱 이용한도 고지)</dd></div><div><dt>남은 외화</dt><dd>수수료 없이 전액 환불</dd></div><div><dt>충전 한도</dt><dd>카드당 원화 200만원 상당</dd></div></dl><span class="dk-pick">엔·달러·유로만 쓰고, 남은 돈을 그대로 돌려받고 싶을 때</span><a class="dk-go" href="https://www.travel-wallet.com/ko" target="_blank" rel="noopener">공식 안내 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div class="dk-col"><div class="dk-name">하나 트래블로그 체크</div><div class="dk-issuer">하나카드 · 외화 하나머니 충전형</div><div class="dk-big">58종 통화 환율 100% 우대<small>USD·JPY·EUR·GBP 상시, 54종은 이벤트</small></div><dl class="dk-rows"><div><dt>지원 통화</dt><dd>58종 (상시 무료환전 4종 + 이벤트 54종)</dd></div><div><dt>해외 결제</dt><dd>면제 — 건당 US$0.5 + 국제브랜드 1%</dd></div><div><dt>ATM 카드사 수수료</dt><dd>면제 — 건당 US$3 + 국제브랜드 1%, 한도 없음</dd></div><div><dt>남은 외화</dt><dd>원화 환급 시 환급수수료 1% 차감</dd></div><div><dt>주의</dt><dd>해외원화결제(DCC) 차단 · 마스터카드면 일본 7BANK 현지 수수료 면제</dd></div></dl><span class="dk-pick">여러 나라 통화를 한 장으로, 일본 ATM 인출이 많을 때</span><a class="dk-go" href="https://m.hanacard.co.kr/MKCDPD7200M.web" target="_blank" rel="noopener">공식 안내 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div class="dk-col"><div class="dk-name">토스뱅크 외화통장</div><div class="dk-issuer">토스뱅크 · 외화통장 + 체크카드 연결</div><div class="dk-big">살 때·팔 때 환전 0원<small>17개 통화 모두 수수료 없음</small></div><dl class="dk-rows"><div><dt>지원 통화</dt><dd>17종 (VND·IDR·PHP·TWD·MYR은 보유 한도 있음)</dd></div><div><dt>해외 결제</dt><dd>면제 — 국제브랜드 1% + 건당 US$0.5 (외화통장 연결 시)</dd></div><div><dt>ATM 카드사 수수료</dt><dd>월 5회 또는 누적 US$700까지 면제</dd></div><div><dt>남은 외화</dt><dd>팔 때도 0원 · 환급수수료 없음</dd></div><div><dt>변경</dt><dd>2026.8.11부터 해외 결제 2% 캐시백 종료 → 수수료 면제로 전환</dd></div></dl><span class="dk-pick">남은 외화를 원화로 되돌릴 일이 많거나, 결제·환전을 한 통장으로 끝내고 싶을 때</span><a class="dk-go" href="https://www.tossbank.com/product-service/fx/account" target="_blank" rel="noopener">공식 안내 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+    <p class="cl-note">‘수수료 면제’는 카드사·국제브랜드 몫만 면제입니다. 현지 ATM 운영사가 붙이는 서차지와 원화결제(DCC, 결제액의 3~8%)는 별도입니다. 트래블로그는 DCC 자체를 막고, 트래블월렛은 달러·엔·유로 외 통화에 0.5~2.5%가 붙습니다. 남은 외화를 되돌릴 때는 트래블로그 1%, 토스뱅크 0원, 트래블월렛 수수료 없음(적용 환율은 각 앱 고시)입니다.</p>
+    <p class="dk-src">출처: 트래블월렛 트래블페이 약관·카드 상품설명서 · 하나카드 트래블로그 체크카드 약관(준법심의 2026.09.30)·하나머니 상품 안내(2026.10.21) · 토스뱅크 외화통장 상품 안내·체크카드 해외 결제 수수료 안내(2026.08.11)</p>
+  </section>
+  <section class="dk-card" id="travelins" aria-labelledby="travelins-t">
+    <div class="dk-head">
+      <div><h3 id="travelins-t">🛡️ 해외여행자보험 3곳 비교</h3><p>세 곳 모두 ‘해외여행 실손의료비’가 핵심입니다. 차이는 ① 보장을 직접 고르는지(DIY) ② 무사고 환급이 있는지 ③ 실제 인수 보험사가 어디인지입니다. 보험료는 나이·기간·플랜에 따라 달라지므로 같은 조건을 입력해 비교해야 합니다.</p></div>
+      <span class="dk-tag">2026-11-18 확인</span>
+    </div>
+    <p class="dk-verdict">단기·2인 이하라면 <b>카카오페이손해보험</b>의 DIY+안전귀국 10% 환급이 가장 단순하고, 미국·유럽처럼 의료비가 비싼 곳이나 가족 동반은 <b>삼성화재 다이렉트</b>의 고한도 플랜이 안전합니다. 3개월 이상 체류·유학·워홀이면 <b>마이뱅크</b>에서 상품을 골라야 합니다.</p>
+    <div class="dk-grid"><div class="dk-col"><div class="dk-name">카카오페이손해보험</div><div class="dk-issuer">직접 설계(DIY) · 카톡 가입·청구</div><div class="dk-big">안전귀국 시 보험료 10% 환급<small>최대 3만원 · 동반 2인 5%·3인 10%</small></div><dl class="dk-rows"><div><dt>보장 설계</dt><dd>필요한 특약만 선택 (휴대물품손해 최대 200만원)</dd></div><div><dt>의료비 한도</dt><dd>해외 상해·질병 최대 1억원 (2025.12.18 개정)</dd></div><div><dt>항공 지연</dt><dd>출국 2시간 이상 지수형 4만원 · 6시간 이상 최대 10만원</dd></div><div><dt>가입 시점</dt><dd>출국 직전까지 · 보장 시작은 3시간 이후</dd></div><div><dt>청구</dt><dd>카카오톡에서 서류 없이 지연 알림·청구</dd></div></dl><span class="dk-pick">1~2인 단기 여행, 보장을 직접 고르고 카톡으로 끝내고 싶을 때</span><a class="dk-go" href="https://kakaopayinscorp.co.kr/" target="_blank" rel="noopener">공식 안내 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div class="dk-col"><div class="dk-name">삼성화재 다이렉트</div><div class="dk-issuer">플랜 선택(실속·표준·고급) + 직접 설계</div><div class="dk-big">최대 90일 · 동반 10% 할인<small>재가입 5~10% · 기본계약 상해사망·후유장해</small></div><dl class="dk-rows"><div><dt>보장 설계</dt><dd>의료비·휴대품·배상책임·지연을 특약으로, 고급 플랜은 한도 큼</dd></div><div><dt>의료비 한도</dt><dd>실속·표준·고급·직접설계에서 선택 (미국·유럽은 높게)</dd></div><div><dt>항공 지연</dt><dd>국내 출국/국내 출국 제외 각각 2시간 이상 지수형</dd></div><div><dt>휴대품</dt><dd>도난·파손 보장, 단순 분실은 제외</dd></div><div><dt>조정</dt><dd>실손보험 있으면 국내 급여 의료비는 미가입 선택 가능</dd></div></dl><span class="dk-pick">미국·유럽처럼 의료비가 비싼 곳, 가족 동반, 한도를 크게 잡을 때</span><a class="dk-go" href="https://direct.samsungfire.com/m/fp/overseas.html" target="_blank" rel="noopener">공식 안내 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div class="dk-col"><div class="dk-name">마이뱅크 여행자보험</div><div class="dk-issuer">비교 플랫폼 · DB손해보험 등 여러 보험사</div><div class="dk-big">여러 보험사 상품을 한 화면에서<small>단기·장기체류·유학·워홀·국내까지</small></div><dl class="dk-rows"><div><dt>상품 범위</dt><dd>해외여행자보험·해외장기체류보험·유학생·워킹홀리데이·국내여행자보험</dd></div><div><dt>가입 단위</dt><dd>여러 명을 한 번에 일괄 가입</dd></div><div><dt>확인 필요</dt><dd>실제 인수 보험사·상품명·약관·청구처는 가입 화면에서 확인</dd></div><div><dt>성격</dt><dd>자체 보험사가 아니라 보험 비교·중개 플랫폼</dd></div><div><dt>할인</dt><dd>제휴 쿠폰·이벤트 (상시 아님)</dd></div></dl><span class="dk-pick">3개월 이상 체류·유학·워홀, 여러 명을 한 번에 가입할 때</span><a class="dk-go" href="https://www.mibankins.com/travel/" target="_blank" rel="noopener">공식 안내 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+    <ul class="dk-checks"><li><b>실손은 실제 부담액 기준</b><span>해외 병원 진료비 영수증·진단서(약값은 처방전)를 원본으로 보관. 한도까지 실제 쓴 만큼만 보상합니다.</span></li><li><b>국내 실손과 겹치면 비례</b><span>여행자보험과 국내 실손보험에 모두 가입해도 실제 손해액을 나눠 지급합니다. 중복 가입 전에 한도와 보험료를 비교하세요.</span></li><li><b>귀국 후 치료도 180일</b><span>여행 중 다쳐 치료를 받다 보험기간이 끝나면 종료일부터 180일까지 보상(상품 약관 확인).</span></li><li><b>지연은 지수형·실손형 구분</b><span>지수형은 지연 확인 자료만, 실손형은 실제 지출 증빙이 필요합니다. 2시간과 4시간 기준도 상품마다 다릅니다.</span></li></ul>
+    <p class="cl-note">보험료·할인·환급 조건은 예고 없이 바뀝니다. 가입 직전 공식 화면에서 조건과 유효기간을 다시 확인하고, 보험증권에 적힌 실제 보험사·보상 연락처를 남겨 두세요.</p>
+    <p class="dk-src">출처: 카카오페이손해보험 공식 블로그(2026.08.25)·해외여행보험 약관 · 삼성화재 다이렉트 해외여행보험 안내·상품 가이드(2026.10) · 마이뱅크인슈어런스 여행자보험 안내</p>
+  </section>
+</div>
   </div>
 </section>
 
@@ -6735,7 +6818,7 @@
       <div class="t">
         <span class="kicker">LOCAL FOOD &amp; DAY ROUTE</span>
         <h2>현지 맛집, <em>실제 가격과 영업시간</em>까지</h2>
-        <p>오사카·도쿄·후쿠오카·다낭·방콕·타이베이 6개 도시에서 실제로 영업 중인 가게 30곳을 골랐습니다. 공식 메뉴판의 대표 메뉴 가격과 원화 환산, 영업시간·휴무, 대기 팁, 구글 지도 링크를 카드마다 적었고, 카드 위 동선은 <b>오전 투어 → 점심·저녁 맛집 → 선물·쇼핑 → 숙소</b> 순서로 바로 이어집니다.</p>
+        <p>오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주 7개 도시에서 실제로 영업 중인 가게 35곳을 골랐습니다. 공식 메뉴판의 대표 메뉴 가격과 원화 환산, 영업시간·휴무, 대기 팁, 구글 지도 링크를 카드마다 적었고, 카드 위 동선은 <b>오전 투어 → 점심·저녁 맛집 → 선물·쇼핑 → 숙소</b> 순서로 바로 이어집니다.</p>
       </div>
       <div class="sh-meta">2026.11.18 확인 · 공식 메뉴판 기준</div>
     </div>
@@ -6747,6 +6830,7 @@
     <button class="food-tab" type="button" role="tab" id="ftab-danang" aria-controls="fpanel-danang" aria-selected="false" data-food-tab="danang"><b>다낭</b><span>5</span></button>
     <button class="food-tab" type="button" role="tab" id="ftab-bangkok" aria-controls="fpanel-bangkok" aria-selected="false" data-food-tab="bangkok"><b>방콕</b><span>5</span></button>
     <button class="food-tab" type="button" role="tab" id="ftab-taipei" aria-controls="fpanel-taipei" aria-selected="false" data-food-tab="taipei"><b>타이베이</b><span>5</span></button>
+    <button class="food-tab" type="button" role="tab" id="ftab-jeju" aria-controls="fpanel-jeju" aria-selected="false" data-food-tab="jeju"><b>제주</b><span>5</span></button>
   </div>
   <div class="food-panel" id="fpanel-osaka" role="tabpanel" aria-labelledby="ftab-osaka">
           <div class="food-intro"><p>도톤보리·난바는 걸어서 15분, 우메다는 지하철 2정거장. 간사이공항에서 난카이 라피트로 난바에 내리면 <b>점심 한 끼는 도톤보리 안에서 끝납니다</b>. 값은 모두 2026년 11월 공식 메뉴판 기준입니다.</p></div>
@@ -7150,7 +7234,74 @@
           </article>
           </div>
         </div>
-  <p class="food-note">가게 30곳은 2026년 11월 18일 구글 지도에서 영업 중(OPERATIONAL)임을 확인했고, 가격은 공식 메뉴판·공식 안내 또는 2026년 10~11월 방문 기록이 일치하는 값만 적었습니다. 환율은 100엔 = 940원 · 100동 = 5.5원 · 1밧 = 40원 · 100대만달러 = 4,400원이고, 영업시간·휴무는 시장 휴시일이나 임시휴무로 달라질 수 있으니 출발 전에 가게 지도 링크로 한 번 더 확인하세요.</p>
+  <div class="food-panel" id="fpanel-jeju" role="tabpanel" aria-labelledby="ftab-jeju" hidden>
+          <div class="food-intro"><p>제주시는 공항에서 차로 10분, 서귀포·모슬포까지는 50분 거리입니다. 아침 6시에 문을 여는 해장국집에서 흑돼지 저녁까지 하루 동선으로 묶었고, 값은 모두 2026년 11월 가게 메뉴판·카카오맵 메뉴 정보에서 확인된 금액만 적었습니다.</p></div>
+          <ol class="food-route" aria-label="제주 하루 동선"><li><span class="fr-k">패키지</span><a href="https://naver.me/FXnbnObP" target="_blank" rel="noopener sponsored">[선착순특가/2박3일] 부담없이 떠나는 제주도 2박3일 패키지</a><span class="fr-m">159,000원~</span></li><li><span class="fr-k">점심</span><a class="js-food-jump" href="#jj-ollae">올래국수</a><span class="fr-m">고기국수 11,000원</span></li><li><span class="fr-k">저녁</span><a class="js-food-jump" href="#jj-donsadon">돈사돈</a><span class="fr-m">2인 600g 69,000원</span></li><li><span class="fr-k">숙소</span><a href="#tripcom">제주 숙소 최저가</a><span class="fr-m">트립닷컴</span></li></ol>
+          <div class="food-grid">
+          <article class="food" id="jj-ujin">
+            <div class="food-top"><span class="food-area">제주시 삼도동</span><span class="food-slot">아침</span></div>
+            <h3 class="food-name">우진해장국<span>우진해장국 · 해장국·몸국</span></h3>
+            <div class="food-dish"><b>고사리육개장 (사골 육수에 고사리를 갈아 넣은 제주식 해장국)</b><span>고사리육개장 11,000원 · 사골해장국 11,000원 · 몸국 11,000원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>본관 06:00~22:00 · 별관 08:00~16:00</li>
+              <li><i>휴무</i>본관 연중무휴 · 별관 화요일 휴무</li>
+              <li><i>대기</i>오전 8시 30분 이후 20~30분 (2025년 7월 방문 기록)</li>
+            </ul>
+            <p class="food-tip">공항에서 차로 10분이라 도착 첫 끼로 많이 갑니다. 2025년 7월까지 10,000원이던 메뉴가 지금은 11,000원이고, 녹두빈대떡은 17,000원입니다.</p>
+            <span class="food-cau">주차는 병문천공영주차장 — 09:30까지 무료, 이후 1시간 무료·15분당 500원</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ1RG1J6vkDDURux7pPbxUvbY" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FXnbnObP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 9,531</span></div>
+          </article><article class="food" id="jj-ollae">
+            <div class="food-top"><span class="food-area">제주시 연동</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">올래국수 본점<span>올래국수 · 고기국수</span></h3>
+            <div class="food-dish"><b>고기국수 (돼지 사골 육수 · 중면 · 돼지고기, 메뉴는 이것 하나)</b><span>고기국수 11,000원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>08:00~15:00 (라스트오더 14:55)</li>
+              <li><i>휴무</i>매주 일요일 · 설·추석 연휴 전날·당일·다음날</li>
+              <li><i>대기</i>평일 12시 30분 5분 (방문 기록) · 주말·공휴일은 더 깁니다</li>
+            </ul>
+            <p class="food-tip">제주도청·연동에서 아침 8시부터 여는 단일 메뉴집이라 아침 일정에 넣기 좋습니다. 2026년 9~10월 네이버 플레이스·카카오맵 메뉴 정보 모두 11,000원이고, 2026년 2월 방문 기록은 10,000원이었습니다.</p>
+            <span class="food-cau">전용 주차장 없음 · 인근 유료주차장 / 반려동물 동반 가능</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJUYuF7AX7DDURw-PwbL_mkw8" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FXnbnObP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 4,473</span></div>
+          </article><article class="food" id="jj-jamae">
+            <div class="food-top"><span class="food-area">제주시 이호일동</span><span class="food-slot">점심</span></div>
+            <h3 class="food-name">자매국수<span>자매국수 · 고기국수·비빔국수</span></h3>
+            <div class="food-dish"><b>고기국수 · 비빔국수 · 돔베고기(제주식 수육)</b><span>고기국수 10,000원 · 비빔국수 10,000원 · 돔베고기 소 19,000원 / 대 36,000원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>09:00~18:00 (브레이크 14:30~16:10, 라스트오더 17:50)</li>
+              <li><i>휴무</i>매주 수요일</li>
+              <li><i>대기</i>캐치테이블 원격 대기 · 10팀 기준 10~15분</li>
+            </ul>
+            <p class="food-tip">1인 1메뉴 주문이 원칙이고, 36개월 이하 아기국수는 무료입니다. 물만두 10,000원. 공항과 가까워 마지막 날 점심에 넣기 좋습니다.</p>
+            <span class="food-cau">매장 앞 전용 주차장 있음 · 브레이크타임 14:30~16:10에는 주문 불가</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJywNUk1LjDDURflXUtmnWhIo" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FXnbnObP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="#tripcom">숙소</a><span class="food-rate">구글 3.9 · 8,177</span></div>
+          </article><article class="food" id="jj-donsadon">
+            <div class="food-top"><span class="food-area">제주시 노형동</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">돈사돈 본관<span>돈사돈 · 흑돼지 근고기</span></h3>
+            <div class="food-dish"><b>제주산 흑돼지 근고기 — 목살·오겹살을 연탄불에 올려 직원이 구워 줌</b><span>2인 600g 69,000원 · 3인 800g 92,000원 · 400g 추가 46,000원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>12:00~22:00 (라스트오더 21:00)</li>
+              <li><i>휴무</i>매주 화요일 (화요일은 별관 영업)</li>
+              <li><i>대기</i>저녁 피크 대기 있음 · 예약은 받지 않는다는 안내</li>
+            </ul>
+            <p class="food-tip">600g에 69,000원이라 1인 34,500원꼴입니다. 고기를 다 구운 뒤 김치찌개(1인+공기밥 10,000원)로 마무리하는 조합이 기본. 2026년 9월 네이버 메뉴 기준입니다.</p>
+            <span class="food-cau">전용 주차장 무료 · 멜젓에 찍어 먹는 제주식 / 목살만 달라고 하면 목살로만 나옵니다</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJyXRdfUT6DDURGDOEpRNHvMA" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FXnbnObP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.1 · 2,416</span></div>
+          </article><article class="food" id="jj-miyeong">
+            <div class="food-top"><span class="food-area">서귀포 대정 · 모슬포</span><span class="food-slot">저녁</span></div>
+            <h3 class="food-name">미영이네 본점<span>미영이네 · 고등어회·고등어탕</span></h3>
+            <div class="food-dish"><b>고등어회 &amp; 고등어탕 세트 (주문 후 손질해서 준비)</b><span>고등어회&amp;탕 소 70,000원(2인) · 대 95,000원(3~4인) · 고등어구이 15,000원</span></div>
+            <ul class="food-facts">
+              <li><i>영업</i>11:30~22:00 (라스트오더 20:30)</li>
+              <li><i>휴무</i>매주 수요일</li>
+              <li><i>대기</i>주말 점심 대기 · 예약 가능</li>
+            </ul>
+            <p class="food-tip">회만 단품으로는 안 되고 탕이 붙은 세트로 나옵니다. 야채양념장 추가 3,000원. 2025년 5월 소 60,000원에서 올랐습니다.</p>
+            <span class="food-cau">모슬포항 바로 앞 · 무료 주차 / 서귀포 서쪽이라 제주시에서 차로 50분</span>
+            <div class="food-foot"><a href="https://www.google.com/maps/place/?q=place_id:ChIJAzVlLPdpDDURwtrd3yMUWnM" target="_blank" rel="noopener nofollow"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>지도</a><a href="https://naver.me/FXnbnObP" target="_blank" rel="noopener sponsored">이 도시 투어</a><a href="#tripcom">숙소</a><span class="food-rate">구글 4.5 · 2,667</span></div>
+          </article>
+          </div>
+        </div>
+  <p class="food-note">가게 35곳은 2026년 11월 18일 구글 지도에서 영업 중(OPERATIONAL)임을 확인했고, 가격은 공식 메뉴판·공식 안내 또는 2026년 10~11월 방문 기록이 일치하는 값만 적었습니다. 환율은 100엔 = 940원 · 100동 = 5.5원 · 1밧 = 40원 · 100대만달러 = 4,400원이고, 영업시간·휴무는 시장 휴시일이나 임시휴무로 달라질 수 있으니 출발 전에 가게 지도 링크로 한 번 더 확인하세요.</p>
 </div>
   </div>
 </section>
@@ -7465,15 +7616,15 @@
   <div class="wrap">
     <div class="sec-head">
       <div class="t">
-        <span class="kicker">TRIP.COM · STAY &amp; FLIGHT</span>
-        <h2>숙소와 항공권은 트립닷컴에서 바로</h2>
-        <p>위 카드들은 국내 여행사가 파는 상품이고, 이 섹션은 트립닷컴에서 직접 예약하는 숙소·항공권입니다. 도시를 고르면 그 도시 숙소가 최저가순으로 열리고, 노선을 고르면 해당 노선 항공권이 열립니다. 예약·결제는 트립닷컴에서 그대로 이루어지며, 트립픽은 가격에 아무것도 더하지 않습니다.</p>
+        <span class="kicker">TRIP.COM · STAY · FLIGHT · TICKET</span>
+        <h2>숙소·항공권·입장권까지 트립닷컴에서 바로</h2>
+        <p>위 카드들은 국내 여행사가 파는 상품이고, 이 섹션은 트립닷컴에서 직접 예약하는 숙소·항공권과 현지 입장권·공항픽업·렌터카입니다. 도시를 고르면 그 도시 숙소가 최저가순으로 열리고, 노선을 고르면 항공권이, 입장권 카드를 누르면 그 도시의 한국어 상품 목록이 열립니다. 예약·결제는 트립닷컴에서 그대로 이루어지며, 트립픽은 가격에 아무것도 더하지 않습니다.</p>
       </div>
-      <div class="sh-meta">링크는 2026.11.18 트립닷컴 파트너스에서 발급 · 숙소는 체크인 날짜, 항공권은 가는 날 기준</div>
+      <div class="sh-meta">링크 37개는 2026.11.18 트립닷컴 파트너스에서 발급 · 숙소는 체크인 날짜, 항공권은 가는 날, 입장권은 방문일 기준</div>
     </div>
     <div class="tc-filter">
-      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터"><button class="tc-tab on" type="button" data-tc-filter="all" aria-pressed="true">전체</button><button class="tc-tab" type="button" data-tc-filter="value" aria-pressed="false">가성비 숙소</button><button class="tc-tab" type="button" data-tc-filter="family" aria-pressed="false">가족·리조트</button><button class="tc-tab" type="button" data-tc-filter="airport" aria-pressed="false">공항 이동 편한 곳</button><button class="tc-tab" type="button" data-tc-filter="flight" aria-pressed="false">항공권</button></div>
-      <p class="tc-filter-note" id="tcFilterNote">숙소 15곳·항공 6개 노선을 용도별로 추렸습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
+      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터"><button class="tc-tab on" type="button" data-tc-filter="all" aria-pressed="true">전체</button><button class="tc-tab" type="button" data-tc-filter="value" aria-pressed="false">가성비 숙소</button><button class="tc-tab" type="button" data-tc-filter="family" aria-pressed="false">가족·리조트</button><button class="tc-tab" type="button" data-tc-filter="airport" aria-pressed="false">공항 이동 편한 곳</button><button class="tc-tab" type="button" data-tc-filter="flight" aria-pressed="false">항공권</button><a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>7</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>9</span></a></div>
+      <p class="tc-filter-note" id="tcFilterNote">숙소 15곳·항공 6개 노선에 입장권 7개 도시·공항픽업 8개 공항·렌터카 1곳을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
     </div>
     <div class="tc-group" data-tc-group="flight">
       <div class="ess-ghead"><h3>✈️ 항공권 검색</h3><span class="n">6</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">편도 기준 · 실시간 최저가</span></div>
@@ -7484,6 +7635,16 @@
       <div class="tc-grid"><a class="tc-card" href="https://kr.trip.com/hotels/list?city=219&amp;display=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;optionId=219&amp;optionType=City&amp;optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_osaka&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="osaka" data-tags="value airport"><span class="tc-city">오사카<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">난바·우메다 · 오사카·교토 3박4일</span><span class="tc-note">라피트 종점 난바 주변</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=734&amp;display=%EA%B5%90%ED%86%A0&amp;optionId=734&amp;optionType=City&amp;optionName=%EA%B5%90%ED%86%A0&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_kyoto&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="kyoto" data-tags="value"><span class="tc-city">교토<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">가와라마치·교토역 · 후시미·청수사</span><span class="tc-note">버스 동선의 중심</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=228&amp;display=%EB%8F%84%EC%BF%84&amp;optionId=228&amp;optionType=City&amp;optionName=%EB%8F%84%EC%BF%84&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_tokyo&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="tokyo" data-tags="value airport"><span class="tc-city">도쿄<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">우에노·신주쿠 · 후지 day trip</span><span class="tc-note">스카이라이너 종점 우에노</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=248&amp;display=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&amp;optionId=248&amp;optionType=City&amp;optionName=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_fukuoka&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="fukuoka" data-tags="value airport"><span class="tc-city">후쿠오카<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">하카타·텐진 · 유후인 1박</span><span class="tc-note">공항에서 지하철 5분</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=641&amp;display=%EC%82%BF%ED%8F%AC%EB%A1%9C&amp;optionId=641&amp;optionType=City&amp;optionName=%EC%82%BF%ED%8F%AC%EB%A1%9C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_sapporo&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="sapporo" data-tags="value"><span class="tc-city">삿포로<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">스스키노·삿포로역 · 비에이 당일</span><span class="tc-note">2월 눈축제 시즌은 조기 마감</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=1356&amp;display=%EB%8B%A4%EB%82%AD&amp;optionId=1356&amp;optionType=City&amp;optionName=%EB%8B%A4%EB%82%AD&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_danang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="danang" data-tags="family"><span class="tc-city">다낭<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-vn"/></svg></span><span class="tc-sub">미케비치 · 호이안 30분</span><span class="tc-note">5성급 3박이 기본인 도시</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=1777&amp;display=%EB%82%98%ED%8A%B8%EB%9E%91&amp;optionId=1777&amp;optionType=City&amp;optionName=%EB%82%98%ED%8A%B8%EB%9E%91&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_nhatrang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="nhatrang" data-tags="family"><span class="tc-city">나트랑<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-vn"/></svg></span><span class="tc-sub">쩐푸·나짱 비치 · 달랏 이동</span><span class="tc-note">리조트형 숙소가 많은 해변 도시</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=359&amp;display=%EB%B0%A9%EC%BD%95&amp;optionId=359&amp;optionType=City&amp;optionName=%EB%B0%A9%EC%BD%95&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_bangkok&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="bangkok" data-tags="value airport"><span class="tc-city">방콕<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-th"/></svg></span><span class="tc-sub">수쿰빗·실롬 · 파타야 2시간</span><span class="tc-note">공항철도·BTS 역세권</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=623&amp;display=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&amp;optionId=623&amp;optionType=City&amp;optionName=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_chiangmai&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="chiangmai" data-tags="value"><span class="tc-city">치앙마이<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-th"/></svg></span><span class="tc-sub">올드시티·님만해민</span><span class="tc-note">11~2월 건기가 성수기</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=617&amp;display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&amp;optionId=617&amp;optionType=City&amp;optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_taipei&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="taipei" data-tags="value"><span class="tc-city">타이베이<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-tw"/></svg></span><span class="tc-sub">시먼·타이베이역 · 지우펀 당일</span><span class="tc-note">MRT 한 장으로 시내 이동</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=753&amp;display=%EA%B4%8C&amp;optionId=753&amp;optionType=City&amp;optionName=%EA%B4%8C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_guam&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="guam" data-tags="family"><span class="tc-city">괌<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-gu"/></svg></span><span class="tc-sub">투몬베이 · 리조트형</span><span class="tc-note">패키지에 숙소가 묶이는 지역</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=757&amp;display=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&amp;optionId=757&amp;optionType=City&amp;optionName=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_honolulu&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="honolulu" data-tags="family"><span class="tc-city">호놀룰루<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-us"/></svg></span><span class="tc-sub">와이키키 · 하와이</span><span class="tc-note">리조트피 별도 확인</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=737&amp;display=%EC%A0%9C%EC%A3%BC%EC%8B%9C&amp;optionId=737&amp;optionType=City&amp;optionName=%EC%A0%9C%EC%A3%BC%EC%8B%9C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_jeju&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="jeju" data-tags="family airport"><span class="tc-city">제주<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">제주시·공항 근처</span><span class="tc-note">서귀포는 중문·색달 권역</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=253&amp;display=%EB%B6%80%EC%82%B0&amp;optionId=253&amp;optionType=City&amp;optionName=%EB%B6%80%EC%82%B0&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_busan&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="busan" data-tags="value"><span class="tc-city">부산<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">해운대·광안리·서면</span><span class="tc-note">요트투어는 광안리 탑승</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=35792&amp;display=%ED%8F%89%EC%B0%BD&amp;optionId=35792&amp;optionType=City&amp;optionName=%ED%8F%89%EC%B0%BD&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_pyeongchang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="pyeongchang" data-tags="family"><span class="tc-city">평창<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">알펜시아·용평 · 강원 스키</span><span class="tc-note">리조트 안 숙소면 리프트 도보</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
       <p class="tc-empty" id="tcEmpty" hidden>이 분류에 해당하는 숙소가 아직 없습니다. ‘전체’로 돌아가면 도시 15곳을 모두 볼 수 있습니다.</p>
       <p class="ess-cp-note">이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 예약이 이루어지면 일정액의 수수료를 제공받습니다. 숙소·항공권 가격과 예약 조건은 트립닷컴에서 그대로 결제되며, 수수료 때문에 가격이 올라가지 않습니다. 링크는 2026-11-18 트립닷컴 파트너스에서 발급했고, 요율은 호텔 5~7%·국제선 항공 0.5~0.8%(예약 건수에 따라)입니다.</p>
+    </div>
+    <div class="tc-group tc-group--act" data-tc-group="ticket" id="tcTickets">
+      <div class="ess-ghead"><h3>🎟️ 입장권·액티비티</h3><span class="n">7</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">오사카 · 도쿄 · 후쿠오카 · 다낭 · 방콕 · 타이베이 · 제주 · 한국어 페이지</span></div>
+      <div class="tc-acts"><a class="tc-act" href="https://kr.trip.com/things-to-do/list?searchkey=219&amp;searchtype=1&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=ticket_osaka&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">입장권·액티비티</span><span class="tc-act-city">오사카<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">오사카 입장권·액티비티</b><span class="tc-act-h">USJ·도톤보리 크루즈·가이유칸 등</span><span class="tc-go">입장권 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/list?searchkey=228&amp;searchtype=1&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=ticket_tokyo&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">입장권·액티비티</span><span class="tc-act-city">도쿄<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">도쿄 입장권·액티비티</b><span class="tc-act-h">도쿄 디즈니씨·디즈니랜드·시부야 스카이</span><span class="tc-go">입장권 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/list?searchkey=248&amp;searchtype=1&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=ticket_fukuoka&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">입장권·액티비티</span><span class="tc-act-city">후쿠오카<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">후쿠오카 입장권·액티비티</b><span class="tc-act-h">마린월드 우미노나카미치·후쿠오카 타워</span><span class="tc-go">입장권 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/list?searchkey=1356&amp;searchtype=1&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=ticket_danang&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">입장권·액티비티</span><span class="tc-act-city">다낭<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-vn"/></svg></span></span><b class="tc-act-t">다낭 입장권·액티비티</b><span class="tc-act-h">바나힐스 선월드·호이안 메모리즈</span><span class="tc-go">입장권 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/list?searchkey=359&amp;searchtype=1&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=ticket_bangkok&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">입장권·액티비티</span><span class="tc-act-city">방콕<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-th"/></svg></span></span><b class="tc-act-t">방콕 입장권·액티비티</b><span class="tc-act-h">짜오프라야 디너 크루즈·사파리 월드</span><span class="tc-go">입장권 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/list?searchkey=617&amp;searchtype=1&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=ticket_taipei&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">입장권·액티비티</span><span class="tc-act-city">타이베이<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-tw"/></svg></span></span><b class="tc-act-t">타이베이 입장권·액티비티</b><span class="tc-act-h">101 전망대·고궁박물원·예류</span><span class="tc-go">입장권 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/list?searchkey=737&amp;searchtype=1&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=ticket_jeju&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">입장권·액티비티</span><span class="tc-act-city">제주<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-kr"/></svg></span></span><b class="tc-act-t">제주 입장권·액티비티</b><span class="tc-act-h">아쿠아플라넷 제주·에코랜드·스누피가든</span><span class="tc-go">입장권 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
+      <p class="ess-cp-note">파크·전망대·크루즈별 실제 판매 상품과 가격은 트립닷컴 페이지에서 날짜를 넣어야 확정됩니다. 예약·결제는 트립닷컴에서 그대로 이루어지고, 트립픽은 가격에 아무것도 더하지 않습니다.</p>
+    </div>
+    <div class="tc-group tc-group--act" data-tc-group="transport" id="tcTransfers">
+      <div class="ess-ghead"><h3>🚗 공항픽업·렌터카</h3><span class="n">9</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">오사카 · 도쿄 · 후쿠오카 · 다낭 · 방콕 · 타이베이 · 제주 · 렌터카 1곳</span></div>
+      <div class="tc-acts"><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-kix/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_kix&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">오사카<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">간사이공항(KIX) 공항픽업</b><span class="tc-act-h">난바·도톤보리·우메다 · 차종별 예약</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-nrt/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_nrt&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">도쿄<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">나리타공항(NRT) 공항픽업</b><span class="tc-act-h">신주쿠·시부야·긴자 · 6·9인승까지</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-hnd/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_hnd&amp;trip_sub3=D21286001" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">도쿄<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">하네다공항(HND) 공항픽업</b><span class="tc-act-h">하네다 도착 전용 · 택시 82,005원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-fuk/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_fuk&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">후쿠오카<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">후쿠오카공항(FUK) 공항픽업</b><span class="tc-act-h">하카타·텐진 · 4인승 49,946원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-dad/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_dad&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">다낭<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-vn"/></svg></span></span><b class="tc-act-t">다낭공항(DAD) 공항픽업</b><span class="tc-act-h">미케비치 6,700원~ · 호이안 14,438원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-bkk/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_bkk&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">방콕<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-th"/></svg></span></span><b class="tc-act-t">수완나품공항(BKK) 공항픽업</b><span class="tc-act-h">시암·카오산·아속 20,455원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-tpe/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_tpe&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">타이베이<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-tw"/></svg></span></span><b class="tc-act-t">타오위안공항(TPE) 공항픽업</b><span class="tc-act-h">시먼딩·타이베이역 50,397원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-cju/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_cju&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">제주<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-kr"/></svg></span></span><b class="tc-act-t">제주공항(CJU) 공항픽업</b><span class="tc-act-h">택시 3인승 31,500원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/carhire/to-south-korea-42/jeju-737/jeju-international-airport-cju/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=car_jeju&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">렌터카</span><span class="tc-act-city">제주<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-kr"/></svg></span></span><b class="tc-act-t">제주공항(CJU) 렌터카</b><span class="tc-act-h">모닝 27,482원~ · 셀토스 32,240원~</span><span class="tc-go">렌터카 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
+      <p class="ess-cp-note">공항픽업은 도착 공항과 시내 목적지를, 렌터카는 인수·반납 지점과 날짜를 넣어야 실제 요금이 나옵니다. 표시 요금은 트립닷컴 페이지 기준이고 차종·시간대에 따라 달라집니다. 투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%</p>
     </div>
   </div>
 </section>

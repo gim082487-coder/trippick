@@ -525,6 +525,23 @@
   .tc-note{font-size:10.6px;color:var(--ink-3);line-height:1.45}
   .tc-go{display:inline-flex;align-items:center;gap:4px;margin-top:auto;padding-top:9px;font-size:11.2px;font-weight:820;color:var(--blue-600)}
   .tc-go .ic{width:12px;height:12px}
+  .tc-group--act{margin-top:26px}
+  .tc-acts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  @media (max-width:1080px){ .tc-acts{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:960px){ .tc-acts{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  .tc-act{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid var(--line);border-radius:13px;
+    padding:12px 13px;transition:.16s;text-decoration:none}
+  .tc-act:hover{border-color:var(--blue-line);box-shadow:var(--sh-1);transform:translateY(-2px)}
+  .tc-act-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .tc-act-k{font-size:9.8px;font-weight:850;letter-spacing:.02em;color:var(--blue-600);background:var(--blue-soft);
+    border-radius:6px;padding:2px 6px}
+  .tc-act-city{display:inline-flex;align-items:center;gap:4px;font-size:10.8px;font-weight:750;color:var(--ink-3)}
+  .tc-act-t{font-size:12.6px;font-weight:820;letter-spacing:-0.02em;color:var(--navy);line-height:1.35}
+  .tc-act-h{font-size:10.8px;color:var(--ink-3);line-height:1.5}
+  .tc-act .tc-go{font-size:11px;padding-top:7px}
+  .tc-acts.tc-acts--hub{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:960px){ .tc-acts.tc-acts--hub{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:620px){ .tc-acts.tc-acts--hub{grid-template-columns:1fr} }
 
   /* ============================== 특가 알림 ============================== */
   .alertbox{background:linear-gradient(180deg,#EAF2F8 0%,#EAF2F8 100%);border-top:1px solid var(--line);padding:60px 0}
@@ -575,6 +592,10 @@
     font-size:12.2px;font-weight:750;color:var(--ink-2);cursor:pointer;transition:.16s}
   .tc-tab:hover{border-color:var(--blue-line);color:var(--blue-600)}
   .tc-tab.on{background:var(--blue);border-color:var(--blue);color:#fff}
+  .tc-tab--jump{display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:var(--blue-soft);
+    border-color:var(--blue-line);color:var(--blue-700)}
+  .tc-tab--jump span{font-size:10.2px;font-weight:850;background:#fff;border-radius:6px;padding:1px 6px;color:var(--blue-600)}
+  .tc-tab--jump:hover{background:#fff}
   .tc-filter-note{margin:9px 0 0;font-size:11.4px;color:var(--ink-3);line-height:1.55}
   .tc-card[hidden]{display:none}
   .tc-card.is-city{border-color:var(--blue);box-shadow:0 0 0 3px rgba(15,92,151,.16)}
@@ -680,6 +701,42 @@
   .cl-table .num{text-align:right;font-variant-numeric:tabular-nums}
   .cl-src{margin:8px 0 0;font-size:10.6px;color:var(--ink-3);line-height:1.55}
   .cl-note{margin:12px 2px 0;font-size:11px;color:var(--ink-3);line-height:1.6}
+
+  /* ============================== 출국 전 보험·환전 비교 ============================== */
+  .dk{margin-top:14px;display:grid;gap:12px}
+  .dk-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:17px 18px}
+  .dk-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:13px}
+  .dk-head h3{margin:0 0 4px;font-size:15.5px;font-weight:850;letter-spacing:-0.035em;color:var(--navy)}
+  .dk-head p{margin:0;font-size:11.6px;color:var(--ink-2);line-height:1.62}
+  .dk-tag{flex:0 0 auto;font-size:10px;font-weight:800;color:var(--blue-600);background:var(--blue-soft);
+    border-radius:7px;padding:4px 8px;white-space:nowrap}
+  .dk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+  @media (max-width:900px){ .dk-grid{grid-template-columns:1fr} }
+  .dk-col{display:flex;flex-direction:column;gap:9px;border:1px solid var(--line);border-radius:14px;padding:13px 14px;background:#FBFCFD}
+  .dk-col.is-best{border-color:var(--blue-line);background:var(--blue-soft)}
+  .dk-name{font-size:13.4px;font-weight:850;letter-spacing:-0.025em;color:var(--navy);line-height:1.35}
+  .dk-issuer{font-size:10.4px;color:var(--ink-3);margin-top:-6px}
+  .dk-big{font-size:14.6px;font-weight:850;letter-spacing:-0.035em;color:var(--blue-700);line-height:1.3}
+  .dk-big small{display:block;font-size:10.2px;font-weight:700;color:var(--ink-3);letter-spacing:0}
+  .dk-rows{margin:0;display:grid;gap:6px}
+  .dk-rows div{display:grid;gap:1px;padding-top:6px;border-top:1px dashed var(--line)}
+  .dk-rows dt{font-size:9.6px;font-weight:850;color:var(--ink-3);letter-spacing:.02em}
+  .dk-rows dd{margin:0;font-size:11.2px;color:var(--ink-2);line-height:1.55}
+  .dk-pick{margin-top:auto;font-size:10.6px;font-weight:800;color:var(--blue-700);background:#fff;border:1px solid var(--blue-line);
+    border-radius:8px;padding:6px 8px;line-height:1.45}
+  .dk-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:11px}
+  .dk-go{display:inline-flex;align-items:center;gap:4px;font-size:11.4px;font-weight:820;color:var(--blue-600);text-decoration:none}
+  .dk-go .ic{width:12px;height:12px}
+  .dk-go:hover{text-decoration:underline}
+  .dk-src{font-size:10.2px;color:var(--ink-3);line-height:1.55}
+  .dk-verdict{margin:0 0 12px;border-radius:12px;padding:10px 12px;background:var(--soft);border:1px solid var(--line);
+    font-size:11.8px;color:var(--ink-2);line-height:1.62}
+  .dk-verdict b{color:var(--navy);font-weight:850}
+  .dk-checks{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  @media (max-width:900px){ .dk-checks{grid-template-columns:1fr} }
+  .dk-checks li{border:1px solid var(--line);border-radius:11px;padding:9px 11px;background:#fff}
+  .dk-checks b{display:block;font-size:11.4px;font-weight:830;color:var(--navy);letter-spacing:-0.02em;margin-bottom:2px}
+  .dk-checks span{font-size:11px;color:var(--ink-2);line-height:1.58}
 
   /* ============================== 예약 전 체크 ============================== */
   .howto{background:#fff;padding:60px 0 66px;border-top:1px solid var(--line)}
@@ -1827,7 +1884,10 @@
     .ess .ess-go{font-size:9.8px}
     .ess-cp-note{font-size:10px;padding:8px 10px}
     .tc-group{margin-top:12px}
-    .tc-flights,.tc-grid{grid-template-columns:1fr 1fr;gap:6px}
+    .tc-flights,.tc-grid,.tc-acts{grid-template-columns:1fr 1fr;gap:6px}
+    .tc-act{padding:9px 10px;border-radius:11px}
+    .tc-act-t{font-size:11.6px}
+    .tc-act-h{font-size:10px}
     .tc-flight,.tc-card{padding:9px 10px;border-radius:11px}
     .tc-city{font-size:12.6px}
     .tc-fr{font-size:12px}

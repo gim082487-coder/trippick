@@ -434,7 +434,7 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
     items = [
         f'<a class="qn accent" href="#regions"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></span><b>투어 찾기</b><i>{len(tours)}개</i></a>',
         f'<a class="qn" href="cities/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>도시 페이지</b><i>{len(HUB_LIST)}곳</i></a>',
-        f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공</b><i>{len(tc_flights) + len(tc_hotels)}개</i></a>',
+        f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>{len(tc_flights) + len(tc_hotels) + len(tripcom.get("tickets") or []) + len(tripcom.get("transfers") or []) + len(tripcom.get("cars") or [])}개</i></a>',
         f'<a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>',
         '<a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>',
         f'<a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>{len(essentials["products"])}개</i></a>',
@@ -1091,7 +1091,77 @@ def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
     <p class="cl-note">수수료·규정은 {esc(check['updated'])} 확인 기준입니다. 정부 요금은 예고 없이 바뀌므로 결제·출국 직전에 각 공식 사이트에서 다시 확인하세요. 체크 상태는 이 브라우저에만 저장되며 서버로 보내지 않습니다.</p>"""
 
 
+
+def _dk_col(c: dict, best: bool = False) -> str:
+    rows = "".join(
+        f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in c.get("rows", [])
+    )
+    return (
+        f'<div class="dk-col{" is-best" if best else ""}">'
+        f'<div class="dk-name">{esc(c["name"])}</div>'
+        f'<div class="dk-issuer">{esc(c.get("issuer") or c.get("kind", ""))}</div>'
+        f'<div class="dk-big">{esc(c["big"])}<small>{esc(c.get("bigSub", ""))}</small></div>'
+        f'<dl class="dk-rows">{rows}</dl>'
+        f'<span class="dk-pick">{esc(c["pick"])}</span>'
+        f'<a class="dk-go" href="{esc(c["url"])}" target="_blank" rel="noopener">공식 안내 '
+        f'<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        f'</div>'
+    )
+
+
+def render_depart_kit(check: dict) -> str:
+    """출국 체크리스트 아래에 붙는 환전 카드·여행자보험 비교 카드.
+
+    제휴 링크가 아니라 카드사·보험사 공식 안내로 보낸다(수수료를 받지 않는 정보 섹션).
+    """
+    money = check["money"]
+    ins = check["insurance"]
+    mcards = "".join(_dk_col(c) for c in money["cards"])
+    icards = "".join(_dk_col(c) for c in ins["items"])
+    checks = "".join(
+        f'<li><b>{esc(t)}</b><span>{esc(d)}</span></li>' for t, d in ins["checks"]
+    )
+    return f"""<div class="dk">
+  <section class="dk-card" id="fxcards" aria-labelledby="fxcards-t">
+    <div class="dk-head">
+      <div><h3 id="fxcards-t">💳 해외결제·환전 카드 3종 비교</h3><p>{esc(money["intro"])}</p></div>
+      <span class="dk-tag">{esc(money["updated"])} 확인</span>
+    </div>
+    <p class="dk-verdict">{money["verdict"]}</p>
+    <div class="dk-grid">{mcards}</div>
+    <p class="cl-note">{esc(money["caution"])}</p>
+    <p class="dk-src">출처: {esc(" · ".join(money["sources"]))}</p>
+  </section>
+  <section class="dk-card" id="travelins" aria-labelledby="travelins-t">
+    <div class="dk-head">
+      <div><h3 id="travelins-t">🛡️ 해외여행자보험 3곳 비교</h3><p>{esc(ins["intro"])}</p></div>
+      <span class="dk-tag">{esc(ins["updated"])} 확인</span>
+    </div>
+    <p class="dk-verdict">{ins["verdict"]}</p>
+    <div class="dk-grid">{icards}</div>
+    <ul class="dk-checks">{checks}</ul>
+    <p class="cl-note">{esc(ins["caution"])}</p>
+    <p class="dk-src">출처: {esc(" · ".join(ins["sources"]))}</p>
+  </section>
+</div>"""
+
+
 # ---------------------------------------------------------------- 트립닷컴 제휴
+def tc_act_card(a: dict, cta: str = "") -> str:
+    """입장권·공항픽업·렌터카 카드. 숙소 카드(.tc-card)와 달리 필터 JS 가 건드리지 않도록 별도 클래스를 쓴다."""
+    if not cta:
+        cta = "입장권 보기" if a.get("category") == "ticket" else ("렌터카 보기" if a.get("category") == "car" else "픽업 예약")
+    return (
+        f'<a class="tc-act" href="{esc(a["url"])}" target="_blank" rel="noopener sponsored">'
+        f'<span class="tc-act-top"><span class="tc-act-k">{esc(a.get("label", ""))}</span>'
+        f'<span class="tc-act-city">{esc(a["city"])}{flag_svg(a.get("flag", ""), 13, 9.1)}</span></span>'
+        f'<b class="tc-act-t">{esc(a["title"])}</b>'
+        f'<span class="tc-act-h">{esc(a.get("highlight", ""))}</span>'
+        f'<span class="tc-go">{esc(cta)} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>'
+        f'</a>'
+    )
+
+
 def render_tripcom(tc: dict) -> str:
     """트립닷컴 파트너스 전용 숙소·항공 큐레이션.
 
@@ -1130,9 +1200,17 @@ def render_tripcom(tc: dict) -> str:
         for i, f in enumerate(filters)
     )
     src = tc["source"]
+    tickets = tc.get("tickets") or []
+    transfers = tc.get("transfers") or []
+    cars = tc.get("cars") or []
+    acts = tc.get("activitySource") or {}
+    ticket_cards = "".join(tc_act_card(a) for a in tickets)
+    pickup_cards = "".join(tc_act_card(a) for a in transfers + cars)
+    ticket_order = " · ".join(a["city"] for a in tickets)
+    transfer_order = " · ".join(dict.fromkeys(a["city"] for a in transfers))
     return f"""<div class="tc-filter">
-      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터">{tabs}</div>
-      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선을 용도별로 추렸습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
+      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터">{tabs}<a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>{len(tickets)}</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>{len(transfers) + len(cars)}</span></a></div>
+      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선에 입장권 {len(tickets)}개 도시·공항픽업 {len(transfers)}개 공항·렌터카 {len(cars)}곳을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
     </div>
     <div class="tc-group" data-tc-group="flight">
       <div class="ess-ghead"><h3>✈️ 항공권 검색</h3><span class="n">{len(tc["flights"])}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">편도 기준 · 실시간 최저가</span></div>
@@ -1143,6 +1221,16 @@ def render_tripcom(tc: dict) -> str:
       <div class="tc-grid">{hotels}</div>
       <p class="tc-empty" id="tcEmpty" hidden>이 분류에 해당하는 숙소가 아직 없습니다. ‘전체’로 돌아가면 도시 15곳을 모두 볼 수 있습니다.</p>
       <p class="ess-cp-note">{esc(tc["disclosure"])} 링크는 {esc(src["checked"])} 트립닷컴 파트너스에서 발급했고, 요율은 호텔 5~7%·국제선 항공 0.5~0.8%(예약 건수에 따라)입니다.</p>
+    </div>
+    <div class="tc-group tc-group--act" data-tc-group="ticket" id="tcTickets">
+      <div class="ess-ghead"><h3>🎟️ 입장권·액티비티</h3><span class="n">{len(tickets)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(ticket_order)} · 한국어 페이지</span></div>
+      <div class="tc-acts">{ticket_cards}</div>
+      <p class="ess-cp-note">파크·전망대·크루즈별 실제 판매 상품과 가격은 트립닷컴 페이지에서 날짜를 넣어야 확정됩니다. 예약·결제는 트립닷컴에서 그대로 이루어지고, 트립픽은 가격에 아무것도 더하지 않습니다.</p>
+    </div>
+    <div class="tc-group tc-group--act" data-tc-group="transport" id="tcTransfers">
+      <div class="ess-ghead"><h3>🚗 공항픽업·렌터카</h3><span class="n">{len(transfers) + len(cars)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(transfer_order)}{" · 렌터카 " + str(len(cars)) + "곳" if cars else ""}</span></div>
+      <div class="tc-acts">{pickup_cards}</div>
+      <p class="ess-cp-note">공항픽업은 도착 공항과 시내 목적지를, 렌터카는 인수·반납 지점과 날짜를 넣어야 실제 요금이 나옵니다. 표시 요금은 트립닷컴 페이지 기준이고 차종·시간대에 따라 달라집니다. {esc(acts.get("rate", ""))}</p>
     </div>"""
 
 
@@ -1851,6 +1939,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @RESTAURANTS -->", render_restaurants(data, rest, guides, tripcom))
     html = replace_block(html, "<!-- @GIFTS -->", render_gifts(data, gifts, essentials, tripcom, guides))
     html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
+    html = replace_block(html, "<!-- @MONEYKIT -->", render_depart_kit(checklist))
     html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom))
     html = replace_block(html, "<!-- @HUB_STRIP -->", render_hub_strip(data))
     html = replace_block(html, "<!-- @QUICKSTRIP -->", render_quickstrip(data, courses, essentials, tripcom))
