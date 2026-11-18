@@ -606,6 +606,118 @@
   }
   @media (max-width:520px){ .af-row.two{grid-template-columns:1fr} }
 
+  /* ============================== 트립닷컴 필터 ============================== */
+  .tc-filter{margin:4px 0 6px}
+  .tc-tabs{display:flex;gap:7px;flex-wrap:wrap}
+  .tc-tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font:inherit;
+    font-size:12.2px;font-weight:750;color:var(--ink-2);cursor:pointer;transition:.16s}
+  .tc-tab:hover{border-color:var(--blue-line);color:var(--blue-600)}
+  .tc-tab.on{background:var(--blue);border-color:var(--blue);color:#fff}
+  .tc-filter-note{margin:9px 0 0;font-size:11.4px;color:var(--ink-3);line-height:1.55}
+  .tc-card[hidden]{display:none}
+  .tc-card.is-city{border-color:var(--blue);box-shadow:0 0 0 3px rgba(15,92,151,.16)}
+  .tc-empty{margin:12px 0 0;padding:14px;border:1px dashed var(--line);border-radius:12px;font-size:12.2px;color:var(--ink-3);text-align:center}
+  .stat-link{display:inline-flex;align-items:center;gap:4px;text-decoration:none;color:var(--blue-600);
+    border-color:var(--blue-line);background:var(--blue-soft)}
+  .stat-link .ic{width:12px;height:12px}
+  .stat-link:hover{background:#fff}
+
+  /* ============================== 출국 준비 체크리스트 ============================== */
+  .checklist{padding:64px 0;background:#fff;border-top:1px solid var(--line)}
+  .checklist .sec-head{margin-bottom:20px}
+  .cl-card{border:1px solid var(--line);border-radius:24px;background:var(--soft);padding:16px;box-shadow:var(--sh-1)}
+  @media (max-width:620px){ .cl-card{padding:10px;border-radius:18px} }
+  .cl-tabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:thin}
+  .cl-tab{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;border:1px solid var(--line);background:#fff;
+    border-radius:999px;padding:8px 13px;cursor:pointer;font:inherit;font-size:12.6px;color:var(--ink-2);transition:.16s}
+  .cl-tab b{font-weight:820;color:var(--navy);letter-spacing:-0.02em}
+  .cl-tab span{font-size:10.4px;color:var(--ink-3);background:var(--line-2);border-radius:6px;padding:2px 6px}
+  .cl-tab:hover{border-color:var(--blue-line)}
+  .cl-tab.on{border-color:var(--blue);background:var(--blue-soft);box-shadow:0 0 0 3px rgba(15,92,151,.08)}
+  .cl-tab.on span{background:#fff;color:var(--blue-600)}
+  .cl-panel[hidden]{display:none}
+  .cl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:2px}
+  .cl-grid--2{margin-top:12px}
+  @media (max-width:900px){ .cl-grid{grid-template-columns:1fr} }
+  .cl-block{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 17px}
+  .cl-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .cl-h h3{margin:0;font-size:14px;font-weight:850;letter-spacing:-0.03em;color:var(--navy)}
+  .cl-fee{font-size:12.2px;font-weight:850;color:var(--blue-600);background:var(--blue-soft);border-radius:8px;padding:5px 9px;white-space:nowrap}
+  .cl-tag{font-size:10.4px;font-weight:800;color:var(--ink-3);border:1px solid var(--line);border-radius:6px;padding:3px 7px;white-space:nowrap}
+  .cl-sum{margin:0 0 12px;font-size:12.4px;line-height:1.7;color:var(--ink-2)}
+  .cl-docs{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .cl-docs li{border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#FBFCFD}
+  .cl-doc-h{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+  .cl-doc-h b{font-size:12.8px;letter-spacing:-0.02em;color:var(--navy)}
+  .cl-doc-fee{margin-left:auto;font-size:11.4px;font-weight:820;color:var(--navy);background:var(--amber-soft);
+    border:1px solid var(--amber-line);border-radius:6px;padding:2px 7px;font-style:normal;white-space:nowrap}
+  .cl-must,.cl-opt{font-style:normal;font-size:9.8px;font-weight:850;border-radius:5px;padding:2px 5px;letter-spacing:.02em}
+  .cl-must{background:var(--coral-soft);color:var(--coral)}
+  .cl-opt{background:var(--line-2);color:var(--ink-3)}
+  .cl-docs p{margin:6px 0 0;font-size:11.6px;color:var(--ink-2);line-height:1.62}
+  .cl-doc-m{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:10.8px;color:var(--ink-3)}
+  .cl-doc-go{color:var(--blue-600);font-weight:800;text-decoration:none}
+  .cl-doc-go:hover{text-decoration:underline}
+  .cl-prog{font-size:12.4px;font-weight:800;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .cl-prog b{color:var(--blue-600);font-size:14px}
+  .cl-bar{height:6px;border-radius:999px;background:var(--line-2);overflow:hidden;margin-bottom:10px}
+  .cl-bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:999px;transition:width .25s ease}
+  .cl-items{list-style:none;margin:0;padding:0;display:grid;gap:1px}
+  .cl-item{display:flex;gap:10px;align-items:flex-start;padding:7px 6px;border-radius:10px;cursor:pointer;transition:.14s}
+  .cl-item:hover{background:var(--line-2)}
+  .cl-item input{position:absolute;opacity:0;width:1px;height:1px}
+  .cl-box{flex:0 0 auto;width:20px;height:20px;border-radius:7px;border:1.6px solid #C9D3DD;background:#fff;position:relative;transition:.15s;margin-top:1px}
+  .cl-item input:checked + .cl-box{background:var(--blue);border-color:var(--blue)}
+  .cl-item input:checked + .cl-box::after{content:"";position:absolute;left:6px;top:2.5px;width:5px;height:9px;
+    border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(40deg)}
+  .cl-item input:focus-visible + .cl-box{box-shadow:0 0 0 3px rgba(15,92,151,.18)}
+  .cl-txt{display:grid;gap:2px}
+  .cl-txt b{font-size:12.6px;font-weight:720;letter-spacing:-0.02em;line-height:1.45;color:var(--ink)}
+  .cl-txt i{font-size:11px;color:var(--ink-3);font-style:normal;line-height:1.45}
+  .cl-item:has(input:checked) .cl-txt b{color:var(--ink-3);text-decoration:line-through}
+  .cl-reset{margin-top:10px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 11px;
+    font:inherit;font-size:11.4px;font-weight:700;color:var(--ink-3);cursor:pointer}
+  .cl-reset:hover{color:var(--coral);border-color:var(--coral-soft)}
+  .cl-facts{margin:0;display:grid;gap:10px}
+  .cl-facts div{display:grid;gap:3px;padding-bottom:9px;border-bottom:1px dashed var(--line)}
+  .cl-facts div:last-child{border-bottom:0;padding-bottom:0}
+  .cl-facts dt{font-size:11px;font-weight:850;color:var(--blue-600);letter-spacing:.02em}
+  .cl-facts dd{margin:0;font-size:11.8px;color:var(--ink-2);line-height:1.68}
+  .cl-notes{margin:10px 0 0;padding-left:16px;display:grid;gap:4px;font-size:11.4px;color:var(--ink-3);line-height:1.6}
+  .cl-links{display:grid;gap:8px}
+  .cl-link{display:grid;gap:2px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;
+    transition:.16s;background:#FBFCFD}
+  .cl-link:hover{border-color:var(--blue-line);box-shadow:var(--sh-1);transform:translateY(-1px)}
+  .cl-link-k{font-size:10.4px;font-weight:850;color:var(--blue-600)}
+  .cl-link b{font-size:12.2px;font-weight:720;color:var(--ink);line-height:1.42;letter-spacing:-0.02em}
+  .cl-link-p{font-size:11.2px;color:var(--ink-3);font-weight:700}
+  .cl-link--tc{background:var(--blue-soft);border-color:var(--blue-line)}
+  .cl-link--tc b{color:var(--blue-700)}
+  .cl-calc{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:12px;background:#fff;
+    border:1px solid var(--line);border-radius:18px;padding:16px 17px}
+  @media (max-width:900px){ .cl-calc{grid-template-columns:1fr} }
+  .cl-calc h3{margin:0 0 6px;font-size:14px;font-weight:850;letter-spacing:-0.03em;color:var(--navy)}
+  .cl-calc-in p{margin:0;font-size:11.8px;color:var(--ink-2);line-height:1.6}
+  .cl-input{display:grid;gap:5px;margin:11px 0 8px;max-width:260px}
+  .cl-input span{font-size:11px;font-weight:800;color:var(--ink-3)}
+  .cl-input input{height:44px;border:1px solid var(--line);border-radius:10px;padding:0 12px;font:inherit;
+    font-size:15px;font-weight:820;background:var(--field);color:var(--ink);font-variant-numeric:tabular-nums}
+  .cl-input input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(15,92,151,.12);background:#fff}
+  .cl-verdict{margin:0;font-size:12.4px;font-weight:750;line-height:1.6;border-radius:10px;padding:10px 12px;
+    background:var(--line-2);color:var(--ink-2)}
+  .cl-verdict b{font-weight:850}
+  .cl-verdict.ok{background:var(--ok-soft);color:var(--ok)}
+  .cl-verdict.warn{background:var(--amber-soft);color:var(--amber)}
+  .cl-verdict.bad{background:var(--coral-soft);color:var(--coral)}
+  .cl-calc-note{margin:8px 0 0 !important;font-size:11px !important;color:var(--ink-3) !important;line-height:1.6}
+  .cl-calc-out h4{margin:0 0 8px;font-size:12.4px;font-weight:850;letter-spacing:-0.02em;color:var(--navy)}
+  .cl-table{width:100%;border-collapse:collapse;font-size:11.8px;color:var(--ink-2)}
+  .cl-table th,.cl-table td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}
+  .cl-table th{font-size:10.6px;font-weight:800;color:var(--ink-3);letter-spacing:.02em}
+  .cl-table .num{text-align:right;font-variant-numeric:tabular-nums}
+  .cl-src{margin:8px 0 0;font-size:10.6px;color:var(--ink-3);line-height:1.55}
+  .cl-note{margin:12px 2px 0;font-size:11px;color:var(--ink-3);line-height:1.6}
+
   /* ============================== 예약 전 체크 ============================== */
   .howto{background:#fff;padding:60px 0 66px;border-top:1px solid var(--line)}
   .howto .sec-head{margin-bottom:20px}
@@ -1403,6 +1515,7 @@
     <nav class="nav" aria-label="주요 메뉴">
       <a href="#courses" data-nav="courses">추천 코스</a>
       <a href="#planner" data-nav="planner">예산 계산기</a>
+      <a href="#checklist" data-nav="checklist">출국 준비</a>
       <a href="#regions" data-nav="regions">지역·투어</a>
       <a href="guides/">여행 가이드</a>
       <a href="#essentials" data-nav="essentials">여행 필수품</a>
@@ -1639,6 +1752,313 @@
         <noscript><p class="pl-disclaimer">조합 계산은 자바스크립트로 동작합니다. 스크립트가 꺼져 있으면 아래 지역·투어 목록에서 상품을 직접 비교해 주세요.</p></noscript>
         <p class="pl-disclaimer">표시된 총액은 <b>상품가 + 상세페이지에 적힌 필수 현장 추가금 + 붙인 eSIM·패스 가격</b>입니다. 불포함 식사·선택관광·쇼핑처럼 개인차가 큰 지출은 넣지 않았습니다. 가격은 2026.11.16~17 각 상세페이지 기준 최저가이고, 날짜·좌석·옵션에 따라 실제 결제액은 달라집니다.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="checklist" id="checklist">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t">
+        <span class="kicker">DEPARTURE KIT</span>
+        <h2>출국 준비 <em>체크리스트</em>와 입국서류 계산기</h2>
+        <p>나라를 고르면 입국서류·수수료, 기내반입 규정, 준비물 목록이 한 번에 바뀝니다. 체크는 이 브라우저에 저장되고, eSIM·어댑터·보조배터리는 바로 구매 링크로 이어집니다.</p>
+      </div>
+      <div class="sh-meta">수수료·규정은 2026.11.18 확인 · 정부 공식 사이트 기준 · 결제 전 재확인</div>
+    </div>
+    <div class="cl-card">
+      <div class="cl-tabs" role="tablist" aria-label="나라 선택"><button class="cl-tab on" type="button" role="tab" id="cltab-jp" aria-controls="clpanel-jp" aria-selected="true" data-cl-tab="jp"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg><b>일본</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-vn" aria-controls="clpanel-vn" aria-selected="false" data-cl-tab="vn"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-vn"/></svg><b>베트남</b><span>무비자 45일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-th" aria-controls="clpanel-th" aria-selected="false" data-cl-tab="th"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-th"/></svg><b>태국</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-tw" aria-controls="clpanel-tw" aria-selected="false" data-cl-tab="tw"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-tw"/></svg><b>대만</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-us" aria-controls="clpanel-us" aria-selected="false" data-cl-tab="us"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-us"/></svg><b>미국</b><span>ESTA 필요</span></button><button class="cl-tab" type="button" role="tab" id="cltab-eu" aria-controls="clpanel-eu" aria-selected="false" data-cl-tab="eu"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-eu"/></svg><b>유럽</b><span>무비자 90/180일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-oc" aria-controls="clpanel-oc" aria-selected="false" data-cl-tab="oc"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-oc"/></svg><b>호주·뉴질랜드</b><span>ETA·NZeTA 필요</span></button><button class="cl-tab" type="button" role="tab" id="cltab-kr" aria-controls="clpanel-kr" aria-selected="false" data-cl-tab="kr"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-kr"/></svg><b>국내</b><span>신분증</span></button></div>
+    <div class="cl-panel" id="clpanel-jp" role="tabpanel" aria-labelledby="cltab-jp" data-cl-panel="jp">
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">0원</span></div>
+            <p class="cl-sum">여권만 있으면 됩니다. 다만 입국심사·세관 신고를 QR로 바꾸는 Visit Japan Web을 미리 등록하면 공항에서 종이 신고서를 쓰지 않습니다.</p>
+            <ul class="cl-docs"><li><div class="cl-doc-h"><b>Visit Japan Web 등록(입국심사·세관 QR)</b><em class="cl-must">필수</em><span class="cl-doc-fee">무료</span></div><p>웹사이트에서 여권·항공편·숙소를 입력하면 QR 2개가 나옵니다. 종이 입국카드로도 입국할 수 있지만 기내에서 작성해야 합니다.</p><div class="cl-doc-m"><span>출발 2주 전~전날</span><a class="cl-doc-go" href="https://www.vjw.digital.go.jp/" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>여권 유효기간</b><em class="cl-must">필수</em><span class="cl-doc-fee">—</span></div><p>무비자 단기 체류는 여권 유효기간이 남아 있으면 되지만, 항공사 탑승 규정상 6개월 이상 남기는 것이 안전합니다.</p><div class="cl-doc-m"><span>예약 전</span></div></li><li><div class="cl-doc-h"><b>왕복(또는 출국) 항공권</b><em class="cl-must">필수</em><span class="cl-doc-fee">—</span></div><p>입국심사에서 출국 항공권을 요구할 수 있습니다. 예약 확인서를 휴대폰에 저장하세요.</p><div class="cl-doc-m"><span>출국 전</span></div></li></ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/9</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items"><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:passport" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여권 유효기간 6개월 이상 확인</b><i>만료 6개월 전이면 재발급</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:vjw" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>Visit Japan Web QR 2개 저장</b><i>입국심사·세관 신고</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:flight" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>왕복 항공권·숙소 주소 저장</b><i>입국심사에서 확인</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:esim" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>일본 eSIM 설치(출발 전 QR 등록)</b><i>3일 무제한 16,830원</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:adapter" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>멀티어댑터(A 타입) 챙기기</b><i>110V·100V</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:powerbank" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>보조배터리 100Wh 이하 2개 이하, 기내 휴대</b><i>위탁 금지</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:liquid" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>액체류 100ml 이하·1L 지퍼백</b><i>기내 가방에</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:cash" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>엔화 현금 준비</b><i>100엔 = 940원</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="jp:insurance" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여행자보험 가입</b><i>해외 의료비 대비</i></span></label></li></ul>
+            <button class="cl-reset" type="button" data-cl-reset="jp">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.</dd></div>
+            <div><dt>액체류</dt><dd>국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.</dd></div>
+            <div><dt>전원·플러그</dt><dd>A·B 타입(110V·100V). 한국 C·F 플러그는 어댑터가 필요하고, 220V 전용 기기는 변압기 없이 쓰면 안 됩니다.</dd></div>
+            <div><dt>현금</dt><dd>엔화 현금. 100엔 = 940원 기준. 교통패스·eSIM은 미리 결제하고, 현금은 1인 1일 1만엔 안팎이면 소액 결제에 충분합니다.</dd></div>
+          </dl>
+          <ul class="cl-notes"><li>일본 입국 시 100ml 액체 규정은 국제선 공통입니다.</li><li>삿포로 2월은 영하 8도까지 내려가 방한화가 필요합니다.</li></ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links"><a class="cl-link" href="https://naver.me/5DZ0H2Wv" target="_blank" rel="noopener sponsored"><span class="cl-link-k">일본 eSIM(3일·투게더팩)</span><b>[투게더팩]일본 이심 eSIM 후쿠오카 오사카 소프트뱅크 완전 무제한 3일 유심사 알림톡</b><span class="cl-link-p">16,830원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="tokyo"><span class="cl-link-k">숙소·항공</span><b>도쿄 숙소 최저가(트립닷컴)</b><span class="cl-link-p">우에노·신주쿠 · 후지 day trip</span></a></div>
+        </div>
+      </div>
+    </div><div class="cl-panel" id="clpanel-vn" role="tabpanel" aria-labelledby="cltab-vn" data-cl-panel="vn" hidden>
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">0원 (45일 이내)</span></div>
+            <p class="cl-sum">45일 이내 관광이면 비자가 필요 없습니다(결의 44/NQ-CP, 2028-03-14까지). 46일 이상이면 전자비자 25달러(단수)·50달러(복수)를 출발 전에 받아야 합니다.</p>
+            <ul class="cl-docs"><li><div class="cl-doc-h"><b>무비자 입국 조건</b><em class="cl-must">필수</em><span class="cl-doc-fee">무료</span></div><p>입국일 기준 여권 6개월 이상 + 출국 항공권. 베트남을 나가는 표면 되고 왕복일 필요는 없습니다.</p><div class="cl-doc-m"><span>출국 전</span></div></li><li><div class="cl-doc-h"><b>전자비자(e-visa, 46일 이상 체류 시)</b><em class="cl-opt">선택</em><span class="cl-doc-fee">단수 25달러(35,500원)·복수 50달러(71,000원)</span></div><p>공식 사이트는 evisa.gov.vn(또는 thithucdientu.gov.vn)뿐입니다. 처리 3영업일, 수수료는 거절돼도 환불되지 않습니다.</p><div class="cl-doc-m"><span>출발 2주 전</span><a class="cl-doc-go" href="https://evisa.gov.vn/" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>왕복(또는 출국) 항공권</b><em class="cl-must">필수</em><span class="cl-doc-fee">—</span></div><p>관광 목적이면 출국 예약 항공권을 지참해야 합니다.</p><div class="cl-doc-m"><span>출국 전</span></div></li></ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/9</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items"><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:passport" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여권 유효기간 6개월 이상(입국일 기준)</b><i>무비자 조건</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:flight" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>출국 항공권(베트남을 나가는 표) 저장</b><i>왕복 아니어도 됨</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:visa" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>46일 이상이면 전자비자 발급</b><i>evisa.gov.vn 25달러</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:esim" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>베트남 eSIM 설치</b><i>3일 17,850원</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:adapter" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>멀티어댑터(A·C 타입) 챙기기</b><i>220V</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:powerbank" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>보조배터리 2개 이하·기내 휴대</b><i>위탁 금지</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:rain" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>우기 대비 우비·방수팩</b><i>11월 다낭 21일 비</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:cash" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>동 현금 환전</b><i>100동 = 5.5원</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="vn:insurance" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여행자보험 가입</b><i>오토바이 사고 대비</i></span></label></li></ul>
+            <button class="cl-reset" type="button" data-cl-reset="vn">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.</dd></div>
+            <div><dt>액체류</dt><dd>국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.</dd></div>
+            <div><dt>전원·플러그</dt><dd>A·C 타입(220V). 한국 C·F 플러그 중 C는 그대로 꽂히는 경우가 많지만 F(둥근 굵은 핀)는 어댑터가 필요합니다.</dd></div>
+            <div><dt>현금</dt><dd>동(VND) 현금. 100동 = 5.5원이라 10만동이 5,500원입니다. 시장·노점은 현금, 호텔·마사지는 카드가 됩니다.</dd></div>
+          </dl>
+          <ul class="cl-notes"><li>나트랑·다낭 11월은 한 달에 21일 비가 오는 우기입니다. 우비·방수팩을 챙기세요.</li><li>오버스테이는 출국 시 벌금이 붙고 재입국이 제한될 수 있습니다.</li></ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links"><a class="cl-link" href="https://naver.me/FuN2VsmR" target="_blank" rel="noopener sponsored"><span class="cl-link-k">베트남 eSIM(3일·투게더팩)</span><b>[투게더팩]베트남 이심 eSIM 다낭 나트랑 비나폰 완전 무제한 3일 유심사 알림톡</b><span class="cl-link-p">17,850원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="danang"><span class="cl-link-k">숙소·항공</span><b>다낭 숙소 최저가(트립닷컴)</b><span class="cl-link-p">미케비치 · 호이안 30분</span></a></div>
+        </div>
+      </div>
+    </div><div class="cl-panel" id="clpanel-th" role="tabpanel" aria-labelledby="cltab-th" data-cl-panel="th" hidden>
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">0원</span></div>
+            <p class="cl-sum">한국은 1981년 비자면제협정으로 90일까지 무비자입니다. 태국이 2026-09-15부터 다른 나라 무비자를 30일로 줄였지만, 협정이 우선 적용돼 한국은 그대로 90일입니다. 대신 TDAC(전자 입국카드)를 도착 3일 안에 내야 합니다.</p>
+            <ul class="cl-docs"><li><div class="cl-doc-h"><b>TDAC(태국 전자 입국카드)</b><em class="cl-must">필수</em><span class="cl-doc-fee">무료</span></div><p>tdac.immigration.go.th 에서 제출합니다. 종이 입국카드를 대신하며, 입국할 때마다 새로 내야 합니다. 가족은 한 번에 10명까지 대신 작성할 수 있습니다.</p><div class="cl-doc-m"><span>도착 3일 전~도착 전</span><a class="cl-doc-go" href="https://tdac.immigration.go.th/" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>무비자 체류 90일</b><em class="cl-must">필수</em><span class="cl-doc-fee">무료</span></div><p>취업 목적이 아닌 관광이면 90일까지 체류 가능합니다. 여권 6개월 이상, 출국 항공권, 체류 자금(1인 1만 바트 안내)을 확인할 수 있습니다.</p><div class="cl-doc-m"><span>—</span></div></li><li><div class="cl-doc-h"><b>왕복(또는 출국) 항공권</b><em class="cl-must">필수</em><span class="cl-doc-fee">—</span></div><p>입국심사에서 출국 증빙을 요구할 수 있습니다.</p><div class="cl-doc-m"><span>출국 전</span></div></li></ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/9</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items"><li><label class="cl-item"><input type="checkbox" data-cl-id="th:passport" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여권 유효기간 6개월 이상</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="th:tdac" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>TDAC 제출(도착 3일 안)</b><i>무료·공식 사이트</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="th:flight" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>출국 항공권 저장</b><i>입국심사 확인</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="th:funds" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>체류 자금 증빙(1인 1만 바트 안내)</b><i>현금·카드 명세</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="th:adapter" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>멀티어댑터(A·B·C) 챙기기</b><i>220V</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="th:powerbank" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>보조배터리 2개 이하, 32,000mAh 이하</b><i>태국 출발 노선 제한</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="th:liquid" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>액체류 100ml 이하·1L 지퍼백</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="th:cash" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>바트 현금 준비</b><i>노점·송태우</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="th:insurance" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여행자보험 가입</b><i>수상 활동 대비</i></span></label></li></ul>
+            <button class="cl-reset" type="button" data-cl-reset="th">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.</dd></div>
+            <div><dt>액체류</dt><dd>국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.</dd></div>
+            <div><dt>전원·플러그</dt><dd>A·B·C 타입(220V). 한국 플러그가 대체로 꽂히지만 접지 구멍이 없는 경우가 많아 멀티어댑터가 편합니다.</dd></div>
+            <div><dt>현금</dt><dd>바트(THB) 현금. 카드가 되는 곳이 많지만 노점·송태우·시장은 현금만 받습니다.</dd></div>
+          </dl>
+          <ul class="cl-notes"><li>제주항공 기준 태국 출발 노선은 32,000mAh 초과 보조배터리를 운송하지 않습니다.</li><li>입국 후 체류 기한을 넘기면 1일 500바트 벌금입니다.</li></ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiP8FH93s" target="_blank" rel="noopener sponsored"><span class="cl-link-k">RFID 여권지갑</span><b>레인디어 RFID 차단 여권지갑 (크로스백형)</b><span class="cl-link-p">13,900원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="bangkok"><span class="cl-link-k">숙소·항공</span><b>방콕 숙소 최저가(트립닷컴)</b><span class="cl-link-p">수쿰빗·실롬 · 파타야 2시간</span></a></div>
+        </div>
+      </div>
+    </div><div class="cl-panel" id="clpanel-tw" role="tabpanel" aria-labelledby="cltab-tw" data-cl-panel="tw" hidden>
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">0원</span></div>
+            <p class="cl-sum">90일 무비자입니다. 종이 입국신고서가 폐지돼 TWAC(온라인 입국신고서)를 도착 7일 전부터 무료로 제출해야 합니다. 전압이 110V라 한국 220V 기기는 변압기가 필요합니다.</p>
+            <ul class="cl-docs"><li><div class="cl-doc-h"><b>TWAC(대만 온라인 입국신고서)</b><em class="cl-must">필수</em><span class="cl-doc-fee">무료</span></div><p>twac.immigration.gov.tw 에서 제출합니다. 2025-10-01부터 종이 신고서가 폐지됐고, 가족은 1명이 16명까지 대신 작성할 수 있습니다.</p><div class="cl-doc-m"><span>도착 7일 전~입국심사 전</span><a class="cl-doc-go" href="https://twac.immigration.gov.tw/" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>무비자 90일</b><em class="cl-must">필수</em><span class="cl-doc-fee">무료</span></div><p>관광 목적 90일. 여권 6개월 이상, 왕복 또는 다음 행선지 항공권이 필요합니다.</p><div class="cl-doc-m"><span>—</span></div></li><li><div class="cl-doc-h"><b>왕복 항공권</b><em class="cl-must">필수</em><span class="cl-doc-fee">—</span></div><p></p><div class="cl-doc-m"><span>출국 전</span></div></li></ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/9</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items"><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:passport" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여권 유효기간 6개월 이상</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:twac" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>TWAC 제출(도착 7일 전부터)</b><i>무료·공식 사이트</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:flight" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>왕복 항공권 저장</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:adapter" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>멀티어댑터 + 변압기 필요 여부 확인</b><i>110V</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:esim" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>데이터 수단 준비(eSIM·로밍)</b><i>트립픽은 대만 eSIM 미취급</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:powerbank" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>보조배터리 2개 이하·기내 휴대</b><i>위탁 금지</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:liquid" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>액체류 100ml 이하·1L 지퍼백</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:cash" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>대만달러 현금·이지카드</b><i>1TWD = 44원</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="tw:insurance" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여행자보험 가입</b><i>태풍 결항 대비</i></span></label></li></ul>
+            <button class="cl-reset" type="button" data-cl-reset="tw">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.</dd></div>
+            <div><dt>액체류</dt><dd>국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.</dd></div>
+            <div><dt>전원·플러그</dt><dd>A 타입(110V). 한국 220V 기기는 어댑터만으로는 부족하고 변압기가 필요합니다. 드라이기·고데기는 호텔 비치품을 쓰는 편이 안전합니다.</dd></div>
+            <div><dt>현금</dt><dd>대만달러(TWD) 현금. 1TWD = 44원. 야시장·편의점은 현금, MRT는 교통카드(이지카드)가 편합니다.</dd></div>
+          </dl>
+          <ul class="cl-notes"><li>여름 태풍철(7~9월)에는 항공편 결항이 잦습니다.</li><li>110V 기기 확인: 노트북·휴대폰 충전기는 대부분 프리볼트입니다.</li></ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiP8FH93s" target="_blank" rel="noopener sponsored"><span class="cl-link-k">RFID 여권지갑</span><b>레인디어 RFID 차단 여권지갑 (크로스백형)</b><span class="cl-link-p">13,900원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="taipei"><span class="cl-link-k">숙소·항공</span><b>타이베이 숙소 최저가(트립닷컴)</b><span class="cl-link-p">시먼·타이베이역 · 지우펀 당일</span></a></div>
+        </div>
+      </div>
+    </div><div class="cl-panel" id="clpanel-us" role="tabpanel" aria-labelledby="cltab-us" data-cl-panel="us" hidden>
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">57,700원 (공식) ~ 80,000원 (대행)</span></div>
+            <p class="cl-sum">무비자 프로그램(VWP)으로 가려면 ESTA를 출발 전에 받아야 합니다. 2026-10-16부터 수수료가 40.62달러로 올랐고, 대행사를 끼면 8만원 안팎입니다. 공식 사이트에서 직접 하면 5만 8천원 안팎입니다.</p>
+            <ul class="cl-docs"><li><div class="cl-doc-h"><b>ESTA(전자여행허가)</b><em class="cl-must">필수</em><span class="cl-doc-fee">40.62달러 = 57,680원</span></div><p>공식 사이트 esta.cbp.dhs.gov 에서 신청합니다. 승인되면 2년(여권 만료일까지) 유효하고 여러 번 입국할 수 있습니다. 대행사는 8만원 안팎을 받습니다.</p><div class="cl-doc-m"><span>출발 72시간 전까지(권장 2주 전)</span><a class="cl-doc-go" href="https://esta.cbp.dhs.gov/" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>캐나다 eTA(토론토 경유·방문 시)</b><em class="cl-opt">선택</em><span class="cl-doc-fee">CAD 7 (약 7,000원)</span></div><p>미동부+캐나다 상품은 토론토를 방문합니다. 항공으로 캐나다에 들어가려면 eTA가 필요하며, 상품 안내문에는 금액이 표시돼 있지 않습니다.</p><div class="cl-doc-m"><span>출발 2주 전</span><a class="cl-doc-go" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>여권(전자여권)</b><em class="cl-must">필수</em><span class="cl-doc-fee">—</span></div><p>VWP는 전자여권(e-Passport)만 됩니다. 6개월 이상 유효 권장.</p><div class="cl-doc-m"><span>예약 전</span></div></li></ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/9</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items"><li><label class="cl-item"><input type="checkbox" data-cl-id="us:passport" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>전자여권 확인(6개월 이상)</b><i>VWP 필수</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="us:esta" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>ESTA 승인(출발 72시간 전까지)</b><i>40.62달러</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="us:eta" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>캐나다 방문 시 eTA</b><i>CAD 7</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="us:flight" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>항공권·숙소 주소 저장</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="us:adapter" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>멀티어댑터 + 변압기</b><i>120V</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="us:powerbank" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>보조배터리 2개 이하·기내 휴대</b><i>위탁 금지</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="us:liquid" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>액체류 100ml 이하·1L 지퍼백</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="us:tip" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>팁 예산(15~20%)</b><i>식당·호텔</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="us:insurance" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여행자보험(의료비 한도 확인)</b><i>미국 의료비 대비</i></span></label></li></ul>
+            <button class="cl-reset" type="button" data-cl-reset="us">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.</dd></div>
+            <div><dt>액체류</dt><dd>국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.</dd></div>
+            <div><dt>전원·플러그</dt><dd>A·B 타입(120V). 한국 220V 기기는 변압기가 필요합니다. 110V 겸용 표기(100~240V) 기기는 어댑터만 있으면 됩니다.</dd></div>
+            <div><dt>현금</dt><dd>달러(USD) 현금. 1달러 = 1,420원. 카드가 거의 다 되지만 팁(15~20%)은 카드로도 결제됩니다.</dd></div>
+          </dl>
+          <ul class="cl-notes"><li>ESTA는 신청 후 승인까지 최대 72시간이 걸릴 수 있습니다.</li><li>미서부·미동부 상품은 기사·가이드 경비가 현장에서 따로 붙습니다(미서부 $196, 미동부 $180).</li></ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiUoBTOAm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">암막 수면안대</span><b>슬립핏 4D 고급 암막 수면안대</b><span class="cl-link-p">5,900원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="honolulu"><span class="cl-link-k">숙소·항공</span><b>호놀룰루 숙소 최저가(트립닷컴)</b><span class="cl-link-p">와이키키 · 하와이</span></a></div>
+        </div>
+      </div>
+    </div><div class="cl-panel" id="clpanel-eu" role="tabpanel" aria-labelledby="cltab-eu" data-cl-panel="eu" hidden>
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">0원 (영국 ETA £20 별도)</span></div>
+            <p class="cl-sum">솅겐 협약국은 180일 중 90일까지 무비자입니다. 영국을 방문·경유하면 ETA(£20)가 따로 필요하고, 대행사는 7만원을 받습니다. ETIAS 시행 여부는 출발 전 EU 공식 사이트에서 확인하세요.</p>
+            <ul class="cl-docs"><li><div class="cl-doc-h"><b>솅겐 무비자 90/180일</b><em class="cl-must">필수</em><span class="cl-doc-fee">무료</span></div><p>여권 3개월 이상(출국 예정일 기준) + 6개월 권장. 입국 목적·숙소·출국 항공권을 확인할 수 있습니다.</p><div class="cl-doc-m"><span>—</span></div></li><li><div class="cl-doc-h"><b>영국 ETA(영국 방문·경유 시)</b><em class="cl-opt">선택</em><span class="cl-doc-fee">£20 = 약 35,000원(대행 7만원)</span></div><p>gov.uk 또는 UK ETA 앱에서 신청합니다. 2년 유효, 1회 6개월까지 체류. 항공 환승이라도 영국 입국심사를 거치면 필요합니다.</p><div class="cl-doc-m"><span>출발 2주 전</span><a class="cl-doc-go" href="https://www.gov.uk/eta" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>ETIAS 시행 여부</b><em class="cl-opt">선택</em><span class="cl-doc-fee">—</span></div><p>유럽 입국 사전허용(ETIAS)은 시행 시기가 여러 차례 연기됐습니다. 예약 전 EU 공식 안내에서 시행 중인지 확인하세요.</p><div class="cl-doc-m"><span>출발 전</span></div></li></ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/9</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items"><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:passport" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여권 유효기간 확인(출국일 기준 3개월+6개월 권장)</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:uketa" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>영국 방문 시 ETA 승인</b><i>£20·대행 7만원</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:flight" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>왕복 항공권·숙소·일정표 저장</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:adapter" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>멀티어댑터(C·F + 영국 G)</b><i>230V</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:powerbank" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>보조배터리 2개 이하·기내 휴대</b><i>위탁 금지</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:liquid" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>액체류 100ml 이하·1L 지퍼백</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:cash" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>유로 현금 + 동전 지갑</b><i>화장실·소액</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:guidefee" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>가이드·기사 경비 현장 지불액(€90~120)</b><i>상품가 별도</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="eu:insurance" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여행자보험(휴대품 도난 포함)</b><i>소매치기 대비</i></span></label></li></ul>
+            <button class="cl-reset" type="button" data-cl-reset="eu">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.</dd></div>
+            <div><dt>액체류</dt><dd>국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.</dd></div>
+            <div><dt>전원·플러그</dt><dd>C·F 타입(230V). 한국 플러그가 그대로 꽂히는 나라가 많지만 영국은 G 타입(삼각)이라 어댑터가 반드시 필요합니다.</dd></div>
+            <div><dt>현금</dt><dd>유로(EUR) 현금. 1유로 = 1,620원. 영국·스위스는 자국 통화(파운드·프랑)를 씁니다. 카드 결제가 대부분 되고, 화장실·소액은 동전이 필요합니다.</dd></div>
+          </dl>
+          <ul class="cl-notes"><li>가이드·기사 경비는 상품가에 없고 현장에서 유로로 받습니다(€90~120).</li><li>유럽 상품은 최소 출발 인원이 20명인 경우가 많습니다.</li></ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiP8FH93s" target="_blank" rel="noopener sponsored"><span class="cl-link-k">RFID 여권지갑</span><b>레인디어 RFID 차단 여권지갑 (크로스백형)</b><span class="cl-link-p">13,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a></div>
+        </div>
+      </div>
+    </div><div class="cl-panel" id="clpanel-oc" role="tabpanel" aria-labelledby="cltab-oc" data-cl-panel="oc" hidden>
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">114,540~119,460원</span></div>
+            <p class="cl-sum">두 나라 모두 전자 허가가 필요합니다. 호주는 ETA 20호주달러, 뉴질랜드는 NZeTA 117~123뉴질랜드달러(국제관광보존세 IVL 100달러 포함)입니다. 두 나라를 함께 가면 11만~12만원이 상품가 밖에서 나갑니다.</p>
+            <ul class="cl-docs"><li><div class="cl-doc-h"><b>호주 ETA</b><em class="cl-must">필수</em><span class="cl-doc-fee">AUD 20 = 18,600원</span></div><p>호주 ETA 앱에서 신청합니다. 12개월 유효, 1회 3개월까지 체류. 앱 수수료 20호주달러 외에 대행 수수료를 받는 사이트가 많습니다.</p><div class="cl-doc-m"><span>출발 2주 전</span><a class="cl-doc-go" href="https://immi.homeaffairs.gov.au/" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>뉴질랜드 NZeTA</b><em class="cl-must">필수</em><span class="cl-doc-fee">NZD 117(앱)~123(웹) = 95,940~100,860원</span></div><p>NZeTA 수수료 NZD 17(앱)·23(웹)에 IVL(국제관광보존세) NZD 100이 붙습니다. 2년 유효, 1회 3개월까지 체류.</p><div class="cl-doc-m"><span>출발 2주 전</span><a class="cl-doc-go" href="https://www.immigration.govt.nz/nzeta" target="_blank" rel="noopener">공식 사이트</a></div></li><li><div class="cl-doc-h"><b>여권·출국 항공권</b><em class="cl-must">필수</em><span class="cl-doc-fee">—</span></div><p>여권 6개월 이상 권장.</p><div class="cl-doc-m"><span>출국 전</span></div></li></ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/9</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items"><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:passport" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여권 6개월 이상 확인</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:aueta" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>호주 ETA 승인</b><i>AUD 20</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:nzeta" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>뉴질랜드 NZeTA 승인</b><i>NZD 117~123</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:adapter" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>멀티어댑터(I 타입)</b><i>230~240V</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:powerbank" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>보조배터리 2개 이하·기내 휴대</b><i>위탁 금지</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:season" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>계절 반대 확인(11월=초여름)</b><i>자외선 차단</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:guidefee" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>가이드·기사 경비 현장 지불</b><i>금액 미표시</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:cash" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>호주·뉴질랜드 달러</b><i>AUD 930·NZD 820</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="oc:insurance" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>여행자보험(트래킹·액티비티 포함)</b><i>마운트쿡 트래킹</i></span></label></li></ul>
+            <button class="cl-reset" type="button" data-cl-reset="oc">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.</dd></div>
+            <div><dt>액체류</dt><dd>국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.</dd></div>
+            <div><dt>전원·플러그</dt><dd>I 타입(230~240V). 한국 플러그와 모양이 달라 어댑터가 반드시 필요합니다.</dd></div>
+            <div><dt>현금</dt><dd>호주달러(AUD)·뉴질랜드달러(NZD). 1호주달러 = 930원, 1뉴질랜드달러 = 820원. 카드 결제가 거의 다 되고 현금은 팁·소액용입니다.</dd></div>
+          </dl>
+          <ul class="cl-notes"><li>남반구라 계절이 반대입니다. 11월은 초여름, 12~2월이 성수기입니다.</li><li>호주·뉴질랜드 상품은 최소 출발 8명입니다.</li></ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiJGbykx2" target="_blank" rel="noopener sponsored"><span class="cl-link-k">압축 파우치 5종</span><b>어반트립 부피제로 여행용 압축 파우치 5종 세트</b><span class="cl-link-p">12,000원</span></a></div>
+        </div>
+      </div>
+    </div><div class="cl-panel" id="clpanel-kr" role="tabpanel" aria-labelledby="cltab-kr" data-cl-panel="kr" hidden>
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">0원</span></div>
+            <p class="cl-sum">입국서류는 없습니다. 대신 제주·강원은 렌터카와 리프트권, 울릉도는 배편 예약이 변수입니다. 국내선은 액체류 100ml 제한이 없습니다.</p>
+            <ul class="cl-docs"><li><div class="cl-doc-h"><b>신분증(주민등록증·운전면허증)</b><em class="cl-must">필수</em><span class="cl-doc-fee">—</span></div><p>탑승 수속과 렌터카 인수에 필요합니다.</p><div class="cl-doc-m"><span>출발일</span></div></li><li><div class="cl-doc-h"><b>렌터카 예약·운전면허</b><em class="cl-opt">선택</em><span class="cl-doc-fee">—</span></div><p>제주 에어카텔 상품은 렌터카가 포함이지만, 유종·보험 조건은 인수할 때 확인해야 합니다.</p><div class="cl-doc-m"><span>출발 1주 전</span></div></li><li><div class="cl-doc-h"><b>울릉도 배편 예약(묵호항)</b><em class="cl-opt">선택</em><span class="cl-doc-fee">—</span></div><p>씨스타 1호 3시간 항해. 기상으로 결항되면 일정이 밀립니다.</p><div class="cl-doc-m"><span>출발 2주 전</span></div></li></ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/8</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items"><li><label class="cl-item"><input type="checkbox" data-cl-id="kr:id" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>신분증 챙기기</b><i>탑승·렌터카</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="kr:flight" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>항공권·숙소 예약 확인</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="kr:car" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>렌터카 예약·보험 조건 확인</b><i>에어카텔 포함 여부</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="kr:powerbank" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>보조배터리 2개 이하·기내 휴대</b><i>국내선도 동일</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="kr:season" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>날씨·복장 확인</b><i>제주 바람·강원 한파</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="kr:ticket" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>리프트권·입장권 사전 예약</b><i>주말 할증</i></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="kr:cash" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>카드·간편결제 준비</b></span></label></li><li><label class="cl-item"><input type="checkbox" data-cl-id="kr:insurance" /><span class="cl-box" aria-hidden="true"></span><span class="cl-txt"><b>국내 여행자보험(선택)</b><i>레저 활동 대비</i></span></label></li></ul>
+            <button class="cl-reset" type="button" data-cl-reset="kr">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.</dd></div>
+            <div><dt>액체류</dt><dd>국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.</dd></div>
+            <div><dt>전원·플러그</dt><dd>C·F 타입(220V). 국내는 어댑터가 필요 없습니다.</dd></div>
+            <div><dt>현금</dt><dd>카드·간편결제로 충분합니다.</dd></div>
+          </dl>
+          <ul class="cl-notes"><li>국내선은 액체류 100ml 제한이 없습니다(국제선만 적용).</li><li>겨울 강원 스키장은 리프트권과 셔틀을 따로 사면 총액이 달라집니다.</li></ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiJGbykx2" target="_blank" rel="noopener sponsored"><span class="cl-link-k">압축 파우치 5종</span><b>어반트립 부피제로 여행용 압축 파우치 5종 세트</b><span class="cl-link-p">12,000원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiHMeYyES" target="_blank" rel="noopener sponsored"><span class="cl-link-k">기내용 캐리어 20인치</span><b>보튼캐리어 CL15 하드 캐리어 20인치</b><span class="cl-link-p">29,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiNv5XIMC" target="_blank" rel="noopener sponsored"><span class="cl-link-k">메모리폼 목베개</span><b>랑고 올인원 메모리폼 목베개 (파우치 포함)</b><span class="cl-link-p">13,520원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="jeju"><span class="cl-link-k">숙소·항공</span><b>제주 숙소 최저가(트립닷컴)</b><span class="cl-link-p">제주시·공항 근처</span></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="cl-calc">
+      <div class="cl-calc-in">
+        <h3>보조배터리 mAh → Wh 계산기</h3>
+        <p>항공사가 보는 기준은 mAh가 아니라 Wh(와트시)입니다. 보조배터리 셀 전압 3.7V로 환산합니다.</p>
+        <label class="cl-input"><span>표시 용량(mAh)</span>
+          <input id="clMah" type="number" inputmode="numeric" min="0" step="1000" placeholder="20000" aria-label="보조배터리 용량 mAh" />
+        </label>
+        <div class="cl-verdict" id="clVerdict" aria-live="polite">용량을 넣으면 기내 반입 가능 여부가 바로 나옵니다.</div>
+        <p class="cl-calc-note">충전·사용은 기내에서 금지이고, 위탁 수하물에는 어떤 용량도 넣을 수 없습니다. 단자 테이프·개별 지퍼백으로 단락을 막으세요.</p>
+      </div>
+      <div class="cl-calc-out">
+        <h4>용량별 기준</h4>
+        <table class="cl-table"><thead><tr><th scope="col">표시 용량</th><th scope="col" class="num">환산</th><th scope="col">기내 반입</th></tr></thead>
+        <tbody><tr><td>5,000mAh</td><td class="num">18.5Wh</td><td>기내 2개까지</td></tr><tr><td>10,000mAh</td><td class="num">37Wh</td><td>기내 2개까지</td></tr><tr><td>20,000mAh</td><td class="num">74Wh</td><td>기내 2개까지</td></tr><tr><td>27,000mAh</td><td class="num">99.9Wh</td><td>기내 2개까지</td></tr><tr><td>43,000mAh</td><td class="num">159.1Wh</td><td>항공사 승인</td></tr></tbody></table>
+        <p class="cl-src">기준: 국토교통부 2026-04-08 보도자료(ICAO 국제기준 확정, 4월 20일 시행) · 아시아나항공 2026-04-17 공지 · 인천국제공항 제한물품 안내. 160Wh 초과는 반입 불가입니다.</p>
+      </div>
+    </div>
+    <p class="cl-note">수수료·규정은 2026-11-18 확인 기준입니다. 정부 요금은 예고 없이 바뀌므로 결제·출국 직전에 각 공식 사이트에서 다시 확인하세요. 체크 상태는 이 브라우저에만 저장되며 서버로 보내지 않습니다.</p>
     </div>
   </div>
 </section>
@@ -2370,7 +2790,7 @@
         </div>
         <p class="sub">하루로 도는 교토 버스투어와 2박 3일 패키지를 같이 놓고 비교했습니다. 당일은 후시미이나리·아라시야마, 3일은 고베·나라까지 묶는 구성이 기본입니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 56,050원</span><span class="stat">상품 3개 · 가이드투어·풀패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span>
+          <span class="stat low">최저 56,050원</span><span class="stat">상품 3개 · 가이드투어·풀패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span><a class="stat stat-link" href="#tripcom" data-tc-city="osaka">🏨 오사카 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -2525,7 +2945,7 @@
         </div>
         <p class="sub">후지산을 하루에 도는 한국인 가이드투어와, 시내호텔을 잡고 하코네·요코하마까지 도는 2박 3일~3박 4일 일정을 함께 담았습니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 65,550원</span><span class="stat">상품 3개 · 가이드투어·세미패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span>
+          <span class="stat low">최저 65,550원</span><span class="stat">상품 3개 · 가이드투어·세미패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span><a class="stat stat-link" href="#tripcom" data-tc-city="tokyo">🏨 도쿄 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -2680,7 +3100,7 @@
         </div>
         <p class="sub">온천마을 유후인을 하루에 도는 버스투어, 온천호텔+힐튼 1박씩 잡는 2박 3일, 1일 자유일정을 넣은 북큐슈 4일을 나란히 놓았습니다. 출발 공항이 인천·부산으로 갈립니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 56,050원</span><span class="stat">상품 3개 · 가이드투어·풀패키지·세미패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span>
+          <span class="stat low">최저 56,050원</span><span class="stat">상품 3개 · 가이드투어·풀패키지·세미패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span><a class="stat stat-link" href="#tripcom" data-tc-city="fukuoka">🏨 후쿠오카 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -2835,7 +3255,7 @@
         </div>
         <p class="sub">비에이·후라노를 하루에 도는 버스투어와, 온천 2곳을 넣은 3박 4일 꽉찬 일정, 시내 호텔만 잡고 자유롭게 다니는 3박 4일을 비교했습니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 75,050원</span><span class="stat">상품 4개 · 가이드투어·풀패키지·에어텔</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">한국어 가이드 3개 · 자유일정 1개</span>
+          <span class="stat low">최저 75,050원</span><span class="stat">상품 4개 · 가이드투어·풀패키지·에어텔</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">한국어 가이드 3개 · 자유일정 1개</span><a class="stat stat-link" href="#tripcom" data-tc-city="sapporo">🏨 삿포로 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -3027,7 +3447,7 @@
         </div>
         <p class="sub">5성 호텔 3박 기준 5일 일정입니다. 바나힐·호이안·미케비치를 넣은 노옵션 상품 위주로, 출발 공항과 취소 규정을 나란히 봤습니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 322,905원</span><span class="stat">상품 3개 · 풀패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span>
+          <span class="stat low">최저 322,905원</span><span class="stat">상품 3개 · 풀패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span><a class="stat stat-link" href="#tripcom" data-tc-city="danang">🏨 다낭 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -3182,7 +3602,7 @@
         </div>
         <p class="sub">달랏을 하루에 도는 한국어 가이드 투어, 노팁·풀옵션 5일 패키지, 인터컨티넨탈 오션뷰 3박 자유여행을 비교했습니다. 나트랑은 자유여행 비중이 높은 지역입니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 52,155원</span><span class="stat">상품 3개 · 가이드투어·풀패키지·에어텔</span><span class="stat warn">현장 추가금 2개 상품</span><span class="stat">한국어 가이드 2개 · 자유일정 1개</span>
+          <span class="stat low">최저 52,155원</span><span class="stat">상품 3개 · 가이드투어·풀패키지·에어텔</span><span class="stat warn">현장 추가금 2개 상품</span><span class="stat">한국어 가이드 2개 · 자유일정 1개</span><a class="stat stat-link" href="#tripcom" data-tc-city="nhatrang">🏨 나트랑 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -3337,7 +3757,7 @@
         </div>
         <p class="sub">다낭 54홀과 푸꾸옥 36홀, 5성 호텔 3박에 마사지·식사가 붙은 골프 패키지입니다. 그린피·캐디피·카트 포함 여부와 캐디팁·주말 서차지가 상품마다 달라 표로 나눠 적었습니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 1,656,700원</span><span class="stat">상품 2개 · 골프패키지</span><span class="stat warn">현장 추가금 2개 상품</span><span class="stat">전 상품 한국어 가이드</span>
+          <span class="stat low">최저 1,656,700원</span><span class="stat">상품 2개 · 골프패키지</span><span class="stat warn">현장 추가금 2개 상품</span><span class="stat">전 상품 한국어 가이드</span><a class="stat stat-link" href="#tripcom" data-tc-city="danang">🏨 다낭 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -3462,7 +3882,7 @@
         </div>
         <p class="sub">3박 5일 기준으로 노팁·노옵션 상품과 노쇼핑 상품을 함께 놓았습니다. 쇼핑 횟수와 가이드 경비, 취소 위약금 차이가 커서 표로 먼저 확인하세요.</p>
         <div class="city-stats">
-          <span class="stat low">최저 591,603원</span><span class="stat">상품 3개 · 풀패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span>
+          <span class="stat low">최저 591,603원</span><span class="stat">상품 3개 · 풀패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span><a class="stat stat-link" href="#tripcom" data-tc-city="bangkok">🏨 방콕 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -3617,7 +4037,7 @@
         </div>
         <p class="sub">예스진지(예류·스펀·지우펀)를 하루에 도는 버스투어와, 101전망대를 넣은 3박 4일 노쇼핑, 김포에서 바로 가는 2박 3일을 비교했습니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 35,000원</span><span class="stat">상품 3개 · 가이드투어·풀패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span>
+          <span class="stat low">최저 35,000원</span><span class="stat">상품 3개 · 가이드투어·풀패키지</span><span class="stat warn">현장 추가금 3개 상품</span><span class="stat">전 상품 한국어 가이드</span><a class="stat stat-link" href="#tripcom" data-tc-city="taipei">🏨 타이베이 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -4221,7 +4641,7 @@
         </div>
         <p class="sub">괌은 호텔+항공 자유여행이 기본입니다. 두짓타니 리조트, 리가로얄 최저가, PIC 골드패스 가족 상품을 조식·픽업비·취소 규정까지 비교했습니다. (지금은 괌 상품만 담았고 사이판은 다음 업데이트에 추가합니다.)</p>
         <div class="city-stats">
-          <span class="stat low">최저 581,030원</span><span class="stat">상품 3개 · 에어텔</span><span class="stat warn">현장 추가금 1개 상품</span><span class="stat">전 상품 자유일정(가이드 없음)</span>
+          <span class="stat low">최저 581,030원</span><span class="stat">상품 3개 · 에어텔</span><span class="stat warn">현장 추가금 1개 상품</span><span class="stat">전 상품 자유일정(가이드 없음)</span><a class="stat stat-link" href="#tripcom" data-tc-city="guam">🏨 괌 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -4589,7 +5009,7 @@
         </div>
         <p class="sub">와이키키 오션뷰 숙소에 관광 2일을 넣은 세미패키지입니다. 하얏트 6박과 쉐라톤 허니문 5박, 취소 규정이 다른 두 상품을 비교했습니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 3,738,186원</span><span class="stat">상품 2개 · 세미패키지</span><span class="stat warn">현장 추가금 2개 상품</span><span class="stat">전 상품 한국어 가이드</span>
+          <span class="stat low">최저 3,738,186원</span><span class="stat">상품 2개 · 세미패키지</span><span class="stat warn">현장 추가금 2개 상품</span><span class="stat">전 상품 한국어 가이드</span><a class="stat stat-link" href="#tripcom" data-tc-city="honolulu">🏨 호놀룰루 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -4890,7 +5310,7 @@
         </div>
         <p class="sub">비행기 한 시간이면 닿는 섬. 15만원대 2박3일 특가부터 새별오름·송악산을 도는 3박4일, 항공+호텔+렌터카 에어카텔까지 정상가 그대로 나란히 놓았습니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 159,000원</span><span class="stat">상품 3개 · 국내패키지·에어텔</span><span class="stat">현장 추가금 0개 상품</span><span class="stat">한국어 가이드 2개 · 자유일정 1개</span>
+          <span class="stat low">최저 159,000원</span><span class="stat">상품 3개 · 국내패키지·에어텔</span><span class="stat">현장 추가금 0개 상품</span><span class="stat">한국어 가이드 2개 · 자유일정 1개</span><a class="stat stat-link" href="#tripcom" data-tc-city="jeju">🏨 제주 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -5133,7 +5553,7 @@
         </div>
         <p class="sub">광안리·해운대에서 출발하는 요트와 크루즈. 8,000원 주간 크루즈부터 한 팀만 쓰는 단독 요트까지, 스마트스토어에서 바로 예약합니다. 표시가는 최저 옵션(소인·주간) 기준입니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 8,000원</span><span class="stat">상품 4개 · 레저·액티비티</span><span class="stat">현장 추가금 0개 상품</span><span class="stat">전 상품 자유일정(가이드 없음)</span>
+          <span class="stat low">최저 8,000원</span><span class="stat">상품 4개 · 레저·액티비티</span><span class="stat">현장 추가금 0개 상품</span><span class="stat">전 상품 자유일정(가이드 없음)</span><a class="stat stat-link" href="#tripcom" data-tc-city="busan">🏨 부산 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -5325,7 +5745,7 @@
         </div>
         <p class="sub">비발디파크 리프트권과 렌탈샵 셔틀, 강릉 뚜벅이 버스투어, 정선 가리왕산 1박2일 기차여행. 겨울 스키와 당일치기 코스를 함께 담았습니다.</p>
         <div class="city-stats">
-          <span class="stat low">최저 39,500원</span><span class="stat">상품 4개 · 레저·액티비티</span><span class="stat">현장 추가금 0개 상품</span><span class="stat">한국어 가이드 2개 · 자유일정 2개</span>
+          <span class="stat low">최저 39,500원</span><span class="stat">상품 4개 · 레저·액티비티</span><span class="stat">현장 추가금 0개 상품</span><span class="stat">한국어 가이드 2개 · 자유일정 2개</span><a class="stat stat-link" href="#tripcom" data-tc-city="pyeongchang">🏨 평창 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
 
@@ -5752,13 +6172,18 @@
       </div>
       <div class="sh-meta">링크는 2026.11.18 트립닷컴 파트너스에서 발급 · 숙소는 체크인 날짜, 항공권은 가는 날 기준</div>
     </div>
-    <div class="tc-group">
+    <div class="tc-filter">
+      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터"><button class="tc-tab on" type="button" data-tc-filter="all" aria-pressed="true">전체</button><button class="tc-tab" type="button" data-tc-filter="value" aria-pressed="false">가성비 숙소</button><button class="tc-tab" type="button" data-tc-filter="family" aria-pressed="false">가족·리조트</button><button class="tc-tab" type="button" data-tc-filter="airport" aria-pressed="false">공항 이동 편한 곳</button><button class="tc-tab" type="button" data-tc-filter="flight" aria-pressed="false">항공권</button></div>
+      <p class="tc-filter-note" id="tcFilterNote">숙소 15곳·항공 6개 노선을 용도별로 추렸습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
+    </div>
+    <div class="tc-group" data-tc-group="flight">
       <div class="ess-ghead"><h3>✈️ 항공권 검색</h3><span class="n">6</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">편도 기준 · 실시간 최저가</span></div>
       <div class="tc-flights"><a class="tc-flight" href="https://kr.trip.com/flights/Seoul-to-Osaka/tickets-SEL-OSA?flighttype=S&amp;dcity=SEL&amp;acity=OSA&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=flight_sel_osa&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-fr">서울 → 오사카</span><span class="tc-fs">인천·김포 출발 · 간사이(KIX)</span><span class="tc-go">항공권 검색 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-flight" href="https://kr.trip.com/flights/Seoul-to-Tokyo/tickets-SEL-TYO?flighttype=S&amp;dcity=SEL&amp;acity=TYO&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=flight_sel_tyo&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-fr">서울 → 도쿄</span><span class="tc-fs">나리타·하네다</span><span class="tc-go">항공권 검색 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-flight" href="https://kr.trip.com/flights/Seoul-to-Da%20Nang/tickets-SEL-DAD?flighttype=S&amp;dcity=SEL&amp;acity=DAD&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=flight_sel_dad&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-fr">서울 → 다낭</span><span class="tc-fs">다낭(DAD) 직항</span><span class="tc-go">항공권 검색 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-flight" href="https://kr.trip.com/flights/Seoul-to-Bangkok/tickets-SEL-BKK?flighttype=S&amp;dcity=SEL&amp;acity=BKK&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=flight_sel_bkk&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-fr">서울 → 방콕</span><span class="tc-fs">수완나품·돈므앙</span><span class="tc-go">항공권 검색 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-flight" href="https://kr.trip.com/flights/Seoul-to-Sapporo/tickets-SEL-SPK?flighttype=S&amp;dcity=SEL&amp;acity=SPK&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=flight_sel_cts&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-fr">서울 → 삿포로</span><span class="tc-fs">신치토세(CTS)</span><span class="tc-go">항공권 검색 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-flight" href="https://kr.trip.com/flights/Seoul-to-Jeju%20City/tickets-SEL-CJU?flighttype=S&amp;dcity=SEL&amp;acity=CJU&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=flight_sel_cju&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-fr">서울 → 제주</span><span class="tc-fs">김포(GMP) 출발 국내선</span><span class="tc-go">항공권 검색 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
     </div>
-    <div class="tc-group">
+    <div class="tc-group" data-tc-group="hotel">
       <div class="ess-ghead"><h3>🏨 도시별 숙소</h3><span class="n">15</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜를 넣으면 그날 최저가로 열립니다</span></div>
-      <div class="tc-grid"><a class="tc-card" href="https://kr.trip.com/hotels/list?city=219&amp;display=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;optionId=219&amp;optionType=City&amp;optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_osaka&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">오사카<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">난바·우메다 · 오사카·교토 3박4일</span><span class="tc-note">라피트 종점 난바 주변</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=734&amp;display=%EA%B5%90%ED%86%A0&amp;optionId=734&amp;optionType=City&amp;optionName=%EA%B5%90%ED%86%A0&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_kyoto&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">교토<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">가와라마치·교토역 · 후시미·청수사</span><span class="tc-note">버스 동선의 중심</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=228&amp;display=%EB%8F%84%EC%BF%84&amp;optionId=228&amp;optionType=City&amp;optionName=%EB%8F%84%EC%BF%84&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_tokyo&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">도쿄<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">우에노·신주쿠 · 후지 day trip</span><span class="tc-note">스카이라이너 종점 우에노</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=248&amp;display=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&amp;optionId=248&amp;optionType=City&amp;optionName=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_fukuoka&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">후쿠오카<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">하카타·텐진 · 유후인 1박</span><span class="tc-note">공항에서 지하철 5분</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=641&amp;display=%EC%82%BF%ED%8F%AC%EB%A1%9C&amp;optionId=641&amp;optionType=City&amp;optionName=%EC%82%BF%ED%8F%AC%EB%A1%9C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_sapporo&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">삿포로<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">스스키노·삿포로역 · 비에이 당일</span><span class="tc-note">2월 눈축제 시즌은 조기 마감</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=1356&amp;display=%EB%8B%A4%EB%82%AD&amp;optionId=1356&amp;optionType=City&amp;optionName=%EB%8B%A4%EB%82%AD&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_danang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">다낭<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-vn"/></svg></span><span class="tc-sub">미케비치 · 호이안 30분</span><span class="tc-note">5성급 3박이 기본인 도시</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=1777&amp;display=%EB%82%98%ED%8A%B8%EB%9E%91&amp;optionId=1777&amp;optionType=City&amp;optionName=%EB%82%98%ED%8A%B8%EB%9E%91&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_nhatrang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">나트랑<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-vn"/></svg></span><span class="tc-sub">쩐푸·나짱 비치 · 달랏 이동</span><span class="tc-note">리조트형 숙소가 많은 해변 도시</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=359&amp;display=%EB%B0%A9%EC%BD%95&amp;optionId=359&amp;optionType=City&amp;optionName=%EB%B0%A9%EC%BD%95&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_bangkok&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">방콕<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-th"/></svg></span><span class="tc-sub">수쿰빗·실롬 · 파타야 2시간</span><span class="tc-note">공항철도·BTS 역세권</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=623&amp;display=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&amp;optionId=623&amp;optionType=City&amp;optionName=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_chiangmai&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">치앙마이<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-th"/></svg></span><span class="tc-sub">올드시티·님만해민</span><span class="tc-note">11~2월 건기가 성수기</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=617&amp;display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&amp;optionId=617&amp;optionType=City&amp;optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_taipei&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">타이베이<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-tw"/></svg></span><span class="tc-sub">시먼·타이베이역 · 지우펀 당일</span><span class="tc-note">MRT 한 장으로 시내 이동</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=753&amp;display=%EA%B4%8C&amp;optionId=753&amp;optionType=City&amp;optionName=%EA%B4%8C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_guam&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">괌<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-gu"/></svg></span><span class="tc-sub">투몬베이 · 리조트형</span><span class="tc-note">패키지에 숙소가 묶이는 지역</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=757&amp;display=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&amp;optionId=757&amp;optionType=City&amp;optionName=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_honolulu&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">호놀룰루<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-us"/></svg></span><span class="tc-sub">와이키키 · 하와이</span><span class="tc-note">리조트피 별도 확인</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=737&amp;display=%EC%A0%9C%EC%A3%BC%EC%8B%9C&amp;optionId=737&amp;optionType=City&amp;optionName=%EC%A0%9C%EC%A3%BC%EC%8B%9C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_jeju&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">제주<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">제주시·공항 근처</span><span class="tc-note">서귀포는 중문·색달 권역</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=253&amp;display=%EB%B6%80%EC%82%B0&amp;optionId=253&amp;optionType=City&amp;optionName=%EB%B6%80%EC%82%B0&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_busan&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">부산<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">해운대·광안리·서면</span><span class="tc-note">요트투어는 광안리 탑승</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=35792&amp;display=%ED%8F%89%EC%B0%BD&amp;optionId=35792&amp;optionType=City&amp;optionName=%ED%8F%89%EC%B0%BD&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_pyeongchang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="tc-city">평창<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">알펜시아·용평 · 강원 스키</span><span class="tc-note">리조트 안 숙소면 리프트 도보</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
+      <div class="tc-grid"><a class="tc-card" href="https://kr.trip.com/hotels/list?city=219&amp;display=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;optionId=219&amp;optionType=City&amp;optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_osaka&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="osaka" data-tags="value airport"><span class="tc-city">오사카<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">난바·우메다 · 오사카·교토 3박4일</span><span class="tc-note">라피트 종점 난바 주변</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=734&amp;display=%EA%B5%90%ED%86%A0&amp;optionId=734&amp;optionType=City&amp;optionName=%EA%B5%90%ED%86%A0&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_kyoto&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="kyoto" data-tags="value"><span class="tc-city">교토<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">가와라마치·교토역 · 후시미·청수사</span><span class="tc-note">버스 동선의 중심</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=228&amp;display=%EB%8F%84%EC%BF%84&amp;optionId=228&amp;optionType=City&amp;optionName=%EB%8F%84%EC%BF%84&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_tokyo&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="tokyo" data-tags="value airport"><span class="tc-city">도쿄<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">우에노·신주쿠 · 후지 day trip</span><span class="tc-note">스카이라이너 종점 우에노</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=248&amp;display=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&amp;optionId=248&amp;optionType=City&amp;optionName=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_fukuoka&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="fukuoka" data-tags="value airport"><span class="tc-city">후쿠오카<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">하카타·텐진 · 유후인 1박</span><span class="tc-note">공항에서 지하철 5분</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=641&amp;display=%EC%82%BF%ED%8F%AC%EB%A1%9C&amp;optionId=641&amp;optionType=City&amp;optionName=%EC%82%BF%ED%8F%AC%EB%A1%9C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_sapporo&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="sapporo" data-tags="value"><span class="tc-city">삿포로<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-jp"/></svg></span><span class="tc-sub">스스키노·삿포로역 · 비에이 당일</span><span class="tc-note">2월 눈축제 시즌은 조기 마감</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=1356&amp;display=%EB%8B%A4%EB%82%AD&amp;optionId=1356&amp;optionType=City&amp;optionName=%EB%8B%A4%EB%82%AD&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_danang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="danang" data-tags="family"><span class="tc-city">다낭<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-vn"/></svg></span><span class="tc-sub">미케비치 · 호이안 30분</span><span class="tc-note">5성급 3박이 기본인 도시</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=1777&amp;display=%EB%82%98%ED%8A%B8%EB%9E%91&amp;optionId=1777&amp;optionType=City&amp;optionName=%EB%82%98%ED%8A%B8%EB%9E%91&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_nhatrang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="nhatrang" data-tags="family"><span class="tc-city">나트랑<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-vn"/></svg></span><span class="tc-sub">쩐푸·나짱 비치 · 달랏 이동</span><span class="tc-note">리조트형 숙소가 많은 해변 도시</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=359&amp;display=%EB%B0%A9%EC%BD%95&amp;optionId=359&amp;optionType=City&amp;optionName=%EB%B0%A9%EC%BD%95&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_bangkok&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="bangkok" data-tags="value airport"><span class="tc-city">방콕<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-th"/></svg></span><span class="tc-sub">수쿰빗·실롬 · 파타야 2시간</span><span class="tc-note">공항철도·BTS 역세권</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=623&amp;display=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&amp;optionId=623&amp;optionType=City&amp;optionName=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_chiangmai&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="chiangmai" data-tags="value"><span class="tc-city">치앙마이<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-th"/></svg></span><span class="tc-sub">올드시티·님만해민</span><span class="tc-note">11~2월 건기가 성수기</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=617&amp;display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&amp;optionId=617&amp;optionType=City&amp;optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_taipei&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="taipei" data-tags="value"><span class="tc-city">타이베이<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-tw"/></svg></span><span class="tc-sub">시먼·타이베이역 · 지우펀 당일</span><span class="tc-note">MRT 한 장으로 시내 이동</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=753&amp;display=%EA%B4%8C&amp;optionId=753&amp;optionType=City&amp;optionName=%EA%B4%8C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_guam&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="guam" data-tags="family"><span class="tc-city">괌<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-gu"/></svg></span><span class="tc-sub">투몬베이 · 리조트형</span><span class="tc-note">패키지에 숙소가 묶이는 지역</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=757&amp;display=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&amp;optionId=757&amp;optionType=City&amp;optionName=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_honolulu&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="honolulu" data-tags="family"><span class="tc-city">호놀룰루<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-us"/></svg></span><span class="tc-sub">와이키키 · 하와이</span><span class="tc-note">리조트피 별도 확인</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=737&amp;display=%EC%A0%9C%EC%A3%BC%EC%8B%9C&amp;optionId=737&amp;optionType=City&amp;optionName=%EC%A0%9C%EC%A3%BC%EC%8B%9C&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_jeju&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="jeju" data-tags="family airport"><span class="tc-city">제주<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">제주시·공항 근처</span><span class="tc-note">서귀포는 중문·색달 권역</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=253&amp;display=%EB%B6%80%EC%82%B0&amp;optionId=253&amp;optionType=City&amp;optionName=%EB%B6%80%EC%82%B0&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_busan&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="busan" data-tags="value"><span class="tc-city">부산<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">해운대·광안리·서면</span><span class="tc-note">요트투어는 광안리 탑승</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-card" href="https://kr.trip.com/hotels/list?city=35792&amp;display=%ED%8F%89%EC%B0%BD&amp;optionId=35792&amp;optionType=City&amp;optionName=%ED%8F%89%EC%B0%BD&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_pyeongchang&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored" data-city="pyeongchang" data-tags="family"><span class="tc-city">평창<svg class="flag-ic" style="width:14px;height:9.8px" aria-hidden="true"><use href="#f-kr"/></svg></span><span class="tc-sub">알펜시아·용평 · 강원 스키</span><span class="tc-note">리조트 안 숙소면 리프트 도보</span><span class="tc-go">숙소 최저가 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
+      <p class="tc-empty" id="tcEmpty" hidden>이 분류에 해당하는 숙소가 아직 없습니다. ‘전체’로 돌아가면 도시 15곳을 모두 볼 수 있습니다.</p>
       <p class="ess-cp-note">이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 예약이 이루어지면 일정액의 수수료를 제공받습니다. 숙소·항공권 가격과 예약 조건은 트립닷컴에서 그대로 결제되며, 수수료 때문에 가격이 올라가지 않습니다. 링크는 2026-11-18 트립닷컴 파트너스에서 발급했고, 요율은 호텔 5~7%·국제선 항공 0.5~0.8%(예약 건수에 따라)입니다.</p>
     </div>
   </div>
@@ -6692,6 +7117,163 @@ if (searchForm) {
   });
 
   renderBar();
+})();
+
+/* ============================== 출국 준비 체크리스트 ============================== */
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-cl-tab]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[data-cl-panel]'));
+  if (!tabs.length || !panels.length) return;
+
+  var KEY = 'trippick.checklist.v1';
+  var CKEY = 'trippick.checklist.country';
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { store = {}; }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+  }
+
+  function refresh(cid) {
+    var panel = document.querySelector('[data-cl-panel="' + cid + '"]');
+    if (!panel) return;
+    var boxes = panel.querySelectorAll('input[data-cl-id]');
+    var done = 0;
+    boxes.forEach(function (b) {
+      if (store[b.dataset.clId]) { b.checked = true; done++; } else { b.checked = false; }
+    });
+    var count = panel.querySelector('[data-cl-count]');
+    var bar = panel.querySelector('[data-cl-bar]');
+    if (count) count.textContent = done;
+    if (bar) bar.style.width = (boxes.length ? Math.round((done / boxes.length) * 100) : 0) + '%';
+    return { done: done, total: boxes.length };
+  }
+
+  function setCountry(cid) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.clTab === cid;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach(function (p) { p.hidden = p.dataset.clPanel !== cid; });
+    refresh(cid);
+    try { localStorage.setItem(CKEY, cid); } catch (e) {}
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { setCountry(t.dataset.clTab); });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('input[data-cl-id]'), function (b) {
+    b.addEventListener('change', function () {
+      if (b.checked) store[b.dataset.clId] = 1;
+      else delete store[b.dataset.clId];
+      save();
+      refresh(String(b.dataset.clId).split(':')[0]);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cl-reset]'), function (btn) {
+    btn.addEventListener('click', function () {
+      var cid = btn.dataset.clReset;
+      Object.keys(store).forEach(function (k) {
+        if (k.indexOf(cid + ':') === 0) delete store[k];
+      });
+      save();
+      refresh(cid);
+      toast('이 나라 체크를 초기화했어요');
+    });
+  });
+
+  var last = 'jp';
+  try { last = localStorage.getItem(CKEY) || 'jp'; } catch (e) {}
+  if (!document.querySelector('[data-cl-panel="' + last + '"]')) last = tabs[0].dataset.clTab;
+  setCountry(last);
+
+  var mah = document.getElementById('clMah');
+  var out = document.getElementById('clVerdict');
+  function verdict() {
+    if (!mah || !out) return;
+    var v = Number(String(mah.value).replace(/[^0-9]/g, ''));
+    if (!v) {
+      out.className = 'cl-verdict';
+      out.textContent = '용량을 넣으면 기내 반입 가능 여부가 바로 나옵니다.';
+      return;
+    }
+    var wh = (v * 3.7) / 1000;
+    var n = v.toLocaleString('ko-KR');
+    if (wh <= 100) {
+      out.className = 'cl-verdict ok';
+      out.innerHTML = '<b>' + n + 'mAh ≈ ' + wh.toFixed(1) + 'Wh</b> — 100Wh 이하입니다. 1인 2개까지 기내 휴대할 수 있고, 위탁 수하물에는 넣을 수 없습니다.';
+    } else if (wh <= 160) {
+      out.className = 'cl-verdict warn';
+      out.innerHTML = '<b>' + n + 'mAh ≈ ' + wh.toFixed(1) + 'Wh</b> — 100Wh 초과~160Wh입니다. 기내 휴대는 되지만 체크인 카운터에서 항공사 승인을 받아야 하고, 160Wh 이하 보조배터리·예비배터리를 합쳐 2개까지입니다.';
+    } else {
+      out.className = 'cl-verdict bad';
+      out.innerHTML = '<b>' + n + 'mAh ≈ ' + wh.toFixed(1) + 'Wh</b> — 160Wh를 넘어 기내·위탁 모두 반입할 수 없습니다.';
+    }
+  }
+  if (mah) mah.addEventListener('input', verdict);
+})();
+
+/* ============================== 트립닷컴 필터·딥링크 ============================== */
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tc-filter]'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.tc-card'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('[data-tc-group]'));
+  if (!tabs.length || !cards.length) return;
+  var note = document.getElementById('tcFilterNote');
+  var empty = document.getElementById('tcEmpty');
+  var BASE_NOTE = note ? note.textContent : '';
+
+  function apply(filter, city) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.tcFilter === filter;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    var shown = 0;
+    cards.forEach(function (c) {
+      var tags = (c.dataset.tags || '').split(' ');
+      var show = filter === 'all' || tags.indexOf(filter) >= 0;
+      c.hidden = !show;
+      c.classList.toggle('is-city', !!city && c.dataset.city === city && show);
+      if (show) shown++;
+    });
+    groups.forEach(function (g) {
+      var kind = g.dataset.tcGroup;
+      if (filter === 'flight') g.hidden = kind !== 'flight';
+      else if (filter === 'all') g.hidden = false;
+      else g.hidden = kind !== 'hotel';
+    });
+    if (empty) empty.hidden = !(filter !== 'all' && filter !== 'flight' && shown === 0);
+    if (note) {
+      if (city) {
+        var card = document.querySelector('.tc-card[data-city="' + city + '"]');
+        var label = card ? card.querySelector('.tc-city').textContent.trim() : city;
+        note.textContent = '‘' + label + '’ 숙소로 이동했습니다. 체크인 날짜를 넣으면 그날 최저가로 열리고, 위 필터로 다른 도시와 비교할 수 있습니다.';
+      } else {
+        note.textContent = BASE_NOTE;
+      }
+    }
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { apply(t.dataset.tcFilter, null); });
+  });
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-tc-city]');
+    if (!a) return;
+    e.preventDefault();
+    apply('all', a.dataset.tcCity);
+    scrollToSection('tripcom');
+    var card = document.querySelector('.tc-card[data-city="' + a.dataset.tcCity + '"]');
+    if (card) {
+      card.classList.add('is-city');
+      window.setTimeout(function () { card.focus({ preventScroll: true }); }, 320);
+    }
+  });
 })();
 
 applyFilters();

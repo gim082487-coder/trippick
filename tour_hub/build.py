@@ -330,6 +330,12 @@ def city_section(city: dict, items: list, tours: list) -> str:
         f'<span class="stat{" warn" if extra_count else ""}">현장 추가금 {extra_count}개 상품</span>',
         f'<span class="stat">{guide_stat}</span>',
     ]
+    tc_city = TC_CITY.get(city["id"])
+    if tc_city:
+        stats.append(
+            f'<a class="stat stat-link" href="#tripcom" data-tc-city="{esc(tc_city[0])}">'
+            f'🏨 {esc(tc_city[1])} 숙소·항공 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        )
 
     return f"""<section class="city" id="{city['id']}" data-country="{city['country']}">
       <div class="city-head">
@@ -679,11 +685,135 @@ def render_essentials(essentials: dict) -> str:
     return "\n    ".join(blocks)
 
 
+# ---------------------------------------------------------------- 출국 준비 체크리스트
+def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
+    """나라를 고르면 입국서류·기내반입·준비물 체크가 바뀌는 인터랙티브 섹션.
+
+    체크 상태는 브라우저 localStorage 에 저장하고, 서버는 나라별 패널을 모두 그려 둔 뒤
+    JS 가 보이는 패널만 바꾼다. 스크립트가 꺼져 있어도 첫 나라 내용은 읽을 수 있다.
+    """
+    tc_by_city = {h.get("cityId"): h for h in tripcom["hotels"] if h.get("cityId")}
+    pb = check["powerbank"]
+    liquid = check["liquid"]
+    tabs, panels = [], []
+    for i, c in enumerate(check["countries"]):
+        on = i == 0
+        tabs.append(
+            f'<button class="cl-tab{" on" if on else ""}" type="button" role="tab" id="cltab-{c["id"]}"'
+            f' aria-controls="clpanel-{c["id"]}" aria-selected="{"true" if on else "false"}" data-cl-tab="{c["id"]}">'
+            f'{flag_svg(c["flag"], 16, 11.2)}<b>{esc(c["name"])}</b><span>{esc(c["badge"])}</span></button>'
+        )
+
+        docs = []
+        for d in c["docs"]:
+            must = '<em class="cl-must">필수</em>' if d.get("must") else '<em class="cl-opt">선택</em>'
+            link = (f'<a class="cl-doc-go" href="{esc(d["url"])}" target="_blank" rel="noopener">공식 사이트</a>'
+                    if d.get("url") else "")
+            docs.append(
+                f'<li><div class="cl-doc-h"><b>{esc(d["name"])}</b>{must}'
+                f'<span class="cl-doc-fee">{esc(d["fee"])}</span></div>'
+                f'<p>{esc(d["note"])}</p>'
+                f'<div class="cl-doc-m"><span>{esc(d["when"])}</span>{link}</div></li>'
+            )
+
+        items = []
+        for it in c["checklist"]:
+            hint = f'<i>{esc(it["hint"])}</i>' if it.get("hint") else ""
+            items.append(
+                f'<li><label class="cl-item"><input type="checkbox" data-cl-id="{c["id"]}:{esc(it["id"])}" />'
+                f'<span class="cl-box" aria-hidden="true"></span>'
+                f'<span class="cl-txt"><b>{esc(it["label"])}</b>{hint}</span></label></li>'
+            )
+
+        links = []
+        for eid in c.get("links", []):
+            e = ess_by_id.get(eid)
+            if not e:
+                continue
+            links.append(
+                f'<a class="cl-link" href="{esc(ess_url(e))}" target="_blank" rel="noopener sponsored">'
+                f'<span class="cl-link-k">{esc(e.get("categoryLabel") or e["category"])}</span>'
+                f'<b>{esc(e["name"])}</b><span class="cl-link-p">{won(e["price"])}원</span></a>'
+            )
+        tc_city = c.get("tcCity") or ""
+        if tc_city and tc_city in tc_by_city:
+            h = tc_by_city[tc_city]
+            links.append(
+                f'<a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="{esc(tc_city)}">'
+                f'<span class="cl-link-k">숙소·항공</span><b>{esc(h["city"])} 숙소 최저가(트립닷컴)</b>'
+                f'<span class="cl-link-p">{esc(h["sub"])}</span></a>'
+            )
+
+        notes = "".join(f"<li>{esc(n)}</li>" for n in c.get("notes", []))
+        panels.append(f"""<div class="cl-panel" id="clpanel-{c['id']}" role="tabpanel" aria-labelledby="cltab-{c['id']}" data-cl-panel="{c['id']}"{' hidden' if not on else ''}>
+      <div class="cl-grid">
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>입국서류·수수료</h3><span class="cl-fee">{esc(c['feeTotal'])}</span></div>
+            <p class="cl-sum">{esc(c['summary'])}</p>
+            <ul class="cl-docs">{''.join(docs)}</ul>
+          </div>
+        </div>
+        <div class="cl-col">
+          <div class="cl-block">
+            <div class="cl-h"><h3>출발 전 체크</h3><span class="cl-prog"><b data-cl-count>0</b>/{len(c['checklist'])}</span></div>
+            <div class="cl-bar" aria-hidden="true"><i data-cl-bar></i></div>
+            <ul class="cl-items">{''.join(items)}</ul>
+            <button class="cl-reset" type="button" data-cl-reset="{c['id']}">이 나라 체크 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="cl-grid cl-grid--2">
+        <div class="cl-block">
+          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+          <dl class="cl-facts">
+            <div><dt>보조배터리</dt><dd>{esc(pb['rule'])}</dd></div>
+            <div><dt>액체류</dt><dd>{esc(liquid['rule'])}</dd></div>
+            <div><dt>전원·플러그</dt><dd>{esc(c['plug'])}</dd></div>
+            <div><dt>현금</dt><dd>{esc(c['cash'])}</dd></div>
+          </dl>
+          <ul class="cl-notes">{notes}</ul>
+        </div>
+        <div class="cl-block">
+          <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
+          <div class="cl-links">{''.join(links)}</div>
+        </div>
+      </div>
+    </div>""")
+
+    examples = "".join(
+        f'<tr><td>{ex["mah"]:,}mAh</td><td class="num">{ex["wh"]}</td><td>{"기내 2개까지" if ex["mah"] <= 27000 else "항공사 승인"}</td></tr>'
+        for ex in pb["examples"]
+    )
+    src = " · ".join(pb["sources"][:3])
+    return f"""<div class="cl-tabs" role="tablist" aria-label="나라 선택">{''.join(tabs)}</div>
+    {''.join(panels)}
+    <div class="cl-calc">
+      <div class="cl-calc-in">
+        <h3>보조배터리 mAh → Wh 계산기</h3>
+        <p>항공사가 보는 기준은 mAh가 아니라 Wh(와트시)입니다. 보조배터리 셀 전압 3.7V로 환산합니다.</p>
+        <label class="cl-input"><span>표시 용량(mAh)</span>
+          <input id="clMah" type="number" inputmode="numeric" min="0" step="1000" placeholder="20000" aria-label="보조배터리 용량 mAh" />
+        </label>
+        <div class="cl-verdict" id="clVerdict" aria-live="polite">용량을 넣으면 기내 반입 가능 여부가 바로 나옵니다.</div>
+        <p class="cl-calc-note">충전·사용은 기내에서 금지이고, 위탁 수하물에는 어떤 용량도 넣을 수 없습니다. 단자 테이프·개별 지퍼백으로 단락을 막으세요.</p>
+      </div>
+      <div class="cl-calc-out">
+        <h4>용량별 기준</h4>
+        <table class="cl-table"><thead><tr><th scope="col">표시 용량</th><th scope="col" class="num">환산</th><th scope="col">기내 반입</th></tr></thead>
+        <tbody>{examples}</tbody></table>
+        <p class="cl-src">기준: {esc(src)}. 160Wh 초과는 반입 불가입니다.</p>
+      </div>
+    </div>
+    <p class="cl-note">수수료·규정은 {esc(check['updated'])} 확인 기준입니다. 정부 요금은 예고 없이 바뀌므로 결제·출국 직전에 각 공식 사이트에서 다시 확인하세요. 체크 상태는 이 브라우저에만 저장되며 서버로 보내지 않습니다.</p>"""
+
+
 # ---------------------------------------------------------------- 트립닷컴 제휴
 def render_tripcom(tc: dict) -> str:
     """트립닷컴 파트너스 전용 숙소·항공 큐레이션.
 
     네이버·쿠팡 링크와 섞지 않고 이 섹션 안에서만 노출한다.
+    숙소 카드는 data-tags·data-city 를 달아 필터 탭과 지역 섹션의 딥링크가 같은 카드를 가리키게 한다.
     """
     flights = "".join(
         f'<a class="tc-flight" href="{esc(f["url"])}" target="_blank" rel="noopener sponsored">'
@@ -694,7 +824,8 @@ def render_tripcom(tc: dict) -> str:
         for f in tc["flights"]
     )
     hotels = "".join(
-        f'<a class="tc-card" href="{esc(h["url"])}" target="_blank" rel="noopener sponsored">'
+        f'<a class="tc-card" href="{esc(h["url"])}" target="_blank" rel="noopener sponsored"'
+        f' data-city="{esc(h.get("cityId", ""))}" data-tags="{esc(" ".join(h.get("tags", [])))}">'
         f'<span class="tc-city">{esc(h["city"])}{flag_svg(h["flag"], 14, 9.8)}</span>'
         f'<span class="tc-sub">{esc(h["sub"])}</span>'
         f'<span class="tc-note">{esc(h["note"])}</span>'
@@ -702,14 +833,32 @@ def render_tripcom(tc: dict) -> str:
         f'</a>'
         for h in tc["hotels"]
     )
+    filters = tc.get("filters") or [
+        ("all", "전체"),
+        ("value", "가성비 숙소"),
+        ("family", "가족·리조트"),
+        ("airport", "공항 이동 편한 곳"),
+        ("flight", "항공권"),
+    ]
+    tabs = "".join(
+        f'<button class="tc-tab{" on" if i == 0 else ""}" type="button" data-tc-filter="{esc(f["id"] if isinstance(f, dict) else f[0])}"'
+        f' aria-pressed="{"true" if i == 0 else "false"}">'
+        f'{esc(f["label"] if isinstance(f, dict) else f[1])}</button>'
+        for i, f in enumerate(filters)
+    )
     src = tc["source"]
-    return f"""<div class="tc-group">
+    return f"""<div class="tc-filter">
+      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터">{tabs}</div>
+      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선을 용도별로 추렸습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
+    </div>
+    <div class="tc-group" data-tc-group="flight">
       <div class="ess-ghead"><h3>✈️ 항공권 검색</h3><span class="n">{len(tc["flights"])}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">편도 기준 · 실시간 최저가</span></div>
       <div class="tc-flights">{flights}</div>
     </div>
-    <div class="tc-group">
+    <div class="tc-group" data-tc-group="hotel">
       <div class="ess-ghead"><h3>🏨 도시별 숙소</h3><span class="n">{len(tc["hotels"])}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜를 넣으면 그날 최저가로 열립니다</span></div>
       <div class="tc-grid">{hotels}</div>
+      <p class="tc-empty" id="tcEmpty" hidden>이 분류에 해당하는 숙소가 아직 없습니다. ‘전체’로 돌아가면 도시 15곳을 모두 볼 수 있습니다.</p>
       <p class="ess-cp-note">{esc(tc["disclosure"])} 링크는 {esc(src["checked"])} 트립닷컴 파트너스에서 발급했고, 요율은 호텔 5~7%·국제선 항공 0.5~0.8%(예약 건수에 따라)입니다.</p>
     </div>"""
 
@@ -1086,6 +1235,8 @@ def render_sections(data: dict) -> str:
 DEFAULT_REGION, DEFAULT_STYLE, DEFAULT_PAX = "jp", "value", 2
 SITE = "https://trippick.pages.dev"
 SITE_NAME = "트립픽"
+# main() 에서 채운다: 도시 id → (트립닷컴 cityId, 도시명). 지역 섹션에서 숙소 섹션으로 딥링크할 때 쓴다.
+TC_CITY: dict[str, tuple[str, str]] = {}
 
 
 def abs_url(path: str) -> str:
@@ -1325,6 +1476,15 @@ def main() -> int:
     courses = json.loads((DATA / "courses.json").read_text(encoding="utf-8"))
     essentials = json.loads((DATA / "essentials.json").read_text(encoding="utf-8"))
     tripcom = json.loads((DATA / "tripcom.json").read_text(encoding="utf-8"))
+    checklist = json.loads((DATA / "checklist.json").read_text(encoding="utf-8"))
+
+    TC_CITY.clear()
+    for h in tripcom["hotels"]:
+        if h.get("cityId"):
+            TC_CITY[h["cityId"]] = (h["cityId"], h["city"])
+    for alias, target in {"vietnam_golf": "danang", "hawaii": "honolulu", "gangwon": "pyeongchang"}.items():
+        if target in TC_CITY:
+            TC_CITY[alias] = TC_CITY[target]
 
     tours_by_id = {t["id"]: t for t in data["tours"]}
     ess_by_id = {e["id"]: e for e in essentials["products"]}
@@ -1354,6 +1514,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @TYPEBAR -->", render_typebar(data))
     html = replace_block(html, "<!-- @CITIES -->", render_sections(data))
     html = replace_block(html, "<!-- @ESSENTIALS -->", render_essentials(essentials))
+    html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
     html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom))
     html = replace_block(html, "<!-- @QUICKSTRIP -->", render_quickstrip(data, courses, essentials, tripcom))
     html = replace_block(html, "<!-- @REGION_CHIPS -->", render_region_chips())

@@ -1,0 +1,253 @@
+{
+  "note": "출국 준비 체크리스트·입국서류 계산기 데이터. 수수료와 규정은 2026-11-18 확인 기준이며, 결제·출국 직전에 각 정부 공식 사이트에서 다시 확인해야 합니다. 금액은 planner.json 과 같은 기준환율(USD 1,420원·JPY100 940원·EUR 1,620원·TWD 44원·AUD 930원·NZD 820원)로 환산했습니다.",
+  "updated": "2026-11-18",
+  "fx": {"USD": 1420, "JPY100": 940, "EUR": 1620, "TWD": 44, "AUD": 930, "NZD": 820},
+  "powerbank": {
+    "rule": "보조배터리는 기내 휴대만 됩니다. 2026-04-20부터 국토교통부·ICAO 기준으로 1인 2개, 160Wh(약 43,000mAh) 이하까지이고 100Wh 초과~160Wh는 항공사 승인이 필요합니다. 기내에서 보조배터리로 다른 기기를 충전하거나 보조배터리 자체를 충전하는 것, 머리 위 선반 보관은 금지됩니다.",
+    "sources": ["국토교통부 2026-04-08 보도자료(ICAO 국제기준 확정, 4월 20일 시행)", "아시아나항공 2026-04-17 공지", "인천국제공항 제한물품 안내", "제주항공 수하물 규정"],
+    "examples": [
+      {"mah": 5000, "wh": "18.5Wh"},
+      {"mah": 10000, "wh": "37Wh"},
+      {"mah": 20000, "wh": "74Wh"},
+      {"mah": 27000, "wh": "99.9Wh"},
+      {"mah": 43000, "wh": "159.1Wh"}
+    ]
+  },
+  "liquid": {
+    "rule": "국제선 기내 액체·스프레이·젤은 개별 용기 100ml 이하, 1인당 1L 투명 지퍼백(20.5×20.5cm 또는 15×25cm) 1개까지입니다. 국내선은 용량 제한이 없습니다. 면세점 액체류는 STEB 봉인 봉투에 영수증을 넣은 채 최종 목적지까지 개봉하지 않아야 합니다.",
+    "sources": ["인천국제공항 제한물품 안내", "제주항공 기내 반입 규정"]
+  },
+  "countries": [
+    {
+      "id": "jp",
+      "name": "일본",
+      "flag": "jp",
+      "badge": "무비자 90일",
+      "summary": "여권만 있으면 됩니다. 다만 입국심사·세관 신고를 QR로 바꾸는 Visit Japan Web을 미리 등록하면 공항에서 종이 신고서를 쓰지 않습니다.",
+      "feeTotal": "0원",
+      "docs": [
+        {"name": "Visit Japan Web 등록(입국심사·세관 QR)", "fee": "무료", "when": "출발 2주 전~전날", "must": true, "note": "웹사이트에서 여권·항공편·숙소를 입력하면 QR 2개가 나옵니다. 종이 입국카드로도 입국할 수 있지만 기내에서 작성해야 합니다.", "url": "https://www.vjw.digital.go.jp/"},
+        {"name": "여권 유효기간", "fee": "—", "when": "예약 전", "must": true, "note": "무비자 단기 체류는 여권 유효기간이 남아 있으면 되지만, 항공사 탑승 규정상 6개월 이상 남기는 것이 안전합니다.", "url": ""},
+        {"name": "왕복(또는 출국) 항공권", "fee": "—", "when": "출국 전", "must": true, "note": "입국심사에서 출국 항공권을 요구할 수 있습니다. 예약 확인서를 휴대폰에 저장하세요.", "url": ""}
+      ],
+      "plug": "A·B 타입(110V·100V). 한국 C·F 플러그는 어댑터가 필요하고, 220V 전용 기기는 변압기 없이 쓰면 안 됩니다.",
+      "cash": "엔화 현금. 100엔 = 940원 기준. 교통패스·eSIM은 미리 결제하고, 현금은 1인 1일 1만엔 안팎이면 소액 결제에 충분합니다.",
+      "notes": ["일본 입국 시 100ml 액체 규정은 국제선 공통입니다.", "삿포로 2월은 영하 8도까지 내려가 방한화가 필요합니다."],
+      "checklist": [
+        {"id": "passport", "label": "여권 유효기간 6개월 이상 확인", "hint": "만료 6개월 전이면 재발급"},
+        {"id": "vjw", "label": "Visit Japan Web QR 2개 저장", "hint": "입국심사·세관 신고"},
+        {"id": "flight", "label": "왕복 항공권·숙소 주소 저장", "hint": "입국심사에서 확인"},
+        {"id": "esim", "label": "일본 eSIM 설치(출발 전 QR 등록)", "hint": "3일 무제한 16,830원"},
+        {"id": "adapter", "label": "멀티어댑터(A 타입) 챙기기", "hint": "110V·100V"},
+        {"id": "powerbank", "label": "보조배터리 100Wh 이하 2개 이하, 기내 휴대", "hint": "위탁 금지"},
+        {"id": "liquid", "label": "액체류 100ml 이하·1L 지퍼백", "hint": "기내 가방에"},
+        {"id": "cash", "label": "엔화 현금 준비", "hint": "100엔 = 940원"},
+        {"id": "insurance", "label": "여행자보험 가입", "hint": "해외 의료비 대비"}
+      ],
+      "links": ["jp-esim-usimsa-3d", "cp-adapter-nemotab", "cp-powerbank-spidy"],
+      "tcCity": "tokyo"
+    },
+    {
+      "id": "vn",
+      "name": "베트남",
+      "flag": "vn",
+      "badge": "무비자 45일",
+      "summary": "45일 이내 관광이면 비자가 필요 없습니다(결의 44/NQ-CP, 2028-03-14까지). 46일 이상이면 전자비자 25달러(단수)·50달러(복수)를 출발 전에 받아야 합니다.",
+      "feeTotal": "0원 (45일 이내)",
+      "docs": [
+        {"name": "무비자 입국 조건", "fee": "무료", "when": "출국 전", "must": true, "note": "입국일 기준 여권 6개월 이상 + 출국 항공권. 베트남을 나가는 표면 되고 왕복일 필요는 없습니다."},
+        {"name": "전자비자(e-visa, 46일 이상 체류 시)", "fee": "단수 25달러(35,500원)·복수 50달러(71,000원)", "when": "출발 2주 전", "must": false, "note": "공식 사이트는 evisa.gov.vn(또는 thithucdientu.gov.vn)뿐입니다. 처리 3영업일, 수수료는 거절돼도 환불되지 않습니다.", "url": "https://evisa.gov.vn/"},
+        {"name": "왕복(또는 출국) 항공권", "fee": "—", "when": "출국 전", "must": true, "note": "관광 목적이면 출국 예약 항공권을 지참해야 합니다.", "url": ""}
+      ],
+      "plug": "A·C 타입(220V). 한국 C·F 플러그 중 C는 그대로 꽂히는 경우가 많지만 F(둥근 굵은 핀)는 어댑터가 필요합니다.",
+      "cash": "동(VND) 현금. 100동 = 5.5원이라 10만동이 5,500원입니다. 시장·노점은 현금, 호텔·마사지는 카드가 됩니다.",
+      "notes": ["나트랑·다낭 11월은 한 달에 21일 비가 오는 우기입니다. 우비·방수팩을 챙기세요.", "오버스테이는 출국 시 벌금이 붙고 재입국이 제한될 수 있습니다."],
+      "checklist": [
+        {"id": "passport", "label": "여권 유효기간 6개월 이상(입국일 기준)", "hint": "무비자 조건"},
+        {"id": "flight", "label": "출국 항공권(베트남을 나가는 표) 저장", "hint": "왕복 아니어도 됨"},
+        {"id": "visa", "label": "46일 이상이면 전자비자 발급", "hint": "evisa.gov.vn 25달러"},
+        {"id": "esim", "label": "베트남 eSIM 설치", "hint": "3일 17,850원"},
+        {"id": "adapter", "label": "멀티어댑터(A·C 타입) 챙기기", "hint": "220V"},
+        {"id": "powerbank", "label": "보조배터리 2개 이하·기내 휴대", "hint": "위탁 금지"},
+        {"id": "rain", "label": "우기 대비 우비·방수팩", "hint": "11월 다낭 21일 비"},
+        {"id": "cash", "label": "동 현금 환전", "hint": "100동 = 5.5원"},
+        {"id": "insurance", "label": "여행자보험 가입", "hint": "오토바이 사고 대비"}
+      ],
+      "links": ["vn-esim-usimsa-3d", "cp-adapter-nemotab", "cp-powerbank-spidy"],
+      "tcCity": "danang"
+    },
+    {
+      "id": "th",
+      "name": "태국",
+      "flag": "th",
+      "badge": "무비자 90일",
+      "summary": "한국은 1981년 비자면제협정으로 90일까지 무비자입니다. 태국이 2026-09-15부터 다른 나라 무비자를 30일로 줄였지만, 협정이 우선 적용돼 한국은 그대로 90일입니다. 대신 TDAC(전자 입국카드)를 도착 3일 안에 내야 합니다.",
+      "feeTotal": "0원",
+      "docs": [
+        {"name": "TDAC(태국 전자 입국카드)", "fee": "무료", "when": "도착 3일 전~도착 전", "must": true, "note": "tdac.immigration.go.th 에서 제출합니다. 종이 입국카드를 대신하며, 입국할 때마다 새로 내야 합니다. 가족은 한 번에 10명까지 대신 작성할 수 있습니다.", "url": "https://tdac.immigration.go.th/"},
+        {"name": "무비자 체류 90일", "fee": "무료", "when": "—", "must": true, "note": "취업 목적이 아닌 관광이면 90일까지 체류 가능합니다. 여권 6개월 이상, 출국 항공권, 체류 자금(1인 1만 바트 안내)을 확인할 수 있습니다."},
+        {"name": "왕복(또는 출국) 항공권", "fee": "—", "when": "출국 전", "must": true, "note": "입국심사에서 출국 증빙을 요구할 수 있습니다.", "url": ""}
+      ],
+      "plug": "A·B·C 타입(220V). 한국 플러그가 대체로 꽂히지만 접지 구멍이 없는 경우가 많아 멀티어댑터가 편합니다.",
+      "cash": "바트(THB) 현금. 카드가 되는 곳이 많지만 노점·송태우·시장은 현금만 받습니다.",
+      "notes": ["제주항공 기준 태국 출발 노선은 32,000mAh 초과 보조배터리를 운송하지 않습니다.", "입국 후 체류 기한을 넘기면 1일 500바트 벌금입니다."],
+      "checklist": [
+        {"id": "passport", "label": "여권 유효기간 6개월 이상", "hint": ""},
+        {"id": "tdac", "label": "TDAC 제출(도착 3일 안)", "hint": "무료·공식 사이트"},
+        {"id": "flight", "label": "출국 항공권 저장", "hint": "입국심사 확인"},
+        {"id": "funds", "label": "체류 자금 증빙(1인 1만 바트 안내)", "hint": "현금·카드 명세"},
+        {"id": "adapter", "label": "멀티어댑터(A·B·C) 챙기기", "hint": "220V"},
+        {"id": "powerbank", "label": "보조배터리 2개 이하, 32,000mAh 이하", "hint": "태국 출발 노선 제한"},
+        {"id": "liquid", "label": "액체류 100ml 이하·1L 지퍼백", "hint": ""},
+        {"id": "cash", "label": "바트 현금 준비", "hint": "노점·송태우"},
+        {"id": "insurance", "label": "여행자보험 가입", "hint": "수상 활동 대비"}
+      ],
+      "links": ["cp-adapter-nemotab", "cp-powerbank-spidy", "cp-passport-reindeer"],
+      "tcCity": "bangkok"
+    },
+    {
+      "id": "tw",
+      "name": "대만",
+      "flag": "tw",
+      "badge": "무비자 90일",
+      "summary": "90일 무비자입니다. 종이 입국신고서가 폐지돼 TWAC(온라인 입국신고서)를 도착 7일 전부터 무료로 제출해야 합니다. 전압이 110V라 한국 220V 기기는 변압기가 필요합니다.",
+      "feeTotal": "0원",
+      "docs": [
+        {"name": "TWAC(대만 온라인 입국신고서)", "fee": "무료", "when": "도착 7일 전~입국심사 전", "must": true, "note": "twac.immigration.gov.tw 에서 제출합니다. 2025-10-01부터 종이 신고서가 폐지됐고, 가족은 1명이 16명까지 대신 작성할 수 있습니다.", "url": "https://twac.immigration.gov.tw/"},
+        {"name": "무비자 90일", "fee": "무료", "when": "—", "must": true, "note": "관광 목적 90일. 여권 6개월 이상, 왕복 또는 다음 행선지 항공권이 필요합니다."},
+        {"name": "왕복 항공권", "fee": "—", "when": "출국 전", "must": true, "note": "", "url": ""}
+      ],
+      "plug": "A 타입(110V). 한국 220V 기기는 어댑터만으로는 부족하고 변압기가 필요합니다. 드라이기·고데기는 호텔 비치품을 쓰는 편이 안전합니다.",
+      "cash": "대만달러(TWD) 현금. 1TWD = 44원. 야시장·편의점은 현금, MRT는 교통카드(이지카드)가 편합니다.",
+      "notes": ["여름 태풍철(7~9월)에는 항공편 결항이 잦습니다.", "110V 기기 확인: 노트북·휴대폰 충전기는 대부분 프리볼트입니다."],
+      "checklist": [
+        {"id": "passport", "label": "여권 유효기간 6개월 이상", "hint": ""},
+        {"id": "twac", "label": "TWAC 제출(도착 7일 전부터)", "hint": "무료·공식 사이트"},
+        {"id": "flight", "label": "왕복 항공권 저장", "hint": ""},
+        {"id": "adapter", "label": "멀티어댑터 + 변압기 필요 여부 확인", "hint": "110V"},
+        {"id": "esim", "label": "데이터 수단 준비(eSIM·로밍)", "hint": "트립픽은 대만 eSIM 미취급"},
+        {"id": "powerbank", "label": "보조배터리 2개 이하·기내 휴대", "hint": "위탁 금지"},
+        {"id": "liquid", "label": "액체류 100ml 이하·1L 지퍼백", "hint": ""},
+        {"id": "cash", "label": "대만달러 현금·이지카드", "hint": "1TWD = 44원"},
+        {"id": "insurance", "label": "여행자보험 가입", "hint": "태풍 결항 대비"}
+      ],
+      "links": ["cp-adapter-nemotab", "cp-powerbank-spidy", "cp-passport-reindeer"],
+      "tcCity": "taipei"
+    },
+    {
+      "id": "us",
+      "name": "미국",
+      "flag": "us",
+      "badge": "ESTA 필요",
+      "summary": "무비자 프로그램(VWP)으로 가려면 ESTA를 출발 전에 받아야 합니다. 2026-10-16부터 수수료가 40.62달러로 올랐고, 대행사를 끼면 8만원 안팎입니다. 공식 사이트에서 직접 하면 5만 8천원 안팎입니다.",
+      "feeTotal": "57,700원 (공식) ~ 80,000원 (대행)",
+      "docs": [
+        {"name": "ESTA(전자여행허가)", "fee": "40.62달러 = 57,680원", "when": "출발 72시간 전까지(권장 2주 전)", "must": true, "note": "공식 사이트 esta.cbp.dhs.gov 에서 신청합니다. 승인되면 2년(여권 만료일까지) 유효하고 여러 번 입국할 수 있습니다. 대행사는 8만원 안팎을 받습니다.", "url": "https://esta.cbp.dhs.gov/"},
+        {"name": "캐나다 eTA(토론토 경유·방문 시)", "fee": "CAD 7 (약 7,000원)", "when": "출발 2주 전", "must": false, "note": "미동부+캐나다 상품은 토론토를 방문합니다. 항공으로 캐나다에 들어가려면 eTA가 필요하며, 상품 안내문에는 금액이 표시돼 있지 않습니다.", "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html"},
+        {"name": "여권(전자여권)", "fee": "—", "when": "예약 전", "must": true, "note": "VWP는 전자여권(e-Passport)만 됩니다. 6개월 이상 유효 권장.", "url": ""}
+      ],
+      "plug": "A·B 타입(120V). 한국 220V 기기는 변압기가 필요합니다. 110V 겸용 표기(100~240V) 기기는 어댑터만 있으면 됩니다.",
+      "cash": "달러(USD) 현금. 1달러 = 1,420원. 카드가 거의 다 되지만 팁(15~20%)은 카드로도 결제됩니다.",
+      "notes": ["ESTA는 신청 후 승인까지 최대 72시간이 걸릴 수 있습니다.", "미서부·미동부 상품은 기사·가이드 경비가 현장에서 따로 붙습니다(미서부 $196, 미동부 $180)."],
+      "checklist": [
+        {"id": "passport", "label": "전자여권 확인(6개월 이상)", "hint": "VWP 필수"},
+        {"id": "esta", "label": "ESTA 승인(출발 72시간 전까지)", "hint": "40.62달러"},
+        {"id": "eta", "label": "캐나다 방문 시 eTA", "hint": "CAD 7"},
+        {"id": "flight", "label": "항공권·숙소 주소 저장", "hint": ""},
+        {"id": "adapter", "label": "멀티어댑터 + 변압기", "hint": "120V"},
+        {"id": "powerbank", "label": "보조배터리 2개 이하·기내 휴대", "hint": "위탁 금지"},
+        {"id": "liquid", "label": "액체류 100ml 이하·1L 지퍼백", "hint": ""},
+        {"id": "tip", "label": "팁 예산(15~20%)", "hint": "식당·호텔"},
+        {"id": "insurance", "label": "여행자보험(의료비 한도 확인)", "hint": "미국 의료비 대비"}
+      ],
+      "links": ["cp-adapter-nemotab", "cp-powerbank-spidy", "cp-sleepmask-slipfit"],
+      "tcCity": "honolulu"
+    },
+    {
+      "id": "eu",
+      "name": "유럽",
+      "flag": "eu",
+      "badge": "무비자 90/180일",
+      "summary": "솅겐 협약국은 180일 중 90일까지 무비자입니다. 영국을 방문·경유하면 ETA(£20)가 따로 필요하고, 대행사는 7만원을 받습니다. ETIAS 시행 여부는 출발 전 EU 공식 사이트에서 확인하세요.",
+      "feeTotal": "0원 (영국 ETA £20 별도)",
+      "docs": [
+        {"name": "솅겐 무비자 90/180일", "fee": "무료", "when": "—", "must": true, "note": "여권 3개월 이상(출국 예정일 기준) + 6개월 권장. 입국 목적·숙소·출국 항공권을 확인할 수 있습니다."},
+        {"name": "영국 ETA(영국 방문·경유 시)", "fee": "£20 = 약 35,000원(대행 7만원)", "when": "출발 2주 전", "must": false, "note": "gov.uk 또는 UK ETA 앱에서 신청합니다. 2년 유효, 1회 6개월까지 체류. 항공 환승이라도 영국 입국심사를 거치면 필요합니다.", "url": "https://www.gov.uk/eta"},
+        {"name": "ETIAS 시행 여부", "fee": "—", "when": "출발 전", "must": false, "note": "유럽 입국 사전허용(ETIAS)은 시행 시기가 여러 차례 연기됐습니다. 예약 전 EU 공식 안내에서 시행 중인지 확인하세요.", "url": ""}
+      ],
+      "plug": "C·F 타입(230V). 한국 플러그가 그대로 꽂히는 나라가 많지만 영국은 G 타입(삼각)이라 어댑터가 반드시 필요합니다.",
+      "cash": "유로(EUR) 현금. 1유로 = 1,620원. 영국·스위스는 자국 통화(파운드·프랑)를 씁니다. 카드 결제가 대부분 되고, 화장실·소액은 동전이 필요합니다.",
+      "notes": ["가이드·기사 경비는 상품가에 없고 현장에서 유로로 받습니다(€90~120).", "유럽 상품은 최소 출발 인원이 20명인 경우가 많습니다."],
+      "checklist": [
+        {"id": "passport", "label": "여권 유효기간 확인(출국일 기준 3개월+6개월 권장)", "hint": ""},
+        {"id": "uketa", "label": "영국 방문 시 ETA 승인", "hint": "£20·대행 7만원"},
+        {"id": "flight", "label": "왕복 항공권·숙소·일정표 저장", "hint": ""},
+        {"id": "adapter", "label": "멀티어댑터(C·F + 영국 G)", "hint": "230V"},
+        {"id": "powerbank", "label": "보조배터리 2개 이하·기내 휴대", "hint": "위탁 금지"},
+        {"id": "liquid", "label": "액체류 100ml 이하·1L 지퍼백", "hint": ""},
+        {"id": "cash", "label": "유로 현금 + 동전 지갑", "hint": "화장실·소액"},
+        {"id": "guidefee", "label": "가이드·기사 경비 현장 지불액(€90~120)", "hint": "상품가 별도"},
+        {"id": "insurance", "label": "여행자보험(휴대품 도난 포함)", "hint": "소매치기 대비"}
+      ],
+      "links": ["cp-adapter-nemotab", "cp-passport-reindeer", "cp-powerbank-spidy"],
+      "tcCity": ""
+    },
+    {
+      "id": "oc",
+      "name": "호주·뉴질랜드",
+      "flag": "oc",
+      "badge": "ETA·NZeTA 필요",
+      "summary": "두 나라 모두 전자 허가가 필요합니다. 호주는 ETA 20호주달러, 뉴질랜드는 NZeTA 117~123뉴질랜드달러(국제관광보존세 IVL 100달러 포함)입니다. 두 나라를 함께 가면 11만~12만원이 상품가 밖에서 나갑니다.",
+      "feeTotal": "114,540~119,460원",
+      "docs": [
+        {"name": "호주 ETA", "fee": "AUD 20 = 18,600원", "when": "출발 2주 전", "must": true, "note": "호주 ETA 앱에서 신청합니다. 12개월 유효, 1회 3개월까지 체류. 앱 수수료 20호주달러 외에 대행 수수료를 받는 사이트가 많습니다.", "url": "https://immi.homeaffairs.gov.au/"},
+        {"name": "뉴질랜드 NZeTA", "fee": "NZD 117(앱)~123(웹) = 95,940~100,860원", "when": "출발 2주 전", "must": true, "note": "NZeTA 수수료 NZD 17(앱)·23(웹)에 IVL(국제관광보존세) NZD 100이 붙습니다. 2년 유효, 1회 3개월까지 체류.", "url": "https://www.immigration.govt.nz/nzeta"},
+        {"name": "여권·출국 항공권", "fee": "—", "when": "출국 전", "must": true, "note": "여권 6개월 이상 권장.", "url": ""}
+      ],
+      "plug": "I 타입(230~240V). 한국 플러그와 모양이 달라 어댑터가 반드시 필요합니다.",
+      "cash": "호주달러(AUD)·뉴질랜드달러(NZD). 1호주달러 = 930원, 1뉴질랜드달러 = 820원. 카드 결제가 거의 다 되고 현금은 팁·소액용입니다.",
+      "notes": ["남반구라 계절이 반대입니다. 11월은 초여름, 12~2월이 성수기입니다.", "호주·뉴질랜드 상품은 최소 출발 8명입니다."],
+      "checklist": [
+        {"id": "passport", "label": "여권 6개월 이상 확인", "hint": ""},
+        {"id": "aueta", "label": "호주 ETA 승인", "hint": "AUD 20"},
+        {"id": "nzeta", "label": "뉴질랜드 NZeTA 승인", "hint": "NZD 117~123"},
+        {"id": "adapter", "label": "멀티어댑터(I 타입)", "hint": "230~240V"},
+        {"id": "powerbank", "label": "보조배터리 2개 이하·기내 휴대", "hint": "위탁 금지"},
+        {"id": "season", "label": "계절 반대 확인(11월=초여름)", "hint": "자외선 차단"},
+        {"id": "guidefee", "label": "가이드·기사 경비 현장 지불", "hint": "금액 미표시"},
+        {"id": "cash", "label": "호주·뉴질랜드 달러", "hint": "AUD 930·NZD 820"},
+        {"id": "insurance", "label": "여행자보험(트래킹·액티비티 포함)", "hint": "마운트쿡 트래킹"}
+      ],
+      "links": ["cp-adapter-nemotab", "cp-powerbank-spidy", "cp-compress-urbantrip"],
+      "tcCity": ""
+    },
+    {
+      "id": "kr",
+      "name": "국내",
+      "flag": "kr",
+      "badge": "신분증",
+      "summary": "입국서류는 없습니다. 대신 제주·강원은 렌터카와 리프트권, 울릉도는 배편 예약이 변수입니다. 국내선은 액체류 100ml 제한이 없습니다.",
+      "feeTotal": "0원",
+      "docs": [
+        {"name": "신분증(주민등록증·운전면허증)", "fee": "—", "when": "출발일", "must": true, "note": "탑승 수속과 렌터카 인수에 필요합니다.", "url": ""},
+        {"name": "렌터카 예약·운전면허", "fee": "—", "when": "출발 1주 전", "must": false, "note": "제주 에어카텔 상품은 렌터카가 포함이지만, 유종·보험 조건은 인수할 때 확인해야 합니다."},
+        {"name": "울릉도 배편 예약(묵호항)", "fee": "—", "when": "출발 2주 전", "must": false, "note": "씨스타 1호 3시간 항해. 기상으로 결항되면 일정이 밀립니다.", "url": ""}
+      ],
+      "plug": "C·F 타입(220V). 국내는 어댑터가 필요 없습니다.",
+      "cash": "카드·간편결제로 충분합니다.",
+      "notes": ["국내선은 액체류 100ml 제한이 없습니다(국제선만 적용).", "겨울 강원 스키장은 리프트권과 셔틀을 따로 사면 총액이 달라집니다."],
+      "checklist": [
+        {"id": "id", "label": "신분증 챙기기", "hint": "탑승·렌터카"},
+        {"id": "flight", "label": "항공권·숙소 예약 확인", "hint": ""},
+        {"id": "car", "label": "렌터카 예약·보험 조건 확인", "hint": "에어카텔 포함 여부"},
+        {"id": "powerbank", "label": "보조배터리 2개 이하·기내 휴대", "hint": "국내선도 동일"},
+        {"id": "season", "label": "날씨·복장 확인", "hint": "제주 바람·강원 한파"},
+        {"id": "ticket", "label": "리프트권·입장권 사전 예약", "hint": "주말 할증"},
+        {"id": "cash", "label": "카드·간편결제 준비", "hint": ""},
+        {"id": "insurance", "label": "국내 여행자보험(선택)", "hint": "레저 활동 대비"}
+      ],
+      "links": ["cp-compress-urbantrip", "cp-carrier-botn-20", "cp-neckpillow-rango"],
+      "tcCity": "jeju"
+    }
+  ]
+}
