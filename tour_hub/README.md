@@ -4,7 +4,7 @@
 **10개국 22개 도시**로 나눠, 가격·출발 공항·입장료 포함 여부·현장 추가금·취소 규정까지 같은 기준으로 비교하는 정적 웹사이트입니다.
 여기에 **일차별 추천 코스 5개**(사진·동선·그날 쓸 투어/eSIM/패스 링크)와 **특가·땡처리 알림 신청 폼**이 붙어 있습니다.
 
-- 운영 주소: https://trippick-kr.netlify.app (Netlify 무료 호스트)
+- 운영 주소: https://trippick.pages.dev (Netlify 무료 호스트)
 - 모바일 미리보기 하네스: `_preview390.html` (390px iframe + 가로 넘침 측정)
 - 기준일: 2026-11-16 (여행 커넥트) / 2026-11-17 (부산·강원 쇼핑 커넥트 레저) / 2026-11-18 (v8 가이드·광고 슬롯)
 
@@ -30,7 +30,7 @@
 3. **검색 유입 FAQ 8개 + FAQPage 구조화 데이터** — "오사카 3박4일 총경비", "부산 요트 드론쇼 취소", "패키지 현지 추가금 계산법", "노쇼핑 구분", "취소 규정 차이", "최소 출발 인원", "eSIM 며칠짜리", "커넥트 수수료" — 답변 숫자는 `data/tours.json`·`essentials.json` 실제 값에서 계산. 화면 문구와 JSON-LD `mainAnswer`가 같은 원본(`data/faq.json`)을 쓴다.
 4. **현장 추가금 실질가 노출** — 카드 가격 아래 "현장 추가금 포함 실질 N원", 스펙 칩 "현장 +N원"(툴팁에 근거). `data/planner.json`의 `extras`가 상품별 금액·근거·별도 항목을 갖는다.
 5. **UX 정리** — 상품 1개뿐인 도시는 가로형 카드(2칸)로, 4개 도시는 비교 타일이 2칸을 채워 빈 칸 제거. 모바일에서 도시 칩 가로 스크롤, FAQ 아코디언, 비교 모달은 표만 내부 스크롤(본문 가로 넘침 0).
-6. **SEO** — FAQPage 추가(WebSite + 코스 ItemList + FAQPage + 상품 ItemList), hero 기준일 "2026.11.16~17"로 통일, canonical·OG·JSON-LD·robots·sitemap 모두 `https://trippick-kr.netlify.app` 기준.
+6. **SEO** — FAQPage 추가(WebSite + 코스 ItemList + FAQPage + 상품 ItemList), hero 기준일 "2026.11.16~17"로 통일, canonical·OG·JSON-LD·robots·sitemap 모두 `https://trippick.pages.dev` 기준.
 
 ## v3에서 달라진 것
 1. **상단 카테고리 재구성** — 히어로 아래 4개 카드(추천 코스 · 지역/투어 · 필수품 · 특가 알림) + 야놀자/여기어때식 퀵 아이콘 바(sticky)
@@ -123,7 +123,7 @@ python3 build_pages.py --out ../deploy_site_gh --base https://gim082487-coder.gi
 `data/tripcom.json` 이 섹션의 원본입니다. 네이버·쿠팡 링크와 섞지 않고 **전용 섹션(`<section id="tripcom">`)** 하나에서만 노출합니다
 (`render_tripcom()` → `<!-- @TRIPCOM -->`).
 
-- 계정: AID `11407530` · SID `336341874` (사이트 URL `https://trippick-kr.netlify.app` 등록). 요율은 호텔 5→6→7%(예약 건수), 국제선 항공 0.5→0.8%.
+- 계정: AID `11407530` · SID `336341874` (사이트 URL `https://trippick.pages.dev` 등록). 요율은 호텔 5→6→7%(예약 건수), 국제선 항공 0.5→0.8%.
 - 숙소 링크 형식: `https://kr.trip.com/hotels/list?city=<도시ID>&display=<도시명>&optionId=<도시ID>&optionType=City&optionName=<도시명>&Allianceid=11407530&SID=336341874&trip_sub1=hotel_<slug>&trip_sub3=D21275837`
 - 항공 링크 형식: `https://kr.trip.com/flights/<Seoul-to-City>/tickets-SEL-<IATA>?flighttype=S&dcity=SEL&acity=<IATA>&Allianceid=…&SID=…&trip_sub1=flight_sel_<iata>&trip_sub3=D21275837`
 - 링크는 반드시 파트너스 **Affiliate Link → Hotels page / Flights page** 생성기에서 발급하세요(도시 ID·영문 슬러그·`trip_sub3`가 생성기 결과값). 손으로 도시 ID를 추측하지 마세요.

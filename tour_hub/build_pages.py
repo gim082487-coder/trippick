@@ -6,7 +6,7 @@ index.html(build.py) 은 그대로 두고, 같은 디자인 토큰을 쓰는
 서브 페이지를 만듭니다.
 
     python3 build_pages.py                 # tour_hub/ 안에 생성
-    python3 build_pages.py --out ../deploy_site --base https://trippick-kr.netlify.app
+    python3 build_pages.py --out ../deploy_site --base https://trippick.pages.dev
     python3 build_pages.py --check-links   # 생성 후 내부 링크 전수 검사
 
 원본
@@ -747,7 +747,7 @@ def main():
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT), help="출력 디렉터리 (기본: tour_hub)")
-    ap.add_argument("--base", default="https://trippick-kr.netlify.app", help="정본 URL")
+    ap.add_argument("--base", default="https://trippick.pages.dev", help="정본 URL")
     ap.add_argument("--check-links", action="store_true")
     ap.add_argument("--only", default="", help="'pages' 또는 'guides' 만 생성")
     args = ap.parse_args()

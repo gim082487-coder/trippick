@@ -3,7 +3,7 @@
     "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
     "aid": "11407530",
     "sid": "336341874",
-    "site": "https://trippick-kr.netlify.app",
+    "site": "https://trippick.pages.dev",
     "checked": "2026-11-18",
     "method": "파트너스 어필리에이트 링크 생성기(한국어 링크 · Hotels page / Flights page)에서 도시·노선별로 발급",
     "rate": "호텔 5%(예약 0~199건) → 6%(200~999) → 7%(1000+), 국제선 항공 0.5%(0~299) → 0.8%(300+), 투어·티켓 4%, 어트랙션·쇼 1.5%"

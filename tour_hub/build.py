@@ -1084,7 +1084,7 @@ def render_sections(data: dict) -> str:
 
 
 DEFAULT_REGION, DEFAULT_STYLE, DEFAULT_PAX = "jp", "value", 2
-SITE = "https://trippick-kr.netlify.app"
+SITE = "https://trippick.pages.dev"
 SITE_NAME = "트립픽"
 
 

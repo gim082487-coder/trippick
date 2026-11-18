@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # 이미지·페이지 전체 수집 허용
-Sitemap: https://trippick-kr.netlify.app/sitemap.xml
+Sitemap: https://trippick.pages.dev/sitemap.xml
