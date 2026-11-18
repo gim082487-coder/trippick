@@ -707,11 +707,13 @@ def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
         docs = []
         for d in c["docs"]:
             must = '<em class="cl-must">필수</em>' if d.get("must") else '<em class="cl-opt">선택</em>'
+            fee = ""
+            if d.get("fee") and d["fee"] not in ("—", "-", ""):
+                fee = f'<span class="cl-doc-fee">{esc(d["fee"])}</span>'
             link = (f'<a class="cl-doc-go" href="{esc(d["url"])}" target="_blank" rel="noopener">공식 사이트</a>'
                     if d.get("url") else "")
             docs.append(
-                f'<li><div class="cl-doc-h"><b>{esc(d["name"])}</b>{must}'
-                f'<span class="cl-doc-fee">{esc(d["fee"])}</span></div>'
+                f'<li><div class="cl-doc-h"><b>{esc(d["name"])}</b>{must}{fee}</div>'
                 f'<p>{esc(d["note"])}</p>'
                 f'<div class="cl-doc-m"><span>{esc(d["when"])}</span>{link}</div></li>'
             )
