@@ -2147,10 +2147,11 @@
         </label>
         <button class="sbtn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg> 검색</button>
       </form>
-      <div class="sdrop" id="sdrop" role="listbox" aria-label="검색 결과" hidden></div>
     </div>
   </div>
 </section>
+
+<div class="sdrop" id="sdrop" role="listbox" aria-label="검색 결과" hidden></div>
 
 <div class="hub-strip" aria-label="도시별 여행 페이지">
   <div class="wrap">
@@ -3670,7 +3671,7 @@ applyFilters();
         '<span class="sd-k ' + kc + '">' + esc(it.k) + '</span>' +
         '<span><span class="sd-t">' + esc(it.t) + '</span><span class="sd-m">' + esc(it.m) + '</span></span></a>';
     });
-    html += '<a class="sd-all" href="guides/?q=' + encodeURIComponent(s) + '">가이드 44편에서 “‘' + esc(s) + '” 더 찾기 →</a>';
+    html += '<a class="sd-all" href="guides/?q=' + encodeURIComponent(s) + '">가이드 44편에서 “' + esc(s) + '” 더 찾기 →</a>';
     box.innerHTML = html;
   }
   function search() {
@@ -3692,7 +3693,7 @@ applyFilters();
     items = found.slice(0, 7);
     sel = -1;
     if (!items.length) {
-      box.innerHTML = '<div class="sd-empty">“‘' + esc(s) + '”에 맞는 가이드·투어가 없습니다.  예: 오사카 · eSIM · 우기 · 패스</div>';
+      box.innerHTML = '<div class="sd-empty">“' + esc(s) + '”에 맞는 가이드·투어가 없습니다.  예: 오사카 · eSIM · 우기 · 패스</div>';
       place();
       box.hidden = false;
       box.classList.add('on');

@@ -442,7 +442,7 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
     items = [
         f'<a class="qn accent" href="#regions"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></span><b>투어 찾기</b><i>{len(tours)}개</i></a>',
         f'<a class="qn" href="cities/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>도시 페이지</b><i>{len(HUB_LIST)}곳</i></a>',
-        f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>{len(tc_flights) + len(tc_hotels) + len(tripcom.get("tickets") or []) + len(tripcom.get("transfers") or []) + len(tripcom.get("cars") or [])}개</i></a>',
+        f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>{len(tc_flights) + len(tc_hotels) + len(tripcom.get("tickets") or []) + len(tripcom.get("transfers") or []) + len(tripcom.get("cars") or []) + len(tripcom.get("esims") or []) + len(tripcom.get("rails") or [])}개</i></a>',
         f'<a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>',
         '<a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>',
         f'<a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>{len(essentials["products"])}개</i></a>',

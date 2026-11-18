@@ -2179,10 +2179,11 @@
         </label>
         <button class="sbtn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg> 검색</button>
       </form>
-      <div class="sdrop" id="sdrop" role="listbox" aria-label="검색 결과" hidden></div>
     </div>
   </div>
 </section>
+
+<div class="sdrop" id="sdrop" role="listbox" aria-label="검색 결과" hidden></div>
 
 <div class="hub-strip" aria-label="도시별 여행 페이지">
   <div class="wrap">
@@ -2240,7 +2241,7 @@
   <div class="wrap">
     <a class="qn accent" href="#regions"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></span><b>투어 찾기</b><i>57개</i></a>
     <a class="qn" href="cities/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>도시 페이지</b><i>7곳</i></a>
-    <a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>37개</i></a>
+    <a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>44개</i></a>
     <a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>
     <a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>
     <a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>22개</i></a>
@@ -8972,7 +8973,7 @@ applyFilters();
         '<span class="sd-k ' + kc + '">' + esc(it.k) + '</span>' +
         '<span><span class="sd-t">' + esc(it.t) + '</span><span class="sd-m">' + esc(it.m) + '</span></span></a>';
     });
-    html += '<a class="sd-all" href="guides/?q=' + encodeURIComponent(s) + '">가이드 44편에서 “‘' + esc(s) + '” 더 찾기 →</a>';
+    html += '<a class="sd-all" href="guides/?q=' + encodeURIComponent(s) + '">가이드 44편에서 “' + esc(s) + '” 더 찾기 →</a>';
     box.innerHTML = html;
   }
   function search() {
@@ -8994,7 +8995,7 @@ applyFilters();
     items = found.slice(0, 7);
     sel = -1;
     if (!items.length) {
-      box.innerHTML = '<div class="sd-empty">“‘' + esc(s) + '”에 맞는 가이드·투어가 없습니다.  예: 오사카 · eSIM · 우기 · 패스</div>';
+      box.innerHTML = '<div class="sd-empty">“' + esc(s) + '”에 맞는 가이드·투어가 없습니다.  예: 오사카 · eSIM · 우기 · 패스</div>';
       place();
       box.hidden = false;
       box.classList.add('on');
