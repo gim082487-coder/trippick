@@ -232,3 +232,7 @@
   .pg-grid{grid-template-columns:1fr}
   .doc{font-size:10.5pt}
 }
+
+/* 가이드 표: 가게 칸 아래 영업·휴무 보조줄 */
+.doc .dim{display:inline-block;margin-top:3px;font-size:11.6px;line-height:1.5;color:var(--ink-3);font-weight:600}
+@media (max-width:640px){ .doc .dim{font-size:11px} }
