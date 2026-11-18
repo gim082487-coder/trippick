@@ -2251,3 +2251,9 @@
   .hub-others{padding:16px 15px;border-radius:16px}
   .hub-intro{padding:15px 16px}
 }
+
+/* 허브 상단 메타: 모바일에서 구분선 없이 줄바꿈만 */
+@media (max-width:640px){
+  .hub-hero .pg-meta{gap:6px 14px}
+  .hub-hero .pg-meta i{display:none}
+}

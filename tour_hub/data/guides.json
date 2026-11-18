@@ -148,7 +148,7 @@
       "updated": "2026-11-17",
       "read": 11,
       "image": "images/courses/osaka.jpg",
-      "imageAlt": "오사카 성과 도심이 보이는 오사카 풍경",
+      "imageAlt": "후시미이나리 신사의 도리이 터널",
       "tours": [
         "os_g",
         "os_p1",
@@ -215,7 +215,7 @@
       "updated": "2026-11-17",
       "read": 8,
       "image": "images/courses/tokyo.jpg",
-      "imageAlt": "도쿄 시내와 전철 풍경",
+      "imageAlt": "후지산과 충레이탑이 보이는 전망",
       "tours": [
         "tk_g",
         "tk_p1"

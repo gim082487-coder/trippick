@@ -806,7 +806,7 @@ def hub_food_card(it: dict, tour, guide, has_hotel: bool) -> str:
           </article>"""
 
 
-def hub_food_route(city: dict, tour, guide, hotel) -> str:
+def hub_food_route(city: dict, tour, guide, hotel, hub_name: str) -> str:
     def short(s: str) -> str:
         segs = s.split(" · ")
         return " · ".join(segs[:2]) if len(segs) > 1 and segs[1].startswith("약") else segs[0]
@@ -827,7 +827,7 @@ def hub_food_route(city: dict, tour, guide, hotel) -> str:
             f'{esc(pick["nameKo"])}</a><span class="fr-m">{esc(short(pick["price"]))}</span></li>'
         )
         if slot == "점심":
-            extra = (f'<li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 {esc(city["name"])}</a>'
+            extra = (f'<li><span class="fr-k">오후</span><a href="#gifts">선물·기념품 {esc(hub_name)}</a>'
                      f'<span class="fr-m">{esc(guide["read"])}분 가이드</span></li>' if guide else "")
             steps.append(extra)
     if hotel:
@@ -852,10 +852,19 @@ def hub_gift_cards(country: dict) -> str:
     return '<div class="gift-grid">' + "".join(cards) + "</div>"
 
 
-def hub_gift_links(country: dict) -> str:
+def hub_gift_links(country: dict, hub: dict) -> str:
     rows = []
+    ids = set(hub.get("cityIds") or [hub["slug"]])
+    tours_by_id = {t["id"]: t for t in TOURS}
+    links = []
+    for ln in country.get("links", []):
+        if ln.get("kind") == "hotel":
+            continue  # 이 페이지 아래 숙소 섹션에서 바로 연결한다
+        if ln.get("kind") == "tour" and tours_by_id.get(ln.get("id"), {}).get("city") not in ids:
+            continue
+        links.append(ln)
     for url, kind, title, meta in B._gift_links(
-        country.get("links", []),
+        links,
         {"tours": TOURS},
         {"products": ESSENTIALS},
         TRIPCOM,
@@ -1043,7 +1052,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
         cards = "\n          ".join(
             hub_food_card(it, tour_first, food_guide, bool(hotel_first)) for it in rest["items"]
         )
-        route = hub_food_route(rest, tour_first, food_guide, hotel_first)
+        route = hub_food_route(rest, tour_first, food_guide, hotel_first, hub["name"])
         food_html = f"""<section class="hub-sec" id="food">
   <div class="hub-sec-head">
     <div><span class="hub-k">LOCAL FOOD</span>
@@ -1086,7 +1095,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
   <div class="gift-card hub-gift">
     {hub_gift_cards(country)}
     <div class="gift-duty"><b>{esc(country['name'])} 반입·면세 한 줄</b><span>{esc(country['duty'])}</span></div>
-    {hub_gift_links(country)}
+    {hub_gift_links(country, hub)}
   </div>
 </section>"""
     else:
@@ -1151,7 +1160,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     </div>
     <figure class="pg-hero-img">
       <img src="{esc(hub['image'])}" alt="{esc(hub['imageAlt'])}" width="1600" height="1000" loading="eager" />
-      <figcaption>사진: 트립픽 · {esc(hub['name'])}</figcaption>
+      <figcaption>{esc(hub.get('imageCredit') or '사진: Pexels')}</figcaption>
     </figure>
   </div>
 </div>
