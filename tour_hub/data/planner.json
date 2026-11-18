@@ -255,8 +255,8 @@
    "partial": false
   },
   "use_ca10_oz": {
-   "krw": 312400,
-   "basis": "기사·가이드 경비+식사팁 $180 + ESTA $40",
+   "krw": 313280,
+   "basis": "기사·가이드 경비+식사팁 $180 + ESTA $40.62(57,680원)",
    "aside": "식사 2회",
    "partial": false
   },
@@ -267,8 +267,8 @@
    "partial": false
   },
   "use_ca10_ke": {
-   "krw": 312400,
-   "basis": "기사·가이드 경비+식사팁 $180 + ESTA $40",
+   "krw": 313280,
+   "basis": "기사·가이드 경비+식사팁 $180 + ESTA $40.62(57,680원)",
    "aside": "식사 2회",
    "partial": false
   },
@@ -303,8 +303,8 @@
    "partial": false
   },
   "usw9": {
-   "krw": 335120,
-   "basis": "기사·가이드 경비 $196(식사팁 포함) + ESTA $40",
+   "krw": 336000,
+   "basis": "기사·가이드 경비 $196(식사팁 포함) + ESTA $40.62(57,680원)",
    "aside": "자유식 2회",
    "partial": false
   },

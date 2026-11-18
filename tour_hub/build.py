@@ -403,17 +403,66 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
     west_n = counts.get("eu", 0) + counts.get("us", 0) + counts.get("oc", 0)
 
     items = [
-        f'<a class="qn" href="#courses"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 코스</b><i>{len(courses["courses"])}개</i></a>',
-        '<a class="qn accent" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>',
+        f'<a class="qn accent" href="#regions"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></span><b>투어 찾기</b><i>{len(tours)}개</i></a>',
+        f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공</b><i>{len(tc_flights) + len(tc_hotels)}개</i></a>',
+        f'<a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>',
+        '<a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>',
+        f'<a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>{len(essentials["products"])}개</i></a>',
+        '<a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>36편</i></a>',
+        '<a class="qn" href="#alert"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><b>특가 알림</b><i>무료</i></a>',
+        f'<a class="qn" href="#courses"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-image"/></svg></span><b>여행 코스</b><i>{len(courses["courses"])}개</i></a>',
         f'<button class="qn" type="button" data-quick-scope="kr"><span class="qn-ic"><svg class="flag-ic" aria-hidden="true"><use href="#f-kr"/></svg></span><b>국내</b><i>{kr_n}개</i></button>',
         f'<button class="qn" type="button" data-quick-scope="jp"><span class="qn-ic"><svg class="flag-ic" aria-hidden="true"><use href="#f-jp"/></svg></span><b>일본</b><i>{counts.get("jp", 0)}개</i></button>',
         f'<button class="qn" type="button" data-quick-scope="sea"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-sun"/></svg></span><b>동남아</b><i>{sea_n}개</i></button>',
         f'<button class="qn" type="button" data-quick-scope="eu_us"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><b>유럽·미주</b><i>{west_n}개</i></button>',
-        f'<a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>eSIM·패스</b><i>{len(essentials["products"])}개</i></a>',
-        f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공</b><i>{len(tc_flights) + len(tc_hotels)}개</i></a>',
-        '<a class="qn" href="#alert"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><b>특가 알림</b><i>무료</i></a>',
     ]
     return "\n    ".join(items)
+
+
+def render_hot_strip(data: dict, courses: dict, essentials: dict, tripcom: dict) -> str:
+    """모바일 첫 화면용 '최저가 바로가기' 6장 (v10).
+
+    도시별 최저가 상품 4개 + 트립닷컴 숙소 1개 + eSIM 1개를 실제 제휴 링크로 바로 건다.
+    데스크톱에서는 CSS 로 숨기고, 모바일(<=768px)에서만 보인다.
+    """
+    tours = data["tours"]
+    cards = []
+    for city in ("osaka", "tokyo", "danang", "jeju"):
+        items = [t for t in tours if t["city"] == city]
+        if not items:
+            continue
+        t = min(items, key=lambda x: x["sale"])
+        short = re.split(r"\s*[(（]", t["title"])[0].strip()
+        cards.append(
+            f'<a class="hot-c" href="{esc(t["url"])}" target="_blank" rel="noopener sponsored">'
+            f'<span class="hot-th"><img src="{esc(t["img"])}" alt="" width="320" height="180" loading="lazy" /></span>'
+            f'<span class="hot-k">{flag_svg(t["country"], 13, 9.1)} {esc(t["city_label"])}</span>'
+            f'<b>{esc(short)}</b>'
+            f'<span class="hot-p">{won(t["sale"])}원~ <em>1인</em></span></a>'
+        )
+
+    hotel = next((h for h in tripcom["hotels"] if h.get("cityId") == "osaka"), tripcom["hotels"][0])
+    cards.append(
+        f'<a class="hot-c" href="{esc(hotel["url"])}" target="_blank" rel="noopener sponsored">'
+        f'<span class="hot-th hot-th--ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>'
+        f'<span class="hot-k">트립닷컴 · 숙소</span>'
+        f'<b>{esc(hotel["city"])} 숙소 최저가 검색</b>'
+        f'<span class="hot-p">가격비교 <em>무료취소</em></span></a>'
+    )
+
+    esim = next((e for e in essentials["products"] if e["id"] == "jp-esim-usimsa-3d"), None)
+    if esim:
+        cards.append(
+            f'<a class="hot-c" href="{esc(ess_url(esim))}" target="_blank" rel="noopener sponsored">'
+            f'<span class="hot-th hot-th--ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span>'
+            f'<span class="hot-k">일본 · eSIM</span>'
+            f'<b>일본 eSIM 3일 무제한</b>'
+            f'<span class="hot-p">{won(esim["price"])}원~ <em>도착 즉시</em></span></a>'
+        )
+
+    head = ('<div class="hot-head"><b>지금 눈에 띄는 최저가</b><span>1인 기준</span>'
+            f'<a href="#regions">투어 {len(tours)}개 전체 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>')
+    return head + '<div class="hot-row">' + "".join(cards) + "</div>"
 
 
 def render_city_select(data: dict) -> str:
@@ -556,6 +605,11 @@ def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict) -> 
 
     pkg = course["package"]
     p = tours_by_id[pkg["ref"]]
+    more_n = len(course["days"]) - 2
+    days_more = ("" if more_n < 1 else
+                 f'<button class="days-more" type="button" data-days-more aria-expanded="false" '
+                 f'data-more-label="남은 {more_n}일 일정 더 보기">남은 {more_n}일 일정 더 보기 '
+                 '<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>')
     active = " active" if idx == 0 else ""
     hidden = "" if idx == 0 else " hidden"
     why = "".join(f"<li>{esc(w)}</li>" for w in course.get("why", []))
@@ -585,6 +639,7 @@ def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict) -> 
           <ol class="timeline">
             {''.join(days)}
           </ol>
+          {days_more}
         </div>
 
         <aside class="side">
@@ -766,8 +821,8 @@ def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
         </div>
       </div>
       <div class="cl-grid cl-grid--2">
-        <div class="cl-block">
-          <div class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></div>
+        <details class="cl-block cl-fold" data-mfold open>
+          <summary class="cl-h"><h3>기내반입 규정</h3><span class="cl-tag">2026.4.20 기준</span></summary>
           <dl class="cl-facts">
             <div><dt>보조배터리</dt><dd>{esc(pb['rule'])}</dd></div>
             <div><dt>액체류</dt><dd>{esc(liquid['rule'])}</dd></div>
@@ -775,7 +830,7 @@ def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
             <div><dt>현금</dt><dd>{esc(c['cash'])}</dd></div>
           </dl>
           <ul class="cl-notes">{notes}</ul>
-        </div>
+        </details>
         <div class="cl-block">
           <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
           <div class="cl-links">{''.join(links)}</div>
@@ -790,6 +845,8 @@ def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
     src = " · ".join(pb["sources"][:3])
     return f"""<div class="cl-tabs" role="tablist" aria-label="나라 선택">{''.join(tabs)}</div>
     {''.join(panels)}
+    <details class="cl-calc-box" data-mfold open>
+    <summary class="cl-calc-sum">보조배터리 mAh → Wh 계산기 <span>기내 반입 기준</span></summary>
     <div class="cl-calc">
       <div class="cl-calc-in">
         <h3>보조배터리 mAh → Wh 계산기</h3>
@@ -807,6 +864,7 @@ def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
         <p class="cl-src">기준: {esc(src)}. 160Wh 초과는 반입 불가입니다.</p>
       </div>
     </div>
+    </details>
     <p class="cl-note">수수료·규정은 {esc(check['updated'])} 확인 기준입니다. 정부 요금은 예고 없이 바뀌므로 결제·출국 직전에 각 공식 사이트에서 다시 확인하세요. 체크 상태는 이 브라우저에만 저장되며 서버로 보내지 않습니다.</p>"""
 
 
@@ -1519,6 +1577,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
     html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom))
     html = replace_block(html, "<!-- @QUICKSTRIP -->", render_quickstrip(data, courses, essentials, tripcom))
+    html = replace_block(html, "<!-- @HOTSTRIP -->", render_hot_strip(data, courses, essentials, tripcom))
     html = replace_block(html, "<!-- @REGION_CHIPS -->", render_region_chips())
     html = replace_block(html, "<!-- @STYLE_CHIPS -->", render_style_chips())
     html = replace_block(html, "<!-- @PLAN_NOTE -->", plan_notes.get(f"{DEFAULT_REGION}|{DEFAULT_STYLE}", ""))
