@@ -2128,3 +2128,18 @@
 /* 가이드 표: 가게 칸 아래 영업·휴무 보조줄 */
 .doc .dim{display:inline-block;margin-top:3px;font-size:11.6px;line-height:1.5;color:var(--ink-3);font-weight:600}
 @media (max-width:640px){ .doc .dim{font-size:11px} }
+
+/* 가이드 맛집 5선 표: 모바일에서는 한 줄씩 카드로 펼침 */
+.tb--food table{min-width:0}
+@media (max-width:640px){
+  .tb--food thead{display:none}
+  .tb--food table,.tb--food tbody,.tb--food tr,.tb--food td{display:block;width:auto}
+  .tb--food tr{padding:13px 15px;border-bottom:1px solid var(--line-2)}
+  .tb--food tr:last-child{border-bottom:0}
+  .tb--food td{border:0;padding:0}
+  .tb--food td:nth-child(1){font-size:15.5px;font-weight:800;color:var(--ink);line-height:1.45}
+  .tb--food td:nth-child(2){margin-top:5px;font-size:13.4px;color:var(--ink-2)}
+  .tb--food td.num{text-align:left}
+  .tb--food td:nth-child(3){margin-top:6px;font-size:15px;font-weight:800;color:var(--blue-700);font-variant-numeric:tabular-nums}
+  .tb--food td:nth-child(4){margin-top:2px;font-size:12.6px;font-weight:700;color:var(--ink-2);font-variant-numeric:tabular-nums}
+}
