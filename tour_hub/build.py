@@ -49,6 +49,7 @@ DEPART_LINKS = {
 }
 
 GIFT_COUNTRIES = 0   # data/gifts.json 로드 시 채운다(main).
+STAYS_COUNT = 0      # data/stays.json 로드 시 채운다(main).
 GUIDES_COUNT = 0     # data/guides.json 로드 시 채운다(main).
 FOOD_COUNT = 0       # data/restaurants.json 로드 시 채운다(main).
 FOOD_CITY = 0
@@ -453,6 +454,7 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
     items = [
         f'<a class="qn accent" href="#regions"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></span><b>투어 찾기</b><i>{len(tours)}개</i></a>',
         f'<a class="qn" href="cities/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>도시 페이지</b><i>{len(HUB_LIST)}곳</i></a>',
+        f'<a class="qn" href="stays.html"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><b>찐숙소</b><i>{STAYS_COUNT}곳</i></a>',
         f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>{len(tc_flights) + len(tc_hotels) + len(tripcom.get("tickets") or []) + len(tripcom.get("transfers") or []) + len(tripcom.get("cars") or []) + len(tripcom.get("esims") or []) + len(tripcom.get("rails") or [])}개</i></a>',
         f'<a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>',
         '<a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>',
@@ -2068,7 +2070,7 @@ def render_ad_slots() -> dict:
 
 
 def main() -> int:
-    global GIFT_COUNTRIES, GUIDES_COUNT
+    global GIFT_COUNTRIES, GUIDES_COUNT, STAYS_COUNT
     check = "--check" in sys.argv
     data = json.loads((DATA / "tours.json").read_text(encoding="utf-8"))
     courses = json.loads((DATA / "courses.json").read_text(encoding="utf-8"))
@@ -2089,6 +2091,7 @@ def main() -> int:
     FOOD_CITY = len(rest["cities"])
     GIFT_COUNTRIES = len(gifts["countries"])
     GUIDES_COUNT = len(guides["guides"])
+    STAYS_COUNT = len(json.loads((DATA / "stays.json").read_text(encoding="utf-8"))["hotels"])
 
     TC_CITY.clear()
     for h in tripcom["hotels"]:

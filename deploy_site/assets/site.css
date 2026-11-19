@@ -2035,7 +2035,7 @@
     .faq .sec-head p{display:none}
 
     /* ---- 하단 고정 퀵바 ---- */
-    .mbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:75;
+    .mbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:75;
       background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
       border-top:1px solid var(--line);padding:5px 6px calc(5px + env(safe-area-inset-bottom))}
     .mbar-i{display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 2px;border-radius:10px;
@@ -3031,3 +3031,104 @@
 .hub-pkg .pkg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width:860px){ .hub-pkg .pkg-grid{grid-template-columns:1fr} }
 .hub-pkg .pkg-card{background:var(--soft)}
+
+/* ==========================================================================
+   v21: /stays — '찐숙소' 지역별 큐레이션 탭
+   ========================================================================== */
+.stays-hero{background:linear-gradient(180deg,#F2F6FA,#F7F9FB)}
+.stays-hero .wrap{padding-bottom:26px}
+.sf{position:sticky;top:calc(var(--head-h) + 4px);z-index:26;background:rgba(255,255,255,.97);
+  backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:16px;padding:10px 12px 9px;
+  box-shadow:0 8px 22px rgba(13,23,38,.06);margin:22px 0 0}
+.sf-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sf-row + .sf-row{margin-top:6px;padding-top:6px;border-top:1px solid var(--line-2)}
+.sf-chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0;scrollbar-width:none;-ms-overflow-style:none;flex:1 1 auto;min-width:0}
+.sf-chips::-webkit-scrollbar{display:none}
+.sf-chips .gf-chip{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;font-size:12.6px;font-weight:700}
+.sf-chips .gf-chip span{font-size:10.6px;font-weight:800;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.sf-chips .gf-chip.on span{color:rgba(255,255,255,.82)}
+.sf-sort{display:flex;gap:6px;flex:0 0 auto}
+.sf-sort .gf-chip{padding:7px 11px;font-size:12.2px}
+.sf-sort .gf-chip.on{background:var(--navy);border-color:var(--navy)}
+.sf-count{flex:0 0 auto;font-size:12.2px;color:var(--ink-3);font-variant-numeric:tabular-nums;padding-left:4px}
+.sf-count b{font-size:14.5px;font-weight:850;color:var(--blue-700)}
+
+.stays-intro{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 0}
+.stays-intro > div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 15px}
+.stays-intro b{display:block;font-size:12.6px;font-weight:800;color:var(--ink);margin-bottom:4px}
+.stays-intro p{margin:0;font-size:12.2px;line-height:1.6;color:var(--ink-2)}
+
+.sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0 0}
+@media (max-width:1024px){ .sgrid{grid-template-columns:repeat(2,minmax(0,1fr))} .stays-intro{grid-template-columns:1fr 1fr} }
+@media (max-width:640px){ .sgrid{grid-template-columns:1fr;gap:14px} .stays-intro{grid-template-columns:1fr} }
+
+.scard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;
+  overflow:hidden;transition:transform .18s var(--ease),box-shadow .18s var(--ease),border-color .18s}
+.scard:hover{transform:translateY(-2px);box-shadow:var(--sh-2);border-color:var(--blue-line)}
+.scard[hidden]{display:none}
+.sc-thumb{position:relative;display:block;aspect-ratio:3/2;background:var(--soft);overflow:hidden}
+.sc-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--ease)}
+.scard:hover .sc-thumb img{transform:scale(1.03)}
+.sc-score{position:absolute;left:10px;top:10px;display:inline-flex;align-items:center;gap:3px;
+  background:rgba(16,32,46,.9);color:#fff;font-size:12.6px;font-weight:850;padding:4px 8px;border-radius:8px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.sc-score.gold{background:#1D6FEB}
+.sc-score.good{background:#123F6B}
+.sc-type{position:absolute;right:10px;top:10px;background:rgba(255,255,255,.94);color:var(--navy);
+  font-size:11px;font-weight:800;padding:4px 8px;border-radius:8px}
+.sc-body{padding:13px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.sc-top{display:flex;align-items:center;gap:6px;font-size:11.2px;color:var(--ink-3);font-weight:700}
+.sc-top .sc-region{color:var(--blue-700);font-weight:800}
+.sc-top i{width:3px;height:3px;border-radius:50%;background:#C3CCD5;display:inline-block}
+.scard h3{margin:0;font-size:15px;line-height:1.4;font-weight:800;letter-spacing:-.025em;color:var(--ink)}
+.scard h3 a{color:inherit}
+.scard h3 a:hover{color:var(--blue-700)}
+.sc-loc{display:flex;align-items:flex-start;gap:4px;margin:0;font-size:11.8px;line-height:1.5;color:var(--ink-3)}
+.sc-loc svg{width:12px;height:12px;flex:0 0 auto;margin-top:2px;stroke:currentColor;fill:none;stroke-width:1.9}
+.sc-reason{margin:2px 0 0;font-size:12.5px;line-height:1.62;color:var(--ink-2);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc-sub{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:10.8px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.sc-sub b{color:var(--ink-2);font-weight:750}
+.sc-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line-2);display:flex;align-items:center;
+  justify-content:space-between;gap:8px}
+.sc-price{font-size:11.4px;color:var(--ink-3)}
+.sc-price b{display:block;font-size:16px;font-weight:850;color:var(--navy);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.sc-cta{flex:0 0 auto;display:inline-flex;align-items:center;gap:4px;background:var(--blue);color:#fff;
+  font-size:12.4px;font-weight:800;padding:9px 12px;border-radius:10px;white-space:nowrap}
+.sc-cta:hover{background:var(--blue-700);color:#fff}
+.sc-cta svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+.sc-cta .sc-ext{font-size:10px;font-weight:700;opacity:.85}
+
+.sr-band{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  margin:34px 0 0;padding:16px 18px;border:1px dashed var(--blue-line);border-radius:14px;background:linear-gradient(100deg,#F2F7FB,#F9FBFC)}
+.sr-band b{display:block;font-size:13.4px;font-weight:800;color:var(--ink)}
+.sr-band p{margin:3px 0 0;font-size:12.2px;color:var(--ink-2)}
+.sr-band .btn-line{border:1px solid var(--blue);color:var(--blue-700);background:#fff;border-radius:10px;
+  padding:9px 13px;font-size:12.6px;font-weight:800;white-space:nowrap}
+.sr-band .btn-line:hover{background:var(--blue-soft)}
+.sr-regions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.sr-regions a{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);
+  border-radius:999px;padding:8px 13px;font-size:12.6px;font-weight:700;color:var(--ink-2)}
+.sr-regions a:hover{border-color:var(--blue-line);color:var(--blue-700)}
+.sr-regions span{font-size:10.8px;color:var(--ink-3);font-weight:800}
+.snote{margin:26px 0 0;padding:14px 16px;background:var(--soft);border-radius:12px;font-size:12px;line-height:1.7;color:var(--ink-2)}
+.snote b{color:var(--ink);font-weight:800}
+@media (max-width:640px){
+  .sf{top:calc(var(--head-h) + 2px);padding:8px 9px 7px;border-radius:14px}
+  .sf-chips .gf-chip{padding:6px 10px;font-size:12px}
+  .sf-sort{width:100%}
+  .sf-sort .gf-chip{flex:1 1 0;justify-content:center}
+  .scard h3{font-size:14.6px}
+}
+
+/* v21: 도시 허브 → /stays 진입 링크 */
+.hub-stay-pick{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0 0;padding:12px 15px;
+  border:1px dashed var(--blue-line);border-radius:12px;background:linear-gradient(100deg,#F2F7FB,#F9FBFC);color:var(--ink-2)}
+.hub-stay-pick:hover{border-color:var(--blue);text-decoration:none}
+.hub-stay-pick b{font-size:13.4px;font-weight:800;color:var(--ink)}
+.hub-stay-pick span{font-size:12.2px;color:var(--ink-2);flex:1 1 260px}
+.hub-stay-pick i{display:inline-flex;align-items:center;gap:4px;font-style:normal;font-size:12.2px;font-weight:800;color:var(--blue-700);white-space:nowrap}
+.hub-stay-pick i svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* v21: /stays 지역 앵커(hub → /stays#osaka) */
+.sf-anchors span{display:block;height:0;overflow:hidden;scroll-margin-top:96px}

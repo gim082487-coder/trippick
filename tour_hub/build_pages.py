@@ -58,6 +58,7 @@ NAV = [
     ("index.html#checklist", "출국 준비", "checklist"),
     ("index.html#regions", "지역·투어", "regions"),
     ("cities/index.html", "도시별", "cities"),
+    ("stays.html", "찐숙소", "stays"),
     ("guides/index.html", "여행 가이드", "guides"),
     ("index.html#foods", "맛집", "foods"),
     ("index.html#essentials", "여행 필수품", "essentials"),
@@ -75,6 +76,7 @@ TOOL_KEYS = {k for _, _, k, _ in TOOLS}
 
 # 1080px 이하에서 숨길 보조 메뉴(핵심 메뉴와 드롭다운만 남긴다)
 HIDE_SM = {"checklist", "foods", "alert"}
+STAYS: dict = {}   # data/stays.json — v21 /stays
 KLOOK: dict = {}   # data/klook.json (main 에서 채운다)
 PACKAGES: dict = {}  # data/packages.json — v20 고단가 패키지
 
@@ -200,6 +202,7 @@ def footer_html(up: str) -> str:
           <a href="{up}passes.html">교통패스 본전 계산기</a>
           <a href="{up}calendar.html">월별 시즌·최저가 캘린더</a>
           <a href="{up}cities/index.html">도시별 여행 페이지</a>
+          <a href="{up}stays.html">찐숙소 — 지역별 숙소 30곳</a>
           <a href="{up}guides/index.html">여행 가이드</a>
           <a href="{up}index.html#alert">특가 알림</a>
         </div>
@@ -1616,6 +1619,15 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     <div class="tc-acts tc-acts--hub">{B.tc_act_card(kl, '클룩에서 보기')}</div>
     <p class="ess-cp-note">{esc(KLOOK['disclosure'])}</p>
   </div>"""
+    _stays = {r['id']: r for r in STAYS.get('regions', [])}
+    _pick = _stays.get(slug)
+    stay_pick_link = (
+        f'<a class="hub-stay-pick" href="stays.html#{_pick["id"]}">'
+        f'<b>{esc(hub["name"])} 찐숙소 {_pick["count"]}곳</b>'
+        f'<span>평점·리뷰 수·1박 가격으로 고른 숙소 — 최고 평점 {esc(_pick["top"])}</span>'
+        f'<i>보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>'
+        if _pick else ''
+    )
     stay_html = f"""<section class="hub-sec" id="stay">  <div class="hub-sec-head">
     <div><span class="hub-k">STAY &amp; FLIGHT &amp; TICKET</span>
       <h2>{esc(hub['name'])} 숙소·항공권·입장권</h2>
@@ -1624,6 +1636,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
   <div class="tc-group">
     <div class="ess-ghead"><h3>🏨 {esc(hub['name'])} 숙소</h3><span class="n">{len(hotels)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜 기준 최저가</span></div>
     <div class="tc-grid hub-tc">{hub_hotel_cards(hotels)}</div>
+    {stay_pick_link}
   </div>
   {flight_html}
   {act_html}
@@ -2292,6 +2305,305 @@ def calendar_page(out_root: Path, base: str) -> Path:
 # ----------------------------------------------------------------------
 # sitemap
 # ----------------------------------------------------------------------
+def _stays_region_by_id() -> dict:
+    return {r["id"]: r for r in STAYS.get("regions", [])}
+
+
+STAY_TYPE_ORDER = ["hotel", "resort", "onsen", "value"]
+STAY_TYPE_CHIP = {"hotel": "호텔", "resort": "리조트·풀빌라", "onsen": "온천 료칸", "value": "가성비"}
+
+
+def _stay_score_class(score: float) -> str:
+    if score >= 9.3:
+        return " gold"
+    if score >= 9.0:
+        return " good"
+    return ""
+
+
+def _stay_subs(h: dict) -> str:
+    sub = h.get("sub") or {}
+    order = ["청결도", "위치", "서비스", "시설"]
+    parts = [f'{name} <b>{sub[name]}</b>' for name in order if sub.get(name)]
+    if not parts:
+        return ""
+    return f'<div class="sc-sub"><span>{h["reviews"]:,}개 리뷰</span>' + "".join(f"<span>{p}</span>" for p in parts) + "</div>"
+
+
+def stays_card(h: dict, region: dict) -> str:
+    sub = _stay_subs(h)
+    return f"""    <article class="scard" data-region="{h['region']}" data-type="{h['type']}" data-score="{h['score']}" data-price="{h['price']}">
+      <a class="sc-thumb" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored" aria-label="{esc(h['name'])} 트립닷컴에서 보기">
+        <img src="{esc(h['img'])}" alt="{esc(region['name'])} {esc(h['name'])} 숙소 사진" width="720" height="480" loading="lazy" />
+        <span class="sc-score{_stay_score_class(h['score'])}">{h['score']:.1f}</span>
+        <span class="sc-type">{esc(h['typeLabel'])}</span>
+      </a>
+      <div class="sc-body">
+        <div class="sc-top"><span class="sc-region">{esc(region['name'])}</span><i></i><span>{h['star']}성</span></div>
+        <h3><a href="{esc(h['url'])}" target="_blank" rel="noopener sponsored">{esc(h['name'])}</a></h3>
+        <p class="sc-loc"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>{esc(h['access'])}</span></p>
+        <p class="sc-reason">{esc(h['reason'])}</p>
+        {sub}
+        <div class="sc-foot">
+          <span class="sc-price"><b>{h['price']:,}원</b>1박~</span>
+          <a class="sc-cta" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored">예약 <span class="sc-ext">트립닷컴</span> <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </article>"""
+
+
+def stays_jsonld(base: str, groups: list) -> str:
+    b = base.rstrip("/")
+    items = []
+    for i, (region, hotels) in enumerate(groups, 1):
+        items.append({
+            "@type": "ListItem",
+            "position": i,
+            "item": {
+                "@type": "ItemList",
+                "name": f"{region['name']} 숙소 추천",
+                "numberOfItems": len(hotels),
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": j,
+                        "item": {
+                            "@type": "Hotel",
+                            "name": h["name"],
+                            "address": {"@type": "PostalAddress", "addressLocality": region["name"]},
+                            "starRating": {"@type": "Rating", "ratingValue": h["star"]},
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": h["score"],
+                                "reviewCount": h["reviews"],
+                                "bestRating": 10,
+                                "worstRating": 1,
+                            },
+                            "url": h["url"],
+                        },
+                    }
+                    for j, h in enumerate(hotels, 1)
+                ],
+            },
+        })
+    data = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "지역별 찐숙소 추천 — 오사카·도쿄·다낭·방콕 30곳 | 트립픽",
+        "description": "트립닷컴 평점·리뷰 수·1박 최저가를 그대로 옮긴 지역별 숙소 30곳. 유형·정렬 필터로 좁혀서 봅니다.",
+        "url": f"{b}/stays",
+        "isPartOf": {"@type": "WebSite", "name": "트립픽", "url": f"{b}/"},
+        "mainEntity": {"@type": "ItemList", "numberOfItems": sum(len(h) for _, h in groups), "itemListElement": items},
+    }
+    return json.dumps(data, ensure_ascii=False)
+
+
+def stays_page(out_root: Path, base: str) -> Path:
+    regions = STAYS.get("regions", [])
+    hotels = STAYS.get("hotels", [])
+    by_region = _stays_region_by_id()
+    groups = [(r, [h for h in hotels if h["region"] == r["id"]]) for r in regions if any(h["region"] == r["id"] for h in hotels)]
+    total = sum(len(h) for _, h in groups)
+    price_min = min(h["price"] for h in hotels)
+    price_max = max(h["price"] for h in hotels)
+    score_min = min(h["score"] for h in hotels)
+    score_max = max(h["score"] for h in hotels)
+    source = STAYS.get("source", {})
+
+    region_chips = "".join(
+        f'<button class="gf-chip" type="button" data-region="{r["id"]}">{esc(r["name"])} <span>{len(hs)}</span></button>'
+        for r, hs in groups
+    )
+    type_chips = "".join(
+        f'<button class="gf-chip" type="button" data-type="{t}">{esc(STAY_TYPE_CHIP[t])} '
+        f'<span>{sum(1 for h in hotels if h["type"] == t)}</span></button>'
+        for t in STAY_TYPE_ORDER
+    )
+    cards = []
+    for r, hs in groups:
+        for h in hs:
+            cards.append(stays_card(h, r))
+
+    region_anchors = "".join(f'<span id="{r["id"]}"></span>' for r, _ in groups)
+    region_links = "".join(
+        f'<a href="#{r["id"]}" data-jump="{r["id"]}">{esc(r["name"])} <span>{len(hs)}곳</span></a>' for r, hs in groups
+    )
+    intro = "".join(
+        f'<div><b>{esc(r["name"])} · {esc(r["country"])}</b><p>{esc(r["note"])}</p></div>' for r, _ in groups[:3]
+    )
+
+    body = f"""<div class="pg-hero stays-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><b>찐숙소</b></nav>
+    <span class="pg-kicker">TRIPPICK STAYS · {len(groups)}개 도시 {total}곳</span>
+    <div class="pg-head">
+      <h1>지역별 <em>찐숙소</em> {total}곳, 평점과 리뷰 수로만 골랐습니다</h1>
+      <p class="dek">오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이·제주에서 <b>평점 {score_min:.1f}~{score_max:.1f}</b>,
+      <b>1박 {price_min:,}~{price_max:,}원</b> 구간의 숙소 {total}곳을 골라 유형·가격·위치를 같은 표에 올렸습니다.
+      평점은 트립닷컴 투숙객 리뷰 기준이고, 리뷰 수가 적은 숙소는 그 숫자를 카드에 같이 적었습니다.
+      예약 버튼은 각 숙소의 트립닷컴 페이지로 바로 연결됩니다.</p>
+      <div class="pg-meta">
+        <span><b>트립픽 숙소 편집</b></span><i></i>
+        <span>{total}곳 · {len(groups)}개 도시</span><i></i>
+        <span>가격 확인 {source.get('checked', '2026-11-19').replace('-', '.')}</span><i></i>
+        <span>1박·2인·세금 포함</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pg-body">
+  <div class="wrap">
+    <div class="sf" id="sf">
+      <div class="sf-row">
+        <div class="sf-chips" role="group" aria-label="지역 선택">
+          <button class="gf-chip on" type="button" data-region="all">전체 <span>{total}</span></button>
+          {region_chips}
+        </div>
+      </div>
+      <div class="sf-row">
+        <div class="sf-chips" role="group" aria-label="숙소 유형">
+          <button class="gf-chip on" type="button" data-type="all">전체 유형</button>
+          {type_chips}
+        </div>
+        <div class="sf-sort" role="group" aria-label="정렬">
+          <button class="gf-chip on" type="button" data-sort="score">평점 높은 순</button>
+          <button class="gf-chip" type="button" data-sort="price">가격 낮은 순</button>
+        </div>
+        <span class="sf-count"><b id="sfCount">{total}</b>곳</span>
+      </div>
+    </div>
+
+    <div class="stays-intro">{intro}</div>
+    <div class="sf-anchors" aria-hidden="true">{region_anchors}</div>
+
+    <div class="sgrid" id="sgrid">
+{chr(10).join(cards)}
+    </div>
+
+    <div class="gfind-empty" id="sfEmpty" hidden>
+      <b>조건에 맞는 숙소가 없습니다.</b>
+      <p>지역이나 유형을 ‘전체’로 바꿔 보세요. 유형은 호텔·리조트·온천 료칸·가성비 네 가지입니다.</p>
+      <button type="button" id="sfReset">필터 초기화</button>
+    </div>
+
+    <div class="sr-regions" aria-label="지역 바로가기">
+      {region_links}
+    </div>
+
+    <div class="sr-band">
+      <div><b>이 도시 전체 숙소를 날짜 넣고 비교하려면</b>
+        <p>트립닷컴 도시 숙소 목록에서 체크인 날짜·인원을 넣으면 그날 요금으로 정렬됩니다. 카드의 예약 버튼은 숙소 한 곳으로 바로 갑니다.</p></div>
+      <a class="btn-line" href="cities/index.html">도시별 여행 페이지 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <p class="snote"><b>숫자 읽는 법</b> — 평점은 트립닷컴 투숙객 리뷰 10점 만점 기준이고, 옆의 리뷰 수와 함께 봐야 합니다.
+    가격은 <b>2026-11-19~20 체크인, 성인 2명, 1박, 세금·서비스비용 포함</b> 최저가입니다. 같은 숙소도 날짜·객실·잔여 상황에 따라 달라지므로
+    결제 직전 트립닷컴 결제 화면의 금액을 최종으로 확인하세요. 숙소 사진은 트립닷컴 숙소 페이지 이미지입니다.</p>
+
+    <p class="snote"><b>제휴 고지</b> — 이 페이지의 예약 버튼은 트립닷컴 파트너스 제휴 링크입니다.
+    예약이 이루어지면 트립픽이 트립닷컴으로부터 수수료를 받을 수 있으며, 구매자가 지불하는 금액에는 영향이 없습니다.
+    숙소 선정과 순서는 평점·리뷰 수·위치를 기준으로 편집했고, 수수료율에 따라 배열하지 않았습니다.</p>
+  </div>
+</div>
+{stays_filter_script()}"""
+
+    return page(
+        out_root,
+        "stays.html",
+        title="지역별 찐숙소 추천 30곳 — 오사카·도쿄·다낭·방콕 평점·가격 비교 (2026) | 트립픽",
+        desc=(
+            f"오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이·제주 숙소 {total}곳을 트립닷컴 평점·리뷰 수·"
+            f"1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
+            "호텔·리조트·온천 료칸·가성비 유형 필터와 평점·가격 정렬, 역·해변 접근성, 예약은 트립닷컴 제휴 링크로 연결됩니다. 2026-11-19 확인."
+        ),
+        keywords=(
+            "지역별 숙소 추천, 오사카 호텔 추천, 도쿄 호텔 추천, 후쿠오카 호텔 추천, 다낭 리조트 추천, 나트랑 호텔 추천, "
+            "방콕 호텔 추천, 타이베이 호텔 추천, 제주 호텔 추천, 가성비 호텔, 온천 료칸 추천, 트립닷컴 숙소"
+        ),
+        body=body,
+        base=base,
+        active="stays",
+        jsonld=f'<script type="application/ld+json">{stays_jsonld(base, groups)}</script>',
+    )
+
+
+def stays_filter_script() -> str:
+    return """<script>
+(function(){
+  var grid = document.getElementById('sgrid');
+  if (!grid) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.scard'));
+  var countEl = document.getElementById('sfCount');
+  var emptyEl = document.getElementById('sfEmpty');
+  var regionBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-chips [data-region]'));
+  var typeBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-chips [data-type]'));
+  var sortBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-sort [data-sort]'));
+  var state = { region: 'all', type: 'all', sort: 'score' };
+
+  function scoreOf(c){ return parseFloat(c.getAttribute('data-score')) || 0; }
+  function priceOf(c){ return parseInt(c.getAttribute('data-price'), 10) || 0; }
+
+  function render(){
+    var shown = cards.filter(function(c){
+      var okR = state.region === 'all' || c.getAttribute('data-region') === state.region;
+      var okT = state.type === 'all' || c.getAttribute('data-type') === state.type;
+      return okR && okT;
+    });
+    shown.sort(function(a, b){
+      return state.sort === 'price' ? priceOf(a) - priceOf(b) : scoreOf(b) - scoreOf(a);
+    });
+    cards.forEach(function(c){ c.hidden = true; });
+    shown.forEach(function(c){ c.hidden = false; grid.appendChild(c); });
+    countEl.textContent = shown.length;
+    emptyEl.hidden = shown.length > 0;
+  }
+
+  function bind(btns, key, attr){
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('on'); });
+        btn.classList.add('on');
+        state[key] = btn.getAttribute(attr);
+        render();
+      });
+    });
+  }
+  bind(regionBtns, 'region', 'data-region');
+  bind(typeBtns, 'type', 'data-type');
+  bind(sortBtns, 'sort', 'data-sort');
+
+  function setRegion(id){
+    var target = regionBtns.filter(function(b){ return b.getAttribute('data-region') === id; })[0];
+    if (!target) return;
+    regionBtns.forEach(function(b){ b.classList.remove('on'); });
+    target.classList.add('on');
+    state.region = id;
+    render();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-jump]'), function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      setRegion(a.getAttribute('data-jump'));
+      var sf = document.getElementById('sf');
+      if (sf && sf.scrollIntoView) sf.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  if (location.hash && location.hash.length > 1) setRegion(location.hash.slice(1));
+
+  var reset = document.getElementById('sfReset');
+  if (reset) reset.addEventListener('click', function(){
+    regionBtns.forEach(function(b){ b.classList.remove('on'); });
+    typeBtns.forEach(function(b){ b.classList.remove('on'); });
+    regionBtns[0].classList.add('on');
+    typeBtns[0].classList.add('on');
+    state.region = 'all'; state.type = 'all';
+    render();
+  });
+  render();
+})();
+</script>"""
+
 def not_found_page(out_root: Path, base: str) -> Path:
     """없는 주소용 404.html — 홈으로 되돌리는 동선과 인기 페어지를 둔다(noindex)."""
     links = "".join(
@@ -2355,6 +2667,7 @@ def write_sitemap(out_root: Path, base: str):
     urls += [
         (f"{b}/exchange.html", "0.8", "monthly"),
         (f"{b}/baggage.html", "0.8", "monthly"),
+        (f"{b}/stays.html", "0.9", "weekly"),
         (f"{b}/passes.html", "0.9", "monthly"),
         (f"{b}/calendar.html", "0.9", "monthly"),
         (f"{b}/about.html", "0.6", "monthly"),
@@ -2465,7 +2778,7 @@ def check_links(out_root: Path) -> int:
 # ----------------------------------------------------------------------
 def main():
     global SPRITE, TOTAL, TOURS, ESSENTIALS, GUIDES_LIST, CAT_NOTE
-    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA, KLOOK, PACKAGES
+    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA, KLOOK, PACKAGES, STAYS
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT), help="출력 디렉터리 (기본: tour_hub)")
@@ -2490,6 +2803,7 @@ def main():
     TRIPCOM = load_json("tripcom.json")
     KLOOK = load_json("klook.json")
     PACKAGES = load_json("packages.json")
+    STAYS = load_json("stays.json")
 
     gspec = load_json("guides.json")
     GUIDES_LIST = gspec["guides"]
@@ -2521,6 +2835,7 @@ def main():
         made.append(baggage_page(out_root, args.base))
         made.append(passes_page(out_root, args.base))
         made.append(calendar_page(out_root, args.base))
+        made.append(stays_page(out_root, args.base))
 
     write_sitemap(out_root, args.base)
     not_found_page(out_root, args.base)
