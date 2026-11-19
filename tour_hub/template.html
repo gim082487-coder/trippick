@@ -2075,7 +2075,12 @@
     .rm-body{padding:0 10px 12px}
   }
 </style>
-<noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}</style></noscript>
+<noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}
+  /* v16: 헤더 메뉴가 11개로 늘어 좁은 데스크톱에서 CTA가 줄바꿈되던 문제 */
+  .site-head .head-right .btn{white-space:nowrap;flex:0 0 auto}
+  @media (max-width:1400px){ .nav a{font-size:13.6px;padding:8px 9px} }
+  @media (max-width:1180px){ .nav a{font-size:12.9px;padding:8px 7px} }
+</style></noscript>
 </head>
 <body>
 
