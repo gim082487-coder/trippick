@@ -2535,8 +2535,9 @@ def stays_page(out_root: Path, base: str) -> Path:
     intl_groups = [(r, hs) for r, hs in groups if r.get("scope") != "kr"]
     kr_total = sum(len(hs) for _, hs in kr_groups)
     intl_total = sum(len(hs) for _, hs in intl_groups)
-    price_min = min(h["price"] for h in hotels)
-    price_max = max(h["price"] for h in hotels)
+    _std = [h for h in hotels if "2인 총액" not in (h.get("priceBasis") or "")]
+    price_min = min(h["price"] for h in _std)
+    price_max = max(h["price"] for h in _std)
     score_min = min(h["score"] for h in hotels)
     score_max = max(h["score"] for h in hotels)
     source = STAYS.get("source", {})
@@ -2562,7 +2563,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     region_links = "".join(
         f'<a class="sr-gitem" href="#{r["id"]}" data-jump="{r["id"]}">'
         f'<b>{esc(r["name"])} <span>{len(hs)}곳</span>{" <i class=\'sr-kr\'>국내</i>" if r.get("scope") == "kr" else ""}</b>'
-        f'<span class="sr-range">1박 {min(h["price"] for h in hs):,}~{max(h["price"] for h in hs):,}원 · 평점 {min(h["score"] for h in hs):.1f}~{max(h["score"] for h in hs):.1f}</span>'
+        f'<span class="sr-range">1박 {min(h["price"] for h in hs if "2인 총액" not in (h.get("priceBasis") or "")):,}~{max(h["price"] for h in hs if "2인 총액" not in (h.get("priceBasis") or "")):,}원 · 평점 {min(h["score"] for h in hs):.1f}~{max(h["score"] for h in hs):.1f}</span>'
         f'<em>{esc(r["note"])}</em></a>'
         for r, hs in groups
     )
