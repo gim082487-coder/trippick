@@ -445,6 +445,8 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
         f'<a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>{len(tc_flights) + len(tc_hotels) + len(tripcom.get("tickets") or []) + len(tripcom.get("transfers") or []) + len(tripcom.get("cars") or []) + len(tripcom.get("esims") or []) + len(tripcom.get("rails") or [])}개</i></a>',
         f'<a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>',
         '<a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>',
+        '<a class="qn" href="exchange.html"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><b>환율·면세</b><i>12통화</i></a>',
+        '<a class="qn" href="baggage.html"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>수하물</b><i>8곳</i></a>',
         f'<a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>{len(essentials["products"])}개</i></a>',
         f'<a class="qn" href="#gifts"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-ticket"/></svg></span><b>선물·기념품</b><i>{GIFT_COUNTRIES}개국</i></a>',
         f'<a class="qn" href="#foods"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><b>맛집</b><i>{FOOD_COUNT}곳</i></a>',

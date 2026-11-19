@@ -13,7 +13,7 @@
 | `deploy_site/` | 배포본. 이 폴더를 그대로 서빙하면 사이트가 됩니다. |
 | `tour_hub/` | 소스. 빌드 스크립트·데이터·본문·이미지 |
 | `tour_hub/build.py` | `index.html`(홈) 생성: 상품 카드, 예산 계산기, JSON-LD, 광고 슬롯 |
-| `tour_hub/build_pages.py` | 가이드 44편·신뢰 페이지 4종·도시 페이지 7곳·`cities/`·`sitemap.xml`·`assets/site.css` 생성 |
+| `tour_hub/build_pages.py` | 가이드 44편·신뢰 페이지 4종·도시 페이지 7곳·`cities/`·환율·면세/수하물 도구 페이지·`sitemap.xml`·`assets/site.css` 생성 |
 | `tour_hub/template.html` | 홈 템플릿(디자인 토큰·CSS·섹션 마커) |
 | `tour_hub/data/tours.json` | 여행 상품 57개 (가격·포함·불포함·취소 규정·제휴 링크) |
 | `tour_hub/data/essentials.json` | 여행 필수품·교통패스·eSIM·공항픽업 22종 |
@@ -24,9 +24,11 @@
 | `tour_hub/data/guide_extra.json` | 가이드 44편의 검색 필터 메타(지역·주제·연결 도시)와 요약 박스 문구(결론 1줄·확인값 2개) |
 | `tour_hub/data/restaurants.json` | 도시 7곳 검증 맛집 35곳(영업 상태·가격·영업시간·휴무·지도 place_id) |
 | `tour_hub/data/checklist.json` | 출국 준비 데이터 — 입국서류·기내반입 + 환전 카드 3종·여행자보험 3곳 비교 |
+| `tour_hub/data/fx.json` | v16 환율·면세 계산기 데이터 — 12개 통화 fallback 환율(2026-11-18 고시)과 빠른 금액, 일본 면세 세율 10%·8% |
+| `tour_hub/data/baggage.json` | v16 항공사 8곳 수하물 규정(기내·위탁·1개 한도·공식 링크)과 쿠팡 준비물 4종 |
 | `tour_hub/data/city_hubs.json` | 도시별 페이지 7곳 정의(오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주) — 제목·설명·연결할 상품/맛집/선물/숙소/가이드 |
 | `tour_hub/content/guides/*.html` | 가이드 본문 (HTML 조각) |
-| `tour_hub/content/pages/*.html` | 소개·문의·개인정보·약관 본문 |
+| `tour_hub/content/pages/*.html` | 소개·문의·개인정보·약관 본문 + v16 도구 페이지(`exchange.html`·`baggage.html`) 마크업 |
 | `tour_hub/tools/` | 데이터 가공 스크립트 |
 
 ## 빌드

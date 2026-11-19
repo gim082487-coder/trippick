@@ -872,6 +872,14 @@
   .plan-total b{font-size:22px;font-weight:850;letter-spacing:-0.035em;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.2}
   .plan-total div:last-child b{font-size:14.5px;color:var(--blue-700)}
   .plan-note{margin:10px 0 0;font-size:11px;line-height:1.6;color:var(--ink-3)}
+  .pl-share{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:13px}
+  .pl-share-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:11px;
+    padding:9px 13px;font-size:12.2px;font-weight:800;color:var(--ink-2);cursor:pointer;transition:.15s}
+  .pl-share-btn .ic{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .pl-share-btn:hover{border-color:var(--blue-line);color:var(--blue-700);background:var(--blue-soft)}
+  .pl-share-btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+  .pl-share-btn.primary:hover{background:var(--blue-700);border-color:var(--blue-700);color:#fff}
+  .pl-share-note{flex:1 1 100%;font-size:10.8px;line-height:1.55;color:var(--ink-3)}
   .pl-disclaimer{margin:16px 0 0;font-size:11px;line-height:1.6;color:var(--ink-3);border-top:1px dashed var(--line);padding-top:12px}
   @media (max-width:980px){
     .planner-card{grid-template-columns:1fr}
@@ -1856,6 +1864,9 @@
     .plan-total b{font-size:21px}
     .plan-note{font-size:10.2px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .pl-disclaimer{font-size:9.8px;line-height:1.55;margin-top:8px;padding-top:8px}
+    .pl-share{gap:6px;margin-top:10px}
+    .pl-share-btn{flex:1 1 0;justify-content:center;padding:9px 8px;font-size:11.4px}
+    .pl-share-note{font-size:10px}
 
     /* ---- 출국 준비 체크리스트 ---- */
     .cl-card{padding:8px;border-radius:16px}
@@ -2112,6 +2123,8 @@
       <a href="guides/index.html">여행 가이드</a>
       <a href="#foods" data-nav="foods">맛집</a>
       <a href="#essentials" data-nav="essentials">여행 필수품</a>
+      <a href="exchange.html">환율·면세</a>
+      <a href="baggage.html">수하물</a>
       <a href="#alert" data-nav="alert">특가 알림</a>
       <a href="#howto" data-nav="howto" data-hide-sm>예약 전 체크</a>
     </nav>
@@ -2240,7 +2253,7 @@
         <h2>인원·지역·스타일만 고르면 <em>총액</em>이 바로 나옵니다</h2>
         <p>{{TOTAL}}개 상품과 eSIM·패스 {{ESS_COUNT}}개에서 조합을 골라, 현장 추가금까지 더한 1인·총액을 바로 계산합니다.</p>
       </div>
-      <div class="sh-meta">현장 추가금은 상세페이지에 금액이 적힌 <b>필수 항목만</b> 원화로 환산했습니다. 환율 기준 2026.11.17.</div>
+      <div class="sh-meta">현장 추가금은 상세페이지에 금액이 적힌 <b>필수 항목만</b> 원화로 환산했습니다. 환율 기준 2026.11.18 · <a href="exchange.html">환율·면세 계산기</a></div>
     </div>
 
     <div class="planner-card">
@@ -2275,6 +2288,15 @@
         <div id="plBody">
           <!-- @PLAN_BODY -->
         </div>
+        <div class="pl-share" id="plShare">
+          <button type="button" class="pl-share-btn primary" id="plCopySummary">
+            <svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>견적 요약 복사
+          </button>
+          <button type="button" class="pl-share-btn" id="plCopyLink">
+            <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>링크로 공유
+          </button>
+          <span class="pl-share-note">카톡·메모장에 붙여넣으면 항목별 1인/총액과 이 견적 링크가 함께 들어갑니다.</span>
+        </div>
         <noscript><p class="pl-disclaimer">조합 계산은 자바스크립트로 동작합니다. 스크립트가 꺼져 있으면 아래 지역·투어 목록에서 상품을 직접 비교해 주세요.</p></noscript>
         <p class="pl-disclaimer">표시된 총액은 <b>상품가 + 상세페이지에 적힌 필수 현장 추가금 + 붙인 eSIM·패스 가격</b>입니다. 불포함 식사·선택관광·쇼핑처럼 개인차가 큰 지출은 넣지 않았습니다. 가격은 2026.11.16~17 각 상세페이지 기준 최저가이고, 날짜·좌석·옵션에 따라 실제 결제액은 달라집니다.</p>
       </div>
@@ -2290,7 +2312,7 @@
         <h2>출국 준비 <em>체크리스트</em>와 입국서류 계산기</h2>
         <p>나라를 고르면 입국서류·수수료, 기내반입 규정, 준비물 목록이 한 번에 바뀝니다. 체크는 이 브라우저에 저장되고, eSIM·어댑터·보조배터리는 바로 구매 링크로 이어집니다. 맨 아래에는 출국 전에 비교하는 <b>환전 카드 3종과 여행자보험 3곳</b>을 카드사·보험사 공식 조건으로 정리했습니다.</p>
       </div>
-      <div class="sh-meta">수수료·규정·보험 조건은 2026.11.18 확인 · 카드사·보험사 공식 안내 기준 · 결제 전 재확인</div>
+      <div class="sh-meta">수수료·규정·보험 조건은 2026.11.18 확인 · 카드사·보험사 공식 안내 기준 · <a href="baggage.html">항공사 수하물 규정</a></div>
     </div>
     <div class="cl-card">
       <!-- @CHECKLIST -->
@@ -2562,6 +2584,8 @@
           <a href="#essentials">여행 필수품</a>
           <a href="#gifts">선물·기념품</a>
           <a href="#planner">예산 계산기</a>
+          <a href="exchange.html">환율·면세 계산기</a>
+          <a href="baggage.html">항공사 수하물 규정</a>
           <a href="cities/">도시별 여행 페이지</a>
           <a href="guides/index.html">여행 가이드</a>
           <a href="#alert">특가 알림</a>
@@ -3183,6 +3207,73 @@ if (searchForm) {
       renderPlan();
     }
   });
+
+  /* v16: 견적 요약 복사 · 링크 공유 · URL 파라미터 복원 */
+  function setChips() {
+    document.querySelectorAll('.pc-chip[data-region]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.region === st.region));
+    });
+    document.querySelectorAll('.pc-chip[data-style]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.style === st.style));
+    });
+  }
+  function shareUrl() {
+    var u = new URL(window.location.href);
+    u.hash = 'planner';
+    u.searchParams.set('pax', st.pax);
+    u.searchParams.set('region', st.region);
+    u.searchParams.set('style', st.style);
+    u.searchParams.set('plan', st.plan);
+    return u.toString();
+  }
+  function summaryText() {
+    var list = plansOf();
+    var plan = list[st.plan] || list[0];
+    if (!plan) return '';
+    var t = TP.tours[plan.t];
+    var out = ['[트립픽 예산 견적]', t.ci + ' · ' + t.ty + ' · ' + t.du,
+      state[st.plan] + '안 · ' + st.pax + '인 총 ' + won(totalOf(plan, st.pax)) + '원 (1인 ' + won(totalOf(plan, st.pax) / st.pax) + '원)', ''];
+    linesOf(plan, st.pax).forEach(function (l) {
+      out.push('· ' + l.k + ' ' + l.n + ' ' + won(l.unit) + '원' + (l.qty > 1 ? ' ×' + l.qty : '') + ' = ' + won(l.unit * l.qty) + '원');
+    });
+    out.push('');
+    out.push('※ ' + (t.fl ? '항공·숙소 포함 상품' : '항공·숙소 별도') + ' · 불포함 식사·선택관광 제외');
+    out.push('※ 2026.11.19 확인 최저가 · 실제 결제액은 다를 수 있습니다');
+    out.push(shareUrl());
+    return out.join('\n');
+  }
+  function copyText(text, msg) {
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.top = '-1000px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { toast(msg); }, function () { fallback(); toast(msg); });
+    } else { fallback(); toast(msg); }
+  }
+  var copyBtn = document.getElementById('plCopySummary');
+  var linkBtn = document.getElementById('plCopyLink');
+  if (copyBtn) copyBtn.addEventListener('click', function () { copyText(summaryText(), '견적 요약을 복사했어요'); });
+  if (linkBtn) linkBtn.addEventListener('click', function () { copyText(shareUrl(), '견적 링크를 복사했어요'); });
+
+  (function restore() {
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var pax = Number(q.get('pax'));
+      if (pax >= 1 && pax <= 6) st.pax = pax;
+      var rg = q.get('region'), sty = q.get('style');
+      if (rg && sty && PLAN.plans[rg + '|' + sty] &&
+          document.querySelector('.pc-chip[data-region="' + rg + '"]') &&
+          document.querySelector('.pc-chip[data-style="' + sty + '"]')) { st.region = rg; st.style = sty; }
+      var pi = Number(q.get('plan') || 0);
+      if (pi >= 0 && pi < plansOf().length) st.plan = pi;
+      setChips();
+    } catch (err) {}
+  })();
 
   renderAll();
 })();

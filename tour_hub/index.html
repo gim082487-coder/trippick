@@ -872,6 +872,14 @@
   .plan-total b{font-size:22px;font-weight:850;letter-spacing:-0.035em;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.2}
   .plan-total div:last-child b{font-size:14.5px;color:var(--blue-700)}
   .plan-note{margin:10px 0 0;font-size:11px;line-height:1.6;color:var(--ink-3)}
+  .pl-share{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:13px}
+  .pl-share-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:11px;
+    padding:9px 13px;font-size:12.2px;font-weight:800;color:var(--ink-2);cursor:pointer;transition:.15s}
+  .pl-share-btn .ic{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .pl-share-btn:hover{border-color:var(--blue-line);color:var(--blue-700);background:var(--blue-soft)}
+  .pl-share-btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+  .pl-share-btn.primary:hover{background:var(--blue-700);border-color:var(--blue-700);color:#fff}
+  .pl-share-note{flex:1 1 100%;font-size:10.8px;line-height:1.55;color:var(--ink-3)}
   .pl-disclaimer{margin:16px 0 0;font-size:11px;line-height:1.6;color:var(--ink-3);border-top:1px dashed var(--line);padding-top:12px}
   @media (max-width:980px){
     .planner-card{grid-template-columns:1fr}
@@ -1052,6 +1060,8 @@
   .sd-all{display:block;margin:4px 0 0;padding:10px 11px;border-top:1px solid var(--line-2);font-size:12.4px;font-weight:800;color:var(--blue-600)}
   .sd-all:hover{color:var(--blue-700)}
   .sd-hint{font-size:11.4px;color:var(--ink-3);white-space:nowrap}
+  .soon-link{display:inline-block;margin-top:10px;font-size:13px;font-weight:800;color:var(--blue-600)}
+  .soon-link:hover{color:var(--blue-700);text-decoration:underline}
 
   /* ================================================================
      Toss 스타일 리스타일 (v4.1)
@@ -1854,6 +1864,9 @@
     .plan-total b{font-size:21px}
     .plan-note{font-size:10.2px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .pl-disclaimer{font-size:9.8px;line-height:1.55;margin-top:8px;padding-top:8px}
+    .pl-share{gap:6px;margin-top:10px}
+    .pl-share-btn{flex:1 1 0;justify-content:center;padding:9px 8px;font-size:11.4px}
+    .pl-share-note{font-size:10px}
 
     /* ---- 출국 준비 체크리스트 ---- */
     .cl-card{padding:8px;border-radius:16px}
@@ -2110,6 +2123,8 @@
       <a href="guides/">여행 가이드</a>
       <a href="#foods" data-nav="foods">맛집</a>
       <a href="#essentials" data-nav="essentials">여행 필수품</a>
+      <a href="exchange">환율·면세</a>
+      <a href="baggage">수하물</a>
       <a href="#alert" data-nav="alert">특가 알림</a>
       <a href="#howto" data-nav="howto" data-hide-sm>예약 전 체크</a>
     </nav>
@@ -2179,10 +2194,11 @@
         </label>
         <button class="sbtn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg> 검색</button>
       </form>
-      <div class="sdrop" id="sdrop" role="listbox" aria-label="검색 결과" hidden></div>
     </div>
   </div>
 </section>
+
+<div class="sdrop" id="sdrop" role="listbox" aria-label="검색 결과" hidden></div>
 
 <div class="hub-strip" aria-label="도시별 여행 페이지">
   <div class="wrap">
@@ -2240,9 +2256,11 @@
   <div class="wrap">
     <a class="qn accent" href="#regions"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></span><b>투어 찾기</b><i>57개</i></a>
     <a class="qn" href="cities/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>도시 페이지</b><i>7곳</i></a>
-    <a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>37개</i></a>
+    <a class="qn" href="#tripcom"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>숙소·항공·입장권</b><i>44개</i></a>
     <a class="qn" href="#planner"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-won"/></svg></span><b>예산 계산기</b><i>1분</i></a>
     <a class="qn" href="#checklist"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-check"/></svg></span><b>출국 준비</b><i>입국서류</i></a>
+    <a class="qn" href="exchange"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span><b>환율·면세</b><i>12통화</i></a>
+    <a class="qn" href="baggage"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-plane"/></svg></span><b>수하물</b><i>8곳</i></a>
     <a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>22개</i></a>
     <a class="qn" href="#gifts"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-ticket"/></svg></span><b>선물·기념품</b><i>6개국</i></a>
     <a class="qn" href="#foods"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><b>맛집</b><i>35곳</i></a>
@@ -2272,7 +2290,7 @@
   <summary><b>제휴·대가성 고지</b><span>쿠팡 파트너스 · 트립닷컴 · 네이버 커넥트</span></summary>
   <div class="disc-body">
   이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (여행 준비물 8종 링크)<br />
-  이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 숙소·항공권 예약 시 일정액의 수수료를 제공받습니다. 결제 금액에는 영향이 없습니다. (맨 아래 트립닷컴 숙소·항공권 섹션)<br />
+  이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 숙소·항공권·입장권·공항픽업·렌터카·eSIM·공항철도 예약 시 일정액의 수수료를 제공받습니다. 결제 금액에는 영향이 없습니다. (맨 아래 트립닷컴 섹션)<br />
   이 포스팅은 네이버 여행 커넥트 활동의 일환으로, 예약 발생 시 수수료를 제공받습니다. 구매자 결제 금액에는 영향이 없습니다. 표시 가격은 출발일 기준 최저가이며, 날짜·좌석 상황에 따라 달라질 수 있습니다.<br />
   이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. (부산·강원 레저, eSIM·패스 등 쇼핑 커넥트 링크)
   </div>
@@ -2289,7 +2307,7 @@
         <h2>인원·지역·스타일만 고르면 <em>총액</em>이 바로 나옵니다</h2>
         <p>57개 상품과 eSIM·패스 22개에서 조합을 골라, 현장 추가금까지 더한 1인·총액을 바로 계산합니다.</p>
       </div>
-      <div class="sh-meta">현장 추가금은 상세페이지에 금액이 적힌 <b>필수 항목만</b> 원화로 환산했습니다. 환율 기준 2026.11.17.</div>
+      <div class="sh-meta">현장 추가금은 상세페이지에 금액이 적힌 <b>필수 항목만</b> 원화로 환산했습니다. 환율 기준 2026.11.18 · <a href="exchange">환율·면세 계산기</a></div>
     </div>
 
     <div class="planner-card">
@@ -2373,6 +2391,15 @@
             <p class="plan-note">별도: 디즈니 입장권 선택 시 약 9만원</p>
           </div>
         </div>
+        <div class="pl-share" id="plShare">
+          <button type="button" class="pl-share-btn primary" id="plCopySummary">
+            <svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>견적 요약 복사
+          </button>
+          <button type="button" class="pl-share-btn" id="plCopyLink">
+            <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>링크로 공유
+          </button>
+          <span class="pl-share-note">카톡·메모장에 붙여넣으면 항목별 1인/총액과 이 견적 링크가 함께 들어갑니다.</span>
+        </div>
         <noscript><p class="pl-disclaimer">조합 계산은 자바스크립트로 동작합니다. 스크립트가 꺼져 있으면 아래 지역·투어 목록에서 상품을 직접 비교해 주세요.</p></noscript>
         <p class="pl-disclaimer">표시된 총액은 <b>상품가 + 상세페이지에 적힌 필수 현장 추가금 + 붙인 eSIM·패스 가격</b>입니다. 불포함 식사·선택관광·쇼핑처럼 개인차가 큰 지출은 넣지 않았습니다. 가격은 2026.11.16~17 각 상세페이지 기준 최저가이고, 날짜·좌석·옵션에 따라 실제 결제액은 달라집니다.</p>
       </div>
@@ -2388,7 +2415,7 @@
         <h2>출국 준비 <em>체크리스트</em>와 입국서류 계산기</h2>
         <p>나라를 고르면 입국서류·수수료, 기내반입 규정, 준비물 목록이 한 번에 바뀝니다. 체크는 이 브라우저에 저장되고, eSIM·어댑터·보조배터리는 바로 구매 링크로 이어집니다. 맨 아래에는 출국 전에 비교하는 <b>환전 카드 3종과 여행자보험 3곳</b>을 카드사·보험사 공식 조건으로 정리했습니다.</p>
       </div>
-      <div class="sh-meta">수수료·규정·보험 조건은 2026.11.18 확인 · 카드사·보험사 공식 안내 기준 · 결제 전 재확인</div>
+      <div class="sh-meta">수수료·규정·보험 조건은 2026.11.18 확인 · 카드사·보험사 공식 안내 기준 · <a href="baggage">항공사 수하물 규정</a></div>
     </div>
     <div class="cl-card">
       <div class="cl-tabs" role="tablist" aria-label="나라 선택"><button class="cl-tab on" type="button" role="tab" id="cltab-jp" aria-controls="clpanel-jp" aria-selected="true" data-cl-tab="jp"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-jp"/></svg><b>일본</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-vn" aria-controls="clpanel-vn" aria-selected="false" data-cl-tab="vn"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-vn"/></svg><b>베트남</b><span>무비자 45일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-th" aria-controls="clpanel-th" aria-selected="false" data-cl-tab="th"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-th"/></svg><b>태국</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-tw" aria-controls="clpanel-tw" aria-selected="false" data-cl-tab="tw"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-tw"/></svg><b>대만</b><span>무비자 90일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-us" aria-controls="clpanel-us" aria-selected="false" data-cl-tab="us"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-us"/></svg><b>미국</b><span>ESTA 필요</span></button><button class="cl-tab" type="button" role="tab" id="cltab-eu" aria-controls="clpanel-eu" aria-selected="false" data-cl-tab="eu"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-eu"/></svg><b>유럽</b><span>무비자 90/180일</span></button><button class="cl-tab" type="button" role="tab" id="cltab-oc" aria-controls="clpanel-oc" aria-selected="false" data-cl-tab="oc"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-oc"/></svg><b>호주·뉴질랜드</b><span>ETA·NZeTA 필요</span></button><button class="cl-tab" type="button" role="tab" id="cltab-kr" aria-controls="clpanel-kr" aria-selected="false" data-cl-tab="kr"><svg class="flag-ic" style="width:16px;height:11.2px" aria-hidden="true"><use href="#f-kr"/></svg><b>국내</b><span>신분증</span></button></div>
@@ -2423,7 +2450,7 @@
         </details>
         <div class="cl-block">
           <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
-          <div class="cl-links"><a class="cl-link" href="https://naver.me/5DZ0H2Wv" target="_blank" rel="noopener sponsored"><span class="cl-link-k">일본 eSIM(3일·투게더팩)</span><b>[투게더팩]일본 이심 eSIM 후쿠오카 오사카 소프트뱅크 완전 무제한 3일 유심사 알림톡</b><span class="cl-link-p">16,830원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="tokyo"><span class="cl-link-k">숙소·항공</span><b>도쿄 숙소 최저가(트립닷컴)</b><span class="cl-link-p">우에노·신주쿠 · 후지 day trip</span></a></div>
+          <div class="cl-links"><a class="cl-link" href="https://naver.me/5DZ0H2Wv" target="_blank" rel="noopener sponsored"><span class="cl-link-k">일본 eSIM(3일·투게더팩)</span><b>[투게더팩]일본 이심 eSIM 후쿠오카 오사카 소프트뱅크 완전 무제한 3일 유심사 알림톡</b><span class="cl-link-p">16,830원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="tokyo"><span class="cl-link-k">숙소·항공</span><b>도쿄 숙소 최저가(트립닷컴)</b><span class="cl-link-p">우에노·신주쿠 · 후지 day trip</span></a><a class="cl-link cl-link--tc" href="https://kr.trip.com/things-to-do/experiences/tokyo-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_tokyo&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="cl-link-k">eSIM·유심</span><b>도쿄 유심·eSIM</b><span class="cl-link-p">일본 eSIM 31개 상품 · SoftBank·docomo</span></a><a class="cl-link cl-link--tc" href="https://kr.trip.com/things-to-do/detail/47313759/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=rail_skyliner&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="cl-link-k">공항철도</span><b>나리타공항 → 우에노 스카이라이너</b><span class="cl-link-p">41분 · 전 좌석 지정석 · 4.9/5</span></a></div>
         </div>
       </div>
     </div><div class="cl-panel" id="clpanel-vn" role="tabpanel" aria-labelledby="cltab-vn" data-cl-panel="vn" hidden>
@@ -2457,7 +2484,7 @@
         </details>
         <div class="cl-block">
           <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
-          <div class="cl-links"><a class="cl-link" href="https://naver.me/FuN2VsmR" target="_blank" rel="noopener sponsored"><span class="cl-link-k">베트남 eSIM(3일·투게더팩)</span><b>[투게더팩]베트남 이심 eSIM 다낭 나트랑 비나폰 완전 무제한 3일 유심사 알림톡</b><span class="cl-link-p">17,850원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="danang"><span class="cl-link-k">숙소·항공</span><b>다낭 숙소 최저가(트립닷컴)</b><span class="cl-link-p">미케비치 · 호이안 30분</span></a></div>
+          <div class="cl-links"><a class="cl-link" href="https://naver.me/FuN2VsmR" target="_blank" rel="noopener sponsored"><span class="cl-link-k">베트남 eSIM(3일·투게더팩)</span><b>[투게더팩]베트남 이심 eSIM 다낭 나트랑 비나폰 완전 무제한 3일 유심사 알림톡</b><span class="cl-link-p">17,850원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="danang"><span class="cl-link-k">숙소·항공</span><b>다낭 숙소 최저가(트립닷컴)</b><span class="cl-link-p">미케비치 · 호이안 30분</span></a><a class="cl-link cl-link--tc" href="https://kr.trip.com/things-to-do/experiences/danang-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_danang&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="cl-link-k">eSIM·유심</span><b>다낭 유심·eSIM</b><span class="cl-link-p">베트남 eSIM · 1일 500MB부터</span></a></div>
         </div>
       </div>
     </div><div class="cl-panel" id="clpanel-th" role="tabpanel" aria-labelledby="cltab-th" data-cl-panel="th" hidden>
@@ -2491,7 +2518,7 @@
         </details>
         <div class="cl-block">
           <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
-          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiP8FH93s" target="_blank" rel="noopener sponsored"><span class="cl-link-k">RFID 여권지갑</span><b>레인디어 RFID 차단 여권지갑 (크로스백형)</b><span class="cl-link-p">13,900원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="bangkok"><span class="cl-link-k">숙소·항공</span><b>방콕 숙소 최저가(트립닷컴)</b><span class="cl-link-p">수쿰빗·실롬 · 파타야 2시간</span></a></div>
+          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiP8FH93s" target="_blank" rel="noopener sponsored"><span class="cl-link-k">RFID 여권지갑</span><b>레인디어 RFID 차단 여권지갑 (크로스백형)</b><span class="cl-link-p">13,900원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="bangkok"><span class="cl-link-k">숙소·항공</span><b>방콕 숙소 최저가(트립닷컴)</b><span class="cl-link-p">수쿰빗·실롬 · 파타야 2시간</span></a><a class="cl-link cl-link--tc" href="https://kr.trip.com/things-to-do/experiences/bangkok-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_bangkok&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="cl-link-k">eSIM·유심</span><b>방콕 유심·eSIM</b><span class="cl-link-p">태국 eSIM · AIS·True 이동통신</span></a></div>
         </div>
       </div>
     </div><div class="cl-panel" id="clpanel-tw" role="tabpanel" aria-labelledby="cltab-tw" data-cl-panel="tw" hidden>
@@ -2525,7 +2552,7 @@
         </details>
         <div class="cl-block">
           <div class="cl-h"><h3>이 나라 준비물 바로 사기</h3><span class="cl-tag">제휴</span></div>
-          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiP8FH93s" target="_blank" rel="noopener sponsored"><span class="cl-link-k">RFID 여권지갑</span><b>레인디어 RFID 차단 여권지갑 (크로스백형)</b><span class="cl-link-p">13,900원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="taipei"><span class="cl-link-k">숙소·항공</span><b>타이베이 숙소 최저가(트립닷컴)</b><span class="cl-link-p">시먼·타이베이역 · 지우펀 당일</span></a></div>
+          <div class="cl-links"><a class="cl-link" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored"><span class="cl-link-k">해외 멀티어댑터</span><b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b><span class="cl-link-p">12,900원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored"><span class="cl-link-k">보조배터리 10000mAh</span><b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b><span class="cl-link-p">8,990원</span></a><a class="cl-link" href="https://link.coupang.com/a/iKiP8FH93s" target="_blank" rel="noopener sponsored"><span class="cl-link-k">RFID 여권지갑</span><b>레인디어 RFID 차단 여권지갑 (크로스백형)</b><span class="cl-link-p">13,900원</span></a><a class="cl-link cl-link--tc" href="#tripcom" data-tc-city="taipei"><span class="cl-link-k">숙소·항공</span><b>타이베이 숙소 최저가(트립닷컴)</b><span class="cl-link-p">시먼·타이베이역 · 지우펀 당일</span></a><a class="cl-link cl-link--tc" href="https://kr.trip.com/things-to-do/experiences/taipei-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_taipei&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="cl-link-k">eSIM·유심</span><b>타이베이 유심·eSIM</b><span class="cl-link-p">대만 eSIM · 공항 수령·QR 설치</span></a></div>
         </div>
       </div>
     </div><div class="cl-panel" id="clpanel-us" role="tabpanel" aria-labelledby="cltab-us" data-cl-panel="us" hidden>
@@ -7647,8 +7674,8 @@
       <div class="sh-meta">링크 37개는 2026.11.18 트립닷컴 파트너스에서 발급 · 숙소는 체크인 날짜, 항공권은 가는 날, 입장권은 방문일 기준</div>
     </div>
     <div class="tc-filter">
-      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터"><button class="tc-tab on" type="button" data-tc-filter="all" aria-pressed="true">전체</button><button class="tc-tab" type="button" data-tc-filter="value" aria-pressed="false">가성비 숙소</button><button class="tc-tab" type="button" data-tc-filter="family" aria-pressed="false">가족·리조트</button><button class="tc-tab" type="button" data-tc-filter="airport" aria-pressed="false">공항 이동 편한 곳</button><button class="tc-tab" type="button" data-tc-filter="flight" aria-pressed="false">항공권</button><a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>7</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>9</span></a></div>
-      <p class="tc-filter-note" id="tcFilterNote">숙소 15곳·항공 6개 노선에 입장권 7개 도시·공항픽업 8개 공항·렌터카 1곳을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
+      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터"><button class="tc-tab on" type="button" data-tc-filter="all" aria-pressed="true">전체</button><button class="tc-tab" type="button" data-tc-filter="value" aria-pressed="false">가성비 숙소</button><button class="tc-tab" type="button" data-tc-filter="family" aria-pressed="false">가족·리조트</button><button class="tc-tab" type="button" data-tc-filter="airport" aria-pressed="false">공항 이동 편한 곳</button><button class="tc-tab" type="button" data-tc-filter="flight" aria-pressed="false">항공권</button><a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>7</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>9</span></a><a class="tc-tab tc-tab--jump" href="#tcEsim">eSIM·유심 <span>5</span></a><a class="tc-tab tc-tab--jump" href="#tcRail">공항철도 <span>2</span></a></div>
+      <p class="tc-filter-note" id="tcFilterNote">숙소 15곳·항공 6개 노선에 입장권 7개 도시·공항픽업 8개 공항·렌터카 1곳, eSIM·유심 5개 도시·공항철도 2개 노선을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
     </div>
     <div class="tc-group" data-tc-group="flight">
       <div class="ess-ghead"><h3>✈️ 항공권 검색</h3><span class="n">6</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">편도 기준 · 실시간 최저가</span></div>
@@ -7669,6 +7696,16 @@
       <div class="ess-ghead"><h3>🚗 공항픽업·렌터카</h3><span class="n">9</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">오사카 · 도쿄 · 후쿠오카 · 다낭 · 방콕 · 타이베이 · 제주 · 렌터카 1곳</span></div>
       <div class="tc-acts"><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-kix/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_kix&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">오사카<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">간사이공항(KIX) 공항픽업</b><span class="tc-act-h">난바·도톤보리·우메다 · 차종별 예약</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-nrt/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_nrt&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">도쿄<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">나리타공항(NRT) 공항픽업</b><span class="tc-act-h">신주쿠·시부야·긴자 · 6·9인승까지</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-hnd/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_hnd&amp;trip_sub3=D21286001" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">도쿄<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">하네다공항(HND) 공항픽업</b><span class="tc-act-h">하네다 도착 전용 · 택시 82,005원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-fuk/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_fuk&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">후쿠오카<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">후쿠오카공항(FUK) 공항픽업</b><span class="tc-act-h">하카타·텐진 · 4인승 49,946원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-dad/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_dad&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">다낭<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-vn"/></svg></span></span><b class="tc-act-t">다낭공항(DAD) 공항픽업</b><span class="tc-act-h">미케비치 6,700원~ · 호이안 14,438원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-bkk/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_bkk&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">방콕<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-th"/></svg></span></span><b class="tc-act-t">수완나품공항(BKK) 공항픽업</b><span class="tc-act-h">시암·카오산·아속 20,455원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-tpe/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_tpe&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">타이베이<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-tw"/></svg></span></span><b class="tc-act-t">타오위안공항(TPE) 공항픽업</b><span class="tc-act-h">시먼딩·타이베이역 50,397원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/airport-transfers/airport-cju/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=transfer_cju&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항픽업</span><span class="tc-act-city">제주<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-kr"/></svg></span></span><b class="tc-act-t">제주공항(CJU) 공항픽업</b><span class="tc-act-h">택시 3인승 31,500원~</span><span class="tc-go">픽업 예약 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/carhire/to-south-korea-42/jeju-737/jeju-international-airport-cju/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=car_jeju&amp;trip_sub3=D21285812" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">렌터카</span><span class="tc-act-city">제주<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-kr"/></svg></span></span><b class="tc-act-t">제주공항(CJU) 렌터카</b><span class="tc-act-h">모닝 27,482원~ · 셀토스 32,240원~</span><span class="tc-go">렌터카 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
       <p class="ess-cp-note">공항픽업은 도착 공항과 시내 목적지를, 렌터카는 인수·반납 지점과 날짜를 넣어야 실제 요금이 나옵니다. 표시 요금은 트립닷컴 페이지 기준이고 차종·시간대에 따라 달라집니다. 투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%</p>
+    </div>
+    <div class="tc-group tc-group--act" data-tc-group="esim" id="tcEsim">
+      <div class="ess-ghead"><h3>📶 eSIM·유심</h3><span class="n">5</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">도착 전 설치 · 무료 취소 조건은 상품마다 다릅니다</span></div>
+      <div class="tc-acts"><a class="tc-act" href="https://kr.trip.com/things-to-do/experiences/osaka-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_osaka&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">eSIM·유심</span><span class="tc-act-city">오사카<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">오사카 유심·eSIM</b><span class="tc-act-h">일본 eSIM 31개 상품 · 1일 2GB/3GB부터</span><span class="tc-go">유심·eSIM 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/experiences/tokyo-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_tokyo&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">eSIM·유심</span><span class="tc-act-city">도쿄<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">도쿄 유심·eSIM</b><span class="tc-act-h">일본 eSIM 31개 상품 · SoftBank·docomo</span><span class="tc-go">유심·eSIM 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/experiences/danang-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_danang&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">eSIM·유심</span><span class="tc-act-city">다낭<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-vn"/></svg></span></span><b class="tc-act-t">다낭 유심·eSIM</b><span class="tc-act-h">베트남 eSIM · 1일 500MB부터</span><span class="tc-go">유심·eSIM 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/experiences/bangkok-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_bangkok&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">eSIM·유심</span><span class="tc-act-city">방콕<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-th"/></svg></span></span><b class="tc-act-t">방콕 유심·eSIM</b><span class="tc-act-h">태국 eSIM · AIS·True 이동통신</span><span class="tc-go">유심·eSIM 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/experiences/taipei-simcard/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=esim_taipei&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">eSIM·유심</span><span class="tc-act-city">타이베이<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-tw"/></svg></span></span><b class="tc-act-t">타이베이 유심·eSIM</b><span class="tc-act-h">대만 eSIM · 공항 수령·QR 설치</span><span class="tc-go">유심·eSIM 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
+      <p class="ess-cp-note">eSIM은 기기가 eSIM을 지원해야 하고, 설치에 인터넷이 필요해 출발 6~12시간 전 설치가 안전합니다. 1일 500MB·1GB·2GB와 총량형이 같이 팔리므로, 테더링이 필요한 날이 있으면 무제한형을 고르세요.</p>
+    </div>
+    <div class="tc-group tc-group--act" data-tc-group="rail" id="tcRail">
+      <div class="ess-ghead"><h3>🚄 공항철도·기차표</h3><span class="n">2</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">나리타 스카이라이너 · 간사이공항 라피트</span></div>
+      <div class="tc-acts"><a class="tc-act" href="https://kr.trip.com/things-to-do/detail/47313759/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=rail_skyliner&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항철도</span><span class="tc-act-city">도쿄<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">나리타공항 → 우에노 스카이라이너</b><span class="tc-act-h">41분 · 전 좌석 지정석 · 4.9/5</span><span class="tc-go">기차표 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a><a class="tc-act" href="https://kr.trip.com/things-to-do/experiences/osaka-jiaotong/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=rail_osaka&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="tc-act-top"><span class="tc-act-k">공항철도·패스</span><span class="tc-act-city">오사카<svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg></span></span><b class="tc-act-t">오사카 기차표 — 난카이 라피트</b><span class="tc-act-h">간사이공항→난바 34분 · 4.8/5 · 1.68만 예약</span><span class="tc-go">기차표 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>
+      <p class="ess-cp-note">공항철도는 전자 바우처를 역 발매기·창구에서 실물 승차권으로 교환하는 방식입니다. 같은 구간을 현장에서 사는 값과 비교하려면 공항 이동 가이드를 함께 보세요.</p>
     </div>
   </div>
 </section>
@@ -7850,6 +7887,8 @@
           <a href="#essentials">여행 필수품</a>
           <a href="#gifts">선물·기념품</a>
           <a href="#planner">예산 계산기</a>
+          <a href="exchange">환율·면세 계산기</a>
+          <a href="baggage">항공사 수하물 규정</a>
           <a href="cities/">도시별 여행 페이지</a>
           <a href="guides/">여행 가이드</a>
           <a href="#alert">특가 알림</a>
@@ -8033,7 +8072,8 @@ function applyFilters() {
       const box = document.createElement('div');
       box.id = 'noResult';
       box.className = 'soon-strip';
-      box.innerHTML = '<h3>조건에 맞는 상품이 없습니다</h3><p>검색어나 필터를 조금 넓혀보세요. 전체 57개 상품 중에서 다시 찾아드릴게요.</p>';
+      box.innerHTML = '<h3>조건에 맞는 상품이 없습니다</h3><p>검색어나 필터를 조금 넓혀보세요. 전체 57개 상품 중에서 다시 찾아드릴게요.</p>'
+        + (state.query ? '<a class="soon-link" href="guides/?q=' + encodeURIComponent(state.query) + '">가이드 44편에서 “‘ + state.query.replace(/[<>&"]/g, '') + '” 찾기 →</a>' : '');
       document.getElementById('sections').prepend(box);
     }
   } else if (empty) {
@@ -8471,6 +8511,73 @@ if (searchForm) {
       renderPlan();
     }
   });
+
+  /* v16: 견적 요약 복사 · 링크 공유 · URL 파라미터 복원 */
+  function setChips() {
+    document.querySelectorAll('.pc-chip[data-region]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.region === st.region));
+    });
+    document.querySelectorAll('.pc-chip[data-style]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.style === st.style));
+    });
+  }
+  function shareUrl() {
+    var u = new URL(window.location.href);
+    u.hash = 'planner';
+    u.searchParams.set('pax', st.pax);
+    u.searchParams.set('region', st.region);
+    u.searchParams.set('style', st.style);
+    u.searchParams.set('plan', st.plan);
+    return u.toString();
+  }
+  function summaryText() {
+    var list = plansOf();
+    var plan = list[st.plan] || list[0];
+    if (!plan) return '';
+    var t = TP.tours[plan.t];
+    var out = ['[트립픽 예산 견적]', t.ci + ' · ' + t.ty + ' · ' + t.du,
+      state[st.plan] + '안 · ' + st.pax + '인 총 ' + won(totalOf(plan, st.pax)) + '원 (1인 ' + won(totalOf(plan, st.pax) / st.pax) + '원)', ''];
+    linesOf(plan, st.pax).forEach(function (l) {
+      out.push('· ' + l.k + ' ' + l.n + ' ' + won(l.unit) + '원' + (l.qty > 1 ? ' ×' + l.qty : '') + ' = ' + won(l.unit * l.qty) + '원');
+    });
+    out.push('');
+    out.push('※ ' + (t.fl ? '항공·숙소 포함 상품' : '항공·숙소 별도') + ' · 불포함 식사·선택관광 제외');
+    out.push('※ 2026.11.19 확인 최저가 · 실제 결제액은 다를 수 있습니다');
+    out.push(shareUrl());
+    return out.join('\n');
+  }
+  function copyText(text, msg) {
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.top = '-1000px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { toast(msg); }, function () { fallback(); toast(msg); });
+    } else { fallback(); toast(msg); }
+  }
+  var copyBtn = document.getElementById('plCopySummary');
+  var linkBtn = document.getElementById('plCopyLink');
+  if (copyBtn) copyBtn.addEventListener('click', function () { copyText(summaryText(), '견적 요약을 복사했어요'); });
+  if (linkBtn) linkBtn.addEventListener('click', function () { copyText(shareUrl(), '견적 링크를 복사했어요'); });
+
+  (function restore() {
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var pax = Number(q.get('pax'));
+      if (pax >= 1 && pax <= 6) st.pax = pax;
+      var rg = q.get('region'), sty = q.get('style');
+      if (rg && sty && PLAN.plans[rg + '|' + sty] &&
+          document.querySelector('.pc-chip[data-region="' + rg + '"]') &&
+          document.querySelector('.pc-chip[data-style="' + sty + '"]')) { st.region = rg; st.style = sty; }
+      var pi = Number(q.get('plan') || 0);
+      if (pi >= 0 && pi < plansOf().length) st.plan = pi;
+      setChips();
+    } catch (err) {}
+  })();
 
   renderAll();
 })();
@@ -8955,6 +9062,7 @@ applyFilters();
     sel = -1;
   }
   function render(s) {
+    var disp = (q.value || '').trim() || s;
     var html = '<div class="sd-h"><b>' + items.length + '개 결과</b><span class="sd-hint">↑↓ 이동 · Enter 열기</span></div>';
     items.forEach(function (it, i) {
       var kc = it.k === '투어' ? 'k-tour' : (it.k === '도시' ? 'k-city' : '');
@@ -8962,7 +9070,7 @@ applyFilters();
         '<span class="sd-k ' + kc + '">' + esc(it.k) + '</span>' +
         '<span><span class="sd-t">' + esc(it.t) + '</span><span class="sd-m">' + esc(it.m) + '</span></span></a>';
     });
-    html += '<a class="sd-all" href="guides/?q=' + encodeURIComponent(s) + '">가이드 44편에서 “‘' + esc(s) + '” 더 찾기 →</a>';
+    html += '<a class="sd-all" href="guides/?q=' + encodeURIComponent(disp) + '">가이드 44편에서 “' + esc(disp) + '” 더 찾기 →</a>';
     box.innerHTML = html;
   }
   function search() {
@@ -8984,7 +9092,7 @@ applyFilters();
     items = found.slice(0, 7);
     sel = -1;
     if (!items.length) {
-      box.innerHTML = '<div class="sd-empty">“‘' + esc(s) + '”에 맞는 가이드·투어가 없습니다.  예: 오사카 · eSIM · 우기 · 패스</div>';
+      box.innerHTML = '<div class="sd-empty">“' + esc(s) + '”에 맞는 가이드·투어가 없습니다.  예: 오사카 · eSIM · 우기 · 패스</div>';
       place();
       box.hidden = false;
       box.classList.add('on');

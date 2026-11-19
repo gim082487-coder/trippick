@@ -48,7 +48,7 @@ SITE_NAME = "트립픽"
 SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
-TODAY = date(2026, 11, 18)
+TODAY = date(2026, 11, 19)
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
 NAV = [
@@ -60,6 +60,8 @@ NAV = [
     ("guides/index.html", "여행 가이드", "guides"),
     ("index.html#foods", "맛집", "foods"),
     ("index.html#essentials", "여행 필수품", "essentials"),
+    ("exchange.html", "환율·면세", "exchange"),
+    ("baggage.html", "수하물", "baggage"),
     ("index.html#alert", "특가 알림", "alert"),
 ]
 
@@ -148,6 +150,8 @@ def footer_html(up: str) -> str:
           <a href="{up}index.html#gifts">선물·기념품</a>
           <a href="{up}index.html#planner">예산 계산기</a>
           <a href="{up}index.html#checklist">출국 준비 체크</a>
+          <a href="{up}exchange.html">환율·일본 면세 계산기</a>
+          <a href="{up}baggage.html">항공사 수하물 규정</a>
           <a href="{up}cities/index.html">도시별 여행 페이지</a>
           <a href="{up}guides/index.html">여행 가이드</a>
           <a href="{up}index.html#alert">특가 알림</a>
@@ -411,6 +415,8 @@ def side_common(up: str) -> str:
       <a class="go" href="{up}index.html#essentials">여행 필수품 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#gifts">나라별 선물·기념품 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#checklist">출국 준비 체크리스트 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="{up}exchange.html">환율·일본 면세 계산기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="{up}baggage.html">항공사별 수하물 규정 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#tripcom">도시별 숙소·항공권 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#regions">지역별 투어 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}guides/index.html">가이드 전체 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -1623,6 +1629,165 @@ def cities_index(out_root: Path, base: str) -> Path:
 
 
 # ----------------------------------------------------------------------
+# v16 도구 페이지 — 환율·일본 면세(/exchange) · 항공사 수하물(/baggage)
+# ----------------------------------------------------------------------
+def _n(n, d: int = 0) -> str:
+    return f"{n:,.{d}f}"
+
+
+def _page_jsonld(page_path: str, name: str, desc: str, base: str, faq: list, crumbs: list) -> str:
+    graph = [
+        {
+            "@type": "WebApplication",
+            "name": name,
+            "description": desc,
+            "url": f"{base.rstrip('/')}/{page_path}",
+            "applicationCategory": "TravelApplication",
+            "operatingSystem": "Web",
+            "inLanguage": "ko",
+            "isAccessibleForFree": True,
+            "publisher": {"@type": "Organization", "name": SITE_NAME},
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in faq
+            ],
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "name": t, **({"item": u} if u else {})}
+                for i, (t, u) in enumerate(crumbs)
+            ],
+        },
+    ]
+    return '<script type="application/ld+json">' + json.dumps(
+        {"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False
+    ) + "</script>"
+
+
+def exchange_page(out_root: Path, base: str) -> Path:
+    fx = load_json("fx.json")
+    curs = fx["currencies"]
+    opts = "\n                ".join(
+        f'<option value="{c["code"]}">{c["symbol"]} {c["name"]} ({c["code"]})</option>' for c in curs
+    )
+    rows = []
+    for c in curs:
+        r = c["krw"]
+        hundred = r * 100
+        per10k = 10000 / r
+        rows.append(
+            f'<tr><th scope="row">{c["symbol"]} {c["name"]} <em>{c["code"]}</em></th>'
+            f'<td>{_n(r, 3 if r < 10 else 2)}원</td>'
+            f'<td>{_n(hundred, 2 if hundred < 100 else 0)}원</td>'
+            f'<td>{_n(per10k, 0 if per10k > 1000 else 1)}{c["label"]}</td></tr>'
+        )
+    chips = []
+    for i, v in enumerate(fx["taxPresets"]):
+        chips.append(
+            f'<button type="button" class="fx-chip" data-amount="{v}">{v:,}' + (" <span>(세전 5,000엔)</span>" if i == 0 else "") + "</button>"
+        )
+
+    body = read(PAGES / "exchange.html")
+    body = body.replace("<!-- @FX_OPTIONS -->", opts)
+    body = body.replace("<!-- @RATE_ROWS -->", "\n                ".join(rows))
+    body = body.replace("<!-- @TAX_PRESETS -->", "\n            ".join(chips))
+    payload = json.dumps(fx, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    body = body.replace(
+        "<!-- @FX_DATA -->",
+        f'<script type="application/json" id="fxData">{payload}</script>',
+    )
+
+    faq = [
+        ("면세 환급은 결제액의 10%인가요, 9.09%인가요?",
+         "세금 포함 가격에서 돌려받는 소비세는 결제액 x 10 / 110으로 약 9.09%입니다. 8% 경감세율 품목은 약 7.41%입니다."),
+        ("5,000엔은 세전인가요, 세후인가요?",
+         "세전(세금 별도) 5,000엔 이상입니다. 같은 매장에서 같은 날 산 물품을 합산하며 일반 물품과 식료품·소모품을 함께 계산할 수 있습니다. 10% 품목만 사면 세금 포함 5,500엔부터 대상입니다."),
+        ("환급을 못 받는 경우는 언제인가요?",
+         "구매일부터 90일이 지나 출국하거나, 수하물을 부친 뒤에 세관 확인을 받으면 환급이 어렵습니다. 일본 안에서 먹거나 쓴 물품, 같은 구매 기록 중 확인되지 않은 물품이 하나라도 있으면 그 기록 전체가 대상에서 빠집니다."),
+        ("현금과 카드 중 어느 쪽이 유리한가요?",
+         "결제 통화가 엔화면 엔화 결제가 원화 결제보다 환전 수수료가 적습니다. 카드사 해외 이용 수수료(보통 1~2%)와 ATM 인출 수수료를 함께 보고, 소액은 현금·큰 금액은 카드처럼 나눠 쓰는 편이 안전합니다."),
+    ]
+    jsonld = _page_jsonld(
+        "exchange.html",
+        "트립픽 환율·일본 면세 계산기",
+        "12개 통화 실시간 환율 계산기와 2026년 11월 1일 리펀드 방식으로 바뀐 일본 면세 환급 계산기.",
+        base,
+        faq,
+        [("트립픽", ""), ("환율·면세 계산기", None)],
+    )
+    return page(
+        out_root,
+        "exchange.html",
+        title="환율 계산기 · 일본 면세 환급 계산기 (2026.11.1 리펀드) | 트립픽",
+        desc="엔·동·바트·달러를 원화로 바로 계산하고, 2026년 11월 1일부터 공항 환급으로 바뀐 일본 면세(10%·8%) 환급 예상액과 실부담 원화를 계산합니다. 세전 5,000엔 기준과 90일 규정까지 정리.",
+        body=body,
+        base=base,
+        active="exchange",
+        keywords="엔화 계산기, 환율 계산기, 일본 면세 계산기, 리펀드 방식, 일본 세금 환급, 소비세 10% 8%",
+        jsonld=jsonld,
+    )
+
+
+def baggage_page(out_root: Path, base: str) -> Path:
+    data = load_json("baggage.json")
+    rows = []
+    for a in data["airlines"]:
+        warn = f'<span class="bag-warn">{esc(a["warn"])}</span>' if a.get("warn") else ""
+        rows.append(f"""<tr>
+                  <th scope="row" class="bag-name"><b>{esc(a["name"])}</b><em>{esc(a["short"])} · {esc(a["type"])}</em>{warn}</th>
+                  <td data-label="기내"><div class="bag-cell"><b>{esc(a["cabin"])}</b><small>{esc(a["cabinSize"])} · 개인 소지품 {esc(a["personal"])}</small></div></td>
+                  <td data-label="위탁"><div class="bag-cell"><b>{esc(a["checked"])}</b><small>{esc(a["checkedNote"])}</small></div></td>
+                  <td data-label="1개 한도"><div class="bag-cell"><b>{esc(a["limit"])}</b></div></td>
+                  <td data-label="공식 안내"><a class="bag-link" href="{a["official"]}" target="_blank" rel="noopener">{esc(a["officialLabel"])} ↗</a></td>
+                </tr>""")
+    cards = []
+    for c in data["coupang"]:
+        cards.append(f"""<a class="cpd-item" href="{c["url"]}" target="_blank" rel="noopener sponsored">
+              <span class="cpd-top"><img src="{c["img"]}" alt="" width="52" height="52" loading="lazy" />
+                <span><span class="cpd-tag">{esc(c["tag"])}</span><span class="cpd-name">{esc(c["name"])}</span><span class="cpd-hint">{esc(c["hint"])}</span></span></span>
+              <span class="cpd-foot"><span class="cpd-price">{c["price"]:,}원</span><span class="cpd-go">쿠팡에서 보기 →</span></span>
+            </a>""")
+
+    body = read(PAGES / "baggage.html")
+    body = body.replace("<!-- @BAG_ROWS -->", "\n                ".join(rows))
+    body = body.replace("<!-- @COUPANG -->", "\n            ".join(cards))
+
+    faq = [
+        ("기내 10kg은 캐리어만 재는 건가요?",
+         "대부분 항공사가 캐리어와 노트북 가방·핸드백을 합쳐 10kg으로 봅니다. 공항 면세점에서 산 물건도 무게와 개수에 포함됩니다."),
+        ("20,000mAh 보조배터리는 기내에 되나요?",
+         "3.7V 기준 74Wh라 100Wh 이하로 1인 2개까지 반입할 수 있고 위탁은 안 됩니다. 100Wh를 넘으면 항공사 승인이, 160Wh를 넘으면 반입이 금지됩니다."),
+        ("피치항공·비엣젯항공은 왜 7kg인가요?",
+         "일본·베트남 LCC는 기내를 개인 소지품 포함 2개 합계 7kg으로 봅니다. 넘으면 탑승구에서 유료 위탁으로 바뀝니다."),
+        ("아시아나 항공권인데 대한항공 규정이 적용되나요?",
+         "2026년 12월 17일부터 아시아나 항공편이 대한항공(KE) 편명으로 통합 운항됩니다. 탑승일이 그 이후면 실제 운항사 기준이 적용되므로 이티켓의 허용량을 확인하세요."),
+    ]
+    jsonld = _page_jsonld(
+        "baggage.html",
+        "트립픽 항공사별 수하물 규정표",
+        "대한항공·아시아나·진에어·티웨이·제주항공·에어부산·피치·비엣젯의 기내·위탁 수하물과 보조배터리 규정 비교.",
+        base,
+        faq,
+        [("트립픽", ""), ("항공사 수하물 규정", None)],
+    )
+    return page(
+        out_root,
+        "baggage.html",
+        title="항공사별 수하물 규정 비교 — 기내 10kg·위탁 0~30kg·보조배터리 2개 | 트립픽",
+        desc="대한항공·아시아나·진에어·티웨이(트리니티)·제주항공·에어부산·피치·비엣젯 8곳의 기내 무게·크기와 운임별 무료 위탁, 보조배터리 160Wh 규정을 2026.11.19 기준으로 비교합니다.",
+        body=body,
+        base=base,
+        active="baggage",
+        keywords="기내 수하물 10kg, 위탁 수하물 15kg, LCC 수하물, 보조배터리 기내 반입, 160Wh, 피치항공 7kg, 비엣젯 수하물",
+        jsonld=jsonld,
+    )
+
+
+# ----------------------------------------------------------------------
 # sitemap
 # ----------------------------------------------------------------------
 def not_found_page(out_root: Path, base: str) -> Path:
@@ -1638,6 +1803,8 @@ def not_found_page(out_root: Path, base: str) -> Path:
             ("/danang", "다낭·호이안"),
             ("/jeju", "제주"),
             ("/#checklist", "출국 체크리스트"),
+            ("/exchange", "환율·면세 계산기"),
+            ("/baggage", "수하물 규정"),
             ("/#planner", "예산 계산기"),
         ]
     )
@@ -1682,6 +1849,8 @@ def write_sitemap(out_root: Path, base: str):
     ]
     urls += [(f"{b}/guides/{g['slug']}.html", "0.8", "monthly") for g in GUIDES_LIST]
     urls += [
+        (f"{b}/exchange.html", "0.8", "monthly"),
+        (f"{b}/baggage.html", "0.8", "monthly"),
         (f"{b}/about.html", "0.6", "monthly"),
         (f"{b}/contact.html", "0.6", "monthly"),
         (f"{b}/privacy.html", "0.4", "yearly"),
@@ -1821,6 +1990,10 @@ def main():
         made.append(cities_index(out_root, args.base))
         for hub in hub_list():
             made.append(hub_page(out_root, hub, args.base))
+
+    if args.only in ("", "pages"):
+        made.append(exchange_page(out_root, args.base))
+        made.append(baggage_page(out_root, args.base))
 
     write_sitemap(out_root, args.base)
     not_found_page(out_root, args.base)

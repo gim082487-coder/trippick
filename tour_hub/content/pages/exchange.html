@@ -1,0 +1,362 @@
+<div class="pg-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="/">홈</a><i></i><b>환율·면세 계산기</b></nav>
+    <span class="pg-kicker">LIVE RATE · TAX REFUND</span>
+    <div class="pg-head">
+      <h1>엔화·동·바트, <em>결제 전에</em> 원화로 바로 계산</h1>
+      <p class="dek">공개 환율을 페이지에서 한 번만 불러와 12개 통화를 원화로 바꿔 줍니다. 아래에서는 2026년 11월 1일부터 공항 환급으로 바뀐 <b>일본 면세</b>까지, 결제액을 넣으면 환급 예상액과 실부담 원화가 바로 나옵니다.</p>
+      <div class="pg-meta">
+        <span><b id="fxStatusText">환율 불러오는 중…</b></span><i></i>
+        <span>기준 환율 <b>2026.11.18</b> 고시</span><i></i>
+        <span>참고용 · 은행·카드사 환율과 다름</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pg-body">
+  <div class="wrap">
+    <div class="pg-grid">
+      <div>
+
+        <!-- ============ 1. 환율 계산기 ============ -->
+        <section class="fx-card" id="fx" aria-labelledby="fxTitle">
+          <div class="fx-top">
+            <div>
+              <span class="fx-kicker">EXCHANGE</span>
+              <h2 id="fxTitle">여행 환율 계산기</h2>
+            </div>
+            <span class="fx-live" id="fxLive" data-state="wait">확인 중</span>
+          </div>
+
+          <div class="fx-modes" role="group" aria-label="계산 방향">
+            <button type="button" class="fx-mode" id="fxModeToKrw" data-mode="toKrw" aria-pressed="true">외화 → 원화</button>
+            <button type="button" class="fx-mode" id="fxModeFromKrw" data-mode="fromKrw" aria-pressed="false">원화 → 외화</button>
+          </div>
+
+          <div class="fx-field">
+            <label for="fxAmount" id="fxAmountLabel">바꿀 금액</label>
+            <div class="fx-input-row">
+              <input id="fxAmount" type="text" inputmode="decimal" autocomplete="off" value="10,000" aria-describedby="fxRateLine" />
+              <select id="fxCur" aria-label="통화 선택">
+                <!-- @FX_OPTIONS -->
+              </select>
+            </div>
+          </div>
+
+          <div class="fx-chips" id="fxChips" role="group" aria-label="빠른 금액"></div>
+
+          <div class="fx-out" aria-live="polite">
+            <span class="fx-out-label" id="fxOutLabel">원화로 바꾸면</span>
+            <b class="fx-out-value" id="fxOut">–</b>
+            <small class="fx-out-sub" id="fxSub"></small>
+          </div>
+
+          <p class="fx-rate-line" id="fxRateLine"></p>
+          <p class="fx-note">이 계산기는 <b>공개 환율(1일 1회 갱신)</b>입니다. 실제 결제는 은행 현찰 살 때·팔 때, 카드사 청구 환율과 수수료(보통 1~2%)가 붙어 다릅니다. 환전 금액을 정할 때 기준으로만 쓰세요.</p>
+        </section>
+
+        <!-- ============ 2. 일본 면세 계산기 ============ -->
+        <section class="tf-card" id="taxfree" aria-labelledby="tfTitle">
+          <div class="tf-top">
+            <div>
+              <span class="fx-kicker">JAPAN TAX-FREE</span>
+              <h2 id="tfTitle">일본 면세 환급 계산기 <em>2026.11.1 시행</em></h2>
+            </div>
+          </div>
+          <p class="tf-lead">2026년 11월 1일 구매분부터 <b>매장에서 세금 포함 가격으로 결제하고, 출국할 때 공항 세관 확인 후 소비세를 돌려받는 '리펀드 방식'</b>으로 바뀌었습니다. 결제액(엔)을 넣으면 세전 금액·환급 예상액·실부담 원화를 계산합니다.</p>
+
+          <div class="tf-taxes" role="group" aria-label="세율 선택">
+            <button type="button" class="tf-tax" data-tax="10" aria-pressed="true"><b>일반 물품</b><span>10% 세율 · 가전·의류·화장품</span></button>
+            <button type="button" class="tf-tax" data-tax="8" aria-pressed="false"><b>식료품·소모품</b><span>8% 경감세율 · 주류·외식 제외</span></button>
+          </div>
+
+          <div class="fx-field">
+            <label for="tfAmount">세금 포함 결제액 (엔)</label>
+            <div class="fx-input-row">
+              <input id="tfAmount" type="text" inputmode="decimal" autocomplete="off" value="11,000" />
+              <span class="fx-suffix">엔</span>
+            </div>
+          </div>
+          <div class="fx-chips" id="tfChips" role="group" aria-label="빠른 금액">
+            <!-- @TAX_PRESETS -->
+          </div>
+
+          <div class="tf-result" aria-live="polite">
+            <div class="tf-big">
+              <span>환급 예상액</span>
+              <b id="tfRefund">–</b>
+              <small id="tfRefundKrw"></small>
+            </div>
+            <div class="tf-row"><span>세전 금액</span><b id="tfPre">–</b></div>
+            <div class="tf-row"><span>실부담(원화)</span><b id="tfPayKrw">–</b></div>
+            <div class="tf-row"><span>면세 기준</span><b id="tfEligible">–</b></div>
+          </div>
+          <p class="tf-warn" id="tfWarn" hidden></p>
+          <p class="fx-note">환급액에서 매장·환급대행 수수료가 차감될 수 있어, 위 금액은 <b>수수료 전</b> 금액입니다. 계산식은 결제액 × 세율 ÷ (100+세율)입니다.</p>
+        </section>
+
+        <!-- ============ 3. 공항 환급 절차 ============ -->
+        <section class="tf-steps" id="how" aria-labelledby="howTitle">
+          <h2 id="howTitle">공항에서 환급받는 순서 <em>수하물 맡기기 전에</em></h2>
+          <ol class="tf-step-list">
+            <li><b>매장에서 여권 제시</b><span>면세 카운터에서 여권을 보여주고 <b>세금 포함 가격</b>으로 결제합니다. 영수증과 구매 기록은 출국까지 보관하세요.</span></li>
+            <li><b>공항 도착 후 세관 확인</b><span>체크인 카운터에서 짐을 부치기 <b>전에</b> 세관 면세 수속 단말기(키오스크)나 Visit Japan Web에서 여권을 스캔합니다. 녹색 판정이면 완료, 빨간 판정이면 세관 검사장에서 물품을 보여줍니다.</span></li>
+            <li><b>환급 수령</b><span>세관 확인 후 면세점 또는 환급 사업자가 소비세를 돌려줍니다. 현금·신용카드 취소·계좌 이체 등 방법과 시점은 매장마다 다릅니다.</span></li>
+            <li><b>출국</b><span>구매일로부터 <b>90일 이내</b>에 출국하고 세관 확인을 받아야 합니다. 짐을 부친 뒤에는 확인이 어려워 환급이 거절될 수 있습니다.</span></li>
+          </ol>
+          <div class="tf-caution">
+            <b>2026.11.1부터 달라진 점</b>
+            <ul>
+              <li>결제는 <b>세금 포함 가격</b>, 환급은 <b>출국 시</b> — 매장 즉시 할인이 없습니다.</li>
+              <li>일반 물품과 소모품의 <b>구분과 50만 엔 상한이 폐지</b>, 같은 매장·같은 날 <b>세전 5,000엔 이상</b>이면 대상입니다.</li>
+              <li>소모품 <b>특수 포장 의무 폐지</b>. 다만 일본 안에서 먹거나 쓴 물품(식품·화장품 등)은 환급 대상에서 빠집니다.</li>
+              <li>같은 구매 기록 안의 물품이 하나라도 확인되지 않으면 <b>그 기록 전체가 면세 불가</b>입니다. 우편 등 <b>별송</b>은 인정되지 않습니다.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============ 4. 오늘의 기준 환율 ============ -->
+        <section class="rt-card" id="rates" aria-labelledby="rtTitle">
+          <div class="rt-top">
+            <h2 id="rtTitle">오늘의 기준 환율</h2>
+            <span id="rtUpdated">2026.11.18 고시</span>
+          </div>
+          <div class="rt-scroll">
+            <table class="rt-table">
+              <thead><tr><th scope="col">통화</th><th scope="col">1단위</th><th scope="col">100단위</th><th scope="col">1만원으로</th></tr></thead>
+              <tbody id="rtBody">
+                <!-- @RATE_ROWS -->
+              </tbody>
+            </table>
+          </div>
+          <p class="fx-note">표는 공개 환율 API의 <b>1원 기준 고시값을 역산</b>한 참고 환율입니다. 실제 환전·카드 결제에는 스프레드와 수수료가 붙습니다. 실시간 연결이 되면 표와 계산기가 함께 갱신됩니다.</p>
+        </section>
+
+        <!-- ============ 5. FAQ ============ -->
+        <section class="tf-faq" id="faq" aria-labelledby="faqTitle">
+          <h2 id="faqTitle">환율·면세 자주 묻는 질문</h2>
+          <details class="fq" open>
+            <summary><span class="fq-q"><b>Q.</b> 면세 환급은 결제액의 10%인가요, 9.09%인가요?</span><span class="fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>세금 포함 가격에서 환급되는 소비세는 <b>결제액 × 10 ÷ 110 = 약 9.09%</b>입니다. 세전 가격을 기준으로 보면 10%가 맞지만, 매장에서 이미 세금을 포함해 냈기 때문에 손에 돌아오는 비율은 9.09%입니다. 8% 경감세율 품목은 결제액의 약 7.41%입니다.</p></div>
+          </details>
+          <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 5,000엔은 세전인가요, 세후인가요?</span><span class="fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p><b>세전(세금 별도) 5,000엔 이상</b>입니다. 같은 매장에서 같은 날 산 물품을 합산하며, 일반 물품과 식료품·소모품을 함께 계산할 수 있습니다. 10% 품목만 산다면 세금 포함 <b>5,500엔</b>부터 대상입니다.</p></div>
+          </details>
+          <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 환급을 못 받는 경우는 언제인가요?</span><span class="fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>구매일부터 90일이 지난 뒤 출국하거나, <b>수하물을 부친 뒤</b>에 세관 확인을 받으면 환급이 어렵습니다. 일본 안에서 먹거나 쓴 물품, 같은 구매 기록 중 확인되지 않은 물품이 하나라도 있으면 그 기록 전체가 대상에서 빠집니다. 여권을 제시하지 않고 대리인이 수속하는 것도 안 됩니다.</p></div>
+          </details>
+          <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 현금과 카드 중 어느 쪽이 유리한가요?</span><span class="fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>결제 통화가 엔화면 <b>엔화 결제</b>가 원화 결제보다 환전 수수료가 적습니다. 카드사 해외 이용 수수료(보통 1~2%)와 ATM 인출 수수료를 함께 보고, 소액은 현금·큰 금액은 카드처럼 나눠 쓰는 편이 안전합니다.</p></div>
+          </details>
+        </section>
+
+      </div>
+
+      <aside class="pg-side">
+        <div class="side-card side-common">
+          <h3>같이 쓰는 계산기·표</h3>
+          <p>짐 싸기 전에 수하물 규정과 예산을 함께 확인하세요.</p>
+          <a class="go" href="baggage.html">항공사별 수하물 규정표 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="index.html#planner">예산 계산기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="index.html#checklist">출국 준비 체크리스트 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="guides/japan-esim.html">일본 eSIM 총액 비교 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="guides/japan-souvenir-list.html">일본 선물·기념품 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="guides/packing-powerbank-liquid.html">보조배터리·액체류 반입 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="side-card">
+          <h3>이 페이지 기준</h3>
+          <p>환율은 open.er-api.com 공개 환율(1일 1회 갱신)을 쓰고, 연결이 안 되면 2026.11.18 고시값을 그대로 보여줍니다.</p>
+          <p>일본 면세 제도는 일본 세관 <b>2026.11.1 리펀드 방식</b> 안내와 관광청 안내를 기준으로 정리했습니다. 매장·환급 사업자별 수수료와 운영 방식은 다를 수 있습니다.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- @FX_DATA -->
+<script>
+(function () {
+  var root = document.getElementById('fxData');
+  if (!root) return;
+  var DATA = JSON.parse(root.textContent);
+  var CUR = {};
+  DATA.currencies.forEach(function (c) { CUR[c.code] = c; });
+
+  var rates = {};                 // code -> 원/1단위
+  DATA.currencies.forEach(function (c) { rates[c.code] = c.krw; });
+
+  var el = function (id) { return document.getElementById(id); };
+  var amountEl = el('fxAmount'), curEl = el('fxCur'), outEl = el('fxOut'), subEl = el('fxSub');
+  var rateLine = el('fxRateLine'), chipsEl = el('fxChips'), outLabel = el('fxOutLabel');
+  var statusText = el('fxStatusText'), liveBadge = el('fxLive'), rtBody = el('rtBody'), rtUpdated = el('rtUpdated');
+  var mode = 'toKrw', cur = 'JPY';
+
+  function num(v) { var n = Number(String(v == null ? '' : v).replace(/[^0-9.]/g, '')); return isFinite(n) ? n : 0; }
+  function fmt(n, d) {
+    return Number(n).toLocaleString('ko-KR', { maximumFractionDigits: d, minimumFractionDigits: d });
+  }
+  function money(n) { return fmt(n, 0) + '원'; }
+
+  function setStatus() {
+    if (liveBadge) {
+      liveBadge.textContent = window.__fxLive ? '실시간' : '기본값';
+      liveBadge.setAttribute('data-state', window.__fxLive ? 'live' : 'base');
+    }
+    if (statusText) statusText.textContent = window.__fxLive ? '실시간 환율 · ' + window.__fxKst + ' 갱신' : '기본 환율 · ' + DATA.fallbackUpdatedKst + ' 기준';
+    if (rtUpdated) rtUpdated.textContent = window.__fxLive ? 'API ' + window.__fxKst + ' 갱신' : '2026.11.18 고시';
+  }
+
+  function renderChips() {
+    if (!chipsEl) return;
+    var list = mode === 'fromKrw' ? [10000, 30000, 50000, 100000] : CUR[cur].presets;
+    chipsEl.innerHTML = list.map(function (v) {
+      return '<button type="button" class="fx-chip" data-amount="' + v + '">' + fmt(v, 0) + (mode === 'fromKrw' ? '원' : '') + '</button>';
+    }).join('');
+  }
+
+  function calc() {
+    var a = num(amountEl.value);
+    var c = CUR[cur], r = rates[cur] || 0;
+    if (!c || !r) return;
+    if (mode === 'toKrw') {
+      outLabel.textContent = '원화로 바꾸면';
+      outEl.textContent = money(a * r);
+      subEl.textContent = fmt(a, 0) + c.symbol + ' ≈ ' + money(a * r);
+    } else {
+      outLabel.textContent = c.name + '로 바꾸면';
+      outEl.textContent = fmt(a / r, c.decimals) + ' ' + c.label;
+      subEl.textContent = money(a) + ' ≈ ' + fmt(a / r, c.decimals) + c.symbol;
+    }
+    var per = r * c.unit;
+    rateLine.innerHTML = '1' + c.label + ' = <b>' + fmt(r, 2) + '원</b> · ' + fmt(c.unit, 0) + c.label + ' = <b>' + fmt(per, per < 100 ? 2 : 0) + '원</b>';
+  }
+
+  function renderRates() {
+    if (!rtBody) return;
+    rtBody.innerHTML = DATA.currencies.map(function (c) {
+      var r = rates[c.code] || 0;
+      if (!r) return '';
+      var hundred = r * 100;
+      var per10k = 10000 / r;
+      return '<tr><th scope="row">' + c.symbol + ' ' + c.name + ' <em>' + c.code + '</em></th>' +
+        '<td>' + fmt(r, r < 10 ? 3 : 2) + '원</td>' +
+        '<td>' + fmt(hundred, hundred < 100 ? 2 : 0) + '원</td>' +
+        '<td>' + fmt(per10k, per10k > 1000 ? 0 : 1) + c.label + '</td></tr>';
+    }).join('');
+  }
+
+  // 통화 선택
+  curEl.innerHTML = DATA.currencies.map(function (c) {
+    return '<option value="' + c.code + '">' + c.symbol + ' ' + c.name + ' (' + c.code + ')</option>';
+  }).join('');
+  curEl.value = cur;
+
+  curEl.addEventListener('change', function () {
+    cur = curEl.value;
+    amountEl.value = fmt(mode === 'fromKrw' ? 10000 : CUR[cur].presets[1], 0);
+    renderChips(); calc();
+  });
+
+  amountEl.addEventListener('input', function () {
+    var raw = amountEl.value.replace(/[^0-9.]/g, '');
+    var parts = raw.split('.');
+    if (parts.length > 2) raw = parts[0] + '.' + parts.slice(1).join('');
+    var n = num(raw);
+    if (raw !== '') amountEl.value = n.toLocaleString('ko-KR', { maximumFractionDigits: 2 });
+    calc();
+  });
+
+  chipsEl.addEventListener('click', function (e) {
+    var b = e.target.closest('.fx-chip');
+    if (!b) return;
+    amountEl.value = fmt(Number(b.getAttribute('data-amount')), 0);
+    calc();
+  });
+
+  document.querySelectorAll('[data-mode]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      mode = b.getAttribute('data-mode');
+      document.querySelectorAll('[data-mode]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      el('fxAmountLabel').textContent = mode === 'toKrw' ? '바꿀 금액' : '원화 금액 (KRW)';
+      amountEl.value = fmt(mode === 'toKrw' ? CUR[cur].presets[1] : 30000, 0);
+      renderChips(); calc();
+    });
+  });
+
+  renderChips(); calc(); renderRates(); setStatus();
+
+  // 실시간 환율 1회
+  window.__fxLive = false;
+  var ctrl = window.AbortController ? new AbortController() : null;
+  var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 7000) : null;
+  fetch(DATA.api, ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (j) {
+      if (!j || j.result !== 'success' || !j.rates) throw new Error('bad');
+      var next = {}, ok = 0;
+      DATA.currencies.forEach(function (c) {
+        var v = j.rates[c.code];
+        if (v && v > 0) { next[c.code] = 1 / v; ok++; }
+      });
+      if (ok < 5) throw new Error('few');
+      DATA.currencies.forEach(function (c) { if (next[c.code]) rates[c.code] = next[c.code]; });
+      var d = new Date((j.time_last_update_unix || 0) * 1000);
+      window.__fxKst = d.toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+      window.__fxLive = true;
+      setStatus(); renderRates(); calc(); calcTax();
+    })
+    .catch(function () { window.__fxLive = false; setStatus(); })
+    .then(function () { if (timer) clearTimeout(timer); });
+
+  /* ---------- 일본 면세 ---------- */
+  var tfAmount = el('tfAmount'), tfRefund = el('tfRefund'), tfRefundKrw = el('tfRefundKrw'),
+      tfPre = el('tfPre'), tfPayKrw = el('tfPayKrw'), tfEligible = el('tfEligible'), tfWarn = el('tfWarn'),
+      tfChips = el('tfChips');
+  var tax = 10;
+
+  function calcTax() {
+    var pay = num(tfAmount.value);
+    var pre = pay / (1 + tax / 100);
+    var refund = pay - pre;
+    var jpy = rates.JPY || 0;
+    var ok = pre >= 5000 - 0.5;
+    tfPre.textContent = fmt(pre, 0) + '엔';
+    tfRefund.textContent = ok ? fmt(refund, 0) + '엔' : '0엔';
+    tfRefundKrw.textContent = ok ? '약 ' + money(refund * jpy) : '5,000엔(세전) 미만';
+    tfPayKrw.textContent = money((ok ? pre : pay) * jpy);
+    tfEligible.textContent = ok ? '대상 (세전 ' + fmt(pre, 0) + '엔)' : '미달';
+    if (!ok && pay > 0) {
+      var need = 5000 * (1 + tax / 100) - pay;
+      tfWarn.hidden = false;
+      tfWarn.textContent = '같은 매장·같은 날 합계가 세전 5,000엔 이상이어야 면세 대상입니다. 지금 금액은 ' + fmt(need, 0) + '엔(세 포함) 부족합니다.';
+    } else {
+      tfWarn.hidden = true;
+    }
+  }
+
+  tfAmount.addEventListener('input', function () {
+    var raw = tfAmount.value.replace(/[^0-9.]/g, '');
+    var n = num(raw);
+    if (raw !== '') tfAmount.value = n.toLocaleString('ko-KR', { maximumFractionDigits: 0 });
+    calcTax();
+  });
+  tfChips.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-amount]');
+    if (!b) return;
+    tfAmount.value = fmt(Number(b.getAttribute('data-amount')), 0);
+    calcTax();
+  });
+  document.querySelectorAll('[data-tax]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      tax = Number(b.getAttribute('data-tax'));
+      document.querySelectorAll('[data-tax]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      calcTax();
+    });
+  });
+  calcTax();
+})();
+</script>
