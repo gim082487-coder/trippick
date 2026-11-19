@@ -606,6 +606,45 @@
   @media (max-width:960px){ .tc-acts.tc-acts--hub{grid-template-columns:repeat(2,minmax(0,1fr))} }
   @media (max-width:620px){ .tc-acts.tc-acts--hub{grid-template-columns:1fr} }
 
+  /* ============================== v19 인기 휴양지·단거리 ============================== */
+  .rs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  @media (max-width:1080px){ .rs-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:960px){ .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:620px){ .rs-grid{grid-template-columns:1fr} }
+  @media (max-width:620px){ .rs-links{grid-template-columns:1fr 1fr} .rs-link{font-size:10.6px;padding:7px 8px} }
+  .rs-card{display:flex;flex-direction:column;gap:6px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 14px}
+  .rs-head{display:flex;align-items:center;justify-content:space-between;gap:6px}
+  .rs-city{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;font-size:13.8px;font-weight:850;letter-spacing:-0.03em;color:var(--navy)}
+  .rs-air{display:inline-block;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:9.8px;font-weight:750;color:var(--ink-3);background:var(--soft);border-radius:6px;padding:2px 6px;white-space:nowrap}
+  .rs-h{font-size:10.8px;color:var(--ink-2);line-height:1.5}
+  .rs-links{display:grid;gap:5px;margin-top:auto;padding-top:8px}
+  .rs-link{display:flex;align-items:center;justify-content:space-between;gap:6px;border:1px solid var(--line);border-radius:9px;
+    padding:7px 9px;font-size:11px;font-weight:800;color:var(--blue-600);text-decoration:none;transition:.15s}
+  .rs-link:hover{background:var(--blue-soft);border-color:var(--blue-line)}
+  .rs-link .ic{width:11px;height:11px;flex:0 0 auto}
+  .hub-others--resorts{background:var(--soft)}
+
+  /* ============================== v19 고단가 맞춤 패키지 ============================== */
+  .packages{padding:64px 0;background:#fff;border-top:1px solid var(--line)}
+  .packages .sec-head{margin-bottom:20px}
+  .pkg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  @media (max-width:860px){ .pkg-grid{grid-template-columns:1fr} }
+  .pkg-card{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:20px;padding:20px 22px;background:var(--soft)}
+  .pkg-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .pkg-tag{font-size:10px;font-weight:850;letter-spacing:.02em;color:var(--blue-600);background:#fff;border:1px solid var(--blue-line);border-radius:6px;padding:2px 7px}
+  .pkg-dur{font-size:11px;font-weight:750;color:var(--ink-3)}
+  .pkg-t{font-size:15.5px;font-weight:840;letter-spacing:-0.035em;color:var(--navy);line-height:1.42}
+  .pkg-p{margin:0;font-size:12.4px;color:var(--ink-2);line-height:1.68}
+  .pkg-price{display:flex;align-items:baseline;gap:8px;font-variant-numeric:tabular-nums;flex-wrap:wrap}
+  .pkg-price b{font-size:23px;font-weight:860;letter-spacing:-0.04em;color:var(--navy)}
+  .pkg-price small{font-size:12px;color:var(--ink-3);text-decoration:line-through}
+  .pkg-price em{font-style:normal;font-size:11px;font-weight:820;color:var(--coral)}
+  .pkg-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:44px;border-radius:11px;background:var(--blue);
+    color:#fff;font-size:13.4px;font-weight:820;text-decoration:none;margin-top:4px;transition:.16s}
+  .pkg-btn:hover{background:var(--blue-600)}
+  .pkg-btn .ic{width:13px;height:13px}
+  .pkg-note{margin:0;font-size:11px;color:var(--ink-3);line-height:1.6}
+
   /* ============================== 특가 알림 ============================== */
   .alertbox{background:linear-gradient(180deg,#EAF2F8 0%,#EAF2F8 100%);border-top:1px solid var(--line);padding:60px 0}
   .alert-card{display:grid;grid-template-columns:1.02fr .98fr;gap:38px;align-items:start;background:#fff;
@@ -2272,7 +2311,7 @@
 <details class="disclosure-bar" id="affDisc" open>
   <summary><b>제휴·대가성 고지</b><span>쿠팡 파트너스 · 트립닷컴 · 네이버 커넥트</span></summary>
   <div class="disc-body">
-  이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (여행 준비물 8종 · 오래 쓰는 여행 장비 6종 링크)<br />
+  이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. (여행 준비물 8종 · 출발 전 필수템 6종 · 오래 쓰는 여행 장비 6종 링크)<br />
   이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 숙소·항공권·입장권·공항픽업·렌터카·eSIM·공항철도 예약 시 일정액의 수수료를 제공받습니다. 결제 금액에는 영향이 없습니다. (맨 아래 트립닷컴 섹션)<br />
   이 포스팅은 네이버 여행 커넥트 활동의 일환으로, 예약 발생 시 수수료를 제공받습니다. 구매자 결제 금액에는 영향이 없습니다. 표시 가격은 출발일 기준 최저가이며, 날짜·좌석 상황에 따라 달라질 수 있습니다.<br />
   이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다. (부산·강원 레저, eSIM·패스 등 쇼핑 커넥트 링크)
@@ -2440,9 +2479,9 @@
       <div class="t">
         <span class="kicker">TRAVEL ESSENTIALS</span>
         <h2>출발 전에 챙기는 어댑터·캐리어·eSIM·패스</h2>
-        <p>집에서 미리 사두면 현지에서 결제할 일이 줄어드는 여행 준비물 8종(쿠팡 배송)과, 도착하자마자 쓰는 eSIM·교통패스·공항픽업·입장권을 한곳에 모았습니다. 결제는 각 판매 페이지에서 그대로 이루어집니다.</p>
+        <p>집에서 미리 사두면 현지에서 결제할 일이 줄어드는 여행 준비물 14종(쿠팡 배송)과, 도착하자마자 쓰는 eSIM·교통패스·공항픽업·입장권을 한곳에 모았습니다. 충전기·저울·보조가방처럼 출발 직전에 사도 되는 6종을 새로 넣었습니다. 결제는 각 판매 페이지에서 그대로 이루어집니다.</p>
       </div>
-      <div class="sh-meta">가격은 2026.11.17 쿠팡·네이버 쇼핑 기준 최저가·옵션가입니다.</div>
+      <div class="sh-meta">가격은 2026.11.19 쿠팡·네이버 쇼핑 기준 최저가·옵션가입니다.</div>
     </div>
     <!-- @ESSENTIALS -->
   </div>
@@ -2482,11 +2521,25 @@
       <div class="t">
         <span class="kicker">TRIP.COM · STAY · FLIGHT · TICKET</span>
         <h2>숙소·항공권·입장권까지 트립닷컴에서 바로</h2>
-        <p>위 카드들은 국내 여행사가 파는 상품이고, 이 섹션은 트립닷컴에서 직접 예약하는 숙소·항공권과 현지 입장권·공항픽업·렌터카입니다. 도시를 고르면 그 도시 숙소가 최저가순으로 열리고, 노선을 고르면 항공권이, 입장권 카드를 누르면 그 도시의 한국어 상품 목록이 열립니다. 예약·결제는 트립닷컴에서 그대로 이루어지며, 트립픽은 가격에 아무것도 더하지 않습니다.</p>
+        <p>위 카드들은 국내 여행사가 파는 상품이고, 이 섹션은 트립닷컴에서 직접 예약하는 숙소·항공권과 현지 입장권·공항픽업·렌터카입니다. 도시를 고르면 그 도시 숙소가 최저가순으로 열리고, 노선을 고르면 항공권이, 입장권 카드를 누르면 그 도시의 한국어 상품 목록이 열립니다. 나트랑·푸꾸옥·싱가포르·홍콩·발리·세부·코타키나발루·치앙마이 8곳은 도시 페이지 없이 입장권·공항픽업 두 링크로 바로 연결했습니다. 예약·결제는 트립닷컴에서 그대로 이루어지며, 트립픽은 가격에 아무것도 더하지 않습니다.</p>
       </div>
-      <div class="sh-meta">링크 37개는 2026.11.18 트립닷컴 파트너스에서 발급 · 숙소는 체크인 날짜, 항공권은 가는 날, 입장권은 방문일 기준</div>
+      <div class="sh-meta">링크 60개(휴양지 입장권·공항픽업 16 포함)는 2026.11.18~19 트립닷컴 파트너스에서 발급 · 숙소는 체크인 날짜, 항공권은 가는 날, 입장권은 방문일 기준</div>
     </div>
     <!-- @TRIPCOM -->
+  </div>
+</section>
+
+<section class="packages" id="packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t">
+        <span class="kicker">PACKAGE PICKS · 5 DAYS</span>
+        <h2>항공·숙소까지 묶은 <em>고단가 맞춤 패키지</em> 2종</h2>
+        <p>같은 5일이라도 투어를 따로 붙이는 것과 패키지로 묶는 것은 총액과 준비 시간이 다릅니다. 항공·호텔·일부 일정이 포함된 3박5일 패키지 중, 출발이 확정됐거나 노팁·노옵션 조건이 붙은 상품 2개만 골랐습니다. 표시가는 1인 기준 최저 출발가이고, 출발일·좌석은 상품 페이지에서 확인하세요.</p>
+      </div>
+      <div class="sh-meta">2026.11.19 확인 · 네이버 여행 커넥트 판매가</div>
+    </div>
+    <!-- @PACKAGES -->
   </div>
 </section>
 

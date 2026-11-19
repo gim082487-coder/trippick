@@ -7,8 +7,8 @@
   "coupang": {
    "method": "partners.coupang.com 상품검색 → 상품 카드 '링크 생성' → 단축 URL(link.coupang.com/a/...) 발급",
    "affiliateId": "AF1746171",
-   "checkedAt": "2026-11-17 14:5x KST",
-   "note": "단축 URL 1건(멀티어댑터)은 실제 클릭으로 www.coupang.com/vp/products/8220548823 착지 확인. 나머지는 단축 URL 페이지 HTTP 200 및 상품 파라미터(productId·판매가·이미지) 대조."
+   "checkedAt": "2026-11-19 13:00~13:20 KST",
+   "note": "단축 URL 14건(2026-11-17 발급 8 + 2026-11-19 발급 6) 모두 link.coupang.com 리다이렉트가 www.coupang.com/vp/products/{상품번호}?…&lptag=AF1746171 로 착지함을 확인. 상품 페이지 자체는 curl 에 403(봇 차단)을 주므로 브라우저로 가격·상품평을 확인했다."
   }
  },
  "disclosure": "모든 링크는 네이버 쇼핑 커넥트(어필리에이트) 활동 링크입니다. 게시물에는 공정위 기준에 맞는 확정 표현('이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 구매 발생 시 수수료를 제공받습니다')을 제목 또는 본문 첫 부분에 표기해야 합니다.",
@@ -926,6 +926,196 @@
    "pitch": "13,520원 메모리폼 목베개와 다른 형태. 목 뒤를 받치고 둘레를 조여 고개가 떨어지지 않게 잡아줍니다.",
    "usage": "장거리 노선에서 창가 좌석이면 벽 쪽으로 기대어 쓰는 방식이 편합니다.",
    "caution": "정가 98,000원에서 61% 할인된 37,800원(2026.11.19). 색상에 따라 금액이 다를 수 있습니다."
+  },
+  {
+   "id": "cp-gan65w-homeplanet",
+   "category": "여행필수템",
+   "categoryLabel": "65W 멀티 충전기",
+   "name": "홈플래닛 GaN PD PPS 65W 3포트 초고속 멀티충전기 + C to C 케이블",
+   "officialName": "홈플래닛 GaN PD PPS 65W 3포트 초고속 멀티충전기 + C to C 케이블 세트, 화이트, 1세트",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 13890,
+   "listPrice": 45000,
+   "discountRate": 69,
+   "url": "https://link.coupang.com/a/iNuMfSoQnc",
+   "productId": "7432598771",
+   "itemId": "19307488065",
+   "badge": "노트북까지 65W",
+   "specs": [
+    "GaN PD PPS 65W · 3포트",
+    "C to C 케이블 동봉",
+    "로켓배송 · 구매평 2,733건"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "reviews": 2733,
+   "reviewNote": "쿠팡 상품평 2,733건(2026-11-19)",
+   "pitch": "13,890원(정가 45,000원). 기존 35W 어댑터와 달리 노트북까지 한 콘센트로 충전합니다. 3포트라 폰·보조배터리·워치를 밤새 같이 꽂아 둘 수 있습니다.",
+   "usage": "해외 콘센트 모양만 어댑터로 바꾸면 220V 프리볼트 제품이라 그대로 씁니다. 100V 지역(일본)에서도 동작.",
+   "caution": "100W를 요구하는 노트북은 65W로 느리게 충전됩니다. 표시가는 2026.11.19 쿠팡 판매가(화이트 1세트).",
+   "image": "assets/ess/cp-gan65w.jpg"
+  },
+  {
+   "id": "cp-luggagescale-homeplanet",
+   "category": "여행필수템",
+   "categoryLabel": "디지털 캐리어 저울",
+   "name": "홈플래닛 휴대용 손저울 (디지털 캐리어 저울)",
+   "officialName": "홈플래닛 휴대용 손저울, 혼합색상, 1개",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 5390,
+   "listPrice": 11000,
+   "discountRate": 51,
+   "url": "https://link.coupang.com/a/iNuOrg1BqC",
+   "productId": "7414810132",
+   "itemId": "19220473804",
+   "badge": "위탁 23kg 대비",
+   "specs": [
+    "손잡이형 디지털 저울",
+    "로켓배송 · 구매평 4,575건",
+    "한 달 2,000명 이상 구매"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "reviews": 4575,
+   "reviewNote": "쿠팡 상품평 4,575건(2026-11-19)",
+   "pitch": "체크인 카운터에서 23kg을 넘겨 짐을 덜어내는 일을 막는 5,390원짜리 보험입니다. 구매평 4,575건.",
+   "usage": "캐리어 손잡이에 걸어 무게 확인. 귀국길 면세품까지 더해질 때 한 번 더 재면 좋습니다.",
+   "caution": "측정 한도와 건전지 포함 여부는 상품 상세에서 확인하세요. 표시가는 2026.11.19 판매가.",
+   "image": "assets/ess/cp-luggagescale.jpg"
+  },
+  {
+   "id": "cp-bostonbag-mongddang",
+   "category": "여행필수템",
+   "categoryLabel": "접이식 보스턴백",
+   "name": "몽땅겟 접이식 여행용 보스턴백 (캐리어 결합)",
+   "officialName": "몽땅겟 접이식 여행용 보스턴백 캐리어 결합 보조가방",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 12900,
+   "listPrice": 20420,
+   "discountRate": 36,
+   "url": "https://link.coupang.com/a/iNuQgFQrU4",
+   "productId": "7163409205",
+   "itemId": "22831431051",
+   "badge": "캐리어에 결합",
+   "specs": [
+    "중형 20L / 대형 41L / 특대 68L",
+    "캐리어 손잡이 결합형",
+    "구매평 3,862건"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "reviews": 3862,
+   "reviewNote": "쿠팡 상품평 3,862건(2026-11-19)",
+   "pitch": "접으면 손바닥만 해져 캐리어 안에 들어가고, 귀로에 짐이 늘면 꺼내 캐리어 손잡이에 끼워 기내 보조가방으로 씁니다.",
+   "usage": "왕복 모두 기내로 들고 갈 계획이면 41L 이하를 권장합니다. 항공사 기내 규격은 출발 전 확인.",
+   "caution": "옵션(중형 20L·대형 41L·특대 68L)에 따라 금액이 다릅니다. 표시가는 2026.11.19 판매가.",
+   "image": "assets/ess/cp-bostonbag.jpg"
+  },
+  {
+   "id": "cp-showerfilter-duvel",
+   "category": "여행필수템",
+   "categoryLabel": "해외용 샤워기 필터",
+   "name": "듀벨 여행용 세디먼트 필터 4개 + 석회방지 헤드필터",
+   "officialName": "듀벨 여행용 세디먼트 필터 4개 + 석회방지 헤드필터, 1세트, 무향",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 14900,
+   "listPrice": 19800,
+   "discountRate": 24,
+   "url": "https://link.coupang.com/a/iNuR5MZMC4",
+   "productId": "9616488344",
+   "itemId": "28714008007",
+   "badge": "동남아 녹물 대비",
+   "specs": [
+    "세디먼트 필터 4개 + 석회방지 헤드필터 1개",
+    "무향 · 1세트",
+    "로켓배송 · 구매평 378건"
+   ],
+   "cities": [
+    "나트랑",
+    "다낭",
+    "푸꾸옥",
+    "방콕",
+    "발리"
+   ],
+   "courses": [],
+   "reviews": 378,
+   "reviewNote": "쿠팡 상품평 378건(2026-11-19)",
+   "pitch": "베트남·태국 호텔 샤워기에서 나오는 누런 물을 걸러 줍니다. 4박5일이면 필터 1~2개로 충분하고, 남는 필터는 다음 여행에 씁니다.",
+   "usage": "기존 샤워기 헤드를 돌려 빼고 필터를 끼운 뒤 헤드를 다시 조립. 헤드 구경이 다른 숙소는 필터만 씁니다.",
+   "caution": "무향 1세트 기준. 표시가는 2026.11.19 판매가.",
+   "image": "assets/ess/cp-showerfilter.jpg"
+  },
+  {
+   "id": "cp-umbrella-crocodile",
+   "category": "여행필수템",
+   "categoryLabel": "3단 경량 우양산",
+   "name": "크로커다일 UV 자외선 차단 전자동 3단 암막 우산 양산 (2개)",
+   "officialName": "크로커다일 UV 자외선 차단 전자동 3단 암막 우산 양산 2개",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 24900,
+   "listPrice": 39000,
+   "discountRate": 36,
+   "url": "https://link.coupang.com/a/iNuTVziXcq",
+   "productId": "8771760872",
+   "itemId": "25515871678",
+   "badge": "3단 · 2개 구성",
+   "specs": [
+    "전자동 3단 · 암막 코팅",
+    "2개 구성",
+    "구매평 68건"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "reviews": 68,
+   "reviewNote": "쿠팡 상품평 68건(2026-11-19) — 다른 여행용품보다 후기가 적은 편",
+   "pitch": "동남아 우기의 햇빛과 소나기를 한 번에. 3단이라 가방에 들어가고 2개 구성이라 한 개는 캐리어에 넣어 둘 수 있습니다.",
+   "usage": "UV 차단 코팅은 접힌 자리가 닳으면 약해지므로, 양산 겸용은 암막 안감을 확인하고 씁니다.",
+   "caution": "구매평이 68건으로 적습니다. 색상 구성은 옵션 확인. 표시가는 2026.11.19 판매가.",
+   "image": "assets/ess/cp-umbrella.jpg"
+  },
+  {
+   "id": "cp-waterproof-sinji",
+   "category": "여행필수템",
+   "categoryLabel": "고화질 방수팩",
+   "name": "신지모루 IPX8 튜브형 스마트폰 방수팩 (크로스·암밴드 포함)",
+   "officialName": "신지모루 IPX8 스펀지 튜브 4중잠금 스마트폰 방수팩 + 크로스 스트랩 + 암밴드 + 핸드 스트랩, 화이트, 1세트",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 9900,
+   "listPrice": 29900,
+   "discountRate": 66,
+   "url": "https://link.coupang.com/a/iNuVwhnQY0",
+   "productId": "7342693694",
+   "itemId": "18876369675",
+   "badge": "물에 뜨는 튜브형",
+   "specs": [
+    "IPX8 · 4중 잠금",
+    "크로스 스트랩 + 암밴드 + 핸드 스트랩",
+    "로켓배송 · 구매평 9,685건 · 사이즈 215×115mm"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "reviews": 9685,
+   "reviewNote": "쿠팡 상품평 9,685건(2026-11-19), 한 달 2,000명 이상 구매",
+   "pitch": "IPX8·4중 잠금에 스트랩 3종까지 9,900원. 튜브형이라 물에 빠져도 가라앉지 않아 호핑투어·스노클링에서 사진을 계속 찍을 수 있습니다.",
+   "usage": "잠그기 전에 30초 담가 테스트. 잠근 상태에서도 터치가 되지만 수중에서는 버튼이 잘 안 눌립니다.",
+   "caution": "사이즈 215×115mm — 케이스를 낀 대형 폰은 수납 여부를 확인하세요. 표시가는 2026.11.19 판매가.",
+   "image": "assets/ess/cp-waterproof.jpg"
   }
  ],
  "coupangDisclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."

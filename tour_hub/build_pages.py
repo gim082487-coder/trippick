@@ -75,6 +75,7 @@ TOOL_KEYS = {k for _, _, k, _ in TOOLS}
 
 # 1080px 이하에서 숨길 보조 메뉴(핵심 메뉴와 드롭다운만 남긴다)
 HIDE_SM = {"checklist", "foods", "alert"}
+KLOOK: dict = {}   # data/klook.json (main 에서 채운다)
 
 # 도시 허브 → /passes 탭 (없는 도시는 전체 페이지로)
 HUB_PASS_TOOL = {
@@ -1427,6 +1428,8 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     hub_tickets = [a for a in hub_acts if a["category"] == "ticket"]
     hub_pickups = [a for a in hub_acts if a["category"] in ("transfer", "car")]
     hub_net = [a for a in hub_acts if a["category"] in ("esim", "rail")]
+    # v19: 이 도시의 클룩 링크(오사카·도쿄·다낭만 발급됨)
+    kl = next((k for k in (KLOOK.get("links") or []) if k.get("cityId") == slug), None)
     lowest = min((t["sale"] for t in tours), default=0)
     tour_first = tours[0] if tours else None
     hotel_first = hotels[0] if hotels else None
@@ -1438,7 +1441,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
         jumps.append(("#food", "현지 맛집", len(rest["items"])))
     if country:
         jumps.append(("#gifts", "선물·기념품", len(country["items"])))
-    jumps.append(("#stay", "숙소·항공·입장권", len(hotels) + (1 if flight else 0) + len(hub_acts)))
+    jumps.append(("#stay", "숙소·항공·입장권", len(hotels) + (1 if flight else 0) + len(hub_acts) + (1 if kl else 0)))
     esim_spec = ESIM_PICK.get(hub.get("country"))
     if esim_spec:
         jumps.append(("#esim", "eSIM", len(esim_spec["ids"])))
@@ -1574,8 +1577,14 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     <div class="ess-ghead"><h3>📶 {net_label}</h3><span class="n">{len(hub_net)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">도착 전에 설치·발권하는 것들</span></div>
     <div class="tc-acts tc-acts--hub">{''.join(B.tc_act_card(a, '유심·eSIM 보기' if a['category'] == 'esim' else '기차표 보기') for a in hub_net)}</div>
   </div>"""
-    stay_html = f"""<section class="hub-sec" id="stay">
-  <div class="hub-sec-head">
+    klook_html = ""
+    if kl:
+        klook_html = f"""<div class="tc-group tc-group--act" id="klook">
+    <div class="ess-ghead"><h3>🌏 클룩에서 {esc(hub['name'])} 투어·입장권</h3><span class="n">1</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(kl.get('highlight', ''))}</span></div>
+    <div class="tc-acts tc-acts--hub">{B.tc_act_card(kl, '클룩에서 보기')}</div>
+    <p class="ess-cp-note">{esc(KLOOK['disclosure'])}</p>
+  </div>"""
+    stay_html = f"""<section class="hub-sec" id="stay">  <div class="hub-sec-head">
     <div><span class="hub-k">STAY &amp; FLIGHT &amp; TICKET</span>
       <h2>{esc(hub['name'])} 숙소·항공권·입장권</h2>
       <p>트립닷컴에서 직접 예약하는 숙소·항공권과, 현지에서 쓸 입장권·공항픽업·eSIM·공항철도입니다. 체크인 날짜와 방문일을 넣으면 그날 요금으로 열리고, 예약·결제는 트립닷컴에서 그대로 이루어집니다.</p></div>
@@ -1586,6 +1595,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
   </div>
   {flight_html}
   {act_html}
+  {klook_html}
   <p class="hub-note">{esc(TRIPCOM['disclosure'])}</p>
 </section>"""
 
@@ -1735,6 +1745,10 @@ def cities_index(out_root: Path, base: str) -> Path:
     <div class="gi-grid hub-grid-3">
 {chr(10).join(cards)}
     </div>
+    <div class="hub-others hub-others--resorts" id="resorts">
+      <p>나트랑·푸꾸옥·싱가포르·홍콩·발리·세부·코타키나발루·치앙마이 8곳은 아직 도시 페이지가 없습니다. 그전까지는 이 카드에서 입장권·액티비티와 공항픽업을 바로 예약합니다. 방문일과 도착 공항을 넣어야 실제 요금이 나옵니다.</p>
+{B.render_resorts(TRIPCOM)}
+    </div>
     <div class="hub-others">
       <b>아직 도시 페이지가 없는 지역</b>
       <p>삿포로·나트랑·괌·이탈리아·미서부·장가계 등 나머지 지역 상품은 홈의 지역 섹션에서 같은 기준으로 비교할 수 있습니다.</p>
@@ -1870,14 +1884,23 @@ GEAR_IDS = [
     "cp-sleepset-silverbay",
 ]
 BAG_ESIM_IDS = ["jp-esim-usimsa-3d", "vn-esim-usimsa-3d", "th-esim-usimsa-3d", "tw-esim-usimsa-3d"]
+# v19: 출발 전 필수템 — 65W 충전기·저울·보조가방·샤워필터·우양산·방수팩
+ESSFILL_IDS = [
+    "cp-gan65w-homeplanet",
+    "cp-luggagescale-homeplanet",
+    "cp-bostonbag-mongddang",
+    "cp-showerfilter-duvel",
+    "cp-umbrella-crocodile",
+    "cp-waterproof-sinji",
+]
 BAG_ESIM_LABEL = {"jp-esim-usimsa-3d": "일본", "vn-esim-usimsa-3d": "베트남",
                   "th-esim-usimsa-3d": "태국", "tw-esim-usimsa-3d": "대만"}
 
 
-def gear_cards() -> list:
-    """v17: /baggage '오래 쓰는 여행 장비 6종' 카드(쿠팡 실링크)."""
+def gear_cards(ids: list | None = None) -> list:
+    """v17: /baggage '오래 쓰는 여행 장비 6종' 카드(쿠팡 실링크). v19: ids 로 다른 묶음도 같은 카드로."""
     out = []
-    for gid in GEAR_IDS:
+    for gid in (ids if ids is not None else GEAR_IDS):
         e = next((x for x in ESSENTIALS if x["id"] == gid), None)
         if not e:
             continue
@@ -1932,6 +1955,7 @@ def baggage_page(out_root: Path, base: str) -> Path:
     body = body.replace("<!-- @BAG_ROWS -->", "\n                ".join(rows))
     body = body.replace("<!-- @COUPANG -->", "\n            ".join(cards))
     body = body.replace("<!-- @GEAR -->", "\n            ".join(gear_cards()))
+    body = body.replace("<!-- @ESSFILL -->", "\n            ".join(gear_cards(ESSFILL_IDS)))
     body = body.replace("<!-- @ESIM -->", "\n            ".join(bag_esim_links()))
 
     faq = [
@@ -2393,7 +2417,7 @@ def check_links(out_root: Path) -> int:
 # ----------------------------------------------------------------------
 def main():
     global SPRITE, TOTAL, TOURS, ESSENTIALS, GUIDES_LIST, CAT_NOTE
-    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA
+    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA, KLOOK
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT), help="출력 디렉터리 (기본: tour_hub)")
@@ -2416,6 +2440,7 @@ def main():
     RESTAURANTS = load_json("restaurants.json")
     GIFTS = load_json("gifts.json")
     TRIPCOM = load_json("tripcom.json")
+    KLOOK = load_json("klook.json")
 
     gspec = load_json("guides.json")
     GUIDES_LIST = gspec["guides"]

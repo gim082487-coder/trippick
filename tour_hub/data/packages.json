@@ -1,0 +1,55 @@
+{
+ "source": {
+  "program": "네이버 여행 커넥트 (brandconnect.naver.com)",
+  "account": "hiddink6777 / 활동 ID 1017789444902400",
+  "checkedAt": "2026-11-19 14:05~14:08 KST",
+  "method": "여행 커넥트 > 상품 찾기 > 상품 카드 '링크 발급' → naver.me 단축링크",
+  "verified": "naver.me 2건 HTTP 307 → brandconnect.naver.com/connect/{id} 200. 발급 링크 관리 화면에 2026-11-19 발급으로 기록."
+ },
+ "disclosure": "'이 포스팅은 네이버 여행 커넥트 활동의 일환으로, 예약 발생 시 수수료를 제공받습니다.'",
+ "note": "패키지는 항공·숙소·일정이 묶인 상품이라 1인 가격이 높습니다. 출발일·좌석은 상품 페이지에서 확인해야 하고, 표시가는 2026-11-19 기준 최저 출발가입니다.",
+ "packages": [
+  {
+   "id": "hk-pkg-5d",
+   "city": "hongkong",
+   "country": "hk",
+   "title": "[출발확정] 홍콩/마카오 5일 2도시 (4성호텔·피크트램·야경·자유일정)",
+   "seller": "네이버 여행 커넥트 제휴 여행사",
+   "price": 649900,
+   "sale": 630403,
+   "discount": "3%",
+   "duration": "3박5일",
+   "guide": "",
+   "type": "해외패키지",
+   "affiliate": "travel-connect",
+   "fee": 3,
+   "url": "https://naver.me/Fx2H8TsW",
+   "productPage": "https://pkgtour.naver.com/family-product/overseas/CHP341D84A290E9TWA",
+   "pitch": "홍콩·마카오를 한 번에 도는 3박5일. 성바울성당 유적·NEW 피크트램·홍콩 야경 포함, 하루는 자유일정. 630,403원(정가 649,900원).",
+   "note": "출발확정 상품. 3% 수수료 기준 건당 약 18,900원.",
+   "checkedAt": "2026-11-19 14:05 KST",
+   "displayNote": "출발확정 상품입니다. 항공·4성 호텔·피크트램·야경 투어·자유일정 1일 포함. 출발일과 좌석은 상품 페이지에서 확인하세요."
+  },
+  {
+   "id": "nhatrang-pkg-5d",
+   "city": "nhatrang",
+   "country": "vn",
+   "title": "[청주출발·노팁·노옵션] 나트랑/달랏 5일 (5성 호텔·무제한 씨푸드)",
+   "seller": "네이버 여행 커넥트 제휴 여행사",
+   "price": 799000,
+   "sale": 759050,
+   "discount": "5%",
+   "duration": "3박5일",
+   "guide": "",
+   "type": "해외패키지",
+   "affiliate": "travel-connect",
+   "fee": 3,
+   "url": "https://naver.me/xzHfP4T1",
+   "productPage": null,
+   "pitch": "나트랑과 달랏을 함께 도는 3박5일, 5성 호텔에 42만원 상당 혜택·무제한 씨푸드 포함. 759,050원(정가 799,000원).",
+   "note": "청주 출발 상품이라 인천 출발을 원하면 다른 상품을 골라야 합니다. 3% 수수료 기준 건당 약 22,800원.",
+   "checkedAt": "2026-11-19 14:08 KST",
+   "displayNote": "청주 출발 상품입니다. 인천 출발을 원하시면 다른 상품을 골라야 합니다. 5성 호텔·무제한 씨푸드·노팁·노옵션 조건입니다."
+  }
+ ]
+}

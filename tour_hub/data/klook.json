@@ -1,0 +1,50 @@
+{
+ "source": {
+  "program": "클룩(Klook) 어필리에이트",
+  "aid": "144067",
+  "site": "https://trippick.pages.dev",
+  "joined": "2026-11-19 12:5x KST (가입·본인인증·사이트 등록·링크 발급 완료)",
+  "checked": "2026-11-19",
+  "method": "affiliate.klook.com 대시보드 링크 생성기 — 도시(오사카)·목적지(도쿄·다낭) 페이지",
+  "verified": "affiliate.klook.com/redirect 3건 모두 www.klook.com 한국어 페이지로 302, 최종 URL 에 aid=144067&aff_adid=… 유지(2026-11-19 14:3x). 커미션 정산 계좌·세금 정보는 아직 미입력."
+ },
+ "disclosure": "이 포스팅은 클룩(Klook) 어필리에이트 활동의 일환으로, 예약이 이루어지면 일정액의 수수료를 제공받습니다. 예약·결제는 클룩에서 그대로 이루어지며, 트립픽은 가격에 아무것도 더하지 않습니다.",
+ "links": [
+  {
+   "id": "klook_osaka",
+   "city": "오사카",
+   "cityId": "osaka",
+   "flag": "jp",
+   "label": "클룩",
+   "title": "오사카 투어·입장권 (클룩)",
+   "highlight": "유니버설 스튜디오 재팬·오사카성·팀랩·교토 버스투어",
+   "summary": "클룩 오사카 도시 페이지. USJ 입장권·익스프레스 패스처럼 트립닷컴 딥링크로는 단건 연결이 안 되는 상품을 여기서 바로 찾을 수 있습니다.",
+   "url": "https://affiliate.klook.com/redirect?aid=144067&aff_adid=1579533&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Fcity%2F30-osaka-things-to-do%2F",
+   "status": "verified_302_ko"
+  },
+  {
+   "id": "klook_tokyo",
+   "city": "도쿄",
+   "cityId": "tokyo",
+   "flag": "jp",
+   "label": "클룩",
+   "title": "도쿄 투어·입장권 (클룩)",
+   "highlight": "도쿄 디즈니·팀랩 플래닛·시부야 스카이·후지산 버스투어",
+   "summary": "클룩 도쿄 목적지 페이지. 디즈니·팀랩처럼 날짜 지정 입장권이 필요한 곳을 여기서 확인합니다.",
+   "url": "https://affiliate.klook.com/redirect?aid=144067&aff_adid=1579566&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Fdestination%2Fc28-tokyo%2F",
+   "status": "verified_302_ko"
+  },
+  {
+   "id": "klook_danang",
+   "city": "다낭",
+   "cityId": "danang",
+   "flag": "vn",
+   "label": "클룩",
+   "title": "다낭 투어·입장권 (클룩)",
+   "highlight": "바나힐·호이안 야경·오행산·한강 크루즈",
+   "summary": "클룩 다낭 목적지 페이지. 바나힐 입장권·호이안 투어·공항픽업을 한 화면에서 비교할 수 있습니다.",
+   "url": "https://affiliate.klook.com/redirect?aid=144067&aff_adid=1579567&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Fdestination%2Fc74-da-nang%2F",
+   "status": "verified_302_ko"
+  }
+ ]
+}

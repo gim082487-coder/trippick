@@ -595,5 +595,216 @@
       "url": "https://kr.trip.com/things-to-do/experiences/osaka-jiaotong/?Allianceid=11407530&SID=336341874&trip_sub1=rail_osaka&trip_sub3=D21303312",
       "status": "verified_200_ko"
     }
-  ]
+  ],
+  "resorts": [
+    {
+      "city": "나트랑",
+      "cityId": "nhatrang",
+      "country": "베트남",
+      "flag": "vn",
+      "airport": "CXR 깜라인",
+      "ticket": {
+        "id": "ticket_nhatrang",
+        "label": "입장권·액티비티",
+        "title": "나트랑 입장권·액티비티",
+        "highlight": "판랑 사막투어·바이짜이섬 스노클링·혼땀 머드스파",
+        "summary": "판랑 사막 감성 투어(전용차량·지프·양목장), 바이짜이섬 1일투어(한국어 가이드·혼땀 머드스파), 프라이빗 스노클링+진흙목욕 등. 브라우저 실측 1위 상품 평점 4.8·예약 68명.",
+        "url": "https://kr.trip.com/things-to-do/experiences/nhatrang/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_nhatrang&trip_sub3=D21285812",
+        "status": "verified_200_ko_browser"
+      },
+      "transfer": {
+        "id": "transfer_cxr",
+        "label": "공항픽업",
+        "title": "깜라인공항(CXR) 공항픽업",
+        "highlight": "나트랑 시내·캄란 · 차종별 예약",
+        "summary": "나트랑 관문인 깜라인 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 깜라인 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+        "url": "https://kr.trip.com/airport-transfers/airport-cxr/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cxr&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      }
+    },
+    {
+      "city": "푸꾸옥",
+      "cityId": "phuquoc",
+      "country": "베트남",
+      "flag": "vn",
+      "airport": "PQC 푸꾸옥",
+      "ticket": {
+        "id": "ticket_phuquoc",
+        "label": "입장권·액티비티",
+        "title": "푸꾸옥 입장권·액티비티",
+        "highlight": "빈원더스·혼똔 케이블카·사파리·빈펄",
+        "summary": "푸꾸옥 섬 인기 체험 목록. 빈원더스 테마파크·빈펄 사파리·혼똔섬 케이블카·4개 섬 호핑투어가 한 화면에 있습니다. 페이지 제목 '푸꾸옥 섬 여행 인기 관광지, 투어, 체험 등 추천 및 예약'.",
+        "url": "https://kr.trip.com/things-to-do/experiences/phuquocisland/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_phuquoc&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      },
+      "transfer": {
+        "id": "transfer_pqc",
+        "label": "공항픽업",
+        "title": "푸꾸옥공항(PQC) 공항픽업",
+        "highlight": "즈엉동·무엉탄 · 차종별 예약",
+        "summary": "푸꾸옥 국제공항에서 즈엉동 시내·무엉탄 리조트 지역까지. 페이지 제목 '믿을 수 있는 푸꾸옥 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+        "url": "https://kr.trip.com/airport-transfers/airport-pqc/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_pqc&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      }
+    },
+    {
+      "city": "싱가포르",
+      "cityId": "singapore",
+      "country": "싱가포르",
+      "flag": "sg",
+      "airport": "SIN 창이",
+      "ticket": {
+        "id": "ticket_singapore",
+        "label": "입장권·액티비티",
+        "title": "싱가포르 입장권·액티비티",
+        "highlight": "센토사·유니버설 스튜디오·윙스 오브 타임",
+        "summary": "센토사섬+유니버설 스튜디오+윙스 오브 타임+케이블카 당일 코스, 슈퍼트리·멀라이언 야경 코스, 바탐 페리 투어 등. 페이지 제목 '2026 싱가포르 인기 체험 - Trip.com'.",
+        "url": "https://kr.trip.com/things-to-do/experiences/singapore/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_singapore&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      },
+      "transfer": {
+        "id": "transfer_sin",
+        "label": "공항픽업",
+        "title": "창이공항(SIN) 공항픽업",
+        "highlight": "오차드·마리나베이 · 차종별 예약",
+        "summary": "창이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 싱가포르 창이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+        "url": "https://kr.trip.com/airport-transfers/airport-sin/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_sin&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      }
+    },
+    {
+      "city": "홍콩",
+      "cityId": "hongkong",
+      "country": "홍콩",
+      "flag": "hk",
+      "airport": "HKG 홍콩",
+      "ticket": {
+        "id": "ticket_hongkong",
+        "label": "입장권·액티비티",
+        "title": "홍콩 입장권·액티비티",
+        "highlight": "피크트램·빅토리아 하버 야경·360 케이블카",
+        "summary": "피크 트램 익스프레스+빅토리아 하버 야경 투어, 중환 타이퀀·대관람차 코스, 랭타우 360 케이블카·빅부다, 딤섬 디너 크루즈 등. 페이지 제목 '2026 홍콩 인기 체험 - Trip.com'.",
+        "url": "https://kr.trip.com/things-to-do/experiences/hongkong/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_hongkong&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      },
+      "transfer": {
+        "id": "transfer_hkg",
+        "label": "공항픽업",
+        "title": "홍콩공항(HKG) 공항픽업",
+        "highlight": "침사추이·센트럴·홍콩섬 · 차종별 예약",
+        "summary": "홍콩 국제공항 픽업·샌딩. 공항철도(AEL) 대신 짐이 많을 때 쓰는 차량 이동. 페이지 제목 '믿을 수 있는 홍콩 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+        "url": "https://kr.trip.com/airport-transfers/airport-hkg/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_hkg&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      }
+    },
+    {
+      "city": "발리",
+      "cityId": "bali",
+      "country": "인도네시아",
+      "flag": "id",
+      "airport": "DPS 응우라라이",
+      "ticket": {
+        "id": "ticket_bali",
+        "label": "입장권·액티비티",
+        "title": "발리 입장권·액티비티",
+        "highlight": "우붓 원숭이숲·바투르 산·남부 비치 데이투어",
+        "summary": "발리 남부 비치 데이투어(한국어 기사·8시간), 프라이빗 차량 12시간, 우붓 원숭이숲·계단식 논·폭포 올인클루시브, 바투르 산·자연온천 코스 등. 페이지 제목 '2026 발리 인기 체험 - Trip.com'.",
+        "url": "https://kr.trip.com/things-to-do/experiences/bali/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_bali&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      },
+      "transfer": {
+        "id": "transfer_dps",
+        "label": "공항픽업",
+        "title": "응우라라이공항(DPS) 공항픽업",
+        "highlight": "스미냑·우붓·누사두아 · 차종별 예약",
+        "summary": "발리 응우라라이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 응우라라이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+        "url": "https://kr.trip.com/airport-transfers/airport-dps/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_dps&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      }
+    },
+    {
+      "city": "세부",
+      "cityId": "cebu",
+      "country": "필리핀",
+      "flag": "ph",
+      "airport": "CEB 막탄-세부",
+      "ticket": {
+        "id": "ticket_cebu",
+        "label": "입장권·액티비티",
+        "title": "세부 입장권·액티비티",
+        "highlight": "오슬롭 고래상어·모알보알 정어리떼·서밀론 섬",
+        "summary": "세부 출발 오슬롭 고래상어 관찰+모알보알 정어리떼 스노클링 당일치기, 서밀론 섬 입장권(왕복 선박 포함) 등. 페이지 제목 '2026년 세부의 상위 10개 - 지금 Trip.com에서 예약하세요'.",
+        "url": "https://kr.trip.com/things-to-do/experiences/cebu/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_cebu&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      },
+      "transfer": {
+        "id": "transfer_ceb",
+        "label": "공항픽업",
+        "title": "막탄-세부공항(CEB) 공항픽업",
+        "highlight": "막탄·세부 시내 · 차종별 예약",
+        "summary": "막탄 세부 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 막탄 세부 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+        "url": "https://kr.trip.com/airport-transfers/airport-ceb/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_ceb&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      }
+    },
+    {
+      "city": "코타키나발루",
+      "cityId": "kotakinabalu",
+      "country": "말레이시아",
+      "flag": "my",
+      "airport": "BKI 코타키나발루",
+      "ticket": {
+        "id": "ticket_kotakinabalu",
+        "label": "입장권·액티비티",
+        "title": "코타키나발루 입장권·액티비티",
+        "highlight": "사피·마누칸 섬·카와카와 리버크루즈·키나발루 산",
+        "summary": "사피섬+마누칸섬 스노클링 투어(해산물 바베큐 점심), 카와카와 리버크루즈(반딧불이·코끼리코원숭이), 키나발루 산 낙농장+ATV, 로열만 스카이미러 맹그로브 등. 페이지 제목 '2026 코타키나발루 인기 체험 - Trip.com'.",
+        "url": "https://kr.trip.com/things-to-do/experiences/kotakinabalu/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_kotakinabalu&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      },
+      "transfer": {
+        "id": "transfer_bki",
+        "label": "공항픽업",
+        "title": "코타키나발루공항(BKI) 공항픽업",
+        "highlight": "KK 시내·탄중아루 · 차종별 예약",
+        "summary": "코타키나발루 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 코타키나발루 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+        "url": "https://kr.trip.com/airport-transfers/airport-bki/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_bki&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      }
+    },
+    {
+      "city": "치앙마이",
+      "cityId": "chiangmai",
+      "country": "태국",
+      "flag": "th",
+      "airport": "CNX 치앙마이",
+      "ticket": {
+        "id": "ticket_chiangmai",
+        "label": "입장권·액티비티",
+        "title": "치앙마이 입장권·액티비티",
+        "highlight": "도이수텝 야간투어·코끼리 에코파크·스티키 폭포",
+        "summary": "도이수텝·왓우몽 야간 투어, 코끼리 에코파크 반일 투어(먹이주기·물놀이·픽업), 도이인타논 국립공원 트레킹, 스티키 폭포 반나절 투어 등. 페이지 제목 '2026 치앙마이 인기 체험 - Trip.com'.",
+        "url": "https://kr.trip.com/things-to-do/experiences/chiangmai/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_chiangmai&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      },
+      "transfer": {
+        "id": "transfer_cnx",
+        "label": "공항픽업",
+        "title": "치앙마이공항(CNX) 공항픽업",
+        "highlight": "올드시티·님만해민 · 차종별 예약",
+        "summary": "치앙마이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 치앙마이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+        "url": "https://kr.trip.com/airport-transfers/airport-cnx/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cnx&trip_sub3=D21285812",
+        "status": "verified_200_ko"
+      }
+    }
+  ],
+  "resortSource": {
+    "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
+    "aid": "11407530",
+    "sid": "336341874",
+    "issued": "2026-11-19 13:2x~14:2x KST · 기존 그룹 D21285812 에 trip_sub1 만 새로 붙여 도시·공항 URL 구성",
+    "verified": "입장권 8 + 공항픽업 8 = 16건 모두 HTTP 200, <title> 한국어 + 도시·공항명 일치, 최종 URL 에 Allianceid=11407530&SID=336341874 유지 (2026-11-19 13:2x·14:2x, 이번 빌드에서 재확인)",
+    "rate": "투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업 5%",
+    "note": "나트랑 입장권은 원격 브라우저에서 상품 카드·평점 4.8·예약 68명까지 렌더 확인. 표시 통화는 방문자 설정에 따라 달라진다."
+  }
 }

@@ -58,6 +58,7 @@ HUB_CITY_IDS = set()  # 도시 페이지가 있는 도시 id. 이 도시들은 �
 
 ESS_GROUPS = [
     ("여행용품", "🧳 여행 준비물 · 쿠팡", "출발 3일 전에 주문하면 배송일 안에 도착"),
+    ("여행필수템", "🎒 출발 전 필수템 · 쿠팡", "충전기·저울·보조가방·샤워필터·우양산·방수팩 6종"),
     ("여행장비", "🎧 오래 쓰는 여행 장비 · 쿠팡", "캐리어·보조배터리처럼 한 번 사서 여러 번 쓰는 것"),
     ("eSIM", "📶 eSIM · 데이터", "도착 전에 설치하고 내리면 바로 켭니다"),
     ("교통패스", "🎫 교통 패스", "공항에서 시내까지, 하루 종일 타는 패스"),
@@ -778,10 +779,10 @@ def render_essentials(essentials: dict) -> str:
                 <span class="ess-go">{ess_cta(e)} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a>""")
         cp_note = (""
-                   if key not in ("여행용품", "여행장비") else
+                   if key not in ("여행용품", "여행필수템", "여행장비") else
                    '<p class="ess-cp-note">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. '
                    f'가격·재고는 2026년 11월 19일 확인 기준이며 판매자가 수시로 바꿀 수 있습니다.</p>')
-        grid_cls = "ess-grid ess-grid-4" if key in ("여행용품", "여행장비", "eSIM") else "ess-grid"
+        grid_cls = "ess-grid ess-grid-4" if key in ("여행용품", "여행필수템", "여행장비", "eSIM") else "ess-grid"
         blocks.append(f"""<div class="ess-group">
       <div class="ess-ghead"><h3>{label}</h3><span class="n">{len(items)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(note)}</span></div>
       <div class="{grid_cls}">
@@ -1196,7 +1197,56 @@ def tc_act_card(a: dict, cta: str = "") -> str:
     )
 
 
-def render_tripcom(tc: dict) -> str:
+def resort_card(r: dict) -> str:
+    """v19: 휴양지·단거리 도시 카드 — 입장권과 공항픽업 두 링크를 한 카드에 둔다."""
+    t, f = r["ticket"], r["transfer"]
+    code = (r.get("airport") or "").split()[0]
+    return (
+        f'<div class="rs-card">'
+        f'<span class="rs-head"><span class="rs-city">{esc(r["city"])}{flag_svg(r.get("flag", ""), 14, 9.8)}</span>'
+        f'<span class="rs-air" title="{esc(r["airport"])}">{esc(code)}</span></span>'
+        f'<span class="rs-h">{esc(t["highlight"])}</span>'
+        f'<span class="rs-links">'
+        f'<a class="rs-link" href="{esc(t["url"])}" target="_blank" rel="noopener sponsored">입장권·액티비티 보기'
+        f' <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        f'<a class="rs-link" href="{esc(f["url"])}" target="_blank" rel="noopener sponsored">공항픽업 예약'
+        f' <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        f'</span></div>'
+    )
+
+
+def render_resorts(tc: dict) -> str:
+    """v19: 인기 휴양지·단거리 8곳 — 도시 허브 없이도 입장권·공항픽업으로 바로 전환."""
+    rs = tc.get("resorts") or []
+    if not rs:
+        return ""
+    names = " · ".join(r["city"] for r in rs)
+    cards = "".join(resort_card(r) for r in rs)
+    return ('<div class="tc-group tc-group--act tc-group--resort" id="tcResorts">\n'
+            '      <div class="ess-ghead"><h3>🏝️ 인기 휴양지·단거리 8곳 입장권·공항픽업</h3><span class="n">' + str(len(rs)) +
+            '</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">' + esc(names) + '</span></div>\n'
+            '      <div class="rs-grid">' + cards + '</div>\n'
+            '      <p class="ess-cp-note">휴양지 입장권·공항픽업 링크는 트립닷컴 파트너스 제휴 링크입니다. 방문일과 도착 공항·목적지를 넣어야 실제 요금이 나오고, 예약·결제는 트립닷컴에서 그대로 이루어집니다. 트립픽은 가격에 아무것도 더하지 않습니다.</p>\n'
+            '    </div>')
+
+
+def render_klook(kl: dict) -> str:
+    """v19: 클룩(Klook) 도시 링크 3종 — 트립닷컴 단건 딥링크가 안 되는 입장권을 보완."""
+    links = (kl or {}).get("links") or []
+    if not links:
+        return ""
+    order = " · ".join(k["city"] for k in links)
+    cards = "".join(tc_act_card(k, "클룩에서 보기") for k in links)
+    return ('<div class="tc-group tc-group--act" id="tcKlook">\n'
+            '      <div class="ess-ghead"><h3>🌏 클룩에서도 비교</h3><span class="n">' + str(len(links)) +
+            '</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">' + esc(order) +
+            ' · USJ·디즈니·팀랩처럼 날짜 지정 입장권</span></div>\n'
+            '      <div class="tc-acts">' + cards + '</div>\n'
+            '      <p class="ess-cp-note">' + esc(kl["disclosure"]) + '</p>\n'
+            '    </div>')
+
+
+def render_tripcom(tc: dict, klook: dict | None = None) -> str:
     """트립닷컴 파트너스 전용 숙소·항공 큐레이션.
 
     네이버·쿠팡 링크와 섞지 않고 이 섹션 안에서만 노출한다.
@@ -1245,10 +1295,14 @@ def render_tripcom(tc: dict) -> str:
     esim_cards = "".join(tc_act_card(a, "유심·eSIM 보기") for a in esims)
     rail_cards = "".join(tc_act_card(a, "기차표 보기") for a in rails)
     ticket_order = " · ".join(a["city"] for a in tickets)
+    resort_html = render_resorts(tc)
+    klook_html = render_klook(klook) if klook else ""
+    resort_n = len(tc.get("resorts") or [])
+    klook_n = len((klook or {}).get("links") or [])
     transfer_order = " · ".join(dict.fromkeys(a["city"] for a in transfers))
     return f"""<div class="tc-filter">
-      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터">{tabs}<a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>{len(tickets)}</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>{len(transfers) + len(cars)}</span></a><a class="tc-tab tc-tab--jump" href="#tcEsim">eSIM·유심 <span>{len(esims)}</span></a><a class="tc-tab tc-tab--jump" href="#tcRail">공항철도 <span>{len(rails)}</span></a></div>
-      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선에 입장권 {len(tickets)}개 도시·공항픽업 {len(transfers)}개 공항·렌터카 {len(cars)}곳, eSIM·유심 {len(esims)}개 도시·공항철도 {len(rails)}개 노선을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
+      <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터">{tabs}<a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>{len(tickets)}</span></a><a class="tc-tab tc-tab--jump" href="#tcResorts">휴양지 8곳 <span>{resort_n}</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>{len(transfers) + len(cars)}</span></a><a class="tc-tab tc-tab--jump" href="#tcEsim">eSIM·유심 <span>{len(esims)}</span></a><a class="tc-tab tc-tab--jump" href="#tcRail">공항철도 <span>{len(rails)}</span></a></div>
+      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선에 입장권 {len(tickets)}개 도시·공항픽업 {len(transfers)}개 공항·렌터카 {len(cars)}곳, eSIM·유심 {len(esims)}개 도시·공항철도 {len(rails)}개 노선, 휴양지 {resort_n}곳 입장권·공항픽업과 클룩 도시 {klook_n}곳을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
     </div>
     <div class="tc-group" data-tc-group="flight">
       <div class="ess-ghead"><h3>✈️ 항공권 검색</h3><span class="n">{len(tc["flights"])}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">편도 기준 · 실시간 최저가</span></div>
@@ -1265,6 +1319,8 @@ def render_tripcom(tc: dict) -> str:
       <div class="tc-acts">{ticket_cards}</div>
       <p class="ess-cp-note">파크·전망대·크루즈별 실제 판매 상품과 가격은 트립닷컴 페이지에서 날짜를 넣어야 확정됩니다. 예약·결제는 트립닷컴에서 그대로 이루어지고, 트립픽은 가격에 아무것도 더하지 않습니다.</p>
     </div>
+    {resort_html}
+    {klook_html}
     <div class="tc-group tc-group--act" data-tc-group="transport" id="tcTransfers">
       <div class="ess-ghead"><h3>🚗 공항픽업·렌터카</h3><span class="n">{len(transfers) + len(cars)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(transfer_order)}{" · 렌터카 " + str(len(cars)) + "곳" if cars else ""}</span></div>
       <div class="tc-acts">{pickup_cards}</div>
@@ -1280,6 +1336,35 @@ def render_tripcom(tc: dict) -> str:
       <div class="tc-acts">{rail_cards}</div>
       <p class="ess-cp-note">공항철도는 전자 바우처를 역 발매기·창구에서 실물 승차권으로 교환하는 방식입니다. 같은 구간을 현장에서 사는 값과 비교하려면 공항 이동 가이드를 함께 보세요.</p>
     </div>"""
+
+
+# ---------------------------------------------------------------- v19 고단가 맞춤 패키지
+PACKAGE_CITY = {"hongkong": "홍콩·마카오", "nhatrang": "나트랑·달랏"}
+
+
+def render_packages(pkg: dict) -> str:
+    """v19: 네이버 여행 커넥트 고단가 패키지 2종.
+
+    tours.json 의 투어와 섞지 않는다 — 미팅·취소 조건 데이터가 없고 1인 60만~70만원대라
+    비교 축이 다르기 때문. 카드 하단에 여행 커넥트 고지 문구를 그대로 둔다.
+    """
+    items = pkg.get("packages") or []
+    if not items:
+        return ""
+    cards = []
+    for p in items:
+        off = round((p["price"] - p["sale"]) / p["price"] * 100) if p["price"] > p["sale"] else 0
+        where = PACKAGE_CITY.get(p.get("city"), p.get("city", ""))
+        cards.append(f'''<article class="pkg-card">
+        <span class="pkg-top"><span class="pkg-tag">{esc(p.get("type") or "해외패키지")}</span><span class="pkg-dur">{esc(where)} · {esc(p.get("duration", ""))}</span></span>
+        <b class="pkg-t">{esc(p["title"])}</b>
+        <p class="pkg-p">{esc(p.get("pitch", ""))}</p>
+        <span class="pkg-price"><b>{won(p["sale"])}원</b><small>{won(p["price"])}원</small><em>{off}% 할인</em></span>
+        <a class="pkg-btn" href="{esc(p["url"])}" target="_blank" rel="noopener sponsored">네이버에서 상품 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <p class="pkg-note">{esc(p.get("displayNote") or p.get("note", ""))}</p>
+      </article>''')
+    return ("<div class=\"pkg-grid\">" + "".join(cards) + "</div>"
+            + f'<p class="ess-cp-note">{esc(pkg["disclosure"])} {esc(pkg.get("note", ""))}</p>')
 
 
 # ---------------------------------------------------------------- 예산 계산기
@@ -1988,6 +2073,8 @@ def main() -> int:
     courses = json.loads((DATA / "courses.json").read_text(encoding="utf-8"))
     essentials = json.loads((DATA / "essentials.json").read_text(encoding="utf-8"))
     tripcom = json.loads((DATA / "tripcom.json").read_text(encoding="utf-8"))
+    klook = json.loads((DATA / "klook.json").read_text(encoding="utf-8"))
+    packages = json.loads((DATA / "packages.json").read_text(encoding="utf-8"))
     checklist = json.loads((DATA / "checklist.json").read_text(encoding="utf-8"))
     gifts = json.loads((DATA / "gifts.json").read_text(encoding="utf-8"))
     guides = json.loads((DATA / "guides.json").read_text(encoding="utf-8"))
@@ -2042,7 +2129,8 @@ def main() -> int:
     html = replace_block(html, "<!-- @GIFTS -->", render_gifts(data, gifts, essentials, tripcom, guides))
     html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
     html = replace_block(html, "<!-- @MONEYKIT -->", render_depart_kit(checklist))
-    html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom))
+    html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom, klook))
+    html = replace_block(html, "<!-- @PACKAGES -->", render_packages(packages))
     html = replace_block(html, "<!-- @HUB_STRIP -->", render_hub_strip(data))
     html = replace_block(html, "<!-- @QUICKSTRIP -->", render_quickstrip(data, courses, essentials, tripcom))
     html = replace_block(html, "<!-- @HOTSTRIP -->", render_hot_strip(data, courses, essentials, tripcom))

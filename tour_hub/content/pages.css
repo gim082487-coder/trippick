@@ -914,3 +914,8 @@
 
 /* 앵커 전용(허브 링크 /passes#osaka · /calendar#osaka) */
 .pk-anchors span,.sc-anchors span{display:block;height:0;overflow:hidden;scroll-margin-top:90px}
+
+/* v19: /cities 하단 — 휴양지 8곳 입장권·공항픽업 블록 */
+.hub-others.hub-others--resorts{background:var(--soft)}
+.hub-others--resorts > p{margin:0 0 4px}
+.hub-others--resorts .tc-group{margin-top:14px}
