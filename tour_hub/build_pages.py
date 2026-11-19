@@ -973,6 +973,16 @@ def guides_index(out_root: Path, base: str) -> Path:
         {tag_chips}
       </div>
     </div>
+    <div class="gi-stays">
+      <div><b>숙소부터 정하고 싶다면 — 테마별 찐숙소 {len(STAYS.get('hotels', []))}곳</b>
+        <p>국내 서울·부산·강릉·여수·경주와 해외 8개 도시 숙소를 트립닷컴 평점·리뷰 수·1박 최저가로 비교했습니다. 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라로 바로 좁힐 수 있습니다.</p></div>
+      <div class="gi-stays-links">
+        <a href="../stays.html">찐숙소 전체 보기</a>
+        <a href="../stays.html?theme=ocean">오션뷰</a>
+        <a href="../stays.html?theme=onsen">온천·스파</a>
+        <a href="../stays.html?scope=kr">국내만 보기</a>
+      </div>
+    </div>
     <div class="gi-intro">
       <div><b>가격은 ‘실질 1인가’로</b><p>표시가에 현장 추가금(입장료·팁·가이드 경비)을 더한 금액으로 비교합니다. 싼 상품이 실제로 싼지 여기서 갈립니다.</p></div>
       <div><b>패스는 손익분기부터</b><p>주유패스·지하철패스는 “하루 몇 번 타면 본전”을 먼저 계산합니다. 일정이 3일이어도 매일 타지 않으면 손해입니다.</p></div>
@@ -2542,6 +2552,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     region_links = "".join(
         f'<a class="sr-gitem" href="#{r["id"]}" data-jump="{r["id"]}">'
         f'<b>{esc(r["name"])} <span>{len(hs)}곳</span>{" <i class=\'sr-kr\'>국내</i>" if r.get("scope") == "kr" else ""}</b>'
+        f'<span class="sr-range">1박 {min(h["price"] for h in hs):,}~{max(h["price"] for h in hs):,}원 · 평점 {min(h["score"] for h in hs):.1f}~{max(h["score"] for h in hs):.1f}</span>'
         f'<em>{esc(r["note"])}</em></a>'
         for r, hs in groups
     )
@@ -2592,7 +2603,8 @@ def stays_page(out_root: Path, base: str) -> Path:
           <button class="gf-chip" type="button" data-scope="kr">국내 <span>{kr_total}</span></button>
           <button class="gf-chip" type="button" data-scope="intl">해외 <span>{intl_total}</span></button>
         </div>
-        <div class="sf-chips" role="group" aria-label="지역 선택">
+        <button class="sf-fold" type="button" id="sfFold" aria-expanded="false">지역 선택 <i>▾</i></button>
+        <div class="sf-chips sf-regionchips" role="group" aria-label="지역 선택">
           <button class="gf-chip on" type="button" data-region="all">지역 전체</button>
           {region_chips}
         </div>
@@ -2768,6 +2780,14 @@ def stays_filter_script() -> str:
   if (location.hash && location.hash.length > 1) setRegion(location.hash.slice(1));
   window.addEventListener('hashchange', function(){
     if (location.hash && location.hash.length > 1) setRegion(location.hash.slice(1));
+  });
+
+  var fold = document.getElementById('sfFold');
+  if (fold) fold.addEventListener('click', function(){
+    var sf = document.getElementById('sf');
+    var open = sf.classList.toggle('open-regions');
+    fold.setAttribute('aria-expanded', open ? 'true' : 'false');
+    fold.innerHTML = open ? '지역 선택 <i>▴</i>' : '지역 선택 <i>▾</i>';
   });
 
   var reset = document.getElementById('sfReset');
