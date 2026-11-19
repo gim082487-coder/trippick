@@ -51,6 +51,7 @@ FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 19)
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
+# v18: 메뉴 9개 + '도구' 드롭다운 1개. 1280px에서 한 줄에 들어오도록 계산기·표 페이지는 드롭다운으로 묶는다.
 NAV = [
     ("index.html#courses", "추천 코스", "courses"),
     ("index.html#planner", "예산 계산기", "planner"),
@@ -60,16 +61,43 @@ NAV = [
     ("guides/index.html", "여행 가이드", "guides"),
     ("index.html#foods", "맛집", "foods"),
     ("index.html#essentials", "여행 필수품", "essentials"),
-    ("exchange.html", "환율·면세", "exchange"),
-    ("baggage.html", "수하물", "baggage"),
     ("index.html#alert", "특가 알림", "alert"),
 ]
+
+# 드롭다운에 들어가는 계산기·표 페이지 (v18에 /passes · /calendar 추가)
+TOOLS = [
+    ("exchange.html", "환율·일본 면세 계산기", "exchange", "12개 통화 · 면세 환급"),
+    ("baggage.html", "항공사 수하물 규정", "baggage", "기내·위탁·배터리"),
+    ("passes.html", "교통패스 본전 계산기", "passes", "오사카·도쿄·방콕·타이베이"),
+    ("calendar.html", "월별 시즌 캘린더", "calendar", "7개 도시 12개월"),
+]
+TOOL_KEYS = {k for _, _, k, _ in TOOLS}
+
+# 1080px 이하에서 숨길 보조 메뉴(핵심 메뉴와 드롭다운만 남긴다)
+HIDE_SM = {"checklist", "foods", "alert"}
+
+# 도시 허브 → /passes 탭 (없는 도시는 전체 페이지로)
+HUB_PASS_TOOL = {
+    "osaka": ("passes.html#osaka", "오사카 주유패스, 사면 남는가", "시설 체크로 본전 계산"),
+    "tokyo": ("passes.html#tokyo", "도쿄 지하철 패스·나리타 비교", "24·48·72시간 본전"),
+    "bangkok": ("passes.html#bangkok", "방콕 BTS 1일권 본전", "150밧 vs 개별권"),
+    "taipei": ("passes.html#taipei", "타이베이 펑패스 vs 이지카드", "1·2·3·5일 비교"),
+    "fukuoka": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이"),
+    "danang": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이"),
+    "jeju": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이"),
+}
 
 VERIFY_META = """<meta name="google-site-verification" content="LcZmYDzmsn2pIDvvwDXtLezOnQi8dEOjQ67-xBWdfCw" />
 <meta name="google-site-verification" content="Y3lrh6zGKCcwxVcFKL8ujJ1QK1Xi4HjHaL2KhZLku78" />
 <meta name="naver-site-verification" content="de9b4241355a3ab6e83e5c102d1f6f1e6f244302" />
 <meta name="naver-site-verification" content="ab10e600052c8a46301698e6f7c1dd39c3c2aa95" />
 <meta name="naver-site-verification" content="ed075b14e9af849ab81ed9569f8e97f418a88c83" />"""
+
+# v17.2 애드센스 사이트 연결 — 모든 서브페이지 head 에 들어가는 메타태그·광고 스크립트(빌드에서 자동 삽입)
+ADSENSE = (
+    '<meta name="google-adsense-account" content="ca-pub-9563082990728787" />\n'
+    '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9563082990728787" crossorigin="anonymous"></script>'
+)
 
 FAVICON = (
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
@@ -114,7 +142,22 @@ def header_html(up: str, active: str = "") -> str:
     links = []
     for href, label, key in NAV:
         on = " on" if key == active else ""
-        links.append(f'      <a href="{up}{href}"{f" class=\"on\"" if on else ""}>{label}</a>')
+        sm = " data-hide-sm" if key in HIDE_SM else ""
+        links.append(f'      <a href="{up}{href}"{sm}{f" class=\"on\"" if on else ""}>{label}</a>')
+    tool_items = []
+    for href, label, key, sub in TOOLS:
+        on = " on" if key == active else ""
+        tool_items.append(
+            f'        <a href="{up}{href}"{f" class=\"on\"" if on else ""}><b>{label}</b><span>{sub}</span></a>'
+        )
+    drop_on = " on" if active in TOOL_KEYS else ""
+    links.append(
+        '      <details class="nav-drop" id="navTools">\n'
+        f'        <summary class="nav-drop-sum{drop_on}"><span>도구</span></summary>\n'
+        '        <div class="nav-drop-menu">\n'
+        + "\n".join(tool_items)
+        + "\n        </div>\n      </details>"
+    )
     nav = "\n".join(links)
     return f"""<a class="pg-skip" href="#main">본문 바로가기</a>
 <header class="site-head" id="siteHead">
@@ -152,6 +195,8 @@ def footer_html(up: str) -> str:
           <a href="{up}index.html#checklist">출국 준비 체크</a>
           <a href="{up}exchange.html">환율·일본 면세 계산기</a>
           <a href="{up}baggage.html">항공사 수하물 규정</a>
+          <a href="{up}passes.html">교통패스 본전 계산기</a>
+          <a href="{up}calendar.html">월별 시즌·최저가 캘린더</a>
           <a href="{up}cities/index.html">도시별 여행 페이지</a>
           <a href="{up}guides/index.html">여행 가이드</a>
           <a href="{up}index.html#alert">특가 알림</a>
@@ -197,6 +242,12 @@ def footer_html(up: str) -> str:
   if(!h) return;
   var on=function(){{ h.classList.toggle('stuck', window.scrollY>8); }};
   on(); window.addEventListener('scroll', on, {{passive:true}});
+  var nd=document.getElementById('navTools');
+  if(nd){{
+    document.addEventListener('click', function(e){{ if(nd.open && !nd.contains(e.target)) nd.open=false; }});
+    Array.prototype.forEach.call(nd.querySelectorAll('a'), function(a){{ a.addEventListener('click', function(){{ nd.open=false; }}); }});
+    document.addEventListener('keydown', function(e){{ if(e.key==='Escape') nd.open=false; }});
+  }}
 }})();
 </script>"""
 
@@ -264,6 +315,7 @@ def page(
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="googlebot" content="index, follow" />
 {VERIFY_META}
+{ADSENSE}
 <meta name="author" content="{SITE_NAME}" />
 <link rel="canonical" href="{canonical}" />
 <meta name="theme-color" content="#F4F6F8" />
@@ -1395,6 +1447,15 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
         f'<a href="{h}">{esc(n)} <b>{c}</b></a>' for h, n, c in jumps if c
     )
 
+    # v18: 도시 페이지에서 바로 쓰는 도구 — 패스 본전 계산기 + 월별 시즌 캘린더
+    pass_href, pass_title, pass_sub = HUB_PASS_TOOL.get(
+        slug, ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이")
+    )
+    hub_tools_html = f"""<div class="hub-tools" aria-label="{esc(hub['name'])} 도구">
+  <a class="hub-tool" href="{pass_href}"><span class="hub-tool-k">PASS</span><b>{esc(pass_title)}</b><span class="hub-tool-n">{esc(pass_sub)}</span></a>
+  <a class="hub-tool" href="calendar.html#{slug}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">성수기·항공권 참고가</span></a>
+</div>"""
+
     meta = [f'<span><b>트립픽 편집</b></span>', '<i></i>', '<span>업데이트 2026.11.18</span>', '<i></i>']
     meta.append(f'<span>투어·패키지 {len(tours)}개</span><i></i>')
     meta.append(f'<span>1인 {won(lowest)}원~</span>')
@@ -1563,6 +1624,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
 <div class="pg-body">
   <div class="wrap">
     <nav class="hub-jump" aria-label="이 페이지 목차">{jump_html}</nav>
+{hub_tools_html}
 {ad_slot(f"hub-{slug}-top", "이 도시 숙소·항공 최저가", "체크인 날짜만 넣으면 트립닷컴 최저가로 열립니다.", "#stay", "숙소 보기")}
 {tours_html}
 {ad_slot(f"hub-{slug}-mid", "이 도시 일정, 내 예산으로 계산", "인원·지역·스타일만 넣으면 항공·숙소·투어·eSIM 총액을 A/B/C안으로 보여줍니다.", "index.html#planner", "예산 계산기")}
@@ -1904,6 +1966,270 @@ def baggage_page(out_root: Path, base: str) -> Path:
 
 
 # ----------------------------------------------------------------------
+# v18 도구 페이지 — 교통패스 본전 계산기(/passes) · 월별 시즌 캘린더(/calendar)
+# ----------------------------------------------------------------------
+def _tc(kind: str, **match) -> dict | None:
+    for it in TRIPCOM.get(kind) or []:
+        if all(it.get(k) == v for k, v in match.items()):
+            return it
+    return None
+
+
+def _tc_flight(city: str) -> dict | None:
+    for f in TRIPCOM.get("flights") or []:
+        if city and city in f.get("route", ""):
+            return f
+    return None
+
+
+def _ess(eid: str) -> dict | None:
+    return next((e for e in ESSENTIALS if e["id"] == eid), None)
+
+
+def pk_link_card(kicker: str, title: str, price: str, url: str, cta: str) -> str:
+    return (
+        f'<a class="pk-link" href="{esc(url)}" target="_blank" rel="noopener sponsored">'
+        f'<span class="pk-link-k">{esc(kicker)}</span>'
+        f'<b>{esc(title)}</b>'
+        f'<span class="pk-link-p">{esc(price)}</span>'
+        f'<span class="pk-link-go">{esc(cta)} →</span></a>'
+    )
+
+
+def pass_links(slug: str) -> str:
+    """도시별 패스·입장권 실링크 카드(네이버 커넥트 · 트립닷컴 파트너스)."""
+    out = []
+    if slug == "osaka":
+        e = _ess("osaka-amazing-pass")
+        if e:
+            out.append(pk_link_card("네이버 여행", e["name"], f'{won(e["price"])}원', B.ess_url(e), "E-티켓 보기"))
+        e2 = _ess("osaka-nankai-rapit")
+        if e2:
+            out.append(pk_link_card("네이버 여행", "난카이 라피트 공항특급", f'{won(e2["price"])}원', B.ess_url(e2), "공항철도 보기"))
+        t = _tc("tickets", id="ticket_osaka")
+        if t:
+            out.append(pk_link_card("트립닷컴", "오사카 입장권·액티비티", "USJ·리버크루즈·가이유칸", t["url"], "최저가 보기"))
+        h = _tc("hotels", cityId="osaka")
+        if h:
+            out.append(pk_link_card("트립닷컴", "오사카 숙소", "난바·우메다", h["url"], "요금 보기"))
+    elif slug == "tokyo":
+        e = _ess("tokyo-metro-pass")
+        if e:
+            out.append(pk_link_card("네이버 여행", "도쿄 메트로 패스 24·48·72시간", f'{won(e["price"])}원~', B.ess_url(e), "패스 보기"))
+        e2 = _ess("tokyo-skyliner")
+        if e2:
+            out.append(pk_link_card("네이버 여행", "나리타→우에노 스카이라이너", f'{won(e2["price"])}원~', B.ess_url(e2), "기차표 보기"))
+        r = _tc("rails", id="rail_skyliner")
+        if r:
+            out.append(pk_link_card("트립닷컴", r["title"], r.get("highlight") or "41분·지정석", r["url"], "공식 티켓"))
+        t = _tc("tickets", id="ticket_tokyo")
+        if t:
+            out.append(pk_link_card("트립닷컴", "도쿄 입장권·액티비티", "디즈니·시부야 스카이", t["url"], "최저가 보기"))
+    elif slug == "bangkok":
+        t = _tc("tickets", id="ticket_bangkok")
+        if t:
+            out.append(pk_link_card("트립닷컴", "방콕 입장권·액티비티", "짜오프라야 크루즈·사파리", t["url"], "최저가 보기"))
+        f = _tc_flight("방콕")
+        if f:
+            out.append(pk_link_card("트립닷컴", "서울→방콕 항공권", "인천 출발·왕복", f["url"], "최저가 검색"))
+        h = _tc("hotels", cityId="bangkok")
+        if h:
+            out.append(pk_link_card("트립닷컴", "방콕 숙소", "수쿰빗·시암", h["url"], "요금 보기"))
+    elif slug == "taipei":
+        t = _tc("tickets", id="ticket_taipei")
+        if t:
+            out.append(pk_link_card("트립닷컴", "타이베이 입장권·액티비티", "101 전망대·고궁박물원", t["url"], "최저가 보기"))
+        h = _tc("hotels", cityId="taipei")
+        if h:
+            out.append(pk_link_card("트립닷컴", "타이베이 숙소", "시먼·중산", h["url"], "요금 보기"))
+        tr = _tc("transfers", id="transfer_tpe")
+        if tr:
+            out.append(pk_link_card("트립닷컴", "타오위안공항 픽업", "시내 호텔까지", tr["url"], "요금 보기"))
+    return "\n            ".join(out)
+
+
+def passes_page(out_root: Path, base: str) -> Path:
+    data = load_json("passes.json")
+    osaka = data["osaka"]
+    chips = "\n              ".join(
+        f'<button type="button" class="pk-btn{" on" if i == 0 else ""}" data-pass="{p["id"]}" aria-pressed="{"true" if i == 0 else "false"}">'
+        f'<b>{esc(p["name"])}</b><span>{_n(p["price"])}엔</span><em>{esc(p["note"])}</em></button>'
+        for i, p in enumerate(osaka["passes"])
+    )
+    default_fac = {"castle", "umeda", "tsutenkaku", "cruise"}
+    facs = "\n              ".join(
+        f'<label class="pk-fac-i"><input type="checkbox" data-fac="{f["id"]}"'
+        f'{" checked" if f["id"] in default_fac else ""} />'
+        f'<span class="pk-fac-n">{esc(f["name"])}</span>'
+        f'<span class="pk-fac-p">{_n(f["price"])}엔</span>'
+        f'<span class="pk-fac-t">{esc(f["note"])}</span></label>'
+        for f in osaka["facilities"]
+    )
+    tok_chips = "\n              ".join(
+        f'<button type="button" class="pk-btn{" on" if t["id"] == "72" else ""}" data-tokyo="{t["id"]}" aria-pressed="{"true" if t["id"] == "72" else "false"}">'
+        f'<b>{esc(t["name"])}</b><span>{_n(t["price"])}엔</span><em>어린이 {_n(t["child"])}엔</em></button>'
+        for t in data["tokyo"]["tickets"]
+    )
+    narita_rows = "\n                ".join(
+        f'<tr><th scope="row"><b>{esc(n["name"])}</b><small>{esc(n["note"])}</small></th>'
+        f'<td>{esc(n["to"])}</td><td>{n["minutes"]}분</td><td class="num">{_n(n["price"])}엔</td>'
+        f'<td class="num" data-narita-total="{n["id"]}">–</td></tr>'
+        for n in data["tokyo"]["narita"]
+    )
+    tpe_chips = "\n              ".join(
+        f'<button type="button" class="pk-btn{" on" if t["days"] == 1 else ""}" data-tpe="{t["id"]}" aria-pressed="{"true" if t["days"] == 1 else "false"}">'
+        f'<b>{t["days"]}일권</b><span>{_n(t["price"])}대만달러</span><em>하루 {_n(t["price"] / t["days"])}대만달러</em></button>'
+        for t in data["taipei"]["funpass"]
+    )
+
+    body = read(PAGES / "passes.html")
+    body = body.replace("<!-- @OSAKA_PASSES -->", chips)
+    body = body.replace("<!-- @OSAKA_FACILITIES -->", facs)
+    body = body.replace("<!-- @TOKYO_TICKETS -->", tok_chips)
+    body = body.replace("<!-- @NARITA_ROWS -->", narita_rows)
+    body = body.replace("<!-- @TAIPEI_PASSES -->", tpe_chips)
+    for slug in ("osaka", "tokyo", "bangkok", "taipei"):
+        body = body.replace(f"<!-- @LINKS_{slug.upper()} -->", pass_links(slug))
+    payload = json.dumps({"fx": data["fx"], "osaka": data["osaka"], "tokyo": data["tokyo"],
+                          "bangkok": data["bangkok"], "taipei": data["taipei"]},
+                         ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    body = body.replace("<!-- @PK_DATA -->", f'<script type="application/json" id="pkData">{payload}</script>')
+
+    faq = [
+        ("오사카 주유패스 1day와 2day 중 뭐가 낫나요?",
+         "시내 관광일이 연속 이틀이면 2day(5,000엔)가 1day 두 장(7,000엔)보다 2,000엔 쌉니다. 중간에 USJ나 교토 일정이 끼면 1day가 맞습니다."),
+        ("도쿄 지하철권으로 야마노테선을 탈 수 있나요?",
+         "아니요. 도쿄 메트로·도에이 13개 노선만 포함이고 JR 야마노테선은 별도 요금입니다."),
+        ("방콕 BTS 1일권은 24시간인가요?",
+         "아니요. 산 날 자정까지입니다. BTS만 되고 MRT·공항철도는 포함되지 않습니다."),
+        ("타이베이 펀패스와 첩운 1일권의 차이는 무엇인가요?",
+         "첩운 1일권 150대만달러는 지하철만, 펀패스 교통권 210대만달러는 지하철+버스+관광 셔틀 6개 노선까지 무제한입니다."),
+    ]
+    jsonld = _page_jsonld(
+        "passes.html",
+        "트립픽 교통패스 본전 계산기",
+        "오사카 주유패스·도쿄 지하철 패스·방콕 BTS·타이베이 펀패스가 내 일정에서 본전을 넘는지 계산하는 도구.",
+        base,
+        faq,
+        [("트립픽", ""), ("교통패스 본전 계산기", None)],
+    )
+    return page(
+        out_root,
+        "passes.html",
+        title="교통패스 본전 계산기 — 오사카 주유패스·도쿄 지하철·BTS·펀패스 | 트립픽",
+        desc="오사카 주유패스 3,500엔, 도쿄 지하철 800/1,200/1,500엔, 방콕 BTS 150밧, 타이베이 펀패스 210대만달러가 내 일정에서 본전을 넘는지 계산합니다. 시설 입장료와 지하철 횟수를 넣으면 엔·바트·대만달러와 원화로 이득·손해가 나옵니다.",
+        body=body,
+        base=base,
+        active="passes",
+        keywords="오사카 주유패스 본전, 도쿄 지하철 패스, 나리타 스카이라이너, 방콕 BTS 1일권, 타이베이 펀패스, 교통패스 계산기",
+        jsonld=jsonld,
+    )
+
+
+def season_links(c: dict) -> dict:
+    out = {}
+    f = _tc_flight(c.get("flightRoute") or "")
+    if f:
+        out["flight"] = {"label": f"{f['route']} 항공권", "url": f["url"]}
+    h = _tc("hotels", cityId=c.get("hotelCity"))
+    if h:
+        out["hotel"] = {"label": f"{h['city']} 숙소", "url": h["url"]}
+    t = _tc("tickets", id=f"ticket_{c['id']}")
+    if t:
+        out["ticket"] = {"label": t["title"], "url": t["url"]}
+    if c.get("guide"):
+        g = next((x for x in GUIDES_LIST if x["slug"] == c["guide"]), None)
+        if g:
+            out["guide"] = {"label": g["navTitle"], "url": f"guides/{g['slug']}.html"}
+    out["cityPage"] = f"/{c['cityPage']}"
+    return out
+
+
+def calendar_page(out_root: Path, base: str) -> Path:
+    data = load_json("season.json")
+    cities = data["cities"]
+    flags = {c["id"]: c.get("flag", "") for c in cities}
+    city_btns = "\n            ".join(
+        f'<button type="button" class="sc-city{" on" if i == 0 else ""}" data-city-btn="{c["id"]}" aria-pressed="{"true" if i == 0 else "false"}">'
+        f'{B.flag_svg(flags.get(c["id"], ""), 18, 12.6)}<b>{esc(c["name"])}</b></button>'
+        for i, c in enumerate(cities)
+    )
+    month_btns = "\n            ".join(
+        f'<button type="button" class="sc-month{" on" if m == 11 else ""}" data-month-btn="{m}" aria-pressed="{"true" if m == 11 else "false"}">'
+        f'<b>{m}월</b><small data-month-temp="{m}">–</small></button>'
+        for m in range(1, 13)
+    )
+
+    season_kr = {"peak": "성수기", "shoulder": "준성수기", "off": "비수기"}
+    # 비교표(빌드 시점 이번 달 = 11월) — JS가 선택한 달로 다시 그린다.
+    cm = 11
+    cmp_rows = []
+    for c in cities:
+        band = c["fare"][c["season"][cm - 1]]
+        cmp_rows.append(
+            f'<tr data-city-row="{c["id"]}"><th scope="row"><b>{esc(c["name"])}</b></th>'
+            f'<td>{c["temp"][cm - 1]:.1f}°C</td><td>{_n(c["rain"][cm - 1])}mm</td>'
+            f'<td>{c["rainDays"][cm - 1]:.1f}일</td>'
+            f'<td><span class="sc-season {c["season"][cm - 1]}">{season_kr[c["season"][cm - 1]]}</span></td>'
+            f'<td class="num">약 {band[0] / 10000:.0f}~{band[1] / 10000:.0f}만원</td></tr>'
+        )
+    year_rows = []
+    for c in cities:
+        cells = "".join(
+            f'<td><button type="button" class="sc-cell {c["season"][i]}" data-year-cell="{c["id"]}-{i + 1}" '
+            f'aria-label="{esc(c["name"])} {i + 1}월 {c["temp"][i]:.1f}도 {season_kr[c["season"][i]]}">'
+            f'<b>{c["temp"][i]:.0f}°</b><span>{c["rain"][i]:.0f}</span></button></td>'
+            for i in range(12)
+        )
+        year_rows.append(f'<tr><th scope="row">{esc(c["name"])}</th>{cells}</tr>')
+
+    body = read(PAGES / "calendar.html")
+    body = body.replace("<!-- @SC_CITIES -->", city_btns)
+    body = body.replace("<!-- @SC_MONTHS -->", month_btns)
+    body = body.replace("<!-- @SC_CMP_ROWS -->", "\n                ".join(cmp_rows))
+    body = body.replace("<!-- @SC_YEAR_ROWS -->", "\n              ".join(year_rows))
+
+    payload_cities = []
+    for c in cities:
+        cc = dict(c)
+        cc["links"] = season_links(c)
+        payload_cities.append(cc)
+    payload = json.dumps({"updated": data["updated"], "lead": data["lead"], "cities": payload_cities},
+                         ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    body = body.replace("<!-- @SC_DATA -->", f'<script type="application/json" id="scData">{payload}</script>')
+
+    faq = [
+        ("오사카·도쿄는 언제가 가장 싼가요?",
+         "1월 중순~2월 초와 6월 장마철입니다. 벚꽃·골든위크·오봉·연말에는 같은 항공권이 1.5~2배가 됩니다."),
+        ("다낭 우기 9~12월은 피해야 하나요?",
+         "10~11월은 한 달에 20일 비가 오고 450~630mm가 내립니다. 9월과 12월은 가격이 30% 이상 낮아 리조트 휴양이면 선택지가 됩니다."),
+        ("항공권은 언제 예약해야 싼가요?",
+         "국제선 성수기는 출발 10~16주 전, 비수기는 3~6주 전이 가장 쌉니다. 제주 등 국내선은 성수기 4~8주, 비수기 2~4주 전입니다."),
+        ("성수기 구분은 무엇을 기준으로 했나요?",
+         "각국 공휴일과 학교 방학, 골든위크·오봉·송크란·춘절 같은 현지 축제 일정, 최근 판매 흐름을 기준으로 정리했습니다."),
+    ]
+    jsonld = _page_jsonld(
+        "calendar.html",
+        "트립픽 월별 시즌·최저가 캘린더",
+        "오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주의 1~12월 기온·강수량·성수기와 항공권 참고 가격대, 예약 시점을 비교하는 캘린더.",
+        base,
+        faq,
+        [("트립픽", ""), ("월별 시즌 캘린더", None)],
+    )
+    return page(
+        out_root,
+        "calendar.html",
+        title="월별 여행 시즌 캘린더 — 7개 도시 12개월 날씨·성수기·항공권 가격대 | 트립픽",
+        desc="오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주의 1~12월 평균기온·강수량·비 온 날·성수기와 항공권 참고 가격대, 예약 시점을 한 화면에서 비교합니다. 달을 고르면 그 달의 항공·숙소·투어 링크로 바로 이어집니다.",
+        body=body,
+        base=base,
+        active="calendar",
+        keywords="여행 성수기, 비수기, 오사카 날씨, 도쿄 날씨, 다낭 우기, 방콕 우기, 타이베이 장마, 제주 성수기, 항공권 예약 시점",
+        jsonld=jsonld,
+    )
+
+
+# ----------------------------------------------------------------------
 # sitemap
 # ----------------------------------------------------------------------
 def not_found_page(out_root: Path, base: str) -> Path:
@@ -1921,6 +2247,8 @@ def not_found_page(out_root: Path, base: str) -> Path:
             ("/#checklist", "출국 체크리스트"),
             ("/exchange", "환율·면세 계산기"),
             ("/baggage", "수하물 규정"),
+            ("/passes", "교통패스 본전 계산기"),
+            ("/calendar", "월별 시즌 캘린더"),
             ("/#planner", "예산 계산기"),
         ]
     )
@@ -1967,6 +2295,8 @@ def write_sitemap(out_root: Path, base: str):
     urls += [
         (f"{b}/exchange.html", "0.8", "monthly"),
         (f"{b}/baggage.html", "0.8", "monthly"),
+        (f"{b}/passes.html", "0.9", "monthly"),
+        (f"{b}/calendar.html", "0.9", "monthly"),
         (f"{b}/about.html", "0.6", "monthly"),
         (f"{b}/contact.html", "0.6", "monthly"),
         (f"{b}/privacy.html", "0.4", "yearly"),
@@ -2110,6 +2440,8 @@ def main():
     if args.only in ("", "pages"):
         made.append(exchange_page(out_root, args.base))
         made.append(baggage_page(out_root, args.base))
+        made.append(passes_page(out_root, args.base))
+        made.append(calendar_page(out_root, args.base))
 
     write_sitemap(out_root, args.base)
     not_found_page(out_root, args.base)

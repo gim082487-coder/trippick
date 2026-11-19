@@ -1,0 +1,523 @@
+<div class="pg-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="/">홈</a><i></i><b>교통패스 본전 계산기</b></nav>
+    <span class="pg-kicker">PASS BREAK-EVEN · 2026 요금</span>
+    <div class="pg-head">
+      <h1>그 패스, <em>사면 남는 장사인지</em> 먼저 계산하세요</h1>
+      <p class="dek">오사카 주유패스·도쿄 지하철 패스·방콕 BTS·타이베이 펀패스는 “무조건 이득”이 아니라 <b>그날 갈 시설과 지하철 횟수</b>로 값이 갈립니다. 갈 곳을 체크하면 지금 요금 기준으로 <b>몇 엔(몇 바트·몇 대만달러) 이득인지, 손해인지</b>와 원화 환산을 바로 보여 줍니다.</p>
+      <div class="pg-meta">
+        <span>요금 확인 <b>2026.11.19</b></span><i></i>
+        <span>공식 요금표 기준</span><i></i>
+        <span id="pkRate">환율 불러오는 중…</span>
+      </div>
+    </div>
+    <div class="pk-tabs" role="tablist" aria-label="도시 선택">
+      <button type="button" role="tab" class="pk-tab on" data-city="osaka" aria-selected="true">오사카 주유패스</button>
+      <button type="button" role="tab" class="pk-tab" data-city="tokyo" aria-selected="false">도쿄 지하철·공항</button>
+      <button type="button" role="tab" class="pk-tab" data-city="bangkok" aria-selected="false">방콕 BTS</button>
+      <button type="button" role="tab" class="pk-tab" data-city="taipei" aria-selected="false">타이베이 펀패스</button>
+    </div>
+  </div>
+</div>
+
+<div class="pg-body">
+  <div class="wrap">
+    <div class="pk-anchors" aria-hidden="true"><span id="osaka"></span><span id="tokyo"></span><span id="bangkok"></span><span id="taipei"></span></div>
+    <div class="pg-grid">
+      <div>
+
+        <!-- ============ 오사카 ============ -->
+        <section class="pk-panel" id="pkOsaka" data-panel="osaka" aria-labelledby="pkOsakaTitle">
+          <div class="pk-top">
+            <div><span class="pk-kicker">OSAKA AMAZING PASS</span>
+              <h2 id="pkOsakaTitle">오사카 주유패스 <em>1day 3,500엔 / 2day 5,000엔</em></h2></div>
+            <span class="pk-badge">2026년도판</span>
+          </div>
+          <p class="pk-lead">패스에는 ① 오사카 메트로·시티버스 무제한, ② 시설 40곳 무료 입장(각 1회)이 들어 있습니다. 아래에서 <b>실제로 갈 곳</b>만 체크하세요. 우메다 스카이빌딩은 <b>15시 입장까지만</b> 무료라 조건을 따로 표시했습니다.</p>
+
+          <div class="pk-seg" role="group" aria-label="권종">
+            <!-- @OSAKA_PASSES -->
+          </div>
+
+          <div class="pk-fac" role="group" aria-label="갈 시설">
+            <!-- @OSAKA_FACILITIES -->
+          </div>
+
+          <div class="pk-inputs">
+            <label class="pk-field">
+              <span>지하철·버스 탑승 횟수(하루)</span>
+              <input id="pkOsakaRides" type="number" min="0" max="20" step="1" value="4" inputmode="numeric" />
+            </label>
+            <label class="pk-field">
+              <span>1회 평균 요금(엔)</span>
+              <input id="pkOsakaFare" type="number" min="0" max="1000" step="10" value="240" inputmode="numeric" />
+            </label>
+          </div>
+
+          <div class="pk-out" aria-live="polite">
+            <div class="pk-out-main">
+              <span>패스와 개별 결제의 차이</span>
+              <b id="pkOsakaDiff">–</b>
+              <small id="pkOsakaDiffKrw"></small>
+            </div>
+            <div class="pk-out-rows">
+              <div><span>시설 입장료 합계</span><b id="pkOsakaFac">–</b></div>
+              <div><span>지하철 요금 합계</span><b id="pkOsakaSub">–</b></div>
+              <div><span>개별 결제 총액</span><b id="pkOsakaTotal">–</b></div>
+              <div><span>패스 가격</span><b id="pkOsakaPass">–</b></div>
+            </div>
+          </div>
+          <p class="pk-verdict" id="pkOsakaVerdict"></p>
+          <p class="pk-note">1day는 <b>새벽 3시~다음 날 2시 59분</b>이 하루입니다. 오후 3시에 시작하면 남은 시간이 자정 무렵까지라 시설 1~2곳이 한계입니다. 2day는 <b>연속된 이틀</b>이고, 시설은 같은 곳에 두 번 들어갈 수 없습니다.</p>
+
+          <div class="pk-links">
+            <!-- @LINKS_OSAKA -->
+          </div>
+          <p class="pk-aff">패스·입장권 링크는 <b>네이버 커넥트·트립닷컴 파트너스</b> 제휴 링크입니다. 구매가 이루어지면 수수료를 받지만 결제 금액은 같습니다.</p>
+        </section>
+
+        <!-- ============ 도쿄 ============ -->
+        <section class="pk-panel" id="pkTokyo" data-panel="tokyo" aria-labelledby="pkTokyoTitle" hidden>
+          <div class="pk-top">
+            <div><span class="pk-kicker">TOKYO SUBWAY TICKET</span>
+              <h2 id="pkTokyoTitle">도쿄 지하철 패스 <em>24h 800 / 48h 1,200 / 72h 1,500엔</em></h2></div>
+            <span class="pk-badge">성인 기준</span>
+          </div>
+          <p class="pk-lead">도쿄 메트로·도에이 지하철 전 노선이지만 <b>JR 야마노테선은 포함되지 않습니다</b>. 하루에 몇 번 타는지가 기준이고, 시간권이라 첫 개찰 시각부터 24·48·72시간입니다.</p>
+
+          <div class="pk-seg" role="group" aria-label="권종">
+            <!-- @TOKYO_TICKETS -->
+          </div>
+
+          <div class="pk-inputs">
+            <label class="pk-field">
+              <span>하루 지하철 탑승 횟수</span>
+              <input id="pkTokyoRides" type="number" min="0" max="20" step="1" value="4" inputmode="numeric" />
+            </label>
+            <label class="pk-field">
+              <span>1회 평균 요금(엔)</span>
+              <input id="pkTokyoFare" type="number" min="0" max="1000" step="10" value="180" inputmode="numeric" />
+            </label>
+          </div>
+
+          <div class="pk-out" aria-live="polite">
+            <div class="pk-out-main">
+              <span id="pkTokyoDiffLabel">패스와 개별 결제의 차이</span>
+              <b id="pkTokyoDiff">–</b>
+              <small id="pkTokyoDiffKrw"></small>
+            </div>
+            <div class="pk-out-rows">
+              <div><span>개별 결제 총액</span><b id="pkTokyoTotal">–</b></div>
+              <div><span>패스 가격</span><b id="pkTokyoPass">–</b></div>
+              <div><span>하루 본전 탑승 횟수</span><b id="pkTokyoBreak">–</b></div>
+              <div><span>이용 시간</span><b id="pkTokyoHours">–</b></div>
+            </div>
+          </div>
+          <p class="pk-verdict" id="pkTokyoVerdict"></p>
+          <p class="pk-note">24시간권은 <b>5회</b>, 48시간권은 하루 <b>4회</b>, 72시간권은 하루 <b>3회</b>면 본전입니다(1회 180엔 기준). 72시간권을 사흘 내내 쓰려면 첫날 오전에 개찰해야 마지막 날 오후까지 덮입니다.</p>
+
+          <h3 class="pk-sub" id="pkNaritaTitle">나리타 공항 → 도쿄 시내, 무엇으로 들어올까</h3>
+          <p class="pk-lead">같은 나리타에서도 <b>2.3배 차이</b>가 납니다. 숙소가 우에노·닛포리면 스카이라이너, 아사쿠사·오시아게면 액세스 특급, 도쿄역이면 버스나 N'EX가 편합니다. 인원과 왕복 여부를 넣으면 총액이 나옵니다.</p>
+          <div class="pk-seg pk-seg--sm" role="group" aria-label="인원">
+            <button type="button" class="pk-chip on" data-narita="p1">1명</button>
+            <button type="button" class="pk-chip" data-narita="p2">2명</button>
+            <button type="button" class="pk-chip" data-narita="p3">3명</button>
+            <button type="button" class="pk-chip" data-narita="p4">4명</button>
+            <button type="button" class="pk-chip" data-narita="round">왕복</button>
+          </div>
+          <div class="pk-table-wrap">
+            <table class="pk-table">
+              <thead><tr><th scope="col">수단</th><th scope="col">도착역</th><th scope="col">시간</th><th scope="col">1인 편도</th><th scope="col">합계</th></tr></thead>
+              <tbody><!-- @NARITA_ROWS --></tbody>
+            </table>
+          </div>
+          <p class="pk-note">요금은 게이세이·JR 동일본 공식 운임표(2026.11.19 확인) 기준입니다. 스카이라이너 2,470엔은 운임 1,240엔과 스카이라이너권 1,230엔의 합계이고, 온라인 할인권은 이보다 낮습니다. 공항버스는 도로 상황에 따라 68분보다 오래 걸릴 수 있습니다.</p>
+
+          <div class="pk-links">
+            <!-- @LINKS_TOKYO -->
+          </div>
+        </section>
+
+        <!-- ============ 방콕 ============ -->
+        <section class="pk-panel" id="pkBangkok" data-panel="bangkok" aria-labelledby="pkBangkokTitle" hidden>
+          <div class="pk-top">
+            <div><span class="pk-kicker">BTS ONE-DAY PASS</span>
+              <h2 id="pkBangkokTitle">방콕 BTS 1일권 <em>150밧</em></h2></div>
+            <span class="pk-badge">BTS 전용</span>
+          </div>
+          <p class="pk-lead">BTS 1일권은 <b>그날 자정까지</b> 수쿰윗·실롬 두 노선 무제한입니다. 24시간이 아니고, MRT·공항철도는 포함되지 않습니다. 1회 요금이 17~47밧(연장 구간 최대 65밧)이라 <b>먼 구간을 3~4번</b> 타면 본전입니다.</p>
+
+          <div class="pk-inputs">
+            <label class="pk-field">
+              <span>BTS 탑승 횟수(하루)</span>
+              <input id="pkBkkRides" type="number" min="0" max="20" step="1" value="4" inputmode="numeric" />
+            </label>
+            <label class="pk-field">
+              <span>1회 평균 요금(밧)</span>
+              <input id="pkBkkFare" type="number" min="17" max="65" step="1" value="35" inputmode="numeric" />
+            </label>
+          </div>
+
+          <div class="pk-out" aria-live="polite">
+            <div class="pk-out-main">
+              <span>1일권과 개별 결제의 차이</span>
+              <b id="pkBkkDiff">–</b>
+              <small id="pkBkkDiffKrw"></small>
+            </div>
+            <div class="pk-out-rows">
+              <div><span>개별 결제 총액</span><b id="pkBkkTotal">–</b></div>
+              <div><span>1일권</span><b>150밧</b></div>
+              <div><span>본전 탑승 횟수</span><b id="pkBkkBreak">–</b></div>
+              <div><span>환율</span><b id="pkBkkRate">–</b></div>
+            </div>
+          </div>
+          <p class="pk-verdict" id="pkBkkVerdict"></p>
+
+          <div class="pk-cmp">
+            <div class="pk-cmp-row"><b>BTS 1일권</b><span>150밧</span><em>수쿰윗·실롬 무제한 · 당일 자정까지</em></div>
+            <div class="pk-cmp-row"><b>BTS 개별권</b><span>17~47밧</span><em>짧은 구간 2~3회면 이쪽이 쌉니다</em></div>
+            <div class="pk-cmp-row"><b>MRT 블루·퍼플</b><span>17~44밧</span><em>2026년 6월부터 비접촉 신용카드로 개찰구 통과. BTS와 표를 공유하지 않습니다</em></div>
+            <div class="pk-cmp-row"><b>래빗카드</b><span>발급 120밧+충전</span><em>BTS 전용 교통카드. 하루 4회 이상이면 1일권이 먼저입니다</em></div>
+          </div>
+          <p class="pk-note">BTS와 MRT는 환승 개찰구가 따로라 아속·모칫 같은 환승역에서도 요금을 새로 냅니다. 하루에 BTS와 MRT를 함께 3번씩 타는 일정이면 1일권 두 장(150밧+MRT 별도)보다 개별 결제가 나을 수 있습니다.</p>
+
+          <div class="pk-links">
+            <!-- @LINKS_BANGKOK -->
+          </div>
+        </section>
+
+        <!-- ============ 타이베이 ============ -->
+        <section class="pk-panel" id="pkTaipei" data-panel="taipei" aria-labelledby="pkTaipeiTitle" hidden>
+          <div class="pk-top">
+            <div><span class="pk-kicker">TAIPEI FUNPASS · EASYCARD</span>
+              <h2 id="pkTaipeiTitle">타이베이 교통패스 <em>1일 210 / 2일 340 / 3일 470 대만달러</em></h2></div>
+            <span class="pk-badge">교통 전용</span>
+          </div>
+          <p class="pk-lead">선택지가 셋입니다. <b>이지카드</b>는 카드값 100대만달러를 내고 매번 요금을 내는 방식, <b>첩운 1일권</b>은 150대만달러로 지하철만, <b>펀패스 교통권</b>은 지하철+버스+관광 셔틀까지 무제한입니다.</p>
+
+          <div class="pk-seg" role="group" aria-label="펀패스 일수">
+            <!-- @TAIPEI_PASSES -->
+          </div>
+
+          <div class="pk-inputs">
+            <label class="pk-field">
+              <span>하루 첩운 탑승 횟수</span>
+              <input id="pkTpeRides" type="number" min="0" max="20" step="1" value="4" inputmode="numeric" />
+            </label>
+            <label class="pk-field">
+              <span>1회 평균 요금(대만달러)</span>
+              <input id="pkTpeFare" type="number" min="20" max="65" step="5" value="25" inputmode="numeric" />
+            </label>
+          </div>
+
+          <div class="pk-out" aria-live="polite">
+            <div class="pk-out-main">
+              <span id="pkTpeBestLabel">가장 싼 조합</span>
+              <b id="pkTpeBest">–</b>
+              <small id="pkTpeBestKrw"></small>
+            </div>
+            <div class="pk-out-rows">
+              <div><span>이지카드(개별 결제)</span><b id="pkTpeEasy">–</b></div>
+              <div><span>첩운 1일권 × 일수</span><b id="pkTpeMetro">–</b></div>
+              <div><span>펀패스 교통권</span><b id="pkTpeFun">–</b></div>
+              <div><span>버스 포함</span><b>펀패스만</b></div>
+            </div>
+          </div>
+          <p class="pk-verdict" id="pkTpeVerdict"></p>
+          <p class="pk-note">이지카드 100대만달러는 <b>보증금이 아니라 카드 값</b>이라 돌려받지 못합니다. 잔액은 환불되지만 사용 5회·보유 3개월이 안 되면 수수료 20대만달러가 붙습니다. 지하철만 타면 첩운 1일권(150), 버스·지우펀 셔틀까지 쓰면 펀패스가 맞습니다.</p>
+
+          <div class="pk-links">
+            <!-- @LINKS_TAIPEI -->
+          </div>
+        </section>
+
+        <!-- ============ 공통 체크 ============ -->
+        <section class="pk-check" id="check" aria-labelledby="pkCheckTitle">
+          <h2 id="pkCheckTitle">패스를 사기 전에 확인할 5가지</h2>
+          <ol class="pk-check-list">
+            <li><b>“24시간”과 “하루”를 구분하세요</b><span>도쿄 지하철권은 첫 개찰부터 24·48·72시간이고, 오사카 주유패스는 새벽 3시에 끊기는 날짜 단위입니다. 같은 “1일권”이 아닙니다.</span></li>
+            <li><b>패스에 없는 노선을 먼저 지우세요</b><span>오사카 주유패스에 JR(유니버설시티역·하루카)은 없고, 도쿄 지하철권에 JR 야마노테선은 없습니다. USJ·교토 당일치기 날은 패스가 손해입니다.</span></li>
+            <li><b>현장 할인·시간 제한을 보세요</b><span>우메다 스카이빌딩은 15시 입장까지 무료, 이후엔 10% 할인입니다. 톤보리 리버크루즈는 현장에서 시간 지정권으로 바꿔야 합니다.</span></li>
+            <li><b>휴관일과 겹치면 본전이 멀어집니다</b><span>오사카 역사박물관은 화요일, 오사카성 천수각은 12/28~1/1 휴관입니다. 헵파이브 관람차는 정기 점검일이 있습니다.</span></li>
+            <li><b>국내 판매가와 현지 정가를 비교하세요</b><span>오사카 주유패스는 국내 E-티켓 37,200원, 현지 정가 3,500엔입니다. 환율 8.38원이면 29,340원으로 약 7,900원 차이입니다. 원화 결제·QR 즉시 발급의 값입니다.</span></li>
+          </ol>
+        </section>
+
+        <!-- ============ FAQ ============ -->
+        <section class="tf-faq" id="faq" aria-labelledby="pkFaqTitle">
+          <h2 id="pkFaqTitle">교통패스 자주 묻는 질문</h2>
+          <details class="fq" open>
+            <summary><span class="fq-q"><b>Q.</b> 오사카 주유패스, 1day와 2day 중 뭐가 낫나요?</span><span class="fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>시내 관광일이 <b>이틀 연속</b>이면 2day(5,000엔)가 1day 두 장(7,000엔)보다 2,000엔 쌉니다. 중간에 USJ나 교토를 가는 날이 끼면 그날은 패스를 쓰지 못하므로 1day가 맞습니다. 2박 3일이면 1day 한 장, 3박 4일이면 2day가 자연스럽습니다.</p></div>
+          </details>
+          <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 도쿄 지하철권으로 야마노테선을 탈 수 있나요?</span><span class="fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>못 탑니다. 도쿄 메트로 9개 노선과 도에이 4개 노선만 포함이고, JR 야마노테선·주오선은 별도입니다. 신주쿠·시부야·아키하바라를 JR로 도는 일정이면 지하철권 본전이 어려워집니다. 이동은 가능하지만 그때마다 JR 요금(140~200엔)이 따로 나갑니다.</p></div>
+          </details>
+          <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 방콕 BTS 1일권은 24시간인가요?</span><span class="fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>아닙니다. <b>산 날 자정까지</b>입니다. 저녁 8시에 사면 4시간짜리이고, 아침에 사야 하루를 다 씁니다. 또 BTS만 되고 MRT·공항철도는 안 됩니다.</p></div>
+          </details>
+          <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 타이베이 펀패스와 첩운 1일권, 뭐가 다른가요?</span><span class="fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>첩운 1일권(150대만달러)은 지하철만, 펀패스 교통권(1일 210대만달러)은 지하철+시내버스+지우펀·예류 등 관광 셔틀 6개 노선까지 무제한입니다. 버스를 한 번이라도 쓸 계획이면 60대만달러 차이를 금방 메웁니다.</p></div>
+          </details>
+        </section>
+
+      </div>
+
+      <aside class="pg-side">
+        <div class="side-card side-common">
+          <h3>같이 쓰는 도구</h3>
+          <p>환율·시즌까지 맞추면 예산이 정확해집니다.</p>
+          <a class="go" href="/calendar">월별 시즌·최저가 캘린더 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/exchange">환율·일본 면세 계산기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/baggage">항공사별 수하물 규정 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/osaka">오사카·교토 도시 페이지 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/tokyo">도쿄 도시 페이지 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="side-card">
+          <h3>이 페이지 기준</h3>
+          <p>오사카 주유패스는 스룻토 KANSAI·Osaka Metro의 <b>2026년도판</b>(2026.3.25 발매, 2026.4.1~2027.3.31 이용) 요금입니다. 시설 입장료는 각 시설 공식 요금표를 2026.11.19에 확인했습니다.</p>
+          <p>도쿄 지하철권은 Tokyo Metro·도쿄도 교통국 공식 요금, 나리타 접근은 게이세이·JR 동일본 운임표, 방콕은 BTS 매표소 판매가, 타이베이는 첩운·FunPASS 공식 안내를 기준으로 했습니다.</p>
+          <p>원화 환산은 공개 환율을 한 번 불러와 계산하며, 카드 수수료·스프레드는 반영하지 않습니다.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- @PK_DATA -->
+<script>
+(function () {
+  var root = document.getElementById('pkData');
+  if (!root) return;
+  var DATA = JSON.parse(root.textContent);
+  var RATE = { JPY: DATA.fx.JPY, THB: DATA.fx.THB, TWD: DATA.fx.TWD };
+  var el = function (id) { return document.getElementById(id); };
+  function num(v) { var n = Number(String(v == null ? '' : v).replace(/[^0-9.]/g, '')); return isFinite(n) ? n : 0; }
+  function fmt(n, d) { return Number(n).toLocaleString('ko-KR', { maximumFractionDigits: d || 0, minimumFractionDigits: d || 0 }); }
+  function krw(cur, n) {
+    var v = n * (RATE[cur] || 0);
+    if (v >= 10000) return Math.round(v / 100) * 100;
+    if (v >= 1000) return Math.round(v / 10) * 10;
+    return Math.round(v);
+  }
+  function krwText(cur, n) { return '약 ' + fmt(krw(cur, n)) + '원'; }
+  function unit(cur) { return cur === 'JPY' ? '엔' : cur === 'THB' ? '밧' : '대만달러'; }
+  function setRateText() {
+    var t = el('pkRate');
+    if (t) t.innerHTML = '1엔 <b>' + RATE.JPY.toFixed(2) + '원</b> · 1밧 <b>' + RATE.THB.toFixed(2) + '원</b> · 1대만달러 <b>' + RATE.TWD.toFixed(2) + '원</b>';
+    var b = el('pkBkkRate');
+    if (b) b.textContent = '1밧 = ' + RATE.THB.toFixed(2) + '원';
+  }
+  setRateText();
+
+  /* ---------- 오사카 ---------- */
+  var OSA = DATA.osaka;
+  var osakaState = { pass: '1day', fac: {}, rides: 4, fare: OSA.subwayAvg };
+  OSA.facilities.forEach(function (f) { osakaState.fac[f.id] = ['castle', 'umeda', 'tsutenkaku', 'cruise'].indexOf(f.id) >= 0; });
+
+  function passById(list, id) { for (var i = 0; i < list.length; i++) { if (list[i].id === id) return list[i]; } return list[0]; }
+
+  document.querySelectorAll('[data-pass]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      osakaState.pass = b.getAttribute('data-pass');
+      document.querySelectorAll('[data-pass]').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); });
+      calcOsaka();
+    });
+  });
+  document.querySelectorAll('[data-fac]').forEach(function (c) {
+    c.addEventListener('change', function () { osakaState.fac[c.getAttribute('data-fac')] = c.checked; calcOsaka(); });
+  });
+  ['pkOsakaRides', 'pkOsakaFare'].forEach(function (id) {
+    var n = el(id); if (!n) return;
+    n.addEventListener('input', function () { osakaState[id === 'pkOsakaRides' ? 'rides' : 'fare'] = num(n.value); calcOsaka(); });
+  });
+
+  function calcOsaka() {
+    var pass = passById(OSA.passes, osakaState.pass);
+    var facSum = 0;
+    OSA.facilities.forEach(function (f) { if (osakaState.fac[f.id]) facSum += f.price; });
+    var sub = osakaState.rides * osakaState.fare;
+    var total = facSum + sub;
+    var diff = total - pass.price;
+    var d = el('pkOsakaDiff');
+    d.textContent = (diff >= 0 ? '+' : '−') + fmt(Math.abs(diff)) + '엔 ' + (diff >= 0 ? '이득' : '손해');
+    d.className = diff >= 0 ? 'win' : 'lose';
+    el('pkOsakaDiffKrw').textContent = krwText('JPY', Math.abs(diff)) + ' 차이 · ' + pass.name + ' ' + fmt(pass.price) + '엔 기준';
+    el('pkOsakaFac').textContent = fmt(facSum) + '엔';
+    el('pkOsakaSub').textContent = fmt(sub) + '엔 (' + osakaState.rides + '회 × ' + fmt(osakaState.fare) + '엔)';
+    el('pkOsakaTotal').textContent = fmt(total) + '엔';
+    el('pkOsakaPass').textContent = fmt(pass.price) + '엔 (' + pass.name + ')';
+    var v = el('pkOsakaVerdict');
+    if (total === 0) { v.textContent = '갈 곳을 체크하면 본전 여부가 바로 나옵니다.'; }
+    else if (diff > 0) { v.innerHTML = '<b>패스를 사는 쪽이 ' + fmt(diff) + '엔(' + krwText('JPY', diff) + ') 이득입니다.</b> 시설 ' + Object.keys(osakaState.fac).filter(function (k) { return osakaState.fac[k]; }).length + '곳 + 지하철 ' + osakaState.rides + '회면 본전을 넘습니다.'; }
+    else if (diff === 0) { v.innerHTML = '<b>딱 본전입니다.</b> 줄 서는 시간과 환승을 생각하면 패스가 편합니다.'; }
+    else { v.innerHTML = '<b>이 일정이면 패스 없이 ' + fmt(-diff) + '엔(' + krwText('JPY', -diff) + ') 아끼는 편입니다.</b> 본전까지 ' + fmt(-diff) + '엔 부족합니다. 시설 한 곳을 더 넣거나 지하철을 ' + Math.ceil(-diff / (osakaState.fare || 1)) + '회 더 타야 맞습니다.'; }
+    if (osakaState.fac.umeda && pass.id !== 'kix') {
+      v.innerHTML += ' <span class="pk-warn">우메다 스카이빌딩은 15시 입장까지만 무료입니다.</span>';
+    }
+  }
+
+  /* ---------- 도쿄 ---------- */
+  var TOK = DATA.tokyo;
+  var tokState = { pass: '72', rides: 4, fare: TOK.fareAvg };
+  document.querySelectorAll('[data-tokyo]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      tokState.pass = b.getAttribute('data-tokyo');
+      document.querySelectorAll('[data-tokyo]').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); });
+      calcTokyo();
+    });
+  });
+  ['pkTokyoRides', 'pkTokyoFare'].forEach(function (id) {
+    var n = el(id); if (!n) return;
+    n.addEventListener('input', function () { tokState[id === 'pkTokyoRides' ? 'rides' : 'fare'] = num(n.value); calcTokyo(); });
+  });
+  function calcTokyo() {
+    var t = passById(TOK.tickets, tokState.pass);
+    var days = t.hours / 24;
+    var total = tokState.rides * days * tokState.fare;
+    var diff = total - t.price;
+    var d = el('pkTokyoDiff');
+    d.textContent = (diff >= 0 ? '+' : '−') + fmt(Math.abs(diff)) + '엔 ' + (diff >= 0 ? '이득' : '손해');
+    d.className = diff >= 0 ? 'win' : 'lose';
+    el('pkTokyoDiffKrw').textContent = krwText('JPY', Math.abs(diff)) + ' 차이 · ' + t.name + ' ' + fmt(t.price) + '엔';
+    el('pkTokyoTotal').textContent = fmt(total) + '엔 (' + tokState.rides + '회 × ' + fmt(days) + '일)';
+    el('pkTokyoPass').textContent = fmt(t.price) + '엔';
+    var perDay = t.price / days;
+    el('pkTokyoBreak').textContent = '하루 ' + (tokState.fare ? (perDay / tokState.fare).toFixed(1) : '–') + '회';
+    el('pkTokyoHours').textContent = t.hours + '시간';
+    var v = el('pkTokyoVerdict');
+    if (diff > 0) { v.innerHTML = '<b>' + t.name + '이 ' + fmt(diff) + '엔(' + krwText('JPY', diff) + ') 이득입니다.</b> 하루 ' + tokState.rides + '회면 시간권을 사는 게 맞습니다.'; }
+    else if (diff === 0) { v.innerHTML = '<b>딱 본전입니다.</b> JR을 거의 안 탄다면 시간권이 편합니다.'; }
+    else { v.innerHTML = '<b>이 일정이면 개별 결제가 ' + fmt(-diff) + '엔(' + krwText('JPY', -diff) + ') 쌉니다.</b> 하루 ' + (perDay / (tokState.fare || 1)).toFixed(1) + '회 이상 타야 본전입니다. JR 야마노테선 이동이 많다면 어차피 패스 밖입니다.'; }
+  }
+
+  /* 나리타 */
+  var narita = { people: 2, round: false };
+  var NAR = DATA.tokyo.narita;
+  document.querySelectorAll('[data-narita]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-narita');
+      if (k === 'round') { narita.round = !narita.round; b.classList.toggle('on', narita.round); b.setAttribute('aria-pressed', String(narita.round)); }
+      else {
+        narita.people = Number(k.replace('p', ''));
+        document.querySelectorAll('[data-narita]').forEach(function (x) { if (x.getAttribute('data-narita') !== 'round') { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); } });
+      }
+      renderNarita();
+    });
+    if (b.getAttribute('data-narita') === 'p2') { b.classList.add('on'); b.setAttribute('aria-pressed', 'true'); }
+  });
+  function renderNarita() {
+    document.querySelectorAll('[data-narita-total]').forEach(function (cell) {
+      var id = cell.getAttribute('data-narita-total');
+      var it = null; for (var i = 0; i < NAR.length; i++) { if (NAR[i].id === id) it = NAR[i]; }
+      if (!it) return;
+      var sum = it.price * narita.people * (narita.round ? 2 : 1);
+      cell.textContent = fmt(sum) + '엔 · ' + krwText('JPY', sum);
+    });
+  }
+  renderNarita();
+
+  /* ---------- 방콕 ---------- */
+  var BKK = DATA.bangkok;
+  var bkkState = { rides: 4, fare: BKK.bts.fareAvg };
+  ['pkBkkRides', 'pkBkkFare'].forEach(function (id) {
+    var n = el(id); if (!n) return;
+    n.addEventListener('input', function () { bkkState[id === 'pkBkkRides' ? 'rides' : 'fare'] = num(n.value); calcBkk(); });
+  });
+  function calcBkk() {
+    var total = bkkState.rides * bkkState.fare;
+    var diff = total - BKK.bts.dayPass;
+    var d = el('pkBkkDiff');
+    d.textContent = (diff >= 0 ? '+' : '−') + fmt(Math.abs(diff)) + '밧 ' + (diff >= 0 ? '이득' : '손해');
+    d.className = diff >= 0 ? 'win' : 'lose';
+    el('pkBkkDiffKrw').textContent = krwText('THB', Math.abs(diff)) + ' 차이 · 1일권 150밧';
+    el('pkBkkTotal').textContent = fmt(total) + '밧 (' + bkkState.rides + '회 × ' + fmt(bkkState.fare) + '밧)';
+    el('pkBkkBreak').textContent = (BKK.bts.dayPass / (bkkState.fare || 1)).toFixed(1) + '회';
+    var v = el('pkBkkVerdict');
+    if (diff > 0) { v.innerHTML = '<b>1일권이 ' + fmt(diff) + '밧(' + krwText('THB', diff) + ') 이득입니다.</b> 아침에 사야 자정까지 하루를 다 씁니다.'; }
+    else if (diff === 0) { v.innerHTML = '<b>딱 본전입니다.</b> 줄 서는 시간을 아끼는 쪽으로 고르세요.'; }
+    else { v.innerHTML = '<b>개별 결제가 ' + fmt(-diff) + '밧(' + krwText('THB', -diff) + ') 쌉니다.</b> 짧은 구간만 다니거나 MRT를 섞는다면 래빗카드·개별권이 낫습니다.'; }
+  }
+
+  /* ---------- 타이베이 ---------- */
+  var TPE = DATA.taipei;
+  var tpeState = { days: '1', rides: 4, fare: TPE.fareAvg };
+  document.querySelectorAll('[data-tpe]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      tpeState.days = b.getAttribute('data-tpe');
+      document.querySelectorAll('[data-tpe]').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); });
+      calcTpe();
+    });
+  });
+  ['pkTpeRides', 'pkTpeFare'].forEach(function (id) {
+    var n = el(id); if (!n) return;
+    n.addEventListener('input', function () { tpeState[id === 'pkTpeRides' ? 'rides' : 'fare'] = num(n.value); calcTpe(); });
+  });
+  function calcTpe() {
+    var fp = null; for (var i = 0; i < TPE.funpass.length; i++) { if (TPE.funpass[i].id === tpeState.days) fp = TPE.funpass[i]; }
+    var days = fp.days;
+    var easy = TPE.easycard + tpeState.rides * days * tpeState.fare;
+    var fares = tpeState.rides * days * tpeState.fare;
+    var metro = TPE.metroDay * days;
+    var options = [
+      { name: '이지카드', price: easy, note: '카드값 100 + ' + tpeState.rides + '회 × ' + days + '일' },
+      { name: '첩운 1일권', price: metro, note: '지하철만 · ' + days + '일권' },
+      { name: '펀패스 교통권', price: fp.price, note: '지하철+버스+셔틀 · ' + days + '일' }
+    ].sort(function (a, b) { return a.price - b.price; });
+    el('pkTpeEasy').textContent = fmt(easy) + '대만달러 (요금 ' + fmt(fares) + ' + 카드 100)';
+    el('pkTpeMetro').textContent = fmt(metro) + '대만달러 (' + days + '일)';
+    el('pkTpeFun').textContent = fmt(fp.price) + '대만달러';
+    el('pkTpeBest').textContent = options[0].name + ' ' + fmt(options[0].price) + '대만달러';
+    el('pkTpeBestKrw').textContent = krwText('TWD', options[0].price) + ' · ' + options[0].note;
+    var v = el('pkTpeVerdict');
+    if (days === 1) {
+      v.innerHTML = '<b>' + options[0].name + ' 기준 ' + fmt(options[0].price) + '대만달러입니다.</b> 이지카드 값 100대만달러는 카드에 남는 돈이라, 요금만 보면 ' + fmt(fares) + '대만달러입니다. 지하철을 하루 ' + Math.ceil(TPE.metroDay / (tpeState.fare || 1)) + '회 이상 타면 첩운 1일권(150)이 더 싸고, 버스를 한 번이라도 타면 펀패스(210)가 맞습니다.';
+    } else {
+      v.innerHTML = '<b>' + days + '일이면 ' + options[0].name + ' 기준 ' + fmt(options[0].price) + '대만달러입니다.</b> 펀패스의 하루 단가(2일 170·3일 157·5일 146대만달러)가 내려가 일수가 길수록 유리합니다. 버스·지우펀 셔틀을 쓸 계획이면 펀패스가 확실합니다.';
+    }
+  }
+
+  /* ---------- 탭 ---------- */
+  document.querySelectorAll('.pk-tab').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var city = b.getAttribute('data-city');
+      document.querySelectorAll('.pk-tab').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', String(on)); });
+      document.querySelectorAll('.pk-panel').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== city; });
+      if (history.replaceState) history.replaceState(null, '', '#' + city);
+    });
+  });
+  var h = (location.hash || '').replace('#', '');
+  var startBtn = document.querySelector('.pk-tab[data-city="' + h + '"]');
+  if (startBtn) startBtn.click();
+
+  calcOsaka(); calcTokyo(); calcBkk(); calcTpe();
+
+  /* ---------- 실시간 환율(1회) ---------- */
+  function tryRate(i) {
+    var urls = [
+      'https://open.er-api.com/v6/latest/KRW',
+      'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json'
+    ];
+    if (i >= urls.length) return;
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 6000) : null;
+    fetch(urls[i], ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        var base = i === 0 ? (j && j.rates) : (j && j.krw);
+        if (!base) throw new Error('bad');
+        ['JPY', 'THB', 'TWD'].forEach(function (c) {
+          var v = base[c] || base[c.toLowerCase()];
+          if (v && v > 0) RATE[c] = 1 / v;
+        });
+        setRateText(); calcOsaka(); calcTokyo(); calcBkk(); calcTpe(); renderNarita();
+      })
+      .catch(function () { tryRate(i + 1); })
+      .then(function () { if (timer) clearTimeout(timer); });
+  }
+  tryRate(0);
+})();
+</script>

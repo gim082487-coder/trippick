@@ -13,6 +13,8 @@
 <meta name="naver-site-verification" content="de9b4241355a3ab6e83e5c102d1f6f1e6f244302" />
 <meta name="naver-site-verification" content="ab10e600052c8a46301698e6f7c1dd39c3c2aa95" />
 <meta name="naver-site-verification" content="ed075b14e9af849ab81ed9569f8e97f418a88c83" />
+<meta name="google-adsense-account" content="ca-pub-9563082990728787" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9563082990728787" crossorigin="anonymous"></script>
 <meta name="author" content="트립픽" />
 <link rel="canonical" href="https://trippick.pages.dev/guides/bangkok-3-packages" />
 <meta name="theme-color" content="#F4F6F8" />
@@ -34,8 +36,6 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "방콕 3박5일, 표시가 59만 원이 실지출 66만 원이 되는 이유", "description": "방콕·파타야 3박5일 세 상품을 실지출로 비교. 부산 591,603원+경비 $50=662,603원, 인천 노팁·노옵션 920,530원($230 혜택 내역), 노쇼핑 1,085,430원. 쇼핑 3회 3시간과 위약금까지 정리했습니다.", "datePublished": "2026-11-18", "dateModified": "2026-11-18", "inLanguage": "ko", "author": {"@type": "Organization", "name": "트립픽"}, "publisher": {"@type": "Organization", "name": "트립픽"}, "mainEntityOfPage": "https://trippick.pages.dev/guides/bangkok-3-packages", "image": "https://trippick.pages.dev/images/n_bk_p2.jpg"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "트립픽", "item": "https://trippick.pages.dev/"}, {"@type": "ListItem", "position": 2, "name": "여행 가이드", "item": "https://trippick.pages.dev/guides/"}, {"@type": "ListItem", "position": 3, "name": "방콕 3박5일 66만·92만·108만 실지출"}]}</script>
 
-<meta name="google-adsense-account" content="ca-pub-9563082990728787" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9563082990728787" crossorigin="anonymous"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -77,15 +77,22 @@
     <nav class="nav" aria-label="주요 메뉴">
       <a href="../#courses">추천 코스</a>
       <a href="../#planner">예산 계산기</a>
-      <a href="../#checklist">출국 준비</a>
+      <a href="../#checklist" data-hide-sm>출국 준비</a>
       <a href="../#regions">지역·투어</a>
       <a href="../cities/">도시별</a>
       <a href="../guides/" class="on">여행 가이드</a>
-      <a href="../#foods">맛집</a>
+      <a href="../#foods" data-hide-sm>맛집</a>
       <a href="../#essentials">여행 필수품</a>
-      <a href="../exchange">환율·면세</a>
-      <a href="../baggage">수하물</a>
-      <a href="../#alert">특가 알림</a>
+      <a href="../#alert" data-hide-sm>특가 알림</a>
+      <details class="nav-drop" id="navTools">
+        <summary class="nav-drop-sum"><span>도구</span></summary>
+        <div class="nav-drop-menu">
+        <a href="../exchange"><b>환율·일본 면세 계산기</b><span>12개 통화 · 면세 환급</span></a>
+        <a href="../baggage"><b>항공사 수하물 규정</b><span>기내·위탁·배터리</span></a>
+        <a href="../passes"><b>교통패스 본전 계산기</b><span>오사카·도쿄·방콕·타이베이</span></a>
+        <a href="../calendar"><b>월별 시즌 캘린더</b><span>7개 도시 12개월</span></a>
+        </div>
+      </details>
     </nav>
     <div class="head-right">
       <a class="btn" href="../#regions">투어 57개 찾기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -411,6 +418,8 @@
           <a href="../#checklist">출국 준비 체크</a>
           <a href="../exchange">환율·일본 면세 계산기</a>
           <a href="../baggage">항공사 수하물 규정</a>
+          <a href="../passes">교통패스 본전 계산기</a>
+          <a href="../calendar">월별 시즌·최저가 캘린더</a>
           <a href="../cities/">도시별 여행 페이지</a>
           <a href="../guides/">여행 가이드</a>
           <a href="../#alert">특가 알림</a>
@@ -456,6 +465,12 @@
   if(!h) return;
   var on=function(){ h.classList.toggle('stuck', window.scrollY>8); };
   on(); window.addEventListener('scroll', on, {passive:true});
+  var nd=document.getElementById('navTools');
+  if(nd){
+    document.addEventListener('click', function(e){ if(nd.open && !nd.contains(e.target)) nd.open=false; });
+    Array.prototype.forEach.call(nd.querySelectorAll('a'), function(a){ a.addEventListener('click', function(){ nd.open=false; }); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') nd.open=false; });
+  }
 })();
 </script>
 </body>
