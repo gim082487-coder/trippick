@@ -2037,6 +2037,11 @@
     .rm-body{padding:0 10px 12px}
   }
 
+  /* v16: 헤더 메뉴가 11개로 늘어 좁은 데스크톱에서 CTA가 줄바꿈되던 문제 */
+  .site-head .head-right .btn{white-space:nowrap;flex:0 0 auto}
+  @media (max-width:1400px){ .nav a{font-size:13.6px;padding:8px 9px} }
+  @media (max-width:1180px){ .nav a{font-size:12.9px;padding:8px 7px} }
+
 /* =====================================================================
    트립픽 콘텐츠 페이지 (가이드·소개·약관·개인정보·문의) 전용 스타일
    v4 토큰(--blue/--ink/--soft/--r)을 그대로 쓰고, index 전용 클래스와
