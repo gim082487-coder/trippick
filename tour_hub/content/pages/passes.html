@@ -474,7 +474,7 @@
     el('pkTpeBestKrw').textContent = krwText('TWD', options[0].price) + ' · ' + options[0].note;
     var v = el('pkTpeVerdict');
     if (days === 1) {
-      v.innerHTML = '<b>' + options[0].name + ' 기준 ' + fmt(options[0].price) + '대만달러입니다.</b> 이지카드 값 100대만달러는 카드에 남는 돈이라, 요금만 보면 ' + fmt(fares) + '대만달러입니다. 지하철을 하루 ' + Math.ceil(TPE.metroDay / (tpeState.fare || 1)) + '회 이상 타면 첩운 1일권(150)이 더 싸고, 버스를 한 번이라도 타면 펀패스(210)가 맞습니다.';
+      v.innerHTML = '<b>' + options[0].name + ' 기준 ' + fmt(options[0].price) + '대만달러입니다.</b> 이지카드 100대만달러는 요금이 아니라 카드 값이고 돌려받지 못합니다. 요금만 보면 ' + fmt(fares) + '대만달러라, 하루 6회를 넘게 타면 첩운 1일권(150)보다 비싸집니다. 버스를 한 번이라도 타면 펀패스(210)가 맞습니다.';
     } else {
       v.innerHTML = '<b>' + days + '일이면 ' + options[0].name + ' 기준 ' + fmt(options[0].price) + '대만달러입니다.</b> 펀패스의 하루 단가(2일 170·3일 157·5일 146대만달러)가 내려가 일수가 길수록 유리합니다. 버스·지우펀 셔틀을 쓸 계획이면 펀패스가 확실합니다.';
     }
