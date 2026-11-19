@@ -1355,11 +1355,12 @@ def render_packages(pkg: dict) -> str:
     for p in items:
         off = round((p["price"] - p["sale"]) / p["price"] * 100) if p["price"] > p["sale"] else 0
         where = PACKAGE_CITY.get(p.get("city"), p.get("city", ""))
+        price_html = f'<b>{won(p["sale"])}원</b>' + (f'<small>{won(p["price"])}원</small><em>{off}% 할인</em>' if off else '')
         cards.append(f'''<article class="pkg-card">
         <span class="pkg-top"><span class="pkg-tag">{esc(p.get("type") or "해외패키지")}</span><span class="pkg-dur">{esc(where)} · {esc(p.get("duration", ""))}</span></span>
         <b class="pkg-t">{esc(p["title"])}</b>
         <p class="pkg-p">{esc(p.get("pitch", ""))}</p>
-        <span class="pkg-price"><b>{won(p["sale"])}원</b><small>{won(p["price"])}원</small><em>{off}% 할인</em></span>
+        <span class="pkg-price">{price_html}</span>
         <a class="pkg-btn" href="{esc(p["url"])}" target="_blank" rel="noopener sponsored">네이버에서 상품 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <p class="pkg-note">{esc(p.get("displayNote") or p.get("note", ""))}</p>
       </article>''')
