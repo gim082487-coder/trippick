@@ -166,3 +166,21 @@ python3 build_pages.py --out ../deploy_site_gh --base https://gim082487-coder.gi
 - 공정위 고지 문구는 그룹 카드 아래 `ess-cp-note`, 상단 `.disclosure-bar`, 푸터 `.disclose` 3곳에 들어갑니다. 문구를 바꿀 때는 세 곳을 함께 고치세요.
 - 썸네일은 쿠팡 상품 이미지(400x400)를 `assets/ess/`에 내려받아 씁니다. 핫링크하지 않습니다.
 - 링크를 새로 발급하면 `productId`로 상품을 대조하세요: `curl -s https://link.coupang.com/a/XXXX | grep productId`
+
+## v17 (2026-11-19) — 고요율 eSIM 8종 · 오래 쓰는 여행 장비 6종
+
+### 1. eSIM (네이버 쇼핑 커넥트, `category: "eSIM"`)
+
+- 신규 8건: 일본 2(유심사 KDDI 1일 300원 · 도쿄·오사카 3일 14,620원), 베트남 2(링심 1일 800원·유심사 푸꾸옥·나트랑 3일 14,450원), 태국 2(유심사 1일 300원 · 방콕·치앙마이 3일 14,450원), 대만 2(링심 1일 760원 16% · 유심사 3일 12,580원).
+- `channelProductNo`(네이버 상품번호)를 `essentials.json`에 남겨 두면 나중에 `naver.me` 링크가 살아 있는지 대조할 수 있습니다. `curl -sIL https://naver.me/XXXX | grep location` → `/affiliates/{id}?channelProductNo=…`.
+- 홈 `#essentials`의 eSIM 그룹은 13종(4열). `build.py: CITY_COUNTRY` 가 카드 도시→국기 코드를 정합니다(태국·대만 추가됨).
+- 도시 허브 비교 블록은 `build_pages.py: ESIM_PICK`(나라별 2~3개 id·제목·리드) + `hub_esim_section()`. 도시 허브 목차에 `eSIM n` 칩이 자동으로 붙습니다.
+- `/baggage` 하단 「도착해서 바로 쓰려면」은 `BAG_ESIM_IDS`(나라별 3일 무제한 4종).
+- 출국 체크리스트는 `data/checklist.json` 의 국가별 `links` 배열에 상품 id를 넣으면 그 나라 패널 하단에 링크 줄로 나옵니다.
+
+### 2. 오래 쓰는 여행 장비 (쿠팡, `category: "여행장비"`)
+
+- `ESS_GROUPS` 두 번째 그룹. 홈에서는 `.ess-grid-4` 카드(썸네일·가격·정가 취소선), `/baggage` `#longuse` 에서는 `.gear` 카드(스펙 3줄·배지)로 같은 데이터를 씁니다.
+- 상품에 추가로 쓰는 필드: `badge`("기내 반입(미확장)"·"위탁 전용"·"기내 반입 가능(37Wh)" 등), `specs`(문자열 배열 3줄), `itemId`.
+- `/baggage` 카드 렌더는 `build_pages.py: GEAR_IDS` + `gear_cards()`. 순서를 바꾸려면 이 배열만 고치면 됩니다.
+- 쿠팡 표시가는 옵션(색상·사이즈)에 따라 달라지므로 `caution` 에 기준 옵션과 확인일을 적어 두었습니다.
