@@ -2362,6 +2362,16 @@ def _stay_subs(h: dict) -> str:
     return f'<div class="sc-sub"><span>{h["reviews"]:,}개 리뷰</span>' + "".join(f"<span>{p}</span>" for p in parts) + "</div>"
 
 
+def _stay_basis_short(h: dict) -> str:
+    """카드용 짧은 조회 기준 — '11.20~21 조회'."""
+    basis = h.get("priceBasis") or ""
+    head = basis.split("·")[0].strip()
+    if not head:
+        return ""
+    head = head.replace("2026-", "").replace("-", ".")
+    return f"{head} 조회"
+
+
 def _stay_tags(h: dict) -> str:
     names = _stay_theme_name()
     out = []
@@ -2393,7 +2403,7 @@ def stays_card(h: dict, region: dict) -> str:
         {_stay_tags(h)}
         {sub}
         <div class="sc-foot">
-          <span class="sc-price"><b>{h['price']:,}원</b>1박~</span>
+          <span class="sc-price"><b>{h['price']:,}원</b>1박~ <em class="sc-basis">{_stay_basis_short(h)}</em></span>
           <a class="sc-cta" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored">예약 <span class="sc-ext">트립닷컴</span> <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
       </div>
@@ -2658,7 +2668,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     </div>
 
     <p class="snote"><b>숫자 읽는 법</b> — 평점은 트립닷컴 투숙객 리뷰 10점 만점 기준이고, 옆의 리뷰 수와 함께 봐야 합니다.
-    가격은 카드에 적힌 조회 날짜의 <b>1박, 성인 2명, 세금·서비스비용 포함</b> 최저가입니다(국내 19곳 2026-11-20~21, 해외 30곳 2026-11-19~20).
+    가격은 카드에 적힌 조회 날짜의 <b>1박, 성인 2명, 세금·서비스비용 포함</b> 최저가입니다(국내 {kr_total}곳 2026-11-20~21, 해외 {intl_total}곳 2026-11-19~20).
     같은 숙소도 날짜·객실·잔여 상황에 따라 달라지므로 결제 직전 트립닷컴 결제 화면의 금액을 최종으로 확인하세요. 숙소 사진은 트립닷컴 숙소 페이지 이미지입니다.</p>
 
     <p class="snote"><b>제휴 고지</b> — 이 페이지의 예약 버튼은 트립닷컴 파트너스 제휴 링크입니다.

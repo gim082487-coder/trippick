@@ -1138,3 +1138,6 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
 .gi-stays-links a:hover{background:var(--blue);border-color:var(--blue);color:#fff;text-decoration:none}
 .sr-gitem .sr-range{display:block;margin-top:3px;font-size:11px;font-weight:750;color:var(--blue-700);font-variant-numeric:tabular-nums}
 @media (max-width:640px){ .gi-stays{padding:12px 13px} .gi-stays-links a{padding:6px 10px;font-size:11.6px} }
+
+/* v23: 카드 가격 옆 조회 기준 */
+.sc-price .sc-basis{display:inline-block;margin-top:1px;font-style:normal;font-size:9.8px;font-weight:700;color:var(--ink-3)}

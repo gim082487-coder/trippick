@@ -240,7 +240,7 @@
    "name": "부산",
    "country": "대한민국",
    "note": "해운대·광안리·송정 해변 축과 부산역·남포동 원도심 축이 지하철로 이어집니다. 바다를 볼지, 시장과 원도심을 볼지로 먼저 갈립니다.",
-   "count": 4,
+   "count": 5,
    "top": "더무어 웰니스 풀빌라",
    "listUrl": "https://kr.trip.com/hotels/list?city=253&display=부산&optionId=253&optionType=City&optionName=부산&Allianceid=11407530&SID=336341874&trip_sub1=hotel_busan&trip_sub3=D21275837",
    "cityId": "253",
@@ -1352,9 +1352,9 @@
    },
    "zone": "'해운대해수욕장'에서 가까움 | 해운대 지하철역",
    "access": "해운대해수욕장 · 해운대역",
-   "reason": "5성 야외 수영장과 바다 일몰 — 해수욕장 바로 앞, 9.2점.",
-   "price": 413820,
-   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "reason": "5성 야외 수영장과 바다 일몰 — 해수욕장 바로 앞, 9.2점. 이 객실은 2객실 최소 상품이라 표시가는 2인 총액입니다.",
+   "price": 827640,
+   "priceBasis": "2026-11-20~21 · 2인 총액 · 세금 포함 (이 객실은 2객실 최소 상품, 1객실 413,820원×2)",
    "img": "images/stays/busan-61927965.jpg",
    "url": "https://kr.trip.com/hotels/detail/?cityId=253&hotelId=61927965&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_busan_61927965&trip_sub3=D21372570",
    "themes": [
@@ -1365,6 +1365,39 @@
     "위치 최고",
     "야외 수영장",
     "바다 일몰"
+   ]
+  },
+  {
+   "region": "busan",
+   "id": "4604704",
+   "name": "토요코인 부산 해운대 2호점",
+   "en": "Toyoko Inn Busan Haeundae 2",
+   "star": 3,
+   "type": "value",
+   "typeLabel": "가성비",
+   "score": 9.0,
+   "reviews": 2663,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.8",
+    "위치": "9.2",
+    "서비스": "8.9"
+   },
+   "zone": "'해운대해수욕장'에서 가까움 | 해운대 지하철역",
+   "access": "해운대해수욕장 · 해운대역",
+   "reason": "리뷰 2,663개에 9.0 — 해수욕장과 해운대역 도보권, 조식 옵션이 다양하고 청결 평가가 높습니다.",
+   "price": 115115,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/busan-4604704.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=253&hotelId=4604704&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_busan_4604704&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "매우 청결",
+    "일출",
+    "다양한 조식 옵션"
    ]
   },
   {
