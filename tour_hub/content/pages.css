@@ -1026,3 +1026,14 @@
 
 /* v21: /stays 지역 앵커(hub → /stays#osaka) */
 .sf-anchors span{display:block;height:0;overflow:hidden;scroll-margin-top:96px}
+
+/* v21: /stays 지역 한눈에 */
+.sr-h2{margin:34px 0 0;font-size:clamp(18px,2.2vw,22px);font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.sr-regions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0 0}
+@media (max-width:1024px){ .sr-regions{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .sr-regions{grid-template-columns:1fr} }
+.sr-regions a.sr-gitem{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;color:var(--ink-2)}
+.sr-regions a.sr-gitem:hover{border-color:var(--blue-line);background:#FBFDFF;text-decoration:none}
+.sr-gitem b{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--ink)}
+.sr-gitem b span{font-size:10.6px;font-weight:800;color:var(--blue-700);background:var(--blue-soft);border-radius:6px;padding:2px 6px}
+.sr-gitem em{display:block;margin-top:5px;font-style:normal;font-size:11.6px;line-height:1.6;color:var(--ink-3)}

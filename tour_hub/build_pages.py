@@ -2426,10 +2426,15 @@ def stays_page(out_root: Path, base: str) -> Path:
 
     region_anchors = "".join(f'<span id="{r["id"]}"></span>' for r, _ in groups)
     region_links = "".join(
-        f'<a href="#{r["id"]}" data-jump="{r["id"]}">{esc(r["name"])} <span>{len(hs)}곳</span></a>' for r, hs in groups
+        f'<a class="sr-gitem" href="#{r["id"]}" data-jump="{r["id"]}">'
+        f'<b>{esc(r["name"])} <span>{len(hs)}곳</span></b>'
+        f'<em>{esc(r["note"])}</em></a>'
+        for r, hs in groups
     )
-    intro = "".join(
-        f'<div><b>{esc(r["name"])} · {esc(r["country"])}</b><p>{esc(r["note"])}</p></div>' for r, _ in groups[:3]
+    intro = (
+        '<div><b>평점은 리뷰 수와 같이</b><p>트립닷컴 투숙객 리뷰 10점 만점 점수입니다. 리뷰가 수백 개 쌓인 곳과 신규 오픈으로 수십 개인 곳을 구분해 리뷰 수를 카드에 같이 적었습니다.</p></div>'
+        '<div><b>가격은 세금 포함 1박 최저가</b><p>2026-11-19~20 체크인, 성인 2명, 세금·서비스비용 포함 금액입니다. 같은 숙소도 날짜·객실에 따라 달라집니다.</p></div>'
+        '<div><b>예약은 트립닷컴에서</b><p>카드의 예약 버튼은 그 숙소의 트립닷컴 페이지로 바로 갑니다. 결제·취소는 트립닷컴 약관을 따릅니다.</p></div>'
     )
 
     body = f"""<div class="pg-hero stays-hero">
@@ -2487,6 +2492,7 @@ def stays_page(out_root: Path, base: str) -> Path:
       <button type="button" id="sfReset">필터 초기화</button>
     </div>
 
+    <h2 class="sr-h2">지역별로 이렇게 갈립니다</h2>
     <div class="sr-regions" aria-label="지역 바로가기">
       {region_links}
     </div>
