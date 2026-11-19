@@ -1041,3 +1041,77 @@
 .sr-gitem b{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--ink)}
 .sr-gitem b span{font-size:10.6px;font-weight:800;color:var(--blue-700);background:var(--blue-soft);border-radius:6px;padding:2px 6px}
 .sr-gitem em{display:block;margin-top:5px;font-style:normal;font-size:11.6px;line-height:1.6;color:var(--ink-3)}
+
+/* ==========================================================================
+   v23: /stays — 국내/해외 구분 · 테마 필터 · 테마/가이드 연결
+   ========================================================================== */
+.sf-scope{display:flex;gap:5px;flex:0 0 auto;padding-right:8px;border-right:1px solid var(--line-2)}
+.sf-scope .gf-chip{padding:7px 11px;font-size:12.4px;font-weight:800;display:inline-flex;align-items:center;gap:5px}
+.sf-scope .gf-chip span{font-size:10.4px;font-weight:800;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.sf-scope .gf-chip.on span{color:rgba(255,255,255,.85)}
+.sf-scope .gf-chip.on{background:var(--navy);border-color:var(--navy)}
+
+.sc-tags{display:flex;flex-wrap:wrap;gap:4px;margin:1px 0 0}
+.sc-theme{display:inline-flex;align-items:center;font-size:10.4px;font-weight:800;letter-spacing:-.01em;
+  padding:3px 7px;border-radius:6px;background:var(--blue-soft);color:var(--blue-700);white-space:nowrap}
+.sc-theme.t-ocean{background:#E6F3FB;color:#0B6A96}
+.sc-theme.t-onsen{background:#FBEFE8;color:#A5502A}
+.sc-theme.t-station{background:#EEF0F6;color:#3C4A63}
+.sc-theme.t-value{background:#EAF5EA;color:#2F6B34}
+.sc-theme.t-villa{background:#F1EDFA;color:#5A3E9C}
+.sc-pt{display:inline-flex;align-items:center;font-size:10.4px;font-weight:700;padding:3px 7px;border-radius:6px;
+  border:1px solid var(--line);color:var(--ink-3);white-space:nowrap}
+.sc-top .sc-flag{display:inline-flex;align-items:center;font-style:normal;font-size:9.8px;font-weight:800;
+  padding:1px 5px;border-radius:4px;background:#EEF1F5;color:var(--ink-3);letter-spacing:-.01em}
+.sc-top .sc-flag.kr{background:#FFF1E8;color:#B4571C}
+
+.th-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:12px 0 0}
+@media (max-width:1024px){ .th-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:640px){ .th-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+a.th-card{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px;color:var(--ink-2)}
+a.th-card:hover{border-color:var(--blue-line);background:#FBFDFF;text-decoration:none}
+.th-card b{display:block;font-size:12.8px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.th-card span{display:inline-block;margin-top:4px;font-size:10.6px;font-weight:800;color:var(--blue-700);
+  background:var(--blue-soft);border-radius:6px;padding:2px 6px}
+.th-card em{display:block;margin-top:5px;font-style:normal;font-size:11.2px;line-height:1.55;color:var(--ink-3)}
+
+.sr-dek{margin:8px 0 0;font-size:12.6px;line-height:1.7;color:var(--ink-2)}
+.sg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 0}
+@media (max-width:1024px){ .sg-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){ .sg-grid{grid-template-columns:1fr} }
+.sg-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 14px}
+.sg-card.kr{border-color:#F3D9C6;background:linear-gradient(180deg,#FFFCFA,#fff)}
+.sg-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.sg-head b{font-size:13.4px;font-weight:850;color:var(--ink);letter-spacing:-.02em}
+.sg-head span{font-size:10.8px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.sg-links{display:flex;flex-direction:column;gap:5px;margin-top:9px}
+.sg-go{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:12.2px;font-weight:700;
+  color:var(--ink-2);padding:7px 9px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.sg-go:hover{border-color:var(--blue-line);color:var(--blue-700);text-decoration:none}
+.sg-go.hub{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue-700);font-weight:800}
+.sg-go.trip{color:var(--ink-3)}
+.sg-go svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;flex:0 0 auto}
+.sr-gitem .sr-kr{font-style:normal;font-size:9.8px;font-weight:800;padding:1px 5px;border-radius:4px;
+  background:#FFF1E8;color:#B4571C}
+
+/* v23: 가이드 → /stays 연결 박스 */
+.gsb{margin:26px 0 0;padding:15px 17px;border:1px solid var(--blue-line);border-radius:14px;
+  background:linear-gradient(100deg,#F2F7FB,#F9FBFC)}
+.gsb-t{display:block;font-size:13.4px;font-weight:850;color:var(--ink);letter-spacing:-.02em}
+.gsb-rows{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media (max-width:640px){ .gsb-rows{grid-template-columns:1fr} }
+a.gsb-go{display:block;background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 12px;color:var(--ink-2)}
+a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
+.gsb-go b{display:block;font-size:12.8px;font-weight:800;color:var(--blue-700)}
+.gsb-go span{display:block;margin-top:3px;font-size:11.4px;line-height:1.55;color:var(--ink-3)}
+.gsb-note{margin:9px 0 0;font-size:11px;color:var(--ink-3)}
+
+/* v23: 모바일 — 소개 카드 압축, 지면 확보 */
+.sc-top .sc-flag{margin-left:3px}
+@media (max-width:640px){
+  .stays-intro > div:nth-child(3){display:none}
+  .stays-intro > div{padding:11px 12px}
+  .stays-intro p{font-size:11.5px;line-height:1.55}
+  .stays-intro b{font-size:12.2px}
+  .sf-scope{width:100%;border-right:0;padding-right:0}
+}

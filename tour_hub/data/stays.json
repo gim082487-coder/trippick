@@ -3,11 +3,44 @@
   "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
   "aid": "11407530",
   "sid": "336341874",
+  "trip_sub3": "D21372570",
   "checked": "2026-11-20",
-  "method": "kr.trip.com 숙소 목록(도시별, 2026-11-19~20 · 2인 · KRW)에서 평점·리뷰 수·위치·1박 최저가를 그대로 옮겼습니다. 각 숙소 상세 페이지에서 이름·도시를 다시 확인했고, 카드의 예약 버튼은 그 숙소 상세 페이지에 파트너스 코드(Allianceid/SID)를 붙인 딥링크입니다.",
-  "priceNote": "표시 가격은 2026-11-19~20 1박, 성인 2명, 세금·서비스비용 포함 최저가입니다. 날짜·객실·잔여 상황에 따라 달라집니다.",
+  "method": "kr.trip.com 숙소 목록(도시별, 성인 2명·KRW)에서 평점·리뷰 수·세부 점수·위치·1박 최저가·대표 이미지를 그대로 옮겼습니다. 신규 국내 19곳은 2026-11-20~21 조회분, 해외 30곳은 2026-11-19~20 조회분입니다(카드마다 기준일 표기). 각 숙소 상세 페이지에서 이름·도시를 다시 확인했고, 예약 버튼은 그 숙소 상세 페이지에 파트너스 코드(Allianceid/SID/trip_sub3)를 붙인 딥링크입니다.",
+  "priceNote": "가격은 카드에 적힌 조회 날짜의 1박·성인 2명·세금·서비스비용 포함 최저가입니다. 같은 숙소도 날짜·객실·잔여 상황에 따라 달라집니다.",
   "rate": "숙소 5~7% (예약 건수에 따라)"
  },
+ "themes": [
+  {
+   "id": "pool",
+   "name": "호캉스·수영장",
+   "note": "야외·루프탑 수영장이나 스파가 있는 숙소"
+  },
+  {
+   "id": "ocean",
+   "name": "오션뷰",
+   "note": "바다·호수 전망, 해변 도보권"
+  },
+  {
+   "id": "onsen",
+   "name": "온천·스파",
+   "note": "온천탕·스파가 있는 숙소(해외는 료칸 포함)"
+  },
+  {
+   "id": "station",
+   "name": "역세권·도보",
+   "note": "지하철역·기차역 도보권"
+  },
+  {
+   "id": "value",
+   "name": "가성비",
+   "note": "같은 도시 안에서 낮은 1박 요금대"
+  },
+  {
+   "id": "villa",
+   "name": "가족·풀빌라",
+   "note": "리조트·풀빌라, 가족 단위 객실"
+  }
+ ],
  "regions": [
   {
    "id": "osaka",
@@ -17,7 +50,23 @@
    "count": 4,
    "top": "더 브릿지 호텔 신사이바시",
    "listUrl": "https://kr.trip.com/hotels/list?city=219&display=%EC%98%A4%EC%82%AC%EC%B9%B4&optionId=219&optionType=City&optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_osaka&trip_sub3=D21275837",
-   "cityId": "219"
+   "cityId": "219",
+   "scope": "intl",
+   "hub": "osaka",
+   "guides": [
+    {
+     "slug": "osaka-food-route",
+     "label": "오사카 먹거리 동선"
+    },
+    {
+     "slug": "osaka-kyoto-3n4d",
+     "label": "오사카·교토 3박4일"
+    },
+    {
+     "slug": "osaka-amazing-pass",
+     "label": "오사카 주유패스"
+    }
+   ]
   },
   {
    "id": "tokyo",
@@ -27,7 +76,23 @@
    "count": 4,
    "top": "아사쿠사 뷰 호텔",
    "listUrl": "https://kr.trip.com/hotels/list?city=228&display=%EB%8F%84%EC%BF%84&optionId=228&optionType=City&optionName=%EB%8F%84%EC%BF%84&Allianceid=11407530&SID=336341874&trip_sub1=hotel_tokyo&trip_sub3=D21275837",
-   "cityId": "228"
+   "cityId": "228",
+   "scope": "intl",
+   "hub": "tokyo",
+   "guides": [
+    {
+     "slug": "tokyo-food-route",
+     "label": "도쿄 먹거리 동선"
+    },
+    {
+     "slug": "tokyo-subway-ticket",
+     "label": "도쿄 지하철 패스"
+    },
+    {
+     "slug": "narita-haneda-transfer",
+     "label": "나리타·하네다 이동"
+    }
+   ]
   },
   {
    "id": "fukuoka",
@@ -37,7 +102,19 @@
    "count": 4,
    "top": "도큐스테이 후쿠오카 텐진",
    "listUrl": "https://kr.trip.com/hotels/list?city=248&display=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&optionId=248&optionType=City&optionName=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_fukuoka&trip_sub3=D21275837",
-   "cityId": "248"
+   "cityId": "248",
+   "scope": "intl",
+   "hub": "fukuoka",
+   "guides": [
+    {
+     "slug": "fukuoka-yufuin",
+     "label": "후쿠오카·유후인"
+    },
+    {
+     "slug": "japan-esim",
+     "label": "일본 eSIM"
+    }
+   ]
   },
   {
    "id": "danang",
@@ -47,7 +124,19 @@
    "count": 4,
    "top": "하이안 비치 호텔 & 스파",
    "listUrl": "https://kr.trip.com/hotels/list?city=1356&display=%EB%8B%A4%EB%82%AD&optionId=1356&optionType=City&optionName=%EB%8B%A4%EB%82%AD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_danang&trip_sub3=D21275837",
-   "cityId": "1356"
+   "cityId": "1356",
+   "scope": "intl",
+   "hub": "danang",
+   "guides": [
+    {
+     "slug": "danang-food-route",
+     "label": "다낭 먹거리 동선"
+    },
+    {
+     "slug": "danang-hoian-rainy",
+     "label": "다낭·호이안 우기"
+    }
+   ]
   },
   {
    "id": "nhatrang",
@@ -57,7 +146,15 @@
    "count": 3,
    "top": "파나마 나트랑 호텔",
    "listUrl": "https://kr.trip.com/hotels/list?city=1777&display=%EB%82%98%ED%8A%B8%EB%9E%91&optionId=1777&optionType=City&optionName=%EB%82%98%ED%8A%B8%EB%9E%91&Allianceid=11407530&SID=336341874&trip_sub1=hotel_nhatrang&trip_sub3=D21275837",
-   "cityId": "1777"
+   "cityId": "1777",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "nhatrang-dalat-tour-vs-free",
+     "label": "나트랑·달랏 투어"
+    }
+   ]
   },
   {
    "id": "bangkok",
@@ -67,7 +164,19 @@
    "count": 4,
    "top": "밀레니엄 힐튼 방콕",
    "listUrl": "https://kr.trip.com/hotels/list?city=359&display=%EB%B0%A9%EC%BD%95&optionId=359&optionType=City&optionName=%EB%B0%A9%EC%BD%95&Allianceid=11407530&SID=336341874&trip_sub1=hotel_bangkok&trip_sub3=D21275837",
-   "cityId": "359"
+   "cityId": "359",
+   "scope": "intl",
+   "hub": "bangkok",
+   "guides": [
+    {
+     "slug": "bangkok-airport",
+     "label": "방콕 공항 이동"
+    },
+    {
+     "slug": "bangkok-3-packages",
+     "label": "방콕 3박 패키지"
+    }
+   ]
   },
   {
    "id": "taipei",
@@ -77,7 +186,19 @@
    "count": 3,
    "top": "호텔 우케타모",
    "listUrl": "https://kr.trip.com/hotels/list?city=617&display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&optionId=617&optionType=City&optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_taipei&trip_sub3=D21275837",
-   "cityId": "617"
+   "cityId": "617",
+   "scope": "intl",
+   "hub": "taipei",
+   "guides": [
+    {
+     "slug": "taipei-food-route",
+     "label": "타이베이 먹거리"
+    },
+    {
+     "slug": "taipei-yehliu",
+     "label": "예류·지우펀"
+    }
+   ]
   },
   {
    "id": "jeju",
@@ -87,7 +208,98 @@
    "count": 4,
    "top": "엠버 퓨어힐 호텔 앤 리조트 제주",
    "listUrl": "https://kr.trip.com/hotels/list?city=737&display=%EC%A0%9C%EC%A3%BC%EC%8B%9C&optionId=737&optionType=City&optionName=%EC%A0%9C%EC%A3%BC%EC%8B%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_jeju&trip_sub3=D21275837",
-   "cityId": "737"
+   "cityId": "737",
+   "scope": "intl",
+   "hub": "jeju",
+   "guides": [
+    {
+     "slug": "jeju-3n4d",
+     "label": "제주 3박4일"
+    },
+    {
+     "slug": "jeju-aircarotel-3-packages",
+     "label": "제주 렌터카 패키지"
+    }
+   ]
+  },
+  {
+   "id": "seoul",
+   "name": "서울",
+   "country": "대한민국",
+   "note": "서울역·명동·을지로 도심과 강남·잠실, 마포·공덕이 서로 멉니다. 지하철역 도보권 안에서 고르면 하루 동선이 크게 달라지지 않습니다.",
+   "count": 5,
+   "top": "레이크 호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=274&display=서울&optionId=274&optionType=City&optionName=서울&Allianceid=11407530&SID=336341874&trip_sub1=hotel_seoul&trip_sub3=D21275837",
+   "cityId": "274",
+   "scope": "kr",
+   "hub": null,
+   "guides": []
+  },
+  {
+   "id": "busan",
+   "name": "부산",
+   "country": "대한민국",
+   "note": "해운대·광안리·송정 해변 축과 부산역·남포동 원도심 축이 지하철로 이어집니다. 바다를 볼지, 시장과 원도심을 볼지로 먼저 갈립니다.",
+   "count": 4,
+   "top": "더무어 웰니스 풀빌라",
+   "listUrl": "https://kr.trip.com/hotels/list?city=253&display=부산&optionId=253&optionType=City&optionName=부산&Allianceid=11407530&SID=336341874&trip_sub1=hotel_busan&trip_sub3=D21275837",
+   "cityId": "253",
+   "scope": "kr",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "busan-yacht",
+     "label": "부산 요트 투어"
+    }
+   ]
+  },
+  {
+   "id": "gangneung",
+   "name": "강릉",
+   "country": "대한민국",
+   "note": "경포·강문 해변, 정동진, 강릉역(시내)이 차로 20~40분씩 떨어집니다. KTX 도착일은 강릉역, 바다가 목적이면 경포·정동진입니다.",
+   "count": 4,
+   "top": "신라모노그램 강릉 호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=61325&display=강릉시&optionId=61325&optionType=City&optionName=강릉시&Allianceid=11407530&SID=336341874&trip_sub1=hotel_gangneung&trip_sub3=D21275837",
+   "cityId": "61325",
+   "scope": "kr",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "gangwon-ski",
+     "label": "강원 스키"
+    },
+    {
+     "slug": "gangwon-bustour",
+     "label": "강원 버스투어"
+    }
+   ]
+  },
+  {
+   "id": "yeosu",
+   "name": "여수",
+   "country": "대한민국",
+   "note": "여수엑스포역·엑스포 권역과 낭만포차·이순신광장 원도심이 차로 10~15분 거리입니다. 케이블카와 야경을 볼지에 따라 숙소가 갈립니다.",
+   "count": 3,
+   "top": "신라스테이 여수 엑스포역",
+   "listUrl": "https://kr.trip.com/hotels/list?city=4016&display=여수시&optionId=4016&optionType=City&optionName=여수시&Allianceid=11407530&SID=336341874&trip_sub1=hotel_yeosu&trip_sub3=D21275837",
+   "cityId": "4016",
+   "scope": "kr",
+   "hub": null,
+   "guides": []
+  },
+  {
+   "id": "gyeongju",
+   "name": "경주",
+   "country": "대한민국",
+   "note": "황리단길 도심과 보문관광단지가 차로 20~30분 거리입니다. 도보 여행이면 황리단길, 호수·온천이면 보문입니다.",
+   "count": 3,
+   "top": "경주 호텔 공간",
+   "listUrl": "https://kr.trip.com/hotels/list?city=3675&display=경주시&optionId=3675&optionType=City&optionName=경주시&Allianceid=11407530&SID=336341874&trip_sub1=hotel_gyeongju&trip_sub3=D21275837",
+   "cityId": "3675",
+   "scope": "kr",
+   "hub": null,
+   "guides": []
   }
  ],
  "hotels": [
@@ -113,7 +325,11 @@
    "price": 134893,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/osaka-5816633.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=219&hotelId=5816633&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_osaka_5816633"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=219&hotelId=5816633&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_osaka_5816633&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "osaka",
@@ -137,7 +353,15 @@
    "price": 220263,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/osaka-5782369.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=219&hotelId=5782369&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_osaka_5782369"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=219&hotelId=5782369&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_osaka_5782369&trip_sub3=D21372570",
+   "themes": [
+    "onsen"
+   ],
+   "pointTags": [
+    "천연 온천",
+    "위치 최고",
+    "맛있는 조식"
+   ]
   },
   {
    "region": "osaka",
@@ -161,7 +385,11 @@
    "price": 212184,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/osaka-37082416.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=219&hotelId=37082416&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_osaka_37082416"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=219&hotelId=37082416&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_osaka_37082416&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "osaka",
@@ -185,7 +413,13 @@
    "price": 45749,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/osaka-6106218.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=219&hotelId=6106218&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_osaka_6106218"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=219&hotelId=6106218&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_osaka_6106218&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "pool",
+    "value"
+   ],
+   "pointTags": []
   },
   {
    "region": "tokyo",
@@ -209,7 +443,11 @@
    "price": 495526,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/tokyo-686243.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=228&hotelId=686243&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tokyo_686243"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=228&hotelId=686243&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tokyo_686243&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "tokyo",
@@ -233,7 +471,11 @@
    "price": 272461,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/tokyo-13783021.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=228&hotelId=13783021&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tokyo_13783021"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=228&hotelId=13783021&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tokyo_13783021&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "tokyo",
@@ -257,7 +499,12 @@
    "price": 233526,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/tokyo-10748373.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=228&hotelId=10748373&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tokyo_10748373"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=228&hotelId=10748373&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tokyo_10748373&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "tokyo",
@@ -281,7 +528,12 @@
    "price": 205235,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/tokyo-102592177.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=228&hotelId=102592177&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tokyo_102592177"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=228&hotelId=102592177&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tokyo_102592177&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "fukuoka",
@@ -305,7 +557,11 @@
    "price": 306767,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/fukuoka-25048207.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=248&hotelId=25048207&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_fukuoka_25048207"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=248&hotelId=25048207&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_fukuoka_25048207&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "fukuoka",
@@ -329,7 +585,11 @@
    "price": 262402,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/fukuoka-49507812.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=248&hotelId=49507812&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_fukuoka_49507812"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=248&hotelId=49507812&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_fukuoka_49507812&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "fukuoka",
@@ -353,7 +613,11 @@
    "price": 191036,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/fukuoka-705508.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=248&hotelId=705508&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_fukuoka_705508"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=248&hotelId=705508&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_fukuoka_705508&trip_sub3=D21372570",
+   "themes": [
+    "onsen"
+   ],
+   "pointTags": []
   },
   {
    "region": "fukuoka",
@@ -377,7 +641,12 @@
    "price": 173117,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/fukuoka-21931150.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=248&hotelId=21931150&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_fukuoka_21931150"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=248&hotelId=21931150&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_fukuoka_21931150&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "danang",
@@ -401,7 +670,17 @@
    "price": 76453,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/danang-20027768.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=20027768&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_20027768"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=20027768&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_20027768&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "pool",
+    "value"
+   ],
+   "pointTags": [
+    "공공 해변",
+    "무료 공항 셔틀 서비스",
+    "위치 최고"
+   ]
   },
   {
    "region": "danang",
@@ -425,7 +704,15 @@
    "price": 87989,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/danang-23151826.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=23151826&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_23151826"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=23151826&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_23151826&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": [
+    "오션 뷰",
+    "옥상 레스토랑",
+    "위치 최고"
+   ]
   },
   {
    "region": "danang",
@@ -449,7 +736,11 @@
    "price": 114386,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/danang-1963544.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=1963544&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_1963544"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=1963544&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_1963544&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": []
   },
   {
    "region": "danang",
@@ -473,7 +764,11 @@
    "price": 96788,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/danang-116777004.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=116777004&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_116777004"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=116777004&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_116777004&trip_sub3=D21372570",
+   "themes": [
+    "villa"
+   ],
+   "pointTags": []
   },
   {
    "region": "nhatrang",
@@ -497,7 +792,16 @@
    "price": 55113,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/nhatrang-118233319.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=1777&hotelId=118233319&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nhatrang_118233319"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1777&hotelId=118233319&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nhatrang_118233319&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "value"
+   ],
+   "pointTags": [
+    "서비스 최고",
+    "위치 최고",
+    "서예 체험"
+   ]
   },
   {
    "region": "nhatrang",
@@ -521,7 +825,12 @@
    "price": 261873,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/nhatrang-713847.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=1777&hotelId=713847&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nhatrang_713847"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1777&hotelId=713847&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nhatrang_713847&trip_sub3=D21372570",
+   "themes": [
+    "villa",
+    "pool"
+   ],
+   "pointTags": []
   },
   {
    "region": "nhatrang",
@@ -545,7 +854,12 @@
    "price": 217367,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/nhatrang-2037637.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=1777&hotelId=2037637&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nhatrang_2037637"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1777&hotelId=2037637&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nhatrang_2037637&trip_sub3=D21372570",
+   "themes": [
+    "villa",
+    "ocean"
+   ],
+   "pointTags": []
   },
   {
    "region": "bangkok",
@@ -569,7 +883,11 @@
    "price": 207399,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/bangkok-1300392.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=1300392&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_1300392"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=1300392&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_1300392&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": []
   },
   {
    "region": "bangkok",
@@ -593,7 +911,11 @@
    "price": 130533,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/bangkok-996271.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=996271&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_996271"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=996271&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_996271&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": []
   },
   {
    "region": "bangkok",
@@ -617,7 +939,15 @@
    "price": 108611,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/bangkok-700948.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=700948&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_700948"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=700948&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_700948&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "회전 전망대",
+    "위치 최고",
+    "서비스 최고"
+   ]
   },
   {
    "region": "bangkok",
@@ -641,7 +971,11 @@
    "price": 38837,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/bangkok-96208858.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=96208858&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_96208858"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=96208858&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_96208858&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": []
   },
   {
    "region": "taipei",
@@ -660,7 +994,11 @@
    "price": 449305,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/taipei-133358079.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=617&hotelId=133358079&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_taipei_133358079"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=617&hotelId=133358079&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_taipei_133358079&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "taipei",
@@ -679,7 +1017,13 @@
    "price": 166388,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/taipei-115319916.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=617&hotelId=115319916&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_taipei_115319916"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=617&hotelId=115319916&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_taipei_115319916&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "value",
+    "station"
+   ],
+   "pointTags": []
   },
   {
    "region": "taipei",
@@ -703,7 +1047,11 @@
    "price": 177169,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/taipei-666587.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=617&hotelId=666587&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_taipei_666587"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=617&hotelId=666587&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_taipei_666587&trip_sub3=D21372570",
+   "themes": [
+    "onsen"
+   ],
+   "pointTags": []
   },
   {
    "region": "jeju",
@@ -727,7 +1075,12 @@
    "price": 484000,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/jeju-64242246.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=737&hotelId=64242246&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeju_64242246"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=737&hotelId=64242246&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeju_64242246&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": []
   },
   {
    "region": "jeju",
@@ -751,7 +1104,13 @@
    "price": 213663,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/jeju-100386385.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=737&hotelId=100386385&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeju_100386385"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=737&hotelId=100386385&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeju_100386385&trip_sub3=D21372570",
+   "themes": [
+    "villa",
+    "onsen",
+    "pool"
+   ],
+   "pointTags": []
   },
   {
    "region": "jeju",
@@ -775,7 +1134,12 @@
    "price": 64892,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/jeju-115581955.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=737&hotelId=115581955&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeju_115581955"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=737&hotelId=115581955&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeju_115581955&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "value"
+   ],
+   "pointTags": []
   },
   {
    "region": "jeju",
@@ -799,7 +1163,636 @@
    "price": 191400,
    "priceBasis": "2026-11-19~20 · 1박 · 2인 · 세금·봉사료 포함 최저가",
    "img": "images/stays/jeju-117574171.jpg",
-   "url": "https://kr.trip.com/hotels/detail/?cityId=737&hotelId=117574171&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeju_117574171"
+   "url": "https://kr.trip.com/hotels/detail/?cityId=737&hotelId=117574171&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeju_117574171&trip_sub3=D21372570",
+   "themes": [
+    "ocean"
+   ],
+   "pointTags": [
+    "일몰 뷰",
+    "바다 전망 카페",
+    "풀 바"
+   ]
+  },
+  {
+   "region": "seoul",
+   "id": "124518009",
+   "name": "뉴블랑 센트럴 명동",
+   "en": "New Blanc Central Myeongdong",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 1109,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "8.6",
+    "위치": "8.9",
+    "서비스": "9.1"
+   },
+   "zone": "'광장시장'에서 가까움 | 을지로4가 지하철역",
+   "access": "을지로4가역 · 광장시장 인근",
+   "reason": "리뷰 1,109개에 9.0 — 을지로4가역과 광장시장 사이, 밤에 야경이 보이는 객실이 있습니다.",
+   "price": 230503,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/seoul-124518009.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=274&hotelId=124518009&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_seoul_124518009&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "무료 짐 보관 서비스",
+    "위치 최고",
+    "아름다운 야경"
+   ]
+  },
+  {
+   "region": "seoul",
+   "id": "81074621",
+   "name": "로이넷호텔 서울 마포",
+   "en": "Roynet Hotel Seoul Mapo",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 3746,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "8.9",
+    "위치": "9.1",
+    "서비스": "9.1"
+   },
+   "zone": "'공덕 지하철역'에서 가까움 | 서울역",
+   "access": "공덕역 · 마포",
+   "reason": "리뷰 3,746개로 이번 조회분 최다 — 공덕역 도보권, 이그제큐티브 라운지와 조식 평가가 높습니다.",
+   "price": 309338,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/seoul-81074621.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=274&hotelId=81074621&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_seoul_81074621&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "이그제큐티브 라운지",
+    "맛있는 조식",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "seoul",
+   "id": "135529523",
+   "name": "머큐어 앰배서더 서울 동대문",
+   "en": "Mercure Ambassador Seoul Dongdaemun",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 149,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.5",
+    "위치": "8.8",
+    "서비스": "8.9"
+   },
+   "zone": "'흥인지문(동대문)'에서 가까움 | 동대문시장",
+   "access": "흥인지문(동대문) · 동대문시장",
+   "reason": "2026년 신규 오픈 4성 — 동대문시장 바로 옆, 조식 평가가 높습니다.",
+   "price": 294201,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/seoul-135529523.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=274&hotelId=135529523&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_seoul_135529523&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "맛있는 조식",
+    "신규 오픈",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "seoul",
+   "id": "2104894",
+   "name": "레이크 호텔",
+   "en": "Lake  Hotel",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.4,
+   "reviews": 201,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.3",
+    "위치": "9.4",
+    "서비스": "9.3"
+   },
+   "zone": "'롯데월드 어드벤처'에서 가까움 | 롯데월드타워",
+   "access": "롯데월드 어드벤처 · 잠실",
+   "reason": "9.4점에 청결·전망 평가 상위 — 롯데월드 어드벤처와 롯데월드타워가 도보권이라 아이와 묵기 좋습니다.",
+   "price": 132294,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/seoul-2104894.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=274&hotelId=2104894&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_seoul_2104894&trip_sub3=D21372570",
+   "themes": [
+    "villa"
+   ],
+   "pointTags": [
+    "매우 청결",
+    "빼어난 전망",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "seoul",
+   "id": "123955099",
+   "name": "에잇레스트 호스텔 종로",
+   "en": "Eight rest Hostel Jong-ro",
+   "star": 2,
+   "type": "hostel",
+   "typeLabel": "호스텔",
+   "score": 9.0,
+   "reviews": 843,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.8",
+    "위치": "9.3",
+    "서비스": "9.1"
+   },
+   "zone": "'흥인지문(동대문)'에서 가까움 | 동대문시장",
+   "access": "흥인지문(동대문) · 종로",
+   "reason": "1박 13만원대에 서비스 평가 최고 — 공용 주방과 커피 머신이 있는 도심 호스텔.",
+   "price": 137600,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/seoul-123955099.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=274&hotelId=123955099&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_seoul_123955099&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "바",
+    "커피 머신",
+    "서비스 최고"
+   ]
+  },
+  {
+   "region": "busan",
+   "id": "61927965",
+   "name": "시그니엘 부산",
+   "en": "Signiel Busan",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 509,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.1",
+    "위치": "9.4",
+    "서비스": "9.1"
+   },
+   "zone": "'해운대해수욕장'에서 가까움 | 해운대 지하철역",
+   "access": "해운대해수욕장 · 해운대역",
+   "reason": "5성 야외 수영장과 바다 일몰 — 해수욕장 바로 앞, 9.2점.",
+   "price": 413820,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/busan-61927965.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=253&hotelId=61927965&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_busan_61927965&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "위치 최고",
+    "야외 수영장",
+    "바다 일몰"
+   ]
+  },
+  {
+   "region": "busan",
+   "id": "128843807",
+   "name": "더무어 웰니스 풀빌라",
+   "en": "The moor Wellness Pool Villa",
+   "star": 4,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 9.7,
+   "reviews": 70,
+   "sub": {
+    "청결도": "9.9",
+    "시설": "9.7",
+    "위치": "9.8",
+    "서비스": "9.5"
+   },
+   "zone": "광안리 | '광안리해수욕장'에서 가까움",
+   "access": "광안리해수욕장 · 광안리",
+   "reason": "9.7점(리뷰 70) — 광안리 해변 도보권 웰니스 풀빌라, 프라이빗 객실.",
+   "price": 398300,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/busan-128843807.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=253&hotelId=128843807&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_busan_128843807&trip_sub3=D21372570",
+   "themes": [
+    "villa",
+    "ocean"
+   ],
+   "pointTags": [
+    "편안한 객실",
+    "이그제큐티브 라운지",
+    "서비스 최고"
+   ]
+  },
+  {
+   "region": "busan",
+   "id": "108665692",
+   "name": "더퍼스트오션 송정",
+   "en": "The First Ocean Songjeong",
+   "star": 2,
+   "type": "value",
+   "typeLabel": "가성비",
+   "score": 9.1,
+   "reviews": 575,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "9.0",
+    "위치": "9.1",
+    "서비스": "8.8"
+   },
+   "zone": "'송정해수욕장'에서 가까움 | 구)송정역사",
+   "access": "송정해수욕장 · 구 송정역",
+   "reason": "1박 6.3만원에 9.1점 — 송정해변 앞 일출·오션뷰 객실, 셀프 체크인.",
+   "price": 63150,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/busan-108665692.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=253&hotelId=108665692&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_busan_108665692&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "value"
+   ],
+   "pointTags": [
+    "일출",
+    "오션 뷰",
+    "매우 청결"
+   ]
+  },
+  {
+   "region": "busan",
+   "id": "31099521",
+   "name": "라발스호텔",
+   "en": "Lavalse Hotel",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 1398,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.6",
+    "위치": "8.9",
+    "서비스": "8.7"
+   },
+   "zone": "영도 | '남포동'에서 가까움",
+   "access": "영도 · 남포동",
+   "reason": "리뷰 1,398개 8.8 — 고층 객실에서 항구 야경과 일출, 영도다리·남포동 이동이 짧습니다.",
+   "price": 153000,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/busan-31099521.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=253&hotelId=31099521&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_busan_31099521&trip_sub3=D21372570",
+   "themes": [
+    "ocean"
+   ],
+   "pointTags": [
+    "고층 야경",
+    "일출",
+    "다양한 조식 옵션"
+   ]
+  },
+  {
+   "region": "gangneung",
+   "id": "127423416",
+   "name": "신라모노그램 강릉 호텔",
+   "en": "Shillamonogram Gangneung Hotel",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.5,
+   "reviews": 385,
+   "sub": {
+    "청결도": "9.6",
+    "시설": "9.5",
+    "위치": "9.4",
+    "서비스": "9.4"
+   },
+   "zone": "'소나무길 벤치'에서 가까움 | 강문해변 옆 소나무숲",
+   "access": "강문해변 · 소나무숲",
+   "reason": "9.5점(리뷰 385) — 강문해변 옆 소나무숲, 오션뷰와 풀 바를 갖춘 신축 5성.",
+   "price": 406373,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/gangneung-127423416.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61325&hotelId=127423416&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gangneung_127423416&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "일출",
+    "서비스 최고",
+    "오션 뷰"
+   ]
+  },
+  {
+   "region": "gangneung",
+   "id": "15677672",
+   "name": "스카이베이 호텔 경포",
+   "en": "Skybay Hotel Gyeongpo",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 1240,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.7",
+    "위치": "9.6",
+    "서비스": "8.9"
+   },
+   "zone": "'경포해변'에서 가까움 | 강릉 방해정",
+   "access": "경포해변 · 방해정",
+   "reason": "온수 루프탑 수영장 — 경포해변 도보, 일출 객실. 리뷰 1,240개 9.1.",
+   "price": 219312,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/gangneung-15677672.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61325&hotelId=15677672&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gangneung_15677672&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "온수 루프탑 수영장",
+    "위치 최고",
+    "일출 뷰"
+   ]
+  },
+  {
+   "region": "gangneung",
+   "id": "13682789",
+   "name": "탑스텐 호텔",
+   "en": "Hotel Tops 10",
+   "star": 5,
+   "type": "onsen",
+   "typeLabel": "온천 료칸",
+   "score": 8.7,
+   "reviews": 508,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.7",
+    "위치": "8.3",
+    "서비스": "8.7"
+   },
+   "zone": "'헌화로'에서 가까움 | 정동심곡 바다부채길",
+   "access": "정동심곡 바다부채길 · 헌화로",
+   "reason": "온천 호텔에 오션뷰 — 정동진 해안 산책로가 가깝고 1박 12.8만원대입니다.",
+   "price": 128908,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/gangneung-13682789.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61325&hotelId=13682789&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gangneung_13682789&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "ocean"
+   ],
+   "pointTags": [
+    "온천 호텔",
+    "일출",
+    "오션 뷰"
+   ]
+  },
+  {
+   "region": "gangneung",
+   "id": "133136900",
+   "name": "레스티아 스테이 강릉역점",
+   "en": "Restia Stay Gangneung Station",
+   "star": 1,
+   "type": "value",
+   "typeLabel": "가성비",
+   "score": 9.1,
+   "reviews": 105,
+   "sub": {
+    "청결도": "9.7",
+    "시설": "8.9",
+    "위치": "9.2",
+    "서비스": "8.8"
+   },
+   "zone": "'강릉역'에서 가까움 | 용지기념각",
+   "access": "강릉역 · 용지기념각",
+   "reason": "1박 5.2만원에 9.1점 — 강릉역 도보권, 셀프 체크인. KTX 첫날·마지막 날 쓰기 좋습니다.",
+   "price": 52000,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/gangneung-133136900.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61325&hotelId=133136900&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gangneung_133136900&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "매우 청결",
+    "셀프 체크인",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "yeosu",
+   "id": "1982952",
+   "name": "소노캄 여수",
+   "en": "Sono Calm Yeosu",
+   "star": 5,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 9.2,
+   "reviews": 196,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "8.8",
+    "위치": "9.6",
+    "서비스": "8.8"
+   },
+   "zone": "'여수엑스포해양공원'에서 가까움 | 여수해상케이블카 자산정류장",
+   "access": "여수엑스포해양공원 · 해상케이블카",
+   "reason": "5성 야외 온천 수영장 — 리뷰 196개 9.2, 엑스포 해양공원과 케이블카 자산정류장이 가깝습니다.",
+   "price": 266086,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/yeosu-1982952.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=4016&hotelId=1982952&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_yeosu_1982952&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "pool"
+   ],
+   "pointTags": [
+    "일출",
+    "야외 온천 수영장",
+    "공공 해변"
+   ]
+  },
+  {
+   "region": "yeosu",
+   "id": "23778487",
+   "name": "여수 베네치아호텔 & 스위트",
+   "en": "Yeosu Venezia Hotel & Suite",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 724,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.9",
+    "위치": "9.6",
+    "서비스": "9.1"
+   },
+   "zone": "'아쿠아플라넷 여수'에서 가까움 | 여수엑스포역",
+   "access": "아쿠아플라넷 여수 · 여수엑스포역",
+   "reason": "야외 루프탑 수영장과 오션뷰 — 리뷰 724개 9.2, 엑스포역 도보권.",
+   "price": 111112,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/yeosu-23778487.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=4016&hotelId=23778487&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_yeosu_23778487&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "station"
+   ],
+   "pointTags": [
+    "일출",
+    "야외 루프탑 수영장",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "yeosu",
+   "id": "99826260",
+   "name": "신라스테이 여수 엑스포역",
+   "en": "SHILLA STAY YEOSU EXPO STATION",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 688,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.1",
+    "위치": "9.3",
+    "서비스": "9.2"
+   },
+   "zone": "'아쿠아플라넷 여수'에서 가까움 | 여수스카이플라이",
+   "access": "여수엑스포역 · 여수스카이플라이",
+   "reason": "9.3점(리뷰 688) — 엑스포역 인접, 오션뷰 객실과 조식 평가가 높습니다.",
+   "price": 158099,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/yeosu-99826260.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=4016&hotelId=99826260&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_yeosu_99826260&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "station"
+   ],
+   "pointTags": [
+    "일출",
+    "오션 뷰",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "gyeongju",
+   "id": "1581151",
+   "name": "코모도호텔 경주",
+   "en": "Commodore Hotel Gyeongju",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 603,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.4",
+    "위치": "9.4",
+    "서비스": "9.1"
+   },
+   "zone": "'물레방아광장'에서 가까움 | 보문관광단지",
+   "access": "보문관광단지 · 물레방아광장",
+   "reason": "보문호 호숫가 4성 — 리뷰 603개 9.0, 조식과 마운틴뷰. 가족 단위 보문단지 일정에 맞습니다.",
+   "price": 207558,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/gyeongju-1581151.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=3675&hotelId=1581151&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gyeongju_1581151&trip_sub3=D21372570",
+   "themes": [
+    "villa"
+   ],
+   "pointTags": [
+    "호숫가",
+    "위치 최고",
+    "맛있는 조식"
+   ]
+  },
+  {
+   "region": "gyeongju",
+   "id": "8860462",
+   "name": "경주 호텔 공간",
+   "en": "Gyeongju Hotel Gonggan",
+   "star": 2,
+   "type": "value",
+   "typeLabel": "가성비",
+   "score": 9.3,
+   "reviews": 290,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.1",
+    "위치": "9.2",
+    "서비스": "9.4"
+   },
+   "zone": "'황리단길'에서 가까움 | 오아르미술관",
+   "access": "황리단길 · 오아르미술관",
+   "reason": "1박 9.2만원에 9.3점 — 황리단길 도보권, 조식 옵션이 다양하고 청결 평가가 높습니다.",
+   "price": 91980,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/gyeongju-8860462.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=3675&hotelId=8860462&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gyeongju_8860462&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "다양한 조식 옵션",
+    "서비스 최고",
+    "매우 청결"
+   ]
+  },
+  {
+   "region": "gyeongju",
+   "id": "2159011",
+   "name": "더케이호텔경주",
+   "en": "The K Hotel Gyeongju",
+   "star": 4,
+   "type": "onsen",
+   "typeLabel": "온천 료칸",
+   "score": 8.4,
+   "reviews": 154,
+   "sub": {
+    "청결도": "8.6",
+    "시설": "7.6",
+    "위치": "9.1",
+    "서비스": "8.4"
+   },
+   "zone": "'정글미디어파크'에서 가까움 | 미소",
+   "access": "정글미디어파크 · 미소",
+   "reason": "온천 호텔 — 경주 남산 자락, 한옥 객실 옵션과 산 전망. 1박 17만원대.",
+   "price": 170659,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/gyeongju-2159011.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=3675&hotelId=2159011&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gyeongju_2159011&trip_sub3=D21372570",
+   "themes": [
+    "onsen"
+   ],
+   "pointTags": [
+    "온천 호텔",
+    "산 전망",
+    "한옥"
+   ]
   }
  ]
 }
