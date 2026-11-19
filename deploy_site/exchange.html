@@ -287,7 +287,7 @@
         </div>
         <div class="side-card">
           <h3>이 페이지 기준</h3>
-          <p>환율은 open.er-api.com 공개 환율(1일 1회 갱신)을 쓰고, 연결이 안 되면 2026.11.18 고시값을 그대로 보여줍니다.</p>
+          <p>환율은 공개 환율 API 두 곳(open.er-api.com → jsDelivr currency-api)을 차례로 시도하고, 둘 다 연결되지 않으면 2026.11.18 고시값을 그대로 보여줍니다.</p>
           <p>일본 면세 제도는 일본 세관 <b>2026.11.1 리펀드 방식</b> 안내와 관광청 안내를 기준으로 정리했습니다. 매장·환급 사업자별 수수료와 운영 방식은 다를 수 있습니다.</p>
         </div>
       </aside>
@@ -295,7 +295,7 @@
   </div>
 </div>
 
-<script type="application/json" id="fxData">{"api":"https://open.er-api.com/v6/latest/KRW","apiNote":"open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) — 하루 1회 갱신","fallbackUpdatedKst":"2026-11-19 09:02","fallbackSource":"2026-11-18 00:02 UTC 고시값 (1 KRW 기준 역산)","currencies":[{"code":"JPY","name":"일본 엔","label":"엔","symbol":"¥","unit":100,"decimals":0,"krw":8.3834,"presets":[1000,5000,10000,30000]},{"code":"VND","name":"베트남 동","label":"동","symbol":"₫","unit":100,"decimals":0,"krw":0.0519,"presets":[100000,500000,1000000,2000000]},{"code":"THB","name":"태국 바트","label":"바트","symbol":"฿","unit":1,"decimals":0,"krw":39.5007,"presets":[500,1000,2000,5000]},{"code":"TWD","name":"대만 달러","label":"대만달러","symbol":"NT$","unit":1,"decimals":0,"krw":40.4875,"presets":[500,1000,2000,5000]},{"code":"PHP","name":"필리핀 페소","label":"페소","symbol":"₱","unit":1,"decimals":1,"krw":20.9705,"presets":[1000,5000,10000,20000]},{"code":"USD","name":"미국 달러","label":"달러","symbol":"US$","unit":1,"decimals":2,"krw":1335.1135,"presets":[50,100,200,500]},{"code":"EUR","name":"유로","label":"유로","symbol":"€","unit":1,"decimals":2,"krw":1468.4288,"presets":[50,100,200,500]},{"code":"SGD","name":"싱가포르 달러","label":"싱가포르달러","symbol":"S$","unit":1,"decimals":2,"krw":1037.3444,"presets":[50,100,200,500]},{"code":"HKD","name":"홍콩 달러","label":"홍콩달러","symbol":"HK$","unit":1,"decimals":1,"krw":170.2997,"presets":[500,1000,2000,5000]},{"code":"CNY","name":"중국 위안","label":"위안","symbol":"CN¥","unit":1,"decimals":0,"krw":200.08,"presets":[500,1000,2000,5000]},{"code":"AUD","name":"호주 달러","label":"호주달러","symbol":"A$","unit":1,"decimals":2,"krw":899.2806,"presets":[100,200,500,1000]},{"code":"GBP","name":"영국 파운드","label":"파운드","symbol":"£","unit":1,"decimals":2,"krw":1763.6684,"presets":[50,100,200,500]}],"taxRates":[{"id":"10","label":"일반 물품","sub":"10% 세율","rate":10},{"id":"8","label":"식료품·소모품","sub":"8% 경감세율","rate":8}],"taxPresets":[5500,11000,22000,55000,110000]}</script>
+<script type="application/json" id="fxData">{"api":"https://open.er-api.com/v6/latest/KRW","apiNote":"open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) → 실패 시 cdn.jsdelivr.net/@fawazahmed0/currency-api — 하루 1회 갱신","fallbackUpdatedKst":"2026-11-19 09:02","fallbackSource":"2026-11-18 00:02 UTC 고시값 (1 KRW 기준 역산)","currencies":[{"code":"JPY","name":"일본 엔","label":"엔","symbol":"¥","unit":100,"decimals":0,"krw":8.3834,"presets":[1000,5000,10000,30000]},{"code":"VND","name":"베트남 동","label":"동","symbol":"₫","unit":100,"decimals":0,"krw":0.0519,"presets":[100000,500000,1000000,2000000]},{"code":"THB","name":"태국 바트","label":"바트","symbol":"฿","unit":1,"decimals":0,"krw":39.5007,"presets":[500,1000,2000,5000]},{"code":"TWD","name":"대만 달러","label":"대만달러","symbol":"NT$","unit":1,"decimals":0,"krw":40.4875,"presets":[500,1000,2000,5000]},{"code":"PHP","name":"필리핀 페소","label":"페소","symbol":"₱","unit":1,"decimals":1,"krw":20.9705,"presets":[1000,5000,10000,20000]},{"code":"USD","name":"미국 달러","label":"달러","symbol":"US$","unit":1,"decimals":2,"krw":1335.1135,"presets":[50,100,200,500]},{"code":"EUR","name":"유로","label":"유로","symbol":"€","unit":1,"decimals":2,"krw":1468.4288,"presets":[50,100,200,500]},{"code":"SGD","name":"싱가포르 달러","label":"싱가포르달러","symbol":"S$","unit":1,"decimals":2,"krw":1037.3444,"presets":[50,100,200,500]},{"code":"HKD","name":"홍콩 달러","label":"홍콩달러","symbol":"HK$","unit":1,"decimals":1,"krw":170.2997,"presets":[500,1000,2000,5000]},{"code":"CNY","name":"중국 위안","label":"위안","symbol":"CN¥","unit":1,"decimals":0,"krw":200.08,"presets":[500,1000,2000,5000]},{"code":"AUD","name":"호주 달러","label":"호주달러","symbol":"A$","unit":1,"decimals":2,"krw":899.2806,"presets":[100,200,500,1000]},{"code":"GBP","name":"영국 파운드","label":"파운드","symbol":"£","unit":1,"decimals":2,"krw":1763.6684,"presets":[50,100,200,500]}],"taxRates":[{"id":"10","label":"일반 물품","sub":"10% 세율","rate":10},{"id":"8","label":"식료품·소모품","sub":"8% 경감세율","rate":8}],"taxPresets":[5500,11000,22000,55000,110000]}</script>
 <script>
 (function () {
   var root = document.getElementById('fxData');
@@ -321,7 +321,7 @@
 
   function setStatus() {
     if (liveBadge) {
-      liveBadge.textContent = window.__fxLive ? '실시간' : '기본값';
+      liveBadge.textContent = window.__fxLive ? '실시간' : '기본 환율';
       liveBadge.setAttribute('data-state', window.__fxLive ? 'live' : 'base');
     }
     if (statusText) statusText.textContent = window.__fxLive ? '실시간 환율 · ' + window.__fxKst + ' 갱신' : '기본 환율 · ' + DATA.fallbackUpdatedKst + ' 기준';
@@ -345,7 +345,7 @@
       outEl.textContent = money(a * r);
       subEl.textContent = fmt(a, 0) + c.symbol + ' ≈ ' + money(a * r);
     } else {
-      outLabel.textContent = c.name + '로 바꾸면';
+      outLabel.textContent = c.name + ' 환산';
       outEl.textContent = fmt(a / r, c.decimals) + ' ' + c.label;
       subEl.textContent = money(a) + ' ≈ ' + fmt(a / r, c.decimals) + c.symbol;
     }
@@ -409,26 +409,36 @@
 
   // 실시간 환율 1회
   window.__fxLive = false;
-  var ctrl = window.AbortController ? new AbortController() : null;
-  var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 7000) : null;
-  fetch(DATA.api, ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' })
-    .then(function (r) { return r.json(); })
-    .then(function (j) {
-      if (!j || j.result !== 'success' || !j.rates) throw new Error('bad');
-      var next = {}, ok = 0;
-      DATA.currencies.forEach(function (c) {
-        var v = j.rates[c.code];
-        if (v && v > 0) { next[c.code] = 1 / v; ok++; }
-      });
-      if (ok < 5) throw new Error('few');
-      DATA.currencies.forEach(function (c) { if (next[c.code]) rates[c.code] = next[c.code]; });
-      var d = new Date((j.time_last_update_unix || 0) * 1000);
-      window.__fxKst = d.toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
-      window.__fxLive = true;
-      setStatus(); renderRates(); calc(); calcTax();
-    })
-    .catch(function () { window.__fxLive = false; setStatus(); })
-    .then(function () { if (timer) clearTimeout(timer); });
+  var SOURCES = [
+    { url: DATA.api, kind: 'er' },
+    { url: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json', kind: 'fawaz' }
+  ];
+  function tryFetch(i) {
+    if (i >= SOURCES.length) { window.__fxLive = false; setStatus(); return; }
+    var src = SOURCES[i];
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 6000) : null;
+    fetch(src.url, ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        var next = {}, ok = 0, base = src.kind === 'er' ? (j && j.rates) : (j && j.krw);
+        if (!base) throw new Error('bad');
+        DATA.currencies.forEach(function (c) {
+          var v = base[c.code] || base[c.code.toLowerCase()];
+          if (v && v > 0) { next[c.code] = 1 / v; ok++; }
+        });
+        if (ok < 5) throw new Error('few');
+        DATA.currencies.forEach(function (c) { if (next[c.code]) rates[c.code] = next[c.code]; });
+        var d = src.kind === 'er' && j.time_last_update_unix ? new Date(j.time_last_update_unix * 1000)
+          : (src.kind === 'fawaz' && j.date ? new Date(j.date + 'T00:00:00Z') : new Date());
+        window.__fxKst = d.toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+        window.__fxLive = true;
+        setStatus(); renderRates(); calc(); calcTax();
+      })
+      .catch(function () { tryFetch(i + 1); })
+      .then(function () { if (timer) clearTimeout(timer); });
+  }
+  tryFetch(0);
 
   /* ---------- 일본 면세 ---------- */
   var tfAmount = el('tfAmount'), tfRefund = el('tfRefund'), tfRefundKrw = el('tfRefundKrw'),

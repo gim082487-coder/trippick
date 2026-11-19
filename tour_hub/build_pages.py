@@ -1739,7 +1739,7 @@ def baggage_page(out_root: Path, base: str) -> Path:
         warn = f'<span class="bag-warn">{esc(a["warn"])}</span>' if a.get("warn") else ""
         rows.append(f"""<tr>
                   <th scope="row" class="bag-name"><b>{esc(a["name"])}</b><em>{esc(a["short"])} · {esc(a["type"])}</em>{warn}</th>
-                  <td data-label="기내"><div class="bag-cell"><b>{esc(a["cabin"])}</b><small>{esc(a["cabinSize"])} · 개인 소지품 {esc(a["personal"])}</small></div></td>
+                  <td data-label="기내"><div class="bag-cell"><b>{esc(a["cabin"])}</b><small>{esc(a["cabinSize"])} · {esc(a["personal"])}</small></div></td>
                   <td data-label="위탁"><div class="bag-cell"><b>{esc(a["checked"])}</b><small>{esc(a["checkedNote"])}</small></div></td>
                   <td data-label="1개 한도"><div class="bag-cell"><b>{esc(a["limit"])}</b></div></td>
                   <td data-label="공식 안내"><a class="bag-link" href="{a["official"]}" target="_blank" rel="noopener">{esc(a["officialLabel"])} ↗</a></td>

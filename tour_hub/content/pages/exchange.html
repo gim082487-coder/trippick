@@ -169,7 +169,7 @@
         </div>
         <div class="side-card">
           <h3>이 페이지 기준</h3>
-          <p>환율은 open.er-api.com 공개 환율(1일 1회 갱신)을 쓰고, 연결이 안 되면 2026.11.18 고시값을 그대로 보여줍니다.</p>
+          <p>환율은 공개 환율 API 두 곳(open.er-api.com → jsDelivr currency-api)을 차례로 시도하고, 둘 다 연결되지 않으면 2026.11.18 고시값을 그대로 보여줍니다.</p>
           <p>일본 면세 제도는 일본 세관 <b>2026.11.1 리펀드 방식</b> 안내와 관광청 안내를 기준으로 정리했습니다. 매장·환급 사업자별 수수료와 운영 방식은 다를 수 있습니다.</p>
         </div>
       </aside>
@@ -203,7 +203,7 @@
 
   function setStatus() {
     if (liveBadge) {
-      liveBadge.textContent = window.__fxLive ? '실시간' : '기본값';
+      liveBadge.textContent = window.__fxLive ? '실시간' : '기본 환율';
       liveBadge.setAttribute('data-state', window.__fxLive ? 'live' : 'base');
     }
     if (statusText) statusText.textContent = window.__fxLive ? '실시간 환율 · ' + window.__fxKst + ' 갱신' : '기본 환율 · ' + DATA.fallbackUpdatedKst + ' 기준';
@@ -227,7 +227,7 @@
       outEl.textContent = money(a * r);
       subEl.textContent = fmt(a, 0) + c.symbol + ' ≈ ' + money(a * r);
     } else {
-      outLabel.textContent = c.name + '로 바꾸면';
+      outLabel.textContent = c.name + ' 환산';
       outEl.textContent = fmt(a / r, c.decimals) + ' ' + c.label;
       subEl.textContent = money(a) + ' ≈ ' + fmt(a / r, c.decimals) + c.symbol;
     }
@@ -291,26 +291,36 @@
 
   // 실시간 환율 1회
   window.__fxLive = false;
-  var ctrl = window.AbortController ? new AbortController() : null;
-  var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 7000) : null;
-  fetch(DATA.api, ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' })
-    .then(function (r) { return r.json(); })
-    .then(function (j) {
-      if (!j || j.result !== 'success' || !j.rates) throw new Error('bad');
-      var next = {}, ok = 0;
-      DATA.currencies.forEach(function (c) {
-        var v = j.rates[c.code];
-        if (v && v > 0) { next[c.code] = 1 / v; ok++; }
-      });
-      if (ok < 5) throw new Error('few');
-      DATA.currencies.forEach(function (c) { if (next[c.code]) rates[c.code] = next[c.code]; });
-      var d = new Date((j.time_last_update_unix || 0) * 1000);
-      window.__fxKst = d.toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
-      window.__fxLive = true;
-      setStatus(); renderRates(); calc(); calcTax();
-    })
-    .catch(function () { window.__fxLive = false; setStatus(); })
-    .then(function () { if (timer) clearTimeout(timer); });
+  var SOURCES = [
+    { url: DATA.api, kind: 'er' },
+    { url: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json', kind: 'fawaz' }
+  ];
+  function tryFetch(i) {
+    if (i >= SOURCES.length) { window.__fxLive = false; setStatus(); return; }
+    var src = SOURCES[i];
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 6000) : null;
+    fetch(src.url, ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        var next = {}, ok = 0, base = src.kind === 'er' ? (j && j.rates) : (j && j.krw);
+        if (!base) throw new Error('bad');
+        DATA.currencies.forEach(function (c) {
+          var v = base[c.code] || base[c.code.toLowerCase()];
+          if (v && v > 0) { next[c.code] = 1 / v; ok++; }
+        });
+        if (ok < 5) throw new Error('few');
+        DATA.currencies.forEach(function (c) { if (next[c.code]) rates[c.code] = next[c.code]; });
+        var d = src.kind === 'er' && j.time_last_update_unix ? new Date(j.time_last_update_unix * 1000)
+          : (src.kind === 'fawaz' && j.date ? new Date(j.date + 'T00:00:00Z') : new Date());
+        window.__fxKst = d.toLocaleString('ko-KR', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+        window.__fxLive = true;
+        setStatus(); renderRates(); calc(); calcTax();
+      })
+      .catch(function () { tryFetch(i + 1); })
+      .then(function () { if (timer) clearTimeout(timer); });
+  }
+  tryFetch(0);
 
   /* ---------- 일본 면세 ---------- */
   var tfAmount = el('tfAmount'), tfRefund = el('tfRefund'), tfRefundKrw = el('tfRefundKrw'),

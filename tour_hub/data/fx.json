@@ -1,6 +1,6 @@
 {
   "api": "https://open.er-api.com/v6/latest/KRW",
-  "apiNote": "open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) — 하루 1회 갱신",
+  "apiNote": "open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) → 실패 시 cdn.jsdelivr.net/@fawazahmed0/currency-api — 하루 1회 갱신",
   "fallbackUpdatedKst": "2026-11-19 09:02",
   "fallbackSource": "2026-11-18 00:02 UTC 고시값 (1 KRW 기준 역산)",
   "currencies": [
