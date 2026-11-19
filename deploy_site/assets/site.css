@@ -3037,8 +3037,8 @@
    ========================================================================== */
 .stays-hero{background:linear-gradient(180deg,#F2F6FA,#F7F9FB)}
 .stays-hero .wrap{padding-bottom:26px}
-.sf{position:sticky;top:calc(var(--head-h) + 4px);z-index:26;background:rgba(255,255,255,.97);
-  backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:16px;padding:10px 12px 9px;
+.sf{position:sticky;top:calc(var(--head-h) + 4px);z-index:26;background:#fff;
+  border:1px solid var(--line);border-radius:16px;padding:10px 12px 9px;
   box-shadow:0 8px 22px rgba(13,23,38,.06);margin:22px 0 0}
 .sf-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .sf-row + .sf-row{margin-top:6px;padding-top:6px;border-top:1px solid var(--line-2)}
