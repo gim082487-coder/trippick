@@ -1,810 +1,826 @@
 {
-  "source": {
-    "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
-    "aid": "11407530",
-    "sid": "336341874",
-    "site": "https://trippick.pages.dev",
-    "checked": "2026-11-18",
-    "method": "파트너스 어필리에이트 링크 생성기(한국어 링크 · Hotels page / Flights page)에서 도시·노선별로 발급. 입장권·공항픽업·렌터카 16종은 2026-11-18 Affiliate Link > Create links(Attractions & Tours / Custom link)로 별도 발급.",
-    "rate": "호텔 5%(예약 0~199건) → 6%(200~999) → 7%(1000+), 국제선 항공 0.5%(0~299) → 0.8%(300+), 투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%"
+ "source": {
+  "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
+  "aid": "11407530",
+  "sid": "336341874",
+  "site": "https://trippick.pages.dev",
+  "checked": "2026-11-19",
+  "method": "파트너스 어필리에이트 링크 생성기(한국어 링크 · Hotels page / Flights page)에서 도시·노선별로 발급. 입장권·공항픽업·렌터카 16종은 2026-11-18 Affiliate Link > Create links(Attractions & Tours / Custom link)로 별도 발급. v20: 후쿠오카·타이베이 항공권 링크 2건을 파트너스 링크 생성기('항공권 페이지'/맞춤 URL)로 새로 발급(trip_sub3 D21333748).",
+  "rate": "호텔 5%(예약 0~199건) → 6%(200~999) → 7%(1000+), 국제선 항공 0.5%(0~299) → 0.8%(300+), 투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%"
+ },
+ "hotels": [
+  {
+   "city": "오사카",
+   "flag": "jp",
+   "sub": "난바·우메다 · 오사카·교토 3박4일",
+   "note": "라피트 종점 난바 주변",
+   "url": "https://kr.trip.com/hotels/list?city=219&display=%EC%98%A4%EC%82%AC%EC%B9%B4&optionId=219&optionType=City&optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_osaka&trip_sub3=D21275837",
+   "cityId": "osaka",
+   "tags": [
+    "value",
+    "airport"
+   ]
   },
-  "hotels": [
-    {
-      "city": "오사카",
-      "flag": "jp",
-      "sub": "난바·우메다 · 오사카·교토 3박4일",
-      "note": "라피트 종점 난바 주변",
-      "url": "https://kr.trip.com/hotels/list?city=219&display=%EC%98%A4%EC%82%AC%EC%B9%B4&optionId=219&optionType=City&optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_osaka&trip_sub3=D21275837",
-      "cityId": "osaka",
-      "tags": [
-        "value",
-        "airport"
-      ]
-    },
-    {
-      "city": "교토",
-      "flag": "jp",
-      "sub": "가와라마치·교토역 · 후시미·청수사",
-      "note": "버스 동선의 중심",
-      "url": "https://kr.trip.com/hotels/list?city=734&display=%EA%B5%90%ED%86%A0&optionId=734&optionType=City&optionName=%EA%B5%90%ED%86%A0&Allianceid=11407530&SID=336341874&trip_sub1=hotel_kyoto&trip_sub3=D21275837",
-      "cityId": "kyoto",
-      "tags": [
-        "value"
-      ]
-    },
-    {
-      "city": "도쿄",
-      "flag": "jp",
-      "sub": "우에노·신주쿠 · 후지 day trip",
-      "note": "스카이라이너 종점 우에노",
-      "url": "https://kr.trip.com/hotels/list?city=228&display=%EB%8F%84%EC%BF%84&optionId=228&optionType=City&optionName=%EB%8F%84%EC%BF%84&Allianceid=11407530&SID=336341874&trip_sub1=hotel_tokyo&trip_sub3=D21275837",
-      "cityId": "tokyo",
-      "tags": [
-        "value",
-        "airport"
-      ]
-    },
-    {
-      "city": "후쿠오카",
-      "flag": "jp",
-      "sub": "하카타·텐진 · 유후인 1박",
-      "note": "공항에서 지하철 5분",
-      "url": "https://kr.trip.com/hotels/list?city=248&display=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&optionId=248&optionType=City&optionName=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_fukuoka&trip_sub3=D21275837",
-      "cityId": "fukuoka",
-      "tags": [
-        "value",
-        "airport"
-      ]
-    },
-    {
-      "city": "삿포로",
-      "flag": "jp",
-      "sub": "스스키노·삿포로역 · 비에이 당일",
-      "note": "2월 눈축제 시즌은 조기 마감",
-      "url": "https://kr.trip.com/hotels/list?city=641&display=%EC%82%BF%ED%8F%AC%EB%A1%9C&optionId=641&optionType=City&optionName=%EC%82%BF%ED%8F%AC%EB%A1%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_sapporo&trip_sub3=D21275837",
-      "cityId": "sapporo",
-      "tags": [
-        "value"
-      ]
-    },
-    {
-      "city": "다낭",
-      "flag": "vn",
-      "sub": "미케비치 · 호이안 30분",
-      "note": "5성급 3박이 기본인 도시",
-      "url": "https://kr.trip.com/hotels/list?city=1356&display=%EB%8B%A4%EB%82%AD&optionId=1356&optionType=City&optionName=%EB%8B%A4%EB%82%AD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_danang&trip_sub3=D21275837",
-      "cityId": "danang",
-      "tags": [
-        "family"
-      ]
-    },
-    {
-      "city": "나트랑",
-      "flag": "vn",
-      "sub": "쩐푸·나짱 비치 · 달랏 이동",
-      "note": "리조트형 숙소가 많은 해변 도시",
-      "url": "https://kr.trip.com/hotels/list?city=1777&display=%EB%82%98%ED%8A%B8%EB%9E%91&optionId=1777&optionType=City&optionName=%EB%82%98%ED%8A%B8%EB%9E%91&Allianceid=11407530&SID=336341874&trip_sub1=hotel_nhatrang&trip_sub3=D21275837",
-      "cityId": "nhatrang",
-      "tags": [
-        "family"
-      ]
-    },
-    {
-      "city": "방콕",
-      "flag": "th",
-      "sub": "수쿰빗·실롬 · 파타야 2시간",
-      "note": "공항철도·BTS 역세권",
-      "url": "https://kr.trip.com/hotels/list?city=359&display=%EB%B0%A9%EC%BD%95&optionId=359&optionType=City&optionName=%EB%B0%A9%EC%BD%95&Allianceid=11407530&SID=336341874&trip_sub1=hotel_bangkok&trip_sub3=D21275837",
-      "cityId": "bangkok",
-      "tags": [
-        "value",
-        "airport"
-      ]
-    },
-    {
-      "city": "치앙마이",
-      "flag": "th",
-      "sub": "올드시티·님만해민",
-      "note": "11~2월 건기가 성수기",
-      "url": "https://kr.trip.com/hotels/list?city=623&display=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&optionId=623&optionType=City&optionName=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_chiangmai&trip_sub3=D21275837",
-      "cityId": "chiangmai",
-      "tags": [
-        "value"
-      ]
-    },
-    {
-      "city": "타이베이",
-      "flag": "tw",
-      "sub": "시먼·타이베이역 · 지우펀 당일",
-      "note": "MRT 한 장으로 시내 이동",
-      "url": "https://kr.trip.com/hotels/list?city=617&display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&optionId=617&optionType=City&optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_taipei&trip_sub3=D21275837",
-      "cityId": "taipei",
-      "tags": [
-        "value"
-      ]
-    },
-    {
-      "city": "괌",
-      "flag": "gu",
-      "sub": "투몬베이 · 리조트형",
-      "note": "패키지에 숙소가 묶이는 지역",
-      "url": "https://kr.trip.com/hotels/list?city=753&display=%EA%B4%8C&optionId=753&optionType=City&optionName=%EA%B4%8C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_guam&trip_sub3=D21275837",
-      "cityId": "guam",
-      "tags": [
-        "family"
-      ]
-    },
-    {
-      "city": "호놀룰루",
-      "flag": "us",
-      "sub": "와이키키 · 하와이",
-      "note": "리조트피 별도 확인",
-      "url": "https://kr.trip.com/hotels/list?city=757&display=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&optionId=757&optionType=City&optionName=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&Allianceid=11407530&SID=336341874&trip_sub1=hotel_honolulu&trip_sub3=D21275837",
-      "cityId": "honolulu",
-      "tags": [
-        "family"
-      ]
-    },
-    {
-      "city": "제주",
-      "flag": "kr",
-      "sub": "제주시·공항 근처",
-      "note": "서귀포는 중문·색달 권역",
-      "url": "https://kr.trip.com/hotels/list?city=737&display=%EC%A0%9C%EC%A3%BC%EC%8B%9C&optionId=737&optionType=City&optionName=%EC%A0%9C%EC%A3%BC%EC%8B%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_jeju&trip_sub3=D21275837",
-      "cityId": "jeju",
-      "tags": [
-        "family",
-        "airport"
-      ]
-    },
-    {
-      "city": "부산",
-      "flag": "kr",
-      "sub": "해운대·광안리·서면",
-      "note": "요트투어는 광안리 탑승",
-      "url": "https://kr.trip.com/hotels/list?city=253&display=%EB%B6%80%EC%82%B0&optionId=253&optionType=City&optionName=%EB%B6%80%EC%82%B0&Allianceid=11407530&SID=336341874&trip_sub1=hotel_busan&trip_sub3=D21275837",
-      "cityId": "busan",
-      "tags": [
-        "value"
-      ]
-    },
-    {
-      "city": "평창",
-      "flag": "kr",
-      "sub": "알펜시아·용평 · 강원 스키",
-      "note": "리조트 안 숙소면 리프트 도보",
-      "url": "https://kr.trip.com/hotels/list?city=35792&display=%ED%8F%89%EC%B0%BD&optionId=35792&optionType=City&optionName=%ED%8F%89%EC%B0%BD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_pyeongchang&trip_sub3=D21275837",
-      "cityId": "pyeongchang",
-      "tags": [
-        "family"
-      ]
-    }
-  ],
-  "flights": [
-    {
-      "route": "서울 → 오사카",
-      "sub": "인천·김포 출발 · 간사이(KIX)",
-      "url": "https://kr.trip.com/flights/Seoul-to-Osaka/tickets-SEL-OSA?flighttype=S&dcity=SEL&acity=OSA&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_osa&trip_sub3=D21275837",
-      "tags": [
-        "flight"
-      ]
-    },
-    {
-      "route": "서울 → 도쿄",
-      "sub": "나리타·하네다",
-      "url": "https://kr.trip.com/flights/Seoul-to-Tokyo/tickets-SEL-TYO?flighttype=S&dcity=SEL&acity=TYO&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_tyo&trip_sub3=D21275837",
-      "tags": [
-        "flight"
-      ]
-    },
-    {
-      "route": "서울 → 다낭",
-      "sub": "다낭(DAD) 직항",
-      "url": "https://kr.trip.com/flights/Seoul-to-Da%20Nang/tickets-SEL-DAD?flighttype=S&dcity=SEL&acity=DAD&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_dad&trip_sub3=D21275837",
-      "tags": [
-        "flight"
-      ]
-    },
-    {
-      "route": "서울 → 방콕",
-      "sub": "수완나품·돈므앙",
-      "url": "https://kr.trip.com/flights/Seoul-to-Bangkok/tickets-SEL-BKK?flighttype=S&dcity=SEL&acity=BKK&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_bkk&trip_sub3=D21275837",
-      "tags": [
-        "flight"
-      ]
-    },
-    {
-      "route": "서울 → 삿포로",
-      "sub": "신치토세(CTS)",
-      "url": "https://kr.trip.com/flights/Seoul-to-Sapporo/tickets-SEL-SPK?flighttype=S&dcity=SEL&acity=SPK&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_cts&trip_sub3=D21275837",
-      "tags": [
-        "flight"
-      ]
-    },
-    {
-      "route": "서울 → 제주",
-      "sub": "김포(GMP) 출발 국내선",
-      "url": "https://kr.trip.com/flights/Seoul-to-Jeju%20City/tickets-SEL-CJU?flighttype=S&dcity=SEL&acity=CJU&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_cju&trip_sub3=D21275837",
-      "tags": [
-        "flight"
-      ]
-    }
-  ],
-  "disclosure": "이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 예약이 이루어지면 일정액의 수수료를 제공받습니다. 숙소·항공권 가격과 예약 조건은 트립닷컴에서 그대로 결제되며, 수수료 때문에 가격이 올라가지 않습니다.",
-  "filters": [
-    {
-      "id": "all",
-      "label": "전체"
-    },
-    {
-      "id": "value",
-      "label": "가성비 숙소"
-    },
-    {
-      "id": "family",
-      "label": "가족·리조트"
-    },
-    {
-      "id": "airport",
-      "label": "공항 이동 편한 곳"
-    },
-    {
-      "id": "flight",
-      "label": "항공권"
-    }
-  ],
-  "filterNote": "숙소 분류는 각 도시 카드에 적힌 위치·용도 설명을 기준으로 나눴습니다. 같은 도시가 두 분류에 들어가기도 합니다(예: 제주 = 가족·리조트 + 공항 이동).",
-  "tickets": [
-    {
-      "id": "ticket_osaka",
-      "city": "오사카",
-      "cityId": "osaka",
-      "country": "일본",
-      "flag": "jp",
-      "category": "ticket",
-      "label": "입장권·액티비티",
-      "title": "오사카 입장권·액티비티",
-      "highlight": "USJ·도톤보리 크루즈·가이유칸 등",
-      "summary": "USJ, 도톤보리 리버 크루즈, 오사카성, 가이유칸, 우메다 스카이빌딩, 아베노 하루카스 전망대 등 오사카 입장권·투어 목록. 페이지 제목 '오사카 최저가 예약 | 트립닷컴'.",
-      "url": "https://kr.trip.com/things-to-do/list?searchkey=219&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_osaka&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "ticket_tokyo",
-      "city": "도쿄",
-      "cityId": "tokyo",
-      "country": "일본",
-      "flag": "jp",
-      "category": "ticket",
-      "label": "입장권·액티비티",
-      "title": "도쿄 입장권·액티비티",
-      "highlight": "도쿄 디즈니씨·디즈니랜드·시부야 스카이",
-      "summary": "도쿄 디즈니씨/디즈니랜드, 시부야 스카이, 해리포터 스튜디오 투어 도쿄, 도쿄 스카이트리 등. 페이지 제목 '도쿄 최저가 예약 | 트립닷컴'.",
-      "url": "https://kr.trip.com/things-to-do/list?searchkey=228&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_tokyo&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "ticket_fukuoka",
-      "city": "후쿠오카",
-      "cityId": "fukuoka",
-      "country": "일본",
-      "flag": "jp",
-      "category": "ticket",
-      "label": "입장권·액티비티",
-      "title": "후쿠오카 입장권·액티비티",
-      "highlight": "마린월드 우미노나카미치·후쿠오카 타워",
-      "summary": "마린월드 우미노나카미치, 후쿠오카 타워 등 후쿠오카 입장권·투어 목록. 페이지 제목 '후쿠오카 최저가 예약 | 트립닷컴'.",
-      "url": "https://kr.trip.com/things-to-do/list?searchkey=248&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_fukuoka&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "ticket_danang",
-      "city": "다낭",
-      "cityId": "danang",
-      "country": "베트남",
-      "flag": "vn",
-      "category": "ticket",
-      "label": "입장권·액티비티",
-      "title": "다낭 입장권·액티비티",
-      "highlight": "바나힐스 선월드·호이안 메모리즈",
-      "summary": "바나힐스 선월드(바나 힐), 호이안 메모리즈 쇼, 빈원더스 남호이안, 바구니배 체험 등. 페이지 제목 '다낭 최저가 예약 | 트립닷컴'.",
-      "url": "https://kr.trip.com/things-to-do/list?searchkey=1356&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_danang&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "ticket_bangkok",
-      "city": "방콕",
-      "cityId": "bangkok",
-      "country": "태국",
-      "flag": "th",
-      "category": "ticket",
-      "label": "입장권·액티비티",
-      "title": "방콕 입장권·액티비티",
-      "highlight": "짜오프라야 디너 크루즈·사파리 월드",
-      "summary": "로열 프린세스 크루즈(짜오프라야 디너 크루즈), 방콕 왕궁, 사파리 월드 방콕, 라차담넘 무에타이, 마하나콘 스카이워크 등. 페이지 제목 '방콕 최저가 예약 | 트립닷컴'.",
-      "url": "https://kr.trip.com/things-to-do/list?searchkey=359&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_bangkok&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "ticket_taipei",
-      "city": "타이베이",
-      "cityId": "taipei",
-      "country": "대만",
-      "flag": "tw",
-      "category": "ticket",
-      "label": "입장권·액티비티",
-      "title": "타이베이 입장권·액티비티",
-      "highlight": "101 전망대·고궁박물원·예류",
-      "summary": "타이베이 101 전망대, 국립고궁박물원, 스폭지 1일 투어, 예류 지질공원 등. 페이지 제목 '타이베이 최저가 예약 | 트립닷컴'.",
-      "url": "https://kr.trip.com/things-to-do/list?searchkey=617&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_taipei&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "ticket_jeju",
-      "city": "제주",
-      "cityId": "jeju",
-      "country": "대한민국",
-      "flag": "kr",
-      "category": "ticket",
-      "label": "입장권·액티비티",
-      "title": "제주 입장권·액티비티",
-      "highlight": "아쿠아플라넷 제주·에코랜드·스누피가든",
-      "summary": "아쿠아플라넷 제주, 에코랜드, 스누피가든, 제주난타 등 국내 제주 입장권·투어 목록. 페이지 제목 '제주시 최저가 예약 | 트립닷컴'.",
-      "url": "https://kr.trip.com/things-to-do/list?searchkey=737&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_jeju&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    }
-  ],
-  "transfers": [
-    {
-      "id": "transfer_kix",
-      "city": "오사카",
-      "cityId": "osaka",
-      "country": "일본",
-      "flag": "jp",
-      "category": "transfer",
-      "label": "공항픽업",
-      "title": "간사이공항(KIX) 공항픽업",
-      "highlight": "난바·도톤보리·우메다 · 차종별 예약",
-      "summary": "난바·도톤보리·우메다·신사이바시 등 시내 목적지별 할인 요금과 차종별 예약(전기차 67.83 USD, 스탠다드 75.37 USD — 이 브라우저 통화 표시). 픽업 위치: 제1터미널 국제선 입국장, 10단계 사진 가이드.",
-      "url": "https://kr.trip.com/airport-transfers/airport-kix/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_kix&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "transfer_nrt",
-      "city": "도쿄",
-      "cityId": "tokyo",
-      "country": "일본",
-      "flag": "jp",
-      "category": "transfer",
-      "label": "공항픽업",
-      "title": "나리타공항(NRT) 공항픽업",
-      "highlight": "신주쿠·시부야·긴자 · 6·9인승까지",
-      "summary": "신주쿠·시부야·긴자·우에노/아사쿠사 등 목적지별 요금, 스탠다드(94.51 USD)·비즈니스 6인승·미니버스 9인승까지. T2 도착 A/B 1층 픽업 장소 12단계 안내.",
-      "url": "https://kr.trip.com/airport-transfers/airport-nrt/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_nrt&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "transfer_hnd",
-      "city": "도쿄",
-      "cityId": "tokyo",
-      "country": "일본",
-      "flag": "jp",
-      "category": "transfer",
-      "label": "공항픽업",
-      "title": "하네다공항(HND) 공항픽업",
-      "highlight": "하네다 도착 전용 · 택시 82,005원~",
-      "summary": "하네다 도착 전용 픽업·샌딩. 택시 82,005원~, 스탠다드 차량 시간제한 없는 무료 대기 포함.",
-      "url": "https://kr.trip.com/airport-transfers/airport-hnd/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_hnd&trip_sub3=D21286001",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "transfer_fuk",
-      "city": "후쿠오카",
-      "cityId": "fukuoka",
-      "country": "일본",
-      "flag": "jp",
-      "category": "transfer",
-      "label": "공항픽업",
-      "title": "후쿠오카공항(FUK) 공항픽업",
-      "highlight": "하카타·텐진 · 4인승 49,946원~",
-      "summary": "택시 4인승 49,946원~, 미니 차량 3인승 123,444원, 택시 6인승(담당기사 정장·Green license). 공항-하카타·텐진 구간.",
-      "url": "https://kr.trip.com/airport-transfers/airport-fuk/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_fuk&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "transfer_dad",
-      "city": "다낭",
-      "cityId": "danang",
-      "country": "베트남",
-      "flag": "vn",
-      "category": "transfer",
-      "label": "공항픽업",
-      "title": "다낭공항(DAD) 공항픽업",
-      "highlight": "미케비치 6,700원~ · 호이안 14,438원~",
-      "summary": "미케비치 6,700원~, 다낭 대성당 6,648원~, 호이안 올드타운 14,438원~. 공항픽업 최저가 라인업 중 가장 저렴한 도시.",
-      "url": "https://kr.trip.com/airport-transfers/airport-dad/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_dad&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "transfer_bkk",
-      "city": "방콕",
-      "cityId": "bangkok",
-      "country": "태국",
-      "flag": "th",
-      "category": "transfer",
-      "label": "공항픽업",
-      "title": "수완나품공항(BKK) 공항픽업",
-      "highlight": "시암·카오산·아속 20,455원~",
-      "summary": "시암·수쿰빗·카오산·아속역 20,455원~, 짜오프라야 강 25,669원~. 스탠다드 20,378원~, 컴포트 플러스, 콤팩트 6인승.",
-      "url": "https://kr.trip.com/airport-transfers/airport-bkk/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_bkk&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "transfer_tpe",
-      "city": "타이베이",
-      "cityId": "taipei",
-      "country": "대만",
-      "flag": "tw",
-      "category": "transfer",
-      "label": "공항픽업",
-      "title": "타오위안공항(TPE) 공항픽업",
-      "highlight": "시먼딩·타이베이역 50,397원~",
-      "summary": "시먼딩·타이베이 기차역 50,397원~. 타오위안 공항-타이베이 시내 구간 픽업·샌딩.",
-      "url": "https://kr.trip.com/airport-transfers/airport-tpe/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_tpe&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "transfer_cju",
-      "city": "제주",
-      "cityId": "jeju",
-      "country": "대한민국",
-      "flag": "kr",
-      "category": "transfer",
-      "label": "공항픽업",
-      "title": "제주공항(CJU) 공항픽업",
-      "highlight": "택시 3인승 31,500원~",
-      "summary": "택시 3인승 31,500원~. 제주공항-제주시내·서귀포 구간 국내 공항픽업.",
-      "url": "https://kr.trip.com/airport-transfers/airport-cju/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cju&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    }
-  ],
-  "cars": [
-    {
-      "id": "car_jeju",
-      "city": "제주",
-      "cityId": "jeju",
-      "country": "대한민국",
-      "flag": "kr",
-      "category": "car",
-      "label": "렌터카",
-      "title": "제주공항(CJU) 렌터카",
-      "highlight": "모닝 27,482원~ · 셀토스 32,240원~",
-      "summary": "제주공항 인수 렌터카 8개 업체. 기아 모닝 27,482원~, 셀토스 32,240원~, 아반떼 51,523원~ (1일, 최근 1시간 기준). 셔틀 10~15분 간격.",
-      "url": "https://kr.trip.com/carhire/to-south-korea-42/jeju-737/jeju-international-airport-cju/?Allianceid=11407530&SID=336341874&trip_sub1=car_jeju&trip_sub3=D21285812",
-      "status": "verified_200_ko"
-    }
-  ],
-  "activitySource": {
-    "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
-    "aid": "11407530",
-    "sid": "336341874",
-    "issued": "2026-11-18 14:30~14:36 KST · 파트너스 대시보드 Affiliate Link > Create links (한국어 / Customized)",
-    "groups": "D21285812 (입장권 7·픽업 7·렌터카 1) · D21286001 (하네다 픽업 1)",
-    "verified": "2026-11-18 14:40~14:45 브라우저에서 HTTP 200 + 한국어 페이지 + 도시·공항명 일치 확인, 같은 날 15:0x curl 재확인(HTTP 200)",
-    "rate": "투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%",
-    "esim_note": "2026-11-18 18:4x KST 파트너스 Custom link로 eSIM 5건·공항철도 2건 추가 발급(D21303312). 7건 전부 HTTP 200 + 한국어 + Allianceid/SID 유지 확인."
+  {
+   "city": "교토",
+   "flag": "jp",
+   "sub": "가와라마치·교토역 · 후시미·청수사",
+   "note": "버스 동선의 중심",
+   "url": "https://kr.trip.com/hotels/list?city=734&display=%EA%B5%90%ED%86%A0&optionId=734&optionType=City&optionName=%EA%B5%90%ED%86%A0&Allianceid=11407530&SID=336341874&trip_sub1=hotel_kyoto&trip_sub3=D21275837",
+   "cityId": "kyoto",
+   "tags": [
+    "value"
+   ]
   },
-  "esims": [
-    {
-      "id": "esim_osaka",
-      "city": "오사카",
-      "cityId": "osaka",
-      "country": "일본",
-      "flag": "jp",
-      "category": "esim",
-      "label": "eSIM·유심",
-      "title": "오사카 유심·eSIM",
-      "highlight": "일본 eSIM 31개 상품 · 1일 2GB/3GB부터",
-      "summary": "오사카 도착 전 설치하는 일본 eSIM·유심 31개 상품. 1일 2GB·3GB 요금제와 3~30일 총량형이 함께 팔리고, 도착 후 QR 설치·무료 취소 조건이 상품마다 다릅니다.",
-      "url": "https://kr.trip.com/things-to-do/experiences/osaka-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_osaka&trip_sub3=D21303312",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "esim_tokyo",
-      "city": "도쿄",
-      "cityId": "tokyo",
-      "country": "일본",
-      "flag": "jp",
-      "category": "esim",
-      "label": "eSIM·유심",
-      "title": "도쿄 유심·eSIM",
-      "highlight": "일본 eSIM 31개 상품 · SoftBank·docomo",
-      "summary": "도쿄·나리타 도착 전에 설치하는 일본 eSIM·유심. SoftBank·docomo·KDDI 요금제가 같이 올라 있고, 500MB/일 저가형과 무제한형의 하루 단가 차이를 비교할 수 있습니다.",
-      "url": "https://kr.trip.com/things-to-do/experiences/tokyo-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_tokyo&trip_sub3=D21303312",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "esim_danang",
-      "city": "다낭",
-      "cityId": "danang",
-      "country": "베트남",
-      "flag": "vn",
-      "category": "esim",
-      "label": "eSIM·유심",
-      "title": "다낭 유심·eSIM",
-      "highlight": "베트남 eSIM · 1일 500MB부터",
-      "summary": "다낭 도착 즉시 쓰는 베트남 eSIM·유심. 1일 500MB 요금제가 200원대부터 있고, 3일 무제한형과 로밍을 같은 기준으로 비교할 수 있습니다.",
-      "url": "https://kr.trip.com/things-to-do/experiences/danang-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_danang&trip_sub3=D21303312",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "esim_bangkok",
-      "city": "방콕",
-      "cityId": "bangkok",
-      "country": "태국",
-      "flag": "th",
-      "category": "esim",
-      "label": "eSIM·유심",
-      "title": "방콕 유심·eSIM",
-      "highlight": "태국 eSIM · AIS·True 이동통신",
-      "summary": "방콕·수완나품 도착 전에 설치하는 태국 eSIM·유심. 공항 카운터 수령형과 QR 설치형이 함께 있고, 7일 총량형이 대표 상품입니다.",
-      "url": "https://kr.trip.com/things-to-do/experiences/bangkok-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_bangkok&trip_sub3=D21303312",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "esim_taipei",
-      "city": "타이베이",
-      "cityId": "taipei",
-      "country": "대만",
-      "flag": "tw",
-      "category": "esim",
-      "label": "eSIM·유심",
-      "title": "타이베이 유심·eSIM",
-      "highlight": "대만 eSIM · 공항 수령·QR 설치",
-      "summary": "타이베이·타오위안 공항 도착 후 쓰는 대만 eSIM·유심. 공항 카운터 수령형과 QR 설치형을 나란히 비교할 수 있습니다.",
-      "url": "https://kr.trip.com/things-to-do/experiences/taipei-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_taipei&trip_sub3=D21303312",
-      "status": "verified_200_ko"
-    }
-  ],
-  "rails": [
-    {
-      "id": "rail_skyliner",
-      "city": "도쿄",
-      "cityId": "tokyo",
-      "country": "일본",
-      "flag": "jp",
-      "category": "rail",
-      "label": "공항철도",
-      "title": "나리타공항 → 우에노 스카이라이너",
-      "highlight": "41분 · 전 좌석 지정석 · 4.9/5",
-      "summary": "게이세이 스카이라이너 공식 티켓. 나리타 제1·2터미널에서 우에노·닛포리까지 41분, 전 좌석 지정석이고 도쿄 지하철 24/48/72시간권과 묶은 패키지도 있습니다. 전자 바우처를 역 발매기에서 교환합니다.",
-      "url": "https://kr.trip.com/things-to-do/detail/47313759/?Allianceid=11407530&SID=336341874&trip_sub1=rail_skyliner&trip_sub3=D21303312",
-      "status": "verified_200_ko"
-    },
-    {
-      "id": "rail_osaka",
-      "city": "오사카",
-      "cityId": "osaka",
-      "country": "일본",
-      "flag": "jp",
-      "category": "rail",
-      "label": "공항철도·패스",
-      "title": "오사카 기차표 — 난카이 라피트",
-      "highlight": "간사이공항→난바 34분 · 4.8/5 · 1.68만 예약",
-      "summary": "간사이공항에서 난바로 바로 들어가는 난카이 특급 라피트(34분)를 포함한 오사카 기차표 22종. 간사이 레일패스·JR 패스까지 같은 화면에서 비교됩니다.",
-      "url": "https://kr.trip.com/things-to-do/experiences/osaka-jiaotong/?Allianceid=11407530&SID=336341874&trip_sub1=rail_osaka&trip_sub3=D21303312",
-      "status": "verified_200_ko"
-    }
-  ],
-  "resorts": [
-    {
-      "city": "나트랑",
-      "cityId": "nhatrang",
-      "country": "베트남",
-      "flag": "vn",
-      "airport": "CXR 깜라인",
-      "ticket": {
-        "id": "ticket_nhatrang",
-        "label": "입장권·액티비티",
-        "title": "나트랑 입장권·액티비티",
-        "highlight": "판랑 사막투어·바이짜이섬 스노클링·혼땀 머드스파",
-        "summary": "판랑 사막 감성 투어(전용차량·지프·양목장), 바이짜이섬 1일투어(한국어 가이드·혼땀 머드스파), 프라이빗 스노클링+진흙목욕 등. 브라우저 실측 1위 상품 평점 4.8·예약 68명.",
-        "url": "https://kr.trip.com/things-to-do/experiences/nhatrang/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_nhatrang&trip_sub3=D21285812",
-        "status": "verified_200_ko_browser"
-      },
-      "transfer": {
-        "id": "transfer_cxr",
-        "label": "공항픽업",
-        "title": "깜라인공항(CXR) 공항픽업",
-        "highlight": "나트랑 시내·캄란 · 차종별 예약",
-        "summary": "나트랑 관문인 깜라인 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 깜라인 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
-        "url": "https://kr.trip.com/airport-transfers/airport-cxr/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cxr&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      }
-    },
-    {
-      "city": "푸꾸옥",
-      "cityId": "phuquoc",
-      "country": "베트남",
-      "flag": "vn",
-      "airport": "PQC 푸꾸옥",
-      "ticket": {
-        "id": "ticket_phuquoc",
-        "label": "입장권·액티비티",
-        "title": "푸꾸옥 입장권·액티비티",
-        "highlight": "빈원더스·혼똔 케이블카·사파리·빈펄",
-        "summary": "푸꾸옥 섬 인기 체험 목록. 빈원더스 테마파크·빈펄 사파리·혼똔섬 케이블카·4개 섬 호핑투어가 한 화면에 있습니다. 페이지 제목 '푸꾸옥 섬 여행 인기 관광지, 투어, 체험 등 추천 및 예약'.",
-        "url": "https://kr.trip.com/things-to-do/experiences/phuquocisland/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_phuquoc&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      },
-      "transfer": {
-        "id": "transfer_pqc",
-        "label": "공항픽업",
-        "title": "푸꾸옥공항(PQC) 공항픽업",
-        "highlight": "즈엉동·무엉탄 · 차종별 예약",
-        "summary": "푸꾸옥 국제공항에서 즈엉동 시내·무엉탄 리조트 지역까지. 페이지 제목 '믿을 수 있는 푸꾸옥 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
-        "url": "https://kr.trip.com/airport-transfers/airport-pqc/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_pqc&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      }
-    },
-    {
-      "city": "싱가포르",
-      "cityId": "singapore",
-      "country": "싱가포르",
-      "flag": "sg",
-      "airport": "SIN 창이",
-      "ticket": {
-        "id": "ticket_singapore",
-        "label": "입장권·액티비티",
-        "title": "싱가포르 입장권·액티비티",
-        "highlight": "센토사·유니버설 스튜디오·윙스 오브 타임",
-        "summary": "센토사섬+유니버설 스튜디오+윙스 오브 타임+케이블카 당일 코스, 슈퍼트리·멀라이언 야경 코스, 바탐 페리 투어 등. 페이지 제목 '2026 싱가포르 인기 체험 - Trip.com'.",
-        "url": "https://kr.trip.com/things-to-do/experiences/singapore/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_singapore&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      },
-      "transfer": {
-        "id": "transfer_sin",
-        "label": "공항픽업",
-        "title": "창이공항(SIN) 공항픽업",
-        "highlight": "오차드·마리나베이 · 차종별 예약",
-        "summary": "창이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 싱가포르 창이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
-        "url": "https://kr.trip.com/airport-transfers/airport-sin/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_sin&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      }
-    },
-    {
-      "city": "홍콩",
-      "cityId": "hongkong",
-      "country": "홍콩",
-      "flag": "hk",
-      "airport": "HKG 홍콩",
-      "ticket": {
-        "id": "ticket_hongkong",
-        "label": "입장권·액티비티",
-        "title": "홍콩 입장권·액티비티",
-        "highlight": "피크트램·빅토리아 하버 야경·360 케이블카",
-        "summary": "피크 트램 익스프레스+빅토리아 하버 야경 투어, 중환 타이퀀·대관람차 코스, 랭타우 360 케이블카·빅부다, 딤섬 디너 크루즈 등. 페이지 제목 '2026 홍콩 인기 체험 - Trip.com'.",
-        "url": "https://kr.trip.com/things-to-do/experiences/hongkong/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_hongkong&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      },
-      "transfer": {
-        "id": "transfer_hkg",
-        "label": "공항픽업",
-        "title": "홍콩공항(HKG) 공항픽업",
-        "highlight": "침사추이·센트럴·홍콩섬 · 차종별 예약",
-        "summary": "홍콩 국제공항 픽업·샌딩. 공항철도(AEL) 대신 짐이 많을 때 쓰는 차량 이동. 페이지 제목 '믿을 수 있는 홍콩 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
-        "url": "https://kr.trip.com/airport-transfers/airport-hkg/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_hkg&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      }
-    },
-    {
-      "city": "발리",
-      "cityId": "bali",
-      "country": "인도네시아",
-      "flag": "id",
-      "airport": "DPS 응우라라이",
-      "ticket": {
-        "id": "ticket_bali",
-        "label": "입장권·액티비티",
-        "title": "발리 입장권·액티비티",
-        "highlight": "우붓 원숭이숲·바투르 산·남부 비치 데이투어",
-        "summary": "발리 남부 비치 데이투어(한국어 기사·8시간), 프라이빗 차량 12시간, 우붓 원숭이숲·계단식 논·폭포 올인클루시브, 바투르 산·자연온천 코스 등. 페이지 제목 '2026 발리 인기 체험 - Trip.com'.",
-        "url": "https://kr.trip.com/things-to-do/experiences/bali/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_bali&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      },
-      "transfer": {
-        "id": "transfer_dps",
-        "label": "공항픽업",
-        "title": "응우라라이공항(DPS) 공항픽업",
-        "highlight": "스미냑·우붓·누사두아 · 차종별 예약",
-        "summary": "발리 응우라라이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 응우라라이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
-        "url": "https://kr.trip.com/airport-transfers/airport-dps/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_dps&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      }
-    },
-    {
-      "city": "세부",
-      "cityId": "cebu",
-      "country": "필리핀",
-      "flag": "ph",
-      "airport": "CEB 막탄-세부",
-      "ticket": {
-        "id": "ticket_cebu",
-        "label": "입장권·액티비티",
-        "title": "세부 입장권·액티비티",
-        "highlight": "오슬롭 고래상어·모알보알 정어리떼·서밀론 섬",
-        "summary": "세부 출발 오슬롭 고래상어 관찰+모알보알 정어리떼 스노클링 당일치기, 서밀론 섬 입장권(왕복 선박 포함) 등. 페이지 제목 '2026년 세부의 상위 10개 - 지금 Trip.com에서 예약하세요'.",
-        "url": "https://kr.trip.com/things-to-do/experiences/cebu/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_cebu&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      },
-      "transfer": {
-        "id": "transfer_ceb",
-        "label": "공항픽업",
-        "title": "막탄-세부공항(CEB) 공항픽업",
-        "highlight": "막탄·세부 시내 · 차종별 예약",
-        "summary": "막탄 세부 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 막탄 세부 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
-        "url": "https://kr.trip.com/airport-transfers/airport-ceb/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_ceb&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      }
-    },
-    {
-      "city": "코타키나발루",
-      "cityId": "kotakinabalu",
-      "country": "말레이시아",
-      "flag": "my",
-      "airport": "BKI 코타키나발루",
-      "ticket": {
-        "id": "ticket_kotakinabalu",
-        "label": "입장권·액티비티",
-        "title": "코타키나발루 입장권·액티비티",
-        "highlight": "사피·마누칸 섬·카와카와 리버크루즈·키나발루 산",
-        "summary": "사피섬+마누칸섬 스노클링 투어(해산물 바베큐 점심), 카와카와 리버크루즈(반딧불이·코끼리코원숭이), 키나발루 산 낙농장+ATV, 로열만 스카이미러 맹그로브 등. 페이지 제목 '2026 코타키나발루 인기 체험 - Trip.com'.",
-        "url": "https://kr.trip.com/things-to-do/experiences/kotakinabalu/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_kotakinabalu&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      },
-      "transfer": {
-        "id": "transfer_bki",
-        "label": "공항픽업",
-        "title": "코타키나발루공항(BKI) 공항픽업",
-        "highlight": "KK 시내·탄중아루 · 차종별 예약",
-        "summary": "코타키나발루 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 코타키나발루 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
-        "url": "https://kr.trip.com/airport-transfers/airport-bki/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_bki&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      }
-    },
-    {
-      "city": "치앙마이",
-      "cityId": "chiangmai",
-      "country": "태국",
-      "flag": "th",
-      "airport": "CNX 치앙마이",
-      "ticket": {
-        "id": "ticket_chiangmai",
-        "label": "입장권·액티비티",
-        "title": "치앙마이 입장권·액티비티",
-        "highlight": "도이수텝 야간투어·코끼리 에코파크·스티키 폭포",
-        "summary": "도이수텝·왓우몽 야간 투어, 코끼리 에코파크 반일 투어(먹이주기·물놀이·픽업), 도이인타논 국립공원 트레킹, 스티키 폭포 반나절 투어 등. 페이지 제목 '2026 치앙마이 인기 체험 - Trip.com'.",
-        "url": "https://kr.trip.com/things-to-do/experiences/chiangmai/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_chiangmai&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      },
-      "transfer": {
-        "id": "transfer_cnx",
-        "label": "공항픽업",
-        "title": "치앙마이공항(CNX) 공항픽업",
-        "highlight": "올드시티·님만해민 · 차종별 예약",
-        "summary": "치앙마이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 치앙마이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
-        "url": "https://kr.trip.com/airport-transfers/airport-cnx/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cnx&trip_sub3=D21285812",
-        "status": "verified_200_ko"
-      }
-    }
-  ],
-  "resortSource": {
-    "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
-    "aid": "11407530",
-    "sid": "336341874",
-    "issued": "2026-11-19 13:2x~14:2x KST · 기존 그룹 D21285812 에 trip_sub1 만 새로 붙여 도시·공항 URL 구성",
-    "verified": "입장권 8 + 공항픽업 8 = 16건 모두 HTTP 200, <title> 한국어 + 도시·공항명 일치, 최종 URL 에 Allianceid=11407530&SID=336341874 유지 (2026-11-19 13:2x·14:2x, 이번 빌드에서 재확인)",
-    "rate": "투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업 5%",
-    "note": "나트랑 입장권은 원격 브라우저에서 상품 카드·평점 4.8·예약 68명까지 렌더 확인. 표시 통화는 방문자 설정에 따라 달라진다."
+  {
+   "city": "도쿄",
+   "flag": "jp",
+   "sub": "우에노·신주쿠 · 후지 day trip",
+   "note": "스카이라이너 종점 우에노",
+   "url": "https://kr.trip.com/hotels/list?city=228&display=%EB%8F%84%EC%BF%84&optionId=228&optionType=City&optionName=%EB%8F%84%EC%BF%84&Allianceid=11407530&SID=336341874&trip_sub1=hotel_tokyo&trip_sub3=D21275837",
+   "cityId": "tokyo",
+   "tags": [
+    "value",
+    "airport"
+   ]
+  },
+  {
+   "city": "후쿠오카",
+   "flag": "jp",
+   "sub": "하카타·텐진 · 유후인 1박",
+   "note": "공항에서 지하철 5분",
+   "url": "https://kr.trip.com/hotels/list?city=248&display=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&optionId=248&optionType=City&optionName=%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_fukuoka&trip_sub3=D21275837",
+   "cityId": "fukuoka",
+   "tags": [
+    "value",
+    "airport"
+   ]
+  },
+  {
+   "city": "삿포로",
+   "flag": "jp",
+   "sub": "스스키노·삿포로역 · 비에이 당일",
+   "note": "2월 눈축제 시즌은 조기 마감",
+   "url": "https://kr.trip.com/hotels/list?city=641&display=%EC%82%BF%ED%8F%AC%EB%A1%9C&optionId=641&optionType=City&optionName=%EC%82%BF%ED%8F%AC%EB%A1%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_sapporo&trip_sub3=D21275837",
+   "cityId": "sapporo",
+   "tags": [
+    "value"
+   ]
+  },
+  {
+   "city": "다낭",
+   "flag": "vn",
+   "sub": "미케비치 · 호이안 30분",
+   "note": "5성급 3박이 기본인 도시",
+   "url": "https://kr.trip.com/hotels/list?city=1356&display=%EB%8B%A4%EB%82%AD&optionId=1356&optionType=City&optionName=%EB%8B%A4%EB%82%AD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_danang&trip_sub3=D21275837",
+   "cityId": "danang",
+   "tags": [
+    "family"
+   ]
+  },
+  {
+   "city": "나트랑",
+   "flag": "vn",
+   "sub": "쩐푸·나짱 비치 · 달랏 이동",
+   "note": "리조트형 숙소가 많은 해변 도시",
+   "url": "https://kr.trip.com/hotels/list?city=1777&display=%EB%82%98%ED%8A%B8%EB%9E%91&optionId=1777&optionType=City&optionName=%EB%82%98%ED%8A%B8%EB%9E%91&Allianceid=11407530&SID=336341874&trip_sub1=hotel_nhatrang&trip_sub3=D21275837",
+   "cityId": "nhatrang",
+   "tags": [
+    "family"
+   ]
+  },
+  {
+   "city": "방콕",
+   "flag": "th",
+   "sub": "수쿰빗·실롬 · 파타야 2시간",
+   "note": "공항철도·BTS 역세권",
+   "url": "https://kr.trip.com/hotels/list?city=359&display=%EB%B0%A9%EC%BD%95&optionId=359&optionType=City&optionName=%EB%B0%A9%EC%BD%95&Allianceid=11407530&SID=336341874&trip_sub1=hotel_bangkok&trip_sub3=D21275837",
+   "cityId": "bangkok",
+   "tags": [
+    "value",
+    "airport"
+   ]
+  },
+  {
+   "city": "치앙마이",
+   "flag": "th",
+   "sub": "올드시티·님만해민",
+   "note": "11~2월 건기가 성수기",
+   "url": "https://kr.trip.com/hotels/list?city=623&display=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&optionId=623&optionType=City&optionName=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_chiangmai&trip_sub3=D21275837",
+   "cityId": "chiangmai",
+   "tags": [
+    "value"
+   ]
+  },
+  {
+   "city": "타이베이",
+   "flag": "tw",
+   "sub": "시먼·타이베이역 · 지우펀 당일",
+   "note": "MRT 한 장으로 시내 이동",
+   "url": "https://kr.trip.com/hotels/list?city=617&display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&optionId=617&optionType=City&optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_taipei&trip_sub3=D21275837",
+   "cityId": "taipei",
+   "tags": [
+    "value"
+   ]
+  },
+  {
+   "city": "괌",
+   "flag": "gu",
+   "sub": "투몬베이 · 리조트형",
+   "note": "패키지에 숙소가 묶이는 지역",
+   "url": "https://kr.trip.com/hotels/list?city=753&display=%EA%B4%8C&optionId=753&optionType=City&optionName=%EA%B4%8C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_guam&trip_sub3=D21275837",
+   "cityId": "guam",
+   "tags": [
+    "family"
+   ]
+  },
+  {
+   "city": "호놀룰루",
+   "flag": "us",
+   "sub": "와이키키 · 하와이",
+   "note": "리조트피 별도 확인",
+   "url": "https://kr.trip.com/hotels/list?city=757&display=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&optionId=757&optionType=City&optionName=%ED%98%B8%EB%86%80%EB%A3%B0%EB%A3%A8&Allianceid=11407530&SID=336341874&trip_sub1=hotel_honolulu&trip_sub3=D21275837",
+   "cityId": "honolulu",
+   "tags": [
+    "family"
+   ]
+  },
+  {
+   "city": "제주",
+   "flag": "kr",
+   "sub": "제주시·공항 근처",
+   "note": "서귀포는 중문·색달 권역",
+   "url": "https://kr.trip.com/hotels/list?city=737&display=%EC%A0%9C%EC%A3%BC%EC%8B%9C&optionId=737&optionType=City&optionName=%EC%A0%9C%EC%A3%BC%EC%8B%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_jeju&trip_sub3=D21275837",
+   "cityId": "jeju",
+   "tags": [
+    "family",
+    "airport"
+   ]
+  },
+  {
+   "city": "부산",
+   "flag": "kr",
+   "sub": "해운대·광안리·서면",
+   "note": "요트투어는 광안리 탑승",
+   "url": "https://kr.trip.com/hotels/list?city=253&display=%EB%B6%80%EC%82%B0&optionId=253&optionType=City&optionName=%EB%B6%80%EC%82%B0&Allianceid=11407530&SID=336341874&trip_sub1=hotel_busan&trip_sub3=D21275837",
+   "cityId": "busan",
+   "tags": [
+    "value"
+   ]
+  },
+  {
+   "city": "평창",
+   "flag": "kr",
+   "sub": "알펜시아·용평 · 강원 스키",
+   "note": "리조트 안 숙소면 리프트 도보",
+   "url": "https://kr.trip.com/hotels/list?city=35792&display=%ED%8F%89%EC%B0%BD&optionId=35792&optionType=City&optionName=%ED%8F%89%EC%B0%BD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_pyeongchang&trip_sub3=D21275837",
+   "cityId": "pyeongchang",
+   "tags": [
+    "family"
+   ]
   }
+ ],
+ "flights": [
+  {
+   "route": "서울 → 오사카",
+   "sub": "인천·김포 출발 · 간사이(KIX)",
+   "url": "https://kr.trip.com/flights/Seoul-to-Osaka/tickets-SEL-OSA?flighttype=S&dcity=SEL&acity=OSA&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_osa&trip_sub3=D21275837",
+   "tags": [
+    "flight"
+   ]
+  },
+  {
+   "route": "서울 → 도쿄",
+   "sub": "나리타·하네다",
+   "url": "https://kr.trip.com/flights/Seoul-to-Tokyo/tickets-SEL-TYO?flighttype=S&dcity=SEL&acity=TYO&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_tyo&trip_sub3=D21275837",
+   "tags": [
+    "flight"
+   ]
+  },
+  {
+   "route": "서울 → 후쿠오카",
+   "sub": "인천 출발 · 후쿠오카(FUK)",
+   "url": "https://kr.trip.com/flights/Seoul-to-Fukuoka/tickets-SEL-FUK?flighttype=S&dcity=SEL&acity=FUK&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_fuk&trip_sub3=D21333748",
+   "tags": [
+    "flight"
+   ]
+  },
+  {
+   "route": "서울 → 다낭",
+   "sub": "다낭(DAD) 직항",
+   "url": "https://kr.trip.com/flights/Seoul-to-Da%20Nang/tickets-SEL-DAD?flighttype=S&dcity=SEL&acity=DAD&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_dad&trip_sub3=D21275837",
+   "tags": [
+    "flight"
+   ]
+  },
+  {
+   "route": "서울 → 방콕",
+   "sub": "수완나품·돈므앙",
+   "url": "https://kr.trip.com/flights/Seoul-to-Bangkok/tickets-SEL-BKK?flighttype=S&dcity=SEL&acity=BKK&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_bkk&trip_sub3=D21275837",
+   "tags": [
+    "flight"
+   ]
+  },
+  {
+   "route": "서울 → 타이베이",
+   "sub": "타이완 타오위안(TPE)",
+   "url": "https://kr.trip.com/flights/Seoul-to-Taipei/tickets-SEL-TPE?flighttype=S&dcity=SEL&acity=TPE&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_tpe&trip_sub3=D21333748",
+   "tags": [
+    "flight"
+   ]
+  },
+  {
+   "route": "서울 → 삿포로",
+   "sub": "신치토세(CTS)",
+   "url": "https://kr.trip.com/flights/Seoul-to-Sapporo/tickets-SEL-SPK?flighttype=S&dcity=SEL&acity=SPK&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_cts&trip_sub3=D21275837",
+   "tags": [
+    "flight"
+   ]
+  },
+  {
+   "route": "서울 → 제주",
+   "sub": "김포(GMP) 출발 국내선",
+   "url": "https://kr.trip.com/flights/Seoul-to-Jeju%20City/tickets-SEL-CJU?flighttype=S&dcity=SEL&acity=CJU&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_cju&trip_sub3=D21275837",
+   "tags": [
+    "flight"
+   ]
+  }
+ ],
+ "disclosure": "이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 예약이 이루어지면 일정액의 수수료를 제공받습니다. 숙소·항공권 가격과 예약 조건은 트립닷컴에서 그대로 결제되며, 수수료 때문에 가격이 올라가지 않습니다.",
+ "filters": [
+  {
+   "id": "all",
+   "label": "전체"
+  },
+  {
+   "id": "value",
+   "label": "가성비 숙소"
+  },
+  {
+   "id": "family",
+   "label": "가족·리조트"
+  },
+  {
+   "id": "airport",
+   "label": "공항 이동 편한 곳"
+  },
+  {
+   "id": "flight",
+   "label": "항공권"
+  }
+ ],
+ "filterNote": "숙소 분류는 각 도시 카드에 적힌 위치·용도 설명을 기준으로 나눴습니다. 같은 도시가 두 분류에 들어가기도 합니다(예: 제주 = 가족·리조트 + 공항 이동).",
+ "tickets": [
+  {
+   "id": "ticket_osaka",
+   "city": "오사카",
+   "cityId": "osaka",
+   "country": "일본",
+   "flag": "jp",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "오사카 입장권·액티비티",
+   "highlight": "USJ·도톤보리 크루즈·가이유칸 등",
+   "summary": "USJ, 도톤보리 리버 크루즈, 오사카성, 가이유칸, 우메다 스카이빌딩, 아베노 하루카스 전망대 등 오사카 입장권·투어 목록. 페이지 제목 '오사카 최저가 예약 | 트립닷컴'.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=219&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_osaka&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "ticket_tokyo",
+   "city": "도쿄",
+   "cityId": "tokyo",
+   "country": "일본",
+   "flag": "jp",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "도쿄 입장권·액티비티",
+   "highlight": "도쿄 디즈니씨·디즈니랜드·시부야 스카이",
+   "summary": "도쿄 디즈니씨/디즈니랜드, 시부야 스카이, 해리포터 스튜디오 투어 도쿄, 도쿄 스카이트리 등. 페이지 제목 '도쿄 최저가 예약 | 트립닷컴'.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=228&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_tokyo&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "ticket_fukuoka",
+   "city": "후쿠오카",
+   "cityId": "fukuoka",
+   "country": "일본",
+   "flag": "jp",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "후쿠오카 입장권·액티비티",
+   "highlight": "마린월드 우미노나카미치·후쿠오카 타워",
+   "summary": "마린월드 우미노나카미치, 후쿠오카 타워 등 후쿠오카 입장권·투어 목록. 페이지 제목 '후쿠오카 최저가 예약 | 트립닷컴'.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=248&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_fukuoka&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "ticket_danang",
+   "city": "다낭",
+   "cityId": "danang",
+   "country": "베트남",
+   "flag": "vn",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "다낭 입장권·액티비티",
+   "highlight": "바나힐스 선월드·호이안 메모리즈",
+   "summary": "바나힐스 선월드(바나 힐), 호이안 메모리즈 쇼, 빈원더스 남호이안, 바구니배 체험 등. 페이지 제목 '다낭 최저가 예약 | 트립닷컴'.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=1356&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_danang&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "ticket_bangkok",
+   "city": "방콕",
+   "cityId": "bangkok",
+   "country": "태국",
+   "flag": "th",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "방콕 입장권·액티비티",
+   "highlight": "짜오프라야 디너 크루즈·사파리 월드",
+   "summary": "로열 프린세스 크루즈(짜오프라야 디너 크루즈), 방콕 왕궁, 사파리 월드 방콕, 라차담넘 무에타이, 마하나콘 스카이워크 등. 페이지 제목 '방콕 최저가 예약 | 트립닷컴'.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=359&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_bangkok&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "ticket_taipei",
+   "city": "타이베이",
+   "cityId": "taipei",
+   "country": "대만",
+   "flag": "tw",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "타이베이 입장권·액티비티",
+   "highlight": "101 전망대·고궁박물원·예류",
+   "summary": "타이베이 101 전망대, 국립고궁박물원, 스폭지 1일 투어, 예류 지질공원 등. 페이지 제목 '타이베이 최저가 예약 | 트립닷컴'.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=617&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_taipei&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "ticket_jeju",
+   "city": "제주",
+   "cityId": "jeju",
+   "country": "대한민국",
+   "flag": "kr",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "제주 입장권·액티비티",
+   "highlight": "아쿠아플라넷 제주·에코랜드·스누피가든",
+   "summary": "아쿠아플라넷 제주, 에코랜드, 스누피가든, 제주난타 등 국내 제주 입장권·투어 목록. 페이지 제목 '제주시 최저가 예약 | 트립닷컴'.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=737&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_jeju&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  }
+ ],
+ "transfers": [
+  {
+   "id": "transfer_kix",
+   "city": "오사카",
+   "cityId": "osaka",
+   "country": "일본",
+   "flag": "jp",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "간사이공항(KIX) 공항픽업",
+   "highlight": "난바·도톤보리·우메다 · 차종별 예약",
+   "summary": "난바·도톤보리·우메다·신사이바시 등 시내 목적지별 할인 요금과 차종별 예약(전기차 67.83 USD, 스탠다드 75.37 USD — 이 브라우저 통화 표시). 픽업 위치: 제1터미널 국제선 입국장, 10단계 사진 가이드.",
+   "url": "https://kr.trip.com/airport-transfers/airport-kix/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_kix&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_nrt",
+   "city": "도쿄",
+   "cityId": "tokyo",
+   "country": "일본",
+   "flag": "jp",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "나리타공항(NRT) 공항픽업",
+   "highlight": "신주쿠·시부야·긴자 · 6·9인승까지",
+   "summary": "신주쿠·시부야·긴자·우에노/아사쿠사 등 목적지별 요금, 스탠다드(94.51 USD)·비즈니스 6인승·미니버스 9인승까지. T2 도착 A/B 1층 픽업 장소 12단계 안내.",
+   "url": "https://kr.trip.com/airport-transfers/airport-nrt/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_nrt&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_hnd",
+   "city": "도쿄",
+   "cityId": "tokyo",
+   "country": "일본",
+   "flag": "jp",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "하네다공항(HND) 공항픽업",
+   "highlight": "하네다 도착 전용 · 택시 82,005원~",
+   "summary": "하네다 도착 전용 픽업·샌딩. 택시 82,005원~, 스탠다드 차량 시간제한 없는 무료 대기 포함.",
+   "url": "https://kr.trip.com/airport-transfers/airport-hnd/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_hnd&trip_sub3=D21286001",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_fuk",
+   "city": "후쿠오카",
+   "cityId": "fukuoka",
+   "country": "일본",
+   "flag": "jp",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "후쿠오카공항(FUK) 공항픽업",
+   "highlight": "하카타·텐진 · 4인승 49,946원~",
+   "summary": "택시 4인승 49,946원~, 미니 차량 3인승 123,444원, 택시 6인승(담당기사 정장·Green license). 공항-하카타·텐진 구간.",
+   "url": "https://kr.trip.com/airport-transfers/airport-fuk/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_fuk&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_dad",
+   "city": "다낭",
+   "cityId": "danang",
+   "country": "베트남",
+   "flag": "vn",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "다낭공항(DAD) 공항픽업",
+   "highlight": "미케비치 6,700원~ · 호이안 14,438원~",
+   "summary": "미케비치 6,700원~, 다낭 대성당 6,648원~, 호이안 올드타운 14,438원~. 공항픽업 최저가 라인업 중 가장 저렴한 도시.",
+   "url": "https://kr.trip.com/airport-transfers/airport-dad/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_dad&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_bkk",
+   "city": "방콕",
+   "cityId": "bangkok",
+   "country": "태국",
+   "flag": "th",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "수완나품공항(BKK) 공항픽업",
+   "highlight": "시암·카오산·아속 20,455원~",
+   "summary": "시암·수쿰빗·카오산·아속역 20,455원~, 짜오프라야 강 25,669원~. 스탠다드 20,378원~, 컴포트 플러스, 콤팩트 6인승.",
+   "url": "https://kr.trip.com/airport-transfers/airport-bkk/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_bkk&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_tpe",
+   "city": "타이베이",
+   "cityId": "taipei",
+   "country": "대만",
+   "flag": "tw",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "타오위안공항(TPE) 공항픽업",
+   "highlight": "시먼딩·타이베이역 50,397원~",
+   "summary": "시먼딩·타이베이 기차역 50,397원~. 타오위안 공항-타이베이 시내 구간 픽업·샌딩.",
+   "url": "https://kr.trip.com/airport-transfers/airport-tpe/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_tpe&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_cju",
+   "city": "제주",
+   "cityId": "jeju",
+   "country": "대한민국",
+   "flag": "kr",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "제주공항(CJU) 공항픽업",
+   "highlight": "택시 3인승 31,500원~",
+   "summary": "택시 3인승 31,500원~. 제주공항-제주시내·서귀포 구간 국내 공항픽업.",
+   "url": "https://kr.trip.com/airport-transfers/airport-cju/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cju&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  }
+ ],
+ "cars": [
+  {
+   "id": "car_jeju",
+   "city": "제주",
+   "cityId": "jeju",
+   "country": "대한민국",
+   "flag": "kr",
+   "category": "car",
+   "label": "렌터카",
+   "title": "제주공항(CJU) 렌터카",
+   "highlight": "모닝 27,482원~ · 셀토스 32,240원~",
+   "summary": "제주공항 인수 렌터카 8개 업체. 기아 모닝 27,482원~, 셀토스 32,240원~, 아반떼 51,523원~ (1일, 최근 1시간 기준). 셔틀 10~15분 간격.",
+   "url": "https://kr.trip.com/carhire/to-south-korea-42/jeju-737/jeju-international-airport-cju/?Allianceid=11407530&SID=336341874&trip_sub1=car_jeju&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  }
+ ],
+ "activitySource": {
+  "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
+  "aid": "11407530",
+  "sid": "336341874",
+  "issued": "2026-11-18 14:30~14:36 KST · 파트너스 대시보드 Affiliate Link > Create links (한국어 / Customized)",
+  "groups": "D21285812 (입장권 7·픽업 7·렌터카 1) · D21286001 (하네다 픽업 1)",
+  "verified": "2026-11-18 14:40~14:45 브라우저에서 HTTP 200 + 한국어 페이지 + 도시·공항명 일치 확인, 같은 날 15:0x curl 재확인(HTTP 200)",
+  "rate": "투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%",
+  "esim_note": "2026-11-18 18:4x KST 파트너스 Custom link로 eSIM 5건·공항철도 2건 추가 발급(D21303312). 7건 전부 HTTP 200 + 한국어 + Allianceid/SID 유지 확인."
+ },
+ "esims": [
+  {
+   "id": "esim_osaka",
+   "city": "오사카",
+   "cityId": "osaka",
+   "country": "일본",
+   "flag": "jp",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "오사카 유심·eSIM",
+   "highlight": "일본 eSIM 31개 상품 · 1일 2GB/3GB부터",
+   "summary": "오사카 도착 전 설치하는 일본 eSIM·유심 31개 상품. 1일 2GB·3GB 요금제와 3~30일 총량형이 함께 팔리고, 도착 후 QR 설치·무료 취소 조건이 상품마다 다릅니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/osaka-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_osaka&trip_sub3=D21303312",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "esim_tokyo",
+   "city": "도쿄",
+   "cityId": "tokyo",
+   "country": "일본",
+   "flag": "jp",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "도쿄 유심·eSIM",
+   "highlight": "일본 eSIM 31개 상품 · SoftBank·docomo",
+   "summary": "도쿄·나리타 도착 전에 설치하는 일본 eSIM·유심. SoftBank·docomo·KDDI 요금제가 같이 올라 있고, 500MB/일 저가형과 무제한형의 하루 단가 차이를 비교할 수 있습니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/tokyo-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_tokyo&trip_sub3=D21303312",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "esim_danang",
+   "city": "다낭",
+   "cityId": "danang",
+   "country": "베트남",
+   "flag": "vn",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "다낭 유심·eSIM",
+   "highlight": "베트남 eSIM · 1일 500MB부터",
+   "summary": "다낭 도착 즉시 쓰는 베트남 eSIM·유심. 1일 500MB 요금제가 200원대부터 있고, 3일 무제한형과 로밍을 같은 기준으로 비교할 수 있습니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/danang-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_danang&trip_sub3=D21303312",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "esim_bangkok",
+   "city": "방콕",
+   "cityId": "bangkok",
+   "country": "태국",
+   "flag": "th",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "방콕 유심·eSIM",
+   "highlight": "태국 eSIM · AIS·True 이동통신",
+   "summary": "방콕·수완나품 도착 전에 설치하는 태국 eSIM·유심. 공항 카운터 수령형과 QR 설치형이 함께 있고, 7일 총량형이 대표 상품입니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/bangkok-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_bangkok&trip_sub3=D21303312",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "esim_taipei",
+   "city": "타이베이",
+   "cityId": "taipei",
+   "country": "대만",
+   "flag": "tw",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "타이베이 유심·eSIM",
+   "highlight": "대만 eSIM · 공항 수령·QR 설치",
+   "summary": "타이베이·타오위안 공항 도착 후 쓰는 대만 eSIM·유심. 공항 카운터 수령형과 QR 설치형을 나란히 비교할 수 있습니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/taipei-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_taipei&trip_sub3=D21303312",
+   "status": "verified_200_ko"
+  }
+ ],
+ "rails": [
+  {
+   "id": "rail_skyliner",
+   "city": "도쿄",
+   "cityId": "tokyo",
+   "country": "일본",
+   "flag": "jp",
+   "category": "rail",
+   "label": "공항철도",
+   "title": "나리타공항 → 우에노 스카이라이너",
+   "highlight": "41분 · 전 좌석 지정석 · 4.9/5",
+   "summary": "게이세이 스카이라이너 공식 티켓. 나리타 제1·2터미널에서 우에노·닛포리까지 41분, 전 좌석 지정석이고 도쿄 지하철 24/48/72시간권과 묶은 패키지도 있습니다. 전자 바우처를 역 발매기에서 교환합니다.",
+   "url": "https://kr.trip.com/things-to-do/detail/47313759/?Allianceid=11407530&SID=336341874&trip_sub1=rail_skyliner&trip_sub3=D21303312",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "rail_osaka",
+   "city": "오사카",
+   "cityId": "osaka",
+   "country": "일본",
+   "flag": "jp",
+   "category": "rail",
+   "label": "공항철도·패스",
+   "title": "오사카 기차표 — 난카이 라피트",
+   "highlight": "간사이공항→난바 34분 · 4.8/5 · 1.68만 예약",
+   "summary": "간사이공항에서 난바로 바로 들어가는 난카이 특급 라피트(34분)를 포함한 오사카 기차표 22종. 간사이 레일패스·JR 패스까지 같은 화면에서 비교됩니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/osaka-jiaotong/?Allianceid=11407530&SID=336341874&trip_sub1=rail_osaka&trip_sub3=D21303312",
+   "status": "verified_200_ko"
+  }
+ ],
+ "resorts": [
+  {
+   "city": "나트랑",
+   "cityId": "nhatrang",
+   "country": "베트남",
+   "flag": "vn",
+   "airport": "CXR 깜라인",
+   "ticket": {
+    "id": "ticket_nhatrang",
+    "label": "입장권·액티비티",
+    "title": "나트랑 입장권·액티비티",
+    "highlight": "판랑 사막투어·바이짜이섬 스노클링·혼땀 머드스파",
+    "summary": "판랑 사막 감성 투어(전용차량·지프·양목장), 바이짜이섬 1일투어(한국어 가이드·혼땀 머드스파), 프라이빗 스노클링+진흙목욕 등. 브라우저 실측 1위 상품 평점 4.8·예약 68명.",
+    "url": "https://kr.trip.com/things-to-do/experiences/nhatrang/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_nhatrang&trip_sub3=D21285812",
+    "status": "verified_200_ko_browser"
+   },
+   "transfer": {
+    "id": "transfer_cxr",
+    "label": "공항픽업",
+    "title": "깜라인공항(CXR) 공항픽업",
+    "highlight": "나트랑 시내·캄란 · 차종별 예약",
+    "summary": "나트랑 관문인 깜라인 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 깜라인 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+    "url": "https://kr.trip.com/airport-transfers/airport-cxr/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cxr&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   }
+  },
+  {
+   "city": "푸꾸옥",
+   "cityId": "phuquoc",
+   "country": "베트남",
+   "flag": "vn",
+   "airport": "PQC 푸꾸옥",
+   "ticket": {
+    "id": "ticket_phuquoc",
+    "label": "입장권·액티비티",
+    "title": "푸꾸옥 입장권·액티비티",
+    "highlight": "빈원더스·혼똔 케이블카·사파리·빈펄",
+    "summary": "푸꾸옥 섬 인기 체험 목록. 빈원더스 테마파크·빈펄 사파리·혼똔섬 케이블카·4개 섬 호핑투어가 한 화면에 있습니다. 페이지 제목 '푸꾸옥 섬 여행 인기 관광지, 투어, 체험 등 추천 및 예약'.",
+    "url": "https://kr.trip.com/things-to-do/experiences/phuquocisland/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_phuquoc&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   },
+   "transfer": {
+    "id": "transfer_pqc",
+    "label": "공항픽업",
+    "title": "푸꾸옥공항(PQC) 공항픽업",
+    "highlight": "즈엉동·무엉탄 · 차종별 예약",
+    "summary": "푸꾸옥 국제공항에서 즈엉동 시내·무엉탄 리조트 지역까지. 페이지 제목 '믿을 수 있는 푸꾸옥 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+    "url": "https://kr.trip.com/airport-transfers/airport-pqc/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_pqc&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   }
+  },
+  {
+   "city": "싱가포르",
+   "cityId": "singapore",
+   "country": "싱가포르",
+   "flag": "sg",
+   "airport": "SIN 창이",
+   "ticket": {
+    "id": "ticket_singapore",
+    "label": "입장권·액티비티",
+    "title": "싱가포르 입장권·액티비티",
+    "highlight": "센토사·유니버설 스튜디오·윙스 오브 타임",
+    "summary": "센토사섬+유니버설 스튜디오+윙스 오브 타임+케이블카 당일 코스, 슈퍼트리·멀라이언 야경 코스, 바탐 페리 투어 등. 페이지 제목 '2026 싱가포르 인기 체험 - Trip.com'.",
+    "url": "https://kr.trip.com/things-to-do/experiences/singapore/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_singapore&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   },
+   "transfer": {
+    "id": "transfer_sin",
+    "label": "공항픽업",
+    "title": "창이공항(SIN) 공항픽업",
+    "highlight": "오차드·마리나베이 · 차종별 예약",
+    "summary": "창이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 싱가포르 창이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+    "url": "https://kr.trip.com/airport-transfers/airport-sin/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_sin&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   }
+  },
+  {
+   "city": "홍콩",
+   "cityId": "hongkong",
+   "country": "홍콩",
+   "flag": "hk",
+   "airport": "HKG 홍콩",
+   "ticket": {
+    "id": "ticket_hongkong",
+    "label": "입장권·액티비티",
+    "title": "홍콩 입장권·액티비티",
+    "highlight": "피크트램·빅토리아 하버 야경·360 케이블카",
+    "summary": "피크 트램 익스프레스+빅토리아 하버 야경 투어, 중환 타이퀀·대관람차 코스, 랭타우 360 케이블카·빅부다, 딤섬 디너 크루즈 등. 페이지 제목 '2026 홍콩 인기 체험 - Trip.com'.",
+    "url": "https://kr.trip.com/things-to-do/experiences/hongkong/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_hongkong&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   },
+   "transfer": {
+    "id": "transfer_hkg",
+    "label": "공항픽업",
+    "title": "홍콩공항(HKG) 공항픽업",
+    "highlight": "침사추이·센트럴·홍콩섬 · 차종별 예약",
+    "summary": "홍콩 국제공항 픽업·샌딩. 공항철도(AEL) 대신 짐이 많을 때 쓰는 차량 이동. 페이지 제목 '믿을 수 있는 홍콩 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+    "url": "https://kr.trip.com/airport-transfers/airport-hkg/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_hkg&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   }
+  },
+  {
+   "city": "발리",
+   "cityId": "bali",
+   "country": "인도네시아",
+   "flag": "id",
+   "airport": "DPS 응우라라이",
+   "ticket": {
+    "id": "ticket_bali",
+    "label": "입장권·액티비티",
+    "title": "발리 입장권·액티비티",
+    "highlight": "우붓 원숭이숲·바투르 산·남부 비치 데이투어",
+    "summary": "발리 남부 비치 데이투어(한국어 기사·8시간), 프라이빗 차량 12시간, 우붓 원숭이숲·계단식 논·폭포 올인클루시브, 바투르 산·자연온천 코스 등. 페이지 제목 '2026 발리 인기 체험 - Trip.com'.",
+    "url": "https://kr.trip.com/things-to-do/experiences/bali/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_bali&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   },
+   "transfer": {
+    "id": "transfer_dps",
+    "label": "공항픽업",
+    "title": "응우라라이공항(DPS) 공항픽업",
+    "highlight": "스미냑·우붓·누사두아 · 차종별 예약",
+    "summary": "발리 응우라라이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 응우라라이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+    "url": "https://kr.trip.com/airport-transfers/airport-dps/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_dps&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   }
+  },
+  {
+   "city": "세부",
+   "cityId": "cebu",
+   "country": "필리핀",
+   "flag": "ph",
+   "airport": "CEB 막탄-세부",
+   "ticket": {
+    "id": "ticket_cebu",
+    "label": "입장권·액티비티",
+    "title": "세부 입장권·액티비티",
+    "highlight": "오슬롭 고래상어·모알보알 정어리떼·서밀론 섬",
+    "summary": "세부 출발 오슬롭 고래상어 관찰+모알보알 정어리떼 스노클링 당일치기, 서밀론 섬 입장권(왕복 선박 포함) 등. 페이지 제목 '2026년 세부의 상위 10개 - 지금 Trip.com에서 예약하세요'.",
+    "url": "https://kr.trip.com/things-to-do/experiences/cebu/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_cebu&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   },
+   "transfer": {
+    "id": "transfer_ceb",
+    "label": "공항픽업",
+    "title": "막탄-세부공항(CEB) 공항픽업",
+    "highlight": "막탄·세부 시내 · 차종별 예약",
+    "summary": "막탄 세부 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 막탄 세부 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+    "url": "https://kr.trip.com/airport-transfers/airport-ceb/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_ceb&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   }
+  },
+  {
+   "city": "코타키나발루",
+   "cityId": "kotakinabalu",
+   "country": "말레이시아",
+   "flag": "my",
+   "airport": "BKI 코타키나발루",
+   "ticket": {
+    "id": "ticket_kotakinabalu",
+    "label": "입장권·액티비티",
+    "title": "코타키나발루 입장권·액티비티",
+    "highlight": "사피·마누칸 섬·카와카와 리버크루즈·키나발루 산",
+    "summary": "사피섬+마누칸섬 스노클링 투어(해산물 바베큐 점심), 카와카와 리버크루즈(반딧불이·코끼리코원숭이), 키나발루 산 낙농장+ATV, 로열만 스카이미러 맹그로브 등. 페이지 제목 '2026 코타키나발루 인기 체험 - Trip.com'.",
+    "url": "https://kr.trip.com/things-to-do/experiences/kotakinabalu/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_kotakinabalu&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   },
+   "transfer": {
+    "id": "transfer_bki",
+    "label": "공항픽업",
+    "title": "코타키나발루공항(BKI) 공항픽업",
+    "highlight": "KK 시내·탄중아루 · 차종별 예약",
+    "summary": "코타키나발루 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 코타키나발루 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+    "url": "https://kr.trip.com/airport-transfers/airport-bki/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_bki&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   }
+  },
+  {
+   "city": "치앙마이",
+   "cityId": "chiangmai",
+   "country": "태국",
+   "flag": "th",
+   "airport": "CNX 치앙마이",
+   "ticket": {
+    "id": "ticket_chiangmai",
+    "label": "입장권·액티비티",
+    "title": "치앙마이 입장권·액티비티",
+    "highlight": "도이수텝 야간투어·코끼리 에코파크·스티키 폭포",
+    "summary": "도이수텝·왓우몽 야간 투어, 코끼리 에코파크 반일 투어(먹이주기·물놀이·픽업), 도이인타논 국립공원 트레킹, 스티키 폭포 반나절 투어 등. 페이지 제목 '2026 치앙마이 인기 체험 - Trip.com'.",
+    "url": "https://kr.trip.com/things-to-do/experiences/chiangmai/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_chiangmai&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   },
+   "transfer": {
+    "id": "transfer_cnx",
+    "label": "공항픽업",
+    "title": "치앙마이공항(CNX) 공항픽업",
+    "highlight": "올드시티·님만해민 · 차종별 예약",
+    "summary": "치앙마이 국제공항 픽업·샌딩. 페이지 제목 '믿을 수 있는 치앙마이 국제공항 공항 픽업/샌딩 | 트립닷컴'.",
+    "url": "https://kr.trip.com/airport-transfers/airport-cnx/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cnx&trip_sub3=D21285812",
+    "status": "verified_200_ko"
+   }
+  }
+ ],
+ "resortSource": {
+  "program": "트립닷컴 파트너스 (Trip.com Affiliate Program)",
+  "aid": "11407530",
+  "sid": "336341874",
+  "issued": "2026-11-19 13:2x~14:2x KST · 기존 그룹 D21285812 에 trip_sub1 만 새로 붙여 도시·공항 URL 구성",
+  "verified": "입장권 8 + 공항픽업 8 = 16건 모두 HTTP 200, <title> 한국어 + 도시·공항명 일치, 최종 URL 에 Allianceid=11407530&SID=336341874 유지 (2026-11-19 13:2x·14:2x, 이번 빌드에서 재확인)",
+  "rate": "투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업 5%",
+  "note": "나트랑 입장권은 원격 브라우저에서 상품 카드·평점 4.8·예약 68명까지 렌더 확인. 표시 통화는 방문자 설정에 따라 달라진다."
+ }
 }

@@ -76,6 +76,7 @@ TOOL_KEYS = {k for _, _, k, _ in TOOLS}
 # 1080px 이하에서 숨길 보조 메뉴(핵심 메뉴와 드롭다운만 남긴다)
 HIDE_SM = {"checklist", "foods", "alert"}
 KLOOK: dict = {}   # data/klook.json (main 에서 채운다)
+PACKAGES: dict = {}  # data/packages.json — v20 고단가 패키지
 
 # 도시 허브 → /passes 탭 (없는 도시는 전체 페이지로)
 HUB_PASS_TOOL = {
@@ -1412,6 +1413,36 @@ def hub_jsonld(hub: dict, tours: list, guides: list, base: str) -> str:
     return f'<script type="application/ld+json">{raw}</script>'
 
 
+def hub_packages(slug: str, name: str) -> str:
+    """v20: 도시 허브에 그 도시의 네이버 여행 커넥트 고단가 패키지를 붙인다."""
+    items = [p for p in (PACKAGES.get("packages") or []) if p.get("city") == slug]
+    if not items:
+        return ""
+    cards = []
+    for p in items:
+        off = round((p["price"] - p["sale"]) / p["price"] * 100) if p["price"] > p["sale"] else 0
+        price = f'<b>{won(p["sale"])}원</b>'
+        if off:
+            price += f'<small>{won(p["price"])}원</small><em>{off}% 할인</em>'
+        cards.append(
+            f'<article class="pkg-card">'
+            f'<span class="pkg-top"><span class="pkg-tag">{esc(p.get("type") or "해외패키지")}</span>'
+            f'<span class="pkg-dur">{esc(p.get("duration", ""))}</span></span>'
+            f'<b class="pkg-t">{esc(p["title"])}</b>'
+            f'<p class="pkg-p">{esc(p.get("pitch", ""))}</p>'
+            f'<span class="pkg-price">{price}</span>'
+            f'<a class="pkg-btn" href="{esc(p["url"])}" target="_blank" rel="noopener sponsored">'
+            f'네이버에서 상품 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+            f'<p class="pkg-note">{esc(p.get("displayNote") or p.get("note", ""))}</p>'
+            f'</article>'
+        )
+    return (f'<div class="hub-pkg"><div class="ess-ghead"><h3>💎 {esc(name)} 고단가 패키지</h3>'
+            f'<span class="n">{len(items)}</span><span class="line" aria-hidden="true"></span>'
+            f'<span class="ess-gnote">항공·숙소·일정 포함 · 1인 기준</span></div>'
+            f'<div class="pkg-grid">{"".join(cards)}</div>'
+            f'<p class="ess-cp-note">{esc(PACKAGES.get("disclosure", ""))}</p></div>')
+
+
 def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     slug = hub["slug"]
     tours = hub_tours(hub)
@@ -1480,6 +1511,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     {hub_cards(tours)}
   </div>
   {hub_compare(len(tours), tour_rows, hub['name']) if tours else ''}
+  {hub_packages(slug, hub['name'])}
   <p class="hub-aff">투어·패키지 링크는 <b>네이버 여행 커넥트</b> 제휴 링크입니다. 예약이 이루어지면 판매자로부터 수수료를 받지만, 결제 금액은 같습니다.</p>
 </section>"""
 
@@ -1882,6 +1914,10 @@ GEAR_IDS = [
     "cp-actioncam-dji-pocket3",
     "cp-earbuds-airpods-pro3",
     "cp-sleepset-silverbay",
+    "cp-carrier-natgeo-28",
+    "cp-headphone-sony-xm5",
+    "cp-earbuds-sony-wf5",
+    "cp-adapter-philips-70w",
 ]
 BAG_ESIM_IDS = ["jp-esim-usimsa-3d", "vn-esim-usimsa-3d", "th-esim-usimsa-3d", "tw-esim-usimsa-3d"]
 # v19: 출발 전 필수템 — 65W 충전기·저울·보조가방·샤워필터·우양산·방수팩
@@ -2348,6 +2384,18 @@ def write_assets(style: str, out_root: Path):
     )
     (out_root / "assets").mkdir(parents=True, exist_ok=True)
     (out_root / "assets" / "site.css").write_text(css, encoding="utf-8")
+    # v20: 상품 이미지·에셋도 배포 폴더로 동기화(없거나 더 새로운 파일만 복사)
+    for src_dir, dst_rel in ((ROOT / "assets" / "ess", "assets/ess"), (ROOT / "images", "images")):
+        if not src_dir.is_dir():
+            continue
+        dst_dir = out_root / dst_rel
+        for src in src_dir.rglob("*"):
+            if not src.is_file():
+                continue
+            dst = dst_dir / src.relative_to(src_dir)
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            if (not dst.exists()) or src.stat().st_mtime > dst.stat().st_mtime:
+                shutil.copy2(src, dst)
 
 
 # ----------------------------------------------------------------------
@@ -2417,7 +2465,7 @@ def check_links(out_root: Path) -> int:
 # ----------------------------------------------------------------------
 def main():
     global SPRITE, TOTAL, TOURS, ESSENTIALS, GUIDES_LIST, CAT_NOTE
-    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA, KLOOK
+    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA, KLOOK, PACKAGES
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT), help="출력 디렉터리 (기본: tour_hub)")
@@ -2441,6 +2489,7 @@ def main():
     GIFTS = load_json("gifts.json")
     TRIPCOM = load_json("tripcom.json")
     KLOOK = load_json("klook.json")
+    PACKAGES = load_json("packages.json")
 
     gspec = load_json("guides.json")
     GUIDES_LIST = gspec["guides"]
@@ -2448,6 +2497,11 @@ def main():
     EXTRA = load_json("guide_extra.json")
 
     write_assets(style, out_root)
+
+    # v20: 홈(index.html)은 build.py가 만든 것을 그대로 배포 폴더로 복사한다.
+    home = ROOT / "index.html"
+    if home.exists() and home.resolve() != (out_root / "index.html").resolve():
+        shutil.copy2(home, out_root / "index.html")
 
     made = []
     if args.only in ("", "pages"):

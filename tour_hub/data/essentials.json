@@ -7,8 +7,8 @@
   "coupang": {
    "method": "partners.coupang.com 상품검색 → 상품 카드 '링크 생성' → 단축 URL(link.coupang.com/a/...) 발급",
    "affiliateId": "AF1746171",
-   "checkedAt": "2026-11-19 13:00~13:20 KST",
-   "note": "단축 URL 14건(2026-11-17 발급 8 + 2026-11-19 발급 6) 모두 link.coupang.com 리다이렉트가 www.coupang.com/vp/products/{상품번호}?…&lptag=AF1746171 로 착지함을 확인. 상품 페이지 자체는 curl 에 403(봇 차단)을 주므로 브라우저로 가격·상품평을 확인했다."
+   "checkedAt": "2026-11-19 15:10~15:20 KST",
+   "note": "단축 URL 19건(2026-11-17 발급 8 + 2026-11-19 발급 6 + v20 발급 5) 모두 link.coupang.com 리다이렉트가 www.coupang.com/vp/products/{상품번호}?…&lptag=AF1746171 로 착지함을 확인. 상품 페이지 자체는 curl 에 403(봇 차단)을 주므로 브라우저로 가격·상품평을 확인했다."
   }
  },
  "disclosure": "모든 링크는 네이버 쇼핑 커넥트(어필리에이트) 활동 링크입니다. 게시물에는 공정위 기준에 맞는 확정 표현('이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 구매 발생 시 수수료를 제공받습니다')을 제목 또는 본문 첫 부분에 표기해야 합니다.",
@@ -1116,6 +1116,151 @@
    "usage": "잠그기 전에 30초 담가 테스트. 잠근 상태에서도 터치가 되지만 수중에서는 버튼이 잘 안 눌립니다.",
    "caution": "사이즈 215×115mm — 케이스를 낀 대형 폰은 수납 여부를 확인하세요. 표시가는 2026.11.19 판매가.",
    "image": "assets/ess/cp-waterproof.jpg"
+  },
+  {
+   "partner": "coupang",
+   "store": "쿠팡",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "id": "cp-carrier-natgeo-28",
+   "category": "여행장비",
+   "categoryLabel": "대형 캐리어 28인치",
+   "name": "내셔널지오그래픽 대형 폴리카보네이트 여행용 캐리어 (수화물 확장형)",
+   "officialName": "내셔널지오그래픽 대형 폴리카보네이트 여행용캐리어 수화물 확장형",
+   "price": 238000,
+   "listPrice": 328000,
+   "discountRate": 27,
+   "url": "https://link.coupang.com/a/iNEvF6Qmzs",
+   "productId": "9689500954",
+   "itemId": "29012542636",
+   "image": "assets/ess/cp-natgeo-carrier28.jpg",
+   "badge": "위탁 수하물 28인치",
+   "specs": [
+    "폴리카보네이트 하드 · 28인치(대형)",
+    "지퍼 확장형(수화물 위탁 기준)",
+    "브랜드 보증 · 색상 선택"
+   ],
+   "pitch": "20·24인치로는 1주일 짐이 안 들어갈 때 쓰는 28인치. 확장 지퍼가 있어 귀국길 짐이 늘어도 한 번 더 열 수 있습니다.",
+   "usage": "국내선·일본 노선의 무료 위탁은 보통 20kg·1개입니다. 28인치는 기내 반입이 안 되니 위탁으로 부치세요.",
+   "caution": "색상·확장 여부에 따라 금액이 다릅니다. 표시가는 2026.11.19 쿠팡 판매가입니다."
+  },
+  {
+   "partner": "coupang",
+   "store": "쿠팡",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "id": "cp-headphone-sony-xm5",
+   "category": "여행장비",
+   "categoryLabel": "노이즈캔슬링 헤드폰",
+   "name": "소니 노이즈캔슬링 블루투스 헤드폰 WH-1000XM5 (플래티넘실버)",
+   "officialName": "소니 노이즈캔슬링 블루투스 헤드폰 WH-1000XM5",
+   "price": 379000,
+   "listPrice": 519000,
+   "discountRate": 26,
+   "url": "https://link.coupang.com/a/iNExh5Cw6m",
+   "productId": "6557157200",
+   "itemId": "14662956952",
+   "image": "assets/ess/cp-sony-wh1000xm5.jpg",
+   "badge": "장거리 비행 소음 차단",
+   "specs": [
+    "오버이어 · 액티브 노이즈 캔슬링",
+    "최대 30시간 재생(ANC 켬)",
+    "폴딩 케이스 동봉"
+   ],
+   "pitch": "기내 엔진음처럼 낮고 지속되는 소음에 가장 효과가 큰 오버이어형. 이어폰보다 귀가 덜 아파 장거리에서 유리합니다.",
+   "usage": "이륙·착륙 때는 이어폰 착용이 제한될 수 있어, 기내 안내 방송 시에는 벗어야 합니다.",
+   "caution": "색상(블랙·실버)에 따라 금액이 다릅니다. 표시가는 2026.11.19 쿠팡 판매가입니다."
+  },
+  {
+   "partner": "coupang",
+   "store": "쿠팡",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "id": "cp-earbuds-sony-wf5",
+   "category": "여행장비",
+   "categoryLabel": "노이즈캔슬링 이어폰",
+   "name": "소니 노이즈캔슬링 블루투스 이어폰 WF-1000XM5 (블랙)",
+   "officialName": "소니 노이즈캔슬링 블루투스 이어폰, WF-1000XM5, 블랙",
+   "price": 289000,
+   "listPrice": 359000,
+   "discountRate": 19,
+   "url": "https://link.coupang.com/a/iNEyzUbfa0",
+   "productId": "7495503967",
+   "itemId": "19609314356",
+   "image": "assets/ess/cp-sony-wf1000xm5.jpg",
+   "badge": "주머니에 드는 ANC",
+   "specs": [
+    "완전 무선 · 액티브 노이즈 캔슬링",
+    "이어팁 4종 · 충전 케이스",
+    "에어팟 프로3와 같은 급"
+   ],
+   "pitch": "헤드폰은 부피가 부담스럽고, 에어팟 프로3보다 저음 차단이 강한 쪽을 원할 때 고르는 조합. 케이스가 주머니에 들어갑니다.",
+   "usage": "기내에서 장시간 끼고 있으면 귀가 아플 수 있어, 2~3시간마다 잠깐 빼는 편이 좋습니다.",
+   "caution": "정품 등록·보증은 판매자 조건을 확인하세요. 표시가는 2026.11.19 쿠팡 판매가입니다."
+  },
+  {
+   "partner": "coupang",
+   "store": "쿠팡",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "id": "cp-adapter-philips-70w",
+   "category": "여행용품",
+   "categoryLabel": "멀티어댑터 70W",
+   "name": "필립스 여행용 멀티어댑터 70W USB-C 고속충전 (파우치 증정)",
+   "officialName": "필립스 여행용 멀티어댑터 70W USB-C 고속충전 해외여행 + 파우치 증정, 그레이 CHP9004B",
+   "price": 67900,
+   "listPrice": 69900,
+   "discountRate": 2,
+   "url": "https://link.coupang.com/a/iNEzG3wHNk",
+   "productId": "9466257502",
+   "itemId": "28171812975",
+   "image": "assets/ess/cp-philips-adapter70w.jpg",
+   "badge": "노트북까지 한 콘센트",
+   "specs": [
+    "70W USB-C PD · 멀티포트",
+    "영국·유럽·호주·미국 플러그 겸용",
+    "전용 파우치 포함"
+   ],
+   "pitch": "노트북·보조배터리·휴대폰을 어댑터 하나로 충전하는 70W급. 35W 제품으로는 노트북이 느리게 차는 경우에 이쪽이 맞습니다.",
+   "usage": "국가별 플러그를 슬라이드로 바꾸는 방식이라, 콘센트에 꽂기 전에 플러그가 고정됐는지 확인하세요.",
+   "caution": "고출력 제품은 비행기 기내 콘센트에서 출력이 제한될 수 있습니다. 표시가는 2026.11.19 쿠팡 판매가입니다."
+  },
+  {
+   "partner": "coupang",
+   "store": "쿠팡",
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "id": "cp-compress-miniyu-6",
+   "category": "여행용품",
+   "categoryLabel": "압축 파우치 6종",
+   "name": "미니유 프리미엄 여행용 압축파우치 6종세트",
+   "officialName": "미니유 프리미엄 여행용 압축파우치 6종세트",
+   "price": 22800,
+   "listPrice": 99900,
+   "discountRate": 77,
+   "url": "https://link.coupang.com/a/iNEAVHdPdk",
+   "productId": "9147855840",
+   "itemId": "26933297039",
+   "image": "assets/ess/cp-miniyu-compress6.jpg",
+   "badge": "부피 30~50% 절감",
+   "specs": [
+    "지퍼 압축 6종(사이즈별)",
+    "옷·수건 압축용",
+    "세탁 가능 소재"
+   ],
+   "pitch": "귀국길 늘어난 빨래와 패딩을 눌러 담는 용도. 어반트립 5종보다 사이즈 구성이 세분화돼 있습니다.",
+   "usage": "지퍼를 끝까지 닫은 뒤 말아서 공기를 빼야 압축이 유지됩니다. 습한 옷은 마르지 않으니 분리하세요.",
+   "caution": "세트 구성·색상은 판매자 표기를 확인하세요. 표시가는 2026.11.19 쿠팡 판매가입니다."
   }
  ],
  "coupangDisclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."

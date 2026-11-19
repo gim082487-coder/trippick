@@ -3025,3 +3025,9 @@
 .hub-others.hub-others--resorts{background:var(--soft)}
 .hub-others--resorts > p{margin:0 0 4px}
 .hub-others--resorts .tc-group{margin-top:14px}
+
+/* v20: 도시 허브 고단가 패키지 */
+.hub-pkg{margin-top:22px}
+.hub-pkg .pkg-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:860px){ .hub-pkg .pkg-grid{grid-template-columns:1fr} }
+.hub-pkg .pkg-card{background:var(--soft)}
