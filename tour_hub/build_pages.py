@@ -2596,6 +2596,9 @@ def stays_filter_script() -> str:
     });
   });
   if (location.hash && location.hash.length > 1) setRegion(location.hash.slice(1));
+  window.addEventListener('hashchange', function(){
+    if (location.hash && location.hash.length > 1) setRegion(location.hash.slice(1));
+  });
 
   var reset = document.getElementById('sfReset');
   if (reset) reset.addEventListener('click', function(){
