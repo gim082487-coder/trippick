@@ -1,51 +1,51 @@
 # 트립픽 — Cloudflare Pages 정적 자원 캐시 정책 (v22)
 # ------------------------------------------------------------------
-# Cloudflare Pages 는 위에서부터 "처음 매칭된 규칙"의 헤더를 씁니다.
-# 그래서 구체 경로(/images/*, /assets/*)를 위에, 전체 규칙(/*)을 맨 아래에 둡니다.
-# 수정 뒤에는 `python3 build_pages.py --out ../deploy_site --check-links` 로
-# deploy_site/_headers 에 그대로 복사됩니다.
+# Cloudflare Pages 는 매칭되는 규칙의 헤더를 "합쳐서" 보냅니다(덮어쓰지 않음).
+# 그래서 넓은 규칙(/*)을 먼저 쓰고, 좁은 규칙에서 `! Cache-Control` 로 떼어낸 뒤
+# 다시 지정합니다. (공식 문서: Detach a header)
+#   · HTML·sitemap·robots·ads.txt → 항상 재검증 (배포 즉시 반영)
+#   · 이미지 → 7일
+#   · CSS·JS(/assets) → 1일 (site.css 는 ?v= 버전 쿼리로 갱신)
+# 수정 뒤 `python3 build_pages.py --out ../deploy_site --check-links` 를 실행하면
+# deploy_site/_headers 로 그대로 복사됩니다.
 
-# 1) 이미지 — 7일 (사진·상품 썸네일은 잘 바뀌지 않음)
-/images/*
-  Cache-Control: public, max-age=604800
-
-/assets/ess/*
-  Cache-Control: public, max-age=604800
-
-# 2) CSS·JS — 1일 (site.css 는 ?v= 버전 쿼리로 갱신)
-/assets/*
-  Cache-Control: public, max-age=86400
-
-# 3) 루트에 바로 놓인 이미지 확장자 (혹시 /images 밖에 있을 때)
-/*.jpg
-  Cache-Control: public, max-age=604800
-
-/*.jpeg
-  Cache-Control: public, max-age=604800
-
-/*.png
-  Cache-Control: public, max-age=604800
-
-/*.webp
-  Cache-Control: public, max-age=604800
-
-/*.svg
-  Cache-Control: public, max-age=604800
-
-# 4) 색인·광고 확인용 파일은 항상 최신
-/sitemap.xml
-  Cache-Control: public, max-age=0, must-revalidate
-
-/robots.txt
-  Cache-Control: public, max-age=0, must-revalidate
-
-/ads.txt
-  Cache-Control: public, max-age=0, must-revalidate
-
-# 5) HTML 은 항상 재검증 (배포 즉시 반영)
-/*.html
-  Cache-Control: public, max-age=0, must-revalidate
-
+# 1) 기본 — HTML·XML·TXT 는 매번 재검증
 /*
   Cache-Control: public, max-age=0, must-revalidate
   X-Content-Type-Options: nosniff
+
+# 2) CSS·JS — 1일
+/assets/*
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+
+# 3) 상품 썸네일 — 7일 (2번보다 좁으므로 아래에)
+/assets/ess/*
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
+
+# 4) 사진 — 7일
+/images/*
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
+
+# 5) 루트에 바로 놓인 이미지 확장자
+/*.jpg
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
+
+/*.jpeg
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
+
+/*.png
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
+
+/*.webp
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
+
+/*.svg
+  ! Cache-Control
+  Cache-Control: public, max-age=604800
