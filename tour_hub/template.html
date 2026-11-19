@@ -994,10 +994,13 @@
     .pgrid--single .pcard--wide .thumb img{height:auto;aspect-ratio:3/2}
 
   }
+  /* v22: 고른 상품이 0개일 때는 완전히 숨깁니다(1px 노출·그림자·터치 가로채기 없음) */
   .cmp-bar{position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(11,26,43,.97);color:#fff;
-    box-shadow:0 -10px 34px rgba(6,15,27,.28);transform:translateY(112%);transition:transform .26s var(--ease);
+    box-shadow:0 -10px 34px rgba(6,15,27,.28);transform:translateY(112%);visibility:hidden;
+    pointer-events:none;transition:transform .26s var(--ease),visibility 0s linear .3s;
     padding-bottom:env(safe-area-inset-bottom)}
-  .cmp-bar.on{transform:none}
+  .cmp-bar.on{transform:none;visibility:visible;pointer-events:auto;
+    transition:transform .26s var(--ease),visibility 0s linear 0s}
   .cmp-bar .wrap{display:flex;align-items:center;gap:12px;padding:9px 24px}
   .cb-list{display:flex;gap:7px;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none}
   .cb-list::-webkit-scrollbar{display:none}
@@ -1611,6 +1614,20 @@
     footer{padding:36px 0 44px}
   }
 
+/* ===== 모바일 접기(더 보기) — 폰에서만 [data-mf] 컨테이너의 앞 n개만 보입니다 ===== */
+.mf-hide{display:none!important}
+.mf-more{display:none}
+@media (max-width:768px){
+  .mf-more{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin:16px 0 2px;
+    padding:13px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--blue-600);
+    font-size:13.4px;font-weight:800;letter-spacing:-.02em;cursor:pointer;line-height:1.35}
+  .mf-more .t{display:block;min-width:0}
+  .mf-more svg{flex:0 0 auto;width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg);transition:transform .18s}
+  .mf-more[aria-expanded="true"] svg{transform:rotate(-90deg)}
+  .mf-more:active{background:var(--blue-soft)}
+}
+
 /* ===== 광고 슬롯 (애드센스 승인 전에는 내부 추천 배너로 표시) ===== */
 .adslot{width:100%;max-width:1120px;margin:26px auto;padding:0 24px}
 .adslot-in{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
@@ -2218,7 +2235,7 @@
   </div>
   <div class="wrap">
     <div class="hero-inner">
-      <span class="eyebrow"><i></i>2026.11.16~17 기준 · 실제 판매 중인 네이버 여행 상품 {{TOTAL}}개</span>
+      <span class="eyebrow"><i></i>2026.11.20 기준 · 실제 판매 중인 네이버 여행 상품 {{TOTAL}}개</span>
       <h1>설레는 여행은,<br /><em>동선</em>에서 시작됩니다</h1>
       <p class="lead">오사카 단풍길부터 호이안 등불, 삿포로 눈길, 제주 노을까지. 일차별 추천 코스 {{COURSE_COUNT}}개와 그 동선에 그대로 붙는 투어·eSIM·패스를 한자리에 모았습니다.</p>
       <div class="hero-cta">
@@ -2330,7 +2347,7 @@
         <h2>인원·지역·스타일만 고르면 <em>총액</em>이 바로 나옵니다</h2>
         <p>{{TOTAL}}개 상품과 eSIM·패스 {{ESS_COUNT}}개에서 조합을 골라, 현장 추가금까지 더한 1인·총액을 바로 계산합니다.</p>
       </div>
-      <div class="sh-meta">현장 추가금은 상세페이지에 금액이 적힌 <b>필수 항목만</b> 원화로 환산했습니다. 환율 기준 2026.11.18 · <a href="exchange.html">환율·면세 계산기</a></div>
+      <div class="sh-meta">현장 추가금은 상세페이지에 금액이 적힌 <b>필수 항목만</b> 원화로 환산했습니다. 환율 기준 2026.11.18 고시 · <a href="exchange.html">환율·면세 계산기</a></div>
     </div>
 
     <div class="planner-card">
@@ -2375,7 +2392,7 @@
           <span class="pl-share-note">카톡·메모장에 붙여넣으면 항목별 1인/총액과 이 견적 링크가 함께 들어갑니다.</span>
         </div>
         <noscript><p class="pl-disclaimer">조합 계산은 자바스크립트로 동작합니다. 스크립트가 꺼져 있으면 아래 지역·투어 목록에서 상품을 직접 비교해 주세요.</p></noscript>
-        <p class="pl-disclaimer">표시된 총액은 <b>상품가 + 상세페이지에 적힌 필수 현장 추가금 + 붙인 eSIM·패스 가격</b>입니다. 불포함 식사·선택관광·쇼핑처럼 개인차가 큰 지출은 넣지 않았습니다. 가격은 2026.11.16~17 각 상세페이지 기준 최저가이고, 날짜·좌석·옵션에 따라 실제 결제액은 달라집니다.</p>
+        <p class="pl-disclaimer">표시된 총액은 <b>상품가 + 상세페이지에 적힌 필수 현장 추가금 + 붙인 eSIM·패스 가격</b>입니다. 불포함 식사·선택관광·쇼핑처럼 개인차가 큰 지출은 넣지 않았습니다. 가격은 2026.11.20 각 상세페이지 기준 최저가이고, 날짜·좌석·옵션에 따라 실제 결제액은 달라집니다.</p>
       </div>
     </div>
   </div>
@@ -2389,7 +2406,7 @@
         <h2>출국 준비 <em>체크리스트</em>와 입국서류 계산기</h2>
         <p>나라를 고르면 입국서류·수수료, 기내반입 규정, 준비물 목록이 한 번에 바뀝니다. 체크는 이 브라우저에 저장되고, eSIM·어댑터·보조배터리는 바로 구매 링크로 이어집니다. 맨 아래에는 출국 전에 비교하는 <b>환전 카드 3종과 여행자보험 3곳</b>을 카드사·보험사 공식 조건으로 정리했습니다.</p>
       </div>
-      <div class="sh-meta">수수료·규정·보험 조건은 2026.11.18 확인 · 카드사·보험사 공식 안내 기준 · <a href="baggage.html">항공사 수하물 규정</a></div>
+      <div class="sh-meta">수수료·규정·보험 조건은 2026.11.20 확인 · 카드사·보험사 공식 안내 기준 · <a href="baggage.html">항공사 수하물 규정</a></div>
     </div>
     <div class="cl-card">
       <!-- @CHECKLIST -->
@@ -2427,7 +2444,7 @@
         <h2>지역·나라별 투어 &amp; 패키지</h2>
         <p>{{COUNTRY_COUNT}}개국 {{CITY_COUNT}}개 도시, {{TOTAL}}개 상품. 나라를 고르면 도시와 상품 수가 함께 바뀝니다.</p>
       </div>
-      <div class="sh-meta">가격·포함 사항·취소 규정은 <b>2026.11.16</b> 상세페이지 기준입니다.</div>
+      <div class="sh-meta">가격·포함 사항·취소 규정은 <b>2026.11.20</b> 상세페이지 기준입니다.</div>
     </div>
   </div>
 
@@ -2460,7 +2477,7 @@
       </div>
     </div>
 
-    <main class="city-list" id="sections">
+    <main class="city-list" id="sections" data-mf="3" data-mf-label="나머지 도시 4곳 · 그 밖의 지역 15개 도시 보기" data-mf-exact>
       <noscript><div class="noscript">상품 카드와 비교표는 정적 HTML로 제공됩니다. 필터·정렬·검색에만 자바스크립트를 사용하므로, 스크립트가 꺼져 있어도 상품 정보는 그대로 보입니다.</div></noscript>
       <!-- @CITIES -->
       <div class="soon-strip">
@@ -2482,7 +2499,7 @@
         <h2>출발 전에 챙기는 어댑터·캐리어·eSIM·패스</h2>
         <p>집에서 미리 사두면 현지에서 결제할 일이 줄어드는 여행 준비물 14종(쿠팡 배송)과, 도착하자마자 쓰는 eSIM·교통패스·공항픽업·입장권을 한곳에 모았습니다. 충전기·저울·보조가방처럼 출발 직전에 사도 되는 6종을 새로 넣었습니다. 결제는 각 판매 페이지에서 그대로 이루어집니다.</p>
       </div>
-      <div class="sh-meta">가격은 2026.11.19 쿠팡·네이버 쇼핑 기준 최저가·옵션가입니다.</div>
+      <div class="sh-meta">가격은 2026.11.20 쿠팡·네이버 쇼핑 기준 최저가·옵션가입니다.</div>
     </div>
     <!-- @ESSENTIALS -->
   </div>
@@ -2496,7 +2513,7 @@
         <h2>현지 맛집, <em>실제 가격과 영업시간</em>까지</h2>
         <p>오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주 7개 도시에서 실제로 영업 중인 가게 35곳을 골랐습니다. 공식 메뉴판의 대표 메뉴 가격과 원화 환산, 영업시간·휴무, 대기 팁, 구글 지도 링크를 카드마다 적었고, 카드 위 동선은 <b>오전 투어 → 점심·저녁 맛집 → 선물·쇼핑 → 숙소</b> 순서로 바로 이어집니다.</p>
       </div>
-      <div class="sh-meta">2026.11.18 확인 · 공식 메뉴판 기준</div>
+      <div class="sh-meta">2026.11.20 확인 · 공식 메뉴판 기준</div>
     </div>
     <!-- @RESTAURANTS -->
   </div>
@@ -2517,7 +2534,7 @@
 </section>
 
 <section class="tripcom" id="tripcom">
-  <div class="wrap">
+  <div class="wrap" data-mf="4" data-mf-label="입장권·공항픽업·eSIM·공항철도·휴양지 링크 더 보기" data-mf-exact>
     <div class="sec-head">
       <div class="t">
         <span class="kicker">TRIP.COM · STAY · FLIGHT · TICKET</span>
@@ -2538,7 +2555,7 @@
         <h2>항공·숙소까지 묶은 <em>고단가 맞춤 패키지</em> 7종</h2>
         <p>같은 일정이라도 투어를 따로 붙이는 것과 패키지로 묶는 것은 총액과 준비 시간이 다릅니다. 항공·호텔·일부 일정이 포함된 2박3일~5일 패키지 중, 출발이 확정됐거나 노팁·노옵션 조건이 붙은 고단가 상품 7개를 골랐습니다. 방콕·다낭·후쿠오카·오사카는 도시 페이지에도 함께 붙였습니다. 표시가는 1인 기준 최저 출발가이고, 출발일·좌석은 상품 페이지에서 확인하세요.</p>
       </div>
-      <div class="sh-meta">2026.11.19 확인 · 네이버 여행 커넥트 판매가</div>
+      <div class="sh-meta">2026.11.20 확인 · 네이버 여행 커넥트 판매가</div>
     </div>
     <!-- @PACKAGES -->
   </div>
@@ -2651,7 +2668,7 @@
         <h2>예약 전에 가장 많이 찾는 질문 8개</h2>
         <p>총경비 계산, 드론쇼·날씨 취소, 현지 추가금, 노쇼핑 구분, 취소 규정, 최소 인원, eSIM 용량, 수수료까지 — 상품 상세페이지에서 확인한 값으로 답했습니다.</p>
       </div>
-      <div class="sh-meta">답변 속 금액은 <b>2026.11.16~17</b> 판매가와 기준환율로 계산했습니다.</div>
+      <div class="sh-meta">답변 속 금액은 <b>2026.11.20</b> 판매가와 기준환율로 계산했습니다.</div>
     </div>
     <div class="faq-list">
       <!-- @FAQ -->
@@ -2715,8 +2732,8 @@
       <p>· 가격·포함 사항·취소 규정은 <strong>2026년 11월 16일</strong> 네이버 여행(티켓·패키지)·네이버 쇼핑 각 상품 상세페이지와 여행 커넥트 상품 목록에서 확인한 값입니다. 표시 가격은 상품 목록 기준 최저가(출발일 2026.11.30~2027.02.13)이며, 이후 판매자 사정으로 가격·일정·조건이 변경될 수 있으므로 <strong>예약 전 반드시 상세페이지에서 최종 확인</strong>하세요.</p>
       <p>· ‘노쇼핑’ 배지는 상품 상세페이지에서 쇼핑 횟수가 0으로 확인된 상품에만 붙였습니다(9개). 쇼핑이 포함된 상품(쇼핑 1~6회)에는 붙이지 않았습니다.</p>
       <p>· ‘현장 추가금’은 상세페이지의 불포함 항목(가이드·기사 경비, 팁, 비자, 불포함 식사 등)을 근거로 표시한 것으로 실제 금액은 행사 인원·환율에 따라 달라질 수 있습니다. 상세페이지에 값이 없는 항목은 <b>‘상세페이지 확인 필요’</b>로 표기했습니다.</p>
-      <p>· 추천 코스의 오사카 주유패스는 판매 페이지 상세문구에 지난 교환기간(<b>2023-04-01~2024-06-30</b>)과 사용기한(<b>2024-06-30</b>), ‘[~2024/3/31]’·‘[2024/4/1~]’ 옵션명이 <b>2026-11-18 확인 시점에도</b> 남아 있어 대표 상품으로 쓰지 않았고, 구매 전 판매처 확인이 필요한 항목으로 표시했습니다. 개별 입장권으로 도는 비용은 <a href="guides/osaka-amazing-pass.html">오사카 주유패스 본전 계산</a>에 있습니다. 바나힐 4,890원은 입장권 단독 기준 최저 옵션가입니다.</p>
-      <p>· 국내 레저(부산 요트·크루즈, 강원 스키·버스투어) 상품은 <b>2026년 11월 17일</b> 네이버 쇼핑 커넥트(스마트스토어) 판매 페이지 기준이며, 표시가는 최저 옵션(소인·주간·평일 등) 기준입니다. 옵션·주말·성수기에는 금액이 달라질 수 있습니다.</p>
+      <p>· 추천 코스의 오사카 주유패스는 판매 페이지 상세문구에 지난 교환기간(<b>2023-04-01~2024-06-30</b>)과 사용기한(<b>2024-06-30</b>), ‘[~2024/3/31]’·‘[2024/4/1~]’ 옵션명이 <b>2026-11-20 확인 시점에도</b> 남아 있어 대표 상품으로 쓰지 않았고, 구매 전 판매처 확인이 필요한 항목으로 표시했습니다. 개별 입장권으로 도는 비용은 <a href="guides/osaka-amazing-pass.html">오사카 주유패스 본전 계산</a>에 있습니다. 바나힐 4,890원은 입장권 단독 기준 최저 옵션가입니다.</p>
+      <p>· 국내 레저(부산 요트·크루즈, 강원 스키·버스투어) 상품은 <b>2026년 11월 20일</b> 네이버 쇼핑 커넥트(스마트스토어) 판매 페이지 기준이며, 표시가는 최저 옵션(소인·주간·평일 등) 기준입니다. 옵션·주말·성수기에는 금액이 달라질 수 있습니다.</p>
       <p>· <b>개인정보 수집·이용</b> — 특가 알림 신청 시 이메일·이름(선택)·희망 여행지·예산·희망 시기를 수집하며, 목적은 특가·땡처리 알림 발송입니다. 수신 해지를 요청하시면 즉시 파기하며 제3자에게 제공하지 않습니다. 문의: gim082487@gmail.com</p>
       <p>· 본 사이트는 여행 상품의 판매 당사자가 아니며, 상품의 판매·계약·환불 등에 대한 권리와 의무는 각 판매자(여행사)에게 있습니다.</p>
       <p>· 상품 카드 이미지는 각 상품 상세페이지의 이미지(쿠팡 상품 이미지 포함)를, 코스·히어로 사진은 <b>Pexels</b> 무료 라이선스(상업적 사용 허용) 사진을 사용했습니다. 실제 상품의 방문지·사진과 다를 수 있습니다.</p>
@@ -2783,6 +2800,63 @@ let toastTimer = null;
 function openFolds(el) {
   var d = el && el.closest ? el.closest('details') : null;
   while (d) { d.open = true; d = d.parentElement ? d.parentElement.closest('details') : null; }
+  /* v22: 모바일 접기([data-mf]) 안쪽으로 이동할 때도 자동으로 펼칩니다 */
+  var f = el && el.closest ? el.closest('[data-mf]') : null;
+  while (f) {
+    if (!f.classList.contains('mf-open')) { f.classList.add('mf-open'); mfApply(f); }
+    f = f.parentElement ? f.parentElement.closest('[data-mf]') : null;
+  }
+}
+
+/* ================= v22: 모바일 접기 — [data-mf] 컨테이너는 폰에서 앞 n개만 보여줍니다 ================= */
+var MF_MQ = window.matchMedia ? window.matchMedia('(max-width:768px)') : { matches: false };
+function mfItems(box) {
+  return Array.prototype.filter.call(box.children, function (k) {
+    return k.tagName !== 'SCRIPT' && k.tagName !== 'NOSCRIPT' && !k.classList.contains('mf-more');
+  });
+}
+function mfApply(box) {
+  var n = parseInt(box.getAttribute('data-mf'), 10);
+  if (isNaN(n) || n < 0) n = 3;
+  var items = mfItems(box);
+  var btn = box.nextElementSibling;
+  if (!btn || !btn.classList || !btn.classList.contains('mf-more')) {
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'mf-more';
+    btn.innerHTML = '<span class="t"></span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>';
+    btn.addEventListener('click', function () {
+      var open = box.classList.toggle('mf-open');
+      mfApply(box);
+      if (!open) {
+        var head = document.querySelector('.site-head');
+        var off = (head ? head.offsetHeight : 0) + 8;
+        var top = box.getBoundingClientRect().top + window.scrollY - off;
+        if (window.scrollY > top) window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+      }
+    });
+    box.parentNode.insertBefore(btn, box.nextSibling);
+  }
+  var mobile = MF_MQ.matches;
+  var open = box.classList.contains('mf-open');
+  var rest = Math.max(0, items.length - n);
+  if (!mobile || rest === 0) {
+    items.forEach(function (k) { k.classList.remove('mf-hide'); });
+    btn.hidden = true;
+    return;
+  }
+  items.forEach(function (k, i) { k.classList.toggle('mf-hide', !open && i >= n); });
+  btn.hidden = false;
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  var base = box.getAttribute('data-mf-label') || '더 보기';
+  var text = open ? '접기'
+    : (box.hasAttribute('data-mf-exact') ? base : base + ' (' + rest + (box.getAttribute('data-mf-unit') || '개') + ')');
+  var t = btn.querySelector('.t');
+  if (t) t.textContent = text;
+}
+function mfApplyAll() {
+  var boxes = document.querySelectorAll('[data-mf]');
+  for (var i = 0; i < boxes.length; i++) mfApply(boxes[i]);
 }
 
 function toast(msg) {
@@ -2846,11 +2920,33 @@ function applyFilters() {
     section.hidden = shown === 0;
   });
 
+  /* v22: 기본 상태에서는 '그 밖의 지역'을 접어 두고, 검색·필터가 걸렸을 때만 자동으로 펼칩니다. */
   const moreBox = document.getElementById('more-regions');
-  if (moreBox && !moreBox.open
-      && [...moreBox.querySelectorAll('section.city')].some((s) => !s.hidden)) {
-    moreBox.open = true;
+  const filtering = state.scope !== 'all' || state.type !== 'all' || !!state.query.trim()
+    || state.notip || state.noshop || state.premium || state.korean || state.privateOnly;
+  if (moreBox) {
+    const anyShown = [...moreBox.querySelectorAll('section.city')].some((s) => !s.hidden);
+    if ((filtering || !MF_MQ.matches) && anyShown) {
+      moreBox.open = true;
+      moreBox.dataset.autoOpen = '1';
+    } else if (!filtering && MF_MQ.matches && moreBox.dataset.autoOpen === '1') {
+      moreBox.open = false;
+      delete moreBox.dataset.autoOpen;
+    }
   }
+
+  /* v22: 필터·검색 중에는 접힌 카드가 결과를 가리지 않도록 모바일 접기를 펼쳐 둡니다. */
+  const cityFold = document.getElementById('sections');
+  if (cityFold && cityFold.hasAttribute('data-mf')) {
+    if (filtering) {
+      cityFold.classList.add('mf-open');
+      cityFold.dataset.mfAuto = '1';
+    } else if (cityFold.dataset.mfAuto === '1') {
+      cityFold.classList.remove('mf-open');
+      delete cityFold.dataset.mfAuto;
+    }
+  }
+  if (typeof mfApplyAll === 'function') mfApplyAll();
 
   const total = [...document.querySelectorAll('.pcard')].filter((c) => !c.hidden).length;
   const label = document.querySelector('[data-count-label]');
@@ -3332,7 +3428,7 @@ if (searchForm) {
     });
     out.push('');
     out.push('※ ' + (t.fl ? '항공·숙소 포함 상품' : '항공·숙소 별도') + ' · 불포함 식사·선택관광 제외');
-    out.push('※ 2026.11.19 확인 최저가 · 실제 결제액은 다를 수 있습니다');
+    out.push('※ 2026.11.20 확인 최저가 · 실제 결제액은 다를 수 있습니다');
     out.push(shareUrl());
     return out.join('\n');
   }
@@ -3814,6 +3910,19 @@ applyFilters();
     more.setAttribute('aria-expanded', String(open));
     more.textContent = open ? '일정 접기' : more.dataset.moreLabel;
   });
+})();
+</script>
+<script>
+/* ================= v22: 모바일 접기 초기화 ================= */
+(function () {
+  if (typeof mfApplyAll !== 'function') return;
+  mfApplyAll();
+  var t = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(function () { mfApplyAll(); }, 160);
+  });
+  window.addEventListener('load', function () { mfApplyAll(); });
 })();
 </script>
 <script>

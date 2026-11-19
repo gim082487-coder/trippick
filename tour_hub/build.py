@@ -792,7 +792,8 @@ def render_essentials(essentials: dict) -> str:
       </div>
       {cp_note}
     </div>""")
-    return "\n    ".join(blocks)
+    return ('<div class="ess-flow" data-mf="3" data-mf-label="eSIM·교통패스·입장권·공항픽업 더 보기">'
+            + "\n    ".join(blocks) + "</div>")
 
 
 # ---------------------------------------------------------------- 나라별 선물·기념품
@@ -865,7 +866,7 @@ def render_gifts(data: dict, gifts: dict, essentials: dict, tripcom: dict, guide
             <p>{c['intro']}</p>
             <div class="gift-duty"><b>{esc(c['name'])} 반입·면세 한 줄</b><span>{esc(c['duty'])}</span></div>
           </div>
-          <div class="gift-grid">
+          <div class="gift-grid" data-mf="3" data-mf-label="선물 목록 더 보기">
           {''.join(cards)}
           </div>
           <div class="gift-links">
@@ -971,7 +972,7 @@ def render_restaurants(data: dict, rest: dict, guides: dict, tripcom: dict) -> s
         panels.append(f"""<div class="food-panel" id="fpanel-{cid}" role="tabpanel" aria-labelledby="ftab-{cid}"{' hidden' if not on else ''}>
           <div class="food-intro"><p>{c['intro']}</p></div>
           <ol class="food-route" aria-label="{esc(c['name'])} 하루 동선">{''.join(steps)}</ol>
-          <div class="food-grid">
+          <div class="food-grid" data-mf="3" data-mf-label="맛집 카드 더 보기">
           {''.join(cards)}
           </div>
         </div>""")
@@ -1158,7 +1159,7 @@ def render_depart_kit(check: dict) -> str:
     checks = "".join(
         f'<li><b>{esc(t)}</b><span>{esc(d)}</span></li>' for t, d in ins["checks"]
     )
-    return f"""<div class="dk">
+    return f"""<div class="dk" data-mf="1" data-mf-label="해외여행자보험 3곳 비교 보기" data-mf-exact>
   <section class="dk-card" id="fxcards" aria-labelledby="fxcards-t">
     <div class="dk-head">
       <div><h3 id="fxcards-t">💳 해외결제·환전 카드 3종 비교</h3><p>{esc(money["intro"])}</p></div>
@@ -1366,7 +1367,7 @@ def render_packages(pkg: dict) -> str:
         <a class="pkg-btn" href="{esc(p["url"])}" target="_blank" rel="noopener sponsored">네이버에서 상품 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <p class="pkg-note">{esc(p.get("displayNote") or p.get("note", ""))}</p>
       </article>''')
-    return ("<div class=\"pkg-grid\">" + "".join(cards) + "</div>"
+    return ("<div class=\"pkg-grid\" data-mf=\"3\" data-mf-label=\"패키지 4종 더 보기\" data-mf-exact>" + "".join(cards) + "</div>"
             + f'<p class="ess-cp-note">{esc(pkg["disclosure"])} {esc(pkg.get("note", ""))}</p>')
 
 
@@ -1984,7 +1985,7 @@ def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
 
 
 def render_sitemap(data: dict, courses: dict) -> str:
-    lastmod = "2026-11-17"
+    lastmod = "2026-11-20"
     # 단일 페이지 사이트: #fragment 는 검색엔진이 별도 URL로 색인하지 않으므로
     # 사이트맵에는 정규 URL만 넣는다(중복·무효 URL 경고 방지).
     # 가이드·필수 페이지(data/guides.json)가 있으면 그 URL도 함께 넣는다.
@@ -2019,17 +2020,17 @@ def replace_block(html: str, marker: str, body: str) -> str:
 # ----------------------------------------------------------------------
 # 애드센스 슬롯 (승인 전에는 빈 박스 없이 내부 추천 배너로 대체)
 # ----------------------------------------------------------------------
-ADSENSE_CLIENT = "ca-pub-0000000000000000"
+ADSENSE_CLIENT = "ca-pub-9563082990728787"
 
 
 def ad_slot(slot: str, title: str, text: str, href: str, cta: str, kicker: str = "트립픽 추천") -> str:
     """승인 전: 내부 추천 배너만 보입니다(빈 <ins> 없음 → 레이아웃 깨짐 없음).
     승인 후: 주석을 풀고 ca-pub-… / data-ad-slot 두 값만 복사하면 바로 켜집니다."""
     return f'''<aside class="adslot" data-ad-slot="{slot}" aria-label="광고·추천 영역">
-  <!-- 애드센스 승인 후 사용법
-       ① <head> 에 로더 스크립트를 한 번 넣기:
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}" crossorigin="anonymous"></script>
-       ② 아래 주석을 풀고 {ADSENSE_CLIENT} 와 data-ad-slot 값만 발급받은 값으로 바꾸기.
+  <!-- v22 광고 슬롯 — 승인 전이라 주석 상태입니다. 켜는 방법은 두 단계뿐입니다.
+       ① 로더 스크립트는 이미 <head> 에 있습니다(pagead2 … client={ADSENSE_CLIENT}).
+       ② 아래 주석을 풀고 <ins> 의 data-ad-slot="0000000000" 만 애드센스에서 만든
+          광고 단위 ID로 바꾸면 바로 표시됩니다(게시자 ID·형식·반응형 설정은 그대로 두세요).
        승인 전에는 <ins> 가 없으므로 빈 박스가 생기지 않고, 내부 추천 배너가 대신 보입니다. -->
   <!--
   <ins class="adsbygoogle" style="display:block" data-ad-client="{ADSENSE_CLIENT}" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>

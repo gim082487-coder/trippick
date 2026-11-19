@@ -954,10 +954,13 @@
     .pgrid--single .pcard--wide .thumb img{height:auto;aspect-ratio:3/2}
 
   }
+  /* v22: 고른 상품이 0개일 때는 완전히 숨깁니다(1px 노출·그림자·터치 가로채기 없음) */
   .cmp-bar{position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(11,26,43,.97);color:#fff;
-    box-shadow:0 -10px 34px rgba(6,15,27,.28);transform:translateY(112%);transition:transform .26s var(--ease);
+    box-shadow:0 -10px 34px rgba(6,15,27,.28);transform:translateY(112%);visibility:hidden;
+    pointer-events:none;transition:transform .26s var(--ease),visibility 0s linear .3s;
     padding-bottom:env(safe-area-inset-bottom)}
-  .cmp-bar.on{transform:none}
+  .cmp-bar.on{transform:none;visibility:visible;pointer-events:auto;
+    transition:transform .26s var(--ease),visibility 0s linear 0s}
   .cmp-bar .wrap{display:flex;align-items:center;gap:12px;padding:9px 24px}
   .cb-list{display:flex;gap:7px;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none}
   .cb-list::-webkit-scrollbar{display:none}
@@ -1570,6 +1573,20 @@
     .fq-a{padding:0 16px 18px;font-size:13.5px}
     footer{padding:36px 0 44px}
   }
+
+/* ===== 모바일 접기(더 보기) — 폰에서만 [data-mf] 컨테이너의 앞 n개만 보입니다 ===== */
+.mf-hide{display:none!important}
+.mf-more{display:none}
+@media (max-width:768px){
+  .mf-more{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin:16px 0 2px;
+    padding:13px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--blue-600);
+    font-size:13.4px;font-weight:800;letter-spacing:-.02em;cursor:pointer;line-height:1.35}
+  .mf-more .t{display:block;min-width:0}
+  .mf-more svg{flex:0 0 auto;width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg);transition:transform .18s}
+  .mf-more[aria-expanded="true"] svg{transform:rotate(-90deg)}
+  .mf-more:active{background:var(--blue-soft)}
+}
 
 /* ===== 광고 슬롯 (애드센스 승인 전에는 내부 추천 배너로 표시) ===== */
 .adslot{width:100%;max-width:1120px;margin:26px auto;padding:0 24px}

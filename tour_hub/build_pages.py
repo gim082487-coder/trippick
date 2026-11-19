@@ -48,7 +48,8 @@ SITE_NAME = "트립픽"
 SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
-TODAY = date(2026, 11, 19)
+TODAY = date(2026, 11, 20)
+CSS_V = "22"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
 # v18: 메뉴 9개 + '도구' 드롭다운 1개. 1280px에서 한 줄에 들어오도록 계산기·표 페이지는 드롭다운으로 묶는다.
@@ -337,7 +338,7 @@ def page(
 <meta name="twitter:image" content="{og_image or (base.rstrip('/') + '/images/courses/hero_kyoto_street.jpg')}" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-<link rel="stylesheet" href="{up}assets/site.css" />
+<link rel="stylesheet" href="{up}assets/site.css?v={CSS_V}" />
 <link rel="icon" href="{FAVICON}" />
 {jsonld}
 {extra_head}
@@ -400,7 +401,7 @@ def product_cards(guide: dict) -> str:
     return f"""    <div class="side-card">
       <h3>이 글에 나온 상품 <em>제휴</em></h3>
 {chr(10).join(rows)}
-      <p class="side-note">가격은 2026-11-17 확인 기준 최저가입니다. 예약·구매 시점에 상세페이지에서 최종 확인하세요.</p>
+      <p class="side-note">가격은 2026-11-20 확인 기준 최저가입니다. 예약·구매 시점에 상세페이지에서 최종 확인하세요.</p>
     </div>"""
 
 
@@ -434,7 +435,7 @@ def cta_band(up: str, title: str, text: str) -> str:
 </div>"""
 
 
-ADSENSE_CLIENT = "ca-pub-0000000000000000"
+ADSENSE_CLIENT = "ca-pub-9563082990728787"
 
 
 def ad_slot(slot: str, title: str, text: str, href: str, cta: str, kicker: str = "트립픽 추천") -> str:
@@ -442,7 +443,8 @@ def ad_slot(slot: str, title: str, text: str, href: str, cta: str, kicker: str =
     승인 전에는 내부 추천 배너만 보이고(빈 <ins> 없음) 레이아웃이 깨지지 않습니다.
     승인 후에는 주석을 풀고 {client}·data-ad-slot 두 값만 바꾸면 바로 켜집니다."""
     return f'''<aside class="adslot adslot--flat" data-ad-slot="{slot}" aria-label="광고·추천 영역">
-  <!-- 주석을 풀고 ca-pub-… / data-ad-slot 값만 넣으면 애드센스가 표시됩니다(승인 후).
+  <!-- v22 광고 슬롯 — 승인 전이라 주석 상태입니다. 로더 스크립트는 <head> 에 이미 있고,
+       아래 주석을 풀고 data-ad-slot="0000000000" 만 애드센스 광고 단위 ID로 바꾸면 표시됩니다.
   <ins class="adsbygoogle" style="display:block" data-ad-client="{ADSENSE_CLIENT}" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
   -->
@@ -791,7 +793,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         <span><b>트립픽 편집</b></span><i></i>
         <span>최종 검증일 {g['updated'].replace('-', '.')}</span><i></i>
         <span>읽는 시간 약 {g['read']}분</span><i></i>
-        <span>{esc(g.get('fxNote') or '가격 확인 2026.11.17')}</span>
+        <span>{esc(g.get('fxNote') or '가격 확인 2026.11.20')}</span>
       </div>
     </div>
 {hero_img}
@@ -1304,7 +1306,7 @@ def hub_esim_section(hub: dict) -> str:
     <div><span class="hub-k">DATA &amp; SIM</span>
       <h2>{esc(hub['name'])} {spec['title']}</h2>
       <p>{esc(spec['lead'])}</p></div>
-    <div class="hub-fx">2026.11.19 네이버 쇼핑 커넥트 확인</div>
+    <div class="hub-fx">2026.11.20 네이버 쇼핑 커넥트 확인</div>
   </div>
   <div class="esim-cmp">{''.join(cards)}</div>
   <p class="hub-aff">eSIM 카드는 <b>네이버 쇼핑 커넥트</b> 제휴 링크입니다. 이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 구매 발생 시 수수료를 제공받습니다. 결제 금액은 같습니다.</p>
@@ -1493,7 +1495,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
   <a class="hub-tool" href="calendar.html#{slug}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">성수기·항공권 참고가</span></a>
 </div>"""
 
-    meta = [f'<span><b>트립픽 편집</b></span>', '<i></i>', '<span>업데이트 2026.11.18</span>', '<i></i>']
+    meta = [f'<span><b>트립픽 편집</b></span>', '<i></i>', '<span>업데이트 2026.11.20</span>', '<i></i>']
     meta.append(f'<span>투어·패키지 {len(tours)}개</span><i></i>')
     meta.append(f'<span>1인 {won(lowest)}원~</span>')
     if rest:
@@ -1529,7 +1531,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     <div><span class="hub-k">LOCAL FOOD</span>
       <h2>{esc(rest['name'])} 현지 맛집 <em>{len(rest['items'])}곳</em></h2>
       <p>{rest['intro']}</p></div>
-    <div class="hub-fx">2026.11.18 확인 · {esc(RESTAURANTS['fx'])}</div>
+    <div class="hub-fx">2026.11.20 확인 · {esc(RESTAURANTS['fx'])}</div>
   </div>
   <ol class="food-route" aria-label="{esc(rest['name'])} 하루 동선">{route}</ol>
   <div class="food-grid hub-food-grid">
@@ -1779,7 +1781,7 @@ def cities_index(out_root: Path, base: str) -> Path:
     <div class="pg-head">
       <h1>도시 이름으로 찾는 <em>여행 준비</em> 페이지</h1>
       <p class="dek">{hub_specs()['indexDesc']}</p>
-      <div class="pg-meta"><span><b>트립픽 편집</b></span><i></i><span>도시 {len(hubs)}곳</span><i></i><span>업데이트 2026.11.18</span></div>
+      <div class="pg-meta"><span><b>트립픽 편집</b></span><i></i><span>도시 {len(hubs)}곳</span><i></i><span>업데이트 2026.11.20</span></div>
     </div>
   </div>
 </div>
@@ -2029,7 +2031,7 @@ def baggage_page(out_root: Path, base: str) -> Path:
         out_root,
         "baggage.html",
         title="항공사별 수하물 규정 비교 — 기내 10kg·위탁 0~30kg·보조배터리 2개 | 트립픽",
-        desc="대한항공·아시아나·진에어·티웨이(트리니티)·제주항공·에어부산·피치·비엣젯 8곳의 기내 무게·크기와 운임별 무료 위탁, 보조배터리 160Wh 규정을 2026.11.19 기준으로 비교합니다.",
+        desc="대한항공·아시아나·진에어·티웨이(트리니티)·제주항공·에어부산·피치·비엣젯 8곳의 기내 무게·크기와 운임별 무료 위탁, 보조배터리 160Wh 규정을 2026.11.20 기준으로 비교합니다.",
         body=body,
         base=base,
         active="baggage",
@@ -2450,7 +2452,7 @@ def stays_page(out_root: Path, base: str) -> Path:
       <div class="pg-meta">
         <span><b>트립픽 숙소 편집</b></span><i></i>
         <span>{total}곳 · {len(groups)}개 도시</span><i></i>
-        <span>가격 확인 {source.get('checked', '2026-11-19').replace('-', '.')}</span><i></i>
+        <span>가격 확인 {source.get('checked', '2026-11-20').replace('-', '.')}</span><i></i>
         <span>1박·2인·세금 포함</span>
       </div>
     </div>
@@ -2521,7 +2523,7 @@ def stays_page(out_root: Path, base: str) -> Path:
         desc=(
             f"오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이·제주 숙소 {total}곳을 트립닷컴 평점·리뷰 수·"
             f"1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
-            "호텔·리조트·온천 료칸·가성비 유형 필터와 평점·가격 정렬, 역·해변 접근성, 예약은 트립닷컴 제휴 링크로 연결됩니다. 2026-11-19 확인."
+            "호텔·리조트·온천 료칸·가성비 유형 필터와 평점·가격 정렬, 역·해변 접근성, 예약은 트립닷컴 제휴 링크로 연결됩니다. 2026-11-20 확인."
         ),
         keywords=(
             "지역별 숙소 추천, 오사카 호텔 추천, 도쿄 호텔 추천, 후쿠오카 호텔 추천, 다낭 리조트 추천, 나트랑 호텔 추천, "
@@ -2706,6 +2708,10 @@ def write_assets(style: str, out_root: Path):
     )
     (out_root / "assets").mkdir(parents=True, exist_ok=True)
     (out_root / "assets" / "site.css").write_text(css, encoding="utf-8")
+    # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
+    hdr = ROOT / "_headers"
+    if hdr.exists():
+        shutil.copy2(hdr, out_root / "_headers")
     # v20: 상품 이미지·에셋도 배포 폴더로 동기화(없거나 더 새로운 파일만 복사)
     for src_dir, dst_rel in ((ROOT / "assets" / "ess", "assets/ess"), (ROOT / "images", "images")):
         if not src_dir.is_dir():
