@@ -783,7 +783,7 @@ def render_essentials(essentials: dict) -> str:
         cp_note = (""
                    if key not in ("여행용품", "여행필수템", "여행장비") else
                    '<p class="ess-cp-note">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. '
-                   f'가격·재고는 2026년 11월 19일 확인 기준이며 판매자가 수시로 바꿀 수 있습니다.</p>')
+                   f'가격·재고는 2026년 11월 20일 확인 기준이며 판매자가 수시로 바꿀 수 있습니다.</p>')
         grid_cls = "ess-grid ess-grid-4" if key in ("여행용품", "여행필수템", "여행장비", "eSIM") else "ess-grid"
         blocks.append(f"""<div class="ess-group">
       <div class="ess-ghead"><h3>{label}</h3><span class="n">{len(items)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(note)}</span></div>
@@ -984,7 +984,7 @@ def render_restaurants(data: dict, rest: dict, guides: dict, tripcom: dict) -> s
         + "\n    ".join(tabs)
         + '\n  </div>\n  '
         + "\n  ".join(panels)
-        + f'\n  <p class="food-note">가게 {total}곳은 2026년 11월 18일 구글 지도에서 영업 중(OPERATIONAL)임을 확인했고, 가격은 공식 메뉴판·공식 안내 또는 2026년 10~11월 방문 기록이 일치하는 값만 적었습니다. 환율은 {esc(rest["fx"])}이고, 영업시간·휴무는 시장 휴시일이나 임시휴무로 달라질 수 있으니 출발 전에 가게 지도 링크로 한 번 더 확인하세요.</p>\n</div>'
+        + f'\n  <p class="food-note">가게 {total}곳은 2026년 11월 20일 구글 지도에서 영업 중(OPERATIONAL)임을 확인했고, 가격은 공식 메뉴판·공식 안내 또는 2026년 10~11월 방문 기록이 일치하는 값만 적었습니다. 환율은 {esc(rest["fx"])}이고, 영업시간·휴무는 시장 휴시일이나 임시휴무로 달라질 수 있으니 출발 전에 가게 지도 링크로 한 번 더 확인하세요.</p>\n</div>'
     )
 
 
