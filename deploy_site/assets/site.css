@@ -3114,11 +3114,15 @@
 .snote{margin:26px 0 0;padding:14px 16px;background:var(--soft);border-radius:12px;font-size:12px;line-height:1.7;color:var(--ink-2)}
 .snote b{color:var(--ink);font-weight:800}
 @media (max-width:640px){
-  .sf{top:calc(var(--head-h) + 2px);padding:8px 9px 7px;border-radius:14px}
+  .sf{position:static;padding:8px 9px 7px;border-radius:14px}
+  .sf-chips{flex-wrap:wrap;overflow:visible}
   .sf-chips .gf-chip{padding:6px 10px;font-size:12px}
+  .sf-row{gap:6px}
   .sf-sort{width:100%}
-  .sf-sort .gf-chip{flex:1 1 0;justify-content:center}
+  .sf-sort .gf-chip{flex:1 1 0;justify-content:center;padding:8px 10px}
+  .sf-count{width:100%;padding-left:0}
   .scard h3{font-size:14.6px}
+  .sc-reason{-webkit-line-clamp:3}
 }
 
 /* v21: 도시 허브 → /stays 진입 링크 */
