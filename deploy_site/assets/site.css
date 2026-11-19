@@ -2669,3 +2669,54 @@
 .bag-page.pg-grid{grid-template-columns:minmax(0,1fr);gap:18px}
 .bag-page .pg-side{grid-template-columns:1fr 1fr;position:static}
 @media (max-width:760px){ .bag-page .pg-side{grid-template-columns:1fr} }
+
+/* ================= v17: 도시 허브 eSIM 비교 ================= */
+.esim-cmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.esim-cmp:has(.esim-card:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+.esim-card{display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:16px;padding:15px 16px;background:#fff;transition:.16s}
+.esim-card:hover{border-color:var(--blue-line);box-shadow:var(--sh-2);transform:translateY(-2px)}
+.esim-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.esim-badge{font-size:10px;font-weight:850;letter-spacing:.03em;color:var(--blue-700);background:var(--blue-soft);border-radius:999px;padding:3px 8px}
+.esim-store{font-size:10.4px;font-weight:800;color:var(--ink-3)}
+.esim-name{font-size:13px;line-height:1.45;font-weight:780;letter-spacing:-.025em;color:var(--ink)}
+.esim-price{font-size:18px;font-weight:850;letter-spacing:-.03em;color:var(--navy);font-variant-numeric:tabular-nums}
+.esim-price small{font-size:11px;font-weight:700;color:var(--ink-3);text-decoration:line-through;margin-left:6px}
+.esim-note{font-size:11.4px;line-height:1.62;color:var(--ink-3);flex:1}
+.esim-go{display:inline-flex;align-items:center;gap:4px;font-size:11.2px;font-weight:820;color:var(--blue-600);margin-top:2px}
+.esim-go .ic{width:12px;height:12px}
+
+/* ================= v17: 오래 쓰는 여행 장비 ================= */
+.gear-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}
+.gear{display:flex;gap:12px;border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff;transition:.16s}
+.gear:hover{border-color:var(--blue-line);box-shadow:var(--sh-2)}
+.gear-thumb{flex:0 0 auto;width:92px;height:92px;border-radius:12px;overflow:hidden;background:var(--soft);border:1px solid var(--line-2)}
+.gear-thumb img{display:block;width:100%;height:100%;object-fit:contain}
+.gear-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.gear-tag{display:inline-flex;align-items:center;gap:5px;font-size:9.8px;font-weight:850;color:var(--blue-600);letter-spacing:.02em}
+.gear-badge{background:var(--blue-soft);border-radius:5px;padding:2px 6px;color:var(--blue-700)}
+.gear-name{font-size:12.6px;line-height:1.42;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.gear-specs{display:grid;gap:1px;margin:1px 0 0;padding:0;list-style:none}
+.gear-specs li{font-size:10.8px;line-height:1.5;color:var(--ink-3);padding-left:9px;position:relative}
+.gear-specs li::before{content:"";position:absolute;left:0;top:6px;width:3px;height:3px;border-radius:50%;background:var(--blue-line)}
+.gear-foot{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:auto;padding-top:7px;border-top:1px dashed var(--line)}
+.gear-price{font-size:13px;font-weight:850;color:var(--navy);font-variant-numeric:tabular-nums}
+.gear-price small{font-size:10.4px;font-weight:700;color:var(--ink-3);text-decoration:line-through;margin-left:5px}
+.gear-go{font-size:10.6px;font-weight:800;color:var(--coral);white-space:nowrap}
+
+/* ================= v17: /baggage eSIM 미니 ================= */
+.esim-mini{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.esim-mini a{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+.esim-mini a:hover{border-color:var(--blue-line);box-shadow:var(--sh-1)}
+.esim-mini .ec{font-size:10.4px;font-weight:800;color:var(--ink-3);white-space:nowrap}
+.esim-mini b{flex:1;font-size:11.8px;font-weight:750;color:var(--ink);line-height:1.4}
+.esim-mini .ep{font-size:11.8px;font-weight:850;color:var(--navy);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+@media (max-width:900px){
+  .esim-cmp{grid-template-columns:1fr 1fr}
+  .gear-grid{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .esim-cmp{grid-template-columns:1fr}
+  .esim-mini{grid-template-columns:1fr}
+  .gear-thumb{width:76px;height:76px}
+}

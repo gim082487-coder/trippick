@@ -58,6 +58,7 @@ HUB_CITY_IDS = set()  # 도시 페이지가 있는 도시 id. 이 도시들은 �
 
 ESS_GROUPS = [
     ("여행용품", "🧳 여행 준비물 · 쿠팡", "출발 3일 전에 주문하면 배송일 안에 도착"),
+    ("여행장비", "🎧 오래 쓰는 여행 장비 · 쿠팡", "캐리어·보조배터리처럼 한 번 사서 여러 번 쓰는 것"),
     ("eSIM", "📶 eSIM · 데이터", "도착 전에 설치하고 내리면 바로 켭니다"),
     ("교통패스", "🎫 교통 패스", "공항에서 시내까지, 하루 종일 타는 패스"),
     ("교통", "🚄 공항철도 · 셔틀", "예약 없이 타는 열차·버스"),
@@ -65,6 +66,15 @@ ESS_GROUPS = [
     ("입장권", "🎟️ 입장권", "현장 줄 서지 않고 바로 입장"),
 ]
 
+
+# 카드의 도시 → 국기 코드 (v17: 태국·대만 추가)
+CITY_COUNTRY = {
+    **{c: "jp" for c in ("오사카", "도쿄", "후쿠오카", "삿포로", "오키나와", "교토")},
+    **{c: "vn" for c in ("다낭", "나트랑", "푸꾸옥", "호이안", "하노이")},
+    **{c: "th" for c in ("방콕", "푸켓", "치앙마이", "파타야")},
+    **{c: "tw" for c in ("타이베이", "가오슝", "타이중")},
+    **{c: "kr" for c in ("제주", "부산", "강원")},
+}
 
 PLANNER = json.loads((DATA / "planner.json").read_text(encoding="utf-8"))
 FAQ = json.loads((DATA / "faq.json").read_text(encoding="utf-8"))
@@ -745,11 +755,9 @@ def render_essentials(essentials: dict) -> str:
         for e in items:
             city = e.get("cities", ["공통"])[0]
             flag = ""
-            for code, cname, _ in COUNTRIES:
-                if city in ("오사카", "도쿄", "후쿠오카", "삿포로") and code == "jp":
-                    flag = flag_svg("jp", 13, 9.1)
-                elif city in ("다낭", "나트랑", "푸꾸옥", "호이안") and code == "vn":
-                    flag = flag_svg("vn", 13, 9.1)
+            code = CITY_COUNTRY.get(city, "")
+            if code:
+                flag = flag_svg(code, 13, 9.1)
             city_txt = "모든 여행지" if city == "공통" else city
             thumb = ""
             if e.get("image"):
@@ -768,10 +776,10 @@ def render_essentials(essentials: dict) -> str:
                 <span class="ess-go">{ess_cta(e)} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a>""")
         cp_note = (""
-                   if key != "여행용품" else
+                   if key not in ("여행용품", "여행장비") else
                    '<p class="ess-cp-note">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. '
-                   '가격·재고는 2026년 11월 17일 확인 기준이며 판매자가 수시로 바꿀 수 있습니다.</p>')
-        grid_cls = "ess-grid ess-grid-4" if key == "여행용품" else "ess-grid"
+                   f'가격·재고는 2026년 11월 19일 확인 기준이며 판매자가 수시로 바꿀 수 있습니다.</p>')
+        grid_cls = "ess-grid ess-grid-4" if key in ("여행용품", "여행장비", "eSIM") else "ess-grid"
         blocks.append(f"""<div class="ess-group">
       <div class="ess-ghead"><h3>{label}</h3><span class="n">{len(items)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(note)}</span></div>
       <div class="{grid_cls}">

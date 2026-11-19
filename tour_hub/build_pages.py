@@ -1191,6 +1191,69 @@ def hub_ess_cards(pick: int = 4) -> str:
     return '<div class="ess-grid ess-grid-4">' + "".join(rows) + "</div>"
 
 
+# v17: 도시 허브 안 eSIM 비교 블록(네이버 쇼핑 커넥트 실링크만)
+ESIM_PICK = {
+    "jp": {
+        "title": "eSIM, 1일 300원권과 3일 무제한",
+        "lead": "1일 300~590원권을 날짜별로 끊는 쪽과 3일 완전무제한 14,620원 두 갈래입니다. "
+                "2인 여행이면 인원수만큼 사야 하고, 설치 QR은 출발 전에 받아 두세요.",
+        "ids": ["jp-esim-usimsa-kddi-1d", "jp-esim-lingsim-1d", "jp-esim-usimsa-3d-tokyo"],
+    },
+    "vn": {
+        "title": "eSIM, 1일 200원부터",
+        "lead": "베트남은 1일권이 200~800원이라 날짜별로 끊는 게 가장 쌉니다. 영상·지도 업무를 하거나 "
+                "데이터를 아끼지 않으려면 3일 무제한(17,850원)을 섞는 편이 낫습니다.",
+        "ids": ["vn-esim-usimsa-1d", "vn-esim-lingsim-1d", "vn-esim-usimsa-3d"],
+    },
+    "th": {
+        "title": "eSIM, 1일 300원부터",
+        "lead": "방콕 시내는 숙소·카페 와이파이가 많아 1일권을 날짜별로 끊어도 충분합니다. "
+                "파타야·섬 일정처럼 이동이 많은 날이 있으면 3일 무제한을 섞으세요.",
+        "ids": ["th-esim-usimsa-1d", "th-esim-usimsa-3d"],
+    },
+    "tw": {
+        "title": "eSIM, 1일 760원부터",
+        "lead": "2박3일이면 3일 무제한 한 장이 계산이 쉽고, 4일 이상 머물면 1일권을 날짜별로 붙이는 쪽이 쌉니다. "
+                "두 상품 모두 출발 전 설치형이라 공항에서 줄 서지 않습니다.",
+        "ids": ["tw-esim-lingsim-1d", "tw-esim-usimsa-3d"],
+    },
+}
+
+
+def hub_esim_section(hub: dict) -> str:
+    spec = ESIM_PICK.get(hub.get("country"))
+    if not spec:
+        return ""
+    cards = []
+    for eid in spec["ids"]:
+        e = next((x for x in ESSENTIALS if x["id"] == eid), None)
+        if not e:
+            continue
+        price = f'{won(e["price"])}원'
+        if e.get("listPrice") and e["listPrice"] > e["price"]:
+            price += f'<small>{won(e["listPrice"])}원</small>'
+        badge = "1일권" if "1d" in eid else "3일 무제한"
+        cards.append(f"""<a class="esim-card" href="{esc(B.ess_url(e))}" target="_blank" rel="noopener sponsored">
+        <span class="esim-top"><span class="esim-badge">{badge}</span><span class="esim-store">{esc(e['store'])}</span></span>
+        <b class="esim-name">{esc(e['name'])}</b>
+        <span class="esim-price">{price}</span>
+        <span class="esim-note">{esc(e.get('usage') or '')}</span>
+        <span class="esim-go">{esc(B.ess_cta(e))} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>""")
+    if not cards:
+        return ""
+    return f"""<section class="hub-sec" id="esim">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">DATA &amp; SIM</span>
+      <h2>{esc(hub['name'])} {spec['title']}</h2>
+      <p>{esc(spec['lead'])}</p></div>
+    <div class="hub-fx">2026.11.19 네이버 쇼핑 커넥트 확인</div>
+  </div>
+  <div class="esim-cmp">{''.join(cards)}</div>
+  <p class="hub-aff">eSIM 카드는 <b>네이버 쇼핑 커넥트</b> 제휴 링크입니다. 이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 구매 발생 시 수수료를 제공받습니다. 결제 금액은 같습니다.</p>
+</section>"""
+
+
 def hub_hotel_cards(hotels: list) -> str:
     return "".join(
         f'<a class="tc-card" href="{esc(h["url"])}" target="_blank" rel="noopener sponsored">'
@@ -1324,6 +1387,9 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     if country:
         jumps.append(("#gifts", "선물·기념품", len(country["items"])))
     jumps.append(("#stay", "숙소·항공·입장권", len(hotels) + (1 if flight else 0) + len(hub_acts)))
+    esim_spec = ESIM_PICK.get(hub.get("country"))
+    if esim_spec:
+        jumps.append(("#esim", "eSIM", len(esim_spec["ids"])))
     jumps.append(("#guides", "관련 가이드", len(guides)))
     jump_html = "".join(
         f'<a href="{h}">{esc(n)} <b>{c}</b></a>' for h, n, c in jumps if c
@@ -1503,6 +1569,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
 {food_html}
 {gift_html}
 {stay_html}
+{hub_esim_section(hub)}
 {ad_slot(f"hub-{slug}-bottom", "특가가 뜨면 가장 먼저 알려드릴게요", "원하는 여행지와 예산만 남기면 특가·땡처리 소식을 메일로 보내드립니다.", "index.html#alert", "알림 신청")}
 {guides_html}
 
@@ -1732,6 +1799,53 @@ def exchange_page(out_root: Path, base: str) -> Path:
     )
 
 
+GEAR_IDS = [
+    "cp-carrier-sm0320",
+    "cp-carrier-botn-cl23",
+    "cp-powerbank-anker-maggo",
+    "cp-actioncam-dji-pocket3",
+    "cp-earbuds-airpods-pro3",
+    "cp-sleepset-silverbay",
+]
+BAG_ESIM_IDS = ["jp-esim-usimsa-3d", "vn-esim-usimsa-3d", "th-esim-usimsa-3d", "tw-esim-usimsa-3d"]
+BAG_ESIM_LABEL = {"jp-esim-usimsa-3d": "일본", "vn-esim-usimsa-3d": "베트남",
+                  "th-esim-usimsa-3d": "태국", "tw-esim-usimsa-3d": "대만"}
+
+
+def gear_cards() -> list:
+    """v17: /baggage '오래 쓰는 여행 장비 6종' 카드(쿠팡 실링크)."""
+    out = []
+    for gid in GEAR_IDS:
+        e = next((x for x in ESSENTIALS if x["id"] == gid), None)
+        if not e:
+            continue
+        specs = "".join(f"<li>{esc(x)}</li>" for x in (e.get("specs") or []))
+        listp = (f'<small>{won(e["listPrice"])}원</small>'
+                 if e.get("listPrice") and e["listPrice"] > e["price"] else "")
+        out.append(f"""<a class="gear" href="{esc(e.get('url') or e['naverMe'])}" target="_blank" rel="noopener sponsored">
+              <span class="gear-thumb"><img src="{esc(e['image'])}" alt="{esc(e['name'])}" width="400" height="400" loading="lazy" /></span>
+              <span class="gear-body">
+                <span class="gear-tag">{esc(e.get('categoryLabel') or '여행 장비')}{f'<span class="gear-badge">{esc(e["badge"])}</span>' if e.get('badge') else ''}</span>
+                <b class="gear-name">{esc(e['name'])}</b>
+                <ul class="gear-specs">{specs}</ul>
+                <span class="gear-foot"><span class="gear-price">{won(e['price'])}원{listp}</span><span class="gear-go">쿠팡에서 보기 →</span></span>
+              </span>
+            </a>""")
+    return out
+
+
+def bag_esim_links() -> list:
+    out = []
+    for eid in BAG_ESIM_IDS:
+        e = next((x for x in ESSENTIALS if x["id"] == eid), None)
+        if not e:
+            continue
+        out.append(f'<a href="{esc(B.ess_url(e))}" target="_blank" rel="noopener sponsored">'
+                   f'<span class="ec">{esc(BAG_ESIM_LABEL.get(eid, ""))}</span>'
+                   f'<b>{esc(e["name"])}</b><span class="ep">{won(e["price"])}원</span></a>')
+    return out
+
+
 def baggage_page(out_root: Path, base: str) -> Path:
     data = load_json("baggage.json")
     rows = []
@@ -1755,6 +1869,8 @@ def baggage_page(out_root: Path, base: str) -> Path:
     body = read(PAGES / "baggage.html")
     body = body.replace("<!-- @BAG_ROWS -->", "\n                ".join(rows))
     body = body.replace("<!-- @COUPANG -->", "\n            ".join(cards))
+    body = body.replace("<!-- @GEAR -->", "\n            ".join(gear_cards()))
+    body = body.replace("<!-- @ESIM -->", "\n            ".join(bag_esim_links()))
 
     faq = [
         ("기내 10kg은 캐리어만 재는 건가요?",

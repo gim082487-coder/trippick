@@ -135,6 +135,8 @@
         }
       ],
       "links": [
+        "jp-esim-usimsa-3d-tokyo",
+        "jp-esim-usimsa-kddi-1d",
         "jp-esim-usimsa-3d",
         "cp-adapter-nemotab",
         "cp-powerbank-spidy"
@@ -227,6 +229,8 @@
         }
       ],
       "links": [
+        "vn-esim-lingsim-1d",
+        "vn-esim-usimsa-3d-phuquoc",
         "vn-esim-usimsa-3d",
         "cp-adapter-nemotab",
         "cp-powerbank-spidy"
@@ -319,6 +323,8 @@
         }
       ],
       "links": [
+        "th-esim-usimsa-1d",
+        "th-esim-usimsa-3d",
         "cp-adapter-nemotab",
         "cp-powerbank-spidy",
         "cp-passport-reindeer"
@@ -411,6 +417,8 @@
         }
       ],
       "links": [
+        "tw-esim-lingsim-1d",
+        "tw-esim-usimsa-3d",
         "cp-adapter-nemotab",
         "cp-powerbank-spidy",
         "cp-passport-reindeer"

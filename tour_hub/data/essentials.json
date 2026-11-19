@@ -553,6 +553,379 @@
    "pitch": "눈가가 뜨지 않는 4D 입체 구조. 야간 비행·시차 적응 첫날 숙면용으로 가장 값이 싼 준비물입니다.",
    "usage": "목베개와 함께 기내 가방에. 숙소 커튼이 얇은 곳(일본 비즈니스호텔 등)에서도 유용.",
    "caution": "눈가 압박이 싫으면 3D 입체형을, 완전 차광이 우선이면 이 모델이 맞습니다."
+  },
+  {
+   "id": "jp-esim-usimsa-kddi-1d",
+   "category": "eSIM",
+   "categoryLabel": "일본 eSIM(1일·KDDI)",
+   "name": "일본 이심 eSIM 도쿄 후쿠오카 대마도 KDDI 매일500MB 1일",
+   "officialName": "일본 이심 eSIM 도쿄 후쿠오카 대마도 KDDI 매일500MB 무제한 1일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 300,
+   "listPrice": 300,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 36,
+   "naverMe": "https://naver.me/5FDGw0vo",
+   "channelProductNo": "5656333779",
+   "cities": [
+    "도쿄",
+    "후쿠오카"
+   ],
+   "courses": [
+    "tokyo"
+   ],
+   "pitch": "1일 300원. 하루 300MB 안쪽이면 4일 여행도 1,200원입니다.",
+   "usage": "일정 첫날·마지막 날만 데이터가 필요할 때 1일권을 날짜별로 끊는 방식.",
+   "caution": "매일 500MB 소진 후 속도 제한. 지도·메신저 위주 사용에 맞습니다."
+  },
+  {
+   "id": "jp-esim-usimsa-3d-tokyo",
+   "category": "eSIM",
+   "categoryLabel": "일본 eSIM(3일 무제한)",
+   "name": "[투게더팩] 일본 도쿄·오사카 3일 완전무제한(소프트뱅크)",
+   "officialName": "[투게더팩]일본 이심 eSIM 도쿄 오사카 대마도 소프트뱅크 완전무제한 3일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 14620,
+   "listPrice": 17200,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 1754,
+   "naverMe": "https://naver.me/xB70HnMm",
+   "channelProductNo": "12779683003",
+   "cities": [
+    "도쿄",
+    "오사카"
+   ],
+   "courses": [
+    "osaka",
+    "tokyo"
+   ],
+   "pitch": "도쿄·오사카 3일 완전 무제한 14,620원. 같은 3일 투게더팩(후쿠오카·오사카 16,830원)보다 2,210원 쌉니다.",
+   "usage": "2박3일~3박4일 일정에서 데이터를 아끼지 않고 쓰는 쪽.",
+   "caution": "투게더팩은 1인 기준 상품입니다. 2인 이상이면 인원수만큼 구매하고, 각자 기기에 설치하세요."
+  },
+  {
+   "id": "vn-esim-lingsim-1d",
+   "category": "eSIM",
+   "categoryLabel": "베트남 eSIM(1일)",
+   "name": "베트남 이심 5G 다낭·나트랑·푸꾸옥 500MB 1일(링심)",
+   "officialName": "베트남 이심 5G 다낭 나트랑 호치민 푸꾸옥 하노이 Esim 500MB 1일 링심",
+   "store": "링심",
+   "price": 800,
+   "listPrice": 830,
+   "commissionRate": 14,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 112,
+   "naverMe": "https://naver.me/FgElIdT5",
+   "channelProductNo": "8319428302",
+   "cities": [
+    "다낭",
+    "푸꾸옥"
+   ],
+   "courses": [
+    "danang"
+   ],
+   "pitch": "베트남 1일 800원. 유심사 1일권(200원)보다 600원 비싸지만 5G 속도 표기 상품입니다.",
+   "usage": "5일 여행이면 1일권 5장으로 4,000원. 숙소 와이파이를 쓰면 3장이면 충분합니다.",
+   "caution": "매일 500MB 소진 후 속도 제한. 액티비티 예약·택시 앱 위주라면 1일권이면 충분합니다."
+  },
+  {
+   "id": "vn-esim-usimsa-3d-phuquoc",
+   "category": "eSIM",
+   "categoryLabel": "베트남 eSIM(3일 무제한)",
+   "name": "[투게더팩] 베트남 푸꾸옥·나트랑 3일 완전무제한(비나폰)",
+   "officialName": "[투게더팩]베트남 이심 eSIM 푸꾸옥 나트랑 비나폰 완전 무제한 3일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 14450,
+   "listPrice": 17000,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 1734,
+   "naverMe": "https://naver.me/GVVdkwYN",
+   "channelProductNo": "12977144910",
+   "cities": [
+    "푸꾸옥",
+    "나트랑"
+   ],
+   "courses": [],
+   "pitch": "푸꾸옥·나트랑 3일 무제한 14,450원. 다낭 3일권(17,850원)보다 3,400원 쌉니다.",
+   "usage": "남부 휴양지 3박 일정. 다낭·호이안은 다낭 상품을 쓰세요.",
+   "caution": "지역별 상품이라 다낭에서 쓰는 상품과 커버리지가 다릅니다. 출발 전 설치 지역을 확인하세요."
+  },
+  {
+   "id": "th-esim-usimsa-1d",
+   "category": "eSIM",
+   "categoryLabel": "태국 eSIM(1일)",
+   "name": "태국 이심 방콕·푸켓 True 500MB 1일",
+   "officialName": "태국 이심 eSIM 방콕 푸켓 True 매일 500MB 무제한 1일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 300,
+   "listPrice": 300,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 36,
+   "naverMe": "https://naver.me/5g4SLPVf",
+   "channelProductNo": "5656262714",
+   "cities": [
+    "방콕",
+    "푸켓"
+   ],
+   "courses": [
+    "bangkok"
+   ],
+   "pitch": "태국 1일 300원. 4일 여행이면 1,200원으로 끝납니다.",
+   "usage": "방콕 시내는 숙소·카페 와이파이가 많아 낮 시간 이동용으로 1일권이면 충분합니다.",
+   "caution": "True 계열망 상품입니다. 섬 지역은 속도가 떨어질 수 있습니다."
+  },
+  {
+   "id": "th-esim-usimsa-3d",
+   "category": "eSIM",
+   "categoryLabel": "태국 eSIM(3일 무제한)",
+   "name": "[투게더팩] 태국 방콕·치앙마이 3일 완전무제한(True)",
+   "officialName": "[투게더팩]태국 이심 eSIM 방콕 치앙마이 트루 완전 무제한 3일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 14450,
+   "listPrice": 17000,
+   "commissionRate": 12,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 1734,
+   "naverMe": "https://naver.me/GsBIgswb",
+   "channelProductNo": "12977300443",
+   "cities": [
+    "방콕",
+    "치앙마이"
+   ],
+   "courses": [
+    "bangkok"
+   ],
+   "pitch": "방콕·치앙마이 3일 무제한 14,450원. 지도·번역·영상통화를 마음껏 씁니다.",
+   "usage": "3박5일 중 가운데 3일을 무제한으로 쓰고 나머지는 1일권으로 채우는 조합.",
+   "caution": "투게더팩은 1인 상품입니다. 인원수만큼 구매해야 합니다."
+  },
+  {
+   "id": "tw-esim-lingsim-1d",
+   "category": "eSIM",
+   "categoryLabel": "대만 eSIM(1일)",
+   "name": "대만 이심 5G 타이베이·가오슝 500MB 1일(링심)",
+   "officialName": "대만 이심 5G속도 데이터 무제한 타이페이 가오슝 esim 매일500MB 1일 링심",
+   "store": "링심",
+   "price": 760,
+   "listPrice": 790,
+   "commissionRate": 16,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 121,
+   "naverMe": "https://naver.me/xPYrTkaB",
+   "channelProductNo": "8319406293",
+   "cities": [
+    "타이베이",
+    "가오슝"
+   ],
+   "courses": [
+    "taipei"
+   ],
+   "pitch": "대만 1일 760원. 쇼핑 커넥트 요율 16% 구간 상품입니다.",
+   "usage": "2박3일이면 3장(2,280원). 예류·스펀 당일투어에서 지도·택시 앱을 쓸 때 넉넉합니다.",
+   "caution": "매일 500MB 소진 후 속도 제한. 5G 표기는 지역에 따라 LTE로 떨어질 수 있습니다."
+  },
+  {
+   "id": "tw-esim-usimsa-3d",
+   "category": "eSIM",
+   "categoryLabel": "대만 eSIM(3일 무제한)",
+   "name": "[투게더팩] 대만 타이베이·가오슝 3일 완전무제한(Chunghwa)",
+   "officialName": "[투게더팩]대만 이심 eSIM 타이베이 가오슝 창화 완전 무제한 3일 유심사 알림톡",
+   "store": "유심사스토어",
+   "price": 12580,
+   "listPrice": 14800,
+   "commissionRate": 10,
+   "commissionBasis": "판매가",
+   "expectedRevenue": 1258,
+   "naverMe": "https://naver.me/5ulrk0Lr",
+   "channelProductNo": "13458058048",
+   "cities": [
+    "타이베이",
+    "가오슝"
+   ],
+   "courses": [
+    "taipei"
+   ],
+   "pitch": "타이베이·가오슝 3일 무제한 12,580원. 대만 3대 통신사 중 창화(CHT) 망입니다.",
+   "usage": "2박3일 전체를 무제한으로. 라오허제 야시장 라이브·영상통화까지 씁니다.",
+   "caution": "투게더팩은 1인 상품입니다. 인원수만큼 구매해야 합니다."
+  },
+  {
+   "id": "cp-carrier-sm0320",
+   "category": "여행장비",
+   "categoryLabel": "기내용 캐리어 20인치",
+   "name": "스위스밀리터리 여행 캐리어 20인치 기내용(PC)",
+   "officialName": "스위스밀리터리 여행 캐리어 20인치 기내용",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 117760,
+   "listPrice": 178000,
+   "discountRate": 33,
+   "url": "https://link.coupang.com/a/iNjOJY92Ky",
+   "productId": "7651035251",
+   "itemId": "20357941614",
+   "image": "assets/ess/cp-carrier-sm0320.jpg",
+   "badge": "기내 반입(미확장)",
+   "specs": [
+    "PC 소재 20형 · 18~20인치 구간",
+    "지퍼 확장을 열면 기내 반입 불가",
+    "구매평 1,977건"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "29,900원 보튼캐리어와 같은 20인치지만 PC 소재·브랜드 라인. 1,977건 구매평이 붙은 상품으로, 오래 쓸 생각이면 이쪽입니다.",
+   "usage": "LCC 기내 규격(55×40×20cm)에 맞추려면 확장 지퍼를 닫고 타세요. 확장하면 두께가 늘어 규격을 넘습니다.",
+   "caution": "색상·사이즈 옵션에 따라 금액이 다릅니다. 표시가는 20형 퍼시픽블루 기준(2026.11.19)."
+  },
+  {
+   "id": "cp-carrier-botn-cl23",
+   "category": "여행장비",
+   "categoryLabel": "대형 캐리어 24인치",
+   "name": "보튼캐리어 CL23 알루미늄 프레임 24인치",
+   "officialName": "보튼캐리어 CL23 알루미늄 프레임 PC 캐리어 20인치 24인치 26인치 28인치",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 170100,
+   "listPrice": 269000,
+   "discountRate": 36,
+   "url": "https://link.coupang.com/a/iNkObZJQAu",
+   "productId": "8665670887",
+   "itemId": "25151296558",
+   "image": "assets/ess/cp-carrier-botn-cl23.jpg",
+   "badge": "위탁 전용",
+   "specs": [
+    "알루미늄 프레임 + PC · 24인치 62×43×26cm",
+    "무료 위탁 15kg 운임이면 그대로 부치기",
+    "구매평 843건 · 5.0"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "기존 20인치(29,900원)와 같은 브랜드의 프레임 라인. 위탁 15kg 기준이면 24인치가 가장 무난합니다.",
+   "usage": "26·28인치는 장기 여행·가족 여행용. 20인치와 세트로 맞추면 색을 통일할 수 있습니다.",
+   "caution": "표시가는 24인치 기준(2026.11.19). 사이즈·색상별 금액이 다르고, 기내 반입은 20인치만 됩니다."
+  },
+  {
+   "id": "cp-powerbank-anker-maggo",
+   "category": "여행장비",
+   "categoryLabel": "맥세이프 보조배터리",
+   "name": "앤커 맥고 파워뱅크 10,000mAh 30W (Qi2)",
+   "officialName": "앤커 맥고 파워뱅크 10000mAh 30W 보조배터리 맥세이프 무선충전 고속충전 qi2 기내용 아이폰 A1664, 블랙",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 61900,
+   "listPrice": 79990,
+   "discountRate": 22,
+   "url": "https://link.coupang.com/a/iNj0E9bW0G",
+   "productId": "8631601073",
+   "itemId": "24995801661",
+   "image": "assets/ess/cp-powerbank-anker-maggo.jpg",
+   "badge": "기내 반입 가능(37Wh)",
+   "specs": [
+    "10,000mAh ≈ 37Wh · 100Wh 이하",
+    "Qi2 무선 15W + 유선 30W",
+    "보조배터리는 위탁 수하물 불가"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "8,990원 보조배터리와 같은 10,000mAh지만 Qi2 무선충전·30W 출력. 케이블 없이 붙여 충전합니다.",
+   "usage": "기내에서는 충전·사용이 금지라 좌석 앞 주머니에 넣고, 도착 후 시내에서 씁니다.",
+   "caution": "배터리 용량은 10,000mAh(약 37Wh)로 100Wh 이하 기준에 여유가 있습니다. 표시가는 블랙 기준(2026.11.19)."
+  },
+  {
+   "id": "cp-actioncam-dji-pocket3",
+   "category": "여행장비",
+   "categoryLabel": "여행 액션캠",
+   "name": "DJI 오즈모 포켓 3 (4K 짐벌 카메라)",
+   "officialName": "DJI 오즈모 포켓 3 액션캠",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 538000,
+   "listPrice": 726000,
+   "discountRate": 25,
+   "url": "https://link.coupang.com/a/iNklTvmmWG",
+   "productId": "7657889348",
+   "itemId": "20393507123",
+   "image": "assets/ess/cp-actioncam-dji-pocket3.jpg",
+   "badge": "여행 영상",
+   "specs": [
+    "4K UHD · 3축 짐벌 일체형",
+    "본체+케이블+보호커버+손목스트랩",
+    "구매평 759건"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "스마트폰 짐벌과 달리 세로 촬영·주머니 수납이 됩니다. 여행 브이로그를 남길 생각이면 한 번에 가는 쪽.",
+   "usage": "액정이 2인치 회전형이라 셀카 촬영이 쉽습니다. 액세서리 콤보 대신 단품이면 538,000원.",
+   "caution": "크리에이터 콤보는 구성품이 늘어난 만큼 금액이 올라갑니다. 표시가는 단품 기준(2026.11.19)."
+  },
+  {
+   "id": "cp-earbuds-airpods-pro3",
+   "category": "여행장비",
+   "categoryLabel": "노이즈캔슬링 이어폰",
+   "name": "Apple 에어팟 프로 3 (USB-C)",
+   "officialName": "Apple 2025 에어팟 프로 3 USB-C 블루투스 이어폰",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 296000,
+   "listPrice": 369000,
+   "discountRate": 19,
+   "url": "https://link.coupang.com/a/iNkpUPnsJw",
+   "productId": "9024163013",
+   "itemId": "26462308675",
+   "image": "assets/ess/cp-earbuds-airpods-pro3.jpg",
+   "badge": "기내 소음 차단",
+   "specs": [
+    "액티브 노이즈 캔슬링 · USB-C",
+    "이어팁 4종 동봉",
+    "구매평 23,115건"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "장거리 비행의 엔진 소음을 줄이는 데 가장 많이 쓰이는 조합. 23,115건 구매평으로 실사용 후기가 많습니다.",
+   "usage": "기내 엔터테인먼트는 3.5mm 잭인 경우가 많아, 이어폰 잭 어댑터를 따로 챙기면 좋습니다.",
+   "caution": "국내 정품(MFHP4KH/A) 기준. 표시가는 2026.11.19 쿠팡 판매가입니다."
+  },
+  {
+   "id": "cp-sleepset-silverbay",
+   "category": "여행장비",
+   "categoryLabel": "장거리 비행 목베개",
+   "name": "실버채 기내용 목베개(목 둘레 조절)",
+   "officialName": "실버채 기내용 여행용 목베개",
+   "store": "쿠팡",
+   "partner": "coupang",
+   "price": 37800,
+   "listPrice": 98000,
+   "discountRate": 61,
+   "url": "https://link.coupang.com/a/iNkrXh1Tj2",
+   "productId": "9591869641",
+   "itemId": "29008578102",
+   "image": "assets/ess/cp-neckpillow-silverbay.jpg",
+   "badge": "장거리 비행",
+   "specs": [
+    "28×28×14cm · 목 둘레 조절",
+    "말아서 파우치에 수납",
+    "구매평 907건"
+   ],
+   "cities": [
+    "공통"
+   ],
+   "courses": [],
+   "pitch": "13,520원 메모리폼 목베개와 다른 형태. 목 뒤를 받치고 둘레를 조여 고개가 떨어지지 않게 잡아줍니다.",
+   "usage": "장거리 노선에서 창가 좌석이면 벽 쪽으로 기대어 쓰는 방식이 편합니다.",
+   "caution": "정가 98,000원에서 61% 할인된 37,800원(2026.11.19). 색상에 따라 금액이 다를 수 있습니다."
   }
  ],
  "coupangDisclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
