@@ -220,6 +220,34 @@
    "pexels_id": 29956384,
    "photographer": "WON JONG LEE",
    "url": "https://www.pexels.com/photo/29956384/"
+  },
+  "v27/sokcho-yangyang-2d": {
+   "source": "Wikimedia Commons",
+   "file": "Daepo Port, Sokcho 01",
+   "photographer": "Bernard Gagnon",
+   "license": "CC0 1.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Daepo_Port,_Sokcho_01.jpg"
+  },
+  "v27/jeonju-hanok-food-2d": {
+   "source": "Wikimedia Commons",
+   "file": "Jeonju Hanok Maeul 01",
+   "photographer": "Bernard Gagnon",
+   "license": "CC0 1.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Jeonju_Hanok_Maeul_01.jpg"
+  },
+  "v27/tongyeong-geoje-2d": {
+   "source": "Wikimedia Commons",
+   "file": "Korea-Tongyeong-Hansan Island-Overview-01",
+   "photographer": "Asfreeas",
+   "license": "CC BY-SA 3.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Korea-Tongyeong-Hansan_Island-Overview-01.jpg"
+  },
+  "v27/incheon-yeongjongdo-2d": {
+   "source": "Wikimedia Commons",
+   "file": "Chinatown, incheon 20230430 002",
+   "photographer": "Mobius6",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:Chinatown,_incheon_20230430_002.jpg"
   }
  }
 }

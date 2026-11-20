@@ -327,7 +327,12 @@
    "cityId": "35793",
    "scope": "kr",
    "hub": null,
-   "guides": []
+   "guides": [
+    {
+     "slug": "sokcho-yangyang-2d",
+     "label": "속초·양양 1박2일"
+    }
+   ]
   },
   {
    "id": "yangyang",
@@ -340,7 +345,12 @@
    "cityId": "6430",
    "scope": "kr",
    "hub": null,
-   "guides": []
+   "guides": [
+    {
+     "slug": "sokcho-yangyang-2d",
+     "label": "속초·양양 1박2일"
+    }
+   ]
   },
   {
    "id": "jeonju",
@@ -353,7 +363,12 @@
    "cityId": "61380",
    "scope": "kr",
    "hub": null,
-   "guides": []
+   "guides": [
+    {
+     "slug": "jeonju-hanok-food-2d",
+     "label": "전주 한옥마을 미식 1박2일"
+    }
+   ]
   },
   {
    "id": "tongyeong",
@@ -366,7 +381,12 @@
    "cityId": "72366",
    "scope": "kr",
    "hub": null,
-   "guides": []
+   "guides": [
+    {
+     "slug": "tongyeong-geoje-2d",
+     "label": "통영·거제 1박2일"
+    }
+   ]
   },
   {
    "id": "incheon",
@@ -379,7 +399,12 @@
    "cityId": "410",
    "scope": "kr",
    "hub": null,
-   "guides": []
+   "guides": [
+    {
+     "slug": "incheon-yeongjongdo-2d",
+     "label": "인천·영종도 1박2일"
+    }
+   ]
   }
  ],
  "hotels": [

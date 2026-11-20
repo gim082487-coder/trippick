@@ -2655,6 +2655,9 @@ def _stay_guide_links(region: dict) -> str:
 
 
 STAYS_GUIDE_REGION = [
+    # v27: 국내 4개 지역 가이드 — slug에 지역명이 들어가는 순서대로 먼저 잡는다
+    ("sokcho", "sokcho"), ("yangyang", "yangyang"), ("jeonju", "jeonju"),
+    ("tongyeong", "tongyeong"), ("incheon", "incheon"),
     ("osaka", "osaka"), ("tokyo", "tokyo"), ("fukuoka", "fukuoka"), ("yufuin", "fukuoka"),
     ("danang", "danang"), ("hoian", "danang"), ("nhatrang", "nhatrang"), ("dalat", "nhatrang"),
     ("bangkok", "bangkok"), ("taipei", "taipei"), ("yehliu", "taipei"), ("jiufen", "taipei"),
@@ -2669,28 +2672,30 @@ def guide_stays_box(g: dict) -> str:
     regions = {r["id"]: r for r in STAYS.get("regions", [])}
     hotels = STAYS.get("hotels", [])
     slug = g.get("slug", "")
-    target = None
-    for key, rid in STAYS_GUIDE_REGION:
-        if key in slug and rid in regions:
-            target = regions[rid]
-            break
-    if target:
-        n = sum(1 for h in hotels if h["region"] == target["id"])
-        if not n:
-            target = None
+    ex = guide_extra(slug)
+    # v27: 한 가이드가 두 지역(속초·양양)을 묶을 때는 stayRegions 로 지정한다
+    target_ids = [rid for rid in (ex.get("stayRegions") or []) if rid in regions]
+    if not target_ids:
+        for key, rid in STAYS_GUIDE_REGION:
+            if key in slug and rid in regions:
+                target_ids = [rid]
+                break
+    target_ids = [rid for rid in target_ids if any(h["region"] == rid for h in hotels)]
     theme = None
     for key, tid in STAYS_GUIDE_THEME.items():
         if key in slug:
             theme = tid
             break
-    if not target and not theme:
+    if not target_ids and not theme:
         theme = "ocean"
     names = {t["id"]: t["name"] for t in (STAYS.get("themes") or [])}
     rows = []
-    if target:
+    for rid in target_ids:
+        r = regions[rid]
+        n = sum(1 for h in hotels if h["region"] == rid)
         rows.append(
-            f'<a class="gsb-go" href="../stays.html#{target["id"]}"><b>{esc(target["name"])} 찐숙소 {n}곳</b>'
-            f'<span>평점·리뷰 수·1박 최저가로 고른 숙소 — 최고 평점 {esc(target["top"])}</span></a>'
+            f'<a class="gsb-go" href="../stays.html#{r["id"]}"><b>{esc(r["name"])} 찐숙소 {n}곳</b>'
+            f'<span>평점·리뷰 수·1박 최저가로 고른 숙소 — 최고 평점 {esc(r["top"])}</span></a>'
         )
     if theme:
         cnt = sum(1 for h in hotels if theme in (h.get("themes") or []))
@@ -2883,7 +2888,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     </div>
 
     <h2 class="sr-h2">숙소를 골랐으면 — 그 도시 동선과 예약</h2>
-    <p class="sr-dek">숙소 위치를 정한 뒤에는 그 도시의 코스·맛집·교통 가이드로 이어서 보세요. 국내는 부산 요트·강원 스키·제주 3박4일 가이드를 연결하고, 서울·여수·경주는 국내 가이드 모아보기와 트립닷컴 숙소 목록으로 이어집니다.</p>
+    <p class="sr-dek">숙소 위치를 정한 뒤에는 그 도시의 코스·맛집·교통 가이드로 이어서 보세요. 국내는 서울·인천·영종도·강릉·속초·양양·전주·부산·경주·통영·여수·제주 모두 1박2일 가이드가 연결돼 있고, 숙소 카드에서 바로 그 도시 동선으로 넘어갈 수 있습니다.</p>
     <div class="sg-grid" aria-label="지역별 가이드 연결">
       {guide_cards}
     </div>
@@ -3442,7 +3447,7 @@ def not_found_page(out_root: Path, base: str) -> Path:
         out_root,
         "404.html",
         title="페이지를 찾을 수 없습니다 (404) | 트립픽",
-        desc="요청한 주소가 없습니다. 여행 가이드 44편·도시별 페이지 7곳·출국 체크리스트로 연결합니다.",
+        desc=f"요청한 주소가 없습니다. 여행 가이드 {len(GUIDES_LIST)}편·도시별 페이지 7곳·출국 체크리스트로 연결합니다.",
         body=body,
         base=base,
     )
