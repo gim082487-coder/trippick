@@ -885,6 +885,34 @@ def render_gifts(data: dict, gifts: dict, essentials: dict, tripcom: dict, guide
 
 
 # ---------------------------------------------------------------- 출국 준비 체크리스트
+KR_ORDER = ("seoul", "busan", "gangneung", "yeosu", "gyeongju", "jeju")
+
+
+def food_intro_line(rest: dict) -> str:
+    """맛집 섹션 첫 문장 — 도시·가게 수는 data/restaurants.json 을 그대로 세어 만든다.
+
+    도시를 추가할 때 문구를 손대지 않아도 숫자가 어긋나지 않게 한다.
+    """
+    cities = [c for c in rest["cities"] if c.get("items")]
+    kr = [c for c in cities if c.get("country") == "kr"]
+    ab = [c for c in cities if c.get("country") != "kr"]
+    kr.sort(key=lambda c: (KR_ORDER.index(c["id"]) if c["id"] in KR_ORDER else len(KR_ORDER), cities.index(c)))
+    total = sum(len(c["items"]) for c in cities)
+
+    def names(group: list[dict]) -> str:
+        return "·".join(esc(c["name"]) for c in group)
+
+    if kr and ab:
+        lead = (f"국내 {len(kr)}개 도시({names(kr)})와 해외 {len(ab)}개 도시({names(ab)})에서 "
+                f"실제로 영업 중인 가게 {total}곳을 골랐습니다.")
+    else:
+        nums = ""
+        if len(kr) > 1:
+            nums = f"{len(kr)}개 도시에서 "
+        return f"{nums}실제로 영업 중인 가게 {total}곳을 골랐습니다."
+    return lead
+
+
 def render_restaurants(data: dict, rest: dict, guides: dict, tripcom: dict) -> str:
     """도시 탭 6개 + 맛집 카드. 카드마다 오전 투어 → 식사 → 선물 → 숙소 동선 링크를 붙인다.
 
@@ -923,7 +951,7 @@ def render_restaurants(data: dict, rest: dict, guides: dict, tripcom: dict) -> s
         steps = []
         t = tours.get(c.get("tour"))
         if t:
-            label = "오전" if c.get("tour", "").endswith("_g") else "패키지"
+            label = c.get("tourSlot") or ("오전" if c.get("tour", "").endswith("_g") else "패키지")
             steps.append(
                 f'<li><span class="fr-k">{label}</span><a href="{esc(t["url"])}" target="_blank" rel="noopener sponsored">'
                 f'{esc(tour_short(t))}</a><span class="fr-m">{won(t["sale"])}원~</span></li>'
@@ -2115,6 +2143,7 @@ def main() -> int:
     tokens = {
         "TOTAL": str(len(data["tours"])),
         "CITY_COUNT": str(len(data["cities"])),
+        "FOOD_INTRO": food_intro_line(rest),
         "COUNTRY_COUNT": str(len([c for c in COUNTRIES if any(t["country"] == c[0] for t in data["tours"])])),
         "COURSE_COUNT": str(len(courses["courses"])),
         "ESS_COUNT": str(len(essentials["products"])),
