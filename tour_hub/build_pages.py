@@ -3533,7 +3533,7 @@ def checklist_page(out_root: Path, base: str) -> Path:
     <div class="pg-head">
       <h1><em>여행 준비</em> D-Day 순서 — 4단계로 정리</h1>
       <p class="dek">무엇부터 해야 할지 모를 때 쓰는 순서입니다. <b>D-30에 숙소와 항공</b>, <b>D-14에 투어·eSIM</b>,
-      <b>D-3에 수하물·환전</b>, <b>출발 당일에 체크인·공항 동선</b>을 끝내도록 묶었습니다.
+      <b>D-3에 수하물·환전</b>, <b>출발 당일에는 체크인과 공항 동선</b>을 끝내도록 묶었습니다.
       국내여행으로 바꾸면 여권·환전·eSIM 항목이 빠지고 {dom_total}개 항목만 남습니다. 체크는 이 브라우저에 저장됩니다.</p>
       <div class="pg-meta">
         <span><b>트립픽 준비 편집</b></span><i></i>
