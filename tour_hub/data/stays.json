@@ -148,7 +148,7 @@
    "listUrl": "https://kr.trip.com/hotels/list?city=1777&display=%EB%82%98%ED%8A%B8%EB%9E%91&optionId=1777&optionType=City&optionName=%EB%82%98%ED%8A%B8%EB%9E%91&Allianceid=11407530&SID=336341874&trip_sub1=hotel_nhatrang&trip_sub3=D21275837",
    "cityId": "1777",
    "scope": "intl",
-   "hub": null,
+   "hub": "nhatrang",
    "guides": [
     {
      "slug": "nhatrang-dalat-tour-vs-free",
@@ -209,7 +209,7 @@
    "top": "엠버 퓨어힐 호텔 앤 리조트 제주",
    "listUrl": "https://kr.trip.com/hotels/list?city=737&display=%EC%A0%9C%EC%A3%BC%EC%8B%9C&optionId=737&optionType=City&optionName=%EC%A0%9C%EC%A3%BC%EC%8B%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_jeju&trip_sub3=D21275837",
    "cityId": "737",
-   "scope": "intl",
+   "scope": "kr",
    "hub": "jeju",
    "guides": [
     {
@@ -232,8 +232,13 @@
    "listUrl": "https://kr.trip.com/hotels/list?city=274&display=서울&optionId=274&optionType=City&optionName=서울&Allianceid=11407530&SID=336341874&trip_sub1=hotel_seoul&trip_sub3=D21275837",
    "cityId": "274",
    "scope": "kr",
-   "hub": null,
-   "guides": []
+   "hub": "seoul",
+   "guides": [
+    {
+     "slug": "seoul-seongsu-bukchon-1d",
+     "label": "서울 성수·북촌 1일"
+    }
+   ]
   },
   {
    "id": "busan",
@@ -245,7 +250,7 @@
    "listUrl": "https://kr.trip.com/hotels/list?city=253&display=부산&optionId=253&optionType=City&optionName=부산&Allianceid=11407530&SID=336341874&trip_sub1=hotel_busan&trip_sub3=D21275837",
    "cityId": "253",
    "scope": "kr",
-   "hub": null,
+   "hub": "busan",
    "guides": [
     {
      "slug": "busan-yacht",
@@ -263,7 +268,7 @@
    "listUrl": "https://kr.trip.com/hotels/list?city=61325&display=강릉시&optionId=61325&optionType=City&optionName=강릉시&Allianceid=11407530&SID=336341874&trip_sub1=hotel_gangneung&trip_sub3=D21275837",
    "cityId": "61325",
    "scope": "kr",
-   "hub": null,
+   "hub": "gangneung",
    "guides": [
     {
      "slug": "gangwon-ski",
@@ -285,8 +290,13 @@
    "listUrl": "https://kr.trip.com/hotels/list?city=4016&display=여수시&optionId=4016&optionType=City&optionName=여수시&Allianceid=11407530&SID=336341874&trip_sub1=hotel_yeosu&trip_sub3=D21275837",
    "cityId": "4016",
    "scope": "kr",
-   "hub": null,
-   "guides": []
+   "hub": "yeosu",
+   "guides": [
+    {
+     "slug": "yeosu-night-sea-2d",
+     "label": "여수 밤바다 1박2일"
+    }
+   ]
   },
   {
    "id": "gyeongju",
@@ -298,8 +308,13 @@
    "listUrl": "https://kr.trip.com/hotels/list?city=3675&display=경주시&optionId=3675&optionType=City&optionName=경주시&Allianceid=11407530&SID=336341874&trip_sub1=hotel_gyeongju&trip_sub3=D21275837",
    "cityId": "3675",
    "scope": "kr",
-   "hub": null,
-   "guides": []
+   "hub": "gyeongju",
+   "guides": [
+    {
+     "slug": "gyeongju-hwangridangil-2d",
+     "label": "경주 황리단길 1박2일"
+    }
+   ]
   }
  ],
  "hotels": [

@@ -49,7 +49,8 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 20)
-CSS_V = "23"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "25"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+JS_V = "25"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
 # v18: 메뉴 9개 + '도구' 드롭다운 1개. 1280px에서 한 줄에 들어오도록 계산기·표 페이지는 드롭다운으로 묶는다.
@@ -78,6 +79,7 @@ TOOL_KEYS = {k for _, _, k, _ in TOOLS}
 # 1080px 이하에서 숨길 보조 메뉴(핵심 메뉴와 드롭다운만 남긴다)
 HIDE_SM = {"checklist", "foods", "alert"}
 STAYS: dict = {}   # data/stays.json — v21 /stays
+SEASON_IDS: set = set()   # data/season.json 도시 — 허브의 시즌 캘린더 탭 앵커 판단
 KLOOK: dict = {}   # data/klook.json (main 에서 채운다)
 PACKAGES: dict = {}  # data/packages.json — v20 고단가 패키지
 
@@ -265,6 +267,60 @@ def footer_html(up: str) -> str:
 </script>"""
 
 
+def share_row(kind: str = "page", title: str = "", text: str = "", url: str = "", extra: str = "") -> str:
+    """v25 외부 공유 — 링크 복사 + 모바일 navigator.share.
+
+    url·title 을 비우면 스크립트가 canonical·og:title 을 그대로 쓴다(빌드 시점에
+    확정되지 않는 값(퀴즈 결과 등)은 JS 가 data-share-url 을 덮어쓴다).
+    """
+    attrs = ['class="share-row"', "data-share"]
+    if url:
+        attrs.append(f'data-share-url="{esc(url)}"')
+    if title:
+        attrs.append(f'data-share-title="{esc(title)}"')
+    if text:
+        attrs.append(f'data-share-text="{esc(text)}"')
+    label = {
+        "result": "이 결과 공유하기",
+        "stays": "숙소 목록 공유하기",
+        "guide": "이 가이드 공유하기",
+        "hub": "이 도시 페이지 공유하기",
+    }.get(kind, "이 페이지 공유하기")
+    return f"""<div {' '.join(attrs)}>
+  <span class="share-k"><svg aria-hidden="true"><use href="#i-globe"/></svg>{label}</span>
+  <button type="button" class="share-btn share-btn--main" data-share-act="native">
+    <svg aria-hidden="true"><use href="#i-arrow"/></svg>카톡·인스타·스레드로 보내기</button>
+  <button type="button" class="share-btn" data-share-act="copy">
+    <svg aria-hidden="true"><use href="#i-check"/></svg>링크 복사</button>
+  {extra}
+  <span class="share-note">복사하면 ‘복사됨 ✓’ 이 뜨고, 카톡·문자·메모 어디든 붙여넣으면 미리보기가 나옵니다.</span>
+</div>"""
+
+
+def cont_bar(kind: str, title: str, url: str, img: str = "") -> str:
+    """v25 이어보기 — 이 페이지를 최근 본 목록에 기록할 때 쓰는 빈 상자.
+
+    페이지 안 흐름에 놓이는 일반 블록이라(v22 비교바처럼 fixed 가 아님) 모바일
+    하단 바와 겹치지 않는다. 내용은 assets/trip-save.js 가 localStorage 로 채운다.
+    """
+    return (
+        f'<div class="cont-bar" id="contBar" hidden data-tp-kind="{esc(kind)}" '
+        f'data-tp-title="{esc(title)}" data-tp-url="{esc(url)}" data-tp-img="{esc(_site_path(img))}"></div>'
+    )
+
+
+def _site_path(src: str) -> str:
+    """이어보기·공유 카드에 쓰는 이미지 경로를 사이트 루트 기준(/images/…)으로 맞춘다.
+
+    페이지 깊이가 달라도(허브는 /, 가이드는 /guides/) 같은 이미지가 열리도록 한다.
+    """
+    if not src:
+        return ""
+    if src.startswith(("http://", "https://", "/", "data:")):
+        return src
+    return "/" + src
+
+
 def clean_site_urls(text: str, site: str) -> str:
     """Cloudflare Pages 는 `*.html` 주소를 확장자 없는 주소로 308 리다이렉트한다.
 
@@ -312,11 +368,20 @@ def page(
     keywords: str = "",
     extra_head: str = "",
     og_image: str = "",
+    og_image_alt: str = "",
+    og_image_size: tuple[int, int] | None = None,
 ) -> Path:
     up = "../" * rel_path.count("/")
     canonical = f"{base.rstrip('/')}/{rel_path}"
     if rel_path.endswith("index.html"):
         canonical = f"{base.rstrip('/')}/{rel_path[: -len('index.html')]}"
+    share_img = og_image or (base.rstrip('/') + '/images/courses/hero_kyoto_street.jpg')
+    img_w, img_h = og_image_size or ((2000, 1125) if not og_image else (0, 0))
+    size_meta = (
+        f'\n<meta property="og:image:width" content="{img_w}" />'
+        f'\n<meta property="og:image:height" content="{img_h}" />'
+        if img_w and img_h else ""
+    )
     head = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -338,11 +403,14 @@ def page(
 <meta property="og:url" content="{canonical}" />
 <meta property="og:title" content="{esc(title)}" />
 <meta property="og:description" content="{esc(desc)}" />
-<meta property="og:image" content="{og_image or (base.rstrip('/') + '/images/courses/hero_kyoto_street.jpg')}" />
+<meta property="og:image" content="{share_img}" />{size_meta}
+<meta property="og:image:alt" content="{esc(og_image_alt or title)}" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@trippick.travel" />
 <meta name="twitter:title" content="{esc(title)}" />
 <meta name="twitter:description" content="{esc(desc)}" />
-<meta name="twitter:image" content="{og_image or (base.rstrip('/') + '/images/courses/hero_kyoto_street.jpg')}" />
+<meta name="twitter:image" content="{share_img}" />
+<meta name="twitter:image:alt" content="{esc(og_image_alt or title)}" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <link rel="stylesheet" href="{up}assets/site.css?v={CSS_V}" />
@@ -357,6 +425,7 @@ def page(
 {body}
 </main>
 {footer_html(up)}
+<script src="{up}assets/trip-save.js?v={JS_V}" defer></script>
 </body>
 </html>
 """
@@ -809,6 +878,8 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
 
 <div class="pg-body">
   <div class="wrap">
+{share_row('guide')}
+{cont_bar('가이드', g['navTitle'], '/guides/' + slug, g.get('image') or '')}
     <div class="pg-grid">
       <article class="doc">
 {guide_summary(g)}
@@ -822,6 +893,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
     </div>
 {guide_stays_box(g)}
 {guide_next(g)}
+{share_row('guide')}
 {cta_band('../', g.get('ctaTitle', '이 글의 계산, 내 일정으로 해보기'), g.get('ctaText', '인원과 지역을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 총액을 계산합니다.'))}
   </div>
 </div>"""
@@ -862,6 +934,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         og_type="article",
         keywords=g.get("keywords", ""),
         og_image=f"{base.rstrip('/')}/{g['image']}" if g.get("image") else "",
+        og_image_alt=g.get("imageAlt", ""),
         jsonld=f'<script type="application/ld+json">{related_json}</script>\n<script type="application/ld+json">{breadcrumb}</script>',
     )
 
@@ -1073,7 +1146,11 @@ def content_page(out_root: Path, spec: dict, base: str) -> Path:
 # 도시별 허브 페이지 (/osaka · /tokyo …) + /cities/
 # ----------------------------------------------------------------------
 _hub_cache = None
-HUB_ORDER = ["osaka", "tokyo", "fukuoka", "danang", "bangkok", "taipei", "jeju"]
+# v25: 13곳 — 해외 7곳 뒤에 국내 6곳(제주 + 신규 서울·부산·강릉·여수·경주)
+HUB_ORDER = [
+    "osaka", "tokyo", "fukuoka", "danang", "nhatrang", "bangkok", "taipei",
+    "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju",
+]
 
 
 def hub_specs() -> dict:
@@ -1466,6 +1543,16 @@ def hub_packages(slug: str, name: str) -> str:
             f'<p class="ess-cp-note">{esc(PACKAGES.get("disclosure", ""))}</p></div>')
 
 
+def hub_stay_cards(slug: str) -> str:
+    """v25: 도시 허브 안에 바로 놓는 찐숙소 카드(stays.json → .scard 그대로)."""
+    region = next((r for r in STAYS.get("regions", []) if r["id"] == slug), None)
+    if not region:
+        return ""
+    hs = [h for h in STAYS.get("hotels", []) if h["region"] == slug]
+    hs.sort(key=lambda h: (-h["score"], -h["reviews"]))
+    return "\n      ".join(stays_card(h, region) for h in hs)
+
+
 def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     slug = hub["slug"]
     tours = hub_tours(hub)
@@ -1489,6 +1576,18 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     hotel_first = hotels[0] if hotels else None
     food_guide = next((g for g in guides if g["slug"].endswith("food-route")), None)
 
+    # v25: 찐숙소(stays.json) — 투어가 없는 도시는 이 카드가 본문 상단에서 먼저 안내한다
+    _stays = {r['id']: r for r in STAYS.get('regions', [])}
+    _pick = _stays.get(slug)
+    stay_pick_link = (
+        f'<a class="hub-stay-pick" href="stays.html#{_pick["id"]}">'
+        f'<b>{esc(hub["name"])} 찐숙소 {_pick["count"]}곳</b>'
+        f'<span>평점·리뷰 수·1박 가격으로 고른 숙소 — 최고 평점 {esc(_pick["top"])}</span>'
+        f'<i>보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>'
+        if _pick else ''
+    )
+    _region = _pick
+
     # 위쪽 빠른 이동
     jumps = [("#tours", "투어·패키지", len(tours))]
     if rest:
@@ -1508,23 +1607,30 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     pass_href, pass_title, pass_sub = HUB_PASS_TOOL.get(
         slug, ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이")
     )
+    _season = SEASON_IDS
+    cal_href = f"calendar.html#{slug}" if slug in _season else "calendar.html"
+    cal_note = "성수기·항공권 참고가" if slug in _season else "7개 도시 12개월 캘린더"
     hub_tools_html = f"""<div class="hub-tools" aria-label="{esc(hub['name'])} 도구">
   <a class="hub-tool" href="{pass_href}"><span class="hub-tool-k">PASS</span><b>{esc(pass_title)}</b><span class="hub-tool-n">{esc(pass_sub)}</span></a>
-  <a class="hub-tool" href="calendar.html#{slug}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">성수기·항공권 참고가</span></a>
+  <a class="hub-tool" href="{cal_href}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">{cal_note}</span></a>
 </div>"""
 
     meta = [f'<span><b>트립픽 편집</b></span>', '<i></i>', '<span>업데이트 2026.11.20</span>', '<i></i>']
-    meta.append(f'<span>투어·패키지 {len(tours)}개</span><i></i>')
-    meta.append(f'<span>1인 {won(lowest)}원~</span>')
+    if tours:
+        meta.append(f'<span>투어·패키지 {len(tours)}개</span><i></i>')
+        meta.append(f'<span>1인 {won(lowest)}원~</span>')
     if rest:
         meta.append(f'<i></i><span>맛집 {len(rest["items"])}곳</span>')
     if hub_acts:
         meta.append(f'<i></i><span>입장권·픽업 {len(hub_acts)}</span>')
+    if _region:
+        meta.append(f'<i></i><span>찐숙소 {_region["count"]}곳</span>')
     meta.append(f'<i></i><span>가이드 {len(guides)}편</span>')
 
     # 투어 섹션
     tour_rows = "\n            ".join(B.table_row(t) for t in tours)
-    tours_html = f"""<section class="hub-sec" id="tours">
+    if tours:
+        tours_html = f"""<section class="hub-sec" id="tours">
   <div class="hub-sec-head">
     <div><span class="hub-k">TOURS &amp; PACKAGES</span>
       <h2>{esc(hub['name'])} 투어·패키지 <em>{len(tours)}개</em></h2>
@@ -1536,6 +1642,23 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
   {hub_compare(len(tours), tour_rows, hub['name']) if tours else ''}
   {hub_packages(slug, hub['name'])}
   <p class="hub-aff">투어·패키지 링크는 <b>네이버 여행 커넥트</b> 제휴 링크입니다. 예약이 이루어지면 판매자로부터 수수료를 받지만, 결제 금액은 같습니다.</p>
+</section>"""
+    else:
+        tours_html = f"""<section class="hub-sec" id="tours">
+  <div class="hub-sec-head">
+    <div><span class="hub-k">TOURS &amp; PACKAGES</span>
+      <h2>{esc(hub['name'])} 여행은 어떻게 준비할까</h2>
+      <p>이 도시는 단독 투어 없이 숙소·맛집·동선으로 완성되는 일정이라, 아래 네 가지로 바로 이어집니다.</p></div>
+  </div>
+  <div class="hub-nopkg">
+    <p>{esc(hub.get('tourNote') or '지금 판매 중인 단독 투어·패키지 상품은 없습니다.')}</p>
+    <div class="hub-nopkg-links">
+      {stay_pick_link}
+      <a href="#stay"><b>{esc(hub['name'])} 숙소·항공권·입장권</b><span>이 페이지 아래 숙소 섹션으로 바로</span><i>보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+      <a href="#guides"><b>관련 가이드 {len(guides)}편</b><span>식비·입장료·이동 시간을 숫자로 계산한 글</span><i>보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+      <a href="index.html#regions"><b>다른 지역 상품 보기</b><span>같은 기준으로 비교한 투어·패키지 전체</span><i>보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>
+    </div>
+  </div>
 </section>"""
 
     # 맛집 섹션
@@ -1639,25 +1762,53 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     <div class="tc-acts tc-acts--hub">{B.tc_act_card(kl, '클룩에서 보기')}</div>
     <p class="ess-cp-note">{esc(KLOOK['disclosure'])}</p>
   </div>"""
-    _stays = {r['id']: r for r in STAYS.get('regions', [])}
-    _pick = _stays.get(slug)
-    stay_pick_link = (
-        f'<a class="hub-stay-pick" href="stays.html#{_pick["id"]}">'
-        f'<b>{esc(hub["name"])} 찐숙소 {_pick["count"]}곳</b>'
-        f'<span>평점·리뷰 수·1박 가격으로 고른 숙소 — 최고 평점 {esc(_pick["top"])}</span>'
-        f'<i>보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>'
-        if _pick else ''
-    )
+    # v25: 숙소 섹션 — 트립닷컴 도시 목록 + (신규 국내 허브는) 찐숙소 카드까지 이 페이지에서 바로
+    tc_list = hub.get("tripcomCity") or slug
+    _tc_row = next((h for h in TRIPCOM["hotels"] if h.get("cityId") == tc_list), None)
+    _list_url = (_pick or {}).get("listUrl") or (_tc_row or {}).get("url")
+    tc_list_html = ""
+    if _list_url:
+        tc_list_html = (
+            f'<div class="tc-flights hub-flight">'
+            f'<a class="tc-flight" href="{esc(_list_url)}" target="_blank" rel="noopener sponsored">'
+            f'<span class="tc-fr">트립닷컴 {esc((_pick or {}).get("name") or hub["name"])} 숙소 전체</span>'
+            f'<span class="tc-fs">{esc((_tc_row or {}).get("sub") or "체크인 날짜를 넣으면 그날 최저가로 정렬됩니다")}</span>'
+            f'<span class="tc-go">숙소 목록 열기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></div>'
+        )
+    hotel_group = ""
+    if hotels:
+        hotel_group += f"""<div class="tc-group">
+    <div class="ess-ghead"><h3>🏨 {esc(hub['name'])} 숙소</h3><span class="n">{len(hotels)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜 기준 최저가</span></div>
+    <div class="tc-grid hub-tc">{hub_hotel_cards(hotels)}</div>
+    {stay_pick_link}
+  </div>"""
+    if _pick and hub.get("stayCards"):
+        # v25: 신규 도시 허브는 찐숙소 카드(평점·리뷰·1박 가격·예약 딥링크)를 이 페이지에서 바로 보여준다.
+        hotel_group += f"""<div class="tc-group">
+    <div class="ess-ghead"><h3>🛏️ {esc(hub['name'])} 찐숙소 <em>{_pick['count']}곳</em></h3><span class="n">{_pick['count']}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">2026-11-20 트립닷컴 조회값 · 1박·2인·세금 포함</span></div>
+    <div class="sgrid hub-sgrid">{hub_stay_cards(slug)}</div>
+    {stay_pick_link}
+  </div>"""
+    elif _pick and not hotels:
+        hotel_group += f"""<div class="tc-group">
+    <div class="ess-ghead"><h3>🛏️ {esc(hub['name'])} 찐숙소 {_pick['count']}곳</h3><span class="n">{_pick['count']}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">2026-11-20 트립닷컴 조회값</span></div>
+    {stay_pick_link}
+  </div>"""
+    extra_stay = ""
+    _extra = next((h for h in TRIPCOM["hotels"] if h.get("cityId") == hub.get("tripcomCity")), None) if hub.get("tripcomCity") and hub.get("tripcomCity") != slug else None
+    if _extra:
+        extra_stay = f"""<div class="tc-group">
+    <div class="ess-ghead"><h3>🏨 {esc(_extra['city'])} 숙소</h3><span class="n">1</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">{esc(_extra.get('sub', ''))}</span></div>
+    <div class="tc-grid hub-tc">{hub_hotel_cards([_extra])}</div>
+  </div>"""
     stay_html = f"""<section class="hub-sec" id="stay">  <div class="hub-sec-head">
     <div><span class="hub-k">STAY &amp; FLIGHT &amp; TICKET</span>
       <h2>{esc(hub['name'])} 숙소·항공권·입장권</h2>
       <p>트립닷컴에서 직접 예약하는 숙소·항공권과, 현지에서 쓸 입장권·공항픽업·eSIM·공항철도입니다. 체크인 날짜와 방문일을 넣으면 그날 요금으로 열리고, 예약·결제는 트립닷컴에서 그대로 이루어집니다.</p></div>
   </div>
-  <div class="tc-group">
-    <div class="ess-ghead"><h3>🏨 {esc(hub['name'])} 숙소</h3><span class="n">{len(hotels)}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜 기준 최저가</span></div>
-    <div class="tc-grid hub-tc">{hub_hotel_cards(hotels)}</div>
-    {stay_pick_link}
-  </div>
+  {tc_list_html}
+  {hotel_group}
+  {extra_stay}
   {flight_html}
   {act_html}
   {klook_html}
@@ -1698,6 +1849,8 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
 
 <div class="pg-body">
   <div class="wrap">
+{share_row('hub')}
+{cont_bar('도시', hub['nav'] + ' 여행', '/' + slug, hub['image'])}
     <nav class="hub-jump" aria-label="이 페이지 목차">{jump_html}</nav>
 {hub_tools_html}
 {ad_slot(f"hub-{slug}-top", "이 도시 숙소·항공 최저가", "체크인 날짜만 넣으면 트립닷컴 최저가로 열립니다.", "#stay", "숙소 보기")}
@@ -1715,6 +1868,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
       <div class="hub-city-row">{others}<a class="hub-city-chip" href="cities/index.html"><b>도시 전체 보기</b></a></div>
     </div>
 
+{share_row('hub')}
 {cta_band('', hub['name'] + ' 일정, 내 날짜로 계산하기', '인원과 스타일을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 총액을 계산합니다.')}
   </div>
 </div>"""
@@ -1729,6 +1883,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
         active="cities",
         keywords=hub.get("keywords", ""),
         og_image=f"{base.rstrip('/')}/{hub['image']}",
+        og_image_alt=hub.get("imageAlt", ""),
         jsonld=hub_jsonld(hub, tours, guides, base),
     )
 
@@ -2448,7 +2603,7 @@ def stays_jsonld(base: str, groups: list) -> str:
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": f"국내·해외 테마별 찐숙소 추천 {sum(len(h) for _, h in groups)}곳 | 트립픽",
-        "description": "국내 5개 도시와 해외 8개 도시 숙소를 트립닷컴 평점·리뷰 수·1박 최저가로 비교하고, 테마(호캉스·오션뷰·온천·역세권·가성비·가족)로 골라 도시 가이드로 이어집니다.",
+        "description": "국내 6개 도시(서울·부산·강릉·여수·경주·제주) 24곳과 해외 7개 도시 26곳, 숙소 50곳을 트립닷컴 평점·리뷰 수·1박 최저가로 비교하고, 테마(호캉스·오션뷰·온천·역세권·가성비·가족)로 골라 도시 가이드로 이어집니다.",
         "url": f"{b}/stays",
         "isPartOf": {"@type": "WebSite", "name": "트립픽", "url": f"{b}/"},
         "mainEntity": {"@type": "ItemList", "numberOfItems": sum(len(h) for _, h in groups), "itemListElement": items},
@@ -2580,9 +2735,11 @@ def stays_page(out_root: Path, base: str) -> Path:
         f'<div class="sg-links">{_stay_guide_links(r)}</div></div>'
         for r, hs in groups
     )
+    kr_names = "·".join(r["name"] for r, _ in kr_groups)
+    intl_names = "·".join(r["name"] for r, _ in intl_groups)
     intro = (
         '<div><b>평점은 리뷰 수와 같이</b><p>트립닷컴 투숙객 리뷰 10점 만점 점수입니다. 리뷰가 수백 개 쌓인 곳과 신규 오픈으로 수십 개인 곳을 구분해 리뷰 수를 카드에 같이 적었습니다.</p></div>'
-        f'<div><b>국내 {kr_total}곳 · 해외 {intl_total}곳</b><p>국내는 서울·부산·강릉·여수·경주 {kr_total}곳(2026-11-20~21 조회), 해외는 오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이·제주 {intl_total}곳(2026-11-19~20 조회)입니다.</p></div>'
+        f'<div><b>국내 {kr_total}곳 · 해외 {intl_total}곳</b><p>국내는 {kr_names} {kr_total}곳(2026-11-20~21 조회), 해외는 {intl_names} {intl_total}곳(2026-11-19~20 조회)입니다.</p></div>'
         '<div><b>예약은 트립닷컴에서</b><p>카드의 예약 버튼은 그 숙소의 트립닷컴 페이지로 바로 갑니다. 결제·취소는 트립닷컴 약관을 따릅니다.</p></div>'
     )
 
@@ -2592,7 +2749,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     <span class="pg-kicker">TRIPPICK STAYS · 국내 {len(kr_groups)}개 도시 + 해외 {len(intl_groups)}개 도시 {total}곳</span>
     <div class="pg-head">
       <h1><em>찐숙소</em> {total}곳 — 테마로 고르고, 가이드로 이어집니다</h1>
-      <p class="dek">서울·부산·강릉·여수·경주 국내 {kr_total}곳을 새로 넣어 <b>국내·해외 13개 도시 {total}곳</b>을 한 화면에 올렸습니다.
+      <p class="dek">국내 {len(kr_groups)}개 도시 {kr_total}곳(서울·부산·강릉·여수·경주·제주)과 해외 {len(intl_groups)}개 도시 {intl_total}곳, <b>국내·해외 13개 도시 {total}곳</b>을 한 화면에 올렸습니다.
       평점 <b>{score_min:.1f}~{score_max:.1f}</b>, 1박 <b>{price_min:,}~{price_max:,}원</b> 구간이고, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마로 바로 좁힐 수 있습니다.
       평점·리뷰 수·가격은 트립닷컴 목록의 실제 값을 그대로 옮겼고, 예약 버튼은 파트너스 딥링크로 연결됩니다.</p>
       <div class="pg-meta">
@@ -2607,6 +2764,8 @@ def stays_page(out_root: Path, base: str) -> Path:
 
 <div class="pg-body">
   <div class="wrap">
+{share_row('stays')}
+{cont_bar('숙소', '찐숙소 ' + str(total) + '곳 — 테마별 숙소 비교', '/stays', 'images/og/stays.jpg')}
     <div class="sf" id="sf">
       <div class="sf-row">
         <div class="sf-scope" role="group" aria-label="국내·해외">
@@ -2675,6 +2834,8 @@ def stays_page(out_root: Path, base: str) -> Path:
     <p class="snote"><b>제휴 고지</b> — 이 페이지의 예약 버튼은 트립닷컴 파트너스 제휴 링크입니다.
     예약이 이루어지면 트립픽이 트립닷컴으로부터 수수료를 받을 수 있으며, 구매자가 지불하는 금액에는 영향이 없습니다.
     숙소 선정과 순서는 평점·리뷰 수·위치를 기준으로 편집했고, 수수료율에 따라 배열하지 않았습니다.</p>
+
+{share_row('stays')}
   </div>
 </div>
 {stays_filter_script()}"""
@@ -2682,9 +2843,9 @@ def stays_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "stays.html",
-        title=f"국내·해외 테마별 찐숙소 {total}곳 — 서울·부산·강릉·여수·경주 + 해외 8개 도시 평점·가격 비교 (2026) | 트립픽",
+        title=f"국내 {kr_total}·해외 {intl_total} 테마별 찐숙소 {total}곳 — 서울·부산·강릉·여수·경주·제주 + 해외 7개 도시 평점·가격 비교 (2026) | 트립픽",
         desc=(
-            f"국내 서울·부산·강릉·여수·경주와 해외 오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이·제주 숙소 {total}곳을 "
+            f"국내 서울·부산·강릉·여수·경주·제주 {kr_total}곳과 해외 오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이 {intl_total}곳, 숙소 {total}곳을 "
             f"트립닷컴 평점·리뷰 수·1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
             "호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터와 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-20 확인."
         ),
@@ -2695,6 +2856,9 @@ def stays_page(out_root: Path, base: str) -> Path:
         body=body,
         base=base,
         active="stays",
+        og_image=f"{base.rstrip('/')}/images/og/stays.jpg",
+        og_image_alt="국내·해외 13개 도시 찐숙소 50곳 — 트립픽",
+        og_image_size=(1200, 630),
         jsonld=f'<script type="application/ld+json">{stays_jsonld(base, groups)}</script>',
     )
 
@@ -2814,6 +2978,340 @@ def stays_filter_script() -> str:
 
 
 
+def quiz_links(base: str) -> dict:
+    """v25 취향 퀴즈 결과 카드가 쓸 링크 — 허브·찐숙소·최저가 투어·가이드·트립닷컴 목록."""
+    out = {}
+    stays = {r["id"]: r for r in STAYS.get("regions", [])}
+    for hub in hub_list():
+        slug = hub["slug"]
+        tours = hub_tours(hub)
+        rest = hub_city_rest(hub)
+        guides = hub_guides(hub)
+        region = stays.get(slug)
+        tour = min(tours, key=lambda t: t["sale"]) if tours else None
+        out[slug] = {
+            "url": f"/{slug}",
+            "name": hub["nav"],
+            "tour": (
+                {"title": strip_tags(tour["title"]), "sale": tour["sale"], "url": tour["url"],
+                 "type": tour["type"], "dur": tour["duration"]}
+                if tour else None
+            ),
+            "stays": f"/stays#{slug}" if region else "",
+            "staysN": region["count"] if region else 0,
+            "staysTop": region["top"] if region else "",
+            "listUrl": (region or {}).get("listUrl", ""),
+            "restN": len(rest["items"]) if rest else 0,
+            "guide": (
+                {"title": guides[0]["navTitle"], "url": f"/guides/{guides[0]['slug']}"}
+                if guides else None
+            ),
+            "img": hub["image"],
+            "imgAlt": hub.get("imageAlt", ""),
+        }
+    return out
+
+
+def quiz_page(out_root: Path, base: str) -> Path:
+    qz = load_json("quiz.json")
+    b = base.rstrip("/")
+    links = quiz_links(base)
+    payload = {"questions": qz["questions"], "cities": qz["cities"], "links": links}
+    raw = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+
+    city_cards = "".join(
+        f'<a class="qz-city" href="/{c["slug"]}">'
+        f'<img src="{esc(links[c["slug"]]["img"])}" alt="{esc(links[c["slug"]]["imgAlt"])}" width="640" height="400" loading="lazy" />'
+        f'<span class="qz-city-b"><span class="qz-city-k">{esc(c["kind"])} · {esc(c["best"])}</span>'
+        f'<b>{esc(c["name"])}</b></span></a>'
+        for c in qz["cities"] if c["slug"] in links
+    )
+    steps = "".join(
+        f'<span><b>{i}.</b> {esc(q["q"])}</span>' for i, q in enumerate(qz["questions"], 1)
+    )
+
+    faq = [
+        ("이 퀴즈는 무엇으로 추천하나요?",
+         "트립픽이 정리한 13개 도시의 실제 상품 가격(2026-11-20 확인), 현지 식비, 이동 시간을 예산·일정·동행·분위기·비행시간 다섯 가지에 점수로 환산해 가장 가까운 곳을 고릅니다."),
+        ("결과가 마음에 안 들면요?",
+         "2·3순위 도시도 함께 보여드립니다. 1~3점 차이로 순위가 바뀌는 경우가 많아, 조건을 하나씩 바꿔 다시 해보시면 다른 후보가 나옵니다."),
+        ("선택한 답이 저장되나요?",
+         "퀴즈 결과는 이 브라우저(localStorage)에만 저장되고 서버로 보내지 않습니다. 홈의 ‘내 여행 준비’에서 다시 열 수 있고, 다른 기기와는 공유되지 않습니다."),
+    ]
+    faq_html = "".join(
+        f'<details class="fq"><summary>{esc(q)}</summary><div class="fq-a">{esc(a)}</div></details>'
+        for q, a in faq
+    )
+    faq_json = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in faq
+            ],
+        },
+        ensure_ascii=False,
+    )
+    app_json = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "트립픽 1분 여행지 취향 퀴즈",
+            "applicationCategory": "TravelApplication",
+            "operatingSystem": "모든 브라우저",
+            "url": f"{b}/quiz",
+            "inLanguage": "ko",
+            "description": "예산·일정·동행·분위기·이동 거리 다섯 질문으로 13개 도시 중 내 여행지를 찾는 무료 퀴즈.",
+            "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"},
+        },
+        ensure_ascii=False,
+    )
+
+    body = f"""<div class="pg-hero qz-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><b>취향 퀴즈</b></nav>
+    <span class="pg-kicker">TRAVEL TASTE QUIZ · 13개 도시</span>
+    <div class="pg-head">
+      <h1>1분이면, <em>내 여행지</em>가 나옵니다</h1>
+      <p class="dek">{esc(qz["lede"])}</p>
+      <div class="pg-meta"><span><b>트립픽 편집</b></span><i></i><span>질문 5개</span><i></i><span>도시 13곳</span><i></i><span>업데이트 2026.11.20</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="pg-body">
+  <div class="wrap">
+{share_row('page')}
+{cont_bar('퀴즈', '1분 여행지 취향 퀴즈', '/quiz', 'images/og/quiz.jpg')}
+    <div class="qz" id="quiz">
+      <div class="qz-top">
+        <span class="qz-step" id="qzStep">1 / 5</span>
+        <div class="qz-bar" aria-hidden="true"><i id="qzBar"></i></div>
+        <button type="button" class="qz-restart" id="qzRestart" hidden>처음부터</button>
+      </div>
+      <div class="qz-body" id="qzBody" aria-live="polite"></div>
+      <div class="qz-foot">
+        <button type="button" class="qz-back" id="qzBack" hidden>이전 질문</button>
+        <span class="qz-hint">답을 고르면 바로 다음 질문으로 넘어갑니다.</span>
+      </div>
+      <noscript><p class="qz-noscript">퀴즈는 자바스크립트로 동작합니다. 아래 13개 도시에서 직접 골라 보세요.</p></noscript>
+    </div>
+
+    <section class="qz-result" id="qzResult" hidden aria-live="polite"></section>
+
+    <details class="qz-guide" id="qzGuide" open>
+      <summary>이렇게 고릅니다 — 질문 5개</summary>
+      <div class="qz-steps">{steps}</div>
+      <p class="qz-guide-note">{esc(qz["resultNote"])}</p>
+    </details>
+
+    <h2 class="qz-h2">13개 도시 — 퀴즈 없이 바로 보기</h2>
+    <div class="qz-cities">{city_cards}</div>
+
+    <div class="qz-faq">{faq_html}</div>
+
+{cta_band('', '도시를 골랐으면, 내 날짜로 총액 계산', '인원과 스타일을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 계산합니다.')}
+  </div>
+</div>
+<script type="application/json" id="quizData">{raw}</script>
+<script>
+{QUIZ_JS}
+</script>"""
+
+    return page(
+        out_root,
+        "quiz.html",
+        title=qz["title"],
+        desc=(
+            "예산·일정·동행·분위기·비행시간 다섯 질문으로 13개 도시(오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이·제주·서울·부산·강릉·여수·경주) 중 "
+            "내 여행지를 찾습니다. 결과 카드에서 그 도시의 투어·맛집·찐숙소·가이드로 바로 이어지고, 결과는 브라우저에 저장됩니다."
+        ),
+        body=body,
+        base=base,
+        active="cities",
+        keywords="여행지 추천, 여행지 퀴즈, 여행 취향 테스트, 국내 여행지 추천, 해외 여행지 추천, 1박2일 추천, 예산별 여행지, 13개 도시",
+        og_image=f"{b}/images/og/quiz.jpg",
+        og_image_alt="트립픽 1분 여행지 취향 퀴즈 — 13개 도시 중 내 여행지 찾기",
+        og_image_size=(1200, 630),
+        jsonld=(
+            f'<script type="application/ld+json">{app_json}</script>\n'
+            f'<script type="application/ld+json">{faq_json}</script>'
+        ),
+    )
+
+
+QUIZ_JS = r"""
+(function(){
+  var el = document.getElementById('quizData');
+  if (!el) return;
+  var D;
+  try { D = JSON.parse(el.textContent); } catch (e) { return; }
+  var KEY = 'trippick.quiz.v1';
+  var body = document.getElementById('qzBody');
+  var stepEl = document.getElementById('qzStep');
+  var barEl = document.getElementById('qzBar');
+  var backBtn = document.getElementById('qzBack');
+  var restartBtn = document.getElementById('qzRestart');
+  var resultEl = document.getElementById('qzResult');
+  var guideEl = document.getElementById('qzGuide');
+  var ans = {};
+  var idx = 0;
+  var N = D.questions.length;
+
+  function won(n){ return Math.round(n).toLocaleString('ko-KR'); }
+  function esc(v){
+    return String(v == null ? '' : v).replace(/[&<>"]/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c];
+    });
+  }
+  function bySlug(slug){
+    for (var i = 0; i < D.cities.length; i++) if (D.cities[i].slug === slug) return D.cities[i];
+    return null;
+  }
+  function rank(){
+    return D.cities.map(function(c, i){
+      var s = 0;
+      Object.keys(ans).forEach(function(q){ s += (c.scores[q + ':' + ans[q]] || 0); });
+      return { c: c, s: s, i: i };
+    }).sort(function(a, b){ return b.s - a.s || a.i - b.i; });
+  }
+  function resultUrl(slug){
+    return location.origin + location.pathname + '?r=' + slug + '#qzResult';
+  }
+
+  function renderQ(){
+    var q = D.questions[idx];
+    stepEl.textContent = (idx + 1) + ' / ' + N;
+    barEl.style.width = Math.round((idx / N) * 100) + '%';
+    backBtn.hidden = idx === 0;
+    restartBtn.hidden = !Object.keys(ans).length;
+    var html = '<div class="qz-qw"><h2 class="qz-q">' + esc(q.q) + '</h2>' +
+      '<p class="qz-sub">' + esc(q.sub) + '</p><div class="qz-opts">';
+    q.options.forEach(function(o){
+      var on = ans[q.id] === o.v;
+      html += '<button type="button" class="qz-opt' + (on ? ' on' : '') + '" data-v="' + esc(o.v) + '" aria-pressed="' + on + '">' + esc(o.label) + '</button>';
+    });
+    html += '</div></div>';
+    body.innerHTML = html;
+  }
+
+  function shareRow(url, title){
+    return '<div class="share-row share-row--result" data-share data-share-url="' + esc(url) + '" data-share-title="' + esc(title) + '">' +
+      '<span class="share-k">이 결과 공유하기</span>' +
+      '<button type="button" class="share-btn share-btn--main" data-share-act="native">카톡·인스타·스레드로 보내기</button>' +
+      '<button type="button" class="share-btn" data-share-act="copy">링크 복사</button>' +
+      '<span class="share-note">링크를 받은 사람은 같은 결과 카드를 바로 봅니다.</span></div>';
+  }
+
+  function showResult(ranked){
+    var top = ranked[0];
+    var c = top.c;
+    var L = D.links[c.slug] || {};
+    var url = resultUrl(c.slug);
+    var title = '내 여행지는 ' + c.name + ' — 트립픽 1분 취향 퀴즈';
+    var rows = '<li class="qzr-main"><a href="' + esc(L.url || ('/' + c.slug)) + '"><b>' + esc(c.name) + ' 도시 페이지</b>' +
+      '<span>투어·맛집·숙소·가이드를 한 화면에</span></a></li>';
+    if (L.tour) {
+      rows += '<li><a href="' + esc(L.tour.url) + '" target="_blank" rel="noopener sponsored"><b>' +
+        esc(L.tour.title) + '</b><span>' + esc(L.tour.type) + ' · ' + esc(L.tour.dur) + ' · 1인 ' + won(L.tour.sale) + '원~</span></a></li>';
+    }
+    if (L.stays) {
+      rows += '<li><a href="' + esc(L.stays) + '"><b>찐숙소 ' + (L.staysN || 0) + '곳</b><span>' +
+        esc(L.staysTop || '') + ' — 평점·리뷰·1박 가격 비교</span></a></li>';
+    }
+    if (L.listUrl) {
+      rows += '<li><a href="' + esc(L.listUrl) + '" target="_blank" rel="noopener sponsored"><b>트립닷컴 ' + esc(c.name) + ' 숙소 전체</b><span>체크인 날짜를 넣으면 그날 최저가로 정렬</span></a></li>';
+    }
+    if (L.guide) {
+      rows += '<li><a href="' + esc(L.guide.url) + '"><b>' + esc(L.guide.title) + '</b><span>같은 도시를 숫자로 계산한 가이드</span></a></li>';
+    }
+    var alt = ranked.slice(1, 3).map(function(r){
+      var l = D.links[r.c.slug] || {};
+      return '<a class="qz-alt" href="' + esc(l.url || ('/' + r.c.slug)) + '"><em>차점</em><b>' + esc(r.c.name) + '</b><span>' + esc(r.c.best) + '</span></a>';
+    }).join('');
+
+    resultEl.innerHTML = '<div class="qzres">' +
+      '<div class="qzres-top"><span class="qzres-k">내 여행지는</span><h2>' + esc(c.name) + '</h2>' +
+      '<p class="qzres-best">' + esc(c.best) + '</p><span class="qzres-score">답한 조건 일치도 ' + top.s + '점</span></div>' +
+      '<div class="qzres-body">' +
+        '<img class="qzres-img" src="' + esc(L.img || '') + '" alt="' + esc(L.imgAlt || c.name) + '" width="640" height="400" loading="lazy" />' +
+        '<div class="qzres-copy"><p class="qzres-why">' + esc(c.why) + '</p>' +
+        '<ul class="qzres-links">' + rows + '</ul></div>' +
+      '</div>' +
+      shareRow(url, title) +
+      '<div class="qzres-altbox"><b>조건이 하나만 달라도 바뀝니다 — 2·3순위</b><div class="qz-altrow">' + alt + '</div></div>' +
+      '<div class="qzres-foot"><button type="button" class="qz-again" id="qzAgain">답을 바꿔 다시 하기</button>' +
+      '<span>결과는 이 브라우저에 저장되어 홈의 ‘내 여행 준비’에서 다시 열 수 있습니다.</span></div>' +
+      '</div>';
+    resultEl.hidden = false;
+    document.getElementById('quiz').hidden = true;
+    if (guideEl) guideEl.open = false;
+    try {
+      localStorage.setItem(KEY, JSON.stringify({ slug: c.slug, name: c.name, why: c.best, url: '/quiz?r=' + c.slug, t: Date.now() }));
+    } catch (e) {}
+    try { history.replaceState(null, '', '?r=' + c.slug + '#qzResult'); } catch (e) {}
+    var again = document.getElementById('qzAgain');
+    if (again) again.addEventListener('click', function(){ restart(); });
+    if (resultEl.scrollIntoView) {
+      setTimeout(function(){ resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
+    }
+  }
+
+  function restart(){
+    ans = {}; idx = 0;
+    resultEl.hidden = true; resultEl.innerHTML = '';
+    document.getElementById('quiz').hidden = false;
+    if (guideEl) guideEl.open = true;
+    try { history.replaceState(null, '', location.pathname); } catch (e) {}
+    renderQ();
+  }
+
+  function answered(){
+    if (idx < N - 1) { idx += 1; renderQ(); return; }
+    barEl.style.width = '100%';
+    showResult(rank());
+  }
+
+  document.addEventListener('click', function(e){
+    var opt = e.target.closest('.qz-opt');
+    if (opt && body.contains(opt)) {
+      var q = D.questions[idx];
+      ans[q.id] = opt.getAttribute('data-v');
+      Array.prototype.forEach.call(body.querySelectorAll('.qz-opt'), function(b){ b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); });
+      opt.classList.add('on'); opt.setAttribute('aria-pressed', 'true');
+      setTimeout(answered, 180);
+      return;
+    }
+    if (e.target.closest('#qzBack')) {
+      if (idx > 0) { idx -= 1; renderQ(); }
+      return;
+    }
+    if (e.target.closest('#qzRestart')) { restart(); }
+  });
+
+  // 진입 조건: ?r=도시 → 그 결과, ?mood=바다 등 → 해당 답을 미리 고른 채 시작
+  var qs = new URLSearchParams(location.search);
+  var rslug = qs.get('r');
+  if (rslug && bySlug(rslug)) {
+    showResult(rank());
+    return;
+  }
+  var mood = qs.get('mood');
+  if (mood) {
+    var mq = null;
+    D.questions.forEach(function(q){ if (q.id === 'mood') mq = q; });
+    if (mq && mq.options.some(function(o){ return o.v === mood; })) {
+      ans.mood = mood;
+      idx = 1;
+    }
+  }
+  renderQ();
+})();
+"""
+
+
 def not_found_page(out_root: Path, base: str) -> Path:
     """없는 주소용 404.html — 홈으로 되돌리는 동선과 인기 페어지를 둔다(noindex)."""
     links = "".join(
@@ -2876,6 +3374,7 @@ def write_sitemap(out_root: Path, base: str):
     urls += [(f"{b}/guides/{g['slug']}.html", "0.8", "monthly") for g in GUIDES_LIST]
     urls += [
         (f"{b}/exchange.html", "0.8", "monthly"),
+        (f"{b}/quiz.html", "0.9", "monthly"),
         (f"{b}/baggage.html", "0.8", "monthly"),
         (f"{b}/stays.html", "0.9", "weekly"),
         (f"{b}/passes.html", "0.9", "monthly"),
@@ -2907,6 +3406,10 @@ def write_assets(style: str, out_root: Path):
     )
     (out_root / "assets").mkdir(parents=True, exist_ok=True)
     (out_root / "assets" / "site.css").write_text(css, encoding="utf-8")
+    # v25: 이어보기·공유 스크립트도 배포 폴더로 복사(홈 index.html 과 서브페이지가 같이 씁니다)
+    js_src = CONTENT / "v25.js"
+    if js_src.exists():
+        shutil.copy2(js_src, out_root / "assets" / "trip-save.js")
     # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
     hdr = ROOT / "_headers"
     if hdr.exists():
@@ -2992,7 +3495,7 @@ def check_links(out_root: Path) -> int:
 # ----------------------------------------------------------------------
 def main():
     global SPRITE, TOTAL, TOURS, ESSENTIALS, GUIDES_LIST, CAT_NOTE
-    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA, KLOOK, PACKAGES, STAYS
+    global RESTAURANTS, GIFTS, TRIPCOM, EXTRA, KLOOK, PACKAGES, STAYS, SEASON_IDS
 
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(ROOT), help="출력 디렉터리 (기본: tour_hub)")
@@ -3018,6 +3521,7 @@ def main():
     KLOOK = load_json("klook.json")
     PACKAGES = load_json("packages.json")
     STAYS = load_json("stays.json")
+    SEASON_IDS = {c["id"] for c in load_json("season.json")["cities"]}
 
     gspec = load_json("guides.json")
     GUIDES_LIST = gspec["guides"]
@@ -3049,6 +3553,7 @@ def main():
         made.append(baggage_page(out_root, args.base))
         made.append(passes_page(out_root, args.base))
         made.append(calendar_page(out_root, args.base))
+        made.append(quiz_page(out_root, args.base))
         made.append(stays_page(out_root, args.base))
 
     write_sitemap(out_root, args.base)

@@ -321,16 +321,28 @@ def promo_tile(city: dict, count: int, wide: bool = False) -> str:
 
 
 def render_hub_strip(data: dict) -> str:
-    """첫 화면 CTA 아래에 붙는 도시 페이지 7곳 바로가기(홈 → 허브 내부 링크)."""
+    """첫 화면 CTA 아래에 붙는 도시 페이지 바로가기(홈 → 허브 내부 링크).
+
+    v25: 13곳으로 늘고 서울·여수·경주는 단독 투어 상품이 없어, 그 도시는
+    '투어 0' 대신 찐숙소 수를 보여 준다(숙소도 없으면 가이드).
+    """
     chips = []
     for hub in HUB_LIST:
         ids = set(hub.get("cityIds") or [hub["slug"]])
         items = [t for t in data["tours"] if t["city"] in ids]
         low = min((t["sale"] for t in items), default=0)
+        n = len(items)
+        stays = STAY_CNT.get(hub["slug"], 0)
+        if n:
+            meta, title = f"투어 {n}", f"{hub['name']} 투어 {n}개 · {won(low)}원~"
+        elif stays:
+            meta, title = f"숙소 {stays}", f"{hub['name']} 찐숙소 {stays}곳 · 맛집·가이드"
+        else:
+            meta, title = "가이드", f"{hub['name']} 여행 가이드·맛집"
         chips.append(
-            f'<a class="hub-chip" href="{hub["slug"]}" title="{esc(hub["name"])} 투어 {len(items)}개 · {won(low)}원~">'
+            f'<a class="hub-chip" href="{hub["slug"]}" title="{esc(title)}">'
             f'<span class="hc-fl">{flag_svg(hub["flag"], 16, 11.2)}</span>'
-            f'<span class="hc-t"><b>{esc(hub["nav"])}</b><i>투어 {len(items)}</i></span></a>'
+            f'<span class="hc-t"><b>{esc(hub["nav"])}</b><i>{meta}</i></span></a>'
         )
     return ("\n        ").join(chips)
 
@@ -1803,6 +1815,7 @@ SITE = "https://trippick.pages.dev"
 SITE_NAME = "트립픽"
 # main() 에서 채운다: 도시 id → (트립닷컴 cityId, 도시명). 지역 섹션에서 숙소 섹션으로 딥링크할 때 쓴다.
 TC_CITY: dict[str, tuple[str, str]] = {}
+STAY_CNT: dict[str, int] = {}   # 지역 id → 찐숙소 수 (홈 도시 칩 라벨)
 
 
 def abs_url(path: str) -> str:
@@ -2117,7 +2130,11 @@ def main() -> int:
     FOOD_CITY = len(rest["cities"])
     GIFT_COUNTRIES = len(gifts["countries"])
     GUIDES_COUNT = len(guides["guides"])
-    STAYS_COUNT = len(json.loads((DATA / "stays.json").read_text(encoding="utf-8"))["hotels"])
+    _stays = json.loads((DATA / "stays.json").read_text(encoding="utf-8"))
+    STAYS_COUNT = len(_stays["hotels"])
+    STAY_CNT.clear()
+    for _h in _stays["hotels"]:
+        STAY_CNT[_h["region"]] = STAY_CNT.get(_h["region"], 0) + 1
 
     TC_CITY.clear()
     for h in tripcom["hotels"]:
@@ -2144,6 +2161,7 @@ def main() -> int:
         "COUNTRY_COUNT": str(len([c for c in COUNTRIES if any(t["country"] == c[0] for t in data["tours"])])),
         "COURSE_COUNT": str(len(courses["courses"])),
         "ESS_COUNT": str(len(essentials["products"])),
+        "HUB_COUNT": str(len(HUB_LIST)),
     }
     for k, v in tokens.items():
         html = html.replace("{{" + k + "}}", v)

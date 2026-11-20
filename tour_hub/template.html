@@ -2164,6 +2164,211 @@
   .site-head .head-right .btn{white-space:nowrap;flex:0 0 auto}
   @media (max-width:1400px){ .nav a{font-size:13.6px;padding:8px 9px} }
   @media (max-width:1180px){ .nav a{font-size:12.9px;padding:8px 7px} }
+
+  /* ===================== v25: 이어보기 · 공유 · 취향 퀴즈 ===================== */
+  /* 이어보기 — 페이지 흐름 안의 일반 블록(fixed 아님)이라 모바일 비교바·퀵바와 겹치지 않습니다. */
+  .cont-bar[hidden]{display:none}
+  .cont-bar{margin:0 0 16px}
+  .cont-in{display:flex;align-items:center;gap:10px;border:1px dashed var(--blue-line);border-radius:14px;
+    background:linear-gradient(100deg,#F3F8FD,#FAFCFD);padding:9px 12px}
+  .cont-k{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;font-size:11px;font-weight:850;color:var(--blue-700)}
+  .cont-k svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+  .cont-row{display:flex;gap:6px;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none}
+  .cont-row::-webkit-scrollbar{display:none}
+  .cont-item{display:flex;align-items:center;gap:8px;flex:0 0 auto;max-width:300px;background:#fff;
+    border:1px solid var(--line);border-radius:11px;padding:5px 10px 5px 5px;text-decoration:none;transition:.15s}
+  .cont-item:hover{border-color:var(--blue);text-decoration:none}
+  .cont-item img{width:48px;aspect-ratio:3/2;height:auto;border-radius:7px;object-fit:cover;flex:0 0 auto}
+  .cont-t{display:block;min-width:0}
+  .cont-t em{display:block;font-style:normal;font-size:9.6px;font-weight:850;color:var(--blue-700);letter-spacing:.02em}
+  .cont-t b{display:block;font-size:12px;font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:210px}
+  .cont-item .ic{width:12px;height:12px;stroke:var(--ink-3);fill:none;stroke-width:2;flex:0 0 auto}
+  .cont-x{border:0;background:none;color:var(--ink-3);font-size:16px;line-height:1;cursor:pointer;padding:0 2px;flex:0 0 auto}
+  @media (max-width:640px){
+    .cont-in{padding:8px 10px;gap:8px}
+    .cont-k{font-size:10px}
+    .cont-item{max-width:230px}
+    .cont-t b{max-width:160px;font-size:11.4px}
+    .cont-item img{width:40px}
+  }
+
+  /* 공유 버튼 */
+  .share-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px;padding:12px 14px;
+    border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  .share-k{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:850;color:var(--ink-2)}
+  .share-k svg{width:15px;height:15px;stroke:var(--blue-600);fill:none;stroke-width:1.8}
+  .share-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;
+    color:var(--ink-2);font-size:12.4px;font-weight:800;border-radius:999px;padding:8px 13px;cursor:pointer;transition:.15s}
+  .share-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .share-btn:hover{border-color:var(--blue-line);color:var(--blue-700);background:var(--blue-soft)}
+  .share-btn--main{background:var(--blue);border-color:var(--blue);color:#fff}
+  .share-btn--main:hover{background:var(--blue-700);border-color:var(--blue-700);color:#fff}
+  .share-btn.done{background:#E7F6EC;border-color:#B7E1C4;color:#1B7A3D}
+  .share-note{flex:1 1 100%;font-size:11.4px;color:var(--ink-3);line-height:1.55}
+  .share-row--result{margin:14px 0 0;background:#fff}
+  @media (max-width:640px){
+    .share-row{padding:11px 12px;gap:7px}
+    .share-btn{font-size:12px;padding:8px 11px}
+    .share-btn--main{flex:1 1 100%;justify-content:center}
+  }
+
+  /* 홈: 내 여행 준비 요약 */
+  .prep-box{margin:14px auto 0;max-width:var(--maxw);border:1px solid var(--blue-line);border-radius:16px;
+    background:linear-gradient(120deg,#F2F7FD,#FBFDFF);padding:14px 16px}
+  .prep-box[hidden]{display:none}
+  .prep-t{display:flex;align-items:center;gap:6px;font-size:12.4px;font-weight:850;color:var(--blue-700)}
+  .prep-t svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2}
+  .prep-rows{display:grid;gap:6px;margin-top:9px}
+  .prep-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:9px 12px;text-decoration:none}
+  .prep-row:hover{border-color:var(--blue);text-decoration:none}
+  .prep-row--flat{cursor:default;align-items:flex-start}
+  .prep-k{flex:0 0 auto;font-size:10.4px;font-weight:850;color:var(--blue-700);background:var(--blue-soft);
+    border-radius:999px;padding:4px 9px}
+  .prep-v{display:block;min-width:0;flex:1 1 auto}
+  .prep-v b{display:block;font-size:13px;font-weight:850;color:var(--ink)}
+  .prep-v em{display:block;font-style:normal;font-size:11.4px;color:var(--ink-3);margin-top:1px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .prep-row .ic{width:13px;height:13px;stroke:var(--ink-3);fill:none;stroke-width:2;flex:0 0 auto}
+  .prep-links{display:grid;gap:4px;flex:1 1 auto;min-width:0}
+  .prep-links a{display:flex;align-items:baseline;gap:6px;min-width:0;font-size:12px;font-weight:780;color:var(--blue-700);
+    text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .prep-links a:hover{text-decoration:underline}
+  .prep-links a span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .prep-links a em{flex:0 0 auto;font-style:normal;font-size:10px;font-weight:850;color:var(--ink-3);
+    background:var(--soft);border-radius:999px;padding:2px 7px}
+  .prep-note{margin:8px 0 0;font-size:10.8px;color:var(--ink-3);line-height:1.55}
+
+  /* 홈: 취향 퀴즈 밴드 */
+  .quizband{padding:0 0 6px}
+  .quizband .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 22px;align-items:center;
+    border:1px solid var(--blue-line);border-radius:20px;background:linear-gradient(115deg,#F1F7FF,#FBFDFF);padding:18px 20px}
+  .quizband .qb-k{display:inline-flex;align-items:center;gap:6px;font-size:10.6px;font-weight:850;letter-spacing:.04em;
+    color:var(--blue-700);text-transform:uppercase}
+  .quizband h2{margin:6px 0 0;font-size:clamp(18px,2.4vw,23px);font-weight:850;letter-spacing:-.035em;color:var(--ink)}
+  .quizband h2 em{font-style:normal;color:var(--blue)}
+  .quizband p{margin:6px 0 0;font-size:12.6px;color:var(--ink-2);line-height:1.65}
+  .qb-moods{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .qb-moods a{font-size:12px;font-weight:800;color:var(--ink-2);background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:7px 12px;text-decoration:none;transition:.15s}
+  .qb-moods a:hover{border-color:var(--blue);background:var(--blue);color:#fff}
+  .quizband .qb-go{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:#fff;font-size:13.6px;
+    font-weight:850;border-radius:14px;padding:13px 18px;text-decoration:none;white-space:nowrap}
+  .quizband .qb-go:hover{background:var(--blue-700);text-decoration:none}
+  .quizband .qb-go svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+  @media (max-width:760px){
+    .quizband .wrap{grid-template-columns:1fr;padding:15px 15px;gap:12px}
+    .quizband .qb-go{justify-content:center}
+  }
+
+  /* 취향 퀴즈 페이지 */
+  .qz{border:1px solid var(--line);border-radius:20px;background:var(--card);padding:20px 22px 18px;box-shadow:var(--sh-2)}
+  .qz[hidden]{display:none}
+  .qz-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .qz-step{font-size:12px;font-weight:850;color:var(--blue-700);font-variant-numeric:tabular-nums;flex:0 0 auto}
+  .qz-bar{flex:1 1 auto;height:6px;background:var(--soft);border-radius:999px;overflow:hidden}
+  .qz-bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:999px;transition:width .3s var(--ease)}
+  .qz-restart{border:0;background:none;color:var(--ink-3);font-size:11.6px;font-weight:800;cursor:pointer;flex:0 0 auto}
+  .qz-q{margin:0 0 6px;font-size:clamp(19px,2.6vw,26px);font-weight:850;letter-spacing:-.035em;color:var(--ink);line-height:1.35}
+  .qz-sub{margin:0 0 16px;font-size:13px;color:var(--ink-3);line-height:1.6}
+  .qz-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .qz-opt{border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px 14px;text-align:left;
+    font-family:inherit;font-size:14.5px;font-weight:800;color:var(--ink);cursor:pointer;transition:.15s}
+  .qz-opt:hover{border-color:var(--blue-line);background:var(--blue-soft);color:var(--blue-700)}
+  .qz-opt.on{border-color:var(--blue);background:var(--blue);color:#fff}
+  .qz-foot{display:flex;align-items:center;gap:10px;margin-top:14px}
+  .qz-back{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:12px;
+    font-weight:800;color:var(--ink-2);cursor:pointer;font-family:inherit}
+  .qz-hint{font-size:11.6px;color:var(--ink-3)}
+  .qz-noscript{margin:12px 0 0;font-size:12.6px;color:var(--ink-2)}
+  @media (max-width:560px){
+    .qz{padding:16px 14px}
+    .qz-opts{grid-template-columns:1fr}
+    .qz-opt{padding:13px 12px;font-size:14px}
+    .qz-hint{display:none}
+  }
+
+  .qz-result{margin:0 0 18px}
+  .qz-resultshell{scroll-margin-top:96px}
+  .qzres{border:1px solid var(--blue-line);border-radius:20px;background:linear-gradient(160deg,#F0F7FF,#FBFDFF);
+    padding:20px 22px 18px;box-shadow:var(--sh-2)}
+  .qzres-top{display:flex;align-items:baseline;gap:10px 14px;flex-wrap:wrap}
+  .qzres-k{font-size:11px;font-weight:850;color:var(--blue-700);letter-spacing:.03em}
+  .qzres-top h2{margin:0;font-size:clamp(24px,4vw,34px);font-weight:850;letter-spacing:-.045em;color:var(--ink)}
+  .qzres-best{margin:0;font-size:13px;font-weight:800;color:var(--blue-700);background:#fff;border:1px solid var(--blue-line);
+    border-radius:999px;padding:5px 11px}
+  .qzres-score{margin-left:auto;font-size:11.4px;font-weight:800;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .qzres-body{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;margin-top:14px;align-items:start}
+  .qzres-img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:14px;display:block}
+  .qzres-copy{min-width:0}
+  .qzres-why{margin:0 0 12px;font-size:13.4px;line-height:1.75;color:var(--ink-2)}
+  .qzres-links{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+  .qzres-links a{display:block;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;text-decoration:none;transition:.15s}
+  .qzres-links a:hover{border-color:var(--blue);text-decoration:none}
+  .qzres-links b{display:block;font-size:13.4px;font-weight:850;color:var(--ink);line-height:1.4}
+  .qzres-links span{display:block;font-size:11.4px;color:var(--ink-3);margin-top:2px;line-height:1.5}
+  .qzres-links .qzr-main a{border-color:var(--blue);background:var(--blue)}
+  .qzres-links .qzr-main b{color:#fff}
+  .qzres-links .qzr-main span{color:rgba(255,255,255,.82)}
+  .qzres-altbox{margin-top:16px;padding-top:14px;border-top:1px solid var(--blue-line)}
+  .qzres-altbox>b{display:block;font-size:11.6px;font-weight:850;color:var(--ink-2);margin-bottom:8px}
+  .qz-altrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .qz-alt{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none}
+  .qz-alt:hover{border-color:var(--blue);text-decoration:none}
+  .qz-alt em{display:block;font-style:normal;font-size:9.8px;font-weight:850;color:var(--blue-700)}
+  .qz-alt b{display:block;font-size:13.2px;font-weight:850;color:var(--ink);margin-top:2px}
+  .qz-alt span{display:block;font-size:11.2px;color:var(--ink-3);margin-top:1px}
+  .qzres-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .qz-again{border:0;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink-2);
+    font-family:inherit;font-size:12.4px;font-weight:800;padding:9px 15px;cursor:pointer}
+  .qz-again:hover{border-color:var(--blue);color:var(--blue-700)}
+  .qzres-foot span{font-size:10.8px;color:var(--ink-3);line-height:1.5;flex:1 1 200px}
+  @media (max-width:760px){
+    .qzres{padding:16px 14px}
+    .qzres-body{grid-template-columns:1fr;gap:12px}
+    .qzres-img{aspect-ratio:2/1}
+    .qzres-score{margin-left:0}
+    .qz-altrow{grid-template-columns:1fr}
+  }
+
+  .qz-guide{margin:18px 0 0;border:1px solid var(--line);border-radius:16px;background:#fff;padding:0 16px}
+  .qz-guide summary{cursor:pointer;padding:13px 0;font-size:13px;font-weight:850;color:var(--ink);list-style:none}
+  .qz-guide summary::-webkit-details-marker{display:none}
+  .qz-guide summary::after{content:'▾';float:right;color:var(--ink-3);font-weight:700}
+  .qz-guide[open] summary::after{content:'▴'}
+  .qz-steps{display:grid;gap:6px;padding-bottom:8px}
+  .qz-steps span{font-size:12.4px;color:var(--ink-2);line-height:1.6}
+  .qz-steps b{color:var(--blue-700);font-weight:850;margin-right:3px}
+  .qz-guide-note{margin:0 0 14px;font-size:11.4px;color:var(--ink-3);line-height:1.6}
+  .qz-h2{margin:34px 0 14px;font-size:clamp(18px,2.4vw,23px);font-weight:850;letter-spacing:-.035em;color:var(--ink)}
+  .qz-cities{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  .qz-city{position:relative;display:block;border-radius:14px;overflow:hidden;text-decoration:none;background:#0B1A2B}
+  .qz-city img{width:100%;aspect-ratio:16/11;object-fit:cover;display:block;opacity:.92;transition:.2s}
+  .qz-city:hover img{opacity:1;transform:scale(1.03)}
+  .qz-city-b{position:absolute;inset:auto 0 0 0;padding:22px 11px 10px;display:block;
+    background:linear-gradient(180deg,rgba(11,26,43,0),rgba(11,26,43,.86))}
+  .qz-city-k{display:block;font-size:9.6px;font-weight:800;color:rgba(255,255,255,.78)}
+  .qz-city-b b{display:block;font-size:13.4px;font-weight:850;color:#fff;margin-top:1px}
+  @media (max-width:980px){ .qz-cities{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:640px){ .qz-cities{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px} .qz-city-b b{font-size:12.4px} }
+  .qz-faq{margin:28px 0 0;border-top:1px solid var(--line-2)}
+
+  /* 도시 허브 안 찐숙소 카드 */
+  .hub-sgrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 0}
+  @media (max-width:1024px){ .hub-sgrid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:640px){ .hub-sgrid{grid-template-columns:1fr} }
+
+  /* 단독 투어가 없는 도시 허브 */
+  .hub-nopkg{border:1px solid var(--line);border-radius:16px;background:#fff;padding:16px 18px}
+  .hub-nopkg>p{margin:0 0 12px;font-size:13px;line-height:1.7;color:var(--ink-2)}
+  .hub-nopkg-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .hub-nopkg-links a{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid var(--line);
+    border-radius:12px;padding:11px 13px;text-decoration:none;transition:.15s}
+  .hub-nopkg-links a:hover{border-color:var(--blue);text-decoration:none}
+  .hub-nopkg-links b{font-size:12.8px;font-weight:850;color:var(--ink);flex:0 0 auto}
+  .hub-nopkg-links span{font-size:11.4px;color:var(--ink-3);flex:1 1 140px}
+  .hub-nopkg-links i{display:inline-flex;align-items:center;gap:4px;font-style:normal;font-size:11.6px;font-weight:800;color:var(--blue-700)}
+  @media (max-width:760px){ .hub-nopkg-links{grid-template-columns:1fr} }
 </style>
 <noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}</style></noscript>
 </head>
@@ -2272,7 +2477,26 @@
     <div class="hs-row">
       <!-- @HUB_STRIP -->
     </div>
-    <a class="hs-all" href="cities/">도시 페이지 전체 <b>7곳</b> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <a class="hs-all" href="cities/">도시 페이지 전체 <b>{{HUB_COUNT}}곳</b> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</div>
+
+<div class="wrap"><div class="prep-box" id="prepBox" hidden></div></div>
+
+<div class="quizband" aria-label="1분 여행지 취향 퀴즈">
+  <div class="wrap">
+    <div>
+      <span class="qb-k"><svg class="ic" aria-hidden="true" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2"><use href="#i-compass"/></svg>1분 취향 퀴즈 · 13개 도시</span>
+      <h2>다섯 가지만 고르면 <em>내 여행지</em>가 나옵니다</h2>
+      <p>예산·일정·동행·분위기·비행시간, 다섯 질문입니다. 결과 카드에서 그 도시의 투어·맛집·찐숙소·가이드로 바로 이어지고, 결과는 이 브라우저에 저장됩니다.</p>
+      <div class="qb-moods" aria-label="분위기로 바로 시작">
+        <a href="quiz?mood=sea">바다·해변</a>
+        <a href="quiz?mood=city">도시·먹거리</a>
+        <a href="quiz?mood=onsen">온천·휴양</a>
+        <a href="quiz?mood=history">역사·산책</a>
+      </div>
+    </div>
+    <a class="qb-go" href="quiz">퀴즈 시작하기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
   </div>
 </div>
 
@@ -3273,6 +3497,11 @@ if (searchForm) {
   var PLAN = JSON.parse(planEl.textContent);
   var st = { pax: 2, region: 'jp', style: 'value', plan: 0 };
   var state = 'ABC';
+  /* v25: 고른 인원·지역·스타일을 이 브라우저에 저장해 새로고침·재방문에도 유지 */
+  var SKEY = 'trippick.planner.v1';
+  function savePlanner() {
+    try { localStorage.setItem(SKEY, JSON.stringify({ pax: st.pax, region: st.region, style: st.style, plan: st.plan })); } catch (e) {}
+  }
 
   function won(n) { return Math.round(n).toLocaleString('ko-KR'); }
   function esc(v) {
@@ -3381,6 +3610,7 @@ if (searchForm) {
       var next = st.pax + Number(step.dataset.paxStep);
       if (next < 1 || next > 6) return;
       st.pax = next;
+      savePlanner();
       renderAll();
       return;
     }
@@ -3398,12 +3628,14 @@ if (searchForm) {
         });
       }
       st.plan = 0;
+      savePlanner();
       renderAll();
       return;
     }
     var tab = e.target.closest('[data-plan-tab]');
     if (tab) {
       st.plan = Number(tab.dataset.planTab);
+      savePlanner();
       renderTabs();
       renderPlan();
     }
@@ -3464,6 +3696,19 @@ if (searchForm) {
   (function restore() {
     try {
       var q = new URLSearchParams(window.location.search);
+      /* v25: 공유 링크(?pax=…·region=…)가 없으면 마지막으로 쓰던 설정을 되살린다 */
+      if (!q.has('pax') && !q.has('region') && !q.has('style')) {
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(SKEY) || 'null'); } catch (e0) { saved = null; }
+        if (saved) {
+          if (saved.pax >= 1 && saved.pax <= 6) st.pax = saved.pax;
+          if (saved.region && saved.style && PLAN.plans[saved.region + '|' + saved.style] &&
+              document.querySelector('.pc-chip[data-region="' + saved.region + '"]')) {
+            st.region = saved.region;
+            st.style = saved.style;
+          }
+        }
+      }
       var pax = Number(q.get('pax'));
       if (pax >= 1 && pax <= 6) st.pax = pax;
       var rg = q.get('region'), sty = q.get('style');
@@ -4053,5 +4298,6 @@ applyFilters();
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') nd.open = false; });
 })();
 </script>
+<script src="assets/trip-save.js?v=25" defer></script>
 </body>
 </html>

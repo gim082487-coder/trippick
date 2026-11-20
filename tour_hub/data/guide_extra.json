@@ -1022,7 +1022,7 @@
    ]
   },
   "seoul-seongsu-bukchon-1d": {
-   "hub": null,
+   "hub": "seoul",
    "regions": [
     "kr"
    ],
@@ -1043,7 +1043,7 @@
    ]
   },
   "busan-haeundae-gwangalli-2d": {
-   "hub": null,
+   "hub": "busan",
    "regions": [
     "kr"
    ],
@@ -1064,7 +1064,7 @@
    ]
   },
   "gangwon-gangneung-winter-sea-2d": {
-   "hub": null,
+   "hub": "gangneung",
    "regions": [
     "kr"
    ],
@@ -1085,7 +1085,7 @@
    ]
   },
   "yeosu-night-sea-2d": {
-   "hub": null,
+   "hub": "yeosu",
    "regions": [
     "kr"
    ],
@@ -1106,7 +1106,7 @@
    ]
   },
   "gyeongju-hwangridangil-2d": {
-   "hub": null,
+   "hub": "gyeongju",
    "regions": [
     "kr"
    ],
@@ -1127,7 +1127,7 @@
    ]
   },
   "nhatrang-3n4d-food-resort": {
-   "hub": null,
+   "hub": "nhatrang",
    "regions": [
     "vn"
    ],
