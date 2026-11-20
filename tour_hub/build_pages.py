@@ -780,7 +780,7 @@ def guide_actions(g: dict) -> str:
             third = (
                 '<a class="gact" href="index.html">'
                 '<span class="gact-k">다음 추천 글</span><b>가이드 전체 보기</b>'
-                '<span class="gact-m">국내·해외 56편을 지역·주제로 찾기</span>'
+                f'<span class="gact-m">국내·해외 {len(GUIDES_LIST)}편을 지역·주제로 찾기</span>'
                 '<span class="gact-go">가이드 목록 →</span></a>'
             )
 
@@ -3515,7 +3515,7 @@ def not_found_page(out_root: Path, base: str) -> Path:
         for u, n in [
             ("/", "홈"),
             ("/guides/", f"여행 가이드 {len(GUIDES_LIST)}편"),
-            ("/cities/", "도시별 페이지 7곳"),
+            ("/cities/", f"도시별 페이지 {len(hub_list())}곳"),
             ("/osaka", "오사카·교토"),
             ("/tokyo", "도쿄"),
             ("/danang", "다낭·호이안"),
@@ -3543,7 +3543,7 @@ def not_found_page(out_root: Path, base: str) -> Path:
         out_root,
         "404.html",
         title="페이지를 찾을 수 없습니다 (404) | 트립픽",
-        desc=f"요청한 주소가 없습니다. 여행 가이드 {len(GUIDES_LIST)}편·도시별 페이지 7곳·출국 체크리스트로 연결합니다.",
+        desc=f"요청한 주소가 없습니다. 여행 가이드 {len(GUIDES_LIST)}편·도시별 페이지 {len(hub_list())}곳·출국 체크리스트로 연결합니다.",
         body=body,
         base=base,
     )

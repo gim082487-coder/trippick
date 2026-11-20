@@ -246,6 +246,30 @@
    "file": "incheon-yeongjongdo-2d.jpg",
    "license": "자체 제작(생성 이미지)",
    "note": "영종도 해안에서 본 인천대교 일몰 풍경으로 제작해 1200×800로 저장. 외부 라이선스 없음."
+  },
+  "v29/japan-shopping-gift-list": {
+   "pexels_id": 32459962,
+   "photographer": "Kuan-yu Huang",
+   "url": "https://www.pexels.com/photo/32459962/",
+   "note": "일본 드럭스토어 앞면. 1200×800 크롭."
+  },
+  "v29/southeast-asia-gift-list": {
+   "pexels_id": 13757236,
+   "photographer": "Quang Nguyen Vinh",
+   "url": "https://www.pexels.com/photo/13757236/",
+   "note": "베트남 시장에서 건과일을 말리는 모습. 1200×800 크롭."
+  },
+  "v29/taiwan-hongkong-gift-list": {
+   "pexels_id": 33689716,
+   "photographer": "Armand M",
+   "url": "https://www.pexels.com/photo/33689716/",
+   "note": "홍콩 전통 상점 거리. 1200×800 크롭."
+  },
+  "v29/travel-card-packing-guide": {
+   "pexels_id": 9185883,
+   "photographer": "Timur Weber",
+   "url": "https://www.pexels.com/photo/9185883/",
+   "note": "캐리어와 여행용품. 1200×800 크롭."
   }
  }
 }

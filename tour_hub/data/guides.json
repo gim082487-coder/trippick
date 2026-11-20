@@ -1782,6 +1782,138 @@
    "ctaTitle": "나트랑 숙소, 내 날짜로 얼마인가?",
    "ctaText": "같은 5성급도 1박 5.5만원과 26만원으로 갈립니다. 출발일과 인원을 넣으면 숙소·투어·eSIM을 같은 기준으로 계산합니다.",
    "fxNote": "100동 = 5.2원 · 2026.11.20 확인"
+  },
+  {
+   "slug": "japan-shopping-gift-list",
+   "category": "일본",
+   "navTitle": "일본 쇼핑·선물 리스트 완벽정리 (돈키호테·5,500엔 면세)",
+   "h1": "일본 쇼핑, <em>5,500엔</em> 채우고 <em>공항</em>에서 돌려받는 법",
+   "seoTitle": "일본 쇼핑 리스트 2026 (돈키호테 한정 과자·뷰티·생활템 가격과 5,500엔 면세) | 트립픽",
+   "dek": "2026년 11월 1일부터 일본 면세는 세금 포함 결제 후 출국 때 환급하는 방식입니다. 돈키호테·드럭스토어·공항·백화점의 강약, 한정 과자 10종·뷰티 10종·생활템 6종의 세금 포함 가격과 3만·10만·20만원 장바구니를 정리했습니다.",
+   "desc": "일본 쇼핑·선물 리스트. 돈키호테 한정 과자·마스크팩·선크림·생활용품의 2026년 10~11월 세금 포함 가격을 원화로 환산하고, 세전 5,000엔(세금 포함 5,500엔) 면세 기준과 공항 세관 키오스크 절차, 오사카·도쿄·후쿠오카 쇼핑 동선, 액체류·보조배터리·육류 검역까지 정리했습니다.",
+   "keywords": "일본 쇼핑 리스트, 돈키호테 쇼핑리스트 2026, 일본 면세 5500엔, 일본 선물 리스트, 케아나 나데시코 쌀 마스크 가격, 비오레 선크림 가격, 피노 헤어마스크, 일본 면세 환급",
+   "published": "2026-11-21",
+   "updated": "2026-11-21",
+   "read": 11,
+   "image": "images/v29/japan-shopping-gift-list.jpg",
+   "imageAlt": "일본 드럭스토어 앞면에 면세·할인 간판과 상품이 늘어선 모습",
+   "tours": [
+    "os_g"
+   ],
+   "essentials": [
+    "cp-compress-urbantrip",
+    "cp-luggagescale-homeplanet"
+   ],
+   "related": [
+    "japan-souvenir-list",
+    "japan-esim",
+    "packing-powerbank-liquid",
+    "osaka-food-route",
+    "tokyo-food-route",
+    "osaka-kyoto-3n4d"
+   ],
+   "ctaTitle": "선물 값까지 넣어서 총액 보기",
+   "ctaText": "인원과 지역을 넣으면 항공·숙소·투어·eSIM에 선물 예산까지 같은 기준으로 계산합니다.",
+   "fxNote": "100엔 = 838원",
+   "imageCredit": "사진: Kuan-yu Huang / Pexels"
+  },
+  {
+   "slug": "southeast-asia-gift-list",
+   "category": "동남아",
+   "navTitle": "동남아 선물 리스트 (다낭·나트랑·방콕 마트·시장 시세)",
+   "h1": "동남아 선물, <em>마트는 정찰가</em>·<em>시장은 반값</em>부터",
+   "seoTitle": "동남아 선물 리스트 2026 (다낭·나트랑·방콕 커피·망고·야돔 가격과 검역) | 트립픽",
+   "dek": "커피·캐슈넛·건망고·젤리는 롯데마트·빅씨마트, 라탄·소품은 한시장·담시장·짜뚜짝. 다낭·나트랑·방콕의 같은 품목 가격을 한 표에 놓고, 육가공품·생과일 반입 금지와 3만·5만원 장바구니를 정리했습니다.",
+   "desc": "다낭·나트랑·방콕 선물 리스트. G7·콘삭 커피, 캐슈넛·건망고·망고젤리·야돔·타이거밤·라탄의 2026년 10~11월 현지 가격과 원화 환산, 마트와 시장의 가격 차이, 흥정 요령, 한국 반입 금지·검역 기준을 담았습니다.",
+   "keywords": "동남아 선물 리스트, 다낭 기념품, 나트랑 쇼핑리스트, 방콕 기념품, 베트남 커피 G7 가격, 캐슈넛 가격, 야돔 가격, 라탄 가방 가격, 베트남 검역",
+   "published": "2026-11-21",
+   "updated": "2026-11-21",
+   "read": 11,
+   "image": "images/v29/southeast-asia-gift-list.jpg",
+   "imageAlt": "베트남 시장 바구니에 건과일을 말리고 있는 모습",
+   "tours": [
+    "dn_p2"
+   ],
+   "essentials": [
+    "vn-esim-usimsa-3d",
+    "danang-airport-pickup"
+   ],
+   "related": [
+    "vietnam-souvenir-list",
+    "thailand-souvenir-list",
+    "danang-food-route",
+    "nhatrang-3n4d-food-resort",
+    "danang-hoian-rainy",
+    "packing-powerbank-liquid"
+   ],
+   "ctaTitle": "세 도시 일정에 쇼핑 시간 넣어보기",
+   "ctaText": "숙소 위치와 인원을 넣으면 마트·시장 동선까지 고려한 예산을 계산합니다.",
+   "fxNote": "100동 = 5.19원 · 1밧 = 39.5원",
+   "imageCredit": "사진: Quang Nguyen Vinh / Pexels"
+  },
+  {
+   "slug": "taiwan-hongkong-gift-list",
+   "category": "대만·괌",
+   "navTitle": "대만·홍콩 선물 리스트 (펑리수·제니베이커리·이지카드)",
+   "h1": "대만·홍콩 선물, <em>2,000대만달러</em>와 <em>세금 없는 홍콩</em>",
+   "seoTitle": "대만·홍콩 선물 리스트 2026 (펑리수·제니베이커리·기화병가·이지카드 가격) | 트립픽",
+   "dek": "대만은 같은 날 같은 매장 2,000대만달러부터 5% 환급, 홍콩은 부가세가 없어 표시가가 최종가입니다. 치아더·써니힐스·누가크래커·이지카드와 제니베이커리·기화병가·타이거밤의 가격, 구매처와 반입 주의를 정리했습니다.",
+   "desc": "대만·홍콩 선물 리스트. 치아더·써니힐스 펑리수, 누가크래커, 3시15분 밀크티, 이지카드와 제니베이커리 4·8믹스, 기화병가 판다쿠키·에그롤, 타이거밤의 2026년 10~11월 가격을 원화로 비교하고, 택스리펀 2,000대만달러와 육포·돼지기름 검역 주의를 담았습니다.",
+   "keywords": "대만 선물 리스트, 홍콩 선물 리스트, 치아더 펑리수 가격, 제니베이커리 가격, 기화병가 판다쿠키, 타이거밤 가격, 이지카드 가격, 대만 택스리펀 2000",
+   "published": "2026-11-21",
+   "updated": "2026-11-21",
+   "read": 11,
+   "image": "images/v29/taiwan-hongkong-gift-list.jpg",
+   "imageAlt": "홍콩 골목의 전통 상점과 간판이 늘어선 거리",
+   "tours": [
+    "tw_g"
+   ],
+   "essentials": [
+    "tw-esim-usimsa-3d",
+    "cp-adapter-nemotab"
+   ],
+   "related": [
+    "taiwan-souvenir-list",
+    "taipei-food-route",
+    "taipei-yehliu",
+    "packing-powerbank-liquid"
+   ],
+   "ctaTitle": "대만 일정과 선물 값을 함께 보기",
+   "ctaText": "인원과 지역을 넣으면 항공·숙소·투어에 선물 예산까지 같은 기준으로 계산합니다.",
+   "fxNote": "1대만달러 = 40.49원 · 1홍콩달러 = 170.3원",
+   "imageCredit": "사진: Armand M / Pexels"
+  },
+  {
+   "slug": "travel-card-packing-guide",
+   "category": "준비물·경비",
+   "navTitle": "환전·트래블카드 비교 & 짐싸기 체크리스트 실전판",
+   "h1": "환전, <em>공항 37,520원</em> vs <em>앱 1,460원</em>",
+   "seoTitle": "해외여행 환전·트래블카드 비교 2026 (트래블월렛·트래블로그·토스뱅크 수수료와 짐싸기) | 트립픽",
+   "dek": "같은 10만엔을 바꿔도 공항 창구 37,520원, 시내 14,590원, 은행 앱 90% 우대 1,460원입니다. 트래블월렛·트래블로그·토스뱅크의 환전·결제·ATM·재환전 수수료와 D-30부터 D-0까지 짐싸기, 보조배터리·액체류 규정을 한 번에 정리했습니다.",
+   "desc": "해외여행 환전·트래블카드 비교와 짐싸기 체크리스트. 인천공항·시내·앱 환전 수수료 차이, 트래블월렛·트래블로그·토스뱅크의 2026년 공식 수수료, DCC·ATM 주의, D-Day 준비 순서, 보조배터리 2개·160Wh와 액체류 100ml, 캐리어 무게 줄이는 법을 담았습니다.",
+   "keywords": "트래블카드 비교, 트래블월렛 수수료, 트래블로그 수수료, 토스뱅크 외화통장, 인천공항 환전 수수료, 해외여행 짐싸기, 보조배터리 기내 2개, 액체류 100ml",
+   "published": "2026-11-21",
+   "updated": "2026-11-21",
+   "read": 12,
+   "image": "images/v29/travel-card-packing-guide.jpg",
+   "imageAlt": "옷과 여행용품을 넣은 캐리어와 압축 파우치",
+   "tours": [],
+   "essentials": [
+    "cp-compress-urbantrip",
+    "cp-luggagescale-homeplanet"
+   ],
+   "related": [
+    "packing-powerbank-liquid",
+    "japan-esim",
+    "vietnam-esim",
+    "japan-shopping-gift-list",
+    "southeast-asia-gift-list",
+    "taiwan-hongkong-gift-list"
+   ],
+   "ctaTitle": "내 여행 총액으로 다시 계산하기",
+   "ctaText": "인원과 지역을 넣으면 항공·숙소·투어·eSIM에 환전·수하물 비용까지 같은 기준으로 계산합니다.",
+   "fxNote": "환율·수수료 2026.11.20",
+   "imageCredit": "사진: Timur Weber / Pexels"
   }
  ],
  "pages": [
