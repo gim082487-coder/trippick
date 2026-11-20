@@ -3039,7 +3039,9 @@ def quiz_page(out_root: Path, base: str) -> Path:
          "퀴즈 결과는 이 브라우저(localStorage)에만 저장되고 서버로 보내지 않습니다. 홈의 ‘내 여행 준비’에서 다시 열 수 있고, 다른 기기와는 공유되지 않습니다."),
     ]
     faq_html = "".join(
-        f'<details class="fq"><summary>{esc(q)}</summary><div class="fq-a">{esc(a)}</div></details>'
+        f'<details class="fq"><summary><span class="fq-q"><b>Q.</b> {esc(q)}</span>'
+        f'<span class="fq-ic" aria-hidden="true"></span></summary>'
+        f'<div class="fq-a">{esc(a)}</div></details>'
         for q, a in faq
     )
     faq_json = json.dumps(
@@ -3110,6 +3112,7 @@ def quiz_page(out_root: Path, base: str) -> Path:
     <h2 class="qz-h2">13개 도시 — 퀴즈 없이 바로 보기</h2>
     <div class="qz-cities">{city_cards}</div>
 
+    <h2 class="qz-h2">퀴즈에 대해 자주 묻는 질문</h2>
     <div class="qz-faq">{faq_html}</div>
 
 {cta_band('', '도시를 골랐으면, 내 날짜로 총액 계산', '인원과 스타일을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 계산합니다.')}

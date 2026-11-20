@@ -2311,7 +2311,7 @@
   .qz-city-b b{display:block;font-size:13.4px;font-weight:850;color:#fff;margin-top:1px}
   @media (max-width:980px){ .qz-cities{grid-template-columns:repeat(3,minmax(0,1fr))} }
   @media (max-width:640px){ .qz-cities{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px} .qz-city-b b{font-size:12.4px} }
-  .qz-faq{margin:28px 0 0;border-top:1px solid var(--line-2)}
+  .qz-faq{margin:0;display:grid;gap:8px}
 
   /* 도시 허브 안 찐숙소 카드 */
   .hub-sgrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 0}
