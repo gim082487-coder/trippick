@@ -903,13 +903,10 @@ def food_intro_line(rest: dict) -> str:
         return "·".join(esc(c["name"]) for c in group)
 
     if kr and ab:
-        lead = (f"국내 {len(kr)}개 도시({names(kr)})와 해외 {len(ab)}개 도시({names(ab)})에서 "
-                f"실제로 영업 중인 가게 {total}곳을 골랐습니다.")
+        lead = (f"실제로 영업 중인 가게 {total}곳을 골랐습니다 — "
+                f"국내 {len(kr)}개 도시({names(kr)}), 해외 {len(ab)}개 도시({names(ab)}).")
     else:
-        nums = ""
-        if len(kr) > 1:
-            nums = f"{len(kr)}개 도시에서 "
-        return f"{nums}실제로 영업 중인 가게 {total}곳을 골랐습니다."
+        lead = f"실제로 영업 중인 가게 {total}곳을 골랐습니다."
     return lead
 
 
