@@ -48,8 +48,8 @@ SITE_NAME = "트립픽"
 SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
-TODAY = date(2026, 11, 20)
-CSS_V = "26"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+TODAY = date(2026, 11, 21)
+CSS_V = "28"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
@@ -695,6 +695,101 @@ def guide_next(g: dict) -> str:
 </section>"""
 
 
+def guide_actions(g: dict) -> str:
+    """v28 가이드 하단 — 숙소·준비·다음 글로 이어지는 3장 카드(모든 가이드 공통).
+    지역을 알 수 없으면 테마 숙소로, 도시 허브가 없으면 같은 지역 가이드로 잇는다."""
+    ex = guide_extra(g["slug"])
+    regions = {r["id"]: r for r in STAYS.get("regions", [])}
+    hotels = STAYS.get("hotels", [])
+
+    def n_of(rid):
+        return sum(1 for h in hotels if h["region"] == rid)
+
+    targets = [rid for rid in (ex.get("stayRegions") or []) if rid in regions and n_of(rid)]
+    if not targets:
+        for key, rid in STAYS_GUIDE_REGION:
+            if key in g["slug"] and rid in regions and n_of(rid):
+                targets = [rid]
+                break
+
+    if targets:
+        rid = max(targets, key=n_of)
+        r = regions[rid]
+        if len(targets) > 1:
+            total_n = sum(n_of(x) for x in targets)
+            label = "·".join(regions[x]["name"] for x in targets)
+            stay = (
+                f'<a class="gact" href="../stays.html#{rid}">'
+                f'<span class="gact-k">숙소 · 바로 확인</span>'
+                f'<b>{esc(label)} 숙소 {total_n}곳</b>'
+                f'<span class="gact-m">평점·리뷰·1박 최저가를 한 표에서 비교</span>'
+                f'<span class="gact-go">숙소 표 보기 →</span></a>'
+            )
+        else:
+            stay = (
+                f'<a class="gact" href="../stays.html#{rid}">'
+                f'<span class="gact-k">숙소 · 바로 확인</span>'
+                f'<b>{esc(r["name"])} 숙소 {n_of(rid)}곳</b>'
+                f'<span class="gact-m">평점·리뷰·1박 최저가를 한 표에서 비교</span>'
+                f'<span class="gact-go">숙소 표 보기 →</span></a>'
+            )
+    else:
+        theme = next((t for k, t in STAYS_GUIDE_THEME.items() if k in g["slug"]), "ocean")
+        tname = _stay_theme_name().get(theme, "오션뷰")
+        cnt = sum(1 for h in hotels if theme in (h.get("themes") or []))
+        stay = (
+            f'<a class="gact" href="../stays.html?theme={theme}">'
+            f'<span class="gact-k">숙소 · 바로 확인</span>'
+            f'<b>{esc(tname)} 숙소 {cnt}곳</b>'
+            f'<span class="gact-m">국내·해외 숙소를 같은 테마로 비교</span>'
+            f'<span class="gact-go">숙소 표 보기 →</span></a>'
+        )
+
+    prep = (
+        '<a class="gact" href="../checklist.html">'
+        '<span class="gact-k">준비 · 다음 단계</span>'
+        '<b>여행 준비 D-Day 타임라인</b>'
+        '<span class="gact-m">D-30 숙소·항공 → D-14 투어 → D-3 짐 → D-0 체크인</span>'
+        '<span class="gact-go">체크리스트 열기 →</span></a>'
+    )
+
+    hub = hub_by_slug(ex.get("hub"))
+    if hub:
+        third = (
+            f'<a class="gact" href="../{hub["slug"]}.html">'
+            f'<span class="gact-k">도시 · 한 화면에</span>'
+            f'<b>{esc(hub["name"])} 도시 페이지</b>'
+            f'<span class="gact-m">투어·맛집·선물·숙소를 한 화면에서</span>'
+            f'<span class="gact-go">도시 페이지 열기 →</span></a>'
+        )
+    else:
+        by_slug = {x["slug"]: x for x in GUIDES_LIST}
+        pick = next((by_slug[s] for s in (g.get("related") or []) if s in by_slug and s != g["slug"]), None)
+        if not pick:
+            pool = [x for x in GUIDES_LIST if x["slug"] != g["slug"] and x["category"] == g["category"]]
+            pick = pool[0] if pool else None
+        if pick:
+            third = (
+                f'<a class="gact" href="{pick["slug"]}.html">'
+                f'<span class="gact-k">다음 추천 글</span>'
+                f'<b>{esc(pick["navTitle"])}</b>'
+                f'<span class="gact-m">{esc(pick["category"])} · 읽는 시간 {pick["read"]}분</span>'
+                f'<span class="gact-go">이어서 읽기 →</span></a>'
+            )
+        else:
+            third = (
+                '<a class="gact" href="index.html">'
+                '<span class="gact-k">다음 추천 글</span><b>가이드 전체 보기</b>'
+                '<span class="gact-m">국내·해외 56편을 지역·주제로 찾기</span>'
+                '<span class="gact-go">가이드 목록 →</span></a>'
+            )
+
+    return f"""<section class="gacts" aria-label="다음 단계로 바로 확인">
+  <div class="gacts-h"><b>다음 단계 · 바로 확인</b><span>이 글에서 계산한 일정에 그대로 쓰는 3가지</span></div>
+  <div class="gacts-grid">{stay}{prep}{third}</div>
+</section>"""
+
+
 def guide_search_blob(g: dict) -> str:
     ex = guide_extra(g["slug"])
     parts = [
@@ -893,6 +988,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
     </div>
 {guide_stays_box(g)}
 {guide_next(g)}
+{guide_actions(g)}
 {share_row('guide')}
 {cta_band('../', g.get('ctaTitle', '이 글의 계산, 내 일정으로 해보기'), g.get('ctaText', '인원과 지역을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 총액을 계산합니다.'))}
   </div>
@@ -2495,14 +2591,14 @@ STAY_THEME_ORDER = ["pool", "ocean", "onsen", "station", "value", "villa"]
 STAY_GROUPS = [
     ("metro", "수도권", "서울·인천"),
     ("gangwon", "강원", "강릉·속초·양양"),
-    ("gyeong", "경상", "부산·경주·통영"),
+    ("gyeong", "경상", "부산·경주·통영·거제"),
     ("jeolla", "전라", "여수·전주"),
     ("jeju", "제주", "제주"),
 ]
 STAY_REGION_GROUP = {
     "seoul": "metro", "incheon": "metro",
     "gangneung": "gangwon", "sokcho": "gangwon", "yangyang": "gangwon",
-    "busan": "gyeong", "gyeongju": "gyeong", "tongyeong": "gyeong",
+    "busan": "gyeong", "gyeongju": "gyeong", "tongyeong": "gyeong", "geoje": "gyeong",
     "yeosu": "jeolla", "jeonju": "jeolla",
     "jeju": "jeju",
 }
@@ -2657,7 +2753,7 @@ def _stay_guide_links(region: dict) -> str:
 STAYS_GUIDE_REGION = [
     # v27: 국내 4개 지역 가이드 — slug에 지역명이 들어가는 순서대로 먼저 잡는다
     ("sokcho", "sokcho"), ("yangyang", "yangyang"), ("jeonju", "jeonju"),
-    ("tongyeong", "tongyeong"), ("incheon", "incheon"),
+    ("tongyeong", "tongyeong"), ("geoje", "geoje"), ("incheon", "incheon"),
     ("osaka", "osaka"), ("tokyo", "tokyo"), ("fukuoka", "fukuoka"), ("yufuin", "fukuoka"),
     ("danang", "danang"), ("hoian", "danang"), ("nhatrang", "nhatrang"), ("dalat", "nhatrang"),
     ("bangkok", "bangkok"), ("taipei", "taipei"), ("yehliu", "taipei"), ("jiufen", "taipei"),
@@ -2888,7 +2984,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     </div>
 
     <h2 class="sr-h2">숙소를 골랐으면 — 그 도시 동선과 예약</h2>
-    <p class="sr-dek">숙소 위치를 정한 뒤에는 그 도시의 코스·맛집·교통 가이드로 이어서 보세요. 국내는 서울·인천·영종도·강릉·속초·양양·전주·부산·경주·통영·여수·제주 모두 1박2일 가이드가 연결돼 있고, 숙소 카드에서 바로 그 도시 동선으로 넘어갈 수 있습니다.</p>
+    <p class="sr-dek">숙소 위치를 정한 뒤에는 그 도시의 코스·맛집·교통 가이드로 이어서 보세요. 국내는 서울·인천·영종도·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 모두 1박2일 가이드가 연결돼 있고, 숙소 카드에서 바로 그 도시 동선으로 넘어갈 수 있습니다.</p>
     <div class="sg-grid" aria-label="지역별 가이드 연결">
       {guide_cards}
     </div>
@@ -2900,7 +2996,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     </div>
 
     <p class="snote"><b>숫자 읽는 법</b> — 평점은 트립닷컴 투숙객 리뷰 10점 만점 기준이고, 옆의 리뷰 수와 함께 봐야 합니다.
-    가격은 카드에 적힌 조회 날짜의 <b>1박, 성인 2명, 세금·서비스비용 포함</b> 최저가입니다(국내 {kr_total}곳 2026-11-20~21, 해외 {intl_total}곳 2026-11-19~20). 권역 버튼은 국내 숙소만 묶습니다.
+    가격은 카드에 적힌 조회 날짜의 <b>1박, 성인 2명, 세금·서비스비용 포함</b> 최저가입니다(국내 {kr_total}곳 2026-11-20~22, 해외 {intl_total}곳 2026-11-19~20). 권역 버튼은 국내 숙소만 묶습니다.
     같은 숙소도 날짜·객실·잔여 상황에 따라 달라지므로 결제 직전 트립닷컴 결제 화면의 금액을 최종으로 확인하세요. 숙소 사진은 트립닷컴 숙소 페이지 이미지입니다.</p>
 
     <p class="snote"><b>제휴 고지</b> — 이 페이지의 예약 버튼은 트립닷컴 파트너스 제휴 링크입니다.
@@ -2915,14 +3011,14 @@ def stays_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "stays.html",
-        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 서울·인천·강릉·속초·양양·전주·부산·경주·통영·여수·제주 + 해외 7개 도시 평점·가격 비교 (2026) | 트립픽",
+        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 서울·인천·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 + 해외 7개 도시 평점·가격 비교 (2026) | 트립픽",
         desc=(
             f"국내 {kr_names} {kr_total}곳과 해외 오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이 {intl_total}곳, 숙소 {total}곳을 "
             f"트립닷컴 평점·리뷰 수·1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
-            "수도권·강원·경상·전라·제주 권역별 보기, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터, 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-20 확인."
+            "수도권·강원·경상·전라·제주 권역별 보기, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터, 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-21 확인."
         ),
         keywords=(
-            "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
+            "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 거제 호텔, 거제 오션뷰 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
             "가성비 호텔, 가족 호텔, 풀빌라, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 트립닷컴 숙소"
         ),
         body=body,

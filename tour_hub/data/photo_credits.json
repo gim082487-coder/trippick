@@ -235,19 +235,17 @@
    "license": "CC0 1.0",
    "url": "https://commons.wikimedia.org/wiki/File:Jeonju_Hanok_Maeul_01.jpg"
   },
-  "v27/tongyeong-geoje-2d": {
-   "source": "Wikimedia Commons",
-   "file": "Korea-Tongyeong-Hansan Island-Overview-01",
-   "photographer": "Asfreeas",
-   "license": "CC BY-SA 3.0",
-   "url": "https://commons.wikimedia.org/wiki/File:Korea-Tongyeong-Hansan_Island-Overview-01.jpg"
+  "v28/tongyeong-geoje-2d": {
+   "source": "트립픽 제작",
+   "file": "tongyeong-geoje-2d.jpg",
+   "license": "자체 제작(생성 이미지)",
+   "note": "남해 다도해 일대의 바다·섬 풍경으로 제작해 1200×800로 저장. 외부 라이선스 없음."
   },
-  "v27/incheon-yeongjongdo-2d": {
-   "source": "Wikimedia Commons",
-   "file": "Chinatown, incheon 20230430 002",
-   "photographer": "Mobius6",
-   "license": "CC BY-SA 4.0",
-   "url": "https://commons.wikimedia.org/wiki/File:Chinatown,_incheon_20230430_002.jpg"
+  "v28/incheon-yeongjongdo-2d": {
+   "source": "트립픽 제작",
+   "file": "incheon-yeongjongdo-2d.jpg",
+   "license": "자체 제작(생성 이미지)",
+   "note": "영종도 해안에서 본 인천대교 일몰 풍경으로 제작해 1200×800로 저장. 외부 라이선스 없음."
   }
  }
 }

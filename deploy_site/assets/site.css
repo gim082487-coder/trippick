@@ -2816,6 +2816,29 @@
   .gfind-count{font-size:11.6px}
 }
 
+/* ---------- v28 가이드 하단 다음 단계 · 바로 확인 3장 ---------- */
+.gacts{margin:18px 0 0;padding:18px 22px 20px;background:var(--soft);border:1px solid var(--line);border-radius:var(--r-lg)}
+.gacts-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:13px}
+.gacts-h b{font-size:16px;font-weight:850;letter-spacing:-0.03em;color:var(--ink)}
+.gacts-h span{font-size:12px;line-height:1.5;color:var(--ink-3)}
+.gacts-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.gact{display:flex;flex-direction:column;gap:3px;padding:14px 15px;background:#fff;border:1px solid var(--line);border-radius:14px;
+  transition:transform .16s var(--ease),box-shadow .16s,border-color .16s}
+.gact:hover{border-color:var(--blue-line);box-shadow:var(--sh-2);transform:translateY(-2px)}
+.gact-k{font-size:10.8px;font-weight:850;color:var(--blue-600);letter-spacing:.01em}
+.gact b{font-size:13.8px;font-weight:800;line-height:1.45;letter-spacing:-0.02em;color:var(--ink)}
+.gact-m{font-size:11.8px;line-height:1.55;color:var(--ink-3)}
+.gact-go{margin-top:auto;padding-top:9px;font-size:11.8px;font-weight:800;color:var(--blue)}
+@media (max-width:900px){
+  .gacts-grid{grid-template-columns:1fr 1fr}
+  .gacts-grid .gact:first-child{grid-column:1 / -1}
+}
+@media (max-width:560px){
+  .gacts{padding:15px 14px 16px;border-radius:var(--r)}
+  .gacts-grid{grid-template-columns:1fr}
+  .gacts-h b{font-size:15px}
+}
+
 /* 모바일: 사이드바 '바로가기' 카드는 하단 도시 연결 블록과 역할이 겹치므로 숨긴다 */
 @media (max-width:720px){
   .pg-side .side-common{display:none}

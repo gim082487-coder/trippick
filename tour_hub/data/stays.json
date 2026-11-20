@@ -4,7 +4,7 @@
   "aid": "11407530",
   "sid": "336341874",
   "trip_sub3": "D21372570",
-  "checked": "2026-11-20",
+  "checked": "2026-11-21",
   "method": "kr.trip.com 숙소 목록(도시별, 성인 2명·KRW)에서 평점·리뷰 수·세부 점수·위치·1박 최저가·대표 이미지를 그대로 옮겼습니다. 신규 국내 19곳은 2026-11-20~21 조회분, 해외 30곳은 2026-11-19~20 조회분입니다(카드마다 기준일 표기). 각 숙소 상세 페이지에서 이름·도시를 다시 확인했고, 예약 버튼은 그 숙소 상세 페이지에 파트너스 코드(Allianceid/SID/trip_sub3)를 붙인 딥링크입니다.",
   "priceNote": "가격은 카드에 적힌 조회 날짜의 1박·성인 2명·세금·서비스비용 포함 최저가입니다. 같은 숙소도 날짜·객실·잔여 상황에 따라 달라집니다.",
   "rate": "숙소 5~7% (예약 건수에 따라)"
@@ -381,6 +381,24 @@
    "cityId": "72366",
    "scope": "kr",
    "hub": null,
+   "guides": [
+    {
+     "slug": "tongyeong-geoje-2d",
+     "label": "통영·거제 1박2일"
+    }
+   ]
+  },
+  {
+   "id": "geoje",
+   "name": "거제",
+   "country": "대한민국",
+   "scope": "kr",
+   "cityId": "61331",
+   "hub": null,
+   "note": "거제는 고현(장평) 시내와 일운·학동 해안 두 축입니다. 고현은 버스터미널·식당가, 일운·학동은 오션뷰 숙소와 해수욕장이 몰려 있어 둘째 날 동선이 갈립니다.",
+   "count": 4,
+   "top": "거제삼성호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=61331&display=%EA%B1%B0%EC%A0%9C&optionId=61331&optionType=City&optionName=%EA%B1%B0%EC%A0%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_geoje&trip_sub3=D21372570",
    "guides": [
     {
      "slug": "tongyeong-geoje-2d",
@@ -2321,6 +2339,138 @@
     "매우 청결",
     "강구안 도보",
     "서비스 최고"
+   ]
+  },
+  {
+   "region": "geoje",
+   "id": "4624895",
+   "name": "거제돔관광호텔",
+   "en": "Dome Hotel Geoje",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 54,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.3",
+    "위치": "8.6",
+    "서비스": "9.1"
+   },
+   "zone": "구조라해수욕장",
+   "access": "일운면 거제대로 2372 · 고현터미널 차 20분(15.3km)",
+   "reason": "리뷰 54개에 8.8 — 서비스 9.1. 전망 좋은 루프탑 수영장이 있고 구조라해수욕장과 가깝습니다. 4곳 중 1박이 가장 낮습니다.",
+   "price": 58607,
+   "priceBasis": "2026-11-21~22 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/geoje-4624895.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61331&hotelId=4624895&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_geoje_4624895&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "value"
+   ],
+   "pointTags": [
+    "루프탑 수영장",
+    "바비큐",
+    "무료 주차"
+   ]
+  },
+  {
+   "region": "geoje",
+   "id": "60622574",
+   "name": "스터번호텔",
+   "en": "Stubborn Hotel",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 130,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "8.5",
+    "위치": "9.3",
+    "서비스": "8.5"
+   },
+   "zone": "학동흑진주몽돌해변",
+   "access": "동부면 학동7길 2 · 고현터미널 차 33분(19.3km)",
+   "reason": "리뷰 130개에 8.9 — 청결 9.5. 통창 바다뷰와 자쿠지 욕실이 평가가 높고 학동흑진주몽돌해변과 바람의언덕이 가깝습니다. 셀프 체크인이라 늦게 도착해도 됩니다.",
+   "price": 102000,
+   "priceBasis": "2026-11-21~22 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/geoje-60622574.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61331&hotelId=60622574&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_geoje_60622574&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "value"
+   ],
+   "pointTags": [
+    "오션 뷰",
+    "매우 청결",
+    "셀프 체크인"
+   ]
+  },
+  {
+   "region": "geoje",
+   "id": "3793689",
+   "name": "거제삼성호텔",
+   "en": "Geoje Samsung Hotel",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 51,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.0",
+    "위치": "8.9",
+    "서비스": "9.4"
+   },
+   "zone": "장평동",
+   "access": "장평동 장평3로 80-37 · 고현터미널 차 6분(2.1km)",
+   "reason": "리뷰 51개에 9.2 — 서비스 9.4. 실내 수영장·사우나·헬스장을 갖춘 4성 호텔이라 비 오는 날에도 일정이 남습니다. 마지막 날 고현터미널로 나가기 가장 짧습니다.",
+   "price": 181333,
+   "priceBasis": "2026-11-21~22 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/geoje-3793689.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61331&hotelId=3793689&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_geoje_3793689&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "station"
+   ],
+   "pointTags": [
+    "실내 수영장",
+    "맛있는 조식",
+    "터미널 6분"
+   ]
+  },
+  {
+   "region": "geoje",
+   "id": "114020560",
+   "name": "호텔 더포라 스위츠 거제",
+   "en": "Hotel the Fora Suites Geoje",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 110,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "8.9",
+    "위치": "9.0",
+    "서비스": "8.8"
+   },
+   "zone": "거제씨월드",
+   "access": "일운면 거제대로 2631 · 고현터미널 차 18분(12.7km)",
+   "reason": "리뷰 110개에 9.0 — 청결 9.3. 전 객실이 오션뷰·일출이고 스파와 피트니스룸이 있습니다. 주변에 식당이 적어 저녁은 차로 나가야 합니다.",
+   "price": 141115,
+   "priceBasis": "2026-11-21~22 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/geoje-114020560.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61331&hotelId=114020560&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_geoje_114020560&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "pool"
+   ],
+   "pointTags": [
+    "오션 뷰",
+    "일출",
+    "스파"
    ]
   },
   {
