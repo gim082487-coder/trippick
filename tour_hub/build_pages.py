@@ -2893,7 +2893,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     kr_region_n = len(kr_groups)
     intro = (
         '<div><b>평점은 리뷰 수와 같이</b><p>트립닷컴 투숙객 리뷰 10점 만점 점수입니다. 리뷰가 수백 개 쌓인 곳과 신규 오픈으로 수십 개인 곳을 구분해 리뷰 수를 카드에 같이 적었습니다.</p></div>'
-        f'<div><b>국내 {kr_total}곳 · 해외 {intl_total}곳</b><p>국내는 {kr_names} {kr_total}곳(2026-11-20~21 조회), 해외는 {intl_names} {intl_total}곳(2026-11-19~20 조회)입니다.</p></div>'
+        f'<div><b>국내 {kr_total}곳 · 해외 {intl_total}곳</b><p>국내는 {kr_names} {kr_total}곳(2026-11-20~22 조회), 해외는 {intl_names} {intl_total}곳(2026-11-19~20 조회)입니다.</p></div>'
         '<div><b>예약은 트립닷컴에서</b><p>카드의 예약 버튼은 그 숙소의 트립닷컴 페이지로 바로 갑니다. 결제·취소는 트립닷컴 약관을 따릅니다.</p></div>'
     )
 
