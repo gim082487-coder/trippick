@@ -13,7 +13,7 @@
 | `deploy_site/` | 배포본. 이 폴더를 그대로 서빙하면 사이트가 됩니다. |
 | `tour_hub/` | 소스. 빌드 스크립트·데이터·본문·이미지 |
 | `tour_hub/build.py` | `index.html`(홈) 생성: 상품 카드, 예산 계산기, JSON-LD, 광고 슬롯 |
-| `tour_hub/build_pages.py` | 가이드 52편·신뢰 페이지 4종·도시 페이지 7곳·`cities/`·환율·면세/수하물/교통패스/시즌 캘린더 도구 페이지·`sitemap.xml`·`assets/site.css` 생성 |
+| `tour_hub/build_pages.py` | 가이드 52편·신뢰 페이지 4종·도시 페이지 13곳·`cities/`·환율·면세/수하물/교통패스/시즌 캘린더·`/stays`·`/quiz`·`/checklist` 페이지·`sitemap.xml`·`assets/site.css` 생성 |
 | `tour_hub/template.html` | 홈 템플릿(디자인 토큰·CSS·섹션 마커) |
 | `tour_hub/data/tours.json` | 여행 상품 57개 (가격·포함·불포함·취소 규정·제휴 링크) |
 | `tour_hub/data/essentials.json` | 여행 필수품·교통패스·eSIM·공항픽업 22종 |
@@ -22,7 +22,9 @@
 | `tour_hub/data/courses.json` | 추천 코스 5개(일차별 구성) |
 | `tour_hub/data/guides.json` | 가이드 52편 메타데이터(제목·설명·관련 상품) |
 | `tour_hub/data/guide_extra.json` | 가이드 52편의 검색 필터 메타(지역·주제·연결 도시)와 요약 박스 문구(결론 1줄·확인값 2개) |
-| `tour_hub/data/restaurants.json` | 도시 13곳(국내 6·해외 7) 검증 맛집 59곳(영업 상태·가격·영업시간·휴무·지도 place_id) |
+| `tour_hub/data/restaurants.json` | 도시 17곳(국내 10·해외 7) 검증 맛집 75곳(영업 상태·가격·영업시간·휴무·지도 place_id) |
+| `tour_hub/data/stays.json` | 국내외 찐숙소 66곳(18개 지역 · 평점·리뷰·1박 최저가·테마·트립닷컴 trip_sub3 딥링크) |
+| `tour_hub/data/timeline.json` | v26 여행 준비 D-Day 4단계 타임라인(D-30·D-14·D-3·D-0, 해외 21개 / 국내 13개 항목) |
 | `tour_hub/data/checklist.json` | 출국 준비 데이터 — 입국서류·기내반입 + 환전 카드 3종·여행자보험 3곳 비교 |
 | `tour_hub/data/fx.json` | v16 환율·면세 계산기 데이터 — 12개 통화 fallback 환율(2026-11-18 고시)과 빠른 금액, 일본 면세 세율 10%·8% |
 | `tour_hub/data/baggage.json` | v16 항공사 8곳 수하물 규정(기내·위탁·1개 한도·공식 링크)과 쿠팡 준비물 4종 |
@@ -97,6 +99,8 @@ python3 build_pages.py --out ../deploy_site --base https://trippick-kr.netlify.a
 가격·취소 규정은 각 판매처 상세페이지를 최종 기준으로 안내합니다.
 
 ## 변경 기록
+
+- **v26 (2026-11-20)** — **국내 숙소·맛집 지역 확대**: `/stays`에 속초(35793)·양양(6430)·전주(61380)·통영(72366)·인천(410) 5개 지역 **숙소 16곳**을 추가해 **66곳·18개 지역(국내 40·해외 26)**이 됐습니다(트립닷컴 2026-11-20~21 체크인·성인 2명·KRW·세금 포함 최저가, 평점·리뷰·세부점수·이미지 16장 자체 호스팅, 전부 `trip_sub3=D21372570` 딥링크). `/stays` 상단에 **권역별 보기**(수도권 서울·인천 / 강원 강릉·속초·양양 / 경상 부산·경주·통영 / 전라 여수·전주 / 제주) 칩과 권역 요약 카드(숙소 수·1박 가격대·최고 평점)를 넣어 지역 칩과 함께 2단으로 좁힐 수 있게 했습니다(모바일은 '지역 선택' 접기 안). 홈 `#foods`에 **속초·양양·전주·통영·거제·인천·영종도 맛집 16곳**을 추가해 **75곳·17개 도시**가 됐습니다(구글 지도 OPERATIONAL, 네이버 플레이스·식신·다이닝코드 등록 메뉴 2곳 이상 일치, 2026년 10~11월 방문 기록). **`/checklist` 신설 — 여행 준비 D-Day 타임라인**: D-30(숙소·항공·여권·비자) → D-14(투어·eSIM·패스) → D-3(수하물·환전·트래블카드) → D-0(체크인·공항픽업·면세) 4단계 23개 항목을 세로 타임라인으로 묶고, **해외여행 21개 / 국내여행 13개** 전환 토글로 여권·환전·eSIM 등 8개 항목을 숨깁니다. 항목별 체크는 `localStorage`(`trippick.dday.v1`, 범위 `trippick.dday.scope.v1`, `assets/trip-save.js`)에 저장되고 단계·전체 진행률과 막대가 갱신되며, 홈 `#checklist` 상단 4단계 요약 스트립과 `#prepBox`(‘다음은 D-30 · 숙소·항공’)에도 같은 진행률이 나옵니다. 각 항목은 `/stays`·`/baggage`·`/exchange`·`/passes`·`/calendar`·`/#essentials`·`/#travelins`와 제휴 상품(쿠팡 보조배터리·저울·어댑터)으로 바로 이어지고, 페이지에는 단계별 도구 9장·나라별 입국서류·수수료 표·FAQ 4개(HowTo+FAQPage 구조화 데이터)가 붙습니다. 상단 메뉴 '출국 준비'를 **'여행 준비' → `/checklist`** 로 바꾸고 푸터·사이드바 링크도 갱신했습니다. v22 모바일 접기·비교바, v23 `_headers`·`ads.txt`·`ca-pub-9563082990728787`·푸터 스타핏픽, v24 맛집 섹션·가이드 52편, v25 도시 허브 13곳·`/quiz`·이어보기·공유는 그대로입니다. 검증: HTML 82개·내부 링크 6,888개 실패 0건, 신규 숙소 16곳·맛집 16곳 외부 링크 전부 HTTP 200, 1280/1440/390px 가로 넘침 0, JS 오류 0건.
 
 - **v24 (2026-11-20)** — **국내 맛집 20곳**: 서울(을지로4가·성수동·광장시장·북촌) 4곳, 부산(해운대·광안리) 4곳, 강릉 4곳, 여수 4곳, 경주 4곳을 홈 `#foods` 에 같은 기준(구글 지도 OPERATIONAL, 공식 메뉴판·등록 메뉴 2곳 이상 일치, place_id·평점·리뷰 수록)으로 추가하고 **나트랑 4곳**까지 더해 맛집 **59곳·13개 도시**가 됐습니다. 도시 탭이 13개로 늘어 1440px에서도 한 줄에 들어오도록 탭 여백(12→11px)·간격(6→5px)을 줄이고, 섹션 첫 문장의 가게 수는 하드코딩 대신 `restaurants.json`에서 계산해 국내/해외 도시 목록과 함께 자동 표기(`food_intro_line()` — 가게 수를 문장 앞에 두어 폰 2줄 접힘에서도 숫자가 보입니다). **가이드 6편**: `seoul-seongsu-bukchon-1d`·`busan-haeundae-gwangalli-2d`·`gangwon-gangneung-winter-sea-2d`·`yeosu-night-sea-2d`·`gyeongju-hwangridangil-2d`·`nhatrang-3n4d-food-resort` — 본문·3줄 요약·facts·지역·태그, 대표 이미지 4장(Pexels 무료 라이선스, `photo_credits.json` 등록, 나트랑·부산은 기존 이미지 재사용) → **가이드 52편**. **`build.py`**: 맛집 동선 라벨을 도시별 `tourSlot` 으로 지정할 수 있게 한 줄 패치(부산 '저녁'·강릉 '오전'). v23 의 `/stays`·`trip_sub3=D21372570`·`_headers`·`ads.txt`·게시자 ID·푸터 스타핏픽 링크, v22 모바일 접기·비교바는 그대로. 검증: HTML 74개·내부 링크 6,063개 실패 0건, sitemap 71 URL 전부 HTTP 200.
 - **v22 (2026-11-20)** — 친구 황진유(@hwangjinyu9) 님 측 기술 피드백 반영. **모바일 비교바**: 고른 상품이 0개일 때 하단 비교바가 1px + 그림자로 본문을 가리던 문제를 `visibility:hidden` + `pointer-events:none`으로 완전히 숨김. **모바일 홈 길이**: `[data-mf]` 접기(더 보기) 도입 — 폰(≤768px)에서만 도시 3곳·필수품 2묶음·트립닷컴 4블록·패키지 3종·맛집 3장·선물 3장·여행자보험을 접고 `더 보기`로 펼침. 기본 상태에서 자동으로 펼쳐지던 `그 밖의 지역 15개 도시`도 모바일에서는 접힘(검색·필터·`#해시` 이동 시 자동 펼침). 390px 기준 문서 높이 **46,748px → 22,567px(–51.7%)**, 데스크톱은 43,642px → 43,640px로 그대로. **기준일 통일**: 홈·가이드 46편·도시 허브 7곳·`/stays`·`/passes`·`/calendar`·`/exchange`·`/baggage`·`about`·`guides.json`·`sitemap.xml`의 최종 검증일/기준일을 `2026.11.20`으로 통일(환율 고시 2026-11-18, 기상청 평년값, 제도 시행일, 게시일은 원출처 날짜로 유지). **캐시 헤더**: `tour_hub/_headers` → `deploy_site/_headers` 자동 복사로 이미지 7일·CSS/JS 1일(`?v=22` 쿼리로 갱신)·HTML·sitemap·robots·ads.txt는 `max-age=0, must-revalidate`. **광고 슬롯**: 본문 주석 슬롯 163개를 게시자 ID `ca-pub-9563082990728787` 기준으로 정리(주석 유지, 승인 후 `data-ad-slot`만 교체). **크로스링크**: 홈·공통 푸터에 「추천 사이트 — 스타핏픽」(https://jinyou1129-bit.github.io/star-fit-pick/, `target="_blank" rel="noopener"`) 추가.

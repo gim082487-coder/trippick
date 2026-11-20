@@ -2330,6 +2330,77 @@
   .hub-nopkg-links i{display:inline-flex;align-items:center;gap:4px;font-style:normal;font-size:11.6px;font-weight:800;color:var(--blue-700)}
   @media (max-width:760px){ .hub-nopkg-links{grid-template-columns:1fr} }
 
+  /* v26 여행 준비 D-Day 타임라인 (/checklist · 홈 #checklist) */
+  .dday{border:1px solid var(--line);border-radius:18px;background:#fff;padding:15px 17px 14px}
+  .dday-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .dday-k{display:inline-flex;align-items:center;gap:5px;font-size:11.6px;font-weight:900;color:var(--blue-700);letter-spacing:.04em}
+  .dday-k svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.1}
+  .dday-switch{display:inline-flex;gap:2px;background:var(--line-2);border-radius:999px;padding:2px}
+  .dday-switch button{border:0;background:transparent;font:inherit;font-size:11.4px;font-weight:800;color:var(--ink-3);
+    padding:5px 11px;border-radius:999px;cursor:pointer;line-height:1.2}
+  .dday-switch button.on{background:#fff;color:var(--navy);box-shadow:0 1px 3px rgba(16,32,46,.14)}
+  .dday-prog{margin-left:auto;font-size:11.6px;font-weight:850;color:var(--ink-2);font-variant-numeric:tabular-nums}
+  .dday-prog b{color:var(--blue-700);font-weight:900}
+  .dday-bar{height:5px;border-radius:999px;background:var(--line-2);margin:9px 0 0;overflow:hidden}
+  .dday-bar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#0F5C97,#3B93C9);transition:width .25s ease}
+  .dday-steps{list-style:none;margin:11px 0 0;padding:0;display:grid;gap:9px;position:relative}
+  .dstep{border:1px solid var(--line);border-radius:14px;padding:12px 13px 11px;background:#FBFCFD;position:relative}
+  @media (min-width:761px){
+    .dday-steps{padding-left:20px}
+    .dday-steps::before{content:"";position:absolute;left:5px;top:20px;bottom:22px;width:2px;
+      background:linear-gradient(180deg,var(--blue-line),#E7EEF5);border-radius:2px}
+    .dstep::before{content:"";position:absolute;left:-20px;top:15px;width:8px;height:8px;border-radius:50%;
+      background:#fff;border:2.5px solid var(--blue);box-sizing:content-box}
+  }
+  .dstep-h{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+  .dstep-d{flex:0 0 auto;font-size:11.8px;font-weight:900;color:#fff;background:var(--blue);border-radius:7px;padding:2px 8px;letter-spacing:.01em}
+  .dstep-t{font-size:13.6px;font-weight:850;color:var(--navy);letter-spacing:-.02em}
+  .dstep-when{font-size:10.6px;font-weight:750;color:var(--ink-3)}
+  .dstep-n{margin-left:auto;font-size:10.8px;font-weight:900;color:var(--blue-700);background:var(--blue-soft);border-radius:6px;padding:2px 7px;font-variant-numeric:tabular-nums}
+  .dstep-n.done{color:#1F7A46;background:#E7F5EC}
+  .dstep-why{margin:6px 0 0;font-size:11.7px;line-height:1.62;color:var(--ink-2)}
+  .dstep-items{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:5px}
+  .dstep-item{display:flex;align-items:flex-start;gap:7px}
+  .dstep-item[hidden]{display:none}
+  .dstep-item label{position:relative;display:flex;align-items:flex-start;gap:8px;flex:1 1 auto;min-width:0;cursor:pointer}
+  .dstep-item input{position:absolute;left:0;top:2px;width:16px;height:16px;opacity:0;margin:0}
+  .dstep-box{flex:0 0 auto;width:16px;height:16px;border:1.5px solid #C3D0DC;border-radius:5px;background:#fff;margin-top:1px;position:relative}
+  .dstep-item input:focus-visible + .dstep-box{outline:2px solid var(--blue);outline-offset:2px}
+  .dstep-item input:checked + .dstep-box{background:var(--blue);border-color:var(--blue)}
+  .dstep-item input:checked + .dstep-box::after{content:"";position:absolute;left:4.5px;top:1.5px;width:4.5px;height:8.5px;
+    border:2px solid #fff;border-top:0;border-left:0;transform:rotate(40deg)}
+  .dstep-txt{min-width:0}
+  .dstep-txt b{display:block;font-size:12.5px;font-weight:800;color:var(--ink);line-height:1.42;letter-spacing:-.01em}
+  .dstep-txt i{display:block;font-style:normal;font-size:10.7px;color:var(--ink-3);margin-top:1px;line-height:1.45}
+  .dstep-item input:checked ~ .dstep-txt b{color:var(--ink-3);text-decoration:line-through}
+  .dstep-go{flex:0 0 auto;display:inline-flex;align-items:center;gap:3px;font-size:10.6px;font-weight:850;color:var(--blue-700);
+    background:#fff;border:1px solid var(--blue-line);border-radius:7px;padding:3px 7px;text-decoration:none;white-space:nowrap;line-height:1.3}
+  .dstep-go:hover{border-color:var(--blue);text-decoration:none}
+  .dstep-tools{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .dstep-tools a{display:inline-flex;align-items:center;gap:3px;font-size:10.6px;font-weight:800;color:var(--blue-700);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 9px;text-decoration:none}
+  .dstep-tools a:hover{border-color:var(--blue-line);text-decoration:none}
+  .dday-note{margin:10px 0 0;font-size:10.8px;line-height:1.6;color:var(--ink-3)}
+  .dday-note b{color:var(--ink-2)}
+  .ddstrip{border:1px solid var(--blue-line);background:linear-gradient(180deg,#F2F8FD,#fff);border-radius:14px;padding:12px 14px;margin:0 0 13px}
+  .ddstrip-h{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .ddstrip-h b{display:inline-flex;align-items:center;gap:5px;font-size:12.2px;font-weight:900;color:var(--blue-700)}
+  .ddstrip-h b svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.1}
+  .ddstrip-h span{font-size:11px;font-weight:800;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .ddstrip-h a{margin-left:auto;font-size:11.2px;font-weight:850;color:var(--blue-700);text-decoration:none;white-space:nowrap}
+  .ddstrip-h a:hover{text-decoration:underline}
+  .ddstrip-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:9px}
+  .dds{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 9px;min-width:0}
+  .dds b{display:block;font-size:10.8px;font-weight:900;color:var(--blue-700);letter-spacing:.02em}
+  .dds span{display:block;font-size:10.2px;color:var(--ink-3);margin-top:2px;line-height:1.38}
+  .dds em{display:block;font-style:normal;font-size:10px;font-weight:850;color:var(--ink-2);margin-top:3px;font-variant-numeric:tabular-nums}
+  .dds em.done{color:#1F7A46}
+  @media (max-width:760px){
+    .ddstrip-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .dday{padding:13px 14px 12px}
+    .dstep{padding:11px 12px 10px}
+  }
+
 /* =====================================================================
    트립픽 콘텐츠 페이지 (가이드·소개·약관·개인정보·문의) 전용 스타일
    v4 토큰(--blue/--ink/--soft/--r)을 그대로 쓰고, index 전용 클래스와
@@ -3473,3 +3544,52 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
 
 /* v23: 카드 가격 옆 조회 기준 */
 .sc-price .sc-basis{display:inline-block;margin-top:1px;font-style:normal;font-size:9.8px;font-weight:700;color:var(--ink-3)}
+
+/* v26: /checklist — 여행 준비 D-Day 타임라인 페이지 */
+.ddwrap{margin:0 0 6px}
+.ddtools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:10px 0 6px}
+.ddtool{display:flex;flex-direction:column;gap:3px;border:1px solid var(--line);border-radius:14px;background:#fff;
+  padding:12px 13px;text-decoration:none;transition:.15s}
+.ddtool:hover{border-color:var(--blue);text-decoration:none;box-shadow:0 2px 10px rgba(16,32,46,.06)}
+.ddtool-d{align-self:flex-start;font-size:10px;font-weight:900;color:var(--blue-700);background:var(--blue-soft);
+  border-radius:6px;padding:2px 6px;letter-spacing:.02em}
+.ddtool b{font-size:13px;font-weight:850;color:var(--navy);letter-spacing:-.02em;line-height:1.35}
+.ddtool>span:not(.ddtool-d){font-size:11.2px;line-height:1.55;color:var(--ink-2)}
+.ddtool i{font-style:normal;font-size:10.8px;font-weight:850;color:var(--blue-700);margin-top:auto;padding-top:5px;
+  display:inline-flex;align-items:center;gap:3px}
+.ddtable-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff;margin:10px 0 6px;
+  -webkit-overflow-scrolling:touch}
+.ddtable{width:100%;border-collapse:collapse;font-size:12.2px;min-width:600px}
+.ddtable th,.ddtable td{padding:9px 11px;border-bottom:1px solid var(--line-2);text-align:left;vertical-align:top}
+.ddtable thead th{font-size:10.6px;font-weight:850;color:var(--ink-3);background:#F7F9FB;letter-spacing:.02em;white-space:nowrap}
+.ddtable tbody th{font-weight:850;color:var(--navy);white-space:nowrap}
+.ddtable .num{text-align:right;font-variant-numeric:tabular-nums;font-weight:800;color:var(--blue-700);white-space:nowrap}
+.ddtable tbody tr:last-child th,.ddtable tbody tr:last-child td{border-bottom:0}
+@media (max-width:900px){ .ddtools{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .ddtools{grid-template-columns:1fr} .ddtable{min-width:520px} }
+
+/* v26: /stays 권역별 보기 */
+.sf-label{font-size:10.6px;font-weight:850;color:var(--ink-3);letter-spacing:.04em;align-self:center;margin-right:1px}
+.sf-row--groups{padding-top:0}
+.sf .sf-row + .sf-row--groups{margin-top:-2px}
+.sg-groups{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:10px 0 4px}
+.sg-group{display:flex;flex-direction:column;gap:3px;border:1px solid var(--line);border-radius:14px;background:#fff;
+  padding:12px 13px 11px;text-decoration:none;transition:.15s;min-width:0}
+.sg-group:hover{border-color:var(--blue);text-decoration:none;box-shadow:0 2px 10px rgba(16,32,46,.06)}
+.sg-group-k{font-size:10.6px;font-weight:900;color:var(--blue-700);letter-spacing:.03em}
+.sg-group>b{font-size:15px;font-weight:850;color:var(--navy);letter-spacing:-.02em;line-height:1.3}
+.sg-group>b span{display:block;margin-top:2px;font-size:10.8px;font-weight:750;color:var(--ink-2);
+  font-variant-numeric:tabular-nums;letter-spacing:0}
+.sg-group em{font-style:normal;font-size:10.6px;color:var(--ink-3);line-height:1.45}
+@media (max-width:1100px){ .sg-groups{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:640px){ .sg-groups{grid-template-columns:repeat(2,minmax(0,1fr))} .sg-group{padding:10px 11px} }
+
+/* v26: 모바일에서는 권역 칩을 '지역 선택' 접기 안에 함께 둡니다 */
+@media (max-width:760px){
+  .sf .sf-row--groups{display:none}
+  .sf.open-regions .sf-row--groups{display:flex}
+}
+
+/* v26: 맛집 도시 탭이 17개로 늘어 1440px에서도 가로 스크롤 — 오른쪽 끝을 흐리게 해 스크롤 위치를 알립니다 */
+.food-tabs{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),rgba(0,0,0,.15) 100%);
+  mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),rgba(0,0,0,.15) 100%)}

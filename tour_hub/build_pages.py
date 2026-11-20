@@ -49,15 +49,15 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 20)
-CSS_V = "25"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
-JS_V = "25"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
+CSS_V = "26"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
 # v18: 메뉴 9개 + '도구' 드롭다운 1개. 1280px에서 한 줄에 들어오도록 계산기·표 페이지는 드롭다운으로 묶는다.
 NAV = [
     ("index.html#courses", "추천 코스", "courses"),
     ("index.html#planner", "예산 계산기", "planner"),
-    ("index.html#checklist", "출국 준비", "checklist"),
+    ("checklist.html", "여행 준비", "checklist"),
     ("index.html#regions", "지역·투어", "regions"),
     ("cities/index.html", "도시별", "cities"),
     ("stays.html", "찐숙소", "stays"),
@@ -199,7 +199,7 @@ def footer_html(up: str) -> str:
           <a href="{up}index.html#essentials">여행 필수품</a>
           <a href="{up}index.html#gifts">선물·기념품</a>
           <a href="{up}index.html#planner">예산 계산기</a>
-          <a href="{up}index.html#checklist">출국 준비 체크</a>
+          <a href="{up}checklist.html">여행 준비 D-Day</a>
           <a href="{up}exchange.html">환율·일본 면세 계산기</a>
           <a href="{up}baggage.html">항공사 수하물 규정</a>
           <a href="{up}passes.html">교통패스 본전 계산기</a>
@@ -549,7 +549,7 @@ def side_common(up: str) -> str:
       <a class="go" href="{up}index.html#planner">내 예산으로 총액 계산 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#essentials">여행 필수품 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#gifts">나라별 선물·기념품 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <a class="go" href="{up}index.html#checklist">출국 준비 체크리스트 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="{up}checklist.html">여행 준비 D-Day 순서 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}exchange.html">환율·일본 면세 계산기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}baggage.html">항공사별 수하물 규정 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a class="go" href="{up}index.html#tripcom">도시별 숙소·항공권 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -2491,6 +2491,29 @@ STAY_TYPE_ORDER = ["hotel", "resort", "onsen", "value", "hostel"]
 STAY_TYPE_CHIP = {"hotel": "호텔", "resort": "리조트·풀빌라", "onsen": "온천 료칸", "value": "가성비", "hostel": "호스텔"}
 STAY_THEME_ORDER = ["pool", "ocean", "onsen", "station", "value", "villa"]
 
+# v26: /stays 권역별 보기 — 국내 숙소를 권역으로 묶어 한눈에 고른다
+STAY_GROUPS = [
+    ("metro", "수도권", "서울·인천"),
+    ("gangwon", "강원", "강릉·속초·양양"),
+    ("gyeong", "경상", "부산·경주·통영"),
+    ("jeolla", "전라", "여수·전주"),
+    ("jeju", "제주", "제주"),
+]
+STAY_REGION_GROUP = {
+    "seoul": "metro", "incheon": "metro",
+    "gangneung": "gangwon", "sokcho": "gangwon", "yangyang": "gangwon",
+    "busan": "gyeong", "gyeongju": "gyeong", "tongyeong": "gyeong",
+    "yeosu": "jeolla", "jeonju": "jeolla",
+    "jeju": "jeju",
+}
+STAY_GROUP_NAME = {g: n for g, n, _ in STAY_GROUPS}
+
+
+def stay_group_of(region: dict) -> str:
+    if region.get("scope") != "kr":
+        return "intl"
+    return STAY_REGION_GROUP.get(region["id"], "intl")
+
 
 def _stay_themes() -> list:
     return STAYS.get("themes") or [{"id": t, "name": STAY_TYPE_CHIP.get(t, t), "note": ""} for t in STAY_THEME_ORDER]
@@ -2540,11 +2563,12 @@ def _stay_tags(h: dict) -> str:
     return '<div class="sc-tags">' + "".join(out) + "</div>"
 
 
-def stays_card(h: dict, region: dict) -> str:
+def stays_card(h: dict, region: dict, group: str | None = None) -> str:
     sub = _stay_subs(h)
     scope = region.get("scope", "intl")
     flag = "국내" if scope == "kr" else (region.get("country") or "해외")
-    return f"""    <article class="scard" data-region="{h['region']}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}">
+    grp = group or stay_group_of(region)
+    return f"""    <article class="scard" data-region="{h['region']}" data-group="{grp}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}">
       <a class="sc-thumb" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored" aria-label="{esc(h['name'])} 트립닷컴에서 보기">
         <img src="{esc(h['img'])}" alt="{esc(region['name'])} {esc(h['name'])} 숙소 사진" width="720" height="480" loading="lazy" />
         <span class="sc-score{_stay_score_class(h['score'])}">{h['score']:.1f}</span>
@@ -2603,7 +2627,7 @@ def stays_jsonld(base: str, groups: list) -> str:
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": f"국내·해외 테마별 찐숙소 추천 {sum(len(h) for _, h in groups)}곳 | 트립픽",
-        "description": "국내 6개 도시(서울·부산·강릉·여수·경주·제주) 24곳과 해외 7개 도시 26곳, 숙소 50곳을 트립닷컴 평점·리뷰 수·1박 최저가로 비교하고, 테마(호캉스·오션뷰·온천·역세권·가성비·가족)로 골라 도시 가이드로 이어집니다.",
+        "description": "국내 " + "·".join(r["name"] for r, _ in groups if r.get("scope") == "kr") + f" {sum(len(h) for r, h in groups if r.get('scope') == 'kr')}곳과 해외 7개 도시 {sum(len(h) for r, h in groups if r.get('scope') != 'kr')}곳, 숙소 {sum(len(h) for _, h in groups)}곳을 트립닷컴 평점·리뷰 수·1박 최저가로 비교하고, 권역(수도권·강원·경상·전라·제주)과 테마(호캉스·오션뷰·온천·역세권·가성비·가족)로 골라 도시 가이드로 이어집니다.",
         "url": f"{b}/stays",
         "isPartOf": {"@type": "WebSite", "name": "트립픽", "url": f"{b}/"},
         "mainEntity": {"@type": "ItemList", "numberOfItems": sum(len(h) for _, h in groups), "itemListElement": items},
@@ -2704,6 +2728,34 @@ def stays_page(out_root: Path, base: str) -> Path:
         f'<button class="gf-chip" type="button" data-region="{r["id"]}">{esc(r["name"])} <span>{len(hs)}</span></button>'
         for r, hs in kr_groups + intl_groups
     )
+    # v26: 권역별 보기 — 국내 숙소를 수도권·강원·경상·전라·제주로 묶는다
+    group_rows = []
+    for gid, gname, gsub in STAY_GROUPS:
+        grs = [(r, hs) for r, hs in kr_groups if STAY_REGION_GROUP.get(r["id"]) == gid]
+        if not grs:
+            continue
+        ghotels = [h for _, hs in grs for h in hs]
+        gstd = [h for h in ghotels if "2인 총액" not in (h.get("priceBasis") or "")]
+        group_rows.append({
+            "id": gid, "name": gname, "sub": gsub, "n": len(ghotels),
+            "regions": grs,
+            "min": min(h["price"] for h in (gstd or ghotels)),
+            "max": max(h["price"] for h in (gstd or ghotels)),
+            "score": max(h["score"] for h in ghotels),
+        })
+    group_chips = "".join(
+        f'<button class="gf-chip" type="button" data-group="{g["id"]}">{esc(g["name"])} <span>{g["n"]}</span></button>'
+        for g in group_rows
+    )
+    intl_chip = (f'<button class="gf-chip" type="button" data-group="intl">해외 <span>{intl_total}</span></button>'
+                 if intl_total else "")
+    group_cards = "".join(
+        f'<a class="sg-group" href="stays.html?group={g["id"]}">'
+        f'<span class="sg-group-k">{esc(g["name"])}</span>'
+        f'<b>{g["n"]}곳 <span>1박 {g["min"]:,}~{g["max"]:,}원</span></b>'
+        f'<em>{"·".join(esc(r["name"]) + " " + str(len(hs)) for r, hs in g["regions"])} · 최고 평점 {g["score"]:.1f}</em></a>'
+        for g in group_rows
+    )
     theme_chips = "".join(
         f'<button class="gf-chip" type="button" data-theme="{t}">{esc(theme_name[t])} '
         f'<span>{sum(1 for h in hotels if t in (h.get("themes") or []))}</span></button>'
@@ -2712,7 +2764,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     cards = []
     for r, hs in groups:
         for h in hs:
-            cards.append(stays_card(h, r))
+            cards.append(stays_card(h, r, STAY_REGION_GROUP.get(r["id"]) if r.get("scope") == "kr" else "intl"))
 
     region_anchors = "".join(f'<span id="{r["id"]}"></span>' for r, _ in groups)
     region_links = "".join(
@@ -2735,8 +2787,9 @@ def stays_page(out_root: Path, base: str) -> Path:
         f'<div class="sg-links">{_stay_guide_links(r)}</div></div>'
         for r, hs in groups
     )
-    kr_names = "·".join(r["name"] for r, _ in kr_groups)
-    intl_names = "·".join(r["name"] for r, _ in intl_groups)
+    kr_names = " / ".join(r["name"] for r, _ in kr_groups)
+    intl_names = " / ".join(r["name"] for r, _ in intl_groups)
+    kr_region_n = len(kr_groups)
     intro = (
         '<div><b>평점은 리뷰 수와 같이</b><p>트립닷컴 투숙객 리뷰 10점 만점 점수입니다. 리뷰가 수백 개 쌓인 곳과 신규 오픈으로 수십 개인 곳을 구분해 리뷰 수를 카드에 같이 적었습니다.</p></div>'
         f'<div><b>국내 {kr_total}곳 · 해외 {intl_total}곳</b><p>국내는 {kr_names} {kr_total}곳(2026-11-20~21 조회), 해외는 {intl_names} {intl_total}곳(2026-11-19~20 조회)입니다.</p></div>'
@@ -2746,15 +2799,15 @@ def stays_page(out_root: Path, base: str) -> Path:
     body = f"""<div class="pg-hero stays-hero">
   <div class="wrap">
     <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><b>찐숙소</b></nav>
-    <span class="pg-kicker">TRIPPICK STAYS · 국내 {len(kr_groups)}개 도시 + 해외 {len(intl_groups)}개 도시 {total}곳</span>
+    <span class="pg-kicker">TRIPPICK STAYS · 국내 {kr_region_n}개 지역 + 해외 {len(intl_groups)}개 도시 {total}곳</span>
     <div class="pg-head">
-      <h1><em>찐숙소</em> {total}곳 — 테마로 고르고, 가이드로 이어집니다</h1>
-      <p class="dek">국내 {len(kr_groups)}개 도시 {kr_total}곳(서울·부산·강릉·여수·경주·제주)과 해외 {len(intl_groups)}개 도시 {intl_total}곳, <b>국내·해외 13개 도시 {total}곳</b>을 한 화면에 올렸습니다.
-      평점 <b>{score_min:.1f}~{score_max:.1f}</b>, 1박 <b>{price_min:,}~{price_max:,}원</b> 구간이고, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마로 바로 좁힐 수 있습니다.
-      평점·리뷰 수·가격은 트립닷컴 목록의 실제 값을 그대로 옮겼고, 예약 버튼은 파트너스 딥링크로 연결됩니다.</p>
+      <h1><em>찐숙소</em> {total}곳 — 권역으로 고르고, 테마로 좁힙니다</h1>
+      <p class="dek">국내 {kr_region_n}개 지역 {kr_total}곳({kr_names})과 해외 {len(intl_groups)}개 도시 {intl_total}곳, <b>국내·해외 {len(groups)}개 지역 {total}곳</b>을 한 화면에 올렸습니다.
+      <b>수도권·강원·경상·전라·제주</b> 권역으로 먼저 묶어 보고, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마로 다시 좁힐 수 있습니다.
+      평점 <b>{score_min:.1f}~{score_max:.1f}</b>, 1박 <b>{price_min:,}~{price_max:,}원</b> 구간이고, 평점·리뷰 수·가격은 트립닷컴 목록의 실제 값을 그대로 옮겼습니다.</p>
       <div class="pg-meta">
         <span><b>트립픽 숙소 편집</b></span><i></i>
-        <span>{total}곳 · {len(groups)}개 도시</span><i></i>
+        <span>{total}곳 · {len(groups)}개 지역</span><i></i>
         <span>가격 확인 {source.get('checked', '2026-11-20').replace('-', '.')}</span><i></i>
         <span>1박·2인·세금 포함</span>
       </div>
@@ -2777,6 +2830,14 @@ def stays_page(out_root: Path, base: str) -> Path:
         <div class="sf-chips sf-regionchips" role="group" aria-label="지역 선택">
           <button class="gf-chip on" type="button" data-region="all">지역 전체</button>
           {region_chips}
+        </div>
+      </div>
+      <div class="sf-row sf-row--groups">
+        <div class="sf-chips" role="group" aria-label="권역">
+          <span class="sf-label">권역</span>
+          <button class="gf-chip on" type="button" data-group="all">권역 전체</button>
+          {group_chips}
+          {intl_chip}
         </div>
       </div>
       <div class="sf-row">
@@ -2810,6 +2871,12 @@ def stays_page(out_root: Path, base: str) -> Path:
       {theme_cards}
     </div>
 
+    <h2 class="sr-h2">권역별로 이렇게 갈립니다</h2>
+    <p class="sr-dek">국내 숙소를 수도권(서울·인천) · 강원(강릉·속초·양양) · 경상(부산·경주·통영) · 전라(여수·전주) · 제주로 묶었습니다. 권역을 누르면 그 안의 숙소만 남고, 지역 카드를 누르면 그 도시만 남습니다.</p>
+    <div class="sg-groups" aria-label="권역 바로가기">
+      {group_cards}
+    </div>
+
     <h2 class="sr-h2">지역별로 이렇게 갈립니다</h2>
     <div class="sr-regions" aria-label="지역 바로가기">
       {region_links}
@@ -2828,7 +2895,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     </div>
 
     <p class="snote"><b>숫자 읽는 법</b> — 평점은 트립닷컴 투숙객 리뷰 10점 만점 기준이고, 옆의 리뷰 수와 함께 봐야 합니다.
-    가격은 카드에 적힌 조회 날짜의 <b>1박, 성인 2명, 세금·서비스비용 포함</b> 최저가입니다(국내 {kr_total}곳 2026-11-20~21, 해외 {intl_total}곳 2026-11-19~20).
+    가격은 카드에 적힌 조회 날짜의 <b>1박, 성인 2명, 세금·서비스비용 포함</b> 최저가입니다(국내 {kr_total}곳 2026-11-20~21, 해외 {intl_total}곳 2026-11-19~20). 권역 버튼은 국내 숙소만 묶습니다.
     같은 숙소도 날짜·객실·잔여 상황에 따라 달라지므로 결제 직전 트립닷컴 결제 화면의 금액을 최종으로 확인하세요. 숙소 사진은 트립닷컴 숙소 페이지 이미지입니다.</p>
 
     <p class="snote"><b>제휴 고지</b> — 이 페이지의 예약 버튼은 트립닷컴 파트너스 제휴 링크입니다.
@@ -2843,21 +2910,21 @@ def stays_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "stays.html",
-        title=f"국내 {kr_total}·해외 {intl_total} 테마별 찐숙소 {total}곳 — 서울·부산·강릉·여수·경주·제주 + 해외 7개 도시 평점·가격 비교 (2026) | 트립픽",
+        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 서울·인천·강릉·속초·양양·전주·부산·경주·통영·여수·제주 + 해외 7개 도시 평점·가격 비교 (2026) | 트립픽",
         desc=(
-            f"국내 서울·부산·강릉·여수·경주·제주 {kr_total}곳과 해외 오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이 {intl_total}곳, 숙소 {total}곳을 "
+            f"국내 {kr_names} {kr_total}곳과 해외 오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이 {intl_total}곳, 숙소 {total}곳을 "
             f"트립닷컴 평점·리뷰 수·1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
-            "호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터와 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-20 확인."
+            "수도권·강원·경상·전라·제주 권역별 보기, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터, 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-20 확인."
         ),
         keywords=(
-            "국내 호텔 추천, 서울 호텔, 부산 호텔, 강릉 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
+            "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
             "가성비 호텔, 가족 호텔, 풀빌라, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 트립닷컴 숙소"
         ),
         body=body,
         base=base,
         active="stays",
         og_image=f"{base.rstrip('/')}/images/og/stays.jpg",
-        og_image_alt="국내·해외 13개 도시 찐숙소 50곳 — 트립픽",
+        og_image_alt=f"국내·해외 {len(groups)}개 지역 찐숙소 {total}곳 — 트립픽",
         og_image_size=(1200, 630),
         jsonld=f'<script type="application/ld+json">{stays_jsonld(base, groups)}</script>',
     )
@@ -2871,11 +2938,12 @@ def stays_filter_script() -> str:
   var cards = Array.prototype.slice.call(grid.querySelectorAll('.scard'));
   var countEl = document.getElementById('sfCount');
   var emptyEl = document.getElementById('sfEmpty');
-  var scopeBtns = Array.prototype.slice.call(document.querySelectorAll('[data-scope]'));
+  var scopeBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-scope [data-scope]'));
   var regionBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-chips [data-region]'));
+  var groupBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-chips [data-group]'));
   var themeBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-chips [data-theme]'));
   var sortBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-sort [data-sort]'));
-  var state = { scope: 'all', region: 'all', theme: 'all', sort: 'score' };
+  var state = { scope: 'all', group: 'all', region: 'all', theme: 'all', sort: 'score' };
 
   function scoreOf(c){ return parseFloat(c.getAttribute('data-score')) || 0; }
   function priceOf(c){ return parseInt(c.getAttribute('data-price'), 10) || 0; }
@@ -2884,9 +2952,10 @@ def stays_filter_script() -> str:
   function render(sync){
     var shown = cards.filter(function(c){
       var okS = state.scope === 'all' || c.getAttribute('data-scope') === state.scope;
+      var okG = state.group === 'all' || c.getAttribute('data-group') === state.group;
       var okR = state.region === 'all' || c.getAttribute('data-region') === state.region;
       var okT = state.theme === 'all' || themesOf(c).indexOf(state.theme) >= 0;
-      return okS && okR && okT;
+      return okS && okG && okR && okT;
     });
     shown.sort(function(a, b){
       return state.sort === 'price' ? priceOf(a) - priceOf(b) : scoreOf(b) - scoreOf(a);
@@ -2898,6 +2967,7 @@ def stays_filter_script() -> str:
     if (sync !== false && window.history && history.replaceState){
       var p = [];
       if (state.scope !== 'all') p.push('scope=' + state.scope);
+      if (state.group !== 'all') p.push('group=' + state.group);
       if (state.region !== 'all') p.push('region=' + state.region);
       if (state.theme !== 'all') p.push('theme=' + state.theme);
       if (state.sort !== 'score') p.push('sort=' + state.sort);
@@ -2914,26 +2984,47 @@ def stays_filter_script() -> str:
       btn.addEventListener('click', function(){
         mark(btns, btn);
         state[key] = btn.getAttribute(attr);
-        if (key === 'scope' && state.region !== 'all'){
-          var r = regionBtns.filter(function(b){ return b.getAttribute('data-region') === state.region; })[0];
-          if (r && r.getAttribute('data-scope') && r.getAttribute('data-scope') !== state.scope){ state.region = 'all'; mark(regionBtns, regionBtns[0]); }
-        }
-        render();
+        syncAfter(key, btn);
       });
     });
   }
   bind(scopeBtns, 'scope', 'data-scope');
   bind(regionBtns, 'region', 'data-region');
+  bind(groupBtns, 'group', 'data-group');
   bind(themeBtns, 'theme', 'data-theme');
   bind(sortBtns, 'sort', 'data-sort');
+
+  /* v26: 권역·지역·국내/해외가 서로 어긋나 빈 화면이 되지 않게 맞춰 줍니다. */
+  function groupOfRegion(id){
+    var c = cards.filter(function(x){ return x.getAttribute('data-region') === id; })[0];
+    return c ? c.getAttribute('data-group') : 'all';
+  }
+  function pickGroup(id){
+    var b = groupBtns.filter(function(x){ return x.getAttribute('data-group') === id; })[0];
+    if (b){ mark(groupBtns, b); state.group = id; }
+    else { state.group = 'all'; }
+  }
+  function syncAfter(kind, el){
+    if (kind === 'group' && state.group !== 'all'){
+      state.region = 'all'; mark(regionBtns, regionBtns[0]);
+      state.scope = 'all'; mark(scopeBtns, scopeBtns[0]);
+    } else if (kind === 'scope'){
+      state.group = 'all'; mark(groupBtns, groupBtns[0]);
+      state.region = 'all'; mark(regionBtns, regionBtns[0]);
+    } else if (kind === 'theme' && state.group === 'all' && state.region !== 'all'){
+      pickGroup(groupOfRegion(state.region));
+    }
+    render();
+  }
 
   function setRegion(id){
     var target = regionBtns.filter(function(b){ return b.getAttribute('data-region') === id; })[0];
     if (!target) return;
     mark(regionBtns, target);
     state.region = id;
-    var sc = target.getAttribute('data-scope');
-    if (sc){ mark(scopeBtns, scopeBtns[0]); }
+    state.scope = 'all';
+    mark(scopeBtns, scopeBtns[0]);
+    pickGroup(groupOfRegion(id));
     render();
   }
   Array.prototype.forEach.call(document.querySelectorAll('[data-jump]'), function(a){
@@ -2946,8 +3037,9 @@ def stays_filter_script() -> str:
   });
 
   var qs = new URLSearchParams(location.search);
-  var qTheme = qs.get('theme'), qRegion = qs.get('region'), qScope = qs.get('scope'), qSort = qs.get('sort');
+  var qTheme = qs.get('theme'), qRegion = qs.get('region'), qScope = qs.get('scope'), qSort = qs.get('sort'), qGroup = qs.get('group');
   var needJump = false;
+  if (qGroup){ var gb = groupBtns.filter(function(b){ return b.getAttribute('data-group') === qGroup; })[0]; if (gb){ mark(groupBtns, gb); state.group = qGroup; } }
   if (qScope){ var sb = scopeBtns.filter(function(b){ return b.getAttribute('data-scope') === qScope; })[0]; if (sb){ mark(scopeBtns, sb); state.scope = qScope; } }
   if (qRegion){ setRegion(qRegion); needJump = true; }
   if (qTheme){ var tb = themeBtns.filter(function(b){ return b.getAttribute('data-theme') === qTheme; })[0]; if (tb){ mark(themeBtns, tb); state.theme = qTheme; } }
@@ -2967,8 +3059,8 @@ def stays_filter_script() -> str:
 
   var reset = document.getElementById('sfReset');
   if (reset) reset.addEventListener('click', function(){
-    state.scope = 'all'; state.region = 'all'; state.theme = 'all';
-    mark(scopeBtns, scopeBtns[0]); mark(regionBtns, regionBtns[0]); mark(themeBtns, themeBtns[0]);
+    state.scope = 'all'; state.group = 'all'; state.region = 'all'; state.theme = 'all';
+    mark(scopeBtns, scopeBtns[0]); mark(groupBtns, groupBtns[0]); mark(regionBtns, regionBtns[0]); mark(themeBtns, themeBtns[0]);
     render();
   });
   render(false);
@@ -3364,6 +3456,142 @@ def not_found_page(out_root: Path, base: str) -> Path:
     return p
 
 
+# ----------------------------------------------------------------------
+# /checklist — v26: 여행 갈 때 D-Day 순서(4단계 타임라인)
+# ----------------------------------------------------------------------
+def checklist_page(out_root: Path, base: str) -> Path:
+    ess_by_id = {e["id"]: e for e in ESSENTIALS}
+    check = load_json("checklist.json")
+    tl = json.loads((DATA / "timeline.json").read_text(encoding="utf-8"))
+    B.TIMELINE = tl
+    steps = tl["steps"]
+    intl_total = B.dday_total("intl")
+    dom_total = B.dday_total("dom")
+    kr = next((c for c in check["countries"] if c["id"] == "kr"), None)
+
+    tools = [
+        ("stays.html", "D-30", "찐숙소 " + str(len(STAYS.get("hotels", []))) + "곳", "서울·부산·강릉·속초·전주·통영·인천·제주 + 해외 7개 도시를 평점·리뷰·1박 최저가로 비교"),
+        ("calendar.html", "D-30", "월별 시즌 캘린더", "7개 도시 12개월 성수기·비수기와 항공권 가격이 오르는 달을 먼저 봅니다"),
+        ("index.html#travelins", "D-30", "여행자보험 3곳 비교", "보장 항목·자기부담금을 카드사·보험사 공식 조건으로 비교"),
+        ("passes.html", "D-14", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이 패스가 하루 이동 횟수로 남는지 계산"),
+        ("index.html#essentials", "D-14", "eSIM·필수템", "나라별 eSIM 1일 300원대부터, 어댑터·보조배터리 구매 링크"),
+        ("index.html#regions", "D-14", "투어·입장권 비교", "같은 도시 상품을 가격·현장 추가금·취소 규정까지 같은 기준으로 비교"),
+        ("baggage.html", "D-3", "항공사 수하물 8곳", "기내·위탁 무게와 보조배터리 규정을 항공사별로 확인"),
+        ("exchange.html", "D-3", "환율·일본 면세 계산기", "12개 통화 환율과 일본 면세 환급액을 같은 날 기준으로 계산"),
+        ("index.html#fxcards", "D-3", "환전 카드 3종", "트래블로그·트래블월렛·하나카드 수수료와 환율을 비교"),
+    ]
+    tool_cards = "".join(
+        f'<a class="ddtool" href="{href}"><span class="ddtool-d">{d}</span>'
+        f'<b>{esc(title)}</b><span>{esc(desc)}</span>'
+        f'<i>열기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></i></a>'
+        for href, d, title, desc in tools
+    )
+
+    country_rows = "".join(
+        f'<tr><th scope="row">{esc(c["name"])}</th><td>{esc(c["badge"])}</td>'
+        f'<td class="num">{esc(c["feeTotal"])}</td>'
+        f'<td>{esc((c["docs"][0]["when"] if c["docs"] else "—"))}</td>'
+        f'<td>{len(c["docs"])}개</td></tr>'
+        for c in check["countries"]
+    )
+    kr_note = (f'국내({esc(kr["name"])})는 입국서류가 없고 {len(kr["docs"])}개 서류만 확인하면 됩니다.' if kr else "")
+
+    faq = [
+        ("D-30에 숙소와 항공을 먼저 잡는 이유가 있나요?",
+         "가격이 가장 크게 움직이는 두 가지이기 때문입니다. 숙소는 무료 취소 조건으로 먼저 잡아 두면 더 싼 곳이 나왔을 때 갈아탈 수 있고, 항공은 좌석이 적은 날부터 값이 올라갑니다. 두 가지를 먼저 고정하면 남은 3주는 투어와 준비물에 쓸 수 있습니다."),
+        ("국내여행으로 바꾸면 무엇이 빠지나요?",
+         f'여권·비자·환전·eSIM·액체류·입국서류 QR·공항픽업·면세 인도장 8개 항목을 숨깁니다. 국내여행은 {dom_total}개 항목만 남고, 렌터카·리프트권처럼 국내에만 해당하는 항목이 대신 나옵니다. 해외여행은 {intl_total}개입니다.'),
+        ("출국 준비 체크리스트(나라별)와 무엇이 다른가요?",
+         "이 페이지는 '언제 무엇을 하는지' 순서를 정리한 타임라인이고, 홈의 나라별 체크리스트는 나라를 고르면 입국서류·수수료·기내반입 규정이 바뀌는 목록입니다. 순서를 잡은 뒤 나라별 서류를 확인하는 식으로 같이 씁니다."),
+        ("체크한 내용이 다른 기기와 공유되나요?",
+         "공유되지 않습니다. 체크 상태와 국내·해외 선택은 이 브라우저의 localStorage에만 저장되고 서버로 보내지 않습니다. 브라우저 기록을 지우면 함께 사라집니다."),
+    ]
+    faq_html = "".join(
+        f'<details class="fq"><summary><span class="fq-q"><b>Q.</b> {esc(q)}</span>'
+        f'<span class="fq-ic" aria-hidden="true"></span></summary>'
+        f'<div class="fq-a">{esc(a)}</div></details>'
+        for q, a in faq
+    )
+    faq_json = json.dumps(
+        {"@context": "https://schema.org", "@type": "FAQPage",
+         "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
+        ensure_ascii=False,
+    )
+    howto_json = json.dumps(
+        {"@context": "https://schema.org", "@type": "HowTo",
+         "name": "여행 갈 때 D-Day 순서 — D-30부터 출발 당일까지",
+         "description": "숙소·항공(D-30) → 투어·eSIM(D-14) → 수하물·환전(D-3) → 체크인·공항(D-0) 순서로 준비하는 4단계 여행 준비 타임라인입니다.",
+         "totalTime": "P30D",
+         "step": [{"@type": "HowToStep", "name": s["d"] + " " + s["title"], "text": s["why"]} for s in steps]},
+        ensure_ascii=False,
+    )
+
+    body = f"""<div class="pg-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><b>여행 준비 D-Day</b></nav>
+    <span class="pg-kicker">TRIPPICK CHECKLIST · D-30 → D-14 → D-3 → 출발 당일</span>
+    <div class="pg-head">
+      <h1><em>여행 준비</em> D-Day 순서 — 4단계로 정리</h1>
+      <p class="dek">무엇부터 해야 할지 모를 때 쓰는 순서입니다. <b>D-30에 숙소와 항공</b>, <b>D-14에 투어·eSIM</b>,
+      <b>D-3에 수하물·환전</b>, <b>출발 당일에 체크인·공항 동선</b>을 끝내도록 묶었습니다.
+      국내여행으로 바꾸면 여권·환전·eSIM 항목이 빠지고 {dom_total}개 항목만 남습니다. 체크는 이 브라우저에 저장됩니다.</p>
+      <div class="pg-meta">
+        <span><b>트립픽 준비 편집</b></span><i></i>
+        <span>{len(steps)}단계 · 해외 {intl_total}개 / 국내 {dom_total}개</span><i></i>
+        <span>기준 {tl.get('checked', '2026-11-20').replace('-', '.')}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pg-body">
+  <div class="wrap">
+{share_row('page')}
+{cont_bar('준비', '여행 준비 D-Day 4단계 타임라인', '/checklist', 'images/og/stays.jpg')}
+    <div class="ddwrap">
+{B.dday_timeline_html(ess_by_id)}
+    </div>
+
+    <h2 class="sr-h2">단계별로 쓰는 트립픽 도구</h2>
+    <p class="sr-dek">각 단계에서 바로 열어 확인할 수 있는 페이지입니다. 가격·규정은 2026년 11월 20일 확인 기준입니다.</p>
+    <div class="ddtools">{tool_cards}</div>
+
+    <h2 class="sr-h2">나라별 입국서류·수수료 (같이 보기)</h2>
+    <p class="sr-dek">D-14에 확인할 서류와 비용입니다. 나라를 고르면 기내반입 규정과 준비물 목록까지 바뀌는 표는 홈의 출국 준비 섹션에 있습니다. {kr_note}</p>
+    <div class="ddtable-wrap">
+      <table class="ddtable">
+        <thead><tr><th scope="col">나라</th><th scope="col">비자·입국</th><th scope="col" class="num">비용</th><th scope="col">첫 서류 시기</th><th scope="col">서류</th></tr></thead>
+        <tbody>{country_rows}</tbody>
+      </table>
+    </div>
+    <p class="snote">수수료는 2026-11-20 기준이며 정부 요금은 예고 없이 바뀝니다. 결제·출국 직전에 각 공식 사이트에서 다시 확인하세요. 자세한 서류 설명과 신청 링크는 <a href="index.html#checklist">홈 출국 준비 체크리스트</a>에 있습니다.</p>
+
+    <h2 class="sr-h2">여행 준비 자주 묻는 질문</h2>
+    <div class="fqlist">{faq_html}</div>
+{share_row('page')}
+  </div>
+</div>"""
+
+    return page(
+        out_root,
+        "checklist.html",
+        title=f"여행 준비 D-Day 순서 — D-30 숙소·항공 → D-14 투어·eSIM → D-3 수하물·환전 → 당일 체크인 (2026) | 트립픽",
+        desc=(
+            "여행 갈 때 무엇부터 해야 할지 4단계로 정리했습니다. D-30 숙소·항공, D-14 투어·입장권·eSIM, "
+            f"D-3 수하물·환전·트래블카드, 출발 당일 체크인·공항픽업·면세. 국내여행으로 바꾸면 여권·환전·eSIM 항목이 빠지고 {dom_total}개만 남습니다. "
+            "체크 상태는 브라우저에 저장되고, 각 단계에서 찐숙소·수하물 규정·환율 계산기·패스 계산기로 바로 이어집니다."
+        ),
+        keywords=(
+            "여행 준비 순서, 여행 D-Day, 여행 준비물 체크리스트, 출국 준비, 국내여행 준비물, "
+            "해외여행 준비물, eSIM 언제, 환전 언제, 공항 몇 시간 전, 트래블카드"
+        ),
+        body=body,
+        base=base,
+        active="checklist",
+        jsonld=f'<script type="application/ld+json">{howto_json}</script>\n<script type="application/ld+json">{faq_json}</script>',
+    )
+
+
 def write_sitemap(out_root: Path, base: str):
     b = base.rstrip("/")
     urls = [(f"{b}/", "1.0", "weekly")]
@@ -3379,6 +3607,7 @@ def write_sitemap(out_root: Path, base: str):
         (f"{b}/exchange.html", "0.8", "monthly"),
         (f"{b}/quiz.html", "0.9", "monthly"),
         (f"{b}/baggage.html", "0.8", "monthly"),
+        (f"{b}/checklist.html", "0.9", "monthly"),
         (f"{b}/stays.html", "0.9", "weekly"),
         (f"{b}/passes.html", "0.9", "monthly"),
         (f"{b}/calendar.html", "0.9", "monthly"),
@@ -3557,6 +3786,7 @@ def main():
         made.append(passes_page(out_root, args.base))
         made.append(calendar_page(out_root, args.base))
         made.append(quiz_page(out_root, args.base))
+        made.append(checklist_page(out_root, args.base))
         made.append(stays_page(out_root, args.base))
 
     write_sitemap(out_root, args.base)

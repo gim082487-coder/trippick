@@ -1,0 +1,286 @@
+{
+ "checked": "2026-11-20",
+ "note": "2026-11-20 확인. 순서는 '돈이 가장 크게 움직이는 것부터'로 잡았습니다. 숙소·항공은 4주 전에 조건이 갈리고, 투어·eSIM은 2주 전, 수하물·환전은 3일 전, 공항 동선은 당일 확인이면 충분합니다. 체크 상태는 이 브라우저(localStorage)에만 저장됩니다.",
+ "scopes": [
+  {
+   "id": "intl",
+   "name": "해외여행",
+   "note": "여권·비자·환전·eSIM까지 21개 항목"
+  },
+  {
+   "id": "dom",
+   "name": "국내여행",
+   "note": "여권·환전·eSIM 항목은 숨기고 13개만 봅니다"
+  }
+ ],
+ "steps": [
+  {
+   "id": "d30",
+   "d": "D-30",
+   "title": "숙소와 항공을 먼저 잡습니다",
+   "when": "출발 4주 전",
+   "why": "가격이 가장 크게 움직이는 두 가지입니다. 숙소는 무료 취소 조건으로 먼저 잡아 두면 나중에 더 싼 곳이 나왔을 때 갈아탈 수 있고, 항공은 좌석이 적은 날부터 올라갑니다.",
+   "items": [
+    {
+     "id": "stay",
+     "label": "숙소 후보 3곳 비교하고 예약",
+     "hint": "주말·성수기는 4주 전에 1박 값이 갈립니다",
+     "scope": "both",
+     "href": "/stays",
+     "cta": "찐숙소 66곳"
+    },
+    {
+     "id": "flight",
+     "label": "항공권 가격 확인하고 예약",
+     "hint": "출발 3주 전부터 좌석이 줄어듭니다",
+     "scope": "intl",
+     "href": "/calendar",
+     "cta": "월별 시즌 캘린더"
+    },
+    {
+     "id": "passport",
+     "label": "여권 만료일 확인",
+     "hint": "대부분 국가가 6개월 이상 남은 여권을 요구합니다",
+     "scope": "intl",
+     "href": "/#checklist",
+     "cta": "나라별 입국서류"
+    },
+    {
+     "id": "visa",
+     "label": "비자·ESTA·eTA·ETA 해당 여부 확인",
+     "hint": "미국 ESTA US$40.62, 영국 ETA £20 — 승인까지 며칠 걸립니다",
+     "scope": "intl",
+     "href": "/#checklist",
+     "cta": "수수료·신청 시기"
+    },
+    {
+     "id": "rental",
+     "label": "렌터카·KTX·배편 예약",
+     "hint": "제주·강원은 차량, 울릉도는 배편이 먼저 막힙니다",
+     "scope": "dom",
+     "href": "/#checklist",
+     "cta": "국내 준비물"
+    },
+    {
+     "id": "insurance",
+     "label": "여행자보험 가입",
+     "hint": "레저·렌터카 일정이면 보장 항목을 먼저 봅니다",
+     "scope": "both",
+     "href": "/#travelins",
+     "cta": "보험 3곳 비교"
+    }
+   ],
+   "tools": [
+    {
+     "href": "/stays",
+     "label": "찐숙소 66곳"
+    },
+    {
+     "href": "/calendar",
+     "label": "월별 시즌 캘린더"
+    }
+   ],
+   "short": "숙소·항공"
+  },
+  {
+   "id": "d14",
+   "d": "D-14",
+   "title": "투어·입장권·eSIM을 채웁니다",
+   "when": "출발 2주 전",
+   "why": "현지 투어와 입장권은 인원이 차면 마감되고, eSIM은 개통까지 하루가 걸릴 수 있습니다. 이때 예약하면 2주 남은 기간에 일정을 다시 짤 여유도 남습니다.",
+   "items": [
+    {
+     "id": "tour",
+     "label": "투어·입장권 예약",
+     "hint": "취소 규정과 최소 출발 인원을 같이 확인합니다",
+     "scope": "both",
+     "href": "/#regions",
+     "cta": "투어·입장권 비교"
+    },
+    {
+     "id": "esim",
+     "label": "eSIM·유심 구매",
+     "hint": "1일 300원대부터, 출국 전에 설치·개통해 둡니다",
+     "scope": "intl",
+     "href": "/#essentials",
+     "cta": "나라별 eSIM"
+    },
+    {
+     "id": "pass",
+     "label": "교통패스 본전 계산",
+     "hint": "하루 이동 횟수로 사는 게 남는지 먼저 계산합니다",
+     "scope": "both",
+     "href": "/passes",
+     "cta": "패스 본전 계산기"
+    },
+    {
+     "id": "ticket",
+     "label": "리프트권·전시 입장권 사전 예약",
+     "hint": "주말 할증이 붙는 곳은 평일권보다 2배까지 벌어집니다",
+     "scope": "dom",
+     "href": "/#regions",
+     "cta": "국내 레저"
+    },
+    {
+     "id": "rail",
+     "label": "공항철도·공항버스 예약",
+     "hint": "스카이라이너·난카이 라피트는 좌석 지정이 됩니다",
+     "scope": "intl",
+     "href": "/baggage",
+     "cta": "수하물·이동 규정"
+    }
+   ],
+   "tools": [
+    {
+     "href": "/#regions",
+     "label": "투어·입장권"
+    },
+    {
+     "href": "/passes",
+     "label": "패스 본전 계산기"
+    },
+    {
+     "href": "/#essentials",
+     "label": "eSIM·필수품"
+    }
+   ],
+   "short": "투어·eSIM"
+  },
+  {
+   "id": "d3",
+   "d": "D-3",
+   "title": "수하물·환전·트래블카드를 정리합니다",
+   "when": "출발 3일 전",
+   "why": "짐을 싸기 전에 항공사 규정을 확인해야 다시 싸지 않습니다. 환전과 트래블카드 충전은 3일 전에 해야 입금·충전이 늦어도 출국일에 걸리지 않습니다.",
+   "items": [
+    {
+     "id": "baggage",
+     "label": "항공사 기내·위탁 수하물 규정 확인",
+     "hint": "항공사마다 무게·개수가 다릅니다",
+     "scope": "both",
+     "href": "/baggage",
+     "cta": "항공사 8곳 규정"
+    },
+    {
+     "id": "powerbank",
+     "label": "보조배터리 2개 이하로 챙기기",
+     "hint": "기내 휴대만 가능, 위탁은 어떤 용량도 안 됩니다",
+     "scope": "both",
+     "product": "cp-powerbank-anker-maggo",
+     "cta": "10,000mAh 30W"
+    },
+    {
+     "id": "liquid",
+     "label": "액체류 100ml·지퍼백 준비",
+     "hint": "국제선만 적용, 국내선은 제한이 없습니다",
+     "scope": "intl",
+     "href": "/#checklist",
+     "cta": "기내반입 규정"
+    },
+    {
+     "id": "fx",
+     "label": "환전·트래블카드 충전",
+     "hint": "수수료와 환율을 같은 날 기준으로 비교합니다",
+     "scope": "intl",
+     "href": "/exchange",
+     "cta": "환율·면세 계산기"
+    },
+    {
+     "id": "cash",
+     "label": "현금·카드 준비",
+     "hint": "시장·노포는 현금만 받는 곳이 아직 많습니다",
+     "scope": "both",
+     "href": "/#fxcards",
+     "cta": "환전 카드 3종"
+    },
+    {
+     "id": "qr",
+     "label": "입국서류 QR·예약 확인서 오프라인 저장",
+     "hint": "공항 와이파이가 느릴 때를 대비합니다",
+     "scope": "intl",
+     "href": "/#checklist",
+     "cta": "나라별 서류"
+    }
+   ],
+   "tools": [
+    {
+     "href": "/baggage",
+     "label": "수하물 규정"
+    },
+    {
+     "href": "/exchange",
+     "label": "환율·면세 계산기"
+    }
+   ],
+   "short": "수하물·환전"
+  },
+  {
+   "id": "d0",
+   "d": "D-0",
+   "title": "출발 당일 — 체크인·공항 동선",
+   "when": "출발 당일",
+   "why": "온라인 체크인과 좌석 지정은 24~48시간 전에 열립니다. 공항 픽업·철도 시간을 여기에 맞추고, 면세 인도장은 출국 심사 뒤 위치를 미리 봐 둡니다.",
+   "items": [
+    {
+     "id": "checkin",
+     "label": "온라인 체크인·좌석 지정",
+     "hint": "출발 24~48시간 전에 열립니다",
+     "scope": "both",
+     "href": "/#checklist",
+     "cta": "출국 준비"
+    },
+    {
+     "id": "arrive",
+     "label": "공항 도착 시간 지키기",
+     "hint": "국제선 2시간, 국내선 1시간 전",
+     "scope": "both",
+     "href": "/#checklist",
+     "cta": "출국 준비"
+    },
+    {
+     "id": "pickup",
+     "label": "공항 픽업·공항철도 시간 확인",
+     "hint": "픽업 차량은 도착 터미널을 다시 확인합니다",
+     "scope": "intl",
+     "href": "/#essentials",
+     "cta": "공항픽업·철도"
+    },
+    {
+     "id": "dutyfree",
+     "label": "면세 인도장·리펀드 서류",
+     "hint": "인도장은 출국 심사 뒤, 리펀드는 여권·영수증이 필요합니다",
+     "scope": "intl",
+     "href": "/exchange",
+     "cta": "일본 면세 계산기"
+    },
+    {
+     "id": "tag",
+     "label": "위탁 수하물 무게·태그 확인",
+     "hint": "손저울로 미리 재 두면 공항에서 버리지 않습니다",
+     "scope": "both",
+     "product": "cp-luggagescale-homeplanet",
+     "cta": "디지털 저울"
+    },
+    {
+     "id": "meds",
+     "label": "상비약·충전기·어댑터",
+     "hint": "어댑터와 65W 충전기는 가방에 넣고 나옵니다",
+     "scope": "both",
+     "product": "cp-adapter-nemotab",
+     "cta": "멀티어댑터"
+    }
+   ],
+   "tools": [
+    {
+     "href": "/#essentials",
+     "label": "공항픽업·eSIM"
+    },
+    {
+     "href": "/exchange",
+     "label": "면세 계산기"
+    }
+   ],
+   "short": "체크인·공항"
+  }
+ ]
+}

@@ -154,6 +154,97 @@
     });
   }
 
+  /* ---------------- v26 여행 준비 D-Day (타임라인·홈 스트립·#prepBox) ---------------- */
+  var DD_KEY = 'trippick.dday.v1';
+  var DDS_KEY = 'trippick.dday.scope.v1';
+  var ddMetaEl = document.querySelector('script[data-dday-meta]');
+  var ddMeta = null;
+  if (ddMetaEl) { try { ddMeta = JSON.parse(ddMetaEl.textContent || '{}'); } catch (e) { ddMeta = null; } }
+  var ddState = load(DD_KEY, {});
+  if (!ddState || typeof ddState !== 'object') ddState = {};
+  var ddScope = load(DDS_KEY, 'intl');
+  if (ddScope !== 'dom') ddScope = 'intl';
+
+  function ddTally() {
+    var out = { total: 0, done: 0, steps: [] };
+    if (!ddMeta || !ddMeta.steps) return out;
+    ddMeta.steps.forEach(function (s) {
+      var st = { id: s.id, d: s.d, short: s.short || s.d, done: 0, total: 0 };
+      (s.items || []).forEach(function (pair) {
+        if (pair[1] !== 'both' && pair[1] !== ddScope) return;
+        st.total++;
+        if (ddState[pair[0]]) st.done++;
+      });
+      out.steps.push(st);
+      out.total += st.total;
+      out.done += st.done;
+    });
+    return out;
+  }
+
+  function ddNext(tally) {
+    for (var i = 0; i < tally.steps.length; i++) {
+      if (tally.steps[i].total > tally.steps[i].done) return tally.steps[i];
+    }
+    return null;
+  }
+
+  function ddPaint() {
+    var t = ddTally();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-dday]'), function (box) {
+      box.setAttribute('data-dday-scope', ddScope);
+      Array.prototype.forEach.call(box.querySelectorAll('[data-dday-scope]'), function (b) {
+        var on = b.getAttribute('data-dday-scope') === ddScope;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      Array.prototype.forEach.call(box.querySelectorAll('.dstep-item'), function (li) {
+        var sc = li.getAttribute('data-scope') || 'both';
+        li.hidden = !(sc === 'both' || sc === ddScope);
+      });
+      Array.prototype.forEach.call(box.querySelectorAll('input[data-dday-id]'), function (cb) {
+        cb.checked = !!ddState[cb.getAttribute('data-dday-id')];
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-dday-done]'), function (el) { el.textContent = t.done; });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-dday-total]'), function (el) { el.textContent = t.total; });
+    var bar = document.querySelector('[data-dday-bar]');
+    if (bar) bar.style.width = (t.total ? Math.round(t.done / t.total * 100) : 0) + '%';
+    t.steps.forEach(function (st) {
+      var txt = st.done + '/' + st.total;
+      Array.prototype.forEach.call(document.querySelectorAll('[data-dstep-count="' + st.id + '"]'), function (el) {
+        el.textContent = txt;
+        el.classList.toggle('done', st.total > 0 && st.done === st.total);
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-dstep-strip="' + st.id + '"]'), function (el) {
+        el.textContent = txt;
+        el.classList.toggle('done', st.total > 0 && st.done === st.total);
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ddstrip-prog]'), function (el) {
+      el.textContent = t.done + '/' + t.total + ' 체크';
+    });
+  }
+
+  document.addEventListener('change', function (e) {
+    var cb = e.target && e.target.getAttribute ? e.target : null;
+    if (!cb || !cb.getAttribute('data-dday-id')) return;
+    var id = cb.getAttribute('data-dday-id');
+    if (cb.checked) ddState[id] = true; else delete ddState[id];
+    save(DD_KEY, ddState);
+    ddPaint();
+  });
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-dday-scope]') : null;
+    if (!btn || !btn.parentNode || btn.parentNode.className.indexOf('dday-switch') < 0) return;
+    ddScope = btn.getAttribute('data-dday-scope') === 'dom' ? 'dom' : 'intl';
+    save(DDS_KEY, ddScope);
+    ddPaint();
+  });
+
+  ddPaint();
+
   /* ---------------- 내 여행 준비 요약 (홈 #prepBox) ---------------- */
   var prep = document.getElementById('prepBox');
   if (prep) {
@@ -173,6 +264,16 @@
       rows.push('<a class="prep-row" href="/index.html#checklist">' +
         '<span class="prep-k">출국 준비 체크</span>' +
         '<span class="prep-v"><b>' + done + '개 체크됨</b><em>이 브라우저에 저장된 상태로 이어집니다</em></span>' +
+        '<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>');
+    }
+    var ddt = ddTally();
+    if (ddt.done) {
+      var nx = ddNext(ddt);
+      rows.push('<a class="prep-row" href="/checklist">' +
+        '<span class="prep-k">여행 준비 D-Day</span>' +
+        '<span class="prep-v"><b>' + ddt.done + '/' + ddt.total + ' 체크됨</b><em>' +
+        (nx ? ('다음은 ' + nx.d + ' · ' + nx.short) : '네 단계를 모두 끝냈습니다') +
+        ' — 「' + (ddScope === 'dom' ? '국내여행' : '해외여행') + '」 기준</em></span>' +
         '<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>');
     }
     if (recent.length) {

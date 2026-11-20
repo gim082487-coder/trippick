@@ -315,6 +315,71 @@
      "label": "경주 황리단길 1박2일"
     }
    ]
+  },
+  {
+   "id": "sokcho",
+   "name": "속초",
+   "country": "대한민국",
+   "note": "속초해변·청초호·대포항이 차로 10~15분 거리입니다. 대포항 쪽은 오션뷰, 청초호 쪽은 호수 전망과 시내 접근이 좋습니다.",
+   "count": 3,
+   "top": "홈 마리나 속초",
+   "listUrl": "https://kr.trip.com/hotels/list?city=35793&display=속초&optionId=35793&optionType=City&optionName=속초&Allianceid=11407530&SID=336341874&trip_sub1=hotel_sokcho&trip_sub3=D21275837",
+   "cityId": "35793",
+   "scope": "kr",
+   "hub": null,
+   "guides": []
+  },
+  {
+   "id": "yangyang",
+   "name": "양양",
+   "country": "대한민국",
+   "note": "낙산해변·설악해변·양양 시내가 차로 15~25분. 서핑은 죽도·기사문, 아이와 물놀이는 낙산·설악 쪽으로 갈립니다.",
+   "count": 2,
+   "top": "포타라카 낙산비치웰니스",
+   "listUrl": "https://kr.trip.com/hotels/list?city=6430&display=양양&optionId=6430&optionType=City&optionName=양양&Allianceid=11407530&SID=336341874&trip_sub1=hotel_yangyang&trip_sub3=D21275837",
+   "cityId": "6430",
+   "scope": "kr",
+   "hub": null,
+   "guides": []
+  },
+  {
+   "id": "jeonju",
+   "name": "전주",
+   "country": "대한민국",
+   "note": "한옥마을·객사·전주역 세 권역입니다. 한옥마을 도보권은 밤 산책이 편하고, 전주역·터미널 쪽은 도착일 이동과 1박 가격에 유리합니다.",
+   "count": 4,
+   "top": "전주 호텔 더 빈센트",
+   "listUrl": "https://kr.trip.com/hotels/list?city=61380&display=전주&optionId=61380&optionType=City&optionName=전주&Allianceid=11407530&SID=336341874&trip_sub1=hotel_jeonju&trip_sub3=D21275837",
+   "cityId": "61380",
+   "scope": "kr",
+   "hub": null,
+   "guides": []
+  },
+  {
+   "id": "tongyeong",
+   "name": "통영",
+   "country": "대한민국",
+   "note": "강구안·중앙시장 원도심과 도남항 마리나·수륙해변 리조트가 차로 15~20분. 케이블카·미륵도를 볼지, 시장과 동피랑을 걸을지로 숙소가 갈립니다.",
+   "count": 3,
+   "top": "통영 데라무르 호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=72366&display=통영&optionId=72366&optionType=City&optionName=통영&Allianceid=11407530&SID=336341874&trip_sub1=hotel_tongyeong&trip_sub3=D21275837",
+   "cityId": "72366",
+   "scope": "kr",
+   "hub": null,
+   "guides": []
+  },
+  {
+   "id": "incheon",
+   "name": "인천·영종도",
+   "country": "대한민국",
+   "note": "영종도(공항)와 송도·원도심은 철도로 바로 이어지지 않습니다. 새벽·심야 비행 전후는 영종도, 송도 일정은 송도 안에서 끝내야 이동이 짧습니다.",
+   "count": 4,
+   "top": "파라다이스시티",
+   "listUrl": "https://kr.trip.com/hotels/list?city=410&display=인천&optionId=410&optionType=City&optionName=인천&Allianceid=11407530&SID=336341874&trip_sub1=hotel_incheon&trip_sub3=D21275837",
+   "cityId": "410",
+   "scope": "kr",
+   "hub": null,
+   "guides": []
   }
  ],
  "hotels": [
@@ -1840,6 +1905,526 @@
     "온천 호텔",
     "산 전망",
     "한옥"
+   ]
+  },
+  {
+   "region": "sokcho",
+   "id": "119822850",
+   "name": "홈 마리나 속초",
+   "en": "Homm Marina Sokcho",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.4,
+   "reviews": 165,
+   "sub": {
+    "청결도": "9.6",
+    "시설": "8.9",
+    "위치": "9.5",
+    "서비스": "9.4"
+   },
+   "zone": "",
+   "access": "속초해변·속초아이 도보권",
+   "reason": "리뷰 165개에 9.4 — 청결 9.6·위치 9.5로 속초 신규 호텔 중 평점이 가장 높습니다. 온수 인피니티 풀과 스카이 바에서 동해 일몰을 봅니다.",
+   "price": 191091,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sokcho-119822850.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=35793&hotelId=119822850&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sokcho_119822850&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "온수 인피니티 풀",
+    "오션 뷰",
+    "스카이 바"
+   ]
+  },
+  {
+   "region": "sokcho",
+   "id": "6107210",
+   "name": "라마다 속초",
+   "en": "Ramada by Wyndham Gangwon Sokcho",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 904,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.6",
+    "위치": "9.6",
+    "서비스": "8.9"
+   },
+   "zone": "",
+   "access": "대포항 방파제 앞 · 외옹치 바다향기로",
+   "reason": "리뷰 904개에 위치 9.6 — 대포항 바로 앞이라 전 객실이 바다 쪽입니다. 설악산과 속초 시내를 오가기 좋은 위치입니다.",
+   "price": 112522,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sokcho-6107210.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=35793&hotelId=6107210&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sokcho_6107210&trip_sub3=D21372570",
+   "themes": [
+    "ocean"
+   ],
+   "pointTags": [
+    "오션 뷰",
+    "일출",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "sokcho",
+   "id": "83273661",
+   "name": "체스터톤스 속초",
+   "en": "Chestertons Sokcho",
+   "star": 4,
+   "type": "onsen",
+   "typeLabel": "온천 료칸",
+   "score": 8.9,
+   "reviews": 578,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.9",
+    "위치": "9.3",
+    "서비스": "8.5"
+   },
+   "zone": "",
+   "access": "청초호·엑스포타워 인근",
+   "reason": "리뷰 578개에 8.9 — 사계절 온천 수영장이 있는 청초호湖畔 호텔입니다. 1박 9만원대로 속초에서 온천과 가성비를 같이 챙기는 쪽입니다.",
+   "price": 90408,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sokcho-83273661.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=35793&hotelId=83273661&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sokcho_83273661&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "value"
+   ],
+   "pointTags": [
+    "온천 호텔",
+    "레이크 뷰",
+    "무료 어린이 놀이터"
+   ]
+  },
+  {
+   "region": "yangyang",
+   "id": "134686575",
+   "name": "포타라카 낙산비치웰니스",
+   "en": "Potalaka Naksan Beach Wellness",
+   "star": 4,
+   "type": "onsen",
+   "typeLabel": "온천 료칸",
+   "score": 9.3,
+   "reviews": 127,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "9.3",
+    "위치": "9.3",
+    "서비스": "9.3"
+   },
+   "zone": "",
+   "access": "낙산사·낙산해변 인근",
+   "reason": "리뷰 127개에 네 항목 모두 9.3 — 2026년 문을 연 웰니스 호텔로 사우나와 조식 평가가 고릅니다. 낙산해변까지 1km입니다.",
+   "price": 167258,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/yangyang-134686575.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=6430&hotelId=134686575&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_yangyang_134686575&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "ocean"
+   ],
+   "pointTags": [
+    "신규 오픈",
+    "사우나",
+    "맛있는 조식"
+   ]
+  },
+  {
+   "region": "yangyang",
+   "id": "133901675",
+   "name": "세인트 더 스위트 양양",
+   "en": "Saint The Suite",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 148,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "8.8",
+    "위치": "9.5",
+    "서비스": "8.9"
+   },
+   "zone": "",
+   "access": "낙산해수욕장 도보권",
+   "reason": "리뷰 148개에 청결 9.4·위치 9.5 — 낙산해변 바로 앞 루프탑 수영장이 있는 스위트 호텔입니다. 반려동물 동반 객실도 있습니다.",
+   "price": 249333,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/yangyang-133901675.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=6430&hotelId=133901675&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_yangyang_133901675&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "루프탑 수영장",
+    "오션 뷰",
+    "반려동물 동반"
+   ]
+  },
+  {
+   "region": "jeonju",
+   "id": "110619728",
+   "name": "전주 호텔 더 빈센트",
+   "en": "Jeonju Hotel the Vincent",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 81,
+   "sub": {
+    "청결도": "9.6",
+    "시설": "8.7",
+    "위치": "9.5",
+    "서비스": "9.3"
+   },
+   "zone": "",
+   "access": "전주 한옥마을 도보권",
+   "reason": "리뷰 81개에 9.3 — 청결 9.6으로 전주 후보 중 가장 높고, 한옥마을까지 걸어갑니다. 전용 주차장과 전기차 충전 시설이 있는 도심 호텔입니다.",
+   "price": 127709,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/jeonju-110619728.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61380&hotelId=110619728&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeonju_110619728&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "매우 청결",
+    "한옥마을 도보",
+    "전용 주차장"
+   ]
+  },
+  {
+   "region": "jeonju",
+   "id": "114985388",
+   "name": "글로스터호텔 전주",
+   "en": "Gloucester Hotel Jeonju",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 521,
+   "sub": {
+    "청결도": "8.8",
+    "시설": "8.5",
+    "위치": "9.0",
+    "서비스": "8.8"
+   },
+   "zone": "",
+   "access": "객사·중앙성당 인근",
+   "reason": "리뷰 521개에 8.8 — 객사와 한옥마을 사이 4성급으로 조식과 위치 평가가 안정적입니다. 전주에서 리뷰가 가장 많이 쌓인 호텔입니다.",
+   "price": 184800,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/jeonju-114985388.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61380&hotelId=114985388&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeonju_114985388&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "맛있는 조식",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "jeonju",
+   "id": "99032810",
+   "name": "호텔어라이브 전주 시화연풍",
+   "en": "HotelArrive Jeonju Sihwayeonpung",
+   "star": 2,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 110,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.8",
+    "위치": "9.4",
+    "서비스": "9.0"
+   },
+   "zone": "",
+   "access": "풍남문·남부시장 도보권",
+   "reason": "리뷰 110개에 9.1 — 한옥 구조를 살린 부티크 호텔로 풍남문과 남부시장이 도보권입니다. 셀프 체크인이라 늦게 도착해도 됩니다.",
+   "price": 90335,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/jeonju-99032810.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61380&hotelId=99032810&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeonju_99032810&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "한옥",
+    "매우 청결",
+    "셀프 체크인"
+   ]
+  },
+  {
+   "region": "jeonju",
+   "id": "124159792",
+   "name": "전주 우아동 이츠 호텔",
+   "en": "Jeonju Its Hotel",
+   "star": 0,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 210,
+   "sub": {
+    "청결도": "9.7",
+    "시설": "9.4",
+    "위치": "8.8",
+    "서비스": "9.5"
+   },
+   "zone": "",
+   "access": "우아동 · 전주한옥레일바이크 인근",
+   "reason": "리뷰 210개에 9.3 — 청결 9.7·시설 9.4로 전주에서 가장 깨끗하다는 평가가 많습니다. 1박 6만원대로 조식까지 나오는 가성비 쪽입니다.",
+   "price": 64731,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/jeonju-124159792.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61380&hotelId=124159792&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_jeonju_124159792&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "매우 청결",
+    "맛있는 조식",
+    "전 객실 온돌"
+   ]
+  },
+  {
+   "region": "tongyeong",
+   "id": "10560309",
+   "name": "스탠포드 호텔앤리조트 통영",
+   "en": "Stanford Hotel&Resort Tongyeong",
+   "star": 4,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 8.9,
+   "reviews": 131,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.7",
+    "위치": "9.3",
+    "서비스": "8.9"
+   },
+   "zone": "",
+   "access": "수륙해변 · 트라이애슬론광장 인근",
+   "reason": "리뷰 131개에 8.9 — 수영장과 베이 전망을 갖춘 통영 대표 리조트형 호텔입니다. 조식과 전망 좋은 레스토랑 평가가 높습니다.",
+   "price": 202145,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/tongyeong-10560309.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=72366&hotelId=10560309&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tongyeong_10560309&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "베이 전망",
+    "수영장",
+    "맛있는 조식"
+   ]
+  },
+  {
+   "region": "tongyeong",
+   "id": "3727146",
+   "name": "금호통영마리나리조트",
+   "en": "Kumho Tongyeong Marina Resort",
+   "star": 4,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 8.5,
+   "reviews": 159,
+   "sub": {
+    "청결도": "8.7",
+    "시설": "7.6",
+    "위치": "9.2",
+    "서비스": "8.5"
+   },
+   "zone": "",
+   "access": "도남항 마리나 · 연필등대 인근",
+   "reason": "리뷰 159개에 8.5 — 마리나에 붙은 리조트로 일출·스파·바비큐를 한 곳에서 씁니다. 시설 점수는 7.6이라 객실 상태는 감안해야 합니다.",
+   "price": 155826,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/tongyeong-3727146.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=72366&hotelId=3727146&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tongyeong_3727146&trip_sub3=D21372570",
+   "themes": [
+    "villa",
+    "ocean"
+   ],
+   "pointTags": [
+    "마리나",
+    "스파",
+    "일출"
+   ]
+  },
+  {
+   "region": "tongyeong",
+   "id": "111550164",
+   "name": "통영 데라무르 호텔",
+   "en": "Tongyeong De'Lamour Hotel",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.6,
+   "reviews": 44,
+   "sub": {
+    "청결도": "9.8",
+    "시설": "9.3",
+    "위치": "9.8",
+    "서비스": "9.7"
+   },
+   "zone": "",
+   "access": "강구안 · 한산대첩광장 도보권",
+   "reason": "리뷰 44개에 9.6 — 청결 9.8·위치 9.8. 강구안과 중앙시장을 걸어서 오갈 수 있어 통영 원도심을 보려는 1박에 맞습니다.",
+   "price": 68796,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/tongyeong-111550164.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=72366&hotelId=111550164&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_tongyeong_111550164&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "매우 청결",
+    "강구안 도보",
+    "서비스 최고"
+   ]
+  },
+  {
+   "region": "incheon",
+   "id": "7240662",
+   "name": "파라다이스시티",
+   "en": "Paradise City",
+   "star": 5,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 9.3,
+   "reviews": 1467,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.2",
+    "위치": "9.2",
+    "서비스": "9.4"
+   },
+   "zone": "",
+   "access": "영종도 · 인천공항 10분",
+   "reason": "리뷰 1,467개에 9.3 — 씨메르와 원더박스가 붙은 5성급 복합리조트입니다. 무료 공항 픽업·샌딩이 있어 새벽 비행 전후에 편합니다.",
+   "price": 608257,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/incheon-7240662.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=410&hotelId=7240662&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_incheon_7240662&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": [
+    "무료 공항 픽업/샌딩",
+    "워터파크",
+    "서비스 최고"
+   ]
+  },
+  {
+   "region": "incheon",
+   "id": "113752459",
+   "name": "인스파이어 리조트",
+   "en": "INSPIRE Entertainment Resort",
+   "star": 5,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 9.1,
+   "reviews": 2368,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.1",
+    "위치": "8.9",
+    "서비스": "8.9"
+   },
+   "zone": "",
+   "access": "영종도 · 인스파이어 아레나 인근",
+   "reason": "리뷰 2,368개에 9.1 — 실내 워터파크와 아레나가 한 건물에 있습니다. 공항 셔틀이 무료라 공연·가족 일정의 거점으로 씁니다.",
+   "price": 532014,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/incheon-113752459.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=410&hotelId=113752459&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_incheon_113752459&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "villa"
+   ],
+   "pointTags": [
+    "실내 수영장",
+    "무료 공항 셔틀",
+    "레이크 뷰"
+   ]
+  },
+  {
+   "region": "incheon",
+   "id": "8427637",
+   "name": "골든 튤립 인천공항 호텔&스위트",
+   "en": "GOLDEN TULIP Incheon Airport Hotel & Suites",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.6,
+   "reviews": 6303,
+   "sub": {
+    "청결도": "8.7",
+    "시설": "8.2",
+    "위치": "9.1",
+    "서비스": "8.3"
+   },
+   "zone": "",
+   "access": "운서역 도보권 · 공항 셔틀",
+   "reason": "리뷰 6,303개에 8.6 — 운서역과 가까워 공항철도로 서울까지 바로 나갑니다. 레지던스형 객실과 무료 공항 셔틀이 강점입니다.",
+   "price": 211437,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/incheon-8427637.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=410&hotelId=8427637&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_incheon_8427637&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "무료 공항 셔틀",
+    "운서역 도보",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "incheon",
+   "id": "1465666",
+   "name": "송도 센트럴파크 호텔",
+   "en": "Songdo Central Park Hotel",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.7,
+   "reviews": 1090,
+   "sub": {
+    "청결도": "8.8",
+    "시설": "8.3",
+    "위치": "9.2",
+    "서비스": "8.5"
+   },
+   "zone": "",
+   "access": "송도 · 송도컨벤시아 인근",
+   "reason": "리뷰 1,090개에 위치 9.2 — 송도컨벤시아와 센트럴파크 사이입니다. 공항이 아니라 송도 일정이 중심일 때 이동이 가장 짧습니다.",
+   "price": 160123,
+   "priceBasis": "2026-11-20~21 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/incheon-1465666.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=410&hotelId=1465666&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_incheon_1465666&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "위치 최고",
+    "센트럴파크 도보",
+    "패밀리 트윈"
    ]
   }
  ]

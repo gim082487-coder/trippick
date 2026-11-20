@@ -897,7 +897,7 @@ def render_gifts(data: dict, gifts: dict, essentials: dict, tripcom: dict, guide
 
 
 # ---------------------------------------------------------------- 출국 준비 체크리스트
-KR_ORDER = ("seoul", "busan", "gangneung", "yeosu", "gyeongju", "jeju")
+KR_ORDER = ("seoul", "incheon", "gangneung", "sokcho", "busan", "gyeongju", "tongyeong", "yeosu", "jeonju", "jeju")
 
 
 def food_intro_line(rest: dict) -> str:
@@ -912,7 +912,7 @@ def food_intro_line(rest: dict) -> str:
     total = sum(len(c["items"]) for c in cities)
 
     def names(group: list[dict]) -> str:
-        return "·".join(esc(c["name"]) for c in group)
+        return " / ".join(esc(c["name"]) for c in group)
 
     if kr and ab:
         lead = (f"실제로 영업 중인 가게 {total}곳을 골랐습니다 — "
@@ -1023,6 +1023,116 @@ def render_restaurants(data: dict, rest: dict, guides: dict, tripcom: dict) -> s
         + "\n  ".join(panels)
         + f'\n  <p class="food-note">가게 {total}곳은 2026년 11월 20일 구글 지도에서 영업 중(OPERATIONAL)임을 확인했고, 가격은 공식 메뉴판·공식 안내 또는 2026년 10~11월 방문 기록이 일치하는 값만 적었습니다. 환율은 {esc(rest["fx"])}이고, 영업시간·휴무는 시장 휴시일이나 임시휴무로 달라질 수 있으니 출발 전에 가게 지도 링크로 한 번 더 확인하세요.</p>\n</div>'
     )
+
+
+# ---------------------------------------------------------------- v26 여행 준비 D-Day
+TIMELINE: dict = {}
+
+
+def dday_steps() -> list[dict]:
+    return TIMELINE.get("steps") or []
+
+
+def dday_visible(it: dict, scope: str) -> bool:
+    return it.get("scope", "both") in ("both", scope)
+
+
+def dday_total(scope: str = "intl") -> int:
+    return sum(1 for s in dday_steps() for it in s["items"] if dday_visible(it, scope))
+
+
+def dday_meta_json() -> str:
+    """홈 스트립·/checklist·#prepBox가 같이 쓰는 진행률 계산용 메타(작게)."""
+    data = {
+        "steps": [
+            {
+                "id": s["id"],
+                "d": s["d"],
+                "short": s.get("short", s["title"]),
+                "items": [[it["id"], it.get("scope", "both")] for it in s["items"]],
+            }
+            for s in dday_steps()
+        ],
+        "totals": {sc: dday_total(sc) for sc in ("intl", "dom")},
+    }
+    return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+
+
+def dday_item(it: dict, ess_by_id: dict) -> str:
+    hint = f'<i>{esc(it["hint"])}</i>' if it.get("hint") else ""
+    go = ""
+    prod = it.get("product")
+    if prod and prod in ess_by_id:
+        e = ess_by_id[prod]
+        go = (f'<a class="dstep-go" href="{esc(ess_url(e))}" target="_blank" rel="noopener sponsored">'
+              f'{esc(it.get("cta") or "제휴 상품")} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>')
+    elif it.get("href"):
+        go = (f'<a class="dstep-go" href="{esc(it["href"])}">'
+              f'{esc(it.get("cta") or "바로 가기")} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>')
+    return (
+        f'<li class="dstep-item" data-scope="{esc(it.get("scope", "both"))}">'
+        f'<label><input type="checkbox" data-dday-id="{esc(it["id"])}" />'
+        f'<span class="dstep-box" aria-hidden="true"></span>'
+        f'<span class="dstep-txt"><b>{esc(it["label"])}</b>{hint}</span></label>{go}</li>'
+    )
+
+
+def dday_timeline_html(ess_by_id: dict | None = None) -> str:
+    """v26: /checklist 상단 — D-30 → D-14 → D-3 → D-0 순서 타임라인.
+
+    체크 상태는 브라우저 localStorage(assets/trip-save.js)가 복원하고,
+    국내여행으로 바꾸면 여권·환전·eSIM 항목을 숨깁니다.
+    """
+    ess_by_id = ess_by_id or {}
+    steps = dday_steps()
+    scopes = TIMELINE.get("scopes") or [{"id": "intl", "name": "해외여행"}, {"id": "dom", "name": "국내여행"}]
+    switch = "".join(
+        f'<button type="button" data-dday-scope="{esc(s["id"])}" class="{"on" if i == 0 else ""}"'
+        f' aria-pressed="{"true" if i == 0 else "false"}">{esc(s["name"])}</button>'
+        for i, s in enumerate(scopes)
+    )
+    steps_html = "".join(
+        f'<li class="dstep" data-step="{esc(s["id"])}">'
+        f'<div class="dstep-h"><b class="dstep-d">{esc(s["d"])}</b>'
+        f'<span class="dstep-t">{esc(s["title"])}</span>'
+        f'<span class="dstep-when">{esc(s["when"])}</span>'
+        f'<span class="dstep-n" data-dstep-count="{esc(s["id"])}">0/{sum(1 for it in s["items"] if dday_visible(it, "intl"))}</span></div>'
+        f'<p class="dstep-why">{esc(s["why"])}</p>'
+        f'<ul class="dstep-items">{"".join(dday_item(it, ess_by_id) for it in s["items"])}</ul>'
+        f'<div class="dstep-tools">'
+        + "".join(f'<a href="{esc(t["href"])}">{esc(t["label"])} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>' for t in s.get("tools", []))
+        + "</div></li>"
+        for s in steps
+    )
+    scope_note = " · ".join(f'{esc(s["name"])} {dday_total(s["id"])}개' for s in scopes)
+    return f"""<div class="dday" data-dday>
+  <div class="dday-head">
+    <span class="dday-k"><svg aria-hidden="true"><use href="#i-check"/></svg>여행 준비 D-Day</span>
+    <div class="dday-switch" role="group" aria-label="국내·해외 여행">{switch}</div>
+    <span class="dday-prog"><b data-dday-done>0</b>/<span data-dday-total>{dday_total('intl')}</span> 체크</span>
+  </div>
+  <div class="dday-bar" aria-hidden="true"><i data-dday-bar></i></div>
+  <ol class="dday-steps">{steps_html}</ol>
+  <p class="dday-note">{esc(TIMELINE.get('note', ''))} <b>{scope_note}</b></p>
+  <script type="application/json" data-dday-meta>{dday_meta_json()}</script>
+</div>"""
+
+
+def dday_strip_html() -> str:
+    """홈 #checklist 상단의 4단계 요약(진행률은 스크립트가 채웁니다)."""
+    steps = dday_steps()
+    cells = "".join(
+        f'<div class="dds"><b>{esc(s["d"])}</b><span>{esc(s.get("short") or s["title"])}</span>'
+        f'<em data-dstep-strip="{esc(s["id"])}">0/{sum(1 for it in s["items"] if dday_visible(it, "intl"))}</em></div>'
+        for s in steps
+    )
+    return f"""<div class="ddstrip" data-ddstrip>
+  <div class="ddstrip-h"><b><svg aria-hidden="true"><use href="#i-check"/></svg>여행 갈 때 D-Day 순서</b>
+    <span data-ddstrip-prog>0/{dday_total('intl')} 체크</span>
+    <a href="checklist.html">4단계 순서대로 정리 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+  <div class="ddstrip-steps">{cells}</div>
+  <script type="application/json" data-dday-meta>{dday_meta_json()}</script>
+</div>"""
 
 
 def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
@@ -2121,6 +2231,8 @@ def main() -> int:
     gifts = json.loads((DATA / "gifts.json").read_text(encoding="utf-8"))
     guides = json.loads((DATA / "guides.json").read_text(encoding="utf-8"))
     rest = json.loads((DATA / "restaurants.json").read_text(encoding="utf-8"))
+    global TIMELINE
+    TIMELINE = json.loads((DATA / "timeline.json").read_text(encoding="utf-8"))
     global HUB_LIST, HUB_OF_CITY, HUB_CITY_IDS
     HUB_LIST = json.loads((DATA / "city_hubs.json").read_text(encoding="utf-8"))["cities"]
     HUB_CITY_IDS = {cid for h in HUB_LIST for cid in (h.get("cityIds") or [h["slug"]])}
@@ -2176,6 +2288,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @ESSENTIALS -->", render_essentials(essentials))
     html = replace_block(html, "<!-- @RESTAURANTS -->", render_restaurants(data, rest, guides, tripcom))
     html = replace_block(html, "<!-- @GIFTS -->", render_gifts(data, gifts, essentials, tripcom, guides))
+    html = replace_block(html, "<!-- @DDAYSTRIP -->", dday_strip_html())
     html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
     html = replace_block(html, "<!-- @MONEYKIT -->", render_depart_kit(checklist))
     html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom, klook))
