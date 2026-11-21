@@ -270,6 +270,26 @@
    "photographer": "Timur Weber",
    "url": "https://www.pexels.com/photo/9185883/",
    "note": "캐리어와 여행용품. 1200×800 크롭."
+  },
+  "v33_passport_application": {
+   "pexels_id": 4922086,
+   "photographer": "Ekaterina Belinskaya",
+   "url": "https://www.pexels.com/photo/4922086/"
+  },
+  "v33_entry_immigration": {
+   "pexels_id": 33598030,
+   "photographer": "Mingyang LIU",
+   "url": "https://www.pexels.com/photo/33598030/"
+  },
+  "v33_airport_checkin": {
+   "pexels_id": 4524740,
+   "photographer": "Brian James",
+   "url": "https://www.pexels.com/photo/4524740/"
+  },
+  "v33_esim_insurance": {
+   "pexels_id": 20805599,
+   "photographer": "Jacob",
+   "url": "https://www.pexels.com/photo/20805599/"
   }
  }
 }
