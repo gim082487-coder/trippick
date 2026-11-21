@@ -404,6 +404,18 @@ def page(
     if rel_path.endswith("index.html"):
         canonical = f"{base.rstrip('/')}/{rel_path[: -len('index.html')]}"
     share_img = og_image or (base.rstrip('/') + '/images/courses/hero_kyoto_street.jpg')
+    if og_image and not og_image_size:
+        # v36: og:image 를 직접 넘긴 페이지(가이드·도시 허브)가 og:image:width/height 를 빠짐없이 갖도록
+        # 실제 이미지 파일에서 픽셀 크기를 읽는다(없으면 기존처럼 생략).
+        try:
+            from urllib.parse import unquote as _unq, urlparse as _urlparse
+            from PIL import Image as _PILImage
+            _fp = ROOT / _unq(_urlparse(og_image).path).lstrip('/')
+            if _fp.is_file():
+                with _PILImage.open(_fp) as _im:
+                    og_image_size = (_im.width, _im.height)
+        except Exception:
+            pass
     img_w, img_h = og_image_size or ((2000, 1125) if not og_image else (0, 0))
     size_meta = (
         f'\n<meta property="og:image:width" content="{img_w}" />'
@@ -1060,7 +1072,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         active="guides",
         og_type="article",
         keywords=g.get("keywords", ""),
-        og_image=f"{base.rstrip('/')}/{g['image']}" if g.get("image") else "",
+        og_image=f"{base.rstrip('/')}/{g.get('ogImage') or g['image']}" if g.get("image") else "",
         og_image_alt=g.get("imageAlt", ""),
         jsonld=f'<script type="application/ld+json">{related_json}</script>\n<script type="application/ld+json">{breadcrumb}</script>',
     )
@@ -1228,6 +1240,22 @@ def guides_index(out_root: Path, base: str) -> Path:
 def content_page(out_root: Path, spec: dict, base: str) -> Path:
     slug = spec["slug"]
     body_html = read(PAGES / f"{slug}.html")
+    if slug == "about":
+        # v36: 소개 페이지의 숫자는 데이터에서 계산한다(상품·도시·제휴 링크·가이드·노쇼핑·국가 수).
+        # content/pages/about.html 의 {{TOKEN}} 을 매번 새 값으로 채운다.
+        _tours = load_json("tours.json")
+        _trips = _tours["tours"]
+        _aff = sum(len(TRIPCOM.get(k) or []) for k in ("tickets", "transfers", "cars", "esims", "rails"))
+        _nums = {
+            "{{TOURS}}": len(_trips),
+            "{{CITIES}}": len(_tours.get("cities") or []),
+            "{{AFF_ITEMS}}": _aff,
+            "{{GUIDES}}": len(GUIDES_LIST),
+            "{{NOSHOP}}": sum(1 for t in _trips if "노쇼핑" in (t.get("tags") or [])),
+            "{{COUNTRIES}}": len({t.get("country") for t in _trips}),
+        }
+        for _k, _v in _nums.items():
+            body_html = body_html.replace(_k, f"{_v:,}")
     body = f"""<div class="pg-hero">
   <div class="wrap">
     <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><b>{esc(spec['navTitle'])}</b></nav>
@@ -2013,7 +2041,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
         base=base,
         active="cities",
         keywords=hub.get("keywords", ""),
-        og_image=f"{base.rstrip('/')}/{hub['image']}",
+        og_image=f"{base.rstrip('/')}/{hub.get('ogImage') or hub['image']}",
         og_image_alt=hub.get("imageAlt", ""),
         jsonld=hub_jsonld(hub, tours, guides, base),
     )
@@ -3456,8 +3484,9 @@ def stays_filter_script() -> str:
   }
   function pickGroup(id){
     var b = groupBtns.filter(function(x){ return x.getAttribute('data-group') === id; })[0];
-    if (b){ mark(groupBtns, b); state.group = id; }
-    else { state.group = 'all'; }
+    if (!b) b = groupBtns[0];
+    mark(groupBtns, b);
+    state.group = b ? b.getAttribute('data-group') : 'all';
   }
   function syncAfter(kind, el){
     if (kind === 'group' && state.group !== 'all'){
@@ -3466,6 +3495,10 @@ def stays_filter_script() -> str:
     } else if (kind === 'scope'){
       state.group = 'all'; mark(groupBtns, groupBtns[0]);
       state.region = 'all'; mark(regionBtns, regionBtns[0]);
+    } else if (kind === 'region'){
+      /* v36: 다른 권역·국내/해외가 걸린 채 지역을 바꾸면 0건이 되던 문제 — 권역·범위를 지역에 맞춘다. */
+      state.scope = 'all'; mark(scopeBtns, scopeBtns[0]);
+      pickGroup(state.region === 'all' ? 'all' : groupOfRegion(state.region));
     } else if (kind === 'theme' && state.group === 'all' && state.region !== 'all'){
       pickGroup(groupOfRegion(state.region));
     }
@@ -3514,8 +3547,9 @@ def stays_filter_script() -> str:
 
   var reset = document.getElementById('sfReset');
   if (reset) reset.addEventListener('click', function(){
-    state.scope = 'all'; state.group = 'all'; state.region = 'all'; state.theme = 'all';
+    state.scope = 'all'; state.group = 'all'; state.region = 'all'; state.theme = 'all'; state.sort = 'score';
     mark(scopeBtns, scopeBtns[0]); mark(groupBtns, groupBtns[0]); mark(regionBtns, regionBtns[0]); mark(themeBtns, themeBtns[0]);
+    if (sortBtns.length) mark(sortBtns, sortBtns[0]);
     render();
   });
   render(false);
@@ -3907,6 +3941,19 @@ def not_found_page(out_root: Path, base: str) -> Path:
         '<meta name="robots" content="noindex, follow" />',
         1,
     )
+
+    # v36: 404.html 은 없는 주소 어디서든 서빙되므로 상대 경로가 위험하다.
+    # /foo/bar 에서 assets/site.css·./#checklist 를 그대로 두면 /foo/assets/... 로 풀려
+    # 스타일·스크립트가 404 이고 메뉴가 /foo/#... 로 이동한다. 모든 상대 URL 을 루트 절대 경로로 바꾼다.
+    def _root_rel(m: "re.Match") -> str:
+        attr, val = m.group(1), m.group(2)
+        if re.match(r'^(?:[a-z][a-z0-9+.\-]*:|//|/|#)', val, re.I):
+            return m.group(0)
+        if val.startswith("./"):
+            val = val[2:]
+        return f'{attr}="/{val}"'
+
+    t = re.sub(r'(href|src)="([^\"]*)"', _root_rel, t)
     p.write_text(t, encoding="utf-8")
     return p
 

@@ -2092,8 +2092,9 @@
   }
   function pickGroup(id){
     var b = groupBtns.filter(function(x){ return x.getAttribute('data-group') === id; })[0];
-    if (b){ mark(groupBtns, b); state.group = id; }
-    else { state.group = 'all'; }
+    if (!b) b = groupBtns[0];
+    mark(groupBtns, b);
+    state.group = b ? b.getAttribute('data-group') : 'all';
   }
   function syncAfter(kind, el){
     if (kind === 'group' && state.group !== 'all'){
@@ -2102,6 +2103,10 @@
     } else if (kind === 'scope'){
       state.group = 'all'; mark(groupBtns, groupBtns[0]);
       state.region = 'all'; mark(regionBtns, regionBtns[0]);
+    } else if (kind === 'region'){
+      /* v36: 다른 권역·국내/해외가 걸린 채 지역을 바꾸면 0건이 되던 문제 — 권역·범위를 지역에 맞춘다. */
+      state.scope = 'all'; mark(scopeBtns, scopeBtns[0]);
+      pickGroup(state.region === 'all' ? 'all' : groupOfRegion(state.region));
     } else if (kind === 'theme' && state.group === 'all' && state.region !== 'all'){
       pickGroup(groupOfRegion(state.region));
     }
@@ -2150,8 +2155,9 @@
 
   var reset = document.getElementById('sfReset');
   if (reset) reset.addEventListener('click', function(){
-    state.scope = 'all'; state.group = 'all'; state.region = 'all'; state.theme = 'all';
+    state.scope = 'all'; state.group = 'all'; state.region = 'all'; state.theme = 'all'; state.sort = 'score';
     mark(scopeBtns, scopeBtns[0]); mark(groupBtns, groupBtns[0]); mark(regionBtns, regionBtns[0]); mark(themeBtns, themeBtns[0]);
+    if (sortBtns.length) mark(sortBtns, sortBtns[0]);
     render();
   });
   render(false);

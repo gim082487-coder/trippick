@@ -651,7 +651,7 @@
     }
     el('scMonthPanel').hidden = !!state.season;
     var cnt = visible(state.month - 1).length;
-    var bits = [state.month + '월', '19개 도시 중 ' + cnt + '곳'];
+    var bits = [state.month + '월', CITIES.length + '개 도시 중 ' + cnt + '곳'];
     if (state.theme) bits.push(THEME[state.theme]);
     if (state.regions.length) bits.push(state.regions.map(function (r) { return REGION[r]; }).join('·'));
     el('scCount').textContent = bits.join(' · ');
@@ -665,7 +665,7 @@
     if (state.theme) q += '&theme=' + state.theme;
     if (state.regions.length) q += '&region=' + state.regions.join(',');
     if (state.sort && state.sort !== 'score') q += '&sort=' + state.sort;
-    if (history.replaceState) history.replaceState(null, '', location.pathname + q);
+    if (history.replaceState) history.replaceState(null, '', location.pathname + q + location.hash);
   }
 
   function renderAll() { renderFilters(); renderDetail(); renderMonthPanel(); renderCompare(); syncURL(); }
