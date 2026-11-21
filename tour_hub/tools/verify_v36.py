@@ -21,6 +21,7 @@ import json
 import os
 import re
 import sys
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from PIL import Image
@@ -220,6 +221,24 @@ def main():
         check(abs(float(m.group(1)) - float(planner["fx"]["EUR"])) < 0.5,
               f"fx.json 고정 EUR {m.group(1)} ≠ planner EUR {planner['fx']['EUR']}")
     print("구 유로 환율(1,468·1,520) 잔존 0건 검사")
+
+    # 10. 배포 페이지에 치환 안 된 {{TOKEN}} 잔존 + 환율 고시 신선도
+    for p in pages:
+        text = p.read_text(encoding="utf-8")
+        m = re.search(r"\{\{[A-Z_]+\}\}", text)
+        check(not m, f"{page_url(p)}: 치환되지 않은 템플릿 토큰 {m.group(0) if m else ''} 잔존")
+    updated = (fx.get("fallbackUpdatedKst") or "")[:10]
+    try:
+        d = datetime.strptime(updated, "%Y-%m-%d").date()
+        check(d >= date.today() - timedelta(days=10),
+              f"fx.json 고시({updated})가 10일 넘게 갱신되지 않음")
+        check(d <= date.today() + timedelta(days=1),
+              f"fx.json 고시({updated})가 미래 날짜")
+    except ValueError:
+        check(False, f"fx.json fallbackUpdatedKst 형식 오류: {updated!r}")
+    for c in fx["currencies"]:
+        check(0 < float(c["krw"]) < 100000, f"fx.json {c['code']} krw 비정상: {c['krw']}")
+    print("템플릿 토큰 잔존·환율 고시 신선도 검사")
 
     if fails:
         print("\n실패", len(fails))

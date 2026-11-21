@@ -2217,6 +2217,10 @@ def exchange_page(out_root: Path, base: str) -> Path:
     body = body.replace("<!-- @FX_OPTIONS -->", opts)
     body = body.replace("<!-- @RATE_ROWS -->", "\n                ".join(rows))
     body = body.replace("<!-- @TAX_PRESETS -->", "\n            ".join(chips))
+    # 고시일·고정 환산 기준 표기는 fx.json/planner.json에서 채운다(하드코딩 금지)
+    body = body.replace("{{FX_DATE}}", (fx.get("fallbackUpdatedKst") or "")[:10].replace("-", "."))
+    body = body.replace("{{BASIS_DATE}}", (fx.get("staticBasis") or {}).get("date", ""))
+    body = body.replace("{{BASIS_JPY}}", f'{load_json("planner.json")["fx"]["JPY100"]:,}')
     payload = json.dumps(fx, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     body = body.replace(
         "<!-- @FX_DATA -->",

@@ -121,7 +121,7 @@
       <p class="dek">공개 환율을 페이지에서 한 번만 불러와 12개 통화를 원화로 바꿔 줍니다. 아래에서는 2026년 11월 1일부터 공항 환급으로 바뀐 <b>일본 면세</b>까지, 결제액을 넣으면 환급 예상액과 실부담 원화가 바로 나옵니다.</p>
       <div class="pg-meta">
         <span><b id="fxStatusText">환율 불러오는 중…</b></span><i></i>
-        <span id="fxBaseMeta">기준 환율 <b>2026.11.18</b> 고시</span><i></i>
+        <span id="fxBaseMeta">기준 환율 <b id="fxBaseDate">2026.11.21</b> 고시</span><i></i>
         <span>참고용 · 은행·카드사 환율과 다름</span>
       </div>
     </div>
@@ -251,24 +251,24 @@
         <section class="rt-card" id="rates" aria-labelledby="rtTitle">
           <div class="rt-top">
             <h2 id="rtTitle">오늘의 기준 환율</h2>
-            <span id="rtUpdated">2026.11.18 고시</span>
+            <span id="rtUpdated">2026.11.21 고시</span>
           </div>
           <div class="rt-scroll">
             <table class="rt-table">
               <thead><tr><th scope="col">통화</th><th scope="col">1단위</th><th scope="col">100단위</th><th scope="col">1만원으로</th></tr></thead>
               <tbody id="rtBody">
-                <tr><th scope="row">¥ 일본 엔 <em>JPY</em></th><td>8.383원</td><td>838원</td><td>1,193엔</td></tr>
-                <tr><th scope="row">₫ 베트남 동 <em>VND</em></th><td>0.052원</td><td>5.19원</td><td>192,678동</td></tr>
-                <tr><th scope="row">฿ 태국 바트 <em>THB</em></th><td>39.50원</td><td>3,950원</td><td>253.2바트</td></tr>
-                <tr><th scope="row">NT$ 대만 달러 <em>TWD</em></th><td>40.49원</td><td>4,049원</td><td>247.0대만달러</td></tr>
-                <tr><th scope="row">₱ 필리핀 페소 <em>PHP</em></th><td>20.97원</td><td>2,097원</td><td>476.9페소</td></tr>
-                <tr><th scope="row">US$ 미국 달러 <em>USD</em></th><td>1,335.11원</td><td>133,511원</td><td>7.5달러</td></tr>
-                <tr><th scope="row">€ 유로 <em>EUR</em></th><td>1,468.43원</td><td>146,843원</td><td>6.8유로</td></tr>
-                <tr><th scope="row">S$ 싱가포르 달러 <em>SGD</em></th><td>1,037.34원</td><td>103,734원</td><td>9.6싱가포르달러</td></tr>
-                <tr><th scope="row">HK$ 홍콩 달러 <em>HKD</em></th><td>170.30원</td><td>17,030원</td><td>58.7홍콩달러</td></tr>
-                <tr><th scope="row">CN¥ 중국 위안 <em>CNY</em></th><td>200.08원</td><td>20,008원</td><td>50.0위안</td></tr>
-                <tr><th scope="row">A$ 호주 달러 <em>AUD</em></th><td>899.28원</td><td>89,928원</td><td>11.1호주달러</td></tr>
-                <tr><th scope="row">£ 영국 파운드 <em>GBP</em></th><td>1,763.67원</td><td>176,367원</td><td>5.7파운드</td></tr>
+                <tr><th scope="row">¥ 일본 엔 <em>JPY</em></th><td>8.489원</td><td>849원</td><td>1,178엔</td></tr>
+                <tr><th scope="row">₫ 베트남 동 <em>VND</em></th><td>0.052원</td><td>5.23원</td><td>191,205동</td></tr>
+                <tr><th scope="row">฿ 태국 바트 <em>THB</em></th><td>39.61원</td><td>3,961원</td><td>252.5바트</td></tr>
+                <tr><th scope="row">NT$ 대만 달러 <em>TWD</em></th><td>40.82원</td><td>4,082원</td><td>245.0대만달러</td></tr>
+                <tr><th scope="row">₱ 필리핀 페소 <em>PHP</em></th><td>21.03원</td><td>2,103원</td><td>475.5페소</td></tr>
+                <tr><th scope="row">US$ 미국 달러 <em>USD</em></th><td>1,345.95원</td><td>134,595원</td><td>7.4달러</td></tr>
+                <tr><th scope="row">€ 유로 <em>EUR</em></th><td>1,476.24원</td><td>147,624원</td><td>6.8유로</td></tr>
+                <tr><th scope="row">S$ 싱가포르 달러 <em>SGD</em></th><td>1,043.25원</td><td>104,325원</td><td>9.6싱가포르달러</td></tr>
+                <tr><th scope="row">HK$ 홍콩 달러 <em>HKD</em></th><td>171.71원</td><td>17,171원</td><td>58.2홍콩달러</td></tr>
+                <tr><th scope="row">CN¥ 중국 위안 <em>CNY</em></th><td>201.74원</td><td>20,174원</td><td>49.6위안</td></tr>
+                <tr><th scope="row">A$ 호주 달러 <em>AUD</em></th><td>891.12원</td><td>89,112원</td><td>11.2호주달러</td></tr>
+                <tr><th scope="row">£ 영국 파운드 <em>GBP</em></th><td>1,761.56원</td><td>176,156원</td><td>5.7파운드</td></tr>
               </tbody>
             </table>
           </div>
@@ -311,7 +311,7 @@
         </div>
         <div class="side-card">
           <h3>이 페이지 기준</h3>
-          <p>환율은 공개 환율 API 두 곳(open.er-api.com → jsDelivr currency-api)을 차례로 시도하고, 둘 다 연결되지 않으면 2026.11.18 고시값을 그대로 보여줍니다.</p>
+          <p>환율은 공개 환율 API 두 곳(jsDelivr currency-api → open.er-api.com)을 차례로 시도하고, 둘 다 연결되지 않으면 마지막으로 받아 둔 2026.11.21 고시값을 그대로 보여줍니다.</p>
           <p>일본 면세 제도는 일본 세관 <b>2026.11.1 리펀드 방식</b> 안내와 관광청 안내를 기준으로 정리했습니다. 매장·환급 사업자별 수수료와 운영 방식은 다를 수 있습니다.</p>
         </div>
       </aside>
@@ -319,7 +319,7 @@
   </div>
 </div>
 
-<script type="application/json" id="fxData">{"api":"https://open.er-api.com/v6/latest/KRW","apiNote":"open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) → 실패 시 cdn.jsdelivr.net/@fawazahmed0/currency-api — 하루 1회 갱신","fallbackUpdatedKst":"2026-11-19 09:02","fallbackSource":"2026-11-18 00:02 UTC 고시값 (1 KRW 기준 역산)","currencies":[{"code":"JPY","name":"일본 엔","label":"엔","symbol":"¥","unit":100,"decimals":0,"krw":8.3834,"presets":[1000,5000,10000,30000]},{"code":"VND","name":"베트남 동","label":"동","symbol":"₫","unit":100,"decimals":0,"krw":0.0519,"presets":[100000,500000,1000000,2000000]},{"code":"THB","name":"태국 바트","label":"바트","symbol":"฿","unit":1,"decimals":0,"krw":39.5007,"presets":[500,1000,2000,5000]},{"code":"TWD","name":"대만 달러","label":"대만달러","symbol":"NT$","unit":1,"decimals":0,"krw":40.4875,"presets":[500,1000,2000,5000]},{"code":"PHP","name":"필리핀 페소","label":"페소","symbol":"₱","unit":1,"decimals":1,"krw":20.9705,"presets":[1000,5000,10000,20000]},{"code":"USD","name":"미국 달러","label":"달러","symbol":"US$","unit":1,"decimals":2,"krw":1335.1135,"presets":[50,100,200,500]},{"code":"EUR","name":"유로","label":"유로","symbol":"€","unit":1,"decimals":2,"krw":1468.4288,"presets":[50,100,200,500]},{"code":"SGD","name":"싱가포르 달러","label":"싱가포르달러","symbol":"S$","unit":1,"decimals":2,"krw":1037.3444,"presets":[50,100,200,500]},{"code":"HKD","name":"홍콩 달러","label":"홍콩달러","symbol":"HK$","unit":1,"decimals":1,"krw":170.2997,"presets":[500,1000,2000,5000]},{"code":"CNY","name":"중국 위안","label":"위안","symbol":"CN¥","unit":1,"decimals":0,"krw":200.08,"presets":[500,1000,2000,5000]},{"code":"AUD","name":"호주 달러","label":"호주달러","symbol":"A$","unit":1,"decimals":2,"krw":899.2806,"presets":[100,200,500,1000]},{"code":"GBP","name":"영국 파운드","label":"파운드","symbol":"£","unit":1,"decimals":2,"krw":1763.6684,"presets":[50,100,200,500]}],"taxRates":[{"id":"10","label":"일반 물품","sub":"10% 세율","rate":10},{"id":"8","label":"식료품·소모품","sub":"8% 경감세율","rate":8}],"taxPresets":[5500,11000,22000,55000,110000],"staticBasis":{"date":"2026-11-20","source":"고정 환산은 2026-11-18 00:02 UTC 고시값(엔·동·밧·대만달러·달러)과 2026-11-20 ECB 고시(유로·파운드, planner.json fx와 동일)를 함께 씁니다 · 맛집·선물·가이드·교통패스·준비물 계산기 공통","perUnit":{"JPY":"8.3834 (100엔 = 838원)","VND":"0.0519 (100동 = 5.19원)","THB":"39.5007","TWD":"40.4875 (100대만달러 = 4,049원)","USD":"1335.11","EUR":"1472.04 (2026-11-20 ECB · planner.json과 동일)","GBP":"1757.98 (2026-11-20 ECB · planner.json과 동일)","AUD":"899.28","NZD":"734"},"note":"사이트의 모든 고정 원화 환산은 이 기준 하나로 계산한다. /exchange의 실시간 환율과 다를 수 있고, 카드사 청구 환율·수수료는 별도."}}</script>
+<script type="application/json" id="fxData">{"api":"https://open.er-api.com/v6/latest/KRW","apiNote":"open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) → 실패 시 cdn.jsdelivr.net/@fawazahmed0/currency-api — 하루 1회 갱신","fallbackUpdatedKst":"2026-11-21 09:00","fallbackSource":"2026-11-21 00:00 UTC(한국 09:00) jsDelivr currency-api 고시값(1 KRW 기준 역산) · 2026-11-22 08:45 KST 갱신. open.er-api.com은 2026-11-20 00:02 UTC 이후 갱신이 멈춰 있어(2026-11-22 확인) 최신 source를 fallback 쪽으로 씀.","currencies":[{"code":"JPY","name":"일본 엔","label":"엔","symbol":"¥","unit":100,"decimals":0,"krw":8.4891,"presets":[1000,5000,10000,30000]},{"code":"VND","name":"베트남 동","label":"동","symbol":"₫","unit":100,"decimals":0,"krw":0.0523,"presets":[100000,500000,1000000,2000000]},{"code":"THB","name":"태국 바트","label":"바트","symbol":"฿","unit":1,"decimals":0,"krw":39.6051,"presets":[500,1000,2000,5000]},{"code":"TWD","name":"대만 달러","label":"대만달러","symbol":"NT$","unit":1,"decimals":0,"krw":40.8239,"presets":[500,1000,2000,5000]},{"code":"PHP","name":"필리핀 페소","label":"페소","symbol":"₱","unit":1,"decimals":1,"krw":21.0327,"presets":[1000,5000,10000,20000]},{"code":"USD","name":"미국 달러","label":"달러","symbol":"US$","unit":1,"decimals":2,"krw":1345.9501,"presets":[50,100,200,500]},{"code":"EUR","name":"유로","label":"유로","symbol":"€","unit":1,"decimals":2,"krw":1476.2407,"presets":[50,100,200,500]},{"code":"SGD","name":"싱가포르 달러","label":"싱가포르달러","symbol":"S$","unit":1,"decimals":2,"krw":1043.2539,"presets":[50,100,200,500]},{"code":"HKD","name":"홍콩 달러","label":"홍콩달러","symbol":"HK$","unit":1,"decimals":1,"krw":171.711,"presets":[500,1000,2000,5000]},{"code":"CNY","name":"중국 위안","label":"위안","symbol":"CN¥","unit":1,"decimals":0,"krw":201.7354,"presets":[500,1000,2000,5000]},{"code":"AUD","name":"호주 달러","label":"호주달러","symbol":"A$","unit":1,"decimals":2,"krw":891.1159,"presets":[100,200,500,1000]},{"code":"GBP","name":"영국 파운드","label":"파운드","symbol":"£","unit":1,"decimals":2,"krw":1761.5584,"presets":[50,100,200,500]}],"taxRates":[{"id":"10","label":"일반 물품","sub":"10% 세율","rate":10},{"id":"8","label":"식료품·소모품","sub":"8% 경감세율","rate":8}],"taxPresets":[5500,11000,22000,55000,110000],"staticBasis":{"date":"2026-11-20","source":"고정 환산은 2026-11-18 00:02 UTC 고시값(엔·동·밧·대만달러·달러)과 2026-11-20 ECB 고시(유로·파운드, planner.json fx와 동일)를 함께 씁니다 · 맛집·선물·가이드·교통패스·준비물 계산기 공통","perUnit":{"JPY":"8.3834 (100엔 = 838원)","VND":"0.0519 (100동 = 5.19원)","THB":"39.5007","TWD":"40.4875 (100대만달러 = 4,049원)","USD":"1335.11","EUR":"1472.04 (2026-11-20 ECB · planner.json과 동일)","GBP":"1757.98 (2026-11-20 ECB · planner.json과 동일)","AUD":"899.28","NZD":"734"},"note":"사이트의 모든 고정 원화 환산은 이 기준 하나로 계산한다. /exchange의 실시간 환율과 다를 수 있고, 카드사 청구 환율·수수료는 별도."}}</script>
 <script>
 (function () {
   var root = document.getElementById('fxData');
@@ -343,13 +343,21 @@
   }
   function money(n) { return fmt(n, 0) + '원'; }
 
+  // 고시 기준일 표기(예: 2026.11.21) — fx.json fallbackUpdatedKst 에서 만든다
+  function fxDate() {
+    var s = String(DATA.fallbackUpdatedKst || '').slice(0, 10);
+    return s ? s.replace(/-/g, '.') : '';
+  }
+
   function setStatus() {
     if (liveBadge) {
       liveBadge.textContent = window.__fxLive ? '실시간' : '기본 환율';
       liveBadge.setAttribute('data-state', window.__fxLive ? 'live' : 'base');
     }
     if (statusText) statusText.textContent = window.__fxLive ? '실시간 환율 · ' + window.__fxKst + ' 갱신' : '기본 환율 · ' + DATA.fallbackUpdatedKst + ' 기준';
-    if (rtUpdated) rtUpdated.textContent = window.__fxLive ? 'API ' + window.__fxKst + ' 갱신' : '2026.11.18 고시';
+    if (rtUpdated) rtUpdated.textContent = window.__fxLive ? 'API ' + window.__fxKst + ' 갱신' : fxDate() + ' 고시';
+    var baseDate = document.getElementById('fxBaseDate');
+    if (baseDate) baseDate.textContent = fxDate();
     var baseMeta = document.getElementById('fxBaseMeta');
     if (baseMeta) baseMeta.hidden = !!window.__fxLive;
   }
@@ -436,8 +444,8 @@
   // 실시간 환율 1회
   window.__fxLive = false;
   var SOURCES = [
-    { url: DATA.api, kind: 'er' },
-    { url: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json', kind: 'fawaz' }
+    { url: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json', kind: 'fawaz' },
+    { url: DATA.api, kind: 'er' }
   ];
   function tryFetch(i) {
     if (i >= SOURCES.length) { window.__fxLive = false; setStatus(); return; }
@@ -447,6 +455,11 @@
     fetch(src.url, ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (j) {
+        // 3일 넘게 갱신이 멈춘 응답(예: er-api 장애)은 버리고 다음 소스로 넘어간다
+        if (src.kind === 'er' && j && j.time_last_update_unix
+            && Date.now() - j.time_last_update_unix * 1000 > 72 * 3600 * 1000) {
+          throw new Error('stale');
+        }
         var next = {}, ok = 0, base = src.kind === 'er' ? (j && j.rates) : (j && j.krw);
         if (!base) throw new Error('bad');
         DATA.currencies.forEach(function (c) {

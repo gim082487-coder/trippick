@@ -7,7 +7,7 @@
       <p class="dek">공개 환율을 페이지에서 한 번만 불러와 12개 통화를 원화로 바꿔 줍니다. 아래에서는 2026년 11월 1일부터 공항 환급으로 바뀐 <b>일본 면세</b>까지, 결제액을 넣으면 환급 예상액과 실부담 원화가 바로 나옵니다.</p>
       <div class="pg-meta">
         <span><b id="fxStatusText">환율 불러오는 중…</b></span><i></i>
-        <span id="fxBaseMeta">기준 환율 <b>2026.11.18</b> 고시</span><i></i>
+        <span id="fxBaseMeta">기준 환율 <b id="fxBaseDate">{{FX_DATE}}</b> 고시</span><i></i>
         <span>참고용 · 은행·카드사 환율과 다름</span>
       </div>
     </div>
@@ -53,7 +53,7 @@
           </div>
 
           <p class="fx-rate-line" id="fxRateLine"></p>
-          <p class="fx-note">이 계산기는 <b>공개 환율(1일 1회 갱신)</b>입니다. 일본 관련 페이지(맛집·선물·가이드·교통패스)에 적은 <b>고정 원화 표기는 2026-11-20 기준 100엔 = 838원</b>으로 통일했습니다. 위 실시간 환율과 몇 % 차이가 날 수 있고, 다른 통화 페이지는 그 글에 적힌 기준을 따릅니다. 실제 결제는 은행 현찰 살 때·팔 때, 카드사 청구 환율과 수수료(보통 1~2%)가 붙어 다릅니다. 환전 금액을 정할 때 기준으로만 쓰세요.</p>
+          <p class="fx-note">이 계산기는 <b>공개 환율(1일 1회 갱신)</b>입니다. 일본 관련 페이지(맛집·선물·가이드·교통패스)에 적은 <b>고정 원화 표기는 {{BASIS_DATE}} 기준 100엔 = {{BASIS_JPY}}원</b>으로 통일했습니다. 위 실시간 환율과 몇 % 차이가 날 수 있고, 다른 통화 페이지는 그 글에 적힌 기준을 따릅니다. 실제 결제는 은행 현찰 살 때·팔 때, 카드사 청구 환율과 수수료(보통 1~2%)가 붙어 다릅니다. 환전 금액을 정할 때 기준으로만 쓰세요.</p>
         </section>
 
         <div class="tp-bundle" data-tp-bundle="exchange" hidden></div>
@@ -122,7 +122,7 @@
         <section class="rt-card" id="rates" aria-labelledby="rtTitle">
           <div class="rt-top">
             <h2 id="rtTitle">오늘의 기준 환율</h2>
-            <span id="rtUpdated">2026.11.18 고시</span>
+            <span id="rtUpdated">{{FX_DATE}} 고시</span>
           </div>
           <div class="rt-scroll">
             <table class="rt-table">
@@ -171,7 +171,7 @@
         </div>
         <div class="side-card">
           <h3>이 페이지 기준</h3>
-          <p>환율은 공개 환율 API 두 곳(open.er-api.com → jsDelivr currency-api)을 차례로 시도하고, 둘 다 연결되지 않으면 2026.11.18 고시값을 그대로 보여줍니다.</p>
+          <p>환율은 공개 환율 API 두 곳(jsDelivr currency-api → open.er-api.com)을 차례로 시도하고, 둘 다 연결되지 않으면 마지막으로 받아 둔 {{FX_DATE}} 고시값을 그대로 보여줍니다.</p>
           <p>일본 면세 제도는 일본 세관 <b>2026.11.1 리펀드 방식</b> 안내와 관광청 안내를 기준으로 정리했습니다. 매장·환급 사업자별 수수료와 운영 방식은 다를 수 있습니다.</p>
         </div>
       </aside>
@@ -203,13 +203,21 @@
   }
   function money(n) { return fmt(n, 0) + '원'; }
 
+  // 고시 기준일 표기(예: 2026.11.21) — fx.json fallbackUpdatedKst 에서 만든다
+  function fxDate() {
+    var s = String(DATA.fallbackUpdatedKst || '').slice(0, 10);
+    return s ? s.replace(/-/g, '.') : '';
+  }
+
   function setStatus() {
     if (liveBadge) {
       liveBadge.textContent = window.__fxLive ? '실시간' : '기본 환율';
       liveBadge.setAttribute('data-state', window.__fxLive ? 'live' : 'base');
     }
     if (statusText) statusText.textContent = window.__fxLive ? '실시간 환율 · ' + window.__fxKst + ' 갱신' : '기본 환율 · ' + DATA.fallbackUpdatedKst + ' 기준';
-    if (rtUpdated) rtUpdated.textContent = window.__fxLive ? 'API ' + window.__fxKst + ' 갱신' : '2026.11.18 고시';
+    if (rtUpdated) rtUpdated.textContent = window.__fxLive ? 'API ' + window.__fxKst + ' 갱신' : fxDate() + ' 고시';
+    var baseDate = document.getElementById('fxBaseDate');
+    if (baseDate) baseDate.textContent = fxDate();
     var baseMeta = document.getElementById('fxBaseMeta');
     if (baseMeta) baseMeta.hidden = !!window.__fxLive;
   }
@@ -296,8 +304,8 @@
   // 실시간 환율 1회
   window.__fxLive = false;
   var SOURCES = [
-    { url: DATA.api, kind: 'er' },
-    { url: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json', kind: 'fawaz' }
+    { url: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json', kind: 'fawaz' },
+    { url: DATA.api, kind: 'er' }
   ];
   function tryFetch(i) {
     if (i >= SOURCES.length) { window.__fxLive = false; setStatus(); return; }
@@ -307,6 +315,11 @@
     fetch(src.url, ctrl ? { signal: ctrl.signal, cache: 'no-store' } : { cache: 'no-store' })
       .then(function (r) { return r.json(); })
       .then(function (j) {
+        // 3일 넘게 갱신이 멈춘 응답(예: er-api 장애)은 버리고 다음 소스로 넘어간다
+        if (src.kind === 'er' && j && j.time_last_update_unix
+            && Date.now() - j.time_last_update_unix * 1000 > 72 * 3600 * 1000) {
+          throw new Error('stale');
+        }
         var next = {}, ok = 0, base = src.kind === 'er' ? (j && j.rates) : (j && j.krw);
         if (!base) throw new Error('bad');
         DATA.currencies.forEach(function (c) {
