@@ -4128,7 +4128,7 @@
    "links": {
     "cityPage": null,
     "guide": "eu-west-4countries-10d",
-    "stays": null
+    "stays": "paris"
    },
    "affiliate": {
     "flight": false,
@@ -4325,7 +4325,7 @@
    "links": {
     "cityPage": null,
     "guide": "eu-west-4countries-10d",
-    "stays": null
+    "stays": "london"
    },
    "affiliate": {
     "flight": false,
@@ -4522,7 +4522,7 @@
    "links": {
     "cityPage": null,
     "guide": "italy-9d-packages",
-    "stays": null
+    "stays": "rome"
    },
    "affiliate": {
     "flight": false,
@@ -4720,7 +4720,7 @@
    "links": {
     "cityPage": null,
     "guide": "spain-portugal-9-vs-11",
-    "stays": null
+    "stays": "barcelona"
    },
    "affiliate": {
     "flight": false,

@@ -49,7 +49,7 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 21)
-CSS_V = "31"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "32"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
@@ -1042,6 +1042,10 @@ def guides_index(out_root: Path, base: str) -> Path:
             cats.append(g["category"])
 
     region_names = {r["code"]: r["name"] for r in EXTRA.get("regions", [])}
+    # v31: 숙소 밴드의 지역 수는 stays.json에서 계산한다(하드코딩 금지)
+    _stay_regions = STAYS.get("regions", [])
+    _stay_kr_n = len([r for r in _stay_regions if r.get("scope") == "kr"])
+    _stay_intl_n = len([r for r in _stay_regions if r.get("scope") != "kr"])
 
     sections = []
     for cat in cats:
@@ -1144,7 +1148,7 @@ def guides_index(out_root: Path, base: str) -> Path:
     </div>
     <div class="gi-stays">
       <div><b>숙소부터 정하고 싶다면 — 테마별 찐숙소 {len(STAYS.get('hotels', []))}곳</b>
-        <p>국내 서울·부산·강릉·여수·경주와 해외 8개 도시 숙소를 트립닷컴 평점·리뷰 수·1박 최저가로 비교했습니다. 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라로 바로 좁힐 수 있습니다.</p></div>
+        <p>국내 {_stay_kr_n}개 지역과 해외 {_stay_intl_n}개 도시(유럽 파리·런던·로마·바르셀로나 포함) 숙소를 트립닷컴 평점·리뷰 수·1박 최저가로 비교했습니다. 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라로 바로 좁힐 수 있습니다.</p></div>
       <div class="gi-stays-links">
         <a href="../stays.html">찐숙소 전체 보기</a>
         <a href="../stays.html?theme=ocean">오션뷰</a>
@@ -2893,6 +2897,13 @@ STAY_REGION_GROUP = {
 }
 STAY_GROUP_NAME = {g: n for g, n, _ in STAY_GROUPS}
 
+# v31: /stays 카드의 국가 배지에 국기를 함께 표시한다(해외 지역만)
+STAY_COUNTRY_ISO = {
+    "osaka": "jp", "tokyo": "jp", "fukuoka": "jp",
+    "danang": "vn", "nhatrang": "vn", "bangkok": "th", "taipei": "tw",
+    "paris": "fr", "london": "gb", "rome": "it", "barcelona": "es",
+}
+
 
 def stay_group_of(region: dict) -> str:
     if region.get("scope") != "kr":
@@ -2952,6 +2963,8 @@ def stays_card(h: dict, region: dict, group: str | None = None) -> str:
     sub = _stay_subs(h)
     scope = region.get("scope", "intl")
     flag = "국내" if scope == "kr" else (region.get("country") or "해외")
+    iso = STAY_COUNTRY_ISO.get(region.get("id", ""))
+    flag_ic = f'<span class="sc-fl">{B.flag_svg(iso, 13, 9.1)}</span>' if (scope != "kr" and iso) else ""
     grp = group or stay_group_of(region)
     return f"""    <article class="scard" data-region="{h['region']}" data-group="{grp}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}">
       <a class="sc-thumb" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored" aria-label="{esc(h['name'])} 트립닷컴에서 보기">
@@ -2960,7 +2973,7 @@ def stays_card(h: dict, region: dict, group: str | None = None) -> str:
         <span class="sc-type">{esc(h['typeLabel'])}</span>
       </a>
       <div class="sc-body">
-        <div class="sc-top"><span class="sc-region">{esc(region['name'])} <i class="sc-flag{' kr' if scope == 'kr' else ''}">{esc(flag)}</i></span><i></i><span>{h['star']}성</span></div>
+        <div class="sc-top"><span class="sc-region">{esc(region['name'])} <i class="sc-flag{' kr' if scope == 'kr' else ''}">{flag_ic}{esc(flag)}</i></span><i></i><span>{h['star']}성</span></div>
         <h3><a href="{esc(h['url'])}" target="_blank" rel="noopener sponsored">{esc(h['name'])}</a></h3>
         <p class="sc-loc"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>{esc(h['access'])}</span></p>
         <p class="sc-reason">{esc(h['reason'])}</p>
@@ -3012,7 +3025,7 @@ def stays_jsonld(base: str, groups: list) -> str:
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": f"국내·해외 테마별 찐숙소 추천 {sum(len(h) for _, h in groups)}곳 | 트립픽",
-        "description": "국내 " + "·".join(r["name"] for r, _ in groups if r.get("scope") == "kr") + f" {sum(len(h) for r, h in groups if r.get('scope') == 'kr')}곳과 해외 7개 도시 {sum(len(h) for r, h in groups if r.get('scope') != 'kr')}곳, 숙소 {sum(len(h) for _, h in groups)}곳을 트립닷컴 평점·리뷰 수·1박 최저가로 비교하고, 권역(수도권·강원·경상·전라·제주)과 테마(호캉스·오션뷰·온천·역세권·가성비·가족)로 골라 도시 가이드로 이어집니다.",
+        "description": "국내 " + "·".join(r["name"] for r, _ in groups if r.get("scope") == "kr") + f" {sum(len(h) for r, h in groups if r.get('scope') == 'kr')}곳과 해외 {len([1 for r, _ in groups if r.get('scope') != 'kr'])}개 도시 {sum(len(h) for r, h in groups if r.get('scope') != 'kr')}곳, 숙소 {sum(len(h) for _, h in groups)}곳을 트립닷컴 평점·리뷰 수·1박 최저가로 비교하고, 권역(수도권·강원·경상·전라·제주)과 테마(호캉스·오션뷰·온천·역세권·가성비·가족)로 골라 도시 가이드로 이어집니다.",
         "url": f"{b}/stays",
         "isPartOf": {"@type": "WebSite", "name": "트립픽", "url": f"{b}/"},
         "mainEntity": {"@type": "ItemList", "numberOfItems": sum(len(h) for _, h in groups), "itemListElement": items},
@@ -3182,7 +3195,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     kr_region_n = len(kr_groups)
     intro = (
         '<div><b>평점은 리뷰 수와 같이</b><p>트립닷컴 투숙객 리뷰 10점 만점 점수입니다. 리뷰가 수백 개 쌓인 곳과 신규 오픈으로 수십 개인 곳을 구분해 리뷰 수를 카드에 같이 적었습니다.</p></div>'
-        f'<div><b>국내 {kr_total}곳 · 해외 {intl_total}곳</b><p>국내는 {kr_names} {kr_total}곳(2026-11-20~22 조회), 해외는 {intl_names} {intl_total}곳(2026-11-19~20 조회)입니다.</p></div>'
+        f'<div><b>국내 {kr_total}곳 · 해외 {intl_total}곳</b><p>국내는 {kr_names} {kr_total}곳(2026-11-20~22 조회), 해외는 {intl_names} {intl_total}곳(2026-11-19~21 조회)입니다.</p></div>'
         '<div><b>예약은 트립닷컴에서</b><p>카드의 예약 버튼은 그 숙소의 트립닷컴 페이지로 바로 갑니다. 결제·취소는 트립닷컴 약관을 따릅니다.</p></div>'
     )
 
@@ -3285,7 +3298,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     </div>
 
     <p class="snote"><b>숫자 읽는 법</b> — 평점은 트립닷컴 투숙객 리뷰 10점 만점 기준이고, 옆의 리뷰 수와 함께 봐야 합니다.
-    가격은 카드에 적힌 조회 날짜의 <b>1박, 성인 2명, 세금·서비스비용 포함</b> 최저가입니다(국내 {kr_total}곳 2026-11-20~22, 해외 {intl_total}곳 2026-11-19~20). 권역 버튼은 국내 숙소만 묶습니다.
+    가격은 카드에 적힌 조회 날짜의 <b>1박, 성인 2명, 세금·서비스비용 포함</b> 최저가입니다(국내 {kr_total}곳 2026-11-20~22, 해외 {intl_total}곳 2026-11-19~21). 권역 버튼은 국내 숙소만 묶습니다.
     같은 숙소도 날짜·객실·잔여 상황에 따라 달라지므로 결제 직전 트립닷컴 결제 화면의 금액을 최종으로 확인하세요. 숙소 사진은 트립닷컴 숙소 페이지 이미지입니다.</p>
 
     <p class="snote"><b>제휴 고지</b> — 이 페이지의 예약 버튼은 트립닷컴 파트너스 제휴 링크입니다.
@@ -3300,15 +3313,15 @@ def stays_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "stays.html",
-        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 서울·인천·가평·춘천·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 + 해외 7개 도시 평점·가격 비교 (2026) | 트립픽",
+        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 서울·인천·가평·춘천·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 + 해외 {len(intl_groups)}개 도시 평점·가격 비교 (2026) | 트립픽",
         desc=(
-            f"국내 {kr_names} {kr_total}곳과 해외 오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이 {intl_total}곳, 숙소 {total}곳을 "
+            f"국내 {kr_names} {kr_total}곳과 해외 {intl_names} {intl_total}곳, 숙소 {total}곳을 "
             f"트립닷컴 평점·리뷰 수·1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
             "수도권·강원·경상·전라·제주 권역별 보기, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터, 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-21 확인."
         ),
         keywords=(
             "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 가평 호텔, 춘천 호텔, 남이섬 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 거제 호텔, 거제 오션뷰 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
-            "가성비 호텔, 가족 호텔, 풀빌라, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 트립닷컴 숙소"
+            "가성비 호텔, 가족 호텔, 풀빌라, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 파리 호텔 추천, 런던 호텔 추천, 로마 호텔 추천, 바르셀로나 호텔 추천, 유럽 호텔, 트립닷컴 숙소"
         ),
         body=body,
         base=base,
@@ -3855,12 +3868,16 @@ def checklist_page(out_root: Path, base: str) -> Path:
     tl = json.loads((DATA / "timeline.json").read_text(encoding="utf-8"))
     B.TIMELINE = tl
     steps = tl["steps"]
+    _stay_hotels = STAYS.get("hotels", [])
+    _stay_regions = [r for r in STAYS.get("regions", []) if any(h["region"] == r["id"] for h in _stay_hotels)]
+    _stay_kr_regions = len([r for r in _stay_regions if r.get("scope") == "kr"])
+    _stay_intl_regions = len([r for r in _stay_regions if r.get("scope") != "kr"])
     intl_total = B.dday_total("intl")
     dom_total = B.dday_total("dom")
     kr = next((c for c in check["countries"] if c["id"] == "kr"), None)
 
     tools = [
-        ("stays.html", "D-30", "찐숙소 " + str(len(STAYS.get("hotels", []))) + "곳", "국내 14개 지역 + 해외 7개 도시를 평점·리뷰·1박 최저가로 비교"),
+        ("stays.html", "D-30", "찐숙소 " + str(len(STAYS.get("hotels", []))) + "곳", f"국내 {_stay_kr_regions}개 지역 + 해외 {_stay_intl_regions}개 도시를 평점·리뷰·1박 최저가로 비교"),
         ("calendar.html", "D-30", "월별 시즌 캘린더", "19개 도시 12개월 성수기·비수기와 항공권 가격이 오르는 달을 먼저 봅니다"),
         ("index.html#travelins", "D-30", "여행자보험 3곳 비교", "보장 항목·자기부담금을 카드사·보험사 공식 조건으로 비교"),
         ("passes.html", "D-14", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이 패스가 하루 이동 횟수로 남는지 계산"),

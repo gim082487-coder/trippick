@@ -3556,6 +3556,7 @@
 .sc-top .sc-flag{display:inline-flex;align-items:center;font-style:normal;font-size:9.8px;font-weight:800;
   padding:1px 5px;border-radius:4px;background:#EEF1F5;color:var(--ink-3);letter-spacing:-.01em}
 .sc-top .sc-flag.kr{background:#FFF1E8;color:#B4571C}
+.sc-top .sc-flag .sc-fl{display:inline-flex;align-items:center;margin-right:3px}
 
 .th-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:12px 0 0}
 @media (max-width:1024px){ .th-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }

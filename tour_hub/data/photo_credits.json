@@ -318,6 +318,34 @@
    "url": "https://www.pexels.com/photo/35351491/",
    "subject": "강원도 홍천 설경(눈 덮인 소나무와 설산)",
    "file": "images/v32/winter.jpg"
+  },
+  "v31/paris-london-5n7d": {
+   "pexels_id": 29253512,
+   "photographer": "Matheus Bertelli",
+   "url": "https://www.pexels.com/photo/29253512/",
+   "subject": "템스강 건너로 보이는 빅벤과 웨스트민스터 궁전",
+   "file": "images/v31/paris-london-5n7d.jpg"
+  },
+  "v31/italy-rome-florence-venice": {
+   "pexels_id": 36635778,
+   "photographer": "Ludovic Delot",
+   "url": "https://www.pexels.com/photo/36635778/",
+   "subject": "로마 도심을 배경으로 본 콜로세움 전경",
+   "file": "images/v31/italy-rome-florence-venice.jpg"
+  },
+  "v31/spain-barcelona-madrid": {
+   "pexels_id": 33053358,
+   "photographer": "Regan Dsouza",
+   "url": "https://www.pexels.com/photo/33053358/",
+   "subject": "맑은 하늘 아래 사그라다 파밀리아",
+   "file": "images/v31/spain-barcelona-madrid.jpg"
+  },
+  "v31/europe-shopping-tax-refund": {
+   "pexels_id": 30140318,
+   "photographer": "Arlind D",
+   "url": "https://www.pexels.com/photo/30140318/",
+   "subject": "겨울 저녁 뉘른베르크 크리스마스 마켓 거리",
+   "file": "images/v31/europe-shopping-tax-refund.jpg"
   }
  }
 }

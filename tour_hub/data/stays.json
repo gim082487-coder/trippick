@@ -469,6 +469,78 @@
     }
    ],
    "newCount": 2
+  },
+  {
+   "id": "paris",
+   "name": "파리",
+   "country": "프랑스",
+   "note": "에펠탑·몽파르나스와 샹젤리제·에투알 두 축. 파리 3박이면 에펠탑 쪽에 잡고 루브르·마레는 지하철로 오갑니다.",
+   "count": 3,
+   "top": "퍼스트 호텔 파리 투어 에펠",
+   "listUrl": "https://kr.trip.com/hotels/list?city=192&display=%ED%8C%8C%EB%A6%AC&optionId=192&optionType=City&optionName=%ED%8C%8C%EB%A6%AC&Allianceid=11407530&SID=336341874&trip_sub1=hotel_paris&trip_sub3=D21372570",
+   "cityId": "192",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "paris-london-5n7d",
+     "label": "파리·런던 5박7일"
+    }
+   ]
+  },
+  {
+   "id": "london",
+   "name": "런던",
+   "country": "영국",
+   "note": "블룸즈버리(대영박물관)·켄싱턴·패딩턴 세 구역. 패딩턴은 히드로 익스프레스 종점이라 귀국일이 편합니다.",
+   "count": 3,
+   "top": "로열 내셔널 호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=338&display=%EB%9F%B0%EB%8D%98&optionId=338&optionType=City&optionName=%EB%9F%B0%EB%8D%98&Allianceid=11407530&SID=336341874&trip_sub1=hotel_london&trip_sub3=D21372570",
+   "cityId": "338",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "paris-london-5n7d",
+     "label": "파리·런던 5박7일"
+    }
+   ]
+  },
+  {
+   "id": "rome",
+   "name": "로마",
+   "country": "이탈리아",
+   "note": "테르미니 역 반경 500m에 4성이 몰려 있습니다. 피렌체·베네치아로 넘어가는 열차가 모두 테르미니에서 출발합니다.",
+   "count": 2,
+   "top": "UNA 호텔 데코 로마",
+   "listUrl": "https://kr.trip.com/hotels/list?city=343&display=%EB%A1%9C%EB%A7%88&optionId=343&optionType=City&optionName=%EB%A1%9C%EB%A7%88&Allianceid=11407530&SID=336341874&trip_sub1=hotel_rome&trip_sub3=D21372570",
+   "cityId": "343",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "italy-rome-florence-venice",
+     "label": "이탈리아 6박8일"
+    }
+   ]
+  },
+  {
+   "id": "barcelona",
+   "name": "바르셀로나",
+   "country": "스페인",
+   "note": "산츠 역(마드리드행 출발)과 그라시아 거리(가우디 3곳) 중 어디에 둘지로 갈립니다. 공항버스는 카탈루냐 광장에 내립니다.",
+   "count": 2,
+   "top": "바르셀로 산츠 호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=40795&display=%EB%B0%94%EB%A5%B4%EC%85%80%EB%A1%9C%EB%82%98&optionId=40795&optionType=City&optionName=%EB%B0%94%EB%A5%B4%EC%85%80%EB%A1%9C%EB%82%98&Allianceid=11407530&SID=336341874&trip_sub1=hotel_barcelona&trip_sub3=D21372570",
+   "cityId": "40795",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "spain-barcelona-madrid",
+     "label": "스페인 5박7일"
+    }
+   ]
   }
  ],
  "hotels": [
@@ -3142,6 +3214,371 @@
    "roomSample": "프리미어 시티 뷰 트윈 스위트 (발코니 포함)",
    "origPrice": 219237,
    "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "paris",
+   "id": "730147",
+   "name": "퍼스트 호텔 파리 투어 에펠",
+   "en": "First Hotel Paris Tour Eiffel",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.4,
+   "reviews": 106,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "8.9",
+    "위치": "9.6",
+    "서비스": "9.6"
+   },
+   "zone": "에펠탑·몽파르나스",
+   "access": "'에펠탑'에서 가까움 | 몽파르나스역",
+   "reason": "리뷰 106개·9.4(위치 9.6·서비스 9.6) — 에펠탑과 몽파르나스역 사이. 조식 옵션을 투숙객 100%가 좋다고 평가했고, 같은 날짜 파리 4성 중 평점이 가장 높습니다.",
+   "price": 225239,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 200282,
+   "cityTax": 24957,
+   "img": "images/stays/paris-730147.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=192&hotelId=730147&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_paris_730147&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "에펠탑 전망",
+    "조식"
+   ],
+   "roomSample": "클래식룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 200,282원 + 도시세 24,957원(현지 결제) = 세금 포함 225,239원"
+  },
+  {
+   "region": "paris",
+   "id": "718146",
+   "name": "오텔 레장스 에투알",
+   "en": "Hotel Régence Etoile",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 570,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "8.9",
+    "위치": "9.4",
+    "서비스": "9.1"
+   },
+   "zone": "에투알·샹젤리제",
+   "access": "'에투알 개선문'에서 가까움 | 샤를 드 골 에투알 지하철역",
+   "reason": "리뷰 570개·9.2(위치 9.4) — 샤를드골에투알역 도보권이라 샹젤리제·개선문이 걸어서 닿습니다. 테라스와 무료 짐 보관이 있고, 리뷰 수가 파리 후보 중 두 번째로 많습니다.",
+   "price": 332946,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 307989,
+   "cityTax": 24957,
+   "img": "images/stays/paris-718146.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=192&hotelId=718146&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_paris_718146&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "전망",
+    "테라스"
+   ],
+   "roomSample": "클래식룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 307,989원 + 도시세 24,957원(현지 결제) = 세금 포함 332,946원"
+  },
+  {
+   "region": "paris",
+   "id": "3061383",
+   "name": "에펠 빌라 가리발디",
+   "en": "Eiffel Villa Garibaldi",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 223,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "8.6",
+    "위치": "9.4",
+    "서비스": "9.4"
+   },
+   "zone": "몽파르나스",
+   "access": "'에펠탑'에서 가까움 | 몽파르나스역",
+   "reason": "리뷰 223개·9.2(청결 9.4) — 3성인데 평점은 4성들과 같습니다. 시설 점수 8.6이 유일한 약점이고, 1박 19만원대로 파리 후보 중 가장 낮습니다.",
+   "price": 197653,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 181320,
+   "cityTax": 16333,
+   "img": "images/stays/paris-3061383.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=192&hotelId=3061383&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_paris_3061383&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "청결",
+    "가성비"
+   ],
+   "roomSample": "클래식 트윈룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 181,320원 + 도시세 16,333원(현지 결제) = 세금 포함 197,653원"
+  },
+  {
+   "region": "london",
+   "id": "2985758",
+   "name": "로열 내셔널 호텔",
+   "en": "Royal National Hotel",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.3,
+   "reviews": 3396,
+   "sub": {
+    "청결도": "8.5",
+    "시설": "7.6",
+    "위치": "8.8",
+    "서비스": "8.3"
+   },
+   "zone": "블룸즈버리",
+   "access": "영국 박물관 도보권 | 러셀 스퀘어",
+   "reason": "리뷰 3,396개·8.3(위치 8.8) — 대영박물관 도보권의 3성. 시설 7.6은 낮은 편이라 방 크기·노후를 감수해야 하고, 그 대신 런던 중심가에서 1박 47만원대로 버팁니다.",
+   "price": 479398,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 479398,
+   "cityTax": 0,
+   "img": "images/stays/london-2985758.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=338&hotelId=2985758&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_london_2985758&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "대영박물관",
+    "조식 뷔페"
+   ],
+   "roomSample": "스탠다드 플러스룸(더블 침대)",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 479,398원에 세금·서비스 포함, 현지 추가 결제 없음"
+  },
+  {
+   "region": "london",
+   "id": "2080236",
+   "name": "힐튼 런던 켄싱턴 호텔",
+   "en": "Hilton London Kensington Hotel",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.5,
+   "reviews": 559,
+   "sub": {
+    "청결도": "8.6",
+    "시설": "8.0",
+    "위치": "8.8",
+    "서비스": "8.6"
+   },
+   "zone": "켄싱턴",
+   "access": "켄싱턴 | 셰퍼드 부시역",
+   "reason": "리뷰 559개·8.5 — 켄싱턴의 4성. 런던 후보 3곳 중 1박이 가장 낮고(37만원대), 히드로로 가는 엘리자베스선과 센트럴선이 지나는 셰퍼드 부시가 가깝습니다. 시설 8.0은 4성 기준으로 높지 않습니다.",
+   "price": 371537,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 371537,
+   "cityTax": 0,
+   "img": "images/stays/london-2080236.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=338&hotelId=2080236&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_london_2080236&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "조식",
+    "켄싱턴"
+   ],
+   "roomSample": "트윈룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 371,537원에 세금·서비스 포함, 현지 추가 결제 없음"
+  },
+  {
+   "region": "london",
+   "id": "1572525",
+   "name": "힐튼 런던 메트로폴",
+   "en": "Hilton London Metropole",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.0,
+   "reviews": 354,
+   "sub": {
+    "청결도": "8.0",
+    "시설": "7.6",
+    "위치": "8.6",
+    "서비스": "7.6"
+   },
+   "zone": "패딩턴·하이드파크",
+   "access": "런던 패딩턴 역 | 하이드 파크",
+   "reason": "리뷰 354개·8.0(시설 7.6·서비스 7.6) — 패딩턴역과 히드로 익스프레스 종점이 도보권이라 공항 이동이 가장 짧습니다. 점수가 낮은 대신 1박 47만원대로 위치값을 냅니다.",
+   "price": 473249,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 473249,
+   "cityTax": 0,
+   "img": "images/stays/london-1572525.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=338&hotelId=1572525&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_london_1572525&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "패딩턴역",
+    "이그제큐티브 라운지"
+   ],
+   "roomSample": "퀸 사이즈 침대 룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 473,249원에 세금·서비스 포함, 현지 추가 결제 없음"
+  },
+  {
+   "region": "rome",
+   "id": "761317",
+   "name": "UNA 호텔 데코 로마",
+   "en": "UNA Hotels Decò Roma",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 379,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.9",
+    "위치": "9.5",
+    "서비스": "9.2"
+   },
+   "zone": "테르미니",
+   "access": "로마 테르미니 기차역 도보권",
+   "reason": "리뷰 379개·9.2(위치 9.5) — 테르미니역 앞 4성. 피렌체로 넘어가는 아침 열차에 짐을 끌고 3분이면 됩니다. 1박 21만원대로 로마 후보 중 가장 낮습니다.",
+   "price": 212872,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 190721,
+   "cityTax": 22151,
+   "img": "images/stays/rome-761317.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=343&hotelId=761317&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_rome_761317&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "테르미니역",
+    "조식"
+   ],
+   "roomSample": "클래식 더블룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 190,721원 + 도시세 22,151원(현지 결제) = 세금 포함 212,872원"
+  },
+  {
+   "region": "rome",
+   "id": "761439",
+   "name": "iQ 호텔 로마",
+   "en": "IQ Hotel Roma",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.6,
+   "reviews": 180,
+   "sub": {
+    "청결도": "9.7",
+    "시설": "9.5",
+    "위치": "9.5",
+    "서비스": "9.5"
+   },
+   "zone": "테르미니·레푸블리카",
+   "access": "레푸블리카 광장 | 테르미니역 도보권",
+   "reason": "리뷰 180개·9.6(청결 9.7) — 로마 후보 중 평점이 가장 높습니다. 루프탑 레스토랑이 있고 레푸블리카 광장에 붙어 있습니다. 1박 36만원대로 UNA보다 15만원 비쌉니다.",
+   "price": 362252,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 340102,
+   "cityTax": 22150,
+   "img": "images/stays/rome-761439.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=343&hotelId=761439&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_rome_761439&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "루프탑",
+    "청결"
+   ],
+   "roomSample": "스몰 더블룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 340,102원 + 도시세 22,150원(현지 결제) = 세금 포함 362,252원"
+  },
+  {
+   "region": "barcelona",
+   "id": "754849",
+   "name": "바르셀로 산츠 호텔",
+   "en": "Barceló Sants",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 536,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.6",
+    "위치": "9.4",
+    "서비스": "8.8"
+   },
+   "zone": "산츠역·에스파냐 광장",
+   "access": "바르셀로나 산츠역 바로 위",
+   "reason": "리뷰 536개·9.0(위치 9.4) — 산츠역 건물 위에 있어 마드리드로 가는 날 아침이 가장 짧습니다. 조식을 투숙객 96%가 좋다고 평가했습니다. 1박 18만원대로 바르셀로나 후보 중 최저.",
+   "price": 184212,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 156922,
+   "cityTax": 27290,
+   "img": "images/stays/barcelona-754849.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=40795&hotelId=754849&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_barcelona_754849&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "산츠역",
+    "조식"
+   ],
+   "roomSample": "오비탈 룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 156,922원 + 도시세 27,290원(현지 결제) = 세금 포함 184,212원"
+  },
+  {
+   "region": "barcelona",
+   "id": "754777",
+   "name": "베스트 웨스턴 프리미어 호텔 단테",
+   "en": "Best Western Premier Hotel Dante",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 371,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.0",
+    "위치": "9.2",
+    "서비스": "9.3"
+   },
+   "zone": "그라시아·카사 밀라",
+   "access": "카사 밀라 도보권",
+   "reason": "리뷰 371개·9.2(청결 9.4) — 카사 밀라·파세이그 데 그라시아 도보권이라 가우디 동선의 중심에 있습니다. 1박 21만원대로 산츠보다 3만원 비쌉니다.",
+   "price": 213603,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함",
+   "priceBase": 186313,
+   "cityTax": 27290,
+   "img": "images/stays/barcelona-754777.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=40795&hotelId=754777&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_barcelona_754777&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "카사 밀라",
+    "조식"
+   ],
+   "roomSample": "트윈룸",
+   "checkedAt": "2026-11-21",
+   "priceNote": "표시가 186,313원 + 도시세 27,290원(현지 결제) = 세금 포함 213,603원"
   }
  ]
 }
