@@ -975,7 +975,7 @@
    ],
    "ctaTitle": "장거리 총액 계산하기",
    "ctaText": "인원과 기간을 넣으면 항공·숙소·투어를 같은 기준으로 계산합니다.",
-   "fxNote": "1유로 = 1,468원",
+   "fxNote": "상품 실지출 1유로 = 1,620원 · 공통 환산 1,472원",
    "imageCredit": "이미지: 상품 판매처"
   },
   {
@@ -1009,7 +1009,7 @@
    ],
    "ctaTitle": "내 출발일로 9일·11일을 다시 계산하면?",
    "ctaText": "인원과 지역을 넣으면 항공·숙소·투어·eSIM을 같은 기준으로 계산해 A/B/C안으로 보여줍니다.",
-   "fxNote": "1유로 = 1,468원",
+   "fxNote": "상품 실지출 1유로 = 1,620원 · 공통 환산 1,472원",
    "imageCredit": "이미지: 상품 판매처"
   },
   {
@@ -1043,7 +1043,7 @@
    ],
    "ctaTitle": "이 392만원, 내 날짜로 다시 계산하면?",
    "ctaText": "출발일과 인원을 바꾸면 항공·숙소·투어·eSIM을 같은 기준으로 계산해 보여줍니다.",
-   "fxNote": "1유로 = 1,468원",
+   "fxNote": "상품 실지출 1유로 = 1,620원 · 공통 환산 1,472원",
    "imageCredit": "이미지: 상품 판매처"
   },
   {
@@ -2149,7 +2149,7 @@
    ],
    "ctaTitle": "내 날짜로 가을 경비를 다시 계산하면?",
    "ctaText": "10월 셋째 주와 11월 첫째 주는 단풍·숙소 값이 갈립니다. 출발일과 인원으로 항공·숙소·투어를 같은 기준으로 계산합니다.",
-   "fxNote": "100엔 = 838원 · 1유로 = 1,520원(2026-11 기준)"
+   "fxNote": "100엔 = 838원 · 1유로 = 1,472.04원 · 2026-11-20 ECB"
   },
   {
    "slug": "winter-travel-destinations",
@@ -2317,6 +2317,109 @@
    "ctaText": "인원과 도시를 넣으면 항공·숙소·투어에 선물 예산까지 같은 기준으로 계산합니다. 환급액은 나라별 세율로 따로 계산됩니다.",
    "fxNote": "1유로 = 1,472.04원 · 1파운드 = 1,757.98원 · 2026-11-20 ECB",
    "imageCredit": "사진: Arlind D / Pexels"
+  },
+  {
+   "slug": "visit-japan-web-guide",
+   "category": "준비물·경비",
+   "navTitle": "비짓재팬웹 2026 등록 방법·QR·가족 등록",
+   "h1": "비짓재팬웹, <em>QR 하나</em>로 입국과 세관을 끝냅니다",
+   "seoTitle": "비짓재팬웹 2026 등록 방법 — QR코드·가족 등록·공항 순서 총정리 | 트립픽",
+   "dek": "비짓재팬웹은 무료이고 의무는 아닙니다. 2024년 1월 입국심사·세관 QR이 하나로 통합돼 공항에서 같은 QR을 두 번 씁니다. 계정부터 QR까지 6단계, 가족 10명 등록, 전자신고 게이트 7개 공항, 자주 막히는 입력 6가지를 2026년 11월 1일 조작설명서 3.17판 기준으로 정리했습니다.",
+   "desc": "2026년 11월 기준 비짓재팬웹(Visit Japan Web) 등록 방법. 공식 주소는 services.digital.go.jp/visit-japan-web이고 등록·제출은 무료입니다. 2024-01-25 입국심사·세관신고 QR 통합, 계정→본인 정보→동반가족(최대 10명)→입국 예정(최대 100건)→입국심사·세관신고→QR 표시 6단계, 세관 전자신고 게이트 7개 공항(신치토세·나리타·하네다·주부·간사이·후쿠오카·나하), 가족 1인 1QR, 체류기간 90일 입력 등 자주 막히는 지점을 담았습니다.",
+   "keywords": "비짓재팬웹, 비짓재팬웹 등록방법, 방문일본웹, 일본 입국 QR, 비짓재팬웹 가족 등록, 세관신고 QR, 일본 입국신고서, 나리타 입국심사, 간사이공항 입국",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 10,
+   "image": "images/v37/vjw.jpg",
+   "imageAlt": "나리타공항 제2터미널 도착 로비에서 짐을 끌고 이동하는 여행자들",
+   "imageCredit": "사진: Nanashinodensyaku / Wikimedia Commons (CC BY-SA 4.0)",
+   "tours": [
+    "tk_g",
+    "os_g",
+    "fk_g"
+   ],
+   "essentials": [
+    "jp-esim-usimsa-3d",
+    "tokyo-metro-pass",
+    "osaka-amazing-pass",
+    "cp-passport-reindeer"
+   ],
+   "related": [
+    "entry-immigration-guide",
+    "japan-esim",
+    "tokyo-subway-ticket",
+    "osaka-amazing-pass"
+   ],
+   "ctaTitle": "내 여행지 입국서류만 모아 보면?",
+   "ctaText": "나라와 출국일을 넣으면 입국신고서·전자허가·여권 유효기간을 제출 시점 순서로 정리합니다. 비짓재팬웹처럼 무료인 공식 주소와 대행 사이트를 구분해 보여줍니다.",
+   "fxNote": "무료 서비스 · 2026-11-01 조작설명서 3.17판"
+  },
+  {
+   "slug": "incheon-airport-smartpass-lounge",
+   "category": "준비물·경비",
+   "navTitle": "인천공항 스마트패스·주차·라운지·면세 30분 줄이기",
+   "h1": "인천공항 출국, <em>30분</em>은 단계마다 5분씩입니다",
+   "seoTitle": "인천공항 스마트패스 등록·주차요금·라운지·면세 한도 — 출국 30분 줄이는 법 | 트립픽",
+   "dek": "스마트패스는 출국장 입구만, 자동출입국심사는 심사대만 줄입니다. 온라인 체크인·기내 수하물·스마트패스·SES를 겹치면 20~40분이 줄어듭니다. 4일 주차 36,000원, 라운지 60,080원, 면세 800달러·술 2L까지 2026년 11월 공식 안내로 계산했습니다.",
+   "desc": "2026년 11월 인천공항 출국 준비. 스마트패스 등록(얼굴 5년·탑승권 매번·만 7세 이상)과 전용 출국장 T1 2·3번 사이, 4·5번 사이 / T2 1C·2C·2D, 자동출입국심사(SES)와의 차이, 단기 24,000원·장기 9,000원 주차요금, 마티나 45달러·스카이허브 24시간, 관세청 면세 800달러·술 2L·담배 200개비를 정리했습니다.",
+   "keywords": "인천공항 스마트패스, 스마트패스 등록방법, 인천공항 주차요금, 인천공항 라운지, 마티나 라운지 가격, 스카이허브 라운지, 면세한도 800달러, 인천공항 출국 시간, 자동출입국심사",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 11,
+   "image": "images/v37/icn.jpg",
+   "imageAlt": "인천공항 제1터미널 출국장 셀프체크인 키오스크와 체크인 카운터",
+   "imageCredit": "사진: Arne Müseler / Wikimedia Commons (CC BY-SA 3.0 de)",
+   "tours": [],
+   "essentials": [
+    "cp-neckpillow-rango",
+    "cp-luggagescale-homeplanet",
+    "cp-powerbank-spidy",
+    "cp-passport-reindeer"
+   ],
+   "related": [
+    "visit-japan-web-guide",
+    "entry-immigration-guide",
+    "airport-checkin-customs-guide",
+    "packing-powerbank-liquid"
+   ],
+   "ctaTitle": "내 출국일로 준비물을 다시 점검하면?",
+   "ctaText": "출국일과 목적지를 넣으면 입국서류·환전·수하물 규정·공항 이동을 제출 시점 순서로 정리합니다.",
+   "fxNote": "1달러 = 1,335.11원 · 2026-11-18 고시"
+  },
+  {
+   "slug": "europe-train-eurail-vs-point",
+   "category": "유럽·장거리",
+   "navTitle": "유레일패스 vs 구간권 — 2026 인터레일 통합·예약비",
+   "h1": "유레일패스, <em>2026년 9월</em>부터 인터레일입니다",
+   "seoTitle": "유레일패스 vs 구간권 2026 — 인터레일 통합·가격·좌석예약비·소매치기 | 트립픽",
+   "dek": "2026년 9월 10일 유레일이 인터레일로 통합됐습니다. 성인 2등석 4일권 283유로(416,587원), 7일권 381유로. TGV·프레차로사·유로스타 예약비와 파리~바르셀로나 39유로 대 259유로를 같은 표에 놓고 손익분기, 좌석 예약 방법, 기차역 소매치기 예방까지 정리했습니다.",
+   "desc": "2026년 유레일패스(인터레일 글로벌 패스)와 구간권 비교. 2026-09-10 유레일→인터레일 통합, eurail.com 301 리다이렉트, 성인 2등석 4일 283유로·7일 381유로·10일 447유로, TGV 10~20유로·프레차로사 13유로·유로스타 파리~런던 35유로·파리~바르셀로나 35유로 예약비, 파리~바르셀로나 구간권 39유로(정가 259유로) 손익분기와 야간열차·소매치기 대비를 담았습니다.",
+   "keywords": "유레일패스, 유레일패스 가격, 인터레일 글로벌 패스, 유레일 vs 구간권, 유럽 기차 예약, TGV 예약비, 유로스타 예약비, 프레차로사 예약, 유럽 기차 소매치기",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 12,
+   "image": "images/v37/tgv.jpg",
+   "imageAlt": "프랑스 들판을 달리는 SNCF TGV 듀플렉스 고속열차",
+   "imageCredit": "사진: eldelinux / Wikimedia Commons (CC BY 2.0)",
+   "tours": [
+    "fr_louvre",
+    "it_colosseum"
+   ],
+   "essentials": [
+    "cp-passport-reindeer",
+    "cp-compress-urbantrip",
+    "cp-adapter-nemotab",
+    "cp-powerbank-spidy"
+   ],
+   "related": [
+    "paris-london-5n7d",
+    "italy-9d-packages",
+    "spain-barcelona-madrid",
+    "europe-shopping-tax-refund"
+   ],
+   "ctaTitle": "내 유럽 일정으로 기차 값을 계산하면?",
+   "ctaText": "도시와 날짜를 넣으면 항공·숙소·기차·투어를 같은 기준으로 계산해 패스와 구간권을 나란히 보여줍니다.",
+   "fxNote": "1유로 = 1,472.04원 · 2026-11-20 ECB"
   }
  ],
  "pages": [

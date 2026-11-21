@@ -13,6 +13,9 @@
  6. 제휴 링크(rel=sponsored)의 빈 href·트립닷컴 필수 파라미터 누락 여부
  7. 찐숙소 지역의 `top`(최고 평점)이 실제 최고점 숙소인지
  8. 인라인 스크립트 문법(esprima 가 있을 때)
+ 9. 구 유로 환율(1,468원·1,520원) 잔존 — 데이터 json(단, fx.json 실시간 환율 제외)과
+    배포 페이지(/exchange 실시간 표 제외)에 남아 있으면 실패. fx.json 고정 환산 EUR 과
+    planner.json fx.EUR 이 같은지도 확인.
 """
 import json
 import os
@@ -194,6 +197,29 @@ def main():
                     except Exception as e:
                         check(False, f"{page_url(p)}: 인라인 스크립트 문법 오류 {str(e)[:80]}")
         print(f"인라인 스크립트 {n}개 문법 검사")
+
+    # 9. 구 유로 환율 잔존 + 고정 환산 기준 일치
+    stale_pat = re.compile(r"(?<![\d,])1,468")
+    stale_euro_pat = re.compile(r"(?<![\d,])1,520원")
+    for p in sorted(DATA.glob("*.json")):
+        if p.name == "fx.json":
+            continue
+        text = p.read_text(encoding="utf-8")
+        check(not stale_pat.search(text), f"{p.name}: 구 유로 환율 1,468 잔존")
+        check(not stale_euro_pat.search(text), f"{p.name}: 구 유로 환율 1,520원 잔존")
+    for p in pages:
+        if p.name == "exchange.html":   # 실시간 환율 표는 fx.json krw 를 그대로 쓴다
+            continue
+        text = p.read_text(encoding="utf-8")
+        check(not stale_pat.search(text), f"{page_url(p)}: 구 유로 환율 1,468 잔존")
+        check(not stale_euro_pat.search(text), f"{page_url(p)}: 구 유로 환율 1,520원 잔존")
+    fx = load("fx.json")
+    planner = load("planner.json")
+    m = re.search(r"([\d.]+)", fx["staticBasis"]["perUnit"]["EUR"])
+    if m:
+        check(abs(float(m.group(1)) - float(planner["fx"]["EUR"])) < 0.5,
+              f"fx.json 고정 EUR {m.group(1)} ≠ planner EUR {planner['fx']['EUR']}")
+    print("구 유로 환율(1,468·1,520) 잔존 0건 검사")
 
     if fails:
         print("\n실패", len(fails))
