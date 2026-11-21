@@ -49,7 +49,7 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 21)
-CSS_V = "28"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "30"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
@@ -2589,15 +2589,15 @@ STAY_THEME_ORDER = ["pool", "ocean", "onsen", "station", "value", "villa"]
 
 # v26: /stays 권역별 보기 — 국내 숙소를 권역으로 묶어 한눈에 고른다
 STAY_GROUPS = [
-    ("metro", "수도권", "서울·인천"),
-    ("gangwon", "강원", "강릉·속초·양양"),
+    ("metro", "수도권", "서울·인천·가평"),
+    ("gangwon", "강원", "춘천·강릉·속초·양양"),
     ("gyeong", "경상", "부산·경주·통영·거제"),
     ("jeolla", "전라", "여수·전주"),
     ("jeju", "제주", "제주"),
 ]
 STAY_REGION_GROUP = {
-    "seoul": "metro", "incheon": "metro",
-    "gangneung": "gangwon", "sokcho": "gangwon", "yangyang": "gangwon",
+    "seoul": "metro", "incheon": "metro", "gapyeong": "metro",
+    "chuncheon": "gangwon", "gangneung": "gangwon", "sokcho": "gangwon", "yangyang": "gangwon",
     "busan": "gyeong", "gyeongju": "gyeong", "tongyeong": "gyeong", "geoje": "gyeong",
     "yeosu": "jeolla", "jeonju": "jeolla",
     "jeju": "jeju",
@@ -2973,7 +2973,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     </div>
 
     <h2 class="sr-h2">권역별로 이렇게 갈립니다</h2>
-    <p class="sr-dek">국내 숙소를 수도권(서울·인천) · 강원(강릉·속초·양양) · 경상(부산·경주·통영) · 전라(여수·전주) · 제주로 묶었습니다. 권역을 누르면 그 안의 숙소만 남고, 지역 카드를 누르면 그 도시만 남습니다.</p>
+    <p class="sr-dek">국내 숙소를 수도권(서울·인천·가평) · 강원(춘천·강릉·속초·양양) · 경상(부산·경주·통영·거제) · 전라(여수·전주) · 제주로 묶었습니다. 권역을 누르면 그 안의 숙소만 남고, 지역 카드를 누르면 그 도시만 남습니다.</p>
     <div class="sg-groups" aria-label="권역 바로가기">
       {group_cards}
     </div>
@@ -2984,7 +2984,7 @@ def stays_page(out_root: Path, base: str) -> Path:
     </div>
 
     <h2 class="sr-h2">숙소를 골랐으면 — 그 도시 동선과 예약</h2>
-    <p class="sr-dek">숙소 위치를 정한 뒤에는 그 도시의 코스·맛집·교통 가이드로 이어서 보세요. 국내는 서울·인천·영종도·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 모두 1박2일 가이드가 연결돼 있고, 숙소 카드에서 바로 그 도시 동선으로 넘어갈 수 있습니다.</p>
+    <p class="sr-dek">숙소 위치를 정한 뒤에는 그 도시의 코스·맛집·교통 가이드로 이어서 보세요. 국내는 서울·인천·영종도·가평·춘천·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 모두 가이드로 이어지고, 숙소 카드에서 바로 그 도시 동선으로 넘어갈 수 있습니다.</p>
     <div class="sg-grid" aria-label="지역별 가이드 연결">
       {guide_cards}
     </div>
@@ -3011,14 +3011,14 @@ def stays_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "stays.html",
-        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 서울·인천·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 + 해외 7개 도시 평점·가격 비교 (2026) | 트립픽",
+        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 서울·인천·가평·춘천·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 + 해외 7개 도시 평점·가격 비교 (2026) | 트립픽",
         desc=(
             f"국내 {kr_names} {kr_total}곳과 해외 오사카·도쿄·후쿠오카·다낭·나트랑·방콕·타이베이 {intl_total}곳, 숙소 {total}곳을 "
             f"트립닷컴 평점·리뷰 수·1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
             "수도권·강원·경상·전라·제주 권역별 보기, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터, 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-21 확인."
         ),
         keywords=(
-            "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 거제 호텔, 거제 오션뷰 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
+            "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 가평 호텔, 춘천 호텔, 남이섬 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 거제 호텔, 거제 오션뷰 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
             "가성비 호텔, 가족 호텔, 풀빌라, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 트립닷컴 숙소"
         ),
         body=body,
@@ -3571,7 +3571,7 @@ def checklist_page(out_root: Path, base: str) -> Path:
     kr = next((c for c in check["countries"] if c["id"] == "kr"), None)
 
     tools = [
-        ("stays.html", "D-30", "찐숙소 " + str(len(STAYS.get("hotels", []))) + "곳", "서울·부산·강릉·속초·전주·통영·인천·제주 + 해외 7개 도시를 평점·리뷰·1박 최저가로 비교"),
+        ("stays.html", "D-30", "찐숙소 " + str(len(STAYS.get("hotels", []))) + "곳", "국내 14개 지역 + 해외 7개 도시를 평점·리뷰·1박 최저가로 비교"),
         ("calendar.html", "D-30", "월별 시즌 캘린더", "7개 도시 12개월 성수기·비수기와 항공권 가격이 오르는 달을 먼저 봅니다"),
         ("index.html#travelins", "D-30", "여행자보험 3곳 비교", "보장 항목·자기부담금을 카드사·보험사 공식 조건으로 비교"),
         ("passes.html", "D-14", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이 패스가 하루 이동 횟수로 남는지 계산"),

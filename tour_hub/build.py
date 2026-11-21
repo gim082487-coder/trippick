@@ -24,11 +24,13 @@ TEMPLATE = ROOT / "template.html"
 INDEX = ROOT / "index.html"
 
 COUNTRIES = [
-    ("kr", "국내 (제주·부산·강원)", "f-kr"),
+    ("kr", "국내 (서울·경주·제주·부산·강원)", "f-kr"),
     ("jp", "일본", "f-jp"),
     ("vn", "베트남", "f-vn"),
     ("th", "태국", "f-th"),
     ("tw", "대만", "f-tw"),
+    ("sg", "싱가포르", "f-sg"),
+    ("hk", "홍콩", "f-hk"),
     ("eu", "유럽", "f-eu"),
     ("us", "미주·하와이", "f-us"),
     ("oc", "대양주", "f-oc"),
@@ -37,7 +39,7 @@ COUNTRIES = [
 ]
 COUNTRY_NAME = {c: n for c, n, _ in COUNTRIES}
 FLAG_SYMBOL = {c: f for c, _, f in COUNTRIES}
-TYPE_ORDER = ["가이드투어", "풀패키지", "세미패키지", "에어텔", "골프패키지", "국내패키지", "레저·액티비티"]
+TYPE_ORDER = ["가이드투어", "데이투어", "야경투어", "패스", "풀패키지", "세미패키지", "에어텔", "골프패키지", "국내패키지", "레저·액티비티"]
 PREMIUM_FLOOR = 3_000_000
 
 # v15: 출국 체크리스트의 나라별 패널에 붙일 트립닷컴 실링크(발급된 것만)
@@ -192,17 +194,28 @@ def tag_html(t: dict) -> str:
     return out
 
 
+def is_tripcom(t: dict) -> bool:
+    """트립닷컴 파트너스 상품인지 — 제휴사 값이 제각각이라 URL 까지 함께 본다."""
+    if (t.get("affiliate") or "").lower() in ("trip.com", "tripcom"):
+        return True
+    return "trip.com/" in (t.get("url") or "")
+
+
 def rating_html(t: dict) -> str:
     star = ('<svg class="star" viewBox="0 0 24 24" aria-hidden="true">'
             '<path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.9-5.2 2.9 1-5.9L3.5 9.8l5.9-.8L12 3.6Z"/></svg>')
+    # v30: 평점 출처가 네이버 쇼핑이 아니라 트립닷컴인 상품을 구분한다.
+    source = "트립닷컴" if is_tripcom(t) else "네이버"
     if t.get("rating") in (None, "", "—"):
         if t.get("country") == "kr":
             return f'<p class="rate">{star}정상가 그대로 비교 <span>· 할인 표기 없음</span></p>'
         booked = t.get("booked") or "가격·조건 한눈에 비교"
-        return f'<p class="rate">{star}{esc(booked)} <span>· 네이버 여행 기준</span></p>'
+        base = "네이버 여행 기준" if source == "네이버" else "트립닷컴 판매 조건 기준"
+        return f'<p class="rate">{star}{esc(booked)} <span>· {base}</span></p>'
     rv = t["reviews"] or 0
     rv_txt = f'{rv/10000:.1f}만' if rv >= 10000 else (f'{rv:,}' if rv else "")
-    tail = f' <span>· 리뷰 {rv_txt} · 네이버 쇼핑 기준</span>' if rv else ' <span>· 네이버 쇼핑 기준</span>'
+    rate_src = "트립닷컴 기준" if source == "트립닷컴" else "네이버 쇼핑 기준"
+    tail = f' <span>· 리뷰 {rv_txt} · {rate_src}</span>' if rv else f' <span>· {rate_src}</span>'
     return f'<p class="rate">{star}{esc(t["rating"])}{tail}</p>'
 
 
@@ -222,6 +235,16 @@ def real_line(t: dict) -> str:
     tip = f'현장 추가금 근거: {ex["basis"]}'
     return (f'<p class="real" title="{esc(tip)}">현장 추가금 포함 실질 '
             f'<b>{won(real_price(t))}원</b></p>')
+
+
+def book_cta(t: dict) -> str:
+    """예약 버튼 문구 — 제휴사에 따라 판매처를 정확히 적는다(v30)."""
+    aff = (t.get("affiliate") or "").lower()
+    if aff == "shopping-connect":
+        return "네이버에서 구매"
+    if is_tripcom(t):
+        return "트립닷컴에서 예약"
+    return "네이버 여행에서 예약"
 
 
 def card_html(t: dict, order: int, extra_cls: str = "") -> str:
@@ -268,7 +291,7 @@ def card_html(t: dict, order: int, extra_cls: str = "") -> str:
           {price_html(t)}
           {real_line(t)}
           <div class="card-actions">
-            <a class="book" href="{esc(t['url'])}" target="_blank" rel="noopener sponsored">{(lambda u: "네이버에서 구매" if "shopping-connect" == t.get("affiliate") else "네이버 여행에서 예약")(t["url"])} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="book" href="{esc(t['url'])}" target="_blank" rel="noopener sponsored">{book_cta(t)} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <button class="cmp-btn" type="button" data-cmp-add="{t['id']}" aria-pressed="false" title="이 상품을 비교 바구니에 담기">비교</button>
           </div>
         </div>
@@ -460,7 +483,7 @@ def render_quickstrip(data: dict, courses: dict, essentials: dict, tripcom: dict
     tours = data["tours"]
     counts = country_counts(tours)
     kr_n = counts.get("kr", 0)
-    sea_n = counts.get("vn", 0) + counts.get("th", 0)
+    sea_n = counts.get("vn", 0) + counts.get("th", 0) + counts.get("sg", 0)
     west_n = counts.get("eu", 0) + counts.get("us", 0) + counts.get("oc", 0)
 
     items = [
@@ -1385,12 +1408,12 @@ def render_klook(kl: dict) -> str:
     links = (kl or {}).get("links") or []
     if not links:
         return ""
-    order = " · ".join(k["city"] for k in links)
+    order = " · ".join(dict.fromkeys(k["city"] for k in links))
     cards = "".join(tc_act_card(k, "클룩에서 보기") for k in links)
     return ('<div class="tc-group tc-group--act" id="tcKlook">\n'
             '      <div class="ess-ghead"><h3>🌏 클룩에서도 비교</h3><span class="n">' + str(len(links)) +
             '</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">' + esc(order) +
-            ' · USJ·디즈니·팀랩처럼 날짜 지정 입장권</span></div>\n'
+            ' · 도시 페이지 3곳 + 액티비티 단건 4종</span></div>\n'
             '      <div class="tc-acts">' + cards + '</div>\n'
             '      <p class="ess-cp-note">' + esc(kl["disclosure"]) + '</p>\n'
             '    </div>')
@@ -1452,7 +1475,7 @@ def render_tripcom(tc: dict, klook: dict | None = None) -> str:
     transfer_order = " · ".join(dict.fromkeys(a["city"] for a in transfers))
     return f"""<div class="tc-filter">
       <div class="tc-tabs" role="group" aria-label="트립닷컴 숙소·항공 필터">{tabs}<a class="tc-tab tc-tab--jump" href="#tcTickets">입장권·액티비티 <span>{len(tickets)}</span></a><a class="tc-tab tc-tab--jump" href="#tcResorts">휴양지 8곳 <span>{resort_n}</span></a><a class="tc-tab tc-tab--jump" href="#tcTransfers">공항픽업·렌터카 <span>{len(transfers) + len(cars)}</span></a><a class="tc-tab tc-tab--jump" href="#tcEsim">eSIM·유심 <span>{len(esims)}</span></a><a class="tc-tab tc-tab--jump" href="#tcRail">공항철도 <span>{len(rails)}</span></a></div>
-      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선에 입장권 {len(tickets)}개 도시·공항픽업 {len(transfers)}개 공항·렌터카 {len(cars)}곳, eSIM·유심 {len(esims)}개 도시·공항철도 {len(rails)}개 노선, 휴양지 {resort_n}곳 입장권·공항픽업과 클룩 도시 {klook_n}곳을 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
+      <p class="tc-filter-note" id="tcFilterNote">숙소 {len(tc["hotels"])}곳·항공 {len(tc["flights"])}개 노선에 입장권 {len(tickets)}개 도시·공항픽업 {len(transfers)}개 공항·렌터카 {len(cars)}곳, eSIM·유심 {len(esims)}개 도시·공항철도 {len(rails)}개 노선, 휴양지 {resort_n}곳 입장권·공항픽업과 클룩 링크 {klook_n}개를 더했습니다. 지역 섹션의 ‘이 도시 숙소’ 버튼을 누르면 그 도시 카드로 바로 내려갑니다.</p>
     </div>
     <div class="tc-group" data-tc-group="flight">
       <div class="ess-ghead"><h3>✈️ 항공권 검색</h3><span class="n">{len(tc["flights"])}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">편도 기준 · 실시간 최저가</span></div>

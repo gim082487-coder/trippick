@@ -121,9 +121,9 @@
    "name": "다낭",
    "country": "베트남",
    "note": "미케비치 해변 축과 한강 시내 축으로 나뉩니다. 해변 숙소는 시내와 차로 10~15분 거리입니다.",
-   "count": 4,
+   "count": 5,
    "top": "하이안 비치 호텔 & 스파",
-   "listUrl": "https://kr.trip.com/hotels/list?city=1356&display=%EB%8B%A4%EB%82%AD&optionId=1356&optionType=City&optionName=%EB%8B%A4%EB%82%AD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_danang&trip_sub3=D21275837",
+   "listUrl": "https://kr.trip.com/hotels/list?city=1356&display=%EB%8B%A4%EB%82%AD&optionId=1356&optionType=City&optionName=%EB%8B%A4%EB%82%AD&Allianceid=11407530&SID=336341874&trip_sub1=hotel_danang&trip_sub3=D21372570",
    "cityId": "1356",
    "scope": "intl",
    "hub": "danang",
@@ -142,10 +142,10 @@
    "id": "nhatrang",
    "name": "나트랑",
    "country": "베트남",
-   "note": "해변을 따라 호텔이 늘어선 도시. 중심가와 마리나 쪽으로 위치가 갈립니다.",
-   "count": 3,
+   "note": "나트랑 중심 해변과 깜람(공항 쪽) 리조트가 차로 40분 떨어집니다. 시내 도보 관광이면 중심가, 리조트 휴양이면 깜람입니다.",
+   "count": 4,
    "top": "파나마 나트랑 호텔",
-   "listUrl": "https://kr.trip.com/hotels/list?city=1777&display=%EB%82%98%ED%8A%B8%EB%9E%91&optionId=1777&optionType=City&optionName=%EB%82%98%ED%8A%B8%EB%9E%91&Allianceid=11407530&SID=336341874&trip_sub1=hotel_nhatrang&trip_sub3=D21275837",
+   "listUrl": "https://kr.trip.com/hotels/list?city=1777&display=%EB%82%98%ED%8A%B8%EB%9E%91&optionId=1777&optionType=City&optionName=%EB%82%98%ED%8A%B8%EB%9E%91&Allianceid=11407530&SID=336341874&trip_sub1=hotel_nhatrang&trip_sub3=D21372570",
    "cityId": "1777",
    "scope": "intl",
    "hub": "nhatrang",
@@ -160,10 +160,10 @@
    "id": "bangkok",
    "name": "방콕",
    "country": "태국",
-   "note": "짜오프라야 강변, 실롬·빠뚜남 상업 지구, 공항 인접권이 서로 멉니다. BTS·MRT 역과의 거리로 고르세요.",
-   "count": 4,
+   "note": "수쿰빗·시암 중심과 짜오프라야 강변, 돈므앙·수완나품 공항 쪽이 나뉩니다. 강변 숙소는 사원·야시장 동선이 짧습니다.",
+   "count": 5,
    "top": "밀레니엄 힐튼 방콕",
-   "listUrl": "https://kr.trip.com/hotels/list?city=359&display=%EB%B0%A9%EC%BD%95&optionId=359&optionType=City&optionName=%EB%B0%A9%EC%BD%95&Allianceid=11407530&SID=336341874&trip_sub1=hotel_bangkok&trip_sub3=D21275837",
+   "listUrl": "https://kr.trip.com/hotels/list?city=359&display=%EB%B0%A9%EC%BD%95&optionId=359&optionType=City&optionName=%EB%B0%A9%EC%BD%95&Allianceid=11407530&SID=336341874&trip_sub1=hotel_bangkok&trip_sub3=D21372570",
    "cityId": "359",
    "scope": "intl",
    "hub": "bangkok",
@@ -182,10 +182,10 @@
    "id": "taipei",
    "name": "타이베이",
    "country": "대만",
-   "note": "시먼딩·타이베이역 도심과 베이터우 온천지구가 지하철로 30분 거리입니다.",
-   "count": 3,
+   "note": "타이베이역·시먼딩, 중산·닝샤, 베이터우 온천이 서로 다른 축입니다. 지하철 MRT 한 정거장 차이가 하루 동선을 바꿉니다.",
+   "count": 4,
    "top": "호텔 우케타모",
-   "listUrl": "https://kr.trip.com/hotels/list?city=617&display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&optionId=617&optionType=City&optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_taipei&trip_sub3=D21275837",
+   "listUrl": "https://kr.trip.com/hotels/list?city=617&display=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&optionId=617&optionType=City&optionName=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_taipei&trip_sub3=D21372570",
    "cityId": "617",
    "scope": "intl",
    "hub": "taipei",
@@ -284,10 +284,10 @@
    "id": "yeosu",
    "name": "여수",
    "country": "대한민국",
-   "note": "여수엑스포역·엑스포 권역과 낭만포차·이순신광장 원도심이 차로 10~15분 거리입니다. 케이블카와 야경을 볼지에 따라 숙소가 갈립니다.",
-   "count": 3,
+   "note": "여수엑스포역·엑스포 권역과 낭만포차·이순신광장 원도심이 차로 10~15분 거리입니다. 돌산·무슬목 쪽 풀빌라는 시내와 떨어져 차가 필요합니다.",
+   "count": 4,
    "top": "신라스테이 여수 엑스포역",
-   "listUrl": "https://kr.trip.com/hotels/list?city=4016&display=여수시&optionId=4016&optionType=City&optionName=여수시&Allianceid=11407530&SID=336341874&trip_sub1=hotel_yeosu&trip_sub3=D21275837",
+   "listUrl": "https://kr.trip.com/hotels/list?city=4016&display=%EC%97%AC%EC%88%98&optionId=4016&optionType=City&optionName=%EC%97%AC%EC%88%98&Allianceid=11407530&SID=336341874&trip_sub1=hotel_yeosu&trip_sub3=D21372570",
    "cityId": "4016",
    "scope": "kr",
    "hub": "yeosu",
@@ -295,6 +295,10 @@
     {
      "slug": "yeosu-night-sea-2d",
      "label": "여수 밤바다 1박2일"
+    },
+    {
+     "slug": "winter-december-best6",
+     "label": "12월 국내 여행지 6곳"
     }
    ]
   },
@@ -302,10 +306,10 @@
    "id": "gyeongju",
    "name": "경주",
    "country": "대한민국",
-   "note": "황리단길 도심과 보문관광단지가 차로 20~30분 거리입니다. 도보 여행이면 황리단길, 호수·온천이면 보문입니다.",
-   "count": 3,
+   "note": "황리단길 도심과 보문관광단지가 차로 20~30분 거리입니다. 호수·온천·리조트는 보문, 도보 미식은 황리단길입니다.",
+   "count": 4,
    "top": "경주 호텔 공간",
-   "listUrl": "https://kr.trip.com/hotels/list?city=3675&display=경주시&optionId=3675&optionType=City&optionName=경주시&Allianceid=11407530&SID=336341874&trip_sub1=hotel_gyeongju&trip_sub3=D21275837",
+   "listUrl": "https://kr.trip.com/hotels/list?city=3675&display=%EA%B2%BD%EC%A3%BC&optionId=3675&optionType=City&optionName=%EA%B2%BD%EC%A3%BC&Allianceid=11407530&SID=336341874&trip_sub1=hotel_gyeongju&trip_sub3=D21372570",
    "cityId": "3675",
    "scope": "kr",
    "hub": "gyeongju",
@@ -358,7 +362,7 @@
    "country": "대한민국",
    "note": "한옥마을·객사·전주역 세 권역입니다. 한옥마을 도보권은 밤 산책이 편하고, 전주역·터미널 쪽은 도착일 이동과 1박 가격에 유리합니다.",
    "count": 4,
-   "top": "전주 호텔 더 빈센트",
+   "top": "전주 우아동 이츠 호텔",
    "listUrl": "https://kr.trip.com/hotels/list?city=61380&display=전주&optionId=61380&optionType=City&optionName=전주&Allianceid=11407530&SID=336341874&trip_sub1=hotel_jeonju&trip_sub3=D21275837",
    "cityId": "61380",
    "scope": "kr",
@@ -395,9 +399,9 @@
    "scope": "kr",
    "cityId": "61331",
    "hub": null,
-   "note": "거제는 고현(장평) 시내와 일운·학동 해안 두 축입니다. 고현은 버스터미널·식당가, 일운·학동은 오션뷰 숙소와 해수욕장이 몰려 있어 둘째 날 동선이 갈립니다.",
-   "count": 4,
-   "top": "거제삼성호텔",
+   "note": "고현(장평) 시내와 일운·학동 해안 두 축입니다. 소노캄·한화는 일운·구조라, 거제돔·스터번은 학동·바테 쪽이라 둘째 날 동선이 갈립니다.",
+   "count": 7,
+   "top": "한화리조트 거제",
    "listUrl": "https://kr.trip.com/hotels/list?city=61331&display=%EA%B1%B0%EC%A0%9C&optionId=61331&optionType=City&optionName=%EA%B1%B0%EC%A0%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_geoje&trip_sub3=D21372570",
    "guides": [
     {
@@ -423,6 +427,48 @@
      "label": "인천·영종도 1박2일"
     }
    ]
+  },
+  {
+   "id": "chuncheon",
+   "name": "춘천",
+   "country": "대한민국",
+   "note": "춘천 시내(명동·공지천)와 강촌·남이섬·레고랜드가 차로 20~30분씩 떨어집니다. 시내는 닭갈비골목·도보 관광, 강촌은 스키, 남이섬은 섬 숙박 목적입니다.",
+   "count": 3,
+   "top": "KT&G상상마당춘천스테이호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=35788&display=%EC%B6%98%EC%B2%9C&optionId=35788&optionType=City&optionName=%EC%B6%98%EC%B2%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_chuncheon&trip_sub3=D21372570",
+   "cityId": "35788",
+   "scope": "kr",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "winter-december-best6",
+     "label": "12월 국내 여행지 6곳"
+    },
+    {
+     "slug": "gangwon-gangneung-winter-sea-2d",
+     "label": "강원 겨울바다 1박2일"
+    }
+   ],
+   "newCount": 3
+  },
+  {
+   "id": "gapyeong",
+   "name": "가평",
+   "country": "대한민국",
+   "note": "청평(남이섬·호숫가)과 상면·설악(아침고요수목원·쁘띠프랑스)이 차로 20~30분 거리입니다. 서울에서 당일 이동이 가능해 1박 일정이 많습니다.",
+   "count": 2,
+   "top": "대교 마이다스 호텔&리조트",
+   "listUrl": "https://kr.trip.com/hotels/list?city=78430&display=%EA%B0%80%ED%8F%89&optionId=78430&optionType=City&optionName=%EA%B0%80%ED%8F%89&Allianceid=11407530&SID=336341874&trip_sub1=hotel_gapyeong&trip_sub3=D21372570",
+   "cityId": "78430",
+   "scope": "kr",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "winter-december-best6",
+     "label": "12월 국내 여행지 6곳"
+    }
+   ],
+   "newCount": 2
   }
  ],
  "hotels": [
@@ -2601,6 +2647,501 @@
     "센트럴파크 도보",
     "패밀리 트윈"
    ]
+  },
+  {
+   "region": "geoje",
+   "id": "5085169",
+   "name": "소노캄 거제",
+   "en": "Sono Calm Geoje",
+   "star": 4,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 9.1,
+   "reviews": 253,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.9",
+    "위치": "9.3",
+    "서비스": "9.1"
+   },
+   "zone": "일운면",
+   "access": "오션어드벤처 거제·거제씨월드 인근",
+   "reason": "리뷰 253개·9.1(위치 9.3·청결 9.1) — 오션어드벤처 거제와 거제씨월드 사이, 워터파크·실내 수영장·스파를 갖춘 오션뷰 리조트입니다.",
+   "price": 235774,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/geoje-5085169.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61331&hotelId=5085169&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_geoje_5085169&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "villa"
+   ],
+   "pointTags": [
+    "일출",
+    "워터파크",
+    "오션 뷰"
+   ],
+   "roomSample": "패밀리 (취사/오션뷰/침대)",
+   "origPrice": 276000,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "geoje",
+   "id": "29185246",
+   "name": "한화리조트 거제",
+   "en": "Hanwha Resort Geoje",
+   "star": 4,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 9.2,
+   "reviews": 55,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "9.0",
+    "위치": "9.1",
+    "서비스": "9.2"
+   },
+   "zone": "일운면 구조라",
+   "access": "한화 벨버디어 센터·유호 전망대 인근",
+   "reason": "리뷰 55개지만 9.2(청결 9.3) — 루프탑 인피니티 풀과 스파, 일몰 전망이 강점입니다. 1박 38만 원대로 거제에서 가장 비싼 축입니다.",
+   "price": 386930,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/geoje-29185246.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61331&hotelId=29185246&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_geoje_29185246&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "villa"
+   ],
+   "pointTags": [
+    "루프탑 인피니티 풀",
+    "일몰",
+    "워터파크"
+   ],
+   "roomSample": "디럭스룸",
+   "origPrice": null,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "geoje",
+   "id": "76344870",
+   "name": "라마다 스위츠 거제",
+   "en": "Ramada Suites Geoje",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.2,
+   "reviews": 250,
+   "sub": {
+    "청결도": "8.9",
+    "시설": "7.4",
+    "위치": "8.7",
+    "서비스": "7.6"
+   },
+   "zone": "오션어드벤처 거제 인근",
+   "access": "거제씨월드 인근",
+   "reason": "리뷰 250개·8.2(위치 8.7) — 오션뷰와 일출은 좋지만 시설 점수가 7.4로 낮습니다. 전망과 1박 14만 원대 가격을 우선할 때 고르는 쪽입니다.",
+   "price": 149000,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/geoje-76344870.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=61331&hotelId=76344870&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_geoje_76344870&trip_sub3=D21372570",
+   "themes": [
+    "ocean"
+   ],
+   "pointTags": [
+    "오션 뷰",
+    "일출"
+   ],
+   "roomSample": "킹 프리미어 더블룸(기준2인/최대4인)",
+   "origPrice": null,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "chuncheon",
+   "id": "2199520",
+   "name": "KT&G상상마당춘천스테이호텔",
+   "en": "KT&G Sangsangmadang Chuncheon Stay",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 91,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.8",
+    "위치": "9.2",
+    "서비스": "9.1"
+   },
+   "zone": "공지천",
+   "access": "춘천지구전적기념관·공지천 유원지 인근",
+   "reason": "리뷰 91개·9.1(위치 9.2) — 의암호 쪽, 도서관·공예 워크숍·전시를 함께 쓰는 문화형 호텔입니다. 춘천 시내 도보권입니다.",
+   "price": 110411,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/chuncheon-2199520.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=35788&hotelId=2199520&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_chuncheon_2199520&trip_sub3=D21372570",
+   "themes": [],
+   "pointTags": [
+    "예술 전시",
+    "공예 체험 워크숍",
+    "맛있는 조식"
+   ],
+   "roomSample": "스탠다드 트윈룸",
+   "origPrice": 112665,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "chuncheon",
+   "id": "6127319",
+   "name": "엘리시안 강촌 리조트",
+   "en": "Elysian Gangchon Resort",
+   "star": 4,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 8.4,
+   "reviews": 107,
+   "sub": {
+    "청결도": "8.6",
+    "시설": "8.2",
+    "위치": "8.8",
+    "서비스": "8.1"
+   },
+   "zone": "강촌",
+   "access": "엘리시안강촌 스키하우스·스키장 인근",
+   "reason": "리뷰 107개·8.4 — 엘리시안 강촌 스키장 바로 앞 리조트입니다. 겨울 스키 일정이면 이동이 가장 짧고, 시설은 8.2로 노후한 편입니다.",
+   "price": 222849,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/chuncheon-6127319.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=35788&hotelId=6127319&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_chuncheon_6127319&trip_sub3=D21372570",
+   "themes": [
+    "villa"
+   ],
+   "pointTags": [
+    "빼어난 전망",
+    "위치 최고"
+   ],
+   "roomSample": "패밀리룸 (체크인 시 랜덤 배정 A 또는 B 타입)",
+   "origPrice": 254200,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "chuncheon",
+   "id": "117569014",
+   "name": "남이섬 호텔정관루",
+   "en": "Nami Island Hotel Jeonggwanru",
+   "star": 2,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 43,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "8.5",
+    "위치": "9.4",
+    "서비스": "9.0"
+   },
+   "zone": "남이섬",
+   "access": "남이섬 내·송파은행나무길",
+   "reason": "리뷰 43개·9.1(청결 9.4·위치 9.4) — 남이섬 안에 있어 입도 전 셔틀과 조식 뷔페를 함께 쓰는 숙소입니다. 숙박객은 섬 야간 동선이 짧습니다.",
+   "price": 170000,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/chuncheon-117569014.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=35788&hotelId=117569014&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_chuncheon_117569014&trip_sub3=D21372570",
+   "themes": [
+    "villa"
+   ],
+   "pointTags": [
+    "무료 셔틀버스",
+    "조식 뷔페",
+    "매우 청결"
+   ],
+   "roomSample": "트윈룸 _ 정관재(본관)",
+   "origPrice": 186000,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "gapyeong",
+   "id": "10554939",
+   "name": "대교 마이다스 호텔&리조트",
+   "en": "Midas Hotel & Resort",
+   "star": 4,
+   "type": "resort",
+   "typeLabel": "리조트·풀빌라",
+   "score": 9.4,
+   "reviews": 48,
+   "sub": {
+    "청결도": "9.6",
+    "시설": "9.2",
+    "위치": "9.4",
+    "서비스": "9.3"
+   },
+   "zone": "청평",
+   "access": "청평자연휴양림·Mythtake Museum 인근",
+   "reason": "리뷰 48개·9.4(청결 9.6) — 청평호 호숫가 리조트, 보트 체험과 조식 평가가 높습니다. 1박 25만 원대.",
+   "price": 250274,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/gapyeong-10554939.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=78430&hotelId=10554939&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gapyeong_10554939&trip_sub3=D21372570",
+   "themes": [
+    "villa",
+    "ocean"
+   ],
+   "pointTags": [
+    "호숫가",
+    "보트 타기 체험",
+    "맛있는 조식"
+   ],
+   "roomSample": "디럭스 트윈룸",
+   "origPrice": 268000,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "gapyeong",
+   "id": "21880344",
+   "name": "가평 오버더마운틴",
+   "en": "OVER THE MOUNTAIN",
+   "star": 2,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 20,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "9.3",
+    "위치": "8.8",
+    "서비스": "9.4"
+   },
+   "zone": "상면",
+   "access": "아침고요수목원·서화연 인근",
+   "reason": "리뷰 20개·9.2(청결 9.3·서비스 9.4) — 아침고요수목원 인근 독채형 스튜디오입니다. 셀프 체크인·바비큐·전망이 강점이고 리뷰 수는 적습니다.",
+   "price": 111385,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/gapyeong-21880344.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=78430&hotelId=21880344&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gapyeong_21880344&trip_sub3=D21372570",
+   "themes": [
+    "villa"
+   ],
+   "pointTags": [
+    "빼어난 전망",
+    "바비큐",
+    "셀프 체크인"
+   ],
+   "roomSample": "호텔_스튜디오 더블",
+   "origPrice": 148000,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "yeosu",
+   "id": "61791433",
+   "name": "여수 블루망고풀빌라앤리조트",
+   "en": "Blue Mango Pool Villa & Resort",
+   "star": 3,
+   "type": "resort",
+   "typeLabel": "펜션",
+   "score": 9.0,
+   "reviews": 63,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.2",
+    "위치": "8.3",
+    "서비스": "8.9"
+   },
+   "zone": "돌산",
+   "access": "큰끝등대·무슬목해변 인근",
+   "reason": "리뷰 63개·9.0(청결 9.4) — 무슬목해변 쪽 풀빌라형 리조트, 야외 수영장과 바비큐가 있습니다. 여수 시내와 거리가 있어 위치 점수는 8.3입니다.",
+   "price": 105114,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/yeosu-61791433.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=4016&hotelId=61791433&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_yeosu_61791433&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "villa"
+   ],
+   "pointTags": [
+    "오션 뷰",
+    "야외 수영장",
+    "바비큐"
+   ],
+   "roomSample": "스탠다드 스파룸",
+   "origPrice": null,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "gyeongju",
+   "id": "1586942",
+   "name": "라한셀렉트 경주",
+   "en": "Lahan Select Gyeongju",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 449,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "8.9",
+    "위치": "9.1",
+    "서비스": "9.1"
+   },
+   "zone": "보문관광단지",
+   "access": "보문호·바니베어뮤지엄 인근",
+   "reason": "리뷰 449개·9.1(청결 9.3) — 보문호 호숫가 5성급, 라운지·볼링 등 부대시설이 많습니다. 1박 40만 원대 고가 구간입니다.",
+   "price": 400000,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/gyeongju-1586942.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=3675&hotelId=1586942&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_gyeongju_1586942&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "villa"
+   ],
+   "pointTags": [
+    "호숫가",
+    "커피 북 라운지"
+   ],
+   "roomSample": "마운틴 뷰 디럭스 더블룸",
+   "origPrice": null,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "taipei",
+   "id": "1100420",
+   "name": "위고 호텔 - 린센",
+   "en": "Wego Boutique Hotel-Linsen",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "인",
+   "score": 9.4,
+   "reviews": 45,
+   "sub": {
+    "청결도": "9.6",
+    "시설": "9.5",
+    "위치": "9.4",
+    "서비스": "9.2"
+   },
+   "zone": "타이베이역",
+   "access": "타이베이역·위안산 지하철역 도보권",
+   "reason": "리뷰 45개지만 9.4(시설 9.5·청결 9.6) — 타이베이역 도보권 소형 부티크 호텔입니다. 욕조와 조식 평가가 좋습니다.",
+   "price": 226034,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/taipei-1100420.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=617&hotelId=1100420&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_taipei_1100420&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "서비스 최고",
+    "욕조",
+    "맛있는 조식"
+   ],
+   "roomSample": "스탠다드룸",
+   "origPrice": null,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "nhatrang",
+   "id": "119276743",
+   "name": "하얏트 리젠시 나트랑",
+   "en": "Hyatt Regency Nha Trang",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 276,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.2",
+    "위치": "9.5",
+    "서비스": "9.2"
+   },
+   "zone": "나트랑 중심가",
+   "access": "탑쩜흐엉·나트랑 해변 도보권",
+   "reason": "리뷰 276개·9.3(위치 9.5·서비스 9.2) — 나트랑 중심 해변 도보권의 대형 체인 호텔입니다.",
+   "price": 183457,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/nhatrang-119276743.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1777&hotelId=119276743&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nhatrang_119276743&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "위치 최고",
+    "공공 해변",
+    "맛있는 조식"
+   ],
+   "roomSample": "퀸룸",
+   "origPrice": null,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "bangkok",
+   "id": "98944902",
+   "name": "더 살릴 호텔 리버사이드 방콕",
+   "en": "The Salil Hotel Riverside Bangkok",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 1009,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.4",
+    "위치": "9.0",
+    "서비스": "9.3"
+   },
+   "zone": "강변(짜오프라야)",
+   "access": "짜오프라야 강변",
+   "reason": "리뷰 1,009개·9.3(청결 9.5) — 짜오프라야 강변 호텔로 전통의상 체험과 리버사이드 수영장이 있습니다.",
+   "price": 183022,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/bangkok-98944902.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=359&hotelId=98944902&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bangkok_98944902&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": [
+    "전통의상 체험",
+    "서비스 최고"
+   ],
+   "roomSample": "디럭스 아틀리에",
+   "origPrice": 657740,
+   "checkedAt": "2026-11-21"
+  },
+  {
+   "region": "danang",
+   "id": "24529624",
+   "name": "TMS 호텔 다낭 비치",
+   "en": "TMS Hotel Da Nang Beach",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.4,
+   "reviews": 763,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.1",
+    "위치": "9.6",
+    "서비스": "9.5"
+   },
+   "zone": "미케비치",
+   "access": "미케비치 도보권·용다리 인근",
+   "reason": "리뷰 763개·9.4(위치 9.6·서비스 9.5) — 미케비치 도보권, 루프탑 야외 수영장과 오션뷰 객실입니다.",
+   "price": 120580,
+   "priceBasis": "2026-11-21 조회 · 11-28~29 1박 · 성인 2명 · 세금·서비스 포함 최저가",
+   "img": "images/stays/danang-24529624.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1356&hotelId=24529624&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_danang_24529624&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "station"
+   ],
+   "pointTags": [
+    "오션 뷰",
+    "야외 루프탑 수영장",
+    "맛있는 조식"
+   ],
+   "roomSample": "프리미어 시티 뷰 트윈 스위트 (발코니 포함)",
+   "origPrice": 219237,
+   "checkedAt": "2026-11-21"
   }
  ]
 }

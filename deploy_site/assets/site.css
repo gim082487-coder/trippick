@@ -358,6 +358,8 @@
   .citybar[data-scope="vn"] .cchip[data-country="vn"],
   .citybar[data-scope="th"] .cchip[data-country="th"],
   .citybar[data-scope="tw"] .cchip[data-country="tw"],
+  .citybar[data-scope="sg"] .cchip[data-country="sg"],
+  .citybar[data-scope="hk"] .cchip[data-country="hk"],
   .citybar[data-scope="eu"] .cchip[data-country="eu"],
   .citybar[data-scope="us"] .cchip[data-country="us"],
   .citybar[data-scope="oc"] .cchip[data-country="oc"],

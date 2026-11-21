@@ -45,6 +45,66 @@
    "summary": "클룩 다낭 목적지 페이지. 바나힐 입장권·호이안 투어·공항픽업을 한 화면에서 비교할 수 있습니다.",
    "url": "https://affiliate.klook.com/redirect?aid=144067&aff_adid=1579567&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Fdestination%2Fc74-da-nang%2F",
    "status": "verified_302_ko"
+  },
+  {
+   "id": "klook_bangkok_chaophraya_cruise",
+   "city": "방콕",
+   "cityId": "bangkok",
+   "flag": "th",
+   "label": "클룩",
+   "title": "방콕 차오프라야 디너 크루즈",
+   "highlight": "짜오프라야강 2시간 디너 크루즈.",
+   "summary": "짜오프라야강 2시간 디너 크루즈. 19:15~21:15 운항으로 왓아룬·왕궁 야경을 강에서 봅니다. 2026-11-01~12-31 맥주 무제한 프로모션이 걸려 있습니다.",
+   "rating": 4.5,
+   "reviews": 1100,
+   "price": 47400,
+   "url": "https://www.klook.com/ko/activity/23641-chao-phraya-cruise-bangkok/?aid=144067",
+   "status": "verified_browser_2026-11-21"
+  },
+  {
+   "id": "klook_danang_banahills",
+   "city": "다낭",
+   "cityId": "danang",
+   "flag": "vn",
+   "label": "클룩",
+   "title": "썬월드 바나힐 티켓",
+   "highlight": "케이블카로 쭈아산 정상까지 올라 골든브리지·프렌치빌리지·판타지파크를 쓰는 입장권.",
+   "summary": "케이블카로 쭈아산 정상까지 올라 골든브리지·프렌치빌리지·판타지파크를 쓰는 입장권. 예약 즉시 확정.",
+   "rating": 4.6,
+   "reviews": 36700,
+   "price": 51900,
+   "url": "https://www.klook.com/ko/activity/13283-ba-na-hills-ticket-da-nang/?aid=144067",
+   "status": "verified_browser_2026-11-21"
+  },
+  {
+   "id": "klook_taipei_101",
+   "city": "타이베이",
+   "cityId": "taipei",
+   "flag": "tw",
+   "label": "클룩",
+   "title": "타이베이 101 전망대 티켓",
+   "highlight": "89층 전망대 입장 19,900원(일반가 24,400원).",
+   "summary": "89층 전망대 입장 19,900원(일반가 24,400원). 89+101층 33,500원, 패스트트랙 43,300원 옵션도 있습니다.",
+   "rating": 4.7,
+   "reviews": 42000,
+   "price": 19900,
+   "url": "https://www.klook.com/ko/activity/1659-taipei-101-taipei/?aid=144067",
+   "status": "verified_browser_2026-11-21"
+  },
+  {
+   "id": "klook_nhatrang_vinwonders",
+   "city": "나트랑",
+   "cityId": "nhatrang",
+   "flag": "vn",
+   "label": "클룩",
+   "title": "나트랑 빈원더스 입장권",
+   "highlight": "혼째섬으로 건너가는 해상 케이블카가 포함된 테마파크 입장권.",
+   "summary": "혼째섬으로 건너가는 해상 케이블카가 포함된 테마파크 입장권. 15,600원부터로 이번 신규 상품 중 단가가 가장 낮습니다.",
+   "rating": 4.5,
+   "reviews": 6900,
+   "price": 15600,
+   "url": "https://www.klook.com/ko/activity/11988-vinwonders-nha-trang-ticket/?aid=144067",
+   "status": "verified_browser_2026-11-21"
   }
  ]
 }
