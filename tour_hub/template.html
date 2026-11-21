@@ -2442,6 +2442,39 @@
     .dday{padding:13px 14px 12px}
     .dstep{padding:11px 12px 10px}
   }
+
+  /* ---------- v34 「한 번에 예약·준비 묶음」 CTA ---------- */
+  .tp-bundle{margin-top:15px;border:1px solid var(--line);border-radius:14px;padding:12px 13px 11px;background:#fff;min-width:0}
+  .tp-bundle[hidden]{display:none}
+  .tp-b-head{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+  .tp-b-head b{font-size:13px;font-weight:850;letter-spacing:-0.02em;color:var(--navy)}
+  .tp-b-head span{font-size:10.8px;color:var(--ink-3)}
+  .tp-b-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+  .tp-b-card{position:relative;display:flex;flex-direction:column;gap:1px;border:1px solid var(--line);border-radius:11px;
+    padding:9px 10px 8px;background:#fff;min-width:0;transition:.15s}
+  .tp-b-card:hover,.tp-b-card:focus-visible{border-color:var(--blue-line);background:var(--blue-soft);outline:none}
+  .tp-b-k{font-size:9.4px;font-weight:850;letter-spacing:.06em;color:var(--blue-600)}
+  .tp-b-card b{font-size:12px;font-weight:800;color:var(--ink);line-height:1.35;display:-webkit-box;
+    -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .tp-b-n{font-size:10.4px;line-height:1.4;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tp-b-go{font-size:10px;font-weight:850;color:var(--blue-700);margin-top:3px}
+  .tp-b-note{margin:8px 0 0;font-size:10.3px;line-height:1.55;color:var(--ink-3)}
+  .tp-b-chips{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;margin-bottom:9px}
+  .tp-b-chips::-webkit-scrollbar{display:none}
+  .tp-b-chip{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;
+    font-size:11.4px;font-weight:800;color:var(--ink-2);cursor:pointer;transition:.15s}
+  .tp-b-chip:hover{border-color:#C9D6E4;color:var(--navy)}
+  .tp-b-chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .tp-bundle--passes .tp-b-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tp-bundle--checklist{margin:0 0 18px}
+  @media (max-width:760px){
+    .tp-b-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .tp-bundle--passes .tp-b-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .tp-b-card{padding:8px 9px 7px}
+    .tp-b-card b{font-size:11.6px}
+    /* 카드가 홀수로 끝나면 마지막 카드는 한 줄을 다 쓴다(빈 칸 방지) */
+    .tp-b-grid > .tp-b-card:last-child:nth-child(odd){grid-column:1 / -1}
+  }
 </style>
 <noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}</style></noscript>
 </head>
@@ -2698,6 +2731,7 @@
           </button>
           <span class="pl-share-note">카톡·메모장에 붙여넣으면 항목별 1인/총액과 이 견적 링크가 함께 들어갑니다.</span>
         </div>
+        <div class="tp-bundle" id="plBundle" data-tp-bundle="planner" hidden></div>
         <noscript><p class="pl-disclaimer">조합 계산은 자바스크립트로 동작합니다. 스크립트가 꺼져 있으면 아래 지역·투어 목록에서 상품을 직접 비교해 주세요.</p></noscript>
         <p class="pl-disclaimer">표시된 총액은 <b>상품가 + 상세페이지에 적힌 필수 현장 추가금 + 붙인 eSIM·패스 가격</b>입니다. 불포함 식사·선택관광·쇼핑처럼 개인차가 큰 지출은 넣지 않았습니다. 가격은 2026.11.20 각 상세페이지 기준 최저가이고, 날짜·좌석·옵션에 따라 실제 결제액은 달라집니다.</p>
       </div>
@@ -3094,6 +3128,7 @@
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
 <!-- @TP_DATA -->
+<!-- @TP_BUNDLES -->
 <!-- @SEARCH_INDEX -->
 <script>
 const state = { scope: 'all', type: 'all', notip: false, korean: false, noshop: false, premium: false, privateOnly: false, sort: 'recommend', query: '' };
@@ -3672,6 +3707,9 @@ if (searchForm) {
       '</div>' +
       '<p class="plan-note">' + esc(notes.join(' · ')) + '</p>' +
     '</div>';
+    /* v34: 이 조합의 도시를 표시하고 「한 번에 예약·준비 묶음」을 다시 그린다 */
+    body.setAttribute('data-tp-city', t.cid);
+    if (window.tpBundle) window.tpBundle.setCity(t.cid, t.ci);
   }
 
   function renderAll() {
@@ -4381,5 +4419,6 @@ applyFilters();
 })();
 </script>
 <script src="assets/trip-save.js?v=26" defer></script>
+<script src="assets/tp-v34.js?v=34" defer></script>
 </body>
 </html>

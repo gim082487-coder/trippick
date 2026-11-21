@@ -4,8 +4,8 @@
   "aid": "11407530",
   "sid": "336341874",
   "site": "https://trippick.pages.dev",
-  "checked": "2026-11-20",
-  "method": "파트너스 어필리에이트 링크 생성기(한국어 링크 · Hotels page / Flights page)에서 도시·노선별로 발급. 입장권·공항픽업·렌터카 16종은 2026-11-18 Affiliate Link > Create links(Attractions & Tours / Custom link)로 별도 발급. v20: 후쿠오카·타이베이 항공권 링크 2건을 파트너스 링크 생성기('항공권 페이지'/맞춤 URL)로 새로 발급(trip_sub3 D21333748).",
+  "checked": "2026-11-21",
+  "method": "파트너스 어필리에이트 링크 생성기(한국어 링크 · Hotels page / Flights page)에서 도시·노선별로 발급. 입장권·공항픽업·렌터카 16종은 2026-11-18 Affiliate Link > Create links(Attractions & Tours / Custom link)로 별도 발급. v20: 후쿠오카·타이베이 항공권 링크 2건을 파트너스 링크 생성기('항공권 페이지'/맞춤 URL)로 새로 발급(trip_sub3 D21333748). v34: 유럽 4도시(파리 CDG·런던 LHR·로마 FCO·바르셀로나 BCN) 항공권 4건·공항픽업 4건·호텔 목록 4건·투어 목록 4건을 기존 검증 패턴(Allianceid 11407530/SID 336341874, trip_sub3 D21275837·D21285812)으로 추가하고 관리 브라우저로 제목·도시·요금을 확인했다(파트너스 콘솔은 이 환경에서 접속 차단).",
   "rate": "호텔 5%(예약 0~199건) → 6%(200~999) → 7%(1000+), 국제선 항공 0.5%(0~299) → 0.8%(300+), 투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%"
  },
  "hotels": [
@@ -178,6 +178,50 @@
    "tags": [
     "family"
    ]
+  },
+  {
+   "city": "파리",
+   "flag": "fr",
+   "sub": "에펠탑·루브르·몽파르나스 · 파리 3박",
+   "note": "파리 시내·공항 이동 기준",
+   "url": "https://kr.trip.com/hotels/list?city=192&display=%ED%8C%8C%EB%A6%AC&optionId=192&optionType=City&optionName=%ED%8C%8C%EB%A6%AC&Allianceid=11407530&SID=336341874&trip_sub1=hotel_paris&trip_sub3=D21275837",
+   "cityId": "paris",
+   "tags": [
+    "europe"
+   ]
+  },
+  {
+   "city": "런던",
+   "flag": "gb",
+   "sub": "블룸즈버리·빅토리아 · 히드로 15분",
+   "note": "런던 시내·공항 이동 기준",
+   "url": "https://kr.trip.com/hotels/list?city=338&display=%EB%9F%B0%EB%8D%98&optionId=338&optionType=City&optionName=%EB%9F%B0%EB%8D%98&Allianceid=11407530&SID=336341874&trip_sub1=hotel_london&trip_sub3=D21275837",
+   "cityId": "london",
+   "tags": [
+    "europe"
+   ]
+  },
+  {
+   "city": "로마",
+   "flag": "it",
+   "sub": "테르미니·바티칸 · 피우미치노 32분",
+   "note": "로마 시내·공항 이동 기준",
+   "url": "https://kr.trip.com/hotels/list?city=343&display=%EB%A1%9C%EB%A7%88&optionId=343&optionType=City&optionName=%EB%A1%9C%EB%A7%88&Allianceid=11407530&SID=336341874&trip_sub1=hotel_rome&trip_sub3=D21275837",
+   "cityId": "rome",
+   "tags": [
+    "europe"
+   ]
+  },
+  {
+   "city": "바르셀로나",
+   "flag": "es",
+   "sub": "카탈루냐 광장·사그라다 · 엘프라트 20분",
+   "note": "바르셀로나 시내·공항 이동 기준",
+   "url": "https://kr.trip.com/hotels/list?city=40795&display=%EB%B0%94%EB%A5%B4%EC%85%80%EB%A1%9C%EB%82%98&optionId=40795&optionType=City&optionName=%EB%B0%94%EB%A5%B4%EC%85%80%EB%A1%9C%EB%82%98&Allianceid=11407530&SID=336341874&trip_sub1=hotel_barcelona&trip_sub3=D21275837",
+   "cityId": "barcelona",
+   "tags": [
+    "europe"
+   ]
   }
  ],
  "flights": [
@@ -243,6 +287,42 @@
    "url": "https://kr.trip.com/flights/Seoul-to-Jeju%20City/tickets-SEL-CJU?flighttype=S&dcity=SEL&acity=CJU&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_cju&trip_sub3=D21275837",
    "tags": [
     "flight"
+   ]
+  },
+  {
+   "route": "서울 → 파리",
+   "sub": "샤를드골(CDG) · 직항 14시간 30분",
+   "url": "https://kr.trip.com/flights/Seoul-to-Paris/tickets-SEL-PAR?flighttype=S&dcity=SEL&acity=PAR&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_par&trip_sub3=D21275837",
+   "tags": [
+    "flight",
+    "europe"
+   ]
+  },
+  {
+   "route": "서울 → 런던",
+   "sub": "히스로(LHR) · 직항 14시간 40분",
+   "url": "https://kr.trip.com/flights/Seoul-to-London/tickets-SEL-LON?flighttype=S&dcity=SEL&acity=LON&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_lon&trip_sub3=D21275837",
+   "tags": [
+    "flight",
+    "europe"
+   ]
+  },
+  {
+   "route": "서울 → 로마",
+   "sub": "피우미치노(FCO) · 직항 13시간 30분",
+   "url": "https://kr.trip.com/flights/Seoul-to-Rome/tickets-SEL-ROM?flighttype=S&dcity=SEL&acity=ROM&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_rom&trip_sub3=D21275837",
+   "tags": [
+    "flight",
+    "europe"
+   ]
+  },
+  {
+   "route": "서울 → 바르셀로나",
+   "sub": "엘프라트(BCN) · 경유 16시간~",
+   "url": "https://kr.trip.com/flights/Seoul-to-Barcelona/tickets-SEL-BCN?flighttype=S&dcity=SEL&acity=BCN&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_bcn&trip_sub3=D21275837",
+   "tags": [
+    "flight",
+    "europe"
    ]
   }
  ],
@@ -368,6 +448,62 @@
    "summary": "아쿠아플라넷 제주, 에코랜드, 스누피가든, 제주난타 등 국내 제주 입장권·투어 목록. 페이지 제목 '제주시 최저가 예약 | 트립닷컴'.",
    "url": "https://kr.trip.com/things-to-do/list?searchkey=737&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_jeju&trip_sub3=D21285812",
    "status": "verified_200_ko"
+  },
+  {
+   "id": "ticket_paris",
+   "city": "파리",
+   "cityId": "paris",
+   "country": "프랑스",
+   "flag": "fr",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "파리 입장권·액티비티",
+   "highlight": "루브르·오르세·센강 크루즈·베르사유",
+   "summary": "트립닷컴 '파리 액티비티' 목록(2026-11-21 브라우저 확인). 입장권·가이드투어·패스를 같은 페이지에서 비교한다.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=192&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_paris&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "ticket_london",
+   "city": "런던",
+   "cityId": "london",
+   "country": "영국",
+   "flag": "gb",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "런던 입장권·액티비티",
+   "highlight": "대영박물관·런던아이·해리포터 스튜디오",
+   "summary": "트립닷컴 '런던 액티비티' 목록(2026-11-21 브라우저 확인). 입장권·가이드투어·패스를 같은 페이지에서 비교한다.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=338&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_london&trip_sub3=D21285812",
+   "status": "verified_pattern_200_ko"
+  },
+  {
+   "id": "ticket_rome",
+   "city": "로마",
+   "cityId": "rome",
+   "country": "이탈리아",
+   "flag": "it",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "로마 입장권·액티비티",
+   "highlight": "콜로세움·바티칸·보르게세",
+   "summary": "트립닷컴 '로마 액티비티' 목록(2026-11-21 브라우저 확인). 입장권·가이드투어·패스를 같은 페이지에서 비교한다.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=343&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_rome&trip_sub3=D21285812",
+   "status": "verified_pattern_200_ko"
+  },
+  {
+   "id": "ticket_barcelona",
+   "city": "바르셀로나",
+   "cityId": "barcelona",
+   "country": "스페인",
+   "flag": "es",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "바르셀로나 입장권·액티비티",
+   "highlight": "사그라다 파밀리아·구엘공원·카사바트요",
+   "summary": "트립닷컴 '바르셀로나 액티비티' 목록(2026-11-21 브라우저 확인). 입장권·가이드투어·패스를 같은 페이지에서 비교한다.",
+   "url": "https://kr.trip.com/things-to-do/list?searchkey=40795&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_barcelona&trip_sub3=D21285812",
+   "status": "verified_pattern_200_ko"
   }
  ],
  "transfers": [
@@ -481,6 +617,62 @@
    "highlight": "택시 3인승 31,500원~",
    "summary": "택시 3인승 31,500원~. 제주공항-제주시내·서귀포 구간 국내 공항픽업.",
    "url": "https://kr.trip.com/airport-transfers/airport-cju/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cju&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_cdg",
+   "city": "파리",
+   "cityId": "paris",
+   "country": "프랑스",
+   "flag": "fr",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "샤를드골공항(CDG) 공항픽업",
+   "highlight": "스탠다드 62,154원~ (미니밴 83,114원) · 차종별 예약",
+   "summary": "스탠다드 62,154원~ (미니밴 83,114원). 공항→파리 시내 호텔 구간, 차종(스탠다드·미니밴·프리미엄)별 요금과 무료 대기 조건을 같은 페이지에서 비교한다.",
+   "url": "https://kr.trip.com/airport-transfers/airport-cdg/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cdg&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_lhr",
+   "city": "런던",
+   "cityId": "london",
+   "country": "영국",
+   "flag": "gb",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "히스로공항(LHR) 공항픽업",
+   "highlight": "스탠다드 71,041원~ (중형 87,044원) · 차종별 예약",
+   "summary": "스탠다드 71,041원~ (중형 87,044원). 공항→런던 시내 호텔 구간, 차종(스탠다드·미니밴·프리미엄)별 요금과 무료 대기 조건을 같은 페이지에서 비교한다.",
+   "url": "https://kr.trip.com/airport-transfers/airport-lhr/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_lhr&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_fco",
+   "city": "로마",
+   "cityId": "rome",
+   "country": "이탈리아",
+   "flag": "it",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "피우미치노공항(FCO) 공항픽업",
+   "highlight": "스탠다드 75,428원~ (프리미엄 85,453원) · 차종별 예약",
+   "summary": "스탠다드 75,428원~ (프리미엄 85,453원). 공항→로마 시내 호텔 구간, 차종(스탠다드·미니밴·프리미엄)별 요금과 무료 대기 조건을 같은 페이지에서 비교한다.",
+   "url": "https://kr.trip.com/airport-transfers/airport-fco/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_fco&trip_sub3=D21285812",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_bcn",
+   "city": "바르셀로나",
+   "cityId": "barcelona",
+   "country": "스페인",
+   "flag": "es",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "엘프라트공항(BCN) 공항픽업",
+   "highlight": "스탠다드 55,448원~ (미니 55,293원) · 차종별 예약",
+   "summary": "스탠다드 55,448원~ (미니 55,293원). 공항→바르셀로나 시내 호텔 구간, 차종(스탠다드·미니밴·프리미엄)별 요금과 무료 대기 조건을 같은 페이지에서 비교한다.",
+   "url": "https://kr.trip.com/airport-transfers/airport-bcn/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_bcn&trip_sub3=D21285812",
    "status": "verified_200_ko"
   }
  ],

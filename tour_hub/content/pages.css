@@ -1148,10 +1148,13 @@
 .sc-theme.t-villa{background:#F1EDFA;color:#5A3E9C}
 .sc-pt{display:inline-flex;align-items:center;font-size:10.4px;font-weight:700;padding:3px 7px;border-radius:6px;
   border:1px solid var(--line);color:var(--ink-3);white-space:nowrap}
-.sc-top .sc-flag{display:inline-flex;align-items:center;font-style:normal;font-size:9.8px;font-weight:800;
-  padding:1px 5px;border-radius:4px;background:#EEF1F5;color:var(--ink-3);letter-spacing:-.01em}
+/* v34: .sc-top i(구분 점) 규칙이 배지(<i class="sc-flag">)의 폭·높이를 3px로 줄여 국기와 글자가 겹쳤다.
+   배지는 내용 폭만큼 늘어나게 되돌린다. */
+.sc-top .sc-flag{display:inline-flex;flex:0 0 auto;align-items:center;gap:4px;font-style:normal;font-size:10px;
+  font-weight:800;padding:2px 6px;border-radius:4px;background:#EEF1F5;color:var(--ink-3);letter-spacing:-.01em;
+  white-space:nowrap;line-height:1.35;width:auto;height:auto;min-width:0}
 .sc-top .sc-flag.kr{background:#FFF1E8;color:#B4571C}
-.sc-top .sc-flag .sc-fl{display:inline-flex;align-items:center;margin-right:3px}
+.sc-top .sc-flag .sc-fl{display:inline-flex;align-items:center;flex:0 0 auto}
 
 .th-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:12px 0 0}
 @media (max-width:1024px){ .th-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }

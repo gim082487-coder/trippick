@@ -1870,6 +1870,15 @@ def render_tp_data(data: dict, essentials: dict, courses: dict) -> str:
     return f'<script type="application/json" id="tpData">{raw}</script>'
 
 
+def render_bundles_json() -> str:
+    """v34 — data/bundles.json(도시별 제휴 묶음)을 JSON 스크립트로 심는다."""
+    path = DATA / "bundles.json"
+    if not path.exists():
+        return ""
+    raw = path.read_text(encoding="utf-8").replace("</", "<\\/")
+    return f'<script type="application/json" id="tpBundles">{raw}</script>'
+
+
 def render_plans_json(plans: dict, notes: dict) -> str:
     raw = json.dumps({"plans": plans, "notes": notes}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     return f'<script type="application/json" id="plansData">{raw}</script>'
@@ -2328,6 +2337,8 @@ def main() -> int:
     html = replace_block(html, "<!-- @PLAN_BODY -->", render_planner_default(plans, tours_by_id, ess_by_id, courses_by_city))
     html = replace_block(html, "<!-- @FAQ -->", render_faq(FAQ["items"], faq_tokens(data, courses, essentials)))
     html = replace_block(html, "<!-- @TP_DATA -->", render_tp_data(data, essentials, courses) + "\n" + render_plans_json(plans, plan_notes))
+    # v34: 도시별 「한 번에 예약·준비 묶음」 링크 표(data/bundles.json)를 홈에 심는다
+    html = replace_block(html, "<!-- @TP_BUNDLES -->", render_bundles_json())
     html = replace_block(html, "<!-- @SEARCH_INDEX -->", render_search_index(data, guides, HUB_LIST))
     html = replace_block(html, "<!-- @JSONLD -->", render_jsonld(data, courses, essentials))
     for marker, slot_html in render_ad_slots().items():

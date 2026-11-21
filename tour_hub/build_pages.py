@@ -49,8 +49,9 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 21)
-CSS_V = "32"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "34"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
+JS_V34 = "34"  # assets/tp-v34.js (v34 제휴 클릭 추적·묶음 CTA) 캐시 버전
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
 # v18: 메뉴 9개 + '도구' 드롭다운 1개. 1280px에서 한 줄에 들어오도록 계산기·표 페이지는 드롭다운으로 묶는다.
@@ -354,6 +355,14 @@ def clean_site_urls(text: str, site: str) -> str:
     )
 
 
+def bundles_payload() -> str:
+    """v34 — data/bundles.json(도시별 제휴 묶음)을 페이지에 심을 JSON 문자열로."""
+    path = DATA / "bundles.json"
+    if not path.exists():
+        return "{}"
+    return path.read_text(encoding="utf-8").replace("</", "<\\/")
+
+
 def page(
     out_root: Path,
     rel_path: str,
@@ -426,6 +435,8 @@ def page(
 </main>
 {footer_html(up)}
 <script src="{up}assets/trip-save.js?v={JS_V}" defer></script>
+{f'<script type="application/json" id="tpBundles">{bundles_payload()}</script>' if "data-tp-bundle" in body else ''}
+<script src="{up}assets/tp-v34.js?v={JS_V34}" defer></script>
 </body>
 </html>
 """
@@ -2966,7 +2977,7 @@ def stays_card(h: dict, region: dict, group: str | None = None) -> str:
     iso = STAY_COUNTRY_ISO.get(region.get("id", ""))
     flag_ic = f'<span class="sc-fl">{B.flag_svg(iso, 13, 9.1)}</span>' if (scope != "kr" and iso) else ""
     grp = group or stay_group_of(region)
-    return f"""    <article class="scard" data-region="{h['region']}" data-group="{grp}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}">
+    return f"""    <article class="scard" data-region="{h['region']}" data-tp-city="{h['region']}" data-group="{grp}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}">
       <a class="sc-thumb" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored" aria-label="{esc(h['name'])} 트립닷컴에서 보기">
         <img src="{esc(h['img'])}" alt="{esc(region['name'])} {esc(h['name'])} 숙소 사진" width="720" height="480" loading="lazy" />
         <span class="sc-score{_stay_score_class(h['score'])}">{h['score']:.1f}</span>
@@ -3959,6 +3970,8 @@ def checklist_page(out_root: Path, base: str) -> Path:
 {B.dday_timeline_html(ess_by_id)}
     </div>
 
+    <div class="tp-bundle tp-bundle--checklist" data-tp-bundle="checklist" data-tp-chips="osaka,tokyo,fukuoka,danang,bangkok,taipei,paris,london,rome,barcelona" hidden></div>
+
     <h2 class="sr-h2">단계별로 쓰는 트립픽 도구</h2>
     <p class="sr-dek">각 단계에서 바로 열어 확인할 수 있는 페이지입니다. 가격·규정은 2026년 11월 20일 확인 기준입니다.</p>
     <div class="ddtools">{tool_cards}</div>
@@ -4049,6 +4062,10 @@ def write_assets(style: str, out_root: Path):
     js_src = CONTENT / "v25.js"
     if js_src.exists():
         shutil.copy2(js_src, out_root / "assets" / "trip-save.js")
+    # v34: 제휴 클릭 추적 + 「한 번에 예약·준비 묶음」 스크립트
+    js34 = CONTENT / "v34.js"
+    if js34.exists():
+        shutil.copy2(js34, out_root / "assets" / "tp-v34.js")
     # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
     hdr = ROOT / "_headers"
     if hdr.exists():

@@ -1,5 +1,5 @@
 {
- "version": "v32",
+ "version": "v34",
  "updated": "2026-11-21",
  "title": "계절·월별 여행지 캘린더 19개 도시 × 12개월",
  "basis": {
@@ -4131,17 +4131,14 @@
     "stays": "paris"
    },
    "affiliate": {
-    "flight": false,
-    "hotel": false,
-    "ticket": false,
-    "transfer": false,
+    "flight": true,
+    "hotel": true,
+    "ticket": true,
+    "transfer": true,
     "esim": false
    },
    "affiliateTodo": [
-    "flight: SEL-CDG",
-    "hotel: 파리",
-    "ticket: 루브르·베르사유 입장권",
-    "esim: 유럽"
+    "esim: 유럽 eSIM 링크(트립닷컴 유럽 eSIM 상품 확인 필요)"
    ]
   },
   {
@@ -4328,17 +4325,14 @@
     "stays": "london"
    },
    "affiliate": {
-    "flight": false,
-    "hotel": false,
-    "ticket": false,
-    "transfer": false,
+    "flight": true,
+    "hotel": true,
+    "ticket": true,
+    "transfer": true,
     "esim": false
    },
    "affiliateTodo": [
-    "flight: SEL-LON",
-    "hotel: 런던",
-    "ticket: 런던패스·왕실 관광",
-    "esim: 유럽"
+    "esim: 유럽 eSIM 링크(트립닷컴 유럽 eSIM 상품 확인 필요)"
    ]
   },
   {
@@ -4525,17 +4519,14 @@
     "stays": "rome"
    },
    "affiliate": {
-    "flight": false,
-    "hotel": false,
-    "ticket": false,
-    "transfer": false,
+    "flight": true,
+    "hotel": true,
+    "ticket": true,
+    "transfer": true,
     "esim": false
    },
    "affiliateTodo": [
-    "flight: SEL-ROM",
-    "hotel: 로마",
-    "ticket: 콜로세움·바티칸 입장권",
-    "esim: 유럽"
+    "esim: 유럽 eSIM 링크(트립닷컴 유럽 eSIM 상품 확인 필요)"
    ]
   },
   {
@@ -4723,17 +4714,14 @@
     "stays": "barcelona"
    },
    "affiliate": {
-    "flight": false,
-    "hotel": false,
-    "ticket": false,
-    "transfer": false,
+    "flight": true,
+    "hotel": true,
+    "ticket": true,
+    "transfer": true,
     "esim": false
    },
    "affiliateTodo": [
-    "flight: SEL-BCN",
-    "hotel: 바르셀로나",
-    "ticket: 사그라다 파밀리아",
-    "esim: 유럽"
+    "esim: 유럽 eSIM 링크(트립닷컴 유럽 eSIM 상품 확인 필요)"
    ]
   }
  ],
