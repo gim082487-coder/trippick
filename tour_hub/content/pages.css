@@ -418,7 +418,9 @@
 .gacts-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:13px}
 .gacts-h b{font-size:16px;font-weight:850;letter-spacing:-0.03em;color:var(--ink)}
 .gacts-h span{font-size:12px;line-height:1.5;color:var(--ink-3)}
-.gacts-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+/* v35: 카드가 3장에서 4장(항공권·공항픽업·착숙소·eSIM)으로 늘어 폭에 맞춰 자동 배치한다.
+   — 900px 이상 4열, 900px 이하는 아래 미디어 규칙이 2열, 560px 이하는 1열 */
+.gacts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:11px}
 .gact{display:flex;flex-direction:column;gap:3px;padding:14px 15px;background:#fff;border:1px solid var(--line);border-radius:14px;
   transition:transform .16s var(--ease),box-shadow .16s,border-color .16s}
 .gact:hover{border-color:var(--blue-line);box-shadow:var(--sh-2);transform:translateY(-2px)}

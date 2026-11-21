@@ -1,5 +1,5 @@
 {
- "version": "v34",
+ "version": "v35",
  "checked": "2026-11-21",
  "note": "각 링크는 data/tripcom.json·data/stays.json·data/essentials.json 에 실제로 있는 제휴 링크만 옮긴 것입니다.",
  "cities": {
@@ -543,6 +543,12 @@
      "url": "/stays#paris",
      "external": false
     },
+    "esim": {
+     "label": "파리 유심·eSIM",
+     "note": "109원~ · 도착 전 설치",
+     "url": "https://kr.trip.com/things-to-do/experiences/paris-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_paris&trip_sub3=D21303312",
+     "external": true
+    },
     "goods": {
      "label": "유럽 멀티어댑터",
      "note": "12,900원 · 쿠팡",
@@ -583,6 +589,12 @@
      "note": "평점·1박 최저가",
      "url": "/stays#london",
      "external": false
+    },
+    "esim": {
+     "label": "런던 유심·eSIM",
+     "note": "109원~ · 도착 전 설치",
+     "url": "https://kr.trip.com/things-to-do/experiences/london-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_london&trip_sub3=D21303312",
+     "external": true
     },
     "goods": {
      "label": "유럽 멀티어댑터",
@@ -625,6 +637,12 @@
      "url": "/stays#rome",
      "external": false
     },
+    "esim": {
+     "label": "로마 유심·eSIM",
+     "note": "109원~ · 도착 전 설치",
+     "url": "https://kr.trip.com/things-to-do/experiences/rome-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_rome&trip_sub3=D21303312",
+     "external": true
+    },
     "goods": {
      "label": "유럽 멀티어댑터",
      "note": "12,900원 · 쿠팡",
@@ -665,6 +683,12 @@
      "note": "평점·1박 최저가",
      "url": "/stays#barcelona",
      "external": false
+    },
+    "esim": {
+     "label": "바르셀로나 유심·eSIM",
+     "note": "109원~ · 도착 전 설치",
+     "url": "https://kr.trip.com/things-to-do/experiences/barcelona-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_barcelona&trip_sub3=D21303312",
+     "external": true
     },
     "goods": {
      "label": "유럽 멀티어댑터",

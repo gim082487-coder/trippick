@@ -1,12 +1,24 @@
-/* 트립픽 v34 — 제휴 클릭 추적 + 「한 번에 예약·준비 묶음」 CTA
+/* 트립픽 v35 — 제휴 클릭 추적(GA4 연동) + 「한 번에 예약·준비 묶음」 CTA
    ------------------------------------------------------------------
-   assets/tp-v34.js 로 복사됩니다(빌드가 자동 복사).
-   1) 제휴 클릭 추적: kr.trip.com · link.coupang.com · naver.me · klook.com 링크 클릭을
-      localStorage(tp_clicks_v1)에 페이지·섹션·제휴사·상품·시각으로 남긴다.
-      window.gtag / dataLayer 가 붙으면 affiliate_click 이벤트를 자동으로 같이 보낸다.
-   2) 묶음 CTA: <div data-tp-bundle="planner|checklist|kit|exchange"> 자리에
-      도시에 맞는 항공·숙소·투어·공항픽업·eSIM·필수품 바로가기를 그린다.
-   서버로 보내는 값은 없다. */
+   content/v35.js → 빌드가 assets/tp-v35.js 로 복사합니다(캐시 버전 ?v=35).
+
+   1) 제휴 클릭 추적
+      · kr.trip.com(트립닷컴) · link.coupang.com · naver.me · klook.com 클릭을 문서 캡처 단계에서 잡아
+        localStorage 'tp_clicks_v1' 에 페이지·섹션·제휴사·상품명·도시·trip_sub3·시각을 남깁니다
+        (최근 40건 + 제휴사/페이지/일자 카운터). 서버로 보내는 값은 없습니다.
+      · window.tpTrack.read() 로 조회, window.tpTrack.reset() 으로 초기화, window.tpTrack.record(url, label) 로
+        다른 스크립트(계산기 등)가 직접 한 건을 남길 수 있습니다. v34 의 저장 키·구조는 그대로입니다.
+
+   2) GA4 는 data/analytics.json 의 ga4.measurementId 한 곳으로 켭니다.
+      · 그 값이 채워지면 build.py·build_pages.py 가 전 페이지 <head> 에 gtag.js 로더와 config 를 넣습니다.
+      · 이 스크립트는 window.gtag 이 있으면 같은 클릭을 'affiliate_click' 이벤트로 한 번만 보냅니다
+        (gtag 이 없고 GTM dataLayer 만 있으면 dataLayer 로 한 번만 보냅니다 — v34 는 둘 다에 보내
+        GTM+GA4 를 같이 쓰는 사이트에서 이벤트가 두 번 잡혔습니다).
+      · 이벤트 파라미터: partner · page_path · section · link_label · city · link_url
+
+   3) 묶음 CTA: <div data-tp-bundle="planner|checklist|kit|exchange"> 자리에
+      도시에 맞는 항공·숙소·투어·공항픽업·eSIM·필수품 바로가기를 그립니다.
+*/
 (function () {
   'use strict';
 
@@ -35,12 +47,13 @@
       if (v && typeof v === 'object') {
         v.byPartner = v.byPartner || {};
         v.byPage = v.byPage || {};
+        v.byDay = v.byDay || {};
         v.recent = v.recent || [];
         v.total = v.total || 0;
         return v;
       }
     } catch (e) {}
-    return { v: 1, total: 0, byPartner: {}, byPage: {}, recent: [] };
+    return { v: 1, total: 0, byPartner: {}, byPage: {}, byDay: {}, recent: [] };
   }
 
   function saveClicks(d) {
@@ -51,9 +64,14 @@
     var n = a;
     while (n && n !== document.body) {
       if (n.getAttribute && n.getAttribute('data-tp-bundle')) {
-        return 'bundle:' + n.getAttribute('data-tp-bundle') + (n.getAttribute('data-tp-city') ? ':' + n.getAttribute('data-tp-city') : '');
+        return 'bundle:' + n.getAttribute('data-tp-bundle') +
+          (n.getAttribute('data-tp-city') ? ':' + n.getAttribute('data-tp-city') : '');
       }
       if (n.id) return n.id;
+      if (n.className && typeof n.className === 'string') {
+        var m = /(?:^|\s)(gacts|gnext|sc-links|tc-acts|esim-cmp|adslot)(?:\s|$)/.exec(n.className);
+        if (m) return m[1];
+      }
       n = n.parentElement;
     }
     return '';
@@ -63,6 +81,38 @@
     var d = new Date(ts);
     var m = d.getMonth() + 1, day = d.getDate();
     return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day;
+  }
+
+  function bundleCityOf(a) {
+    var n = a.parentElement;
+    while (n && n !== document.body) {
+      if (n.getAttribute && n.getAttribute('data-tp-city')) return n.getAttribute('data-tp-city');
+      n = n.parentElement;
+    }
+    return '';
+  }
+
+  /* GA4 / GTM — 둘 다 있으면 gtag 한 번만 쓴다(중복 집계 방지) */
+  function sendEvent(rec) {
+    var payload = {
+      partner: rec.partner, page_path: rec.page, section: rec.section,
+      link_label: rec.label, city: rec.city || '(none)', link_url: rec.href
+    };
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'affiliate_click', payload);
+        return 'ga4';
+      }
+      if (Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({
+          event: 'affiliate_click', affiliate_partner: rec.partner, affiliate_page: rec.page,
+          affiliate_section: rec.section, affiliate_label: rec.label,
+          affiliate_city: rec.city || '', affiliate_url: rec.href
+        });
+        return 'gtm';
+      }
+    } catch (e) {}
+    return '';
   }
 
   function recordClick(a, url) {
@@ -84,43 +134,19 @@
     };
     var q = /[?&]trip_sub3=([^&]+)/.exec(url);
     if (q) rec.sub3 = q[1];
+    rec.sent = sendEvent(rec);
+
     var d = loadClicks();
     d.total += 1;
     d.byPartner[partner] = (d.byPartner[partner] || 0) + 1;
     d.byPage[rec.page] = (d.byPage[rec.page] || 0) + 1;
-    d.byDay = d.byDay || {};
     var k = dayKey(ts);
     d.byDay[k] = (d.byDay[k] || 0) + 1;
     d.recent.unshift(rec);
     if (d.recent.length > MAX_RECENT) d.recent.length = MAX_RECENT;
     d.last = rec;
     saveClicks(d);
-    /* GA4 / GTM 훅 — 스크립트가 붙어 있으면 같은 클릭을 이벤트로도 보낸다 */
-    try {
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'affiliate_click', {
-          partner: rec.partner, page_path: rec.page, section: rec.section,
-          link_label: rec.label, city: rec.city || '(none)', link_url: rec.href
-        });
-      }
-      if (Array.isArray(window.dataLayer)) {
-        window.dataLayer.push({
-          event: 'affiliate_click', affiliate_partner: rec.partner, affiliate_page: rec.page,
-          affiliate_section: rec.section, affiliate_label: rec.label,
-          affiliate_city: rec.city || '', affiliate_url: rec.href
-        });
-      }
-    } catch (e) {}
     return rec;
-  }
-
-  function bundleCityOf(a) {
-    var n = a.parentElement;
-    while (n && n !== document.body) {
-      if (n.getAttribute && n.getAttribute('data-tp-city')) return n.getAttribute('data-tp-city');
-      n = n.parentElement;
-    }
-    return '';
   }
 
   document.addEventListener('click', function (e) {
@@ -131,13 +157,15 @@
     recordClick(a, href);
   }, true);
 
-  /* 다른 스크립트(계산기 등)가 직접 부를 수 있는 창구 */
+  /* 다른 스크립트(계산기·비교표 등)가 직접 부를 수 있는 창구 */
   window.tpTrack = {
     record: function (url, label, kind) {
       return recordClick({ getAttribute: function () { return null; }, textContent: label || '' }, url);
     },
     read: loadClicks,
-    reset: function () { try { localStorage.removeItem(CLICK_KEY); } catch (e) {} }
+    reset: function () { try { localStorage.removeItem(CLICK_KEY); } catch (e) {} },
+    /* GA4 설정이 켜졌는지 화면에서 바로 확인할 때 쓴다 */
+    isGa4: function () { return typeof window.gtag === 'function'; }
   };
 
   /* ======================= 2. 묶음 CTA ======================= */
@@ -228,7 +256,10 @@
       if (!city && name) {
         /* 별칭에 없는 도시는 이름으로 다시 찾는다(예: '오사카·교토') */
         Object.keys(CITIES).some(function (key) {
-          if (CITIES[key].name.indexOf(name.split('·')[0]) === 0) { city = { id: key, name: CITIES[key].name, items: CITIES[key].items }; return true; }
+          if (CITIES[key].name.indexOf(name.split('·')[0]) === 0) {
+            city = { id: key, name: CITIES[key].name, items: CITIES[key].items };
+            return true;
+          }
           return false;
         });
       }

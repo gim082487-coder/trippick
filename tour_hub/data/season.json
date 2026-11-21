@@ -1,5 +1,5 @@
 {
- "version": "v34",
+ "version": "v35",
  "updated": "2026-11-21",
  "title": "계절·월별 여행지 캘린더 19개 도시 × 12개월",
  "basis": {
@@ -4135,11 +4135,9 @@
     "hotel": true,
     "ticket": true,
     "transfer": true,
-    "esim": false
+    "esim": true
    },
-   "affiliateTodo": [
-    "esim: 유럽 eSIM 링크(트립닷컴 유럽 eSIM 상품 확인 필요)"
-   ]
+   "affiliateTodo": []
   },
   {
    "id": "london",
@@ -4329,11 +4327,9 @@
     "hotel": true,
     "ticket": true,
     "transfer": true,
-    "esim": false
+    "esim": true
    },
-   "affiliateTodo": [
-    "esim: 유럽 eSIM 링크(트립닷컴 유럽 eSIM 상품 확인 필요)"
-   ]
+   "affiliateTodo": []
   },
   {
    "id": "rome",
@@ -4523,11 +4519,9 @@
     "hotel": true,
     "ticket": true,
     "transfer": true,
-    "esim": false
+    "esim": true
    },
-   "affiliateTodo": [
-    "esim: 유럽 eSIM 링크(트립닷컴 유럽 eSIM 상품 확인 필요)"
-   ]
+   "affiliateTodo": []
   },
   {
    "id": "barcelona",
@@ -4718,11 +4712,9 @@
     "hotel": true,
     "ticket": true,
     "transfer": true,
-    "esim": false
+    "esim": true
    },
-   "affiliateTodo": [
-    "esim: 유럽 eSIM 링크(트립닷컴 유럽 eSIM 상품 확인 필요)"
-   ]
+   "affiliateTodo": []
   }
  ],
  "ui": {

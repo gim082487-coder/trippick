@@ -49,9 +49,28 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 21)
-CSS_V = "34"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "35"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
-JS_V34 = "34"  # assets/tp-v34.js (v34 제휴 클릭 추적·묶음 CTA) 캐시 버전
+JS_V35 = "35"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
+
+
+def ga4_head() -> str:
+    """GA4 로더 — data/analytics.json 의 ga4.measurementId 한 곳만 채우면 전 페이지에 붙는다.
+
+    비어 있으면(기본값) 아무 스크립트도 넣지 않는다. 홈은 build.py 가 같은 파일을 읽어
+    template.html 의 <!-- @GA4 --> 자리에 같은 문자열을 넣으므로, 두 빌드가 같은 설정을 쓴다.
+    """
+    try:
+        cfg = json.loads((DATA / "analytics.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return ""
+    mid = str((cfg.get("ga4") or {}).get("measurementId") or "").strip()
+    if not re.fullmatch(r"G-[A-Z0-9]{6,}", mid):
+        return ""
+    return (f'<script async src="https://www.googletagmanager.com/gtag/js?id={mid}"></script>\n'
+            "<script>window.dataLayer=window.dataLayer||[];"
+            "function gtag(){dataLayer.push(arguments);}"
+            f"gtag('js',new Date());gtag('config','{mid}',{{anonymize_ip:true}});</script>")
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
 # v18: 메뉴 9개 + '도구' 드롭다운 1개. 1280px에서 한 줄에 들어오도록 계산기·표 페이지는 드롭다운으로 묶는다.
@@ -424,6 +443,7 @@ def page(
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <link rel="stylesheet" href="{up}assets/site.css?v={CSS_V}" />
 <link rel="icon" href="{FAVICON}" />
+{ga4_head()}
 {jsonld}
 {extra_head}
 </head>
@@ -436,7 +456,7 @@ def page(
 {footer_html(up)}
 <script src="{up}assets/trip-save.js?v={JS_V}" defer></script>
 {f'<script type="application/json" id="tpBundles">{bundles_payload()}</script>' if "data-tp-bundle" in body else ''}
-<script src="{up}assets/tp-v34.js?v={JS_V34}" defer></script>
+<script src="{up}assets/tp-v35.js?v={JS_V35}" defer></script>
 </body>
 </html>
 """
@@ -1010,7 +1030,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         ad_slot(
             "guide-top",
             "숙소·항공은 도시별 최저가로",
-            "트립닷컴 파트너스 링크로 도시 15곳 숙소·항공 6개 노선에 입장권·공항픽업·렌터카 16종, eSIM 5개 도시·공항철도 2개 노선을 더했습니다.",
+            "트립닷컴 파트너스 링크로 도시 19곳 숙소·항공 12개 노선에 입장권·공항픽업·렌터카 16종, eSIM·유심 9개 도시와 유럽 전역 1종·공항철도 2개 노선을 더했습니다.",
             "../index.html#tripcom",
             "숙소·항공 보기",
         )
@@ -2492,6 +2512,9 @@ def _clip(text: str, limit: int = 30) -> str:
 
 SEASON_TOUR_CITY = {"seoul": "seoul", "busan": "busan", "gangneung": "gangwon",
                     "gyeongju": "gyeongju", "jeju": "jeju"}
+# v35: 트립닷컴 도시 eSIM 목록이 없는 도시는 나라별 쇼핑 커넥트 eSIM(실제 링크)으로 잇는다.
+SEASON_ESIM_FALLBACK = {"jp": "jp-esim-usimsa-3d", "vn": "vn-esim-usimsa-3d",
+                        "th": "th-esim-usimsa-3d", "tw": "tw-esim-usimsa-3d"}
 
 
 def _season_tour(city_id: str) -> dict | None:
@@ -2510,6 +2533,7 @@ def season_links(c: dict) -> dict:
 
     v32: fare=null(항공권 없음)·허브 없음·숙소 없음인 도시가 있으므로
     실제 자산이 있는 링크만 만든다(빈 버튼을 만들지 않는다).
+    v35: eSIM 도 같은 원칙으로 붙인다(트립닷컴 도시 목록 → 나라별 쇼핑 커넥트 상품 순).
     """
     out = {}
     aff = c.get("affiliate") or {}
@@ -2553,6 +2577,22 @@ def season_links(c: dict) -> dict:
     if slug:
         n = _stays_count(slug)
         out["stays"] = {"label": f"찐숙소 {n}곳 비교" if n else "숙소 비교", "url": f"/stays#{slug}"}
+
+    # v35: eSIM — 트립닷컴 도시 eSIM 목록이 있으면 그걸, 없으면 나라별 쇼핑 커넥트 eSIM 으로 잇는다.
+    # affiliate.esim 이 true 인데 링크를 못 만들던 도시(오사카·도쿄·후쿠오카·다낭·방콕·타이베이)가
+    # 캘린더 상세 카드에서 eSIM 버튼 없이 비어 있던 구멍을 이 자리에서 메운다.
+    if aff.get("esim"):
+        e = _tc("esims", cityId=cid)
+        if e:
+            out["esim"] = {"label": _clip(e.get("title") or "eSIM", 26), "url": e["url"],
+                           "note": e.get("highlight") or "도착 전 설치"}
+        else:
+            eid = SEASON_ESIM_FALLBACK.get(c.get("flag"))
+            ess = _ess(eid) if eid else None
+            if ess:
+                out["esim"] = {"label": ess["categoryLabel"],
+                               "url": ess.get("url") or ess["naverMe"],
+                               "note": f"{won(ess['price'])}원부터 · {ess['store']}"}
 
     if links.get("guide"):
         g = next((x for x in GUIDES_LIST if x["slug"] == links["guide"]), None)
@@ -2755,6 +2795,7 @@ def calendar_page(out_root: Path, base: str) -> Path:
     for key, kicker, note in (
         ("flight", "항공권", "최저가 검색"), ("hotel", "숙소", "이 달 요금"),
         ("ticket", "입장권·투어", "현지 액티비티"), ("transfer", "공항픽업", "공항→숙소"),
+        ("esim", "eSIM·유심", "도착 전 설치"),
         ("stays", "찐숙소", "평점·1박 최저가"), ("guide", "가이드", "읽기"),
         ("cityPage", "도시 페이지", "맛집·선물·숙소"),
     ):
@@ -2763,7 +2804,7 @@ def calendar_page(out_root: Path, base: str) -> Path:
             continue
         ext = ' target="_blank" rel="noopener sponsored"' if L["url"].startswith("http") else ""
         link_html += (f'<a class="sc-link" href="{esc(L["url"])}"{ext}><span class="sc-link-k">{kicker}</span>'
-                      f'<b>{esc(L["label"])}</b><span class="sc-link-n">{note}</span></a>')
+                      f'<b>{esc(L["label"])}</b><span class="sc-link-n">{esc(L.get("note") or note)}</span></a>')
     dc_acc = dc.get("access") or {}
     acc_bits = []
     if dc_acc.get("mode"):
@@ -3892,7 +3933,7 @@ def checklist_page(out_root: Path, base: str) -> Path:
         ("calendar.html", "D-30", "월별 시즌 캘린더", "19개 도시 12개월 성수기·비수기와 항공권 가격이 오르는 달을 먼저 봅니다"),
         ("index.html#travelins", "D-30", "여행자보험 3곳 비교", "보장 항목·자기부담금을 카드사·보험사 공식 조건으로 비교"),
         ("passes.html", "D-14", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이 패스가 하루 이동 횟수로 남는지 계산"),
-        ("index.html#essentials", "D-14", "eSIM·필수템", "나라별 eSIM 1일 300원대부터, 어댑터·보조배터리 구매 링크"),
+        ("index.html#essentials", "D-14", "eSIM·필수템", "나라별 eSIM 1일 100원대(유럽·이탈리아 102~109원)부터, 어댑터·보조배터리 구매 링크"),
         ("index.html#regions", "D-14", "투어·입장권 비교", "같은 도시 상품을 가격·현장 추가금·취소 규정까지 같은 기준으로 비교"),
         ("baggage.html", "D-3", "항공사 수하물 8곳", "기내·위탁 무게와 보조배터리 규정을 항공사별로 확인"),
         ("exchange.html", "D-3", "환율·일본 면세 계산기", "12개 통화 환율과 일본 면세 환급액을 같은 날 기준으로 계산"),
@@ -4062,10 +4103,13 @@ def write_assets(style: str, out_root: Path):
     js_src = CONTENT / "v25.js"
     if js_src.exists():
         shutil.copy2(js_src, out_root / "assets" / "trip-save.js")
-    # v34: 제휴 클릭 추적 + 「한 번에 예약·준비 묶음」 스크립트
-    js34 = CONTENT / "v34.js"
-    if js34.exists():
-        shutil.copy2(js34, out_root / "assets" / "tp-v34.js")
+    # v35: 제휴 클릭 추적(tp_clicks_v1) + 「한 번에 예약·준비 묶음」 스크립트
+    js35 = CONTENT / "v35.js"
+    if js35.exists():
+        shutil.copy2(js35, out_root / "assets" / "tp-v35.js")
+        stale = out_root / "assets" / "tp-v34.js"
+        if stale.exists():
+            stale.unlink()
     # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
     hdr = ROOT / "_headers"
     if hdr.exists():

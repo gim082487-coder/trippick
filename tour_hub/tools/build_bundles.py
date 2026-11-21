@@ -110,7 +110,9 @@ def main() -> None:
 
         e = next((z for z in tc.get("esims") or [] if z.get("cityId") == cid), None)
         if e:
-            items["esim"] = {"label": e["title"], "note": "도착 전 설치", "url": e["url"], "external": True}
+            note = (f"{e['fromPrice']:,}원~ · 도착 전 설치" if e.get("fromPrice")
+                    else "도착 전 설치")
+            items["esim"] = {"label": e["title"], "note": note, "url": e["url"], "external": True}
         elif c["flag"] in ESS_ESIM:
             eid, label = ESS_ESIM[c["flag"]]
             if eid in ess:
@@ -148,7 +150,7 @@ def main() -> None:
             cities[cid] = {"name": name, "items": items}
 
     out = {
-        "version": "v34",
+        "version": "v35",
         "checked": "2026-11-21",
         "note": "각 링크는 data/tripcom.json·data/stays.json·data/essentials.json 에 실제로 있는 제휴 링크만 옮긴 것입니다.",
         "cities": cities,

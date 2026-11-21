@@ -2226,6 +2226,25 @@ def ad_slot(slot: str, title: str, text: str, href: str, cta: str, kicker: str =
 </aside>'''
 
 
+def ga4_head() -> str:
+    """GA4 로더 — data/analytics.json 의 ga4.measurementId 한 곳만 채우면 홈 head 에 붙는다.
+
+    비어 있으면(기본값) 아무 스크립트도 넣지 않는다. 서브페이지는 build_pages.py 의
+    같은 이름 함수가 같은 파일을 읽어 쓰므로 두 빌드의 설정이 갈라지지 않는다.
+    """
+    try:
+        cfg = json.loads((DATA / "analytics.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return ""
+    mid = str((cfg.get("ga4") or {}).get("measurementId") or "").strip()
+    if not re.fullmatch(r"G-[A-Z0-9]{6,}", mid):
+        return ""
+    return (f'<script async src="https://www.googletagmanager.com/gtag/js?id={mid}"></script>\n'
+            "<script>window.dataLayer=window.dataLayer||[];"
+            "function gtag(){dataLayer.push(arguments);}"
+            f"gtag('js',new Date());gtag('config','{mid}',{{anonymize_ip:true}});</script>")
+
+
 def render_ad_slots() -> dict:
     return {
         "<!-- @AD_SLOT_1 -->": ad_slot(
@@ -2341,6 +2360,8 @@ def main() -> int:
     html = replace_block(html, "<!-- @TP_BUNDLES -->", render_bundles_json())
     html = replace_block(html, "<!-- @SEARCH_INDEX -->", render_search_index(data, guides, HUB_LIST))
     html = replace_block(html, "<!-- @JSONLD -->", render_jsonld(data, courses, essentials))
+    # v35: GA4 — data/analytics.json 의 측정 ID 한 곳으로 전체 계측을 켠다(비워 두면 아무 스크립트도 넣지 않는다)
+    html = html.replace("<!-- @GA4 -->", ga4_head())
     for marker, slot_html in render_ad_slots().items():
         html = replace_block(html, marker, slot_html)
 
