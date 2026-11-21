@@ -3,12 +3,12 @@
     <nav class="pg-crumb" aria-label="위치"><a href="/">홈</a><i></i><b>월별 시즌 캘린더</b></nav>
     <span class="pg-kicker">SEASON &amp; PRICE CALENDAR</span>
     <div class="pg-head">
-      <h1>어느 달에 가야 <em>싸고 쾌적한가</em>, 7개 도시 12개월</h1>
-      <p class="dek">오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주를 같은 기준으로 놓았습니다. 달마다 <b>평균기온·강수량·비 온 날</b>, 성수기 정도, <b>항공권 참고 가격대와 예약 시점</b>을 한 화면에서 비교하고, 그 달의 항공·숙소·투어 링크로 바로 넘어가세요.</p>
+      <h1>어느 달에 가야 <em>싸고 쾌적한가</em>, 19개 도시 12개월</h1>
+      <p class="dek">서울·부산·강릉·경주·여수·제주, 오사카·교토·도쿄·후쿠오카, 타이베이·홍콩, 다낭·나트랑·방콕·싱가포르, 파리·런던·로마·바르셀로나 <b>19개 도시</b>를 같은 기준으로 놓았습니다. 달마다 <b>평균기온·강수량·비 온 날</b>, 성수기 정도, <b>항공권 참고 가격대와 예약 시점</b>을 비교하고, 계절·테마·지역으로 좁혀 그 달의 항공·숙소·투어 링크로 바로 넘어가세요.</p>
       <div class="pg-meta">
         <span>기후 평년값 <b>1991~2020</b></span><i></i>
-        <span>가격대 <b>2026.11.20</b> 편집 기준</span><i></i>
-        <span>7개 도시 · 84개 월</span>
+        <span>가격대 <b>2026.11.21</b> 편집 기준</span><i></i>
+        <span>19개 도시 · 228개 월</span>
       </div>
     </div>
   </div>
@@ -16,29 +16,49 @@
 
 <div class="pg-body">
   <div class="wrap">
-    <div class="sc-anchors" aria-hidden="true"><span id="osaka"></span><span id="tokyo"></span><span id="fukuoka"></span><span id="danang"></span><span id="bangkok"></span><span id="taipei"></span><span id="jeju"></span></div>
+    <div class="sc-anchors" aria-hidden="true"><!-- @SC_ANCHORS --></div>
     <div class="pg-grid">
       <div>
 
-        <!-- 도시 선택 -->
+        <!-- 필터: 계절·테마·지역·정렬 + 도시·월 -->
         <div class="sc-picker" id="scPicker">
-          <div class="sc-cities" role="group" aria-label="도시 선택">
-            <!-- @SC_CITIES -->
+          <div class="sc-filters" role="group" aria-label="계절·테마·지역·정렬">
+            <div class="sc-frow"><span class="sc-flabel">계절</span><div class="sc-fchips" id="scSeasonChips"><!-- @SC_SEASON_CHIPS --></div></div>
+            <div class="sc-frow"><span class="sc-flabel">테마</span><div class="sc-fchips" id="scThemeChips"><!-- @SC_THEME_CHIPS --></div></div>
+            <div class="sc-frow"><span class="sc-flabel">지역</span><div class="sc-fchips" id="scRegionChips"><!-- @SC_REGION_CHIPS --></div></div>
+            <div class="sc-frow"><span class="sc-flabel">정렬</span><div class="sc-fchips" id="scSortChips"><!-- @SC_SORT_CHIPS --></div></div>
+            <p class="sc-fcount"><span id="scCount">19개 도시 · 228개 월</span><button type="button" class="sc-reset" id="scReset" hidden>조건 초기화</button></p>
           </div>
           <div class="sc-months" role="group" aria-label="월 선택" id="scMonths">
             <!-- @SC_MONTHS -->
           </div>
+          <div class="sc-cities" role="group" aria-label="도시 선택">
+            <!-- @SC_CITIES -->
+          </div>
         </div>
+
+        <!-- 계절 탭을 골랐을 때: 요약 + TOP6 + 테마 추천 + 주의 + 가이드 -->
+        <!-- @SC_SEASON_PANELS -->
+
+        <!-- 이 달 추천 TOP 6 + 테마 스팟 -->
+        <section class="sc-mpanel" id="scMonthPanel" aria-labelledby="scMonthHead">
+          <span class="sc-kicker">BEST IN THIS MONTH</span>
+          <h2 id="scMonthHead">11월, 어디가 가장 나은가</h2>
+          <p class="sc-mnote" id="scMonthNote"></p>
+          <div class="sc-picks" id="scMonthPicks"><!-- @SC_MONTH_PICKS --></div>
+          <div class="sc-tpicks" id="scMonthSpots"><!-- @SC_MONTH_SPOTS --></div>
+        </section>
 
         <!-- 선택한 도시·월 -->
         <section class="sc-detail" id="scDetail" aria-live="polite" aria-labelledby="scTitle">
           <div class="sc-detail-head">
             <div>
               <span class="sc-kicker" id="scKicker">OSAKA</span>
-              <h2 id="scTitle">오사카·교토 <em>12월</em></h2>
+              <h2 id="scTitle">오사카·교토 <em>11월</em></h2>
             </div>
             <div class="sc-badges">
               <span class="sc-season" id="scSeason">–</span>
+              <span class="sc-score-chip" id="scScore">–</span>
               <span class="sc-event" id="scEvent" hidden></span>
             </div>
           </div>
@@ -46,39 +66,41 @@
             <div><span>평균기온</span><b id="scTemp">–</b><small id="scTempHint">평년값</small></div>
             <div><span>강수량</span><b id="scRain">–</b><small id="scRainHint">한 달 합계</small></div>
             <div><span>비 온 날</span><b id="scDays">–</b><small>월 평균</small></div>
-            <div><span>항공권 참고가</span><b id="scFare">–</b><small>왕복·세금 포함</small></div>
+            <div><span>항공권 참고가</span><b id="scFare">–</b><small id="scFareHint">왕복·세금 포함</small></div>
           </div>
           <p class="sc-note" id="scNote"></p>
+          <p class="sc-access" id="scAccess"></p>
           <div class="sc-plan">
             <div><span>예약은 언제</span><b id="scLead">–</b></div>
             <div><span>성수기 정도</span><b id="scLevel">–</b></div>
             <div><span>이 달의 날씨</span><b id="scWeather">–</b></div>
           </div>
           <div class="sc-links" id="scLinks"></div>
-          <p class="sc-aff">항공·숙소·입장권 링크는 <b>트립닷컴 파트너스</b>, 투어 링크는 <b>네이버 여행 커넥트</b> 제휴 링크입니다. 예약이 이루어지면 수수료를 받지만 결제 금액은 같습니다.</p>
+          <p class="sc-nolink" id="scNoLink" hidden></p>
+          <p class="sc-aff">항공·숙소·입장권 링크는 <b>트립닷컴 파트너스</b>, 국내 투어 링크는 <b>네이버 여행·쇼핑 커넥트</b> 제휴 링크입니다. 예약이 이루어지면 수수료를 받지만 결제 금액은 같습니다.</p>
         </section>
 
-        <!-- 같은 달 7개 도시 비교 -->
+        <!-- 같은 달 19개 도시 비교 -->
         <section class="sc-cmp" aria-labelledby="scCmpTitle">
           <div class="sc-sec-head">
-            <div><span class="sc-kicker">SAME MONTH, 7 CITIES</span>
-              <h2 id="scCmpTitle"><span id="scCmpMonth">12월</span>, 어디가 가장 나은가</h2></div>
+            <div><span class="sc-kicker">SAME MONTH, 19 CITIES</span>
+              <h2 id="scCmpTitle"><span id="scCmpMonth">11월</span>, 어디가 가장 나은가</h2></div>
           </div>
           <div class="sc-table-wrap">
             <table class="sc-table">
-              <thead><tr><th scope="col">도시</th><th scope="col">평균기온</th><th scope="col">강수량</th><th scope="col">비 온 날</th><th scope="col">시즌</th><th scope="col">항공권 참고가(왕복)</th></tr></thead>
+              <thead><tr><th scope="col">도시</th><th scope="col">평균기온</th><th scope="col">강수량</th><th scope="col">비 온 날</th><th scope="col">시즌</th><th scope="col">추천 테마</th><th scope="col">항공권 참고가(왕복)</th></tr></thead>
               <tbody id="scCmpBody"><!-- @SC_CMP_ROWS --></tbody>
             </table>
           </div>
-          <p class="sc-note">표의 행을 누르면 위 카드가 그 도시로 바뀝니다. 항공권 가격대는 인천 출발 왕복·세금 포함 기준의 <b>편집부 참고치</b>입니다(제주는 국내선). 실제 최저가는 날짜·항공사·예약 시점에 따라 달라지므로 링크에서 확인하세요.</p>
+          <p class="sc-note">표의 행을 누르면 위 카드가 그 도시로 바뀝니다. 항공권 가격대는 인천 출발 왕복·세금 포함 기준의 <b>편집부 참고치</b>입니다(제주·부산은 국내선, 서울·강릉·경주는 항공권 없이 KTX·버스 기준). 실제 최저가는 날짜·항공사·예약 시점에 따라 달라지므로 링크에서 확인하세요.</p>
         </section>
 
         <!-- 연간 한눈에 -->
         <section class="sc-year" aria-labelledby="scYearTitle">
           <div class="sc-sec-head">
             <div><span class="sc-kicker">YEAR AT A GLANCE</span>
-              <h2 id="scYearTitle">7개 도시 × 12개월 성수기 지도</h2>
-              <p>색이 진할수록 사람이 몰리고 가격이 높은 달입니다. 칸을 누르면 그 도시·그 달로 이동합니다. 좁은 화면에서는 표를 좌우로 밀어 보세요.</p></div>
+              <h2 id="scYearTitle">19개 도시 × 12개월 성수기 지도</h2>
+              <p>색이 진할수록 사람이 몰리고 가격이 높은 달입니다. 칸을 누르면 그 도시·그 달로 이동합니다. 좁은 화면에서는 첫 열(도시)을 고정한 채 표를 좌우로 밀어 보세요.</p></div>
             <div class="sc-legend" aria-hidden="true">
               <span class="peak">성수기</span><span class="shoulder">준성수기</span><span class="off">비수기</span>
             </div>
@@ -95,9 +117,10 @@
         <section class="tf-faq" id="howto" aria-labelledby="scHowTitle">
           <h2 id="scHowTitle">이 캘린더를 쓰는 법</h2>
           <div class="doc">
-            <p><b>1. 성수기 색부터 봅니다.</b> 같은 도시라도 8월과 11월의 항공·숙소 값은 두 배 가까이 벌어집니다. 성수기(진한 색)를 피하면 같은 여행을 20~30% 싸게 갑니다.</p>
-            <p><b>2. 날씨를 함께 봅니다.</b> 다낭 10월(628mm·20일)과 타이베이 6월(355mm)은 싸지만 야외 일정이 흔들립니다. 비가 와도 되는 일정(온천·쇼핑·미술관)이면 오히려 기회입니다.</p>
-            <p><b>3. 예약 시점을 지킵니다.</b> 국제선 성수기는 출발 10~16주 전, 비수기는 3~6주 전에 가장 싼 좌석이 나옵니다. 성수기를 2주 전에 잡으면 같은 좌석이 40% 이상 비쌉니다.</p>
+            <p><b>1. 계절 탭으로 큰 틀을 잡습니다.</b> 봄·여름·가을·겨울을 고르면 그 계절 쾌적도 상위 6곳과 테마 추천(벚꽃·단풍·휴양·설경·도시산책)이 나옵니다. 같은 봄이라도 타이베이 3월과 서울 4월은 10도 이상 차이 납니다.</p>
+            <p><b>2. 성수기 색부터 봅니다.</b> 같은 도시라도 8월과 11월의 항공·숙소 값은 두 배 가까이 벌어집니다. 성수기(진한 색)를 피하면 같은 여행을 20~30% 싸게 갑니다.</p>
+            <p><b>3. 날씨를 함께 봅니다.</b> 다낭 10월(628mm·20일)과 타이베이 6월(355mm)은 싸지만 야외 일정이 흔들립니다. 비가 와도 되는 일정(온천·쇼핑·미술관)이면 오히려 기회입니다.</p>
+            <p><b>4. 예약 시점을 지킵니다.</b> 국제선 성수기는 출발 10~16주 전, 비수기는 3~6주 전에 가장 싼 좌석이 나옵니다. 서울·강릉·경주처럼 항공권이 없는 곳은 KTX·버스 예매가 1개월 전에 열리므로 그때 바로 잡는 편이 좋습니다.</p>
           </div>
         </section>
 
@@ -108,26 +131,34 @@
             <div class="fq-a"><p>1월 중순~2월 초와 6월(장마)입니다. 벚꽃(3월 하순~4월 초), 골든위크(4/29~5/5), 오봉(8/13~16), 연말(12월 중순~)에는 같은 항공권이 1.5~2배가 됩니다. 날씨까지 생각하면 5월 중순과 10월이 균형이 좋습니다.</p></div>
           </details>
           <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 12월에 따뜻한 곳은 어디인가요?</span><span class="fq-answer fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>12월 평년 평균기온이 가장 높은 곳은 <b>방콕 27.3도</b>, <b>싱가포르 26.8도</b>, <b>나트랑 24.7도</b>, <b>다낭·호이안 22.2도</b>입니다. 반대로 같은 12월에 서울은 0.2도, 강릉 3.3도까지 내려갑니다. 따뜻한 곳 중 비가 적은 순서는 방콕(비 1.0일) → 홍콩(5.3일) → 타이베이(13.1일) → 나트랑(14.4일)입니다.</p></div>
+          </details>
+          <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 유럽 4개 도시는 언제 가야 하나요?</span><span class="fq-answer fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>파리·런던은 <b>7~8월</b>(파리 20.9도·비 7.4일, 런던 19.0도·비 7.9일)이 가장 덜 춥고, 로마·바르셀로나는 <b>9월</b>(로마 21.9도, 바르셀로나 22.1도)이 덥지 않으면서 비가 적습니다. 12월은 파리 5.9도·런던 5.9도로 일조 시간이 짧고, 7~8월 성수기 항공권은 비수기보다 40~60% 비쌉니다.</p></div>
+          </details>
+          <details class="fq">
+            <summary><span class="fq-q"><b>Q.</b> 서울·강릉·경주는 항공권 가격이 왜 없나요?</span><span class="fq-answer fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>국내 구간이라 인천 출발 왕복 항공권 기준을 적용할 수 없습니다. 대신 <b>KTX·고속버스</b> 기준을 적었습니다 — 서울은 전국 2~5시간·왕복 5만~12만 원, 강릉은 서울→강릉 KTX 1시간 50분 2만 6,000원, 경주는 서울→신경주 KTX 2시간 15분 4만 2,000원입니다.</p></div>
+          </details>
+          <details class="fq">
             <summary><span class="fq-q"><b>Q.</b> 다낭 우기(9~12월)는 피해야 하나요?</span><span class="fq-answer fq-ic" aria-hidden="true"></span></summary>
             <div class="fq-a"><p>10~11월은 한 달에 20일 비가 오고 강수량이 450~630mm입니다. 바나힐·호이안 야외 일정이 중심이면 피하는 게 맞습니다. 다만 9월과 12월은 비가 오락가락하고 가격이 30% 이상 낮아, 리조트 휴양이 목적이면 선택지가 됩니다.</p></div>
           </details>
           <details class="fq">
-            <summary><span class="fq-q"><b>Q.</b> 방콕은 더운데 언제 가야 하나요?</span><span class="fq-answer fq-ic" aria-hidden="true"></span></summary>
-            <div class="fq-a"><p>11월~2월이 건기이고 27~29도로 가장 쾌적합니다. 대신 최성수기라 숙소가 비쌉니다. 3월은 덥지만(29.7도) 4월 송크란 전이라 가격이 아직 낮고, 5~6월은 소나기만 감수하면 가장 쌉니다.</p></div>
-          </details>
-          <details class="fq">
-            <summary><span class="fq-q"><b>Q.</b> 제주는 비행기 값을 언제 잡아야 하나요?</span><span class="fq-answer fq-ic" aria-hidden="true"></span></summary>
-            <div class="fq-a"><p>국내선은 국제선보다 늦게 움직입니다. 비수기(1~2월·12월)는 2~4주 전, 성수기(5월 초·7~8월·10월)는 4~8주 전에 잡는 편이 쌉니다. 성수기 주말은 8주 전에 마감되는 경우도 있습니다.</p></div>
+            <summary><span class="fq-q"><b>Q.</b> 쾌적도 점수는 어떻게 계산했나요?</span><span class="fq-answer fq-ic" aria-hidden="true"></span></summary>
+            <div class="fq-a"><p>기온(20~26도 만점) 55% + 강수(비 온 날·강수량) 45%에서 혼잡 감점(성수기 -12, 준성수기 -4)을 뺀 0~100점입니다. 순위를 맹신하지 말고 카드에 함께 적은 <b>평균기온·비 온 날</b>을 먼저 보세요. 벚꽃·설경처럼 날씨가 목적인 여행은 혼잡 감점을 빼고 따로 계산합니다.</p></div>
           </details>
         </section>
 
         <section class="sc-src" aria-labelledby="scSrcTitle">
           <h2 id="scSrcTitle">자료와 기준</h2>
           <ul>
-            <li><b>기온·강수량·강수일수</b> — 오사카·도쿄·후쿠오카는 일본 기상청, 방콕은 세계기상기구(WMO), 타이베이는 중화민국 중앙기상서, 제주는 기상청의 <b>1991~2020년 평년값</b>입니다.</li>
+            <li><b>기온·강수량·강수일수</b> — 서울·부산·강릉·여수·제주는 기상청, 경주는 기상청(2011~2020, 관측소 2010년 개소), 오사카·도쿄·후쿠오카는 일본 기상청, 타이베이는 중화민국 중앙기상서, 홍콩은 홍콩천문대, 나트랑은 베트남 기상수문청, 싱가포르는 싱가포르 기상청(창이), 방콕은 세계기상기구(WMO), 파리는 Météo-France, 런던은 영국 기상청, 로마는 이탈리아 기상청, 바르셀로나는 스페인 기상청의 <b>평년값</b>입니다.</li>
             <li><b>성수기 구분</b> — 각국 공휴일·학교 방학·현지 축제(골든위크 4/29~5/5, 오봉 8/13~16, 송크란 4/13~15, 춘절·뗏 2027년 2월 6일)와 최근 판매 흐름을 기준으로 트립픽이 정리했습니다.</li>
-            <li><b>항공권 참고가</b> — 인천 출발 왕복·세금 포함, 제주는 국내선 왕복 기준의 편집부 추정 범위입니다. 실제 가격은 날짜·항공사·예약 시점에 따라 달라지므로 각 링크에서 확인하세요.</li>
-            <li><b>확인일</b> — 2026년 11월 20일. 기후 평년값은 10년마다 개정되고, 요금·축제 일정은 해마다 바뀝니다.</li>
+            <li><b>항공권 참고가</b> — 인천 출발 왕복·세금 포함, 제주·부산은 국내선, 서울·강릉·경주는 KTX·버스 기준의 편집부 추정 범위입니다. 실제 가격은 날짜·항공사·예약 시점에 따라 달라지므로 각 링크에서 확인하세요.</li>
+            <li><b>확인일</b> — 2026년 11월 21일. 기후 평년값은 10년마다 개정되고, 요금·축제 일정은 해마다 바뀝니다.</li>
           </ul>
         </section>
 
@@ -140,7 +171,15 @@
           <a class="go" href="/passes">교통패스 본전 계산기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="go" href="/exchange">환율·일본 면세 계산기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="go" href="/baggage">항공사별 수하물 규정 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="go" href="/cities/">도시별 페이지 7곳 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/cities/">도시별 페이지 13곳 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="side-card">
+          <h3>계절 가이드 4편</h3>
+          <p>같은 계절 안에서 도시·날짜를 고르는 기준을 글 하나로 정리했습니다.</p>
+          <a class="go" href="/guides/spring-travel-destinations">3~5월 봄 여행지 8곳 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/guides/summer-travel-destinations">6~8월 여름 여행지 8곳 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/guides/autumn-travel-destinations">9~11월 가을 여행지 8곳 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/guides/winter-travel-destinations">12~2월 겨울 여행지 8곳 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="side-card">
           <h3>가격대 읽는 법</h3>
@@ -158,35 +197,80 @@
   var root = document.getElementById('scData');
   if (!root) return;
   var DATA = JSON.parse(root.textContent);
-  var CITIES = DATA.cities;
-  var LEAD = DATA.lead;
-  var state = { city: 'osaka', month: 12 };
-  var el = function (id) { return document.getElementById(id); };
-  var SEASON = { peak: '성수기', shoulder: '준성수기', off: '비수기' };
+  var CITIES = DATA.cities || [];
+  var LEAD = DATA.lead || {};
+  var F = DATA.filters || {};
+  var MONTHF = {};
+  (F.months || []).forEach(function (m) { MONTHF[m.month] = m; });
+  var THEME = {};
+  (F.themes || []).forEach(function (t) { THEME[t.code] = t.name; });
+  var REGION = {};
+  (F.regions || []).forEach(function (r) { REGION[r.code] = r.name; });
+  var SEASON_KR = { peak: '성수기', shoulder: '준성수기', off: '비수기' };
+  var SEASON_ORDER = { off: 0, shoulder: 1, peak: 2 };
   var MONTHS = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+  var state = { city: 'osaka', month: new Date().getMonth() + 1, season: '', theme: '', regions: [], sort: 'score' };
+  var el = function (id) { return document.getElementById(id); };
 
-  function city(id) { for (var i = 0; i < CITIES.length; i++) { if (CITIES[i].id === id) return CITIES[i]; } return CITIES[0]; }
+  for (var z = 0; z < CITIES.length; z++) { if (CITIES[z].id === 'osaka') state.city = 'osaka'; }
+
+  function city(id) {
+    for (var i = 0; i < CITIES.length; i++) { if (CITIES[i].id === id) return CITIES[i]; }
+    return CITIES[0];
+  }
   function fmt(n) { return Number(n).toLocaleString('ko-KR'); }
   function fareText(c, m) {
-    var s = c.season[m - 1];
-    var band = c.fare[s];
+    if (!c.fare) return '항공권 없음';
+    var band = c.fare[c.season[m - 1]];
     return '약 ' + (band[0] / 10000) + '~' + (band[1] / 10000) + '만원';
   }
+  function fareHint(c) {
+    if (!c.fare) {
+      var note = String(c.fareNote || '');
+      var tail = note.split('—').pop();
+      return (tail || note || 'KTX·버스 기준').trim();
+    }
+    return '왕복·세금 포함';
+  }
   function leadText(c, m) {
-    var tbl = LEAD[c.trip] || LEAD.international;
-    return tbl[c.season[m - 1]];
+    var tbl = LEAD[c.trip] || LEAD.international || {};
+    return tbl[c.season[m - 1]] || '—';
+  }
+  function themeNames(c, i) {
+    var codes = c.themes[i] || [];
+    var out = [];
+    for (var k = 0; k < codes.length; k++) { if (THEME[codes[k]]) out.push(THEME[codes[k]]); }
+    return out.join('·') || '—';
+  }
+  function hasTheme(c, i) { return state.theme && (c.themes[i] || []).indexOf(state.theme) >= 0; }
+  function inRegions(c) { return !state.regions.length || state.regions.indexOf(c.region) >= 0; }
+  function visible(i) {
+    var out = [];
+    for (var k = 0; k < CITIES.length; k++) {
+      var c = CITIES[k];
+      if (!inRegions(c)) continue;
+      if (state.theme && (c.themes[i] || []).indexOf(state.theme) < 0) continue;
+      out.push(c);
+    }
+    return out;
+  }
+  function seasonMonths(code) {
+    var ss = F.seasons || [];
+    for (var k = 0; k < ss.length; k++) { if (ss[k].code === code) return ss[k].months; }
+    return [];
   }
 
   function renderDetail() {
-    var c = city(state.city), m = state.month, i = m - 1;
-    var s = c.season[i];
+    var c = city(state.city), m = state.month, i = m - 1, s = c.season[i];
     el('scKicker').textContent = c.kicker;
     el('scTitle').innerHTML = c.name + ' <em>' + m + '월</em>';
     var badge = el('scSeason');
-    badge.textContent = SEASON[s];
+    badge.textContent = SEASON_KR[s];
     badge.className = 'sc-season ' + s;
+    el('scScore').textContent = '쾌적도 ' + c.score[i];
     var ev = el('scEvent');
-    if (c.events && c.events[String(m)]) { ev.hidden = false; ev.textContent = c.events[String(m)]; }
+    var events = Array.isArray(c.events) ? c.events[i] : (c.events && c.events[String(m)]);
+    if (events) { ev.hidden = false; ev.textContent = events; }
     else { ev.hidden = true; ev.textContent = ''; }
     el('scTemp').textContent = c.temp[i].toFixed(1) + '°C';
     el('scTempHint').textContent = '평년 일평균';
@@ -194,108 +278,285 @@
     el('scRainHint').textContent = c.rain[i] >= 300 ? '야외 일정 주의' : c.rain[i] <= 60 ? '비 거의 없음' : '한 달 합계';
     el('scDays').textContent = c.rainDays[i].toFixed(1) + '일';
     el('scFare').textContent = fareText(c, m);
+    el('scFareHint').textContent = fareHint(c);
     el('scNote').textContent = c.note[i];
+    var acc = c.access || {};
+    var best = (c.bestMonths || []).join('·') + '월';
+    var quiet = (c.quietMonths || []).join('·') + '월';
+    el('scAccess').textContent = (acc.mode ? acc.mode + ' · ' : '') + (acc.route || '') +
+      (acc.time ? ' (' + acc.time + ')' : '') + ' · 추천 ' + best + ' · 한산 ' + quiet;
     el('scLead').textContent = leadText(c, m);
-    el('scLevel').textContent = SEASON[s] + ' · ' + (s === 'peak' ? '가장 비쌈' : s === 'shoulder' ? '중간' : '가장 쌈');
+    el('scLevel').textContent = SEASON_KR[s] + ' · ' + (s === 'peak' ? '가장 비쌈' : s === 'shoulder' ? '중간' : '가장 쌈');
     el('scWeather').textContent = c.temp[i] >= 28 ? '덥고 습함' : c.temp[i] >= 20 ? '따뜻함' : c.temp[i] >= 10 ? '선선함' : '쌀쌀함';
-    var box = el('scLinks');
-    var links = [];
-    if (c.links.flight) links.push({ k: '항공권', t: c.links.flight.label, u: c.links.flight.url, note: '최저가 검색' });
-    links.push({ k: '숙소', t: c.links.hotel.label, u: c.links.hotel.url, note: '이 달 요금' });
-    if (c.links.ticket) links.push({ k: '입장권·투어', t: c.links.ticket.label, u: c.links.ticket.url, note: '현지 액티비티' });
-    if (c.links.guide) links.push({ k: '가이드', t: c.links.guide.label, u: c.links.guide.url, note: '읽기' });
-    if (c.links.cityPage) links.push({ k: '도시 페이지', t: c.name + ' 총정리', u: c.links.cityPage, note: '맛집·선물·숙소' });
-    var html = '';
+
+    var box = el('scLinks'), html = '', links = [];
+    var L = c.links || {};
+    if (L.flight) links.push({ k: '항공권', t: L.flight.label, u: L.flight.url, note: '최저가 검색' });
+    if (L.hotel) links.push({ k: '숙소', t: L.hotel.label, u: L.hotel.url, note: '이 달 요금' });
+    if (L.ticket) links.push({ k: '입장권·투어', t: L.ticket.label, u: L.ticket.url, note: '현지 액티비티' });
+    if (L.transfer) links.push({ k: '공항픽업', t: L.transfer.label, u: L.transfer.url, note: '공항→숙소' });
+    if (L.stays) links.push({ k: '찐숙소', t: L.stays.label, u: L.stays.url, note: '평점·1박 최저가' });
+    if (L.guide) links.push({ k: '가이드', t: L.guide.label, u: L.guide.url, note: '읽기' });
+    if (L.cityPage) links.push({ k: '도시 페이지', t: L.cityPage.label, u: L.cityPage.url, note: '맛집·선물·숙소' });
     for (var j = 0; j < links.length; j++) {
-      var L = links[j];
-      var ext = L.u.indexOf('http') === 0 ? ' target="_blank" rel="noopener sponsored"' : '';
-      html += '<a class="sc-link" href="' + L.u + '"' + ext + '><span class="sc-link-k">' + L.k + '</span><b>' + L.t + '</b><span class="sc-link-n">' + L.note + '</span></a>';
+      var A = links[j];
+      var ext = A.u.indexOf('http') === 0 ? ' target="_blank" rel="noopener sponsored"' : '';
+      html += '<a class="sc-link" href="' + A.u + '"' + ext + '><span class="sc-link-k">' + A.k + '</span><b>' + A.t + '</b><span class="sc-link-n">' + A.note + '</span></a>';
     }
     box.innerHTML = html;
-    document.querySelectorAll('[data-city-btn]').forEach(function (b) {
-      var on = b.getAttribute('data-city-btn') === state.city;
-      b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on));
-    });
-    document.querySelectorAll('[data-month-btn]').forEach(function (b) {
-      var mm = Number(b.getAttribute('data-month-btn'));
-      var on = mm === state.month;
-      b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on));
-      b.classList.remove('peak', 'shoulder', 'off');
-      b.classList.add(c.season[mm - 1]);
-      var sm = b.querySelector('[data-month-temp]');
+    var nolink = el('scNoLink');
+    if (L.flight || L.hotel || L.ticket || L.transfer) {
+      nolink.hidden = true; nolink.textContent = '';
+    } else {
+      nolink.hidden = false;
+      nolink.textContent = '이 도시는 제휴 예약 링크 없이 날씨·경비 기준만 제공합니다. 위 계절 가이드와 아래 같은 달 비교표에서 연결된 대안 도시를 보세요.';
+    }
+
+    var btns = document.querySelectorAll('[data-city-btn]');
+    for (var b = 0; b < btns.length; b++) {
+      var on = btns[b].getAttribute('data-city-btn') === state.city;
+      btns[b].classList.toggle('on', on);
+      btns[b].setAttribute('aria-pressed', String(on));
+    }
+    var mbtns = document.querySelectorAll('[data-month-btn]');
+    for (var n = 0; n < mbtns.length; n++) {
+      var mm = Number(mbtns[n].getAttribute('data-month-btn'));
+      var mon = mm === state.month;
+      mbtns[n].classList.toggle('on', mon);
+      mbtns[n].setAttribute('aria-pressed', String(mon));
+      mbtns[n].classList.remove('peak', 'shoulder', 'off');
+      mbtns[n].classList.add(c.season[mm - 1]);
+      var sm = mbtns[n].querySelector('[data-month-temp]');
       if (sm) sm.textContent = c.temp[mm - 1].toFixed(0) + '°';
-    });
-    document.querySelectorAll('[data-year-cell]').forEach(function (cell) {
-      var v = cell.getAttribute('data-year-cell').split('-');
-      cell.classList.toggle('sel', v[0] === state.city && Number(v[1]) === state.month);
-    });
-    renderCmp();
-    var strip = document.getElementById('scMonths');
+    }
+    var cells = document.querySelectorAll('[data-year-cell]');
+    for (var d = 0; d < cells.length; d++) {
+      var v = cells[d].getAttribute('data-year-cell').split('-');
+      cells[d].classList.toggle('sel', v[0] === state.city && Number(v[1]) === state.month);
+    }
+    var strip = el('scMonths');
     var onBtn = strip ? strip.querySelector('.sc-month.on') : null;
     if (strip && onBtn && strip.scrollWidth > strip.clientWidth + 4) {
       strip.scrollLeft = onBtn.offsetLeft - (strip.clientWidth - onBtn.offsetWidth) / 2;
     }
-    if (history.replaceState) history.replaceState(null, '', '#' + state.city + '-' + state.month);
   }
 
-  function renderCmp() {
+  function renderCompare() {
     var m = state.month, i = m - 1;
     el('scCmpMonth').textContent = m + '월';
-    var rows = [];
-    for (var k = 0; k < CITIES.length; k++) {
-      var c = CITIES[k];
-      var s = c.season[i];
-      rows.push({ c: c, i: i, s: s });
-    }
+    var rows = visible(i);
     rows.sort(function (a, b) {
-      var order = { off: 0, shoulder: 1, peak: 2 };
-      if (order[a.s] !== order[b.s]) return order[a.s] - order[b.s];
-      return a.c.rain[i] - b.c.rain[i];
+      if (state.sort === 'wipe') return a.rainDays[i] - b.rainDays[i] || b.score[i] - a.score[i];
+      if (state.sort === 'cheap') return SEASON_ORDER[a.season[i]] - SEASON_ORDER[b.season[i]] || b.score[i] - a.score[i];
+      return b.score[i] - a.score[i] || a.rainDays[i] - b.rainDays[i];
     });
     var html = '';
     for (var r = 0; r < rows.length; r++) {
-      var c2 = rows[r].c, i2 = rows[r].i, s2 = rows[r].s;
+      var c2 = rows[r], s2 = c2.season[i];
+      var fare = c2.fare ? fareText(c2, m) : '<span class="sc-na">—</span>';
       html += '<tr data-city-row="' + c2.id + '">' +
         '<th scope="row"><b>' + c2.name + '</b></th>' +
-        '<td>' + c2.temp[i2].toFixed(1) + '°C</td>' +
-        '<td>' + fmt(c2.rain[i2]) + 'mm</td>' +
-        '<td>' + c2.rainDays[i2].toFixed(1) + '일</td>' +
-        '<td><span class="sc-season ' + s2 + '">' + SEASON[s2] + '</span></td>' +
-        '<td class="num">' + fareText(c2, m) + '</td></tr>';
+        '<td>' + c2.temp[i].toFixed(1) + '°C</td>' +
+        '<td>' + fmt(c2.rain[i]) + 'mm</td>' +
+        '<td>' + c2.rainDays[i].toFixed(1) + '일</td>' +
+        '<td><span class="sc-season ' + s2 + '">' + SEASON_KR[s2] + '</span></td>' +
+        '<td>' + themeNames(c2, i) + '</td>' +
+        '<td class="num">' + fare + '</td></tr>';
+    }
+    if (!rows.length) {
+      html = '<tr><td colspan="7" class="sc-empty">선택한 조건에 맞는 도시가 없습니다. 지역이나 테마를 바꿔 보세요.</td></tr>';
     }
     el('scCmpBody').innerHTML = html;
-    document.querySelectorAll('[data-city-row]').forEach(function (tr) {
-      tr.addEventListener('click', function () { state.city = tr.getAttribute('data-city-row'); renderDetail(); });
-    });
+    var trs = document.querySelectorAll('[data-city-row]');
+    for (var t = 0; t < trs.length; t++) {
+      trs[t].addEventListener('click', function () {
+        state.city = this.getAttribute('data-city-row');
+        renderDetail();
+      });
+    }
+  }
+
+  function pickCard(p, month, cls) {
+    var label = p.name, why = p.why || '';
+    var extra = p.score ? '<i>' + p.score + '</i>' : '';
+    return '<button type="button" class="sc-pick' + (cls || '') + '" data-pick-city="' + p.id + '" data-pick-month="' + (p.month || month) + '">' +
+      '<b>' + label + extra + '</b><span>' + why + '</span></button>';
+  }
+
+  function renderMonthPanel() {
+    var mf = MONTHF[state.month];
+    if (!mf) return;
+    el('scMonthHead').textContent = mf.headline;
+    el('scMonthNote').textContent = mf.note;
+    var picks = (mf.picks || []).filter(function (p) { return inRegions({ region: city(p.id).region }); });
+    var html = '';
+    for (var k = 0; k < picks.length; k++) { html += pickCard(picks[k], state.month); }
+    if (!html) html = '<p class="sc-empty">선택한 지역에는 이 달 추천 도시가 없습니다.</p>';
+    el('scMonthPicks').innerHTML = html;
+    var spots = mf.themePicks || {}, rows = '';
+    for (var code in spots) {
+      if (!Object.prototype.hasOwnProperty.call(spots, code)) continue;
+      var sp = spots[code];
+      if (state.theme && code !== state.theme) continue;
+      if (!inRegions({ region: city(sp.id).region })) continue;
+      rows += '<span class="sc-trow"><span class="sc-theme-chip">' + (THEME[code] || code) + '</span>' +
+        '<button type="button" class="sc-tspot" data-pick-city="' + sp.id + '" data-pick-month="' + (sp.month || state.month) + '">' +
+        sp.name + ' <small>' + (sp.month ? sp.month + '월 · ' : '') + (sp.why || '') + '</small></button></span>';
+    }
+    var spBox = el('scMonthSpots');
+    spBox.innerHTML = rows;
+    spBox.hidden = !rows;
+  }
+
+  function renderFilters() {
+    var sb = document.querySelectorAll('[data-season-btn]');
+    for (var i = 0; i < sb.length; i++) {
+      var on = sb[i].getAttribute('data-season-btn') === state.season;
+      sb[i].classList.toggle('on', on); sb[i].setAttribute('aria-pressed', String(on));
+    }
+    var tb = document.querySelectorAll('[data-theme-btn]');
+    for (var j = 0; j < tb.length; j++) {
+      var ton = tb[j].getAttribute('data-theme-btn') === state.theme;
+      tb[j].classList.toggle('on', ton); tb[j].setAttribute('aria-pressed', String(ton));
+    }
+    var rb = document.querySelectorAll('[data-region-btn]');
+    for (var k = 0; k < rb.length; k++) {
+      var code = rb[k].getAttribute('data-region-btn');
+      var ron = code === '' ? !state.regions.length : state.regions.indexOf(code) >= 0;
+      rb[k].classList.toggle('on', ron); rb[k].setAttribute('aria-pressed', String(ron));
+    }
+    var ob = document.querySelectorAll('[data-sort-btn]');
+    for (var l = 0; l < ob.length; l++) {
+      var oon = ob[l].getAttribute('data-sort-btn') === state.sort;
+      ob[l].classList.toggle('on', oon); ob[l].setAttribute('aria-pressed', String(oon));
+    }
+    var ib = document.querySelectorAll('[data-city-btn]');
+    for (var n = 0; n < ib.length; n++) {
+      var cid = ib[n].getAttribute('data-city-btn');
+      var hide = state.regions.length && state.regions.indexOf(ib[n].getAttribute('data-region')) < 0 && cid !== state.city;
+      ib[n].hidden = !!hide;
+    }
+    var groups = document.querySelectorAll('[data-cgroup]');
+    for (var g = 0; g < groups.length; g++) {
+      var shown = groups[g].querySelectorAll('[data-city-btn]:not([hidden])').length;
+      groups[g].hidden = !shown;
+    }
+    var panels = document.querySelectorAll('[data-season-panel]');
+    for (var p = 0; p < panels.length; p++) {
+      panels[p].hidden = panels[p].getAttribute('data-season-panel') !== state.season;
+    }
+    el('scMonthPanel').hidden = !!state.season;
+    var cnt = visible(state.month - 1).length;
+    var bits = [state.month + '월', '19개 도시 중 ' + cnt + '곳'];
+    if (state.theme) bits.push(THEME[state.theme]);
+    if (state.regions.length) bits.push(state.regions.map(function (r) { return REGION[r]; }).join('·'));
+    el('scCount').textContent = bits.join(' · ');
+    el('scReset').hidden = !(state.season || state.theme || state.regions.length || state.sort !== 'score');
+  }
+
+  function syncURL() {
+    var q = '?month=' + state.month;
+    if (state.city) q += '&city=' + state.city;
+    if (state.season) q += '&season=' + state.season;
+    if (state.theme) q += '&theme=' + state.theme;
+    if (state.regions.length) q += '&region=' + state.regions.join(',');
+    if (state.sort && state.sort !== 'score') q += '&sort=' + state.sort;
+    if (history.replaceState) history.replaceState(null, '', location.pathname + q);
+  }
+
+  function renderAll() { renderFilters(); renderDetail(); renderMonthPanel(); renderCompare(); syncURL(); }
+
+  function go(id, month) {
+    state.city = id;
+    if (month) state.month = Math.min(12, Math.max(1, Number(month)));
+    renderAll();
+    var d = el('scDetail');
+    if (d && d.scrollIntoView) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   document.querySelectorAll('[data-city-btn]').forEach(function (b) {
-    b.addEventListener('click', function () { state.city = b.getAttribute('data-city-btn'); renderDetail(); });
+    b.addEventListener('click', function () { state.city = b.getAttribute('data-city-btn'); renderAll(); });
   });
   document.querySelectorAll('[data-month-btn]').forEach(function (b) {
-    b.addEventListener('click', function () { state.month = Number(b.getAttribute('data-month-btn')); renderDetail(); });
+    b.addEventListener('click', function () { state.month = Number(b.getAttribute('data-month-btn')); renderAll(); });
   });
   document.querySelectorAll('[data-year-cell]').forEach(function (cell) {
     cell.addEventListener('click', function () {
       var v = cell.getAttribute('data-year-cell').split('-');
-      state.city = v[0]; state.month = Number(v[1]); renderDetail();
-      var picker = document.getElementById('scPicker');
-      if (picker && picker.scrollIntoView) picker.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      go(v[0], Number(v[1]));
     });
   });
+  document.querySelectorAll('[data-season-btn]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var code = b.getAttribute('data-season-btn');
+      state.season = state.season === code ? '' : code;
+      var ms = state.season ? seasonMonths(state.season) : [];
+      if (ms.length && ms.indexOf(state.month) < 0) state.month = ms[0];
+      renderAll();
+    });
+  });
+  document.querySelectorAll('[data-theme-btn]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var code = b.getAttribute('data-theme-btn');
+      state.theme = state.theme === code ? '' : code;
+      renderAll();
+    });
+  });
+  document.querySelectorAll('[data-region-btn]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var code = b.getAttribute('data-region-btn');
+      if (!code) { state.regions = []; }
+      else {
+        var k = state.regions.indexOf(code);
+        if (k >= 0) state.regions.splice(k, 1); else state.regions.push(code);
+      }
+      renderAll();
+    });
+  });
+  document.querySelectorAll('[data-sort-btn]').forEach(function (b) {
+    b.addEventListener('click', function () { state.sort = b.getAttribute('data-sort-btn'); renderAll(); });
+  });
+  el('scReset').addEventListener('click', function () {
+    state.season = ''; state.theme = ''; state.regions = []; state.sort = 'score'; renderAll();
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    while (t && t !== document) {
+      if (t.hasAttribute && t.hasAttribute('data-pick-city')) {
+        go(t.getAttribute('data-pick-city'), t.getAttribute('data-pick-month'));
+        return;
+      }
+      t = t.parentNode;
+    }
+  });
 
-  // 오늘 기준: 이번 달, 해시가 있으면 그 도시·그 달
-  var now = new Date();
-  state.month = now.getMonth() + 1;
+  // 초기 상태: ?month=4&theme=cherry&region=kr,jp&sort=score / #osaka-4 / #osaka
+  try {
+    var qs = new URLSearchParams(location.search);
+    var qm = Number(qs.get('month'));
+    if (qm >= 1 && qm <= 12) state.month = qm;
+    var qsSeason = qs.get('season');
+    if (qsSeason && seasonMonths(qsSeason).length) state.season = qsSeason;
+    var qsTheme = qs.get('theme');
+    if (qsTheme && THEME[qsTheme]) state.theme = qsTheme;
+    var qsRegion = qs.get('region');
+    if (qsRegion) {
+      state.regions = qsRegion.split(',').filter(function (r) { return !!REGION[r]; });
+    }
+    var qsSort = qs.get('sort');
+    if (qsSort && ['score', 'wipe', 'cheap'].indexOf(qsSort) >= 0) state.sort = qsSort;
+    var qsCity = qs.get('city');
+    if (qsCity && city(qsCity).id === qsCity) state.city = qsCity;
+  } catch (err) {}
   var h = (location.hash || '').replace('#', '');
   if (/^[a-z]+-\d{1,2}$/.test(h)) {
     var parts = h.split('-');
-    state.city = parts[0];
+    if (city(parts[0]).id === parts[0]) state.city = parts[0];
     state.month = Math.min(12, Math.max(1, Number(parts[1])));
-  } else if (h) {
-    for (var q = 0; q < CITIES.length; q++) { if (CITIES[q].id === h) state.city = h; }
+  } else if (h && city(h).id === h) {
+    state.city = h;
   }
-  if (!city(state.city).temp) state.city = CITIES[0].id;
-  renderDetail();
+  if (!state.city || !city(state.city) || !city(state.city).temp) state.city = CITIES[0].id;
+  renderAll();
 })();
 </script>

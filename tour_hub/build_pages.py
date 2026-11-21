@@ -49,7 +49,7 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 21)
-CSS_V = "30"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "31"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 
 # index.html 에 실제로 있는 앵커만 쓴다(build.py --check-links 로 검증)
@@ -72,7 +72,7 @@ TOOLS = [
     ("exchange.html", "환율·일본 면세 계산기", "exchange", "12개 통화 · 면세 환급"),
     ("baggage.html", "항공사 수하물 규정", "baggage", "기내·위탁·배터리"),
     ("passes.html", "교통패스 본전 계산기", "passes", "오사카·도쿄·방콕·타이베이"),
-    ("calendar.html", "월별 시즌 캘린더", "calendar", "7개 도시 12개월"),
+    ("calendar.html", "월별 시즌 캘린더", "calendar", "19개 도시 12개월"),
 ]
 TOOL_KEYS = {k for _, _, k, _ in TOOLS}
 
@@ -1705,7 +1705,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     )
     _season = SEASON_IDS
     cal_href = f"calendar.html#{slug}" if slug in _season else "calendar.html"
-    cal_note = "성수기·항공권 참고가" if slug in _season else "7개 도시 12개월 캘린더"
+    cal_note = "성수기·항공권 참고가" if slug in _season else "19개 도시 12개월 캘린더"
     hub_tools_html = f"""<div class="hub-tools" aria-label="{esc(hub['name'])} 도구">
   <a class="hub-tool" href="{pass_href}"><span class="hub-tool-k">PASS</span><b>{esc(pass_title)}</b><span class="hub-tool-n">{esc(pass_sub)}</span></a>
   <a class="hub-tool" href="{cal_href}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">{cal_note}</span></a>
@@ -2470,92 +2470,381 @@ def passes_page(out_root: Path, base: str) -> Path:
     )
 
 
+def _clip(text: str, limit: int = 30) -> str:
+    text = re.sub(r"\s+", " ", str(text or "")).strip()
+    return text if len(text) <= limit else text[: limit - 1].rstrip() + "…"
+
+
+SEASON_TOUR_CITY = {"seoul": "seoul", "busan": "busan", "gangneung": "gangwon",
+                    "gyeongju": "gyeongju", "jeju": "jeju"}
+
+
+def _season_tour(city_id: str) -> dict | None:
+    tour_city = SEASON_TOUR_CITY.get(city_id)
+    if not tour_city:
+        return None
+    return next((t for t in TOURS if t.get("city") == tour_city), None)
+
+
+def _stays_count(slug: str) -> int:
+    return sum(1 for h in STAYS.get("hotels", []) if h.get("region") == slug)
+
+
 def season_links(c: dict) -> dict:
+    """캘린더 상세 카드의 예약 링크.
+
+    v32: fare=null(항공권 없음)·허브 없음·숙소 없음인 도시가 있으므로
+    실제 자산이 있는 링크만 만든다(빈 버튼을 만들지 않는다).
+    """
     out = {}
-    f = _tc_flight(c.get("flightRoute") or "")
-    if f:
-        out["flight"] = {"label": f"{f['route']} 항공권", "url": f["url"]}
-    h = _tc("hotels", cityId=c.get("hotelCity"))
+    aff = c.get("affiliate") or {}
+    links = c.get("links") or {}
+    name = c.get("name", "")
+    cid = c.get("id", "")
+
+    if aff.get("flight"):
+        # "오사카·교토" · "후쿠오카·규슈"처럼 묶인 이름은 첫 도시로 항공 노선을 찾는다
+        f = _tc_flight(name.split("·")[0])
+        if f:
+            out["flight"] = {"label": f"{f['route']} 항공권", "url": f["url"]}
+
+    h = _tc("hotels", cityId=links.get("stays") or cid)
     if h:
         out["hotel"] = {"label": f"{h['city']} 숙소", "url": h["url"]}
-    t = _tc("tickets", id=f"ticket_{c['id']}")
+
+    t = _tc("tickets", id=f"ticket_{cid}")
     if t:
-        out["ticket"] = {"label": t["title"], "url": t["url"]}
-    if c.get("guide"):
-        g = next((x for x in GUIDES_LIST if x["slug"] == c["guide"]), None)
+        out["ticket"] = {"label": _clip(t.get("title") or "입장권·액티비티"), "url": t["url"]}
+    else:
+        resort = next((r for r in TRIPCOM.get("resorts") or [] if r.get("cityId") == cid), None)
+        if resort and (resort.get("ticket") or {}).get("url"):
+            tk = resort["ticket"]
+            out["ticket"] = {"label": _clip(tk.get("title") or "입장권·액티비티"), "url": tk["url"]}
+        else:
+            tour = _season_tour(cid)
+            if tour:
+                out["ticket"] = {"label": _clip(tour.get("title", ""), 34), "url": tour["url"]}
+
+    tr = _tc("transfers", cityId=cid)
+    if tr:
+        out["transfer"] = {"label": _clip(tr.get("title") or "공항픽업", 24), "url": tr["url"]}
+    else:
+        resort = next((r for r in TRIPCOM.get("resorts") or [] if r.get("cityId") == cid), None)
+        if resort and (resort.get("transfer") or {}).get("url"):
+            tp = resort["transfer"]
+            out["transfer"] = {"label": _clip(tp.get("title") or "공항픽업", 24), "url": tp["url"]}
+
+    slug = links.get("stays")
+    if slug:
+        n = _stays_count(slug)
+        out["stays"] = {"label": f"찐숙소 {n}곳 비교" if n else "숙소 비교", "url": f"/stays#{slug}"}
+
+    if links.get("guide"):
+        g = next((x for x in GUIDES_LIST if x["slug"] == links["guide"]), None)
         if g:
-            out["guide"] = {"label": g["navTitle"], "url": f"guides/{g['slug']}.html"}
-    out["cityPage"] = f"/{c['cityPage']}"
+            out["guide"] = {"label": _clip(g.get("navTitle", "")), "url": f"guides/{g['slug']}.html"}
+
+    if links.get("cityPage"):
+        out["cityPage"] = {"label": f"{name} 도시 페이지", "url": f"/{links['cityPage']}"}
     return out
+
+
+SEASON_MONTHS_LABEL = {"spring": "3~5월", "summer": "6~8월", "autumn": "9~11월", "winter": "12~2월"}
+SEASON_CAUTION = {
+    "spring": "황사·꽃샘추위 — 3월 중순 이전 강원·경북 산간은 아침 영하이고, 4월 첫 주 벚꽃 주말은 숙소가 30~50% 오릅니다. 황사가 심한 날은 실내 일정으로 바꾸세요.",
+    "summer": "장마 6월 하순~7월 중순, 태풍 8~9월 — 같은 7월에도 나트랑 비 8.4일·강릉 16일로 두 배 차이납니다. 태풍 예보가 나오면 항공 취소 규정부터 확인하세요.",
+    "autumn": "태풍 끝물·일교차 — 9월 초는 아직 태풍 철이고, 10~11월은 아침저녁 10도 안팎까지 떨어집니다. 단풍 절정 주말에는 교토·서울 숙소가 가장 비쌉니다.",
+    "winter": "한파·설 연휴 — 1월 셋째 주가 가장 춥고, 설 연휴(2027년 2월 6일 전후)에는 국내·동남아 항공이 함께 오릅니다. 유럽은 12월 연말에 숙소가 두 배가 됩니다.",
+}
+SEASON_GUIDE_LINK = {
+    "spring": ("spring-travel-destinations", "봄 여행지 8곳 — 벚꽃 개화 순서"),
+    "summer": ("summer-travel-destinations", "여름 여행지 8곳 — 장마·우기 피하기"),
+    "autumn": ("autumn-travel-destinations", "가을 여행지 8곳 — 10월이 비 적음"),
+    "winter": ("winter-travel-destinations", "겨울 여행지 8곳 — 27도와 영하 2도"),
+}
 
 
 def calendar_page(out_root: Path, base: str) -> Path:
     data = load_json("season.json")
     cities = data["cities"]
-    flags = {c["id"]: c.get("flag", "") for c in cities}
-    city_btns = "\n            ".join(
-        f'<button type="button" class="sc-city{" on" if i == 0 else ""}" data-city-btn="{c["id"]}" aria-pressed="{"true" if i == 0 else "false"}">'
-        f'{B.flag_svg(flags.get(c["id"], ""), 18, 12.6)}<b>{esc(c["name"])}</b></button>'
-        for i, c in enumerate(cities)
-    )
+    filt = data.get("filters") or {}
+    ui = data.get("ui") or {}
+    regions = filt.get("regions") or []
+    themes = filt.get("themes") or []
+    seasons = filt.get("seasons") or []
+    months_f = {m["month"]: m for m in (filt.get("months") or [])}
+    season_kr = {"peak": "성수기", "shoulder": "준성수기", "off": "비수기"}
+    theme_name = {t["code"]: t["name"] for t in themes}
+    region_name = {r["code"]: r["name"] for r in regions}
+    by_id = {c["id"]: c for c in cities}
+    guides_have = {g["slug"] for g in GUIDES_LIST}
+    cm = TODAY.month
+    default_city = by_id.get("osaka") or cities[0]
+
+    def flag_of(c: dict) -> str:
+        return c.get("flagIso") or c.get("flag") or ""
+
+    def theme_names_at(c: dict, m: int) -> str:
+        return "·".join(theme_name[t] for t in (c.get("themes") or [])[m - 1] if t in theme_name) or "—"
+
+    def fare_text(c: dict, m: int) -> str:
+        if not c.get("fare"):
+            return "—"
+        band = c["fare"][c["season"][m - 1]]
+        return f"약 {band[0] / 10000:.0f}~{band[1] / 10000:.0f}만원"
+
+    def pick_btn(cid: str, name: str, why: str, month: int, score=None) -> str:
+        sc = f"<i>{score}</i>" if score else ""
+        return (f'<button type="button" class="sc-pick" data-pick-city="{cid}" data-pick-month="{month}">'
+                f'<b>{esc(name)}{sc}</b><span>{esc(why)}</span></button>')
+
+    # 도시 버튼 — 지역 그룹(모바일 2줄)
+    groups = ui.get("cityGroups") or [
+        {"region": r["code"], "name": r["name"],
+         "cities": [c["id"] for c in cities if c.get("region") == r["code"]]} for r in regions
+    ]
+    city_blocks = []
+    for grp in groups:
+        btns = []
+        for cid in grp.get("cities") or []:
+            c = by_id.get(cid)
+            if not c:
+                continue
+            on = c["id"] == default_city["id"]
+            btns.append(
+                f'<button type="button" class="sc-city{" on" if on else ""}" data-city-btn="{c["id"]}" '
+                f'data-region="{esc(c.get("region", ""))}" aria-pressed="{"true" if on else "false"}">'
+                f'{B.flag_svg(flag_of(c), 18, 12.6)}<b>{esc(c["name"])}</b></button>'
+            )
+        if btns:
+            city_blocks.append(
+                f'<div class="sc-cgroup" data-cgroup="{grp["region"]}">'
+                f'<span class="sc-cgroup-n">{esc(grp["name"])}</span>'
+                f'<div class="sc-cgroup-b">{"".join(btns)}</div></div>'
+            )
+
     month_btns = "\n            ".join(
-        f'<button type="button" class="sc-month{" on" if m == 11 else ""}" data-month-btn="{m}" aria-pressed="{"true" if m == 11 else "false"}">'
-        f'<b>{m}월</b><small data-month-temp="{m}">–</small></button>'
+        f'<button type="button" class="sc-month{" on" if m == cm else ""}" data-month-btn="{m}" aria-pressed="{"true" if m == cm else "false"}">'
+        f'<b>{m}월</b><small data-month-temp="{m}">{default_city["temp"][m - 1]:.0f}°</small></button>'
         for m in range(1, 13)
     )
 
-    season_kr = {"peak": "성수기", "shoulder": "준성수기", "off": "비수기"}
-    # 비교표(빌드 시점 이번 달 = 11월) — JS가 선택한 달로 다시 그린다.
-    cm = 11
+    anchors = "".join(f'<span id="{c["id"]}"></span>' for c in cities)
+
+    # 필터 칩
+    season_chips = ['<button type="button" class="sc-chip on" data-season-btn="" aria-pressed="true">전체</button>']
+    for s in seasons:
+        season_chips.append(
+            f'<button type="button" class="sc-chip" data-season-btn="{s["code"]}" aria-pressed="false">'
+            f'{esc(s["name"])}<small>{SEASON_MONTHS_LABEL.get(s["code"], "")}</small></button>'
+        )
+    theme_chips = ['<button type="button" class="sc-chip on" data-theme-btn="" aria-pressed="true">전체</button>']
+    for t in themes:
+        theme_chips.append(
+            f'<button type="button" class="sc-chip" data-theme-btn="{t["code"]}" aria-pressed="false">{esc(t["name"])}</button>'
+        )
+    region_chips = ['<button type="button" class="sc-chip on" data-region-btn="" aria-pressed="true">전체</button>']
+    for r in regions:
+        region_chips.append(
+            f'<button type="button" class="sc-chip" data-region-btn="{r["code"]}" aria-pressed="false">'
+            f'{esc(r["name"])}<small>{r.get("count", "")}</small></button>'
+        )
+    sort_chips = []
+    for s in (filt.get("sort") or [{"code": "score", "name": "쾌적도"}]):
+        on = s["code"] == "score"
+        sort_chips.append(
+            f'<button type="button" class="sc-chip{" on" if on else ""}" data-sort-btn="{s["code"]}" '
+            f'aria-pressed="{"true" if on else "false"}">{esc(s["name"])}</button>'
+        )
+
+    # 이 달 추천 TOP 6 (빌드 시점 이번 달)
+    mf = months_f.get(cm) or {}
+    month_picks = "".join(
+        pick_btn(p["id"], p["name"], p.get("why", ""), cm, p.get("score")) for p in (mf.get("picks") or [])
+    )
+    spot_rows = []
+    for code, sp in (mf.get("themePicks") or {}).items():
+        spot_rows.append(
+            f'<span class="sc-trow"><span class="sc-theme-chip">{esc(theme_name.get(code, code))}</span>'
+            f'<button type="button" class="sc-tspot" data-pick-city="{sp["id"]}" data-pick-month="{sp.get("month", cm)}">'
+            f'{esc(sp["name"])} <small>{sp.get("month", cm)}월 · {esc(sp.get("why", ""))}</small></button></span>'
+        )
+
+    # 계절 패널 4개
+    season_panels = []
+    for s in seasons:
+        code = s["code"]
+        months = s["months"]
+        mlab = SEASON_MONTHS_LABEL.get(code, "")
+        cards = []
+        for p in s.get("picks") or []:
+            c = by_id.get(p["id"])
+            if not c:
+                continue
+            best = max(months, key=lambda m: c["score"][m - 1])
+            cards.append(pick_btn(p["id"], p["name"], p.get("why", ""), best))
+        trows = []
+        for tcode, arr in (s.get("themePicks") or {}).items():
+            spots = "".join(
+                f'<button type="button" class="sc-tspot" data-pick-city="{p["id"]}" data-pick-month="{p["month"]}">'
+                f'{esc(p["name"])} <small>{p["month"]}월 · {esc(p.get("why", ""))}</small></button>'
+                for p in arr
+            )
+            trows.append(
+                f'<span class="sc-trow"><span class="sc-theme-chip">{esc(theme_name.get(tcode, tcode))}</span>{spots}</span>'
+            )
+        gslug, glabel = SEASON_GUIDE_LINK.get(code, ("", ""))
+        glink = (f'<a href="/guides/{gslug}">{esc(glabel)} <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+                 if gslug in guides_have else "")
+        season_panels.append(f"""<section class="sc-spanel" data-season-panel="{code}" aria-labelledby="scPan{code}">
+          <span class="sc-kicker">{code.upper()} · {mlab}</span>
+          <h2 id="scPan{code}">{esc(s["name"])} 여행지, {mlab}에 어디가 나은가</h2>
+          <p class="sc-mnote">{esc(s.get("desc", ""))}</p>
+          <div class="sc-picks">{"".join(cards)}</div>
+          <div class="sc-tpicks">{"".join(trows)}</div>
+          <p class="sc-warn"><b>주의</b> · {esc(SEASON_CAUTION.get(code, ""))}</p>
+          <div class="sc-glinks">{glink}</div>
+        </section>""")
+
+    # 같은 달 비교표(빌드 시점 = 이번 달, 쾌적도 순) — JS가 선택한 달·정렬로 다시 그린다
     cmp_rows = []
-    for c in cities:
-        band = c["fare"][c["season"][cm - 1]]
+    for c in sorted(cities, key=lambda x: (-x["score"][cm - 1], x["rainDays"][cm - 1])):
+        s = c["season"][cm - 1]
         cmp_rows.append(
             f'<tr data-city-row="{c["id"]}"><th scope="row"><b>{esc(c["name"])}</b></th>'
             f'<td>{c["temp"][cm - 1]:.1f}°C</td><td>{_n(c["rain"][cm - 1])}mm</td>'
             f'<td>{c["rainDays"][cm - 1]:.1f}일</td>'
-            f'<td><span class="sc-season {c["season"][cm - 1]}">{season_kr[c["season"][cm - 1]]}</span></td>'
-            f'<td class="num">약 {band[0] / 10000:.0f}~{band[1] / 10000:.0f}만원</td></tr>'
+            f'<td><span class="sc-season {s}">{season_kr[s]}</span></td>'
+            f'<td>{esc(theme_names_at(c, cm))}</td>'
+            f'<td class="num">{fare_text(c, cm)}</td></tr>'
         )
+
     year_rows = []
     for c in cities:
         cells = "".join(
             f'<td><button type="button" class="sc-cell {c["season"][i]}" data-year-cell="{c["id"]}-{i + 1}" '
+            f'data-themes="{" ".join((c.get("themes") or [])[i])}" '
             f'aria-label="{esc(c["name"])} {i + 1}월 {c["temp"][i]:.1f}도 {season_kr[c["season"][i]]}">'
             f'<b>{c["temp"][i]:.0f}°</b><span>{c["rain"][i]:.0f}</span></button></td>'
             for i in range(12)
         )
-        year_rows.append(f'<tr><th scope="row">{esc(c["name"])}</th>{cells}</tr>')
+        year_rows.append(f'<tr data-year-row="{c["id"]}" data-region="{esc(c.get("region", ""))}"><th scope="row">{esc(c["name"])}</th>{cells}</tr>')
+
+    # 상세 카드 초기값(오사카, 이번 달) — JS 없이도 읽히게
+    dc = default_city
+    i0 = cm - 1
+    s0 = dc["season"][i0]
+    lead_tbl = (data.get("lead") or {}).get(dc.get("trip", "international")) or {}
+    init_links = season_links(dc)
+    link_html = ""
+    for key, kicker, note in (
+        ("flight", "항공권", "최저가 검색"), ("hotel", "숙소", "이 달 요금"),
+        ("ticket", "입장권·투어", "현지 액티비티"), ("transfer", "공항픽업", "공항→숙소"),
+        ("stays", "찐숙소", "평점·1박 최저가"), ("guide", "가이드", "읽기"),
+        ("cityPage", "도시 페이지", "맛집·선물·숙소"),
+    ):
+        L = init_links.get(key)
+        if not L:
+            continue
+        ext = ' target="_blank" rel="noopener sponsored"' if L["url"].startswith("http") else ""
+        link_html += (f'<a class="sc-link" href="{esc(L["url"])}"{ext}><span class="sc-link-k">{kicker}</span>'
+                      f'<b>{esc(L["label"])}</b><span class="sc-link-n">{note}</span></a>')
+    dc_acc = dc.get("access") or {}
+    acc_bits = []
+    if dc_acc.get("mode"):
+        acc_bits.append(dc_acc["mode"])
+    if dc_acc.get("route"):
+        acc_bits.append(dc_acc["route"])
+    acc0 = " · ".join(acc_bits)
+    if dc_acc.get("time"):
+        acc0 += f' ({dc_acc["time"]})'
+    acc0 += " · 추천 " + "·".join(map(str, dc.get("bestMonths") or [])) + "월 · 한산 " + "·".join(map(str, dc.get("quietMonths") or [])) + "월"
+    fare_hint0 = "왕복·세금 포함" if dc.get("fare") else (dc.get("fareNote", "").split("—")[-1] or "KTX·버스 기준").strip()
+    fare_main0 = (f"약 {dc['fare'][s0][0] / 10000:.0f}~{dc['fare'][s0][1] / 10000:.0f}만원"
+                  if dc.get("fare") else "항공권 없음")
 
     body = read(PAGES / "calendar.html")
-    body = body.replace("<!-- @SC_CITIES -->", city_btns)
+    body = body.replace("<!-- @SC_ANCHORS -->", anchors)
+    body = body.replace("<!-- @SC_CITIES -->", "\n            ".join(city_blocks))
     body = body.replace("<!-- @SC_MONTHS -->", month_btns)
+    body = body.replace("<!-- @SC_SEASON_CHIPS -->", "".join(season_chips))
+    body = body.replace("<!-- @SC_THEME_CHIPS -->", "".join(theme_chips))
+    body = body.replace("<!-- @SC_REGION_CHIPS -->", "".join(region_chips))
+    body = body.replace("<!-- @SC_SORT_CHIPS -->", "".join(sort_chips))
+    body = body.replace("<!-- @SC_MONTH_PICKS -->", month_picks)
+    body = body.replace("<!-- @SC_MONTH_SPOTS -->", "".join(spot_rows))
+    body = body.replace("<!-- @SC_SEASON_PANELS -->", "\n\n        ".join(season_panels))
     body = body.replace("<!-- @SC_CMP_ROWS -->", "\n                ".join(cmp_rows))
     body = body.replace("<!-- @SC_YEAR_ROWS -->", "\n              ".join(year_rows))
+    body = body.replace(
+        '<h2 id="scMonthHead">11월, 어디가 가장 나은가</h2>',
+        f'<h2 id="scMonthHead">{esc(mf.get("headline", f"{cm}월, 어디가 가장 나은가"))}</h2>',
+    )
+    body = body.replace(
+        '<p class="sc-mnote" id="scMonthNote"></p>',
+        f'<p class="sc-mnote" id="scMonthNote">{esc(mf.get("note", ""))}</p>',
+    )
+    body = body.replace(
+        '<h2 id="scCmpTitle"><span id="scCmpMonth">11월</span>, 어디가 가장 나은가</h2>',
+        f'<h2 id="scCmpTitle"><span id="scCmpMonth">{cm}월</span>, 어디가 가장 나은가</h2>',
+    )
+    # 상세 카드 초기값
+    body = body.replace('<span class="sc-kicker" id="scKicker">OSAKA</span>', f'<span class="sc-kicker" id="scKicker">{esc(dc["kicker"])}</span>')
+    body = body.replace('<h2 id="scTitle">오사카·교토 <em>11월</em></h2>', f'<h2 id="scTitle">{esc(dc["name"])} <em>{cm}월</em></h2>')
+    body = body.replace('<span class="sc-season" id="scSeason">–</span>', f'<span class="sc-season {s0}" id="scSeason">{season_kr[s0]}</span>')
+    body = body.replace('<span class="sc-score-chip" id="scScore">–</span>', f'<span class="sc-score-chip" id="scScore">쾌적도 {dc["score"][i0]}</span>')
+    ev0 = (dc.get("events") or [""] * 12)[i0] if isinstance(dc.get("events"), list) else ""
+    if ev0:
+        body = body.replace('<span class="sc-event" id="scEvent" hidden></span>',
+                            f'<span class="sc-event" id="scEvent">{esc(ev0)}</span>')
+    body = body.replace('<b id="scTemp">–</b>', f'<b id="scTemp">{dc["temp"][i0]:.1f}°C</b>')
+    body = body.replace('<b id="scRain">–</b>', f'<b id="scRain">{_n(dc["rain"][i0])}mm</b>')
+    body = body.replace('<b id="scDays">–</b>', f'<b id="scDays">{dc["rainDays"][i0]:.1f}일</b>')
+    body = body.replace('<b id="scFare">–</b>', f'<b id="scFare">{fare_main0}</b>')
+    body = body.replace('<small id="scFareHint">왕복·세금 포함</small>', f'<small id="scFareHint">{esc(fare_hint0)}</small>')
+    body = body.replace('<p class="sc-note" id="scNote"></p>', f'<p class="sc-note" id="scNote">{esc(dc["note"][i0])}</p>')
+    body = body.replace(
+        '<p class="sc-access" id="scAccess"></p>',
+        f'<p class="sc-access" id="scAccess">{esc(acc0)}</p>',
+    )
+    body = body.replace('<b id="scLead">–</b>', f'<b id="scLead">{esc(lead_tbl.get(s0, "—"))}</b>')
+    body = body.replace('<b id="scLevel">–</b>', f'<b id="scLevel">{season_kr[s0]} · {"가장 비쌈" if s0 == "peak" else "중간" if s0 == "shoulder" else "가장 쌈"}</b>')
+    weather0 = "덥고 습함" if dc["temp"][i0] >= 28 else "따뜻함" if dc["temp"][i0] >= 20 else "선선함" if dc["temp"][i0] >= 10 else "쌀쌀함"
+    body = body.replace('<b id="scWeather">–</b>', f'<b id="scWeather">{weather0}</b>')
+    body = body.replace('<div class="sc-links" id="scLinks"></div>', f'<div class="sc-links" id="scLinks">{link_html}</div>')
+    if not any(init_links.get(k) for k in ("flight", "hotel", "ticket", "transfer")):
+        body = body.replace('<p class="sc-nolink" id="scNoLink" hidden></p>',
+                            '<p class="sc-nolink" id="scNoLink">이 도시는 제휴 예약 링크 없이 날씨·경비 기준만 제공합니다. 위 계절 가이드와 아래 같은 달 비교표에서 연결된 대안 도시를 보세요.</p>')
 
     payload_cities = []
     for c in cities:
         cc = dict(c)
         cc["links"] = season_links(c)
         payload_cities.append(cc)
-    payload = json.dumps({"updated": data["updated"], "lead": data["lead"], "cities": payload_cities},
-                         ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    payload = json.dumps(
+        {"updated": data["updated"], "lead": data.get("lead"), "filters": filt, "ui": ui, "cities": payload_cities},
+        ensure_ascii=False, separators=(",", ":"),
+    ).replace("</", "<\\/")
     body = body.replace("<!-- @SC_DATA -->", f'<script type="application/json" id="scData">{payload}</script>')
 
     faq = [
         ("오사카·도쿄는 언제가 가장 싼가요?",
          "1월 중순~2월 초와 6월 장마철입니다. 벚꽃·골든위크·오봉·연말에는 같은 항공권이 1.5~2배가 됩니다."),
+        ("12월에 따뜻한 곳은 어디인가요?",
+         "12월 평년 평균기온은 방콕 27.3도, 싱가포르 26.8도, 나트랑 24.7도, 다낭·호이안 22.2도 순입니다. 같은 12월에 서울은 0.2도, 강릉 3.3도입니다."),
+        ("유럽 4개 도시는 언제 가야 하나요?",
+         "파리·런던은 7~8월(파리 20.9도·비 7.4일, 런던 19.0도·비 7.9일), 로마·바르셀로나는 9월(로마 21.9도, 바르셀로나 22.1도)이 균형이 좋습니다."),
+        ("서울·강릉·경주는 항공권 가격이 왜 없나요?",
+         "국내 구간이라 KTX·고속버스 기준으로 적었습니다. 서울 왕복 5만~12만 원, 서울→강릉 KTX 2만 6,000원, 서울→신경주 KTX 4만 2,000원입니다."),
         ("다낭 우기 9~12월은 피해야 하나요?",
          "10~11월은 한 달에 20일 비가 오고 450~630mm가 내립니다. 9월과 12월은 가격이 30% 이상 낮아 리조트 휴양이면 선택지가 됩니다."),
-        ("항공권은 언제 예약해야 싼가요?",
-         "국제선 성수기는 출발 10~16주 전, 비수기는 3~6주 전이 가장 쌉니다. 제주 등 국내선은 성수기 4~8주, 비수기 2~4주 전입니다."),
-        ("성수기 구분은 무엇을 기준으로 했나요?",
-         "각국 공휴일과 학교 방학, 골든위크·오봉·송크란·춘절 같은 현지 축제 일정, 최근 판매 흐름을 기준으로 정리했습니다."),
+        ("쾌적도 점수는 어떻게 계산했나요?",
+         "기온(20~26도 만점) 55% + 강수 45% - 혼잡 감점(성수기 -12, 준성수기 -4)의 0~100점입니다. 순위보다 평균기온·비 온 날을 먼저 보세요."),
     ]
     jsonld = _page_jsonld(
         "calendar.html",
         "트립픽 월별 시즌·최저가 캘린더",
-        "오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주의 1~12월 기온·강수량·성수기와 항공권 참고 가격대, 예약 시점을 비교하는 캘린더.",
+        "서울·부산·제주·강릉·경주·여수·오사카·도쿄·후쿠오카·타이베이·홍콩·다낭·나트랑·방콕·싱가포르·파리·런던·로마·바르셀로나 19개 도시의 1~12월 기온·강수량·성수기와 항공권 참고 가격대를 비교하는 캘린더.",
         base,
         faq,
         [("트립픽", ""), ("월별 시즌 캘린더", None)],
@@ -2563,12 +2852,12 @@ def calendar_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "calendar.html",
-        title="월별 여행 시즌 캘린더 — 7개 도시 12개월 날씨·성수기·항공권 가격대 | 트립픽",
-        desc="오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주의 1~12월 평균기온·강수량·비 온 날·성수기와 항공권 참고 가격대, 예약 시점을 한 화면에서 비교합니다. 달을 고르면 그 달의 항공·숙소·투어 링크로 바로 이어집니다.",
+        title="월별 여행 시즌 캘린더 — 19개 도시 12개월 날씨·성수기·항공권 가격대 | 트립픽",
+        desc="서울·부산·강릉·경주·여수·제주·오사카·도쿄·후쿠오카·타이베이·홍콩·다낭·나트랑·방콕·싱가포르·파리·런던·로마·바르셀로나 19개 도시의 1~12월 평균기온·강수량·비 온 날·성수기와 항공권 참고 가격대를 한 화면에서 비교합니다. 계절·월·테마·지역으로 좁히면 그 달의 항공·숙소·투어 링크로 바로 이어집니다.",
         body=body,
         base=base,
         active="calendar",
-        keywords="여행 성수기, 비수기, 오사카 날씨, 도쿄 날씨, 다낭 우기, 방콕 우기, 타이베이 장마, 제주 성수기, 항공권 예약 시점",
+        keywords="여행 성수기, 비수기, 서울 날씨, 부산 날씨, 홍콩 날씨, 싱가포르 우기, 파리 날씨, 런던 날씨, 유럽 여행 시기, 벚꽃 시기, 단풍 시기, 설경 여행지, 항공권 예약 시점",
         jsonld=jsonld,
     )
 
@@ -3572,7 +3861,7 @@ def checklist_page(out_root: Path, base: str) -> Path:
 
     tools = [
         ("stays.html", "D-30", "찐숙소 " + str(len(STAYS.get("hotels", []))) + "곳", "국내 14개 지역 + 해외 7개 도시를 평점·리뷰·1박 최저가로 비교"),
-        ("calendar.html", "D-30", "월별 시즌 캘린더", "7개 도시 12개월 성수기·비수기와 항공권 가격이 오르는 달을 먼저 봅니다"),
+        ("calendar.html", "D-30", "월별 시즌 캘린더", "19개 도시 12개월 성수기·비수기와 항공권 가격이 오르는 달을 먼저 봅니다"),
         ("index.html#travelins", "D-30", "여행자보험 3곳 비교", "보장 항목·자기부담금을 카드사·보험사 공식 조건으로 비교"),
         ("passes.html", "D-14", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이 패스가 하루 이동 횟수로 남는지 계산"),
         ("index.html#essentials", "D-14", "eSIM·필수템", "나라별 eSIM 1일 300원대부터, 어댑터·보조배터리 구매 링크"),

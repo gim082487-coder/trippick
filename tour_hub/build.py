@@ -39,6 +39,8 @@ COUNTRIES = [
 ]
 COUNTRY_NAME = {c: n for c, n, _ in COUNTRIES}
 FLAG_SYMBOL = {c: f for c, _, f in COUNTRIES}
+# v32: 유럽 4개국을 국가별 깃발로 표시(홈 국가 탭 목록에는 넣지 않는다)
+FLAG_SYMBOL.update({"fr": "f-fr", "gb": "f-gb", "it": "f-it", "es": "f-es"})
 TYPE_ORDER = ["가이드투어", "데이투어", "야경투어", "패스", "풀패키지", "세미패키지", "에어텔", "골프패키지", "국내패키지", "레저·액티비티"]
 PREMIUM_FLOOR = 3_000_000
 

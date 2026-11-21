@@ -290,6 +290,34 @@
    "pexels_id": 20805599,
    "photographer": "Jacob",
    "url": "https://www.pexels.com/photo/20805599/"
+  },
+  "season_spring": {
+   "pexels_id": 38306854,
+   "photographer": "Gleb Londar",
+   "url": "https://www.pexels.com/photo/38306854/",
+   "subject": "서울 호수 둘레길 벚꽃과 도심 스카이라인",
+   "file": "images/season/spring.jpg"
+  },
+  "season_summer": {
+   "pexels_id": 14013221,
+   "photographer": "Quang Nguyen Vinh",
+   "url": "https://www.pexels.com/photo/14013221/",
+   "subject": "야자수와 맑은 바다가 보이는 열대 해변(베트남)",
+   "file": "images/season/summer.jpg"
+  },
+  "season_autumn": {
+   "pexels_id": 34869485,
+   "photographer": "Ray Suarez",
+   "url": "https://www.pexels.com/photo/34869485/",
+   "subject": "붉은 단풍나무가 터널을 이룬 공원 산책로",
+   "file": "images/season/autumn.jpg"
+  },
+  "season_winter": {
+   "pexels_id": 35351491,
+   "photographer": "Christopher Hiew",
+   "url": "https://www.pexels.com/photo/35351491/",
+   "subject": "강원도 홍천 설경(눈 덮인 소나무와 설산)",
+   "file": "images/season/winter.jpg"
   }
  }
 }
