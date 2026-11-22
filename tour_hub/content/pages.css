@@ -1437,15 +1437,16 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
 
 /* 전체 화면 큰 글씨 카드 */
 .sos-ov{position:fixed;inset:0;z-index:200;background:#0B1B25;color:#fff;display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(20px,5vw,46px);overflow:auto;-webkit-overflow-scrolling:touch}
+  padding:clamp(56px,9vh,96px) clamp(20px,5vw,46px) clamp(64px,10vh,104px);overflow:auto;-webkit-overflow-scrolling:touch}
 .sos-ov-x{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.06);
   color:#fff;border-radius:999px;padding:9px 14px;font-size:12.5px;font-weight:800;cursor:pointer}
-.sos-ov-ko{font-size:clamp(13px,3.4vw,16px);font-weight:850;color:#8FD8F0;letter-spacing:.01em}
-.sos-ov-big{font-size:clamp(34px,10vw,72px);line-height:1.24;font-weight:900;letter-spacing:-.03em;margin:14px 0 12px;
+.sos-ov-ko{font-size:clamp(13px,3.4vw,17px);font-weight:850;color:#8FD8F0;letter-spacing:.01em}
+.sos-ov-big{font-size:clamp(34px,7.2vw,104px);line-height:1.2;font-weight:900;letter-spacing:-.03em;margin:14px 0 12px;
   word-break:keep-all;overflow-wrap:anywhere}
-.sos-ov-pron{font-size:clamp(15px,3.6vw,19px);color:#C7DDE6;line-height:1.5}
-.sos-ov-en{font-size:clamp(13px,3.2vw,15px);color:#9FB9C4;margin-top:16px;line-height:1.6}
-.sos-ov-hint{margin-top:auto;padding-top:26px;font-size:12px;line-height:1.6;color:#8FA8B3}
+.sos-ov-pron{font-size:clamp(15px,2.2vw,26px);color:#C7DDE6;line-height:1.5}
+.sos-ov-en{font-size:clamp(13px,1.7vw,19px);color:#9FB9C4;margin-top:16px;line-height:1.6}
+.sos-ov-hint{position:absolute;left:clamp(18px,4vw,44px);right:clamp(18px,4vw,44px);bottom:max(18px,env(safe-area-inset-bottom));
+  font-size:12px;line-height:1.6;color:#8FA8B3;text-align:center}
 
 /* 반응형 — 390px에서도 가로 넘침 0 */
 @media (max-width:760px){
@@ -1457,6 +1458,11 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
   .sos-pc{min-height:0}
   .sos-rel-grid{grid-template-columns:1fr}
   .sos-badge{display:none}
+}
+@media (max-width:560px){
+  /* 좁은 화면에서는 히어로 메타의 구분선( | )이 줄 끝에 홀로 남으므로 숨긴다 */
+  .sos-top .pg-meta{gap:2px 10px}
+  .sos-top .pg-meta i{display:none}
 }
 @media (max-width:420px){
   .sos-call .num{font-size:17.5px}
