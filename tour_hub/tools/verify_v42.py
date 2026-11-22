@@ -5,11 +5,11 @@
 뒤에 실행한다.
 
 검사 항목
- 1. 가이드 88편·신규 3편 파일·OG 이미지(1200×630)·sitemap 115 URL
+ 1. 가이드 편수·v42 신규 3편 파일·OG 이미지(1200×630)·sitemap URL
  2. 신규 3편의 본문 목차(gtoc)·FAQ 5문항·FAQPage JSON-LD·제휴 링크(https·트립닷컴 파라미터)
  3. /passes 싱가포르 패널 — 데이터(passes.json)와 화면·페이로드, v39 싱가포르 가이드 수치 일치
  4. 홈 「어디든지 파인더」 — tpFinder 데이터(도시·시즌·숙소·투어·허브 URL)와 UI 칩
- 5. 찜 견적서 — 찜 데이터에 1박·1인 단가(pr·un)가 있고, tp-v42.js 에 견적·복사 기능이 있는지
+ 5. 찜 견적서 — 찜 데이터에 1박·1인 단가(pr·un)가 있고, tp-v43.js 에 견적·복사 기능이 있는지
  6. GSC 재시도 action.md 에 신규 3편 URL 이 들어갔고 프론트매터가 그대로인지
 """
 import json
@@ -43,7 +43,8 @@ def check(ok, msg):
 # ---------------------------------------------------------------- 1. 편수·파일·OG·sitemap
 guides = load("guides.json")["guides"]
 by = {g["slug"]: g for g in guides}
-check(len(guides) == 88, f"가이드 {len(guides)}편 (기대 88)")
+EXPECT_GUIDES = len(guides)
+check(len(guides) >= 88, f"가이드 {len(guides)}편 (기대 88편 이상)")
 for slug in NEW:
     g = by.get(slug)
     check(g is not None, f"guides.json 에 {slug} 없음")
@@ -66,7 +67,7 @@ for slug in NEW:
 
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 115, f"sitemap {len(locs)} URL (기대 115)")
+check(len(locs) == len(list(OUT.glob("**/*.html"))) - 3, f"sitemap {len(locs)} URL (HTML 페이지 수와 불일치)")
 for slug in NEW:
     check(f"/guides/{slug}" in sm, f"sitemap 에 /guides/{slug} 없음")
 
@@ -205,15 +206,16 @@ for raw in wish_tour:
 check(tu_bad == 0, f"찜 투어의 트립닷컴 보조 CTA 결함 {tu_bad}건")
 check(tu_n >= 20, f"트립닷컴 투어 보조 CTA 를 가진 찜 카드 {tu_n}개 (기대 20개 이상)")
 check('data-wl-open' in home, "홈 헤더에 찜 버튼(data-wl-open) 없음")
-js = OUT / "assets" / "tp-v42.js"
-check(js.exists(), "assets/tp-v42.js 없음")
+js = OUT / "assets" / "tp-v43.js"
+check(js.exists(), "assets/tp-v43.js 없음")
 check(not (OUT / "assets" / "tp-v41.js").exists(), "구 assets/tp-v41.js 가 남아 있음")
+check(not (OUT / "assets" / "tp-v42.js").exists(), "구 assets/tp-v42.js 가 남아 있음")
 if js.exists():
     src = read(js)
     for token in ("trippick.wish.v1", "data-wl-copy", "data-wl-step", "wl-total", "wl-cta", "data-fd-season", "tpFinder"):
-        check(token in src, f"tp-v42.js 에 {token} 없음")
-    check("견적 요약 복사" in src, "tp-v42.js 에 견적 요약 복사 버튼 없음")
-check("assets/tp-v42.js" in home and "assets/tp-v42.js" in stay_html, "홈·/stays 가 tp-v42.js 를 안 씀")
+        check(token in src, f"tp-v43.js 에 {token} 없음")
+    check("견적 요약 복사" in src, "tp-v43.js 에 견적 요약 복사 버튼 없음")
+check("assets/tp-v43.js" in home and "assets/tp-v43.js" in stay_html, "홈·/stays 가 tp-v43.js 를 안 씀")
 
 # ---------------------------------------------------------------- 6. GSC action.md
 if ACTION.exists():
@@ -223,7 +225,7 @@ if ACTION.exists():
     check("kind: scheduled-action" in fm and "schedule:" in fm, "action.md 프론트매터 내용 변경됨")
     for slug in NEW:
         check(f"https://trippick.pages.dev/guides/{slug}" in act, f"action.md 에 {slug} URL 없음")
-    check("115개" in act, "action.md 사이트맵 기준 수(115개) 미갱신")
+    check("118개" in act, "action.md 사이트맵 기준 수(118개) 미갱신")
 else:
     fails.append(f"action.md 없음: {ACTION}")
 

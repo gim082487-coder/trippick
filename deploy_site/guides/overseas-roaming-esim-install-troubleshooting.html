@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>eSIM 안 터질 때 해결 2026 — 아이폰·갤럭시 데이터 로밍·APN·듀얼심 통화비 폭탄 방지 | 트립픽</title>
+<meta name="description" content="eSIM 안 터질 때 확인 순서: 데이터 회선 eSIM → 회선 사용 켜기 → 데이터 로밍 켜기. 아이폰 설정→셀룰러, 갤럭시 설정→연결→SIM 관리자 경로와 APN·수동 네트워크·재부팅, 데이터 전환 허용 끄기로 로밍 통화비 막는 법, 2인 4일 로밍 79,200원 vs eSIM 4,720원." />
+<meta name="keywords" content="eSIM 안됨, eSIM 안 터질 때, eSIM 데이터 로밍, 아이폰 eSIM 설정, 갤럭시 eSIM 설정, eSIM APN, 듀얼심 통화비, 로밍 요금 폭탄, eSIM 재설치, 해외 데이터 안될 때, eSIM 590원" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="googlebot" content="index, follow" />
+<meta name="google-site-verification" content="LcZmYDzmsn2pIDvvwDXtLezOnQi8dEOjQ67-xBWdfCw" />
+<meta name="google-site-verification" content="Y3lrh6zGKCcwxVcFKL8ujJ1QK1Xi4HjHaL2KhZLku78" />
+<meta name="naver-site-verification" content="de9b4241355a3ab6e83e5c102d1f6f1e6f244302" />
+<meta name="naver-site-verification" content="ab10e600052c8a46301698e6f7c1dd39c3c2aa95" />
+<meta name="naver-site-verification" content="ed075b14e9af849ab81ed9569f8e97f418a88c83" />
+<meta name="google-adsense-account" content="ca-pub-9563082990728787" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9563082990728787" crossorigin="anonymous"></script>
+<meta name="author" content="트립픽" />
+<link rel="canonical" href="https://trippick.pages.dev/guides/overseas-roaming-esim-install-troubleshooting" />
+<meta name="theme-color" content="#F4F6F8" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="트립픽" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:url" content="https://trippick.pages.dev/guides/overseas-roaming-esim-install-troubleshooting" />
+<meta property="og:title" content="eSIM 안 터질 때 해결 2026 — 아이폰·갤럭시 데이터 로밍·APN·듀얼심 통화비 폭탄 방지 | 트립픽" />
+<meta property="og:description" content="eSIM 안 터질 때 확인 순서: 데이터 회선 eSIM → 회선 사용 켜기 → 데이터 로밍 켜기. 아이폰 설정→셀룰러, 갤럭시 설정→연결→SIM 관리자 경로와 APN·수동 네트워크·재부팅, 데이터 전환 허용 끄기로 로밍 통화비 막는 법, 2인 4일 로밍 79,200원 vs eSIM 4,720원." />
+<meta property="og:image" content="https://trippick.pages.dev/images/og/v43-esim-troubleshoot-og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="캐리어 위에서 아이폰 화면으로 eSIM을 활성화하는 여행자" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@trippick.travel" />
+<meta name="twitter:title" content="eSIM 안 터질 때 해결 2026 — 아이폰·갤럭시 데이터 로밍·APN·듀얼심 통화비 폭탄 방지 | 트립픽" />
+<meta name="twitter:description" content="eSIM 안 터질 때 확인 순서: 데이터 회선 eSIM → 회선 사용 켜기 → 데이터 로밍 켜기. 아이폰 설정→셀룰러, 갤럭시 설정→연결→SIM 관리자 경로와 APN·수동 네트워크·재부팅, 데이터 전환 허용 끄기로 로밍 통화비 막는 법, 2인 4일 로밍 79,200원 vs eSIM 4,720원." />
+<meta name="twitter:image" content="https://trippick.pages.dev/images/og/v43-esim-troubleshoot-og.jpg" />
+<meta name="twitter:image:alt" content="캐리어 위에서 아이폰 화면으로 eSIM을 활성화하는 여행자" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="../assets/site.css?v=40" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%231b5cf0'/%3E%3Cpath d='M9 17.5 23 12.8l-3.2 6.4-4.6.7-2 2.6-.7-3.2-3.5-1.8Z' fill='%23fff'/%3E%3C/svg%3E" />
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "eSIM이 안 터질 때, 도착 1분에 데이터 살리는 순서", "description": "eSIM 안 터질 때 확인 순서: 데이터 회선 eSIM → 회선 사용 켜기 → 데이터 로밍 켜기. 아이폰 설정→셀룰러, 갤럭시 설정→연결→SIM 관리자 경로와 APN·수동 네트워크·재부팅, 데이터 전환 허용 끄기로 로밍 통화비 막는 법, 2인 4일 로밍 79,200원 vs eSIM 4,720원.", "datePublished": "2026-11-22", "dateModified": "2026-11-22", "inLanguage": "ko", "author": {"@type": "Organization", "name": "트립픽"}, "publisher": {"@type": "Organization", "name": "트립픽"}, "mainEntityOfPage": "https://trippick.pages.dev/guides/overseas-roaming-esim-install-troubleshooting", "image": "https://trippick.pages.dev/images/v43/esim-troubleshoot.jpg"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "트립픽", "item": "https://trippick.pages.dev/"}, {"@type": "ListItem", "position": 2, "name": "여행 가이드", "item": "https://trippick.pages.dev/guides/"}, {"@type": "ListItem", "position": 3, "name": "eSIM이 안 터질 때 1분 해결 가이드"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "eSIM을 설치했는데 인터넷이 안 되면 무엇부터 보나요?", "acceptedAnswer": {"@type": "Answer", "text": "데이터 회선이 eSIM으로 되어 있는지부터 봅니다. 다음으로 eSIM 회선의 ‘이 회선 사용’이 켜져 있는지, ‘데이터 로밍’이 켜져 있는지 확인합니다. 이 세 가지로 대부분 해결됩니다."}}, {"@type": "Question", "name": "아이폰에서 eSIM 설정은 어디서 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "설정 → 셀룰러에서 회선별로 관리합니다. 셀룰러 데이터를 eSIM으로, 기본 음성 회선을 한국 SIM으로 두고, ‘셀룰러 데이터 전환 허용’은 끕니다. eSIM 회선의 데이터 로밍만 켭니다."}}, {"@type": "Question", "name": "갤럭시는 어떻게 설정하나요?", "acceptedAnswer": {"@type": "Answer", "text": "설정 → 연결 → SIM 관리자에서 모바일 데이터를 eSIM으로, 통화를 한국 SIM으로 선택합니다. eSIM 회선의 데이터 로밍을 켜고 ‘자동 데이터 전환’은 끕니다."}}, {"@type": "Question", "name": "로밍 통화비가 나오지 않게 하려면?", "acceptedAnswer": {"@type": "Answer", "text": "한국 SIM의 데이터 로밍을 끄고, 데이터 전환 허용을 끕니다. 데이터는 eSIM, 음성은 한국 SIM으로 두면 문자 인증은 받으면서 데이터 로밍 요금은 피할 수 있습니다. 받는 전화에도 요금이 붙으니 모르는 번호는 받지 않는 편이 안전합니다."}}, {"@type": "Question", "name": "eSIM을 삭제하면 다시 설치할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "대부분 안 됩니다. QR은 1회용이고, ‘eSIM 삭제’를 누르면 재설치가 안 되는 상품이 많습니다. 설치 전 QR 화면을 캡처해 두고, 설치 후에는 회선을 지우지 마세요."}}]}</script>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 3.5 12 3l1.5.5 1 6.5 6 3v2l-6-1.5-1 5 2 1.5V22l-3.5-1L8.5 22v-1.5l2-1.5-1-5-6 1.5v-2l6-3 1-6.5Z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-6.1 6.5-11a6.5 6.5 0 1 0-13 0C5.5 14.9 12 21 12 21Z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h11A2.5 2.5 0 0 1 20 8.5v1a2.5 2.5 0 0 0 0 5v1A2.5 2.5 0 0 1 17.5 18h-11A2.5 2.5 0 0 1 4 15.5v-1a2.5 2.5 0 0 0 0-5v-1Z"/><path d="M13 7v10"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.6-3.1 7.7-7 9-3.9-1.3-7-4.4-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.4-4.6-7.4-9.6A4.4 4.4 0 0 1 12 7.4a4.4 4.4 0 0 1 7.4 3C19.4 15.4 12 20 12 20Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 7l5 5-5 5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.4"/></symbol>
+  <symbol id="i-won" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8 8.5 10 15.5 12 9.5 14 15.5 16 8.5"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m15.2 8.8-2 4.4-4.4 2 2-4.4 4.4-2Z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.6 12h16.8M12 3.5c2.2 2.2 3.4 5.3 3.4 8.5s-1.2 6.3-3.4 8.5c-2.2-2.2-3.4-5.3-3.4-8.5S9.8 5.7 12 3.5Z"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M4 20h3v-5H4zM10.5 20h3V9h-3zM17 20h3V4h-3z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 2h-14l1.5-2Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.8" y="5.5" width="16.4" height="14.7" rx="2.5"/><path d="M8 3.6v3.4M16 3.6v3.4M3.8 10.5h16.4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.8" y="5" width="16.4" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.5"/><path d="m4.5 17.5 4.7-4.4 3.3 3 2.9-2.4 4.1 3.8"/></symbol>
+  <symbol id="f-kr" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#fff"/><circle cx="10" cy="7" r="3" fill="#cd2e3a"/><path d="M10 4a3 3 0 0 0 0 6 1.5 1.5 0 0 0 0-3 1.5 1.5 0 0 1 0-3Z" fill="#0047a0"/><g fill="#1b1b1b"><path d="M3.6 3.4h3.6v.5H3.6zM3.6 4.4h3.6v.5H3.6zM3.6 5.4h3.6v.5H3.6z"/><path d="M12.8 3.4h3.6v.5h-3.6zM12.8 4.4h3.6v.5h-3.6zM12.8 5.4h3.6v.5h-3.6z"/><path d="M3.6 8.6h3.6v.5H3.6zM3.6 9.6h3.6v.5H3.6zM3.6 10.6h3.6v.5H3.6z"/><path d="M12.8 8.6h3.6v.5h-3.6zM12.8 9.6h3.6v.5h-3.6zM12.8 10.6h3.6v.5h-3.6z"/></g><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-jp" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#fff" stroke="#c8d4e3"/><circle cx="10" cy="7" r="3.5" fill="#d3283a"/></symbol>
+  <symbol id="f-vn" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#da251d"/><path d="m10 3.1 1.12 2.62 2.83.24-2.15 1.86.65 2.78L10 9.06 7.55 10.6l.65-2.78-2.15-1.86 2.83-.24L10 3.1Z" fill="#ffd400"/></symbol>
+  <symbol id="f-sg" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#ed2939"/><rect x=".6" y="6.9" width="18.8" height="6.5" fill="#fff"/><path d="M6.4 3.1a2.5 2.5 0 1 0 0 5 3.1 3.1 0 0 1 0-5Z" fill="#fff"/><g fill="#fff"><circle cx="8.2" cy="3.2" r="0.45"/><circle cx="9.2" cy="4.1" r="0.45"/><circle cx="9.2" cy="5.3" r="0.45"/><circle cx="8.2" cy="6.2" r="0.45"/><circle cx="7.2" cy="5.3" r="0.45"/><circle cx="7.2" cy="4.1" r="0.45"/></g><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-hk" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#de2910"/><g fill="#fff"><ellipse cx="10" cy="5.4" rx="1.05" ry="2.3" transform="rotate(0 10 7)"/><ellipse cx="10" cy="5.4" rx="1.05" ry="2.3" transform="rotate(72 10 7)"/><ellipse cx="10" cy="5.4" rx="1.05" ry="2.3" transform="rotate(144 10 7)"/><ellipse cx="10" cy="5.4" rx="1.05" ry="2.3" transform="rotate(216 10 7)"/><ellipse cx="10" cy="5.4" rx="1.05" ry="2.3" transform="rotate(288 10 7)"/></g><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-th" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#f4f5f8"/><path d="M.6 2.4h18.8v1.9H.6zM.6 9.7h18.8v1.9H.6z" fill="#a51931"/><path d="M.6 4.3h18.8v5.4H.6z" fill="#2d2a4a"/><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-tw" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#fe0000"/><path d="M.6.6h9.6v7H.6z" fill="#000095"/><circle cx="5.4" cy="4.1" r="2.2" fill="#fff"/><circle cx="5.4" cy="4.1" r="1.4" fill="#000095"/><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-eu" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#003399"/><g fill="#ffcc00"><circle cx="10" cy="3.5" r="0.62"/><circle cx="11.75" cy="3.97" r="0.62"/><circle cx="13.03" cy="5.25" r="0.62"/><circle cx="13.5" cy="7" r="0.62"/><circle cx="13.03" cy="8.75" r="0.62"/><circle cx="11.75" cy="10.03" r="0.62"/><circle cx="10" cy="10.5" r="0.62"/><circle cx="8.25" cy="10.03" r="0.62"/><circle cx="6.97" cy="8.75" r="0.62"/><circle cx="6.5" cy="7" r="0.62"/><circle cx="6.97" cy="5.25" r="0.62"/><circle cx="8.25" cy="3.97" r="0.62"/></g><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-us" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#fff"/><g fill="#b22234"><rect x=".6" y=".6" width="18.8" height="0.98"/><rect x=".6" y="2.56" width="18.8" height="0.98"/><rect x=".6" y="4.52" width="18.8" height="0.98"/><rect x=".6" y="6.48" width="18.8" height="0.98"/><rect x=".6" y="8.44" width="18.8" height="0.98"/><rect x=".6" y="10.4" width="18.8" height="0.98"/><rect x=".6" y="12.36" width="18.8" height="0.98"/></g><rect x=".6" y=".6" width="8.4" height="6.9" fill="#3c3b6e"/><g fill="#fff"><circle cx="2.2" cy="2" r="0.42"/><circle cx="4.4" cy="2" r="0.42"/><circle cx="6.6" cy="2" r="0.42"/><circle cx="3.3" cy="3.55" r="0.42"/><circle cx="5.5" cy="3.55" r="0.42"/><circle cx="7.7" cy="3.55" r="0.42"/><circle cx="2.2" cy="5.1" r="0.42"/><circle cx="4.4" cy="5.1" r="0.42"/><circle cx="6.6" cy="5.1" r="0.42"/></g><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-oc" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#00247d"/><path d="M.6.6h9.2v6.6H.6z" fill="#00247d" stroke="#fff" stroke-width=".5"/><path d="M.6 3.9h9.2M5.2.6v6.6" stroke="#fff" stroke-width="1.6"/><path d="M.6 3.9h9.2M5.2.6v6.6" stroke="#cf142b" stroke-width="0.8"/><g fill="#fff"><path d="m15 6.2.6 1.4 1.5.1-1.15 1 .35 1.5L15 9.4l-1.3.8.35-1.5-1.15-1 1.5-.1.6-1.4Z"/><path d="m6 10.4.45 1.05 1.15.08-.87.75.26 1.12L6 12.8l-.99.6.26-1.12-.87-.75 1.15-.08.45-1.05Z"/><path d="m12.4 11.4.35.85.93.06-.7.6.21.9-.79-.48-.79.48.21-.9-.7-.6.93-.06.35-.85Z"/><path d="m18 11.6.28.66.73.05-.55.47.16.7-.62-.37-.62.37.16-.7-.55-.47.73-.05.28-.66Z"/></g><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-cn" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#de2910"/><path d="m4.3 2.2 1.05 3.05 3.2.05-2.55 1.9.95 3.05L4.3 8.4 2.35 10.25l.95-3.05L.75 5.3l3.2-.05L4.3 2.2Z" fill="#ffde00"/><g fill="#ffde00"><circle cx="8.6" cy="2.4" r="0.5"/><circle cx="9.7" cy="3.8" r="0.5"/><circle cx="9.7" cy="5.7" r="0.5"/><circle cx="8.6" cy="7.1" r="0.5"/></g><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-gu" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#002f6c"/><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c62128" stroke-width="1.3"/><path d="M10 4.3c1.9 0 3.4 1.2 3.4 2.7s-1.5 2.7-3.4 2.7-3.4-1.2-3.4-2.7S8.1 4.3 10 4.3Z" fill="#fff"/><path d="M10 5.6c1.1.5 1.8 1.2 1.8 1.4 0 .6-1 .9-1.8.9s-1.8-.3-1.8-.9c0-.2.7-.9 1.8-1.4Z" fill="#c62128"/></symbol>
+  <symbol id="f-fr" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#fff"/><path d="M.6 2.6a2 2 0 0 1 2-2h4.2v12.8H2.6a2 2 0 0 1-2-2V2.6Z" fill="#0055A4"/><path d="M13.4.6h4a2 2 0 0 1 2 2v8.8a2 2 0 0 1-2 2h-4V.6Z" fill="#EF4135"/><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-gb" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#012169"/><path d="M.6.6 19.4 13.4M19.4.6.6 13.4" stroke="#fff" stroke-width="2.8"/><path d="M.6.6 19.4 13.4M19.4.6.6 13.4" stroke="#C8102E" stroke-width="1.4"/><path d="M10 .6v12.8M.6 7h18.8" stroke="#fff" stroke-width="4.4"/><path d="M10 .6v12.8M.6 7h18.8" stroke="#C8102E" stroke-width="2.6"/><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-it" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#fff"/><path d="M.6 2.6a2 2 0 0 1 2-2h4.2v12.8H2.6a2 2 0 0 1-2-2V2.6Z" fill="#009246"/><path d="M13.4.6h4a2 2 0 0 1 2 2v8.8a2 2 0 0 1-2 2h-4V.6Z" fill="#CE2B37"/><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+  <symbol id="f-es" viewBox="0 0 20 14"><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="#AA151B"/><rect x=".6" y="4.1" width="18.8" height="5.8" fill="#F1BF00"/><rect x=".6" y=".6" width="18.8" height="12.8" rx="2" fill="none" stroke="#c8d4e3"/></symbol>
+</svg>
+<a class="pg-skip" href="#main">본문 바로가기</a>
+<header class="site-head" id="siteHead">
+  <div class="wrap">
+    <a class="logo" href="../">
+      <span class="mark" aria-hidden="true"><svg><use href="#i-plane"/></svg></span>
+      <span><span class="lt">트립픽</span><small class="ls">여행 코스 · 가이드투어 비교</small></span>
+    </a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="../#courses">추천 코스</a>
+      <a href="../#planner">예산 계산기</a>
+      <a href="../checklist" data-hide-sm>여행 준비</a>
+      <a href="../#regions">지역·투어</a>
+      <a href="../cities/">도시별</a>
+      <a href="../stays">찐숙소</a>
+      <a href="../guides/" class="on">여행 가이드</a>
+      <a href="../#foods" data-hide-sm>맛집</a>
+      <a href="../#essentials">여행 필수품</a>
+      <a href="../#alert" data-hide-sm>특가 알림</a>
+      <details class="nav-drop" id="navTools">
+        <summary class="nav-drop-sum"><span>도구</span></summary>
+        <div class="nav-drop-menu">
+        <a href="../exchange"><b>환율·일본 면세 계산기</b><span>12개 통화 · 면세 환급</span></a>
+        <a href="../baggage"><b>항공사 수하물 규정</b><span>기내·위탁·배터리</span></a>
+        <a href="../passes"><b>교통패스 본전 계산기</b><span>오사카·도쿄·방콕·타이베이·싱가포르</span></a>
+        <a href="../calendar"><b>월별 시즌 캘린더</b><span>19개 도시 12개월</span></a>
+        </div>
+      </details>
+    </nav>
+    <div class="head-right">
+      <button class="hd-ico" type="button" data-qs-open aria-label="통합 검색" title="통합 검색 (Ctrl/⌘ K)">
+        <svg aria-hidden="true"><use href="#i-search"/></svg><kbd>⌘K</kbd>
+      </button>
+      <button class="hd-ico" type="button" data-wl-open aria-label="찜한 항목" title="찜한 항목">
+        <svg aria-hidden="true"><use href="#i-heart"/></svg><span class="hd-n" data-wl-count hidden>0</span>
+      </button>
+      <a class="btn" href="../#regions">투어 84개 찾기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</header>
+<main class="pg-main" id="main">
+<div class="pg-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="../">홈</a><i></i><a href="./">여행 가이드</a><i></i><b>eSIM이 안 터질 때 1분 해결 가이드</b></nav>
+    <span class="pg-kicker">준비물·경비</span>
+    <div class="pg-head">
+      <h1>eSIM이 안 터질 때, <em>도착 1분</em>에 데이터 살리는 순서</h1>
+      <p class="dek">eSIM을 설치했는데 인터넷이 안 되는 원인은 대부분 세 가지입니다. 아이폰·갤럭시 설정 경로, 원인 7가지, 통화비 폭탄 막는 설정, 로밍 9,900원과 eSIM 590원의 차이를 정리했습니다.</p>
+      <div class="pg-meta">
+        <span><b>트립픽 편집</b></span><i></i>
+        <span>최종 검증일 2026.11.22</span><i></i>
+        <span>읽는 시간 약 10분</span><i></i>
+        <span>상품가 2026-11 확인 · 로밍 1일 9,900원 기준</span>
+      </div>
+      <div class="pg-bm">
+        <button class="bm-btn" type="button" data-bm="/guides/overseas-roaming-esim-install-troubleshooting.html" data-bm-item="{&quot;t&quot;:&quot;eSIM이 안 터질 때 1분 해결 가이드&quot;,&quot;c&quot;:&quot;준비물·경비&quot;,&quot;r&quot;:10}" aria-pressed="false">
+          <span class="bm-star" aria-hidden="true">★</span><span class="bm-t">참고 글 저장</span>
+        </button>
+        <span class="bm-note">이 브라우저에 저장 · 헤더 ♥ 안 ‘저장한 참고 글’에서 다시 열기</span>
+      </div>
+    </div>
+      <figure class="pg-hero-img">
+        <img src="../images/v43/esim-troubleshoot.jpg" alt="캐리어 위에서 아이폰 화면으로 eSIM을 활성화하는 여행자" width="1200" height="630" loading="eager" />
+        <figcaption>사진: Joey Tran / Pexels (2026)</figcaption>
+      </figure>
+  </div>
+</div>
+
+<div class="pg-body">
+  <div class="wrap">
+<div class="share-row" data-share>
+  <span class="share-k"><svg aria-hidden="true"><use href="#i-globe"/></svg>이 가이드 공유하기</span>
+  <button type="button" class="share-btn share-btn--main" data-share-act="native">
+    <svg aria-hidden="true"><use href="#i-arrow"/></svg>카톡·인스타·스레드로 보내기</button>
+  <button type="button" class="share-btn" data-share-act="copy">
+    <svg aria-hidden="true"><use href="#i-check"/></svg>링크 복사</button>
+  
+  <span class="share-note">복사하면 ‘복사됨 ✓’ 이 뜨고, 카톡·문자·메모 어디든 붙여넣으면 미리보기가 나옵니다.</span>
+</div>
+<div class="cont-bar" id="contBar" hidden data-tp-kind="가이드" data-tp-title="eSIM이 안 터질 때 1분 해결 가이드" data-tp-url="/guides/overseas-roaming-esim-install-troubleshooting" data-tp-img="/images/v43/esim-troubleshoot.jpg"></div>
+    <aside class="adslot adslot--flat" data-ad-slot="guide-top" aria-label="광고·추천 영역">
+  <!-- v22 광고 슬롯 — 승인 전이라 주석 상태입니다. 로더 스크립트는 <head> 에 이미 있고,
+       아래 주석을 풀고 data-ad-slot="0000000000" 만 애드센스 광고 단위 ID로 바꾸면 표시됩니다.
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9563082990728787" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+  <a class="adslot-in" href="../#tripcom">
+    <span class="adslot-tag">트립픽 추천</span>
+    <span class="adslot-copy"><b>숙소·항공은 도시별 최저가로</b><span>트립닷컴 파트너스 링크로 도시 19곳 숙소·항공 12개 노선에 입장권·공항픽업·렌터카 16종, eSIM·유심 9개 도시와 유럽 전역 1종·공항철도 2개 노선을 더했습니다.</span></span>
+    <span class="adslot-go">숙소·항공 보기 →</span>
+  </a>
+</aside>
+    <div class="pg-grid">
+      <article class="doc">
+<div class="g-sum">
+  <div class="g-sum-top"><b>3줄 요약</b><span class="g-sum-date">최종 검증일 2026.11.22 · 상품가 2026-11 확인 · 로밍 1일 9,900원 기준</span></div>
+  <p class="g-sum-lead">안 터지면 데이터 회선 → eSIM 회선 사용 → 데이터 로밍 순서로 1분 안에 확인. 2인 4일 기준 로밍 79,200원, eSIM 4,720원입니다.</p>
+  <ul class="g-sum-facts"><li><span>2인 4일 차이</span><b>74,480원</b></li><li><span>일본 eSIM 1일</span><b>590원</b></li></ul>
+  
+</div>
+<div class="gtoc">
+  <div class="gtoc-top">
+    <span class="gtoc-read"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> 본문 4,155자 · 약 10분</span>
+    <button class="gtoc-btn" type="button" aria-expanded="false" aria-controls="gtoc-list"><span>전체 목차</span><b>8</b><span class="gtoc-cv" aria-hidden="true"></span></button>
+  </div>
+  <nav class="gtoc-chips" aria-label="목차 바로가기"><a href="#minute"><i>1</i>도착 1분 — 안 터질 때 확인 순서</a><a href="#iphone"><i>2</i>아이폰 설정 — 이 4개만 보면 됩니다</a><a href="#galaxy"><i>3</i>갤럭시 설정 — SIM 관리자에서</a><a href="#why"><i>4</i>설치는 됐는데 안 될 때, 원인 7가지</a><a href="#bill"><i>5</i>통화비 폭탄 막는 설정</a><a href="#cost"><i>6</i>로밍 9,900원 vs eSIM 590원</a><a href="#qr"><i>7</i>QR·삭제·환불 — 되돌릴 수 없는 것</a><a href="#check"><i>8</i>출국 전 3분 체크리스트</a></nav>
+  <ol class="gtoc-list" id="gtoc-list" hidden><li><a href="#minute">도착 1분 — 안 터질 때 확인 순서</a></li><li><a href="#iphone">아이폰 설정 — 이 4개만 보면 됩니다</a></li><li><a href="#galaxy">갤럭시 설정 — SIM 관리자에서</a></li><li><a href="#why">설치는 됐는데 안 될 때, 원인 7가지</a></li><li><a href="#bill">통화비 폭탄 막는 설정</a></li><li><a href="#cost">로밍 9,900원 vs eSIM 590원</a></li><li><a href="#qr">QR·삭제·환불 — 되돌릴 수 없는 것</a></li><li><a href="#check">출국 전 3분 체크리스트</a></li></ol>
+</div>
+<script>(function(){var b=document.querySelector('.gtoc-btn');if(!b)return;var l=document.getElementById('gtoc-list');b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',open?'false':'true');if(l)l.hidden=open;});})();</script>
+<p>eSIM은 공항에 내려서 켜면 되는 줄 알지만, 실제로 안 터지는 경우의 90%는 <b>설정 세 가지</b> 중 하나입니다. ① 데이터 회선이 아직 한국 SIM으로 되어 있거나 ② eSIM 회선의 데이터 로밍이 꺼져 있거나 ③ eSIM 회선 자체가 꺼져 있는 경우입니다. 이 세 개를 1분 안에 확인하면 대부분 해결됩니다.</p>
+
+<p>도시별 숙소·동선은 <a href="../osaka">오사카·교토</a>·<a href="../tokyo">도쿄</a>·<a href="../fukuoka">후쿠오카</a>·<a href="../danang">다낭</a>·<a href="../bangkok">방콕</a>·<a href="../taipei">타이베이</a> 페이지와 함께 보세요.</p>
+
+<p>이 글은 2026년 11월 기준 아이폰(iOS 18 이상)과 갤럭시(안드로이드 14 이상)의 설정 경로, 트립픽이 확인한 eSIM 상품가(일본 1일 590원·3일 16,830원 등), 통신사 로밍 1일 9,900원을 기준으로 썼습니다. 설치 전 준비는 <a href="esim-roaming-insurance-guide">eSIM·로밍·보험 비교 글</a>에, 나라별 상품 비교는 <a href="japan-esim">일본 eSIM</a>·<a href="vietnam-esim">베트남 eSIM</a> 글에 있습니다.</p>
+
+<h2 id="minute">도착 1분 — 안 터질 때 확인 순서</h2>
+
+<div class="tb">
+  <div class="tb-h"><b>증상별 확인 순서</b><span>도착 후 1분 안에</span></div>
+  <div class="tb-scroll">
+    <table>
+      <thead><tr><th>화면에 보이는 것</th><th>먼저 확인</th><th>조치</th></tr></thead>
+      <tbody>
+        <tr><td>신호는 잡히는데 인터넷이 안 됨</td><td>데이터 회선이 eSIM인지</td><td>설정 → 셀룰러 → 셀룰러 데이터에서 eSIM 선택</td></tr>
+        <tr><td>“SIM 없음” 또는 신호 없음</td><td>eSIM 회선이 켜져 있는지</td><td>회선 → ‘이 회선 사용’ 켜기</td></tr>
+        <tr><td>신호는 잡히는데 ‘3G’ 또는 ‘E’</td><td>데이터 로밍이 꺼져 있는지</td><td>eSIM 회선의 ‘데이터 로밍’ 켜기</td></tr>
+        <tr><td>“모바일 데이터 네트워크를 찾을 수 없음”</td><td>비행기 모드</td><td>비행기 모드 10초 켰다 끄기</td></tr>
+        <tr><td>회선은 보이는데 ‘사용 안 함’</td><td>요금제 활성화 대기</td><td>5~10분 후 재부팅, 그래도 안 되면 QR 재설치</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="calc">
+  <div class="calc-h">도착 후 1분 체크 <span>위에서부터 순서대로</span></div>
+  <div class="calc-b">
+    <div class="calc-row"><span>① 데이터 회선 = eSIM</span><b>가장 흔한 원인</b></div>
+    <div class="calc-row"><span>② eSIM 회선 ‘사용’ 켜짐</span><b>두 번째</b></div>
+    <div class="calc-row"><span>③ eSIM 회선 ‘데이터 로밍’ 켜짐</span><b>세 번째</b></div>
+    <div class="calc-row"><span>④ 비행기 모드 껐다 켜기</span><b>10초</b></div>
+    <div class="calc-sum"><span>⑤ 재부팅 → QR 재설치</span><b>여기까지 5분</b></div>
+  </div>
+</div>
+
+<p>주의할 점은 <b>한국 SIM의 데이터 로밍을 켜면 안 된다</b>는 것입니다. eSIM을 쓰면서 한국 번호로 전화·문자를 받으려면 한국 SIM은 ‘통화·문자용’으로만 살려 두고, 데이터는 eSIM으로 보냅니다. 둘 다 데이터 로밍을 켜면 한국 SIM이 먼저 잡아 요금이 나갈 수 있습니다.</p>
+
+<h2 id="iphone">아이폰 설정 — 이 4개만 보면 됩니다</h2>
+
+<p>아이폰은 <b>설정 → 셀룰러</b>에서 회선별로 나뉩니다. eSIM을 추가하면 회선이 두 개로 보이고, 각 회선 아래에 ‘셀룰러 데이터’, ‘데이터 로밍’, ‘이 회선 사용’이 따로 있습니다.</p>
+
+<ul>
+  <li><b>셀룰러 데이터</b> — eSIM 회선을 선택합니다. 이게 한국 SIM으로 되어 있으면 데이터가 안 터집니다.</li>
+  <li><b>기본 음성 회선</b> — 한국 SIM을 선택합니다. 은행·본인인증 문자를 받아야 하기 때문입니다.</li>
+  <li><b>셀룰러 데이터 전환 허용</b> — <b>끕니다.</b> eSIM이 약할 때 한국 SIM으로 데이터를 넘겨 로밍 요금이 나가는 것을 막습니다.</li>
+  <li><b>데이터 로밍</b> — eSIM 회선에서만 켭니다. 한국 SIM 회선은 끕니다.</li>
+</ul>
+
+<p>경로는 기기·iOS 버전에 따라 조금 다릅니다. iOS 18 기준으로 <b>설정 → 셀룰러 → (eSIM 회선) → 데이터 로밍</b>이고, 회선 이름을 “일본 eSIM”처럼 바꿔 두면 현지에서 헷갈리지 않습니다. eSIM 추가는 <b>설정 → 셀룰러 → eSIM 추가</b>에서 QR을 스캔하거나 판매처의 활성화 코드를 입력합니다.</p>
+
+<div class="note"><span class="lb">‘셀룰러 데이터 전환 허용’은 꼭 끄세요</span>
+<p>이 옵션이 켜져 있으면 eSIM 신호가 약할 때 아이폰이 자동으로 한국 SIM의 로밍 데이터를 씁니다. 하루 1만원 안팎의 로밍 요금이 붙는 이유가 대부분 여기입니다. eSIM을 쓰는 동안에는 <b>끔</b>이 기본값이라고 생각하세요.</p>
+</div>
+
+<aside class="adslot adslot--flat" data-ad-slot="guide-mid" aria-label="광고·추천 영역">
+  <!-- v22 광고 슬롯 — 승인 전이라 주석 상태입니다. 로더 스크립트는 <head> 에 이미 있고,
+       아래 주석을 풀고 data-ad-slot="0000000000" 만 애드센스 광고 단위 ID로 바꾸면 표시됩니다.
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9563082990728787" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+  <a class="adslot-in" href="../#planner">
+    <span class="adslot-tag">트립픽 추천</span>
+    <span class="adslot-copy"><b>이 글의 계산, 내 일정으로 다시 해보기</b><span>인원·지역을 넣으면 항공·숙소·투어·eSIM까지 같은 기준으로 계산합니다.</span></span>
+    <span class="adslot-go">예산 계산기 →</span>
+  </a>
+</aside>
+
+<h2 id="galaxy">갤럭시 설정 — SIM 관리자에서</h2>
+
+<p>갤럭시는 <b>설정 → 연결 → SIM 관리자</b>에서 회선을 관리합니다. eSIM을 추가하면 ‘SIM 1(한국)’, ‘SIM 2(eSIM)’처럼 두 개가 보입니다.</p>
+
+<ul>
+  <li><b>모바일 데이터</b> — eSIM(SIM 2)을 선택합니다.</li>
+  <li><b>통화</b> — 한국 SIM을 선택합니다. 통화·문자는 한국 번호로.</li>
+  <li><b>데이터 로밍</b> — eSIM 회선에서 켭니다.</li>
+  <li><b>자동 데이터 전환</b> — 끕니다. 아이폰의 ‘셀룰러 데이터 전환 허용’과 같은 기능입니다.</li>
+</ul>
+
+<p>eSIM 추가는 <b>설정 → 연결 → SIM 관리자 → eSIM 추가</b>에서 QR을 스캔합니다. 기기마다 메뉴 이름이 ‘SIM 카드 관리자’, ‘SIM 및 네트워크’로 다를 수 있지만, 찾는 항목은 같습니다. 갤럭시 S20 이후 모델 대부분이 eSIM을 지원하지만, 국내 출시 보급형 일부와 중국판 아이폰은 지원하지 않습니다. 가장 확실한 확인은 설정에 <b>‘eSIM 추가’ 메뉴가 보이는지</b>입니다.</p>
+
+<h2 id="why">설치는 됐는데 안 될 때, 원인 7가지</h2>
+
+<ol>
+  <li><b>데이터 로밍이 꺼져 있음</b> — 가장 흔합니다. eSIM은 현지 통신사 망을 빌려 쓰므로 ‘로밍’이 필수입니다. 한국 SIM의 로밍과 헷갈리지 마세요.</li>
+  <li><b>데이터 회선이 한국 SIM</b> — eSIM을 설치만 하고 데이터 회선을 바꾸지 않은 경우입니다.</li>
+  <li><b>APN이 비어 있음</b> — 대부분 자동 설정이라 직접 넣지 않아도 됩니다. 안 될 때만 판매처가 보낸 APN 값을 <b>이름·APN·사용자 이름·비밀번호</b> 칸에 그대로 입력하세요. 임의로 다른 값을 넣으면 더 안 됩니다.</li>
+  <li><b>수동 네트워크 선택</b> — 자동 선택이 현지 통신사가 아닌 망을 잡는 경우가 있습니다. 설정 → 셀룰러 → 네트워크 선택에서 자동을 껐다가 다시 켜 보세요.</li>
+  <li><b>요금제 활성화 대기</b> — QR을 스캔해도 통신사 시스템에 등록되기까지 5~10분 걸리는 상품이 있습니다. 공항을 걸어 나오면서 기다리면 대개 붙습니다.</li>
+  <li><b>데이터 절약·저전력 모드</b> — 백그라운드 데이터를 막아 지도·메신저가 안 되는 경우가 있습니다. 저전력 모드를 끄고 다시 확인하세요.</li>
+  <li><b>VPN·프라이빗 릴레이</b> — 켜져 있으면 일부 앱이 인터넷을 못 잡습니다. eSIM 첫 연결 때는 끄고 확인하는 편이 빠릅니다.</li>
+</ol>
+
+<div class="warn"><span class="lb">“LTE만 뜨고 5G가 안 뜬다”</span>
+<p>5G는 현지 통신사·기기 조합에 따라 안 잡힐 수 있습니다. LTE로도 지도·메신저·결제는 충분합니다. 5G를 고집하다 설정을 바꾸면 오히려 데이터가 끊기는 경우가 많으니, <b>인터넷이 되면 그대로 쓰세요.</b></p>
+</div>
+
+<h2 id="bill">통화비 폭탄 막는 설정</h2>
+
+<p>eSIM은 데이터 전용 상품이 많습니다. 한국 번호를 살려 두면 전화·문자는 로밍 요금이 붙습니다. 받는 전화도 무료가 아닙니다. 다음 네 가지만 해 두면 청구서가 튀지 않습니다.</p>
+
+<ul>
+  <li><b>한국 SIM 데이터 로밍 끄기</b> — 데이터는 eSIM, 음성만 한국 SIM.</li>
+  <li><b>‘데이터 전환 허용’ 끄기</b> — 아이폰·갤럭시 모두.</li>
+  <li><b>모르는 번호는 받지 않기</b> — 해외에서 오는 스팸 전화를 받으면 통화료가 나갑니다. 부재중 알림으로 확인하세요.</li>
+  <li><b>연락은 카카오톡·와이파이 통화로</b> — 숙소 와이파이에서 통화하면 요금이 없습니다. 급할 때만 한국 번호로 전화하세요.</li>
+</ul>
+
+<div class="note"><span class="lb">문자 인증은 한국 SIM으로 옵니다</span>
+<p>은행·정부24·항공사 앱 인증 문자는 한국 번호로 옵니다. eSIM을 쓰면서도 한국 SIM을 ‘통화·문자’ 회선으로 남겨 두면 수신할 수 있습니다. 다만 문자 수신에도 로밍 요금이 붙는 요금제가 있으니, 출국 전 통신사 앱에서 <b>문자 수신 요금</b>을 한 번 확인하세요.</p>
+</div>
+
+<h2 id="cost">로밍 9,900원 vs eSIM 590원</h2>
+
+<div class="tb">
+  <div class="tb-h"><b>데이터 비용, 같은 여행 다른 값</b><span>2026-11 트립픽 상품가 · 1인</span></div>
+  <div class="tb-scroll">
+    <table>
+      <thead><tr><th>방식</th><th>구성</th><th class="num">1인 총액</th><th class="num">1일</th></tr></thead>
+      <tbody>
+        <tr><td>통신사 로밍</td><td>1일 9,900원 × 4일</td><td class="num">39,600원</td><td class="num">9,900원</td></tr>
+        <tr><td>일본 eSIM(매일 500MB)</td><td>1일권 590원 × 4일</td><td class="num">2,360원</td><td class="num">590원</td></tr>
+        <tr><td>일본 eSIM(3일 무제한 + 1일)</td><td>16,830원 + 590원</td><td class="num">17,420원</td><td class="num">4,360원</td></tr>
+        <tr><td>베트남 eSIM(3일 무제한)</td><td>17,850원 (5일 기준 3일+1일×2)</td><td class="num">18,250원</td><td class="num">3,650원</td></tr>
+        <tr><td>태국 eSIM(3일 무제한)</td><td>14,450원</td><td class="num">14,450원</td><td class="num">4,820원</td></tr>
+        <tr><td>대만 eSIM(3일 무제한)</td><td>12,580원</td><td class="num">12,580원</td><td class="num">4,190원</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="calc">
+  <div class="calc-h">2인 4일, 로밍 vs eSIM <span>일본 기준</span></div>
+  <div class="calc-b">
+    <div class="calc-row"><span>로밍 9,900원 × 4일 × 2인</span><b>79,200원</b></div>
+    <div class="calc-row"><span>eSIM 1일 590원 × 4일 × 2인</span><b>4,720원</b></div>
+    <div class="calc-sum"><span>차이</span><b>74,480원</b></div>
+  </div>
+</div>
+
+<p>74,480원이면 오사카 주유패스 2일권을 사고 남습니다. 트립픽에서 확인한 상품은 <a href="https://naver.me/5DZ0H2Wv" target="_blank" rel="noopener sponsored">일본 3일 무제한 eSIM 16,830원</a>, <a href="https://naver.me/FuN2VsmR" target="_blank" rel="noopener sponsored">베트남 3일 무제한 eSIM 17,850원</a>입니다(2026-11 확인).</p>
+
+<p>74,480원이면 오사카 주유패스 2일권을 사고 남습니다. 다만 500MB/일 상품은 하루 500MB를 다 쓰면 속도가 128kbps로 떨어집니다. 지도·메신저는 되지만 영상통화·테더링은 어렵습니다. 영상통화를 자주 하거나 노트북을 붙인다면 <b>무제한 상품(3일 14,450~17,850원)</b>이 낫습니다. 데이터 사용량은 출발 전에 설정에서 지난달 하루 평균을 확인하면 판단이 쉽습니다.</p>
+
+<h2 id="qr">QR·삭제·환불 — 되돌릴 수 없는 것</h2>
+
+<ul>
+  <li><b>QR은 1회용</b>이 대부분입니다. 스캔 전에 화면을 캡처해 두세요. 캡처도 1회용인 상품이 있으니, 설치 후에는 지우지 마세요.</li>
+  <li><b>‘eSIM 삭제’를 누르면 재설치가 안 되는 상품</b>이 많습니다. 기기를 초기화하거나 회선을 지우면 환불도 어렵습니다.</li>
+  <li><b>설치는 출발 1~2일 전, 집 와이파이에서</b> — 현지 공항 와이파이는 인증이 끊겨 설치가 실패하는 일이 흔합니다.</li>
+  <li><b>설치 후 ‘이 회선 사용’은 끄고 출국</b> — 켜 두면 한국에서 데이터를 잡아 요금이 나갈 수 있습니다. 도착 후 켭니다.</li>
+  <li><b>환불 규정은 상품마다 다릅니다</b> — 미사용·미설치 상태에서만 환불되는 경우가 많으니, 결제 전 상세페이지의 취소 규정을 확인하세요.</li>
+</ul>
+
+<h2 id="check">출국 전 3분 체크리스트</h2>
+<ul class="ck">
+  <li class="on"><b>기기 eSIM 지원</b> — 설정에 ‘eSIM 추가’가 보이는지</li>
+  <li class="on"><b>일수 계산</b> — 4일이면 1일권 4장 또는 3일+1일</li>
+  <li class="on"><b>테더링 필요 여부</b> — 500MB 상품은 핫스팟이 막힌 경우가 많음</li>
+  <li class="on"><b>통화 필요 여부</b> — 필요하면 한국 SIM을 음성 회선으로 남김</li>
+  <li class="on"><b>QR 캡처</b> — 설치 전 화면 저장</li>
+  <li class="on"><b>설치 시점</b> — 출발 1~2일 전, 집 와이파이</li>
+  <li class="on"><b>도착 후</b> — 데이터 회선 eSIM, 로밍 켜기, 데이터 전환 끄기</li>
+</ul>
+
+<div class="note"><span class="lb">같이 보면 좋은 것</span>
+<p>eSIM 설치 전 준비물은 <a href="../checklist">D-Day 체크리스트</a>(D-14 eSIM·D-3 짐), 숙소·공항 동선은 <a href="../stays">찐숙소</a>와 <a href="../passes">패스 계산기</a>, 결제 카드 비교는 <a href="../exchange">환율 계산기</a>에 있습니다.</p></div>
+
+<div class="win"><span class="lb">한 줄 결론</span>
+<p>도착 후 안 터지면 <b>데이터 회선 → eSIM 회선 사용 → 데이터 로밍</b> 순서로 1분 안에 확인하세요. 그래도 안 되면 비행기 모드 10초, 재부팅, QR 재설치 순입니다. 통화비는 <b>한국 SIM 데이터 로밍 끄기 + 데이터 전환 허용 끄기</b>로 막고, 데이터는 eSIM으로 보내면 2인 4일 기준 로밍(79,200원)보다 7만 4천원 이상 쌉니다.</p>
+</div>
+
+<div class="src">
+  <b>기준과 출처</b>
+  <ul>
+    <li>설정 경로: 아이폰 iOS 18 ‘설정 → 셀룰러 → eSIM 추가·데이터 로밍·셀룰러 데이터 전환’, 갤럭시 안드로이드 14 ‘설정 → 연결 → SIM 관리자 → eSIM 추가·모바일 데이터·데이터 로밍’ — 2026-11 확인</li>
+    <li>상품가: 일본 eSIM 1일 590원·3일 16,830원, 베트남 1일 200원·3일 17,850원, 태국 3일 14,450원, 대만 3일 12,580원 — 트립픽 확인 상품가(2026-11)</li>
+    <li>통신사 로밍 1일 9,900원 — 국내 통신사 로밍 요금제 기준(사이트 공통 비교값)</li>
+    <li>APN·활성화 방식: 상품마다 다르며 판매처 안내문이 기준입니다. 이 글은 값을 임의로 제시하지 않습니다.</li>
+    <li>500MB/일 상품의 속도 제한(128kbps)·핫스팟 제한은 판매처 상세페이지 기준입니다. 요금·조건은 개정될 수 있습니다.</li>
+  </ul>
+</div>
+
+      </article>
+      <aside class="pg-side">
+    <div class="side-card">
+      <h3>이 글에 나온 상품 <em>제휴</em></h3>
+      <a class="side-prod" href="https://naver.me/5DZ0H2Wv" target="_blank" rel="noopener sponsored">
+        <span class="sp-top"><span class="sp-n">일본 eSIM(3일·투게더팩)</span></span>
+        <span class="sp-t">[투게더팩]일본 이심 eSIM 후쿠오카 오사카 소프트뱅크 완전 무제한 3일 유심사 알림톡</span>
+        <span class="sp-m"><span>유심사스토어</span><span><b>16,830원</b></span><span>제휴</span></span>
+      </a>
+      <a class="side-prod" href="https://naver.me/FuN2VsmR" target="_blank" rel="noopener sponsored">
+        <span class="sp-top"><span class="sp-n">베트남 eSIM(3일·투게더팩)</span></span>
+        <span class="sp-t">[투게더팩]베트남 이심 eSIM 다낭 나트랑 비나폰 완전 무제한 3일 유심사 알림톡</span>
+        <span class="sp-m"><span>유심사스토어</span><span><b>17,850원</b></span><span>제휴</span></span>
+      </a>
+      <p class="side-note">가격은 2026-11-20 확인 기준 최저가입니다. 예약·구매 시점에 상세페이지에서 최종 확인하세요.</p>
+    </div>
+    <div class="side-card">
+      <h3>함께 읽으면 좋은 글</h3>
+      <ul class="side-list">
+        <li><a href="esim-roaming-insurance-guide">eSIM·유심·로밍과 여행자보험·영사안전콜센터<span>준비물·경비 · 11분</span></a></li>
+        <li><a href="japan-esim">일본 eSIM·유심·포켓와이파이 총액 비교<span>준비물·경비 · 5분</span></a></li>
+        <li><a href="vietnam-esim">베트남 eSIM 200원 vs 로밍 9,900원<span>동남아 · 5분</span></a></li>
+        <li><a href="travel-card-packing-guide">환전·트래블카드 비교 &amp; 짐싸기 체크리스트 실전판<span>준비물·경비 · 10분</span></a></li>
+        <li><a href="airport-arrival-city-transfer-guide">6도시 공항→시내 이동·막차·심야 도착 총정리<span>준비물·경비 · 13분</span></a></li>
+      </ul>
+    </div>
+    <div class="side-card side-common">
+      <h3>바로가기</h3>
+      <p>도시별 페이지에서 투어·맛집·선물·숙소를 한 번에 볼 수 있습니다.</p>
+      <a class="go" href="../cities/">도시별 여행 페이지 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <p>코스·상품·필수품을 한 화면에서 같은 기준으로 비교합니다.</p>
+      <a class="go" href="../#planner">내 예산으로 총액 계산 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="../#essentials">여행 필수품 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="../#gifts">나라별 선물·기념품 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="../checklist">여행 준비 D-Day 순서 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="../exchange">환율·일본 면세 계산기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="../baggage">항공사별 수하물 규정 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="../#tripcom">도시별 숙소·항공권 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="../#regions">지역별 투어 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="go" href="../guides/">가이드 전체 보기 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+      </aside>
+    </div>
+<div class="gsb"><b class="gsb-t">이 글의 일정에 묵을 숙소</b><div class="gsb-rows"><a class="gsb-go" href="../stays?theme=station"><b>역세권·도보 숙소 46곳</b><span>같은 테마로 국내·해외 숙소를 한 번에 비교</span></a></div><p class="gsb-note">숙소 사진·평점·가격은 트립닷컴 조회값이고, 예약은 트립닷컴 제휴 링크로 이어집니다.</p></div>
+<section class="gnext" aria-label="이 여행에서 바로 쓰는 것">
+  <div class="gnext-head"><div><b>이 여행에서 바로 쓰는 것</b><span>이 지역 글은 도시 허브로 이어지지 않아, 같은 지역 가이드와 필수품으로 연결했습니다</span></div><a href="../cities/">도시별 페이지 7곳 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+
+  <div class="gnext-g"><b>같은 지역 가이드 더 보기</b><a href="esim-roaming-insurance-guide"><span>준비물·경비</span>eSIM·유심·로밍과 여행자보험·영사안전콜센터<i>11분</i></a><a href="travel-card-packing-guide"><span>준비물·경비</span>환전·트래블카드 비교 &amp; 짐싸기 체크리스트 실전판<i>10분</i></a><a href="packing-powerbank-liquid"><span>준비물·경비</span>보조배터리 2개·액체 100ml, 2026년 4월에 바뀐 기내 규정<i>7분</i></a></div>
+</section>
+<section class="gacts" aria-label="다음 단계로 바로 확인">
+  <div class="gacts-h"><b>다음 단계 · 바로 확인</b><span>이 글에서 계산한 일정에 그대로 쓰는 3가지</span></div>
+  <div class="gacts-grid"><a class="gact" href="../stays?theme=station"><span class="gact-k">숙소 · 바로 확인</span><b>역세권·도보 숙소 46곳</b><span class="gact-m">국내·해외 숙소를 같은 테마로 비교</span><span class="gact-go">숙소 표 보기 →</span></a><a class="gact" href="../checklist"><span class="gact-k">준비 · 다음 단계</span><b>여행 준비 D-Day 타임라인</b><span class="gact-m">D-30 숙소·항공 → D-14 투어 → D-3 짐 → D-0 체크인</span><span class="gact-go">체크리스트 열기 →</span></a><a class="gact" href="esim-roaming-insurance-guide"><span class="gact-k">다음 추천 글</span><b>eSIM·유심·로밍과 여행자보험·영사안전콜센터</b><span class="gact-m">준비물·경비 · 읽는 시간 11분</span><span class="gact-go">이어서 읽기 →</span></a></div>
+</section>
+<div class="share-row" data-share>
+  <span class="share-k"><svg aria-hidden="true"><use href="#i-globe"/></svg>이 가이드 공유하기</span>
+  <button type="button" class="share-btn share-btn--main" data-share-act="native">
+    <svg aria-hidden="true"><use href="#i-arrow"/></svg>카톡·인스타·스레드로 보내기</button>
+  <button type="button" class="share-btn" data-share-act="copy">
+    <svg aria-hidden="true"><use href="#i-check"/></svg>링크 복사</button>
+  
+  <span class="share-note">복사하면 ‘복사됨 ✓’ 이 뜨고, 카톡·문자·메모 어디든 붙여넣으면 미리보기가 나옵니다.</span>
+</div>
+<aside class="adslot adslot--flat" data-ad-slot="guide-bottom" aria-label="광고·추천 영역">
+  <!-- v22 광고 슬롯 — 승인 전이라 주석 상태입니다. 로더 스크립트는 <head> 에 이미 있고,
+       아래 주석을 풀고 data-ad-slot="0000000000" 만 애드센스 광고 단위 ID로 바꾸면 표시됩니다.
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9563082990728787" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+  <a class="adslot-in" href="../#alert">
+    <span class="adslot-tag">트립픽 추천</span>
+    <span class="adslot-copy"><b>특가가 뜨면 가장 먼저 알려드릴게요</b><span>원하는 여행지와 예산만 남기면 특가·땡처리 소식을 메일로 보내드립니다.</span></span>
+    <span class="adslot-go">알림 신청 →</span>
+  </a>
+</aside>
+<div class="pg-cta">
+  <div><b>내 일정에 맞는 eSIM·로밍 총액 계산하기</b><p>출발일과 인원을 넣으면 eSIM·유심·로밍을 같은 기준으로 비교해 보여줍니다.</p></div>
+  <div class="btns">
+    <a href="../#planner">예산 계산기</a>
+    <a class="line" href="../#alert">특가 알림 받기</a>
+  </div>
+</div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div class="flogo">
+        <span class="mark" aria-hidden="true"><svg><use href="#i-plane"/></svg></span>
+        <span>트립픽</span>
+      </div>
+      <div class="flinks">
+        <div class="fl-col">
+          <span class="fl-group">여행</span>
+          <a href="../#courses">추천 코스</a>
+          <a href="../#regions">지역·투어</a>
+          <a href="../#essentials">여행 필수품</a>
+          <a href="../#gifts">선물·기념품</a>
+          <a href="../#planner">예산 계산기</a>
+          <a href="../checklist">여행 준비 D-Day</a>
+          <a href="../exchange">환율·일본 면세 계산기</a>
+          <a href="../baggage">항공사 수하물 규정</a>
+          <a href="../passes">교통패스 본전 계산기</a>
+          <a href="../calendar">월별 시즌·최저가 캘린더</a>
+          <a href="../cities/">도시별 여행 페이지</a>
+          <a href="../stays">찐숙소 — 국내·해외 102곳</a>
+          <a href="../guides/">여행 가이드</a>
+          <a href="../#alert">특가 알림</a>
+        </div>
+        <div class="fl-col">
+          <span class="fl-group">사이트 안내</span>
+          <a href="../about">서비스 소개</a>
+          <a href="../contact">문의</a>
+          <a href="../privacy">개인정보처리방침</a>
+          <a href="../terms">이용약관</a>
+        </div>
+        <div class="fl-col">
+          <span class="fl-group">지역·도움말</span>
+          <a href="../#jeju">제주·울릉</a>
+          <a href="../#busan">부산 요트</a>
+          <a href="../#gangwon">강원 스키</a>
+          <a href="../#faq">자주 묻는 질문</a>
+          <a href="../#howto">예약 전 체크</a>
+        </div>
+        <div class="fl-col fl-col--pick">
+          <span class="fl-group">추천 사이트</span>
+          <a class="fl-ext" href="https://jinyou1129-bit.github.io/star-fit-pick/" target="_blank" rel="noopener">
+            <b>스타핏픽 ↗</b>
+            <span>공항패션·예능 착장 좌표</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclose">
+      <b>제휴 및 대가성 고지</b> — 본 사이트는 <b>네이버 여행 커넥트</b>·<b>네이버 쇼핑 커넥트</b>·<b>쿠팡 파트너스</b>·<b>트립닷컴 파트너스</b>에 참여하고 있습니다.
+      상품의 <b>[네이버 여행에서 예약]</b> 링크로 예약이 이루어지면 판매자로부터 가이드투어 결제 금액의 5%, 패키지 3%를,
+      추천 코스의 교통·입장권·eSIM, 부산·강원 레저 상품 같은 <b>쇼핑 커넥트 링크</b>로 구매가 이루어지면 상품별로 정해진 수수료를 지급받을 수 있습니다.
+      여행 준비물의 <b>쿠팡 링크</b>로 구매가 이루어지면 쿠팡 파트너스를 통해 상품별 수수료를 지급받습니다. (이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.)
+      맨 아래 <b>트립닷컴 숙소·항공권</b> 링크로 예약이 이루어지면 트립닷컴 파트너스를 통해 호텔 5~7%·국제선 항공 0.5~0.8%의 수수료를 지급받습니다. (이 포스팅은 트립닷컴 파트너스 활동의 일환으로, 예약 시 일정액의 수수료를 제공받습니다.)
+      이 수수료는 <b>구매자가 지불하는 가격에 영향을 주지 않으며</b>, 순위와 편집 내용에도 영향을 주지 않습니다.
+    </div>
+
+    <div class="legal">
+      <p>· 본 사이트는 여행 상품의 <strong>판매 당사자가 아닙니다</strong>. 상품의 판매·계약·환불 등에 대한 권리와 의무는 각 판매자(여행사·판매처)에게 있으며, 가격·포함 사항·취소 규정은 <strong>예약 전 반드시 상세페이지에서 최종 확인</strong>하세요.</p>
+      <p>· 표시 가격은 각 판매 페이지 기준 최저가이며 날짜·좌석·환율에 따라 달라질 수 있습니다. 자세한 기준은 <a href="../about">서비스 소개</a>와 <a href="../terms">이용약관</a>에 있습니다.</p>
+      <p>· 개인정보 수집·이용(특가 알림, 문의)에 대한 내용은 <a href="../privacy">개인정보처리방침</a>에서 확인할 수 있습니다. 문의: <strong>gim082487@gmail.com</strong></p>
+    </div>
+    <p class="copyline"><span>© 2026 트립픽 · 여행 코스 &amp; 가이드투어 비교</span><span>사진: Pexels · 상품 이미지: 각 판매처</span></p>
+  </div>
+</footer>
+<script>
+(function(){
+  var h=document.getElementById('siteHead');
+  if(!h) return;
+  var on=function(){ h.classList.toggle('stuck', window.scrollY>8); };
+  on(); window.addEventListener('scroll', on, {passive:true});
+  var nd=document.getElementById('navTools');
+  if(nd){
+    document.addEventListener('click', function(e){ if(nd.open && !nd.contains(e.target)) nd.open=false; });
+    Array.prototype.forEach.call(nd.querySelectorAll('a'), function(a){ a.addEventListener('click', function(){ nd.open=false; }); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') nd.open=false; });
+  }
+})();
+</script>
+<script src="../assets/trip-save.js?v=26" defer></script>
+
+<script src="../assets/tp-v35.js?v=35" defer></script>
+<script src="../assets/tp-v43.js?v=1" defer></script>
+</body>
+</html>

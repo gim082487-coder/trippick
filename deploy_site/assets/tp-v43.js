@@ -1,4 +1,8 @@
-/* 트립픽 v42 — 통합 퀵서치(Ctrl/⌘+K) · 어디든지 파인더 · 찜 여행 견적서 · 나란히 비교
+/* 트립픽 v43 — v42 전체 + ① 내 여행 D-Day(재방문 루프) ② 가이드 ★ 참고 글 저장
+   - 홈·/checklist: 도시·출발일 저장 → D-N · 지금 할 일 · 도시 가이드 2편 · 미예약 필수품
+   - 다른 페이지: 저장된 여행이 있으면 헤더 아래 얇은 띠로 D-N 안내
+   - 가이드 91편: ★ 참고 글 저장(localStorage) → 헤더 찜/견적 모달 안 ‘저장한 참고 글’
+   - 기존 v42: 통합 퀵서치(Ctrl/⌘+K) · 어디든지 파인더 · 찜 여행 견적서 · 나란히 비교
    - 모든 페이지: 헤더 돋보기 → /search_index.json(빌드 생성)에서 도시·가이드·숙소·투어·맛집 검색
    - 홈(#tpFinder): 시기·인원·예산 → 도시 3곳 추천(항공+숙소 2박+투어 1개)
    - 모든 페이지: 찜(localStorage) → 헤더 하트 → 숙소 N박·투어 N인 견적서(합산·복사)
@@ -7,7 +11,7 @@
 (function () {
   'use strict';
   var D = document;
-  var hasLS = (function () { try { localStorage.setItem('tp.v41.t', '1'); localStorage.removeItem('tp.v41.t'); return true; } catch (e) { return false; } })();
+  var hasLS = (function () { try { localStorage.setItem('tp.v43.t', '1'); localStorage.removeItem('tp.v43.t'); return true; } catch (e) { return false; } })();
 
   function esc(v) {
     return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) {
@@ -392,37 +396,37 @@
 
   function renderWish() {
     if (!WL.body) return;
-    if (!wish.length) {
-      WL.body.innerHTML = '<div class="qs-empty"><b>아직 찜한 항목이 없습니다.</b>' +
-        '<p>숙소·투어 카드의 <b>♥</b> 를 누르면 여기에 모입니다. 숙소는 <a href="/stays">/stays</a>에서, 투어는 홈 <a href="/#regions">지역·투어</a>에서 골라 보세요.</p></div>';
-      return;
-    }
     var people = wParty();
     var rows = '';
-    wish.slice().reverse().forEach(function (w) {
-      var c = wCalc(w);
-      var qty = c.unit === '1팀' ? '<span class="wl-qty"><b>1팀</b></span>' : qtyHtml(w.k, c.qty, c.unit === '1박' ? '박' : '인');
-      rows += '<div class="wl-row">' +
-        (w.i ? '<img src="' + esc(w.i) + '" alt="" width="64" height="46" loading="lazy" />' : '<span class="wl-ph">' + esc(w.t) + '</span>') +
-        '<div class="wl-mid"><b>' + esc(w.n) + '</b>' +
-        '<span class="wl-line">' + esc(w.ct && String(w.t || '').indexOf(w.ct) < 0 ? String(w.t || '') + ' · ' + w.ct : (w.t || '')) + ' · ' +
-        (c.price ? won(c.price) + '원' + (c.unit === '1팀' ? ' (1팀 단가)' : ' / ' + c.unit) : '가격 확인') + '</span>' +
-        '<span class="wl-line">' + qty + '</span></div>' +
-        '<div class="wl-right"><span class="wl-sub' + (c.total ? '' : ' zero') + '">' + (c.total ? won(c.total) + '원' : '—') + '</span>' +
-        (w.u ? '<a class="wl-cta" href="' + esc(w.u) + '" target="_blank" rel="noopener sponsored">' + esc(wCta(w.u)) + '</a>' : '') +
-        (w.tu ? '<a class="wl-cta alt" href="' + esc(w.tu) + '" target="_blank" rel="noopener sponsored">트립닷컴 투어 목록</a>' : '') +
-        '<button class="wl-del" type="button" data-wl-del="' + esc(w.k) + '">빼기</button></div></div>';
-    });
-    var T = wTotals();
-    WL.body.innerHTML = rows +
-      '<div class="wl-sum">' +
-      '<div class="wl-sum-row"><span>숙소 소계</span><b>' + won(T.stays) + '원</b></div>' +
-      '<div class="wl-sum-row"><span>투어 소계</span><b>' + won(T.tours) + '원</b></div>' +
-      '<div class="wl-total"><span>예상 총액<em>' + people + '인 기준 · 1인 ' + won(Math.round(T.total / people)) + '원</em></span><b>' + won(T.total) + '원</b></div>' +
-      '</div>' +
-      '<div class="wl-acts"><button class="wl-btn primary" type="button" data-wl-copy>견적 요약 복사</button>' +
-      '<button class="wl-btn" type="button" data-wl-clear>전체 비우기</button></div>' +
-      '<p class="wl-note">숙소는 1박가 × 박수, 투어는 1인가 × 인원으로 계산했습니다. 세금·현장 추가금·식비는 빠져 있고, 저장은 이 브라우저(localStorage)에만 됩니다.</p>';
+    if (!wish.length) {
+      rows = '<div class="qs-empty"><b>아직 찜한 숙소·투어가 없습니다.</b>' +
+        '<p>숙소·투어 카드의 <b>♥</b> 를 누르면 여기에 모입니다. 숙소는 <a href="/stays">/stays</a>에서, 투어는 홈 <a href="/#regions">지역·투어</a>에서 골라 보세요.</p></div>';
+    } else {
+      wish.slice().reverse().forEach(function (w) {
+        var c = wCalc(w);
+        var qty = c.unit === '1팀' ? '<span class="wl-qty"><b>1팀</b></span>' : qtyHtml(w.k, c.qty, c.unit === '1박' ? '박' : '인');
+        rows += '<div class="wl-row">' +
+          (w.i ? '<img src="' + esc(w.i) + '" alt="" width="64" height="46" loading="lazy" />' : '<span class="wl-ph">' + esc(w.t) + '</span>') +
+          '<div class="wl-mid"><b>' + esc(w.n) + '</b>' +
+          '<span class="wl-line">' + esc(w.ct && String(w.t || '').indexOf(w.ct) < 0 ? String(w.t || '') + ' · ' + w.ct : (w.t || '')) + ' · ' +
+          (c.price ? won(c.price) + '원' + (c.unit === '1팀' ? ' (1팀 단가)' : ' / ' + c.unit) : '가격 확인') + '</span>' +
+          '<span class="wl-line">' + qty + '</span></div>' +
+          '<div class="wl-right"><span class="wl-sub' + (c.total ? '' : ' zero') + '">' + (c.total ? won(c.total) + '원' : '—') + '</span>' +
+          (w.u ? '<a class="wl-cta" href="' + esc(w.u) + '" target="_blank" rel="noopener sponsored">' + esc(wCta(w.u)) + '</a>' : '') +
+          (w.tu ? '<a class="wl-cta alt" href="' + esc(w.tu) + '" target="_blank" rel="noopener sponsored">트립닷컴 투어 목록</a>' : '') +
+          '<button class="wl-del" type="button" data-wl-del="' + esc(w.k) + '">빼기</button></div></div>';
+      });
+      var T = wTotals();
+      rows += '<div class="wl-sum">' +
+        '<div class="wl-sum-row"><span>숙소 소계</span><b>' + won(T.stays) + '원</b></div>' +
+        '<div class="wl-sum-row"><span>투어 소계</span><b>' + won(T.tours) + '원</b></div>' +
+        '<div class="wl-total"><span>예상 총액<em>' + people + '인 기준 · 1인 ' + won(Math.round(T.total / people)) + '원</em></span><b>' + won(T.total) + '원</b></div>' +
+        '</div>' +
+        '<div class="wl-acts"><button class="wl-btn primary" type="button" data-wl-copy>견적 요약 복사</button>' +
+        '<button class="wl-btn" type="button" data-wl-clear>전체 비우기</button></div>' +
+        '<p class="wl-note">숙소는 1박가 × 박수, 투어는 1인가 × 인원으로 계산했습니다. 세금·현장 추가금·식비는 빠져 있고, 저장은 이 브라우저(localStorage)에만 됩니다.</p>';
+    }
+    WL.body.innerHTML = rows + bmSectionHtml();
   }
 
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
@@ -643,6 +647,230 @@
     fdSync();
     fdRender();
   }
+
+  /* =========================================================
+     2b. ★ 참고 글 저장(북마크)
+     ========================================================= */
+  var BKEY = 'trippick.bookmarks.v1';
+  var bms = read(BKEY, []);
+  if (!Array.isArray(bms)) bms = [];
+
+  function bmIdx(k) { for (var i = 0; i < bms.length; i++) if (bms[i].k === k) return i; return -1; }
+
+  function syncBm() {
+    Array.prototype.forEach.call(D.querySelectorAll('[data-bm]'), function (b) {
+      var on = bmIdx(b.getAttribute('data-bm')) >= 0;
+      b.setAttribute('aria-pressed', String(on));
+      var t = b.querySelector('.bm-t');
+      if (t) t.textContent = on ? '저장한 참고 글' : '★ 참고 글 저장';
+      b.title = on ? '저장 해제' : '이 글을 저장해 두고 다시 보기';
+    });
+  }
+
+  function bmSectionHtml() {
+    var head = '<div class="wl-bm"><div class="wl-bm-h"><b>★ 저장한 참고 글</b><span>' + bms.length + '편</span></div>';
+    if (!bms.length) {
+      return head + '<p class="wl-bm-empty">가이드 글 상단의 <b>★ 참고 글 저장</b>을 누르면 여기에 모입니다. 공항·현지에서 1탭으로 다시 꺼내 보세요.</p>' +
+        '<a class="wl-bm-all" href="/guides/">가이드 91편 둘러보기 →</a></div>';
+    }
+    var rows2 = bms.slice().reverse().map(function (b) {
+      return '<div class="wl-bm-row"><a href="' + esc(b.k) + '"><b>' + esc(b.t) + '</b><span>' +
+        esc(b.c || '가이드') + (b.r ? ' · ' + b.r + '분' : '') + '</span></a>' +
+        '<button class="wl-bm-del" type="button" data-wl-bm-del="' + esc(b.k) + '">빼기</button></div>';
+    }).join('');
+    return head + rows2 + '<a class="wl-bm-all" href="/guides/">가이드 전체 보기 →</a></div>';
+  }
+
+  function toggleBm(btn) {
+    var k = btn.getAttribute('data-bm');
+    if (!k) return;
+    var i = bmIdx(k);
+    if (i >= 0) {
+      bms.splice(i, 1);
+      toast('저장한 참고 글에서 뺐어요');
+    } else {
+      var d = {};
+      try { d = JSON.parse(btn.getAttribute('data-bm-item') || '{}'); } catch (e) {}
+      bms.push({ k: k, t: d.t || D.title, c: d.c || '', r: d.r || 0, u: d.u || '', at: Date.now() });
+      toast('참고 글로 저장했어요 · 헤더 ♥ 안에서 다시 열 수 있어요');
+    }
+    write(BKEY, bms.slice(-100));
+    syncBm();
+    if (WL.modal && !WL.modal.hidden) renderWish();
+  }
+
+  D.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-bm]');
+    if (b) { e.preventDefault(); toggleBm(b); return; }
+    var del = e.target.closest('[data-wl-bm-del]');
+    if (del) {
+      var j = bmIdx(del.getAttribute('data-wl-bm-del'));
+      if (j >= 0) { bms.splice(j, 1); write(BKEY, bms); syncBm(); renderWish(); toast('저장한 참고 글에서 뺐어요'); }
+    }
+  });
+  syncBm();
+
+  /* =========================================================
+     2c. 내 여행 D-Day — 저장하고 다시 돌아오는 루프
+     ========================================================= */
+  var TKEY = 'trippick.trip.v1';
+  var trip = read(TKEY, null);
+  if (!trip || typeof trip !== 'object' || !trip.s) trip = null;
+
+  function dayNum(s) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s || ''));
+    if (!m) return null;
+    return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  }
+  function todayNum() {
+    var d = new Date();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  }
+  function ddayOf(s) {
+    var d = dayNum(s);
+    if (!d) return null;
+    return Math.round((d - todayNum()) / 86400000);
+  }
+  function dayLabel(n) {
+    if (n === null) return 'D-?';
+    if (n > 0) return 'D-' + n;
+    if (n === 0) return 'D-DAY';
+    return 'D+' + (-n);
+  }
+  function koDate(s) {
+    var d = dayNum(s);
+    if (!d) return '';
+    var w = ['일', '월', '화', '수', '목', '금', '토'][d.getDay()];
+    return d.getFullYear() + '.' + pad2(d.getMonth() + 1) + '.' + pad2(d.getDate()) + ' (' + w + ')';
+  }
+  function tripCity(slug) {
+    var TD = tripData();
+    if (!TD) return null;
+    for (var i = 0; i < TD.cities.length; i++) if (TD.cities[i].s === slug) return TD.cities[i];
+    return null;
+  }
+  var _td = null;
+  function tripData() {
+    if (_td) return _td;
+    var el = D.getElementById('tpTripData');
+    if (!el) return null;
+    try { _td = JSON.parse(el.textContent); } catch (e) { _td = null; }
+    return _td;
+  }
+
+  function stageIndex(n) {
+    if (n === null) return 0;
+    if (n > 7) return 0;
+    if (n > 4) return 1;
+    if (n > 1) return 2;
+    if (n >= 0) return 3;
+    return 4;
+  }
+
+  function tripStrip() {
+    if (!trip || D.querySelector('[data-tp-trip]') || D.querySelector('.tp-strip')) return;
+    var head = D.querySelector('.site-head');
+    if (!head) return;
+    var c = tripCity(trip.s);
+    var name = trip.n || (c && c.short) || trip.s;
+    var n = ddayOf(trip.date);
+    var a = D.createElement('a');
+    a.className = 'tp-strip';
+    a.href = '/#tpTrip';
+    a.innerHTML = '<span class="wrap"><b>' + esc(dayLabel(n)) + '</b><span>' + esc(name) + ' · 지금 할 일 보기</span><i>열기 →</i></span>';
+    head.insertAdjacentElement('afterend', a);
+  }
+
+  var TP = D.querySelector('[data-tp-trip]');
+  if (TP) {
+    var TP_FORM = TP.querySelector('[data-tp-trip-form]');
+    var TP_SEL = TP.querySelector('[data-tp-trip-city]');
+    var TP_DATE = TP.querySelector('[data-tp-trip-date]');
+    var TP_SAVED = TP.querySelector('[data-tp-trip-saved]');
+
+    function tripRender() {
+      if (!trip) {
+        TP_FORM.hidden = false;
+        TP_SAVED.hidden = true;
+        TP_SAVED.innerHTML = '';
+        return;
+      }
+      TP_FORM.hidden = true;
+      TP_SAVED.hidden = false;
+      var TD = tripData();
+      var c = tripCity(trip.s);
+      var n = ddayOf(trip.date);
+      var stage = null;
+      if (TD) stage = TD.stages[stageIndex(n)];
+      var chips = '';
+      if (TD) {
+        chips = TD.stages.map(function (s, i) {
+          return '<span class="tp-stage' + (i === stageIndex(n) ? ' on' : '') + '">' + esc(s.d + ' · ' + s.t) + '</span>';
+        }).join('');
+      }
+      var items = '';
+      if (stage) {
+        items = stage.items.map(function (it) {
+          return '<li><a href="/' + esc(it.u) + '"><b>' + esc(it.t) + '</b><span>' + esc(it.h) + '</span></a></li>';
+        }).join('');
+      }
+      var guides = '';
+      if (c && c.g) {
+        guides = c.g.map(function (g) {
+          return '<a class="tp-trip-g" href="/' + esc(g.u) + '"><em>가이드</em><b>' + esc(g.t) + '</b></a>';
+        }).join('');
+      }
+      var ess = '';
+      if (c && c.e) {
+        ess = '<a class="tp-trip-cta" href="' + (/^https?:/.test(c.e.u) ? esc(c.e.u) : '/' + esc(c.e.u)) + '"' +
+          (/^https?:/.test(c.e.u) ? ' target="_blank" rel="noopener sponsored"' : '') + '>' +
+          '<em>' + esc(c.e.k) + '</em><b>' + esc(c.e.t) + '</b><i>' + esc(c.e.p) + ' →</i></a>';
+      }
+      var sub = koDate(trip.date) + ' 출발';
+      if (n > 0) sub += ' · ' + n + '일 남음';
+      else if (n === 0) sub += ' · 오늘 출발';
+      else sub += ' · 여행 ' + (-n) + '일째';
+      sub += ' · 이 브라우저에 저장됨';
+      TP_SAVED.innerHTML =
+        '<div class="tp-trip-head"><span class="tp-day">' + esc(dayLabel(n)) + '</span>' +
+        '<div class="tp-trip-title"><b>' + esc((c && c.short) || trip.s) + ' · 지금 할 일</b><span>' + esc(sub) + '</span></div>' +
+        '<button class="tp-trip-edit" type="button" data-tp-trip-edit>수정</button>' +
+        '<button class="tp-trip-edit" type="button" data-tp-trip-del>삭제</button></div>' +
+        '<div class="tp-trip-stages" aria-label="단계별 체크리스트">' + chips + '</div>' +
+        '<ul class="tp-trip-list">' + items + '</ul>' +
+        '<div class="tp-trip-foot">' + guides + ess + '</div>';
+    }
+
+    TP_FORM.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var s = TP_SEL && TP_SEL.value;
+      var d = TP_DATE && TP_DATE.value;
+      if (!s || !d) { toast('도시와 출발일을 넣어 주세요'); return; }
+      var on = TP_SEL.options[TP_SEL.selectedIndex];
+      trip = { s: s, n: on ? on.textContent : '', date: d, at: Date.now() };
+      write(TKEY, trip);
+      tripRender();
+      toast('저장했어요 · 다시 오면 여기에 D-Day가 뜹니다');
+    });
+
+    D.addEventListener('click', function (e) {
+      if (e.target.closest('[data-tp-trip-edit]')) {
+        if (trip) { if (TP_SEL) TP_SEL.value = trip.s; if (TP_DATE) TP_DATE.value = trip.date; }
+        TP_FORM.hidden = false;
+        TP_SAVED.hidden = true;
+        if (TP_SEL) TP_SEL.focus();
+        return;
+      }
+      if (e.target.closest('[data-tp-trip-del]')) {
+        trip = null;
+        write(TKEY, null);
+        tripRender();
+        toast('저장한 여행을 지웠어요');
+      }
+    });
+    tripRender();
+  }
+  tripStrip();
 
   /* =========================================================
      3. 나란히 비교 (홈 투어 · /stays 숙소)

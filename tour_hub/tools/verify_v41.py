@@ -5,14 +5,14 @@
 뒤에 실행한다.
 
 검사 항목
- 1. search_index.json — 도시 30·가이드 88·숙소 102·투어 84·맛집 75, URL 이 전부 실제로 열리는 곳인지
+ 1. search_index.json — 도시 30·가이드(데이터 기준)·숙소 102·투어 84·맛집 75, URL 이 전부 실제로 열리는 곳인지
     (가이드 파일 존재 / 홈 앵커 존재 / /stays 지역 존재 / 도시 허브 파일 존재)
  2. 카드의 찜·비교 버튼 키가 비교 데이터(tpCompare)와 1:1 인지, 찜 데이터 JSON 이 파싱되는지
  3. 결정 배지가 데이터에 있는 속성만 말하는지 — 즉시확정·모바일 바우처는 안내문에 그 표현이 있을 때만,
     무료 취소는 cancelShort 에 무료/전액이 있을 때만. (없는 속성 지어내기 금지)
  4. 결정 배지에 쓰는 클래스가 정해진 목록 안인지
  5. 새로 넣은 id(t-·) 가 페이지 안에서 중복되지 않는지
- 6. assets/tp-v41.js 존재·문법(esprima 또는 node --check)
+ 6. assets/tp-v43.js 존재·문법(esprima 또는 node --check)
 """
 import json
 import re
@@ -47,7 +47,8 @@ items = idx.get("items") or []
 counts = {}
 for it in items:
     counts[it["k"]] = counts.get(it["k"], 0) + 1
-expect = {"city": 30, "guide": 88, "stay": 102, "tour": 84, "food": 75}
+expect = {"city": 30, "guide": len(json.loads((DATA / "guides.json").read_text(encoding="utf-8"))["guides"]),
+          "stay": 102, "tour": 84, "food": 75}
 for k, n in expect.items():
     check(counts.get(k) == n, f"search_index.json {k} {counts.get(k)}건 (기대 {n})")
 
@@ -155,24 +156,26 @@ for name, html in (("index.html", home), ("stays.html", stays)):
     check(not dup, f"{name}: 새 id 중복 {dup[:5]}")
 
 # ---------------------------------------------------------------- 6. JS
-# v42: v41 의 퀵서치·찜·비교가 tp-v42.js 로 옮겨 가고 찜 견적서가 더해졌다.
-js = OUT / "assets" / "tp-v42.js"
-check(js.exists(), "assets/tp-v42.js 없음")
+# v43: v41 의 퀵서치·찜·비교는 tp-v43.js 로 이어지고, D-Day·참고 글 저장이 더해졌다.
+js = OUT / "assets" / "tp-v43.js"
+check(js.exists(), "assets/tp-v43.js 없음")
 check(not (OUT / "assets" / "tp-v41.js").exists(), "구 assets/tp-v41.js 가 남아 있음")
+check(not (OUT / "assets" / "tp-v42.js").exists(), "구 assets/tp-v42.js 가 남아 있음")
 if js.exists():
     src = read(js)
-    check("data-qs-open" in src and "tpCompare" in src and "trippick.wish.v1" in src, "tp-v42.js 핵심 기능 누락")
+    check("data-qs-open" in src and "tpCompare" in src and "trippick.wish.v1" in src, "tp-v43.js 핵심 기능 누락")
+    check("trippick.trip.v1" in src and "trippick.bookmarks.v1" in src, "tp-v43.js D-Day·북마크 기능 누락")
     try:
         import esprima
         try:
             esprima.parseScript(src)
         except Exception as e:
-            fails.append(f"tp-v42.js 문법 오류: {str(e)[:90]}")
+            fails.append(f"tp-v43.js 문법 오류: {str(e)[:90]}")
     except ImportError:
         try:
             r = subprocess.run(["node", "--check", str(js)], capture_output=True, text=True)
             if r.returncode != 0:
-                fails.append("tp-v42.js 문법 오류(node): " + r.stderr[:120])
+                fails.append("tp-v43.js 문법 오류(node): " + r.stderr[:120])
         except FileNotFoundError:
             print("(esprima·node 없음 — JS 문법 검사 생략)")
 

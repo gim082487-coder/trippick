@@ -49,10 +49,10 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 22)
-CSS_V = "39"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "40"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "35"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
-JS_V42 = "1"   # assets/tp-v42.js (통합 퀵서치 · 어디든지 파인더 · 찜 견적서 · 나란히 비교) 캐시 버전
+JS_V43 = "1"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
 
 
 def ga4_head() -> str:
@@ -476,7 +476,7 @@ def page(
 <script src="{up}assets/trip-save.js?v={JS_V}" defer></script>
 {f'<script type="application/json" id="tpBundles">{bundles_payload()}</script>' if "data-tp-bundle" in body else ''}
 <script src="{up}assets/tp-v35.js?v={JS_V35}" defer></script>
-<script src="{up}assets/tp-v42.js?v={JS_V42}" defer></script>
+<script src="{up}assets/tp-v43.js?v={JS_V43}" defer></script>
 </body>
 </html>
 """
@@ -1020,6 +1020,21 @@ def auto_toc(body_html: str) -> tuple[str, str, int, int]:
 # ----------------------------------------------------------------------
 # 가이드 페이지
 # ----------------------------------------------------------------------
+def guide_bm(g: dict) -> str:
+    """v43: 가이드 91편 공통 ★ 참고 글 저장 버튼(상단 메타 아래).
+
+    저장은 브라우저(localStorage)에만 되고, 헤더 찜/견적 모달의 ‘저장한 참고 글’에서 다시 연다.
+    """
+    item = json.dumps({"t": g["navTitle"], "c": g["category"], "r": g["read"]},
+                      ensure_ascii=False, separators=(",", ":"))
+    return f"""      <div class="pg-bm">
+        <button class="bm-btn" type="button" data-bm="/guides/{g['slug']}.html" data-bm-item="{esc(item)}" aria-pressed="false">
+          <span class="bm-star" aria-hidden="true">★</span><span class="bm-t">참고 글 저장</span>
+        </button>
+        <span class="bm-note">이 브라우저에 저장 · 헤더 ♥ 안 ‘저장한 참고 글’에서 다시 열기</span>
+      </div>"""
+
+
 def guide_page(out_root: Path, g: dict, base: str) -> Path:
     slug = g["slug"]
     body_html = read(GUIDES / f"{slug}.html")
@@ -1107,6 +1122,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         <span>읽는 시간 약 {g['read']}분</span><i></i>
         <span>{esc(g.get('fxNote') or '가격 확인 2026.11.20')}</span>
       </div>
+{guide_bm(g)}
     </div>
 {hero_img}
   </div>
@@ -4428,6 +4444,7 @@ def checklist_page(out_root: Path, base: str) -> Path:
   <div class="wrap">
 {share_row('page')}
 {cont_bar('준비', '여행 준비 D-Day 4단계 타임라인', '/checklist', 'images/og/stays.jpg')}
+{B.trip_widget_html(hub_list(), GUIDES_LIST, ess_by_id)}
     <div class="ddwrap">
 {B.dday_timeline_html(ess_by_id)}
     </div>
@@ -4532,12 +4549,14 @@ def write_assets(style: str, out_root: Path):
         if stale.exists():
             stale.unlink()
     # v42: 통합 퀵서치 · 어디든지 파인더 · 찜 견적서 · 비교 스크립트(홈·서브페이지 공통)
-    js42 = CONTENT / "v42.js"
-    if js42.exists():
-        shutil.copy2(js42, out_root / "assets" / "tp-v42.js")
-        stale = out_root / "assets" / "tp-v41.js"
-        if stale.exists():
-            stale.unlink()
+    # v43: 통합 퀵서치·찜 견적서(v42) + 내 여행 D-Day·★ 참고 글 저장
+    js43 = CONTENT / "v43.js"
+    if js43.exists():
+        shutil.copy2(js43, out_root / "assets" / "tp-v43.js")
+        for name in ("tp-v42.js", "tp-v41.js"):
+            stale = out_root / "assets" / name
+            if stale.exists():
+                stale.unlink()
     # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
     hdr = ROOT / "_headers"
     if hdr.exists():

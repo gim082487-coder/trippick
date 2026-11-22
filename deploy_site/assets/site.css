@@ -2634,6 +2634,115 @@
     .wl-acts .wl-btn{font-size:11.8px}
   }
 
+/* ============================================================
+   v43 — 재방문 루프(내 여행 D-Day) · 참고 글 저장(북마크)
+   ============================================================ */
+/* 홈·/checklist 공통 D-Day 위젯 */
+.tp-trip{padding:26px 0 4px}
+.tp-trip-card{background:#fff;border:1px solid var(--blue-line);border-radius:var(--r-lg);
+  box-shadow:0 2px 14px rgba(16,32,46,.05);padding:16px 18px}
+.tp-trip-kicker{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;
+  color:var(--blue-700);letter-spacing:.06em}
+.tp-trip-form{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:7px}
+.tp-trip-form>b{font-size:15px;font-weight:850;color:var(--navy);letter-spacing:-.02em}
+.tp-trip-form>p{margin:0;font-size:12.4px;color:var(--ink-2);flex:1 1 240px;line-height:1.55}
+.tp-trip-ctl{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tp-trip-ctl select,.tp-trip-ctl input[type=date]{height:40px;border:1px solid var(--line);
+  border-radius:10px;background:#fff;color:var(--ink);font-size:13px;font-weight:700;padding:0 10px;
+  font-family:inherit;max-width:100%}
+.tp-trip-ctl select{min-width:126px}
+.tp-trip-ctl input[type=date]{min-width:142px}
+.tp-trip-save{height:40px;border:0;border-radius:10px;background:var(--blue-700);color:#fff;
+  font-size:13px;font-weight:850;padding:0 16px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.tp-trip-save:hover{background:var(--blue)}
+.tp-trip-edit{height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink-2);
+  font-size:11.6px;font-weight:800;padding:0 10px;cursor:pointer;font-family:inherit}
+.tp-trip-edit:hover{border-color:var(--blue);color:var(--blue-700)}
+.tp-trip-saved{margin-top:2px}
+.tp-trip-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tp-day{display:inline-flex;align-items:baseline;gap:2px;background:var(--navy);color:#fff;
+  border-radius:12px;padding:8px 13px;font-size:14px;font-weight:850;letter-spacing:-.01em;white-space:nowrap}
+.tp-day b{font-size:23px;font-weight:900;line-height:1;letter-spacing:-.03em}
+.tp-trip-title{flex:1 1 180px;min-width:0}
+.tp-trip-title b{display:block;font-size:16px;font-weight:850;color:var(--navy);letter-spacing:-.02em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tp-trip-title span{display:block;margin-top:2px;font-size:12px;color:var(--ink-2)}
+.tp-trip-stages{display:flex;gap:6px;flex-wrap:wrap;margin:13px 0 4px}
+.tp-stage{border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink-3);
+  font-size:11.6px;font-weight:800;padding:6px 11px;white-space:nowrap}
+.tp-stage.on{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue-700)}
+.tp-trip-list{list-style:none;margin:9px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tp-trip-list li{min-width:0}
+.tp-trip-list a{display:flex;flex-direction:column;gap:2px;height:100%;border:1px solid var(--line-2);
+  border-radius:11px;background:#FBFCFD;padding:10px 11px;text-decoration:none;transition:.15s}
+.tp-trip-list a:hover{border-color:var(--blue);background:#fff;text-decoration:none}
+.tp-trip-list b{font-size:12.6px;font-weight:800;color:var(--navy);line-height:1.4;letter-spacing:-.02em}
+.tp-trip-list span{font-size:11px;color:var(--ink-3);line-height:1.5}
+.tp-trip-foot{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;align-items:stretch}
+.tp-trip-g{display:flex;align-items:center;gap:7px;min-width:0;border:1px solid var(--line);
+  border-radius:11px;background:#fff;padding:8px 11px;text-decoration:none;transition:.15s}
+.tp-trip-g:hover{border-color:var(--blue);text-decoration:none}
+.tp-trip-g em{font-style:normal;font-size:10px;font-weight:900;color:var(--blue-700);background:var(--blue-soft);
+  border-radius:6px;padding:2px 6px;white-space:nowrap}
+.tp-trip-g b{font-size:12px;font-weight:750;color:var(--ink);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;min-width:0}
+.tp-trip-cta{display:flex;align-items:center;gap:7px;grid-column:1/-1;border-radius:11px;
+  background:linear-gradient(100deg,#0F2C46,#1B4C74);color:#fff;padding:9px 12px;text-decoration:none;min-width:0}
+.tp-trip-cta:hover{text-decoration:none;filter:brightness(1.08)}
+.tp-trip-cta em{font-style:normal;font-size:10px;font-weight:900;color:#BFE0FA;letter-spacing:.04em;white-space:nowrap}
+.tp-trip-cta b{font-size:12px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.tp-trip-cta i{font-style:normal;margin-left:auto;font-size:11px;font-weight:850;white-space:nowrap}
+
+/* 다른 페이지 상단 미니 바 */
+.tp-strip{display:block;background:#0F2C46;color:#fff;text-decoration:none}
+.tp-strip:hover{text-decoration:none;background:#153A5A}
+.tp-strip .wrap{display:flex;align-items:center;gap:9px;padding:8px 0;min-height:38px}
+.tp-strip b{font-size:12.4px;font-weight:900;color:#BFE0FA;white-space:nowrap}
+.tp-strip span{font-size:12.2px;font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.tp-strip i{font-style:normal;margin-left:auto;font-size:11px;font-weight:850;color:#8FC7F0;white-space:nowrap}
+
+/* 가이드 상단 ★ 참고 글 저장 */
+.pg-bm{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:13px 0 0}
+.bm-btn{display:inline-flex;align-items:center;gap:6px;height:36px;border:1px solid var(--line);
+  border-radius:999px;background:#fff;color:var(--ink-2);font-size:12.4px;font-weight:850;
+  padding:0 14px;cursor:pointer;font-family:inherit;transition:.15s}
+.bm-btn:hover{border-color:#E7C67E;color:#8A5A00;background:#FFFDF7}
+.bm-btn .bm-star{font-size:14px;line-height:1;color:#C4C9CF}
+.bm-btn[aria-pressed=true]{border-color:#EFCB86;background:#FFF7E6;color:#8A5A00}
+.bm-btn[aria-pressed=true] .bm-star{color:#E0A526}
+.bm-note{font-size:11.4px;color:var(--ink-3)}
+
+/* 찜·견적 모달 안 ‘저장한 참고 글’ */
+.wl-bm{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.wl-bm-h{display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.wl-bm-h b{font-size:13px;font-weight:850;color:var(--navy)}
+.wl-bm-h span{font-size:11.6px;color:var(--ink-3)}
+.wl-bm-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line-2);min-width:0}
+.wl-bm-row:last-child{border-bottom:0}
+.wl-bm-row a{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:1px;text-decoration:none}
+.wl-bm-row a:hover{text-decoration:none}
+.wl-bm-row b{font-size:12.6px;font-weight:800;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wl-bm-row span{font-size:11px;color:var(--ink-3)}
+.wl-bm-del{flex:0 0 auto;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink-3);
+  font-size:11px;font-weight:800;padding:5px 8px;cursor:pointer;font-family:inherit}
+.wl-bm-del:hover{border-color:#E0A526;color:#8A5A00}
+.wl-bm-empty{margin:0;font-size:12px;line-height:1.6;color:var(--ink-2)}
+.wl-bm-all{display:inline-flex;margin-top:7px;font-size:11.6px;font-weight:850;color:var(--blue-700)}
+
+@media (max-width:760px){
+  .tp-trip{padding:20px 0 2px}
+  .tp-trip-card{padding:14px 14px}
+  .tp-trip-form>b{flex:1 1 100%}
+  .tp-trip-form>p{flex:1 1 100%;font-size:12px}
+  .tp-trip-ctl{flex:1 1 100%}
+  .tp-trip-ctl select{flex:1 1 118px;min-width:0}
+  .tp-trip-ctl input[type=date]{flex:1 1 132px;min-width:0}
+  .tp-trip-save{flex:1 1 100%}
+  .tp-trip-list{grid-template-columns:1fr}
+  .tp-trip-foot{grid-template-columns:1fr}
+  .tp-day b{font-size:21px}
+}
+
 /* =====================================================================
    트립픽 콘텐츠 페이지 (가이드·소개·약관·개인정보·문의) 전용 스타일
    v4 토큰(--blue/--ink/--soft/--r)을 그대로 쓰고, index 전용 클래스와

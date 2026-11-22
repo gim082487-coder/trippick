@@ -346,6 +346,22 @@
    "url": "https://www.pexels.com/photo/30140318/",
    "subject": "겨울 저녁 뉘른베르크 크리스마스 마켓 거리",
    "file": "images/v31/europe-shopping-tax-refund.jpg"
+  },
+  "v43/airport-transfer": {
+   "pexels_id": null,
+   "photographer": "Wikimedia Commons (CC0)",
+   "url": "https://commons.wikimedia.org/wiki/File:JP_%E6%97%A5%E6%9C%AC_Japan_%E5%A4%A7%E9%98%AA_Osaka_%E9%97%9C%E8%A5%BF%E5%9C%8B%E9%9A%9B_Kansai_International_Airport_%E6%A9%9F%E9%90%B5%E7%AB%99_railway_station_June_2026_N13P_06.jpg",
+   "license": "CC0 (public domain dedication)"
+  },
+  "v43/convenience-store": {
+   "pexels_id": 3708747,
+   "photographer": "Markus Winkler",
+   "url": "https://www.pexels.com/photo/packaged-onigiri-on-store-shelf-3708747/"
+  },
+  "v43/esim-troubleshoot": {
+   "pexels_id": 34212999,
+   "photographer": "Joey Tran",
+   "url": "https://www.pexels.com/photo/travel-preparation-with-esim-activation-in-vietnam-34212999/"
   }
  }
 }

@@ -170,6 +170,7 @@
     "danang-airport-pickup"
    ],
    "related": [
+    "airport-arrival-city-transfer-guide",
     "danang-hoian-rainy",
     "vietnam-souvenir-list",
     "vietnam-esim",
@@ -201,6 +202,7 @@
     "jp-esim-usimsa-3d"
    ],
    "related": [
+    "airport-arrival-city-transfer-guide",
     "taipei-yehliu",
     "taiwan-souvenir-list",
     "tokyo-food-route",
@@ -235,6 +237,7 @@
     "osaka-nankai-rapit"
    ],
    "related": [
+    "airport-arrival-city-transfer-guide",
     "osaka-food-route",
     "osaka-amazing-pass",
     "japan-esim",
@@ -301,6 +304,7 @@
     "tokyo-skyliner"
    ],
    "related": [
+    "airport-arrival-city-transfer-guide",
     "tokyo-food-route",
     "tokyo-package-4d-vs-3d",
     "tokyo-fuji-tour",
@@ -368,6 +372,7 @@
     "jp-esim-usimsa-3d"
    ],
    "related": [
+    "airport-arrival-city-transfer-guide",
     "osaka-kyoto-3n4d",
     "japan-esim",
     "narita-haneda-transfer",
@@ -560,6 +565,7 @@
    ],
    "essentials": [],
    "related": [
+    "airport-arrival-city-transfer-guide",
     "bangkok-pattaya-3n5d-course-budget",
     "danang-hoian-rainy",
     "bangkok-3-packages",
@@ -592,6 +598,7 @@
     "jp-esim-lingsim-1d"
    ],
    "related": [
+    "overseas-roaming-esim-install-troubleshooting",
     "packing-powerbank-liquid",
     "osaka-amazing-pass",
     "tokyo-subway-ticket",
@@ -624,6 +631,7 @@
     "tokyo-metro-pass"
    ],
    "related": [
+    "airport-arrival-city-transfer-guide",
     "tokyo-food-route",
     "tokyo-package-4d-vs-3d",
     "tokyo-subway-ticket",
@@ -717,6 +725,7 @@
     "osaka-usj-shuttle-existing"
    ],
    "related": [
+    "airport-arrival-city-transfer-guide",
     "osaka-food-route",
     "osaka-kyoto-3n4d",
     "osaka-amazing-pass",
@@ -877,6 +886,7 @@
     "vn-esim-usimsa-3d"
    ],
    "related": [
+    "overseas-roaming-esim-install-troubleshooting",
     "nhatrang-dalat-tour-vs-free",
     "vietnam-golf-54-vs-36",
     "japan-esim",
@@ -1403,6 +1413,7 @@
     "jp-esim-usimsa-3d"
    ],
    "related": [
+    "japan-convenience-store-must-buy",
     "osaka-food-route",
     "tokyo-food-route",
     "packing-powerbank-liquid",
@@ -1815,6 +1826,7 @@
     "cp-luggagescale-homeplanet"
    ],
    "related": [
+    "japan-convenience-store-must-buy",
     "japan-souvenir-list",
     "japan-esim",
     "packing-powerbank-liquid",
@@ -2034,6 +2046,7 @@
     "tw-esim-lingsim-1d"
    ],
    "related": [
+    "overseas-roaming-esim-install-troubleshooting",
     "japan-esim",
     "vietnam-esim",
     "travel-card-packing-guide",
@@ -2450,6 +2463,7 @@
     "osaka-amazing-pass"
    ],
    "related": [
+    "japan-convenience-store-must-buy",
     "japan-shopping-gift-list",
     "visit-japan-web-guide",
     "osaka-food-route",
@@ -3152,6 +3166,168 @@
     ]
    ],
    "ogImage": "images/og/v42-luggage-og.jpg"
+  },
+  {
+   "slug": "airport-arrival-city-transfer-guide",
+   "category": "준비물·경비",
+   "navTitle": "6도시 공항→시내 이동·막차·심야 도착 총정리",
+   "h1": "공항에서 시내까지, <em>막차 23:55</em>를 넘기면 값이 10배",
+   "seoTitle": "공항에서 시내까지 6도시 비교 2026 — 오사카 970엔·도쿄 1,060엔·방콕 45밧·타이베이 160대만달러, 막차·심야 도착 | 트립픽",
+   "dek": "오사카·도쿄·후쿠오카·방콕·다낭·타이베이 6개 공항에서 시내까지 실제 요금과 막차를 한 표에 놓았습니다. 23시 이후 도착하면 남는 선택지와 2인 비용까지 계산했습니다.",
+   "desc": "오사카 간사이 970엔·23:55, 도쿄 나리타 1,060엔·하네다 330엔·0:08, 후쿠오카 260엔·5분·0:35, 방콕 45밧·24:00, 다낭 그랩 7만~15만동, 타이베이 160대만달러·23:35. 2인 왕복 최저 7,110~35,550원과 심야 택시 비용을 같은 표로 비교했습니다.",
+   "keywords": "공항에서 시내까지, 간사이공항 난바, 나리타 우에노, 하네다 시내, 후쿠오카공항 하카타, 수완나품 공항철도, 다낭공항 그랩, 타오위안 공항철도, 공항 막차, 심야 도착 택시, 공항 이동 요금 비교",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 12,
+   "image": "images/v43/airport-transfer.jpg",
+   "imageAlt": "간사이국제공항 난카이선 개찰구 앞에서 캐리어를 끌고 이동하는 여행자",
+   "imageCredit": "사진: Wikimedia Commons (CC0, 2026)",
+   "tours": [],
+   "essentials": [
+    "osaka-nankai-rapit",
+    "tokyo-skyliner"
+   ],
+   "related": [
+    "narita-haneda-transfer",
+    "bangkok-airport",
+    "osaka-usj-transfer",
+    "fukuoka-yufuin",
+    "taipei-food-route"
+   ],
+   "ctaTitle": "내 도착 시각으로 공항→숙소 동선 계산하기",
+   "ctaText": "출발일과 인원을 넣으면 항공·숙소·공항 이동까지 같은 기준으로 총액을 계산합니다.",
+   "fxNote": "100엔=838원 · 1밧=39.5원 · 1대만달러=40.49원 (사이트 공통)",
+   "faq": [
+    [
+     "오사카 간사이공항에서 난바까지 가장 싼 방법은 무엇인가요?",
+     "난카이 공항급행이 970엔(약 8,130원), 45분입니다. 라피트는 1,410~1,670엔으로 34~38분이라 11분 차이에 2인 왕복 1만 4,750원을 더 내는 셈입니다. 짐이 많아 좌석이 필요할 때만 라피트를 고르세요."
+    ],
+    [
+     "공항 막차를 놓치면 어떻게 하나요?",
+     "도시마다 다릅니다. 오사카는 공항급행 23:55 이후 택시(약 2만 3천엔)뿐이고, 도쿄 하네다는 게이큐 0:08·심야 리무진 2,800엔, 후쿠오카는 평일 0:35, 방콕은 24:00, 타이베이는 23:35 이후 1819 버스(24시간)가 남습니다. 다낭은 버스가 19~21시에 끊기고 그랩·택시는 24시간 됩니다."
+    ],
+    [
+     "2인 왕복 공항 이동비는 도시별로 얼마인가요?",
+     "가장 싼 방법 기준으로 오사카 32,530원, 도쿄 나리타 35,550원·하네다 11,070원, 후쿠오카 8,720원, 방콕 7,110원, 다낭 14,500원, 타이베이 25,910원입니다. 밤 도착이면 이 값의 3~10배가 됩니다."
+    ],
+    [
+     "착륙 시각으로 막차를 계산해도 되나요?",
+     "안 됩니다. 입국심사·수하물 수령·터미널 이동에 30~60분이 걸립니다. 항공권 도착 시각이 22:30이면 개찰구를 나오는 시각은 23:10~23:30이므로, 막차까지 30분 이상 여유를 두고 판단하세요."
+    ],
+    [
+     "짐이 많으면 무조건 택시가 나은가요?",
+     "2인이면 리무진버스가 먼저입니다. 오사카 난바 1,300~1,400엔, 도쿄 하네다 신주쿠 1,400엔으로 짐을 트렁크에 넣고 환승 없이 갑니다. 3~4인이면 택시 1대 총액이 1인당으로 철도와 비슷해집니다."
+    ]
+   ],
+   "ogImage": "images/og/v43-airport-transfer-og.jpg"
+  },
+  {
+   "slug": "japan-convenience-store-must-buy",
+   "category": "일본",
+   "navTitle": "일본 편의점 추천템 & 결제 치트시트",
+   "h1": "일본 편의점, <em>600엔</em>으로 한 끼 고르는 법",
+   "seoTitle": "일본 편의점 추천템 가격 2026 — 파미치킨 248엔·나나치키 250엔·주먹밥 146~290엔, 카카오페이·트래블카드 결제 | 트립픽",
+   "dek": "세븐·로손·패밀리마트의 2026년 11월 가격과 600엔 이하 조합 3가지, 포장 8%·매장 10% 세금, 카카오페이·네이버페이·트래블카드·현금 결제법을 한 장에 정리했습니다.",
+   "desc": "파미치킨 248엔, 나나치키 250.56엔, 카라아게군 288엔, 주먹밥 146~290엔, 커피 158~275엔. 600엔 이하 한 끼 조합 3가지와 포장 8%·이트인 10%, 세븐은 PayPay QR 스캔 불가, 카카오페이·네이버페이 PayPay 결제, 세븐은행 ATM까지.",
+   "keywords": "일본 편의점 추천, 파미치킨 가격, 나나치키, 카라아게군, 일본 편의점 주먹밥 가격, 세븐일레븐 로손 패밀리마트 차이, 일본 편의점 결제, 카카오페이 일본, 페이페이 카카오페이, 트래블로그 일본 ATM, 일본 편의점 세금",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 11,
+   "image": "images/v43/convenience-store.jpg",
+   "imageAlt": "일본 편의점 매장의 주먹밥 진열대에 놓인 연어·명란 주먹밥",
+   "imageCredit": "사진: Markus Winkler / Pexels (2026)",
+   "tours": [],
+   "essentials": [
+    "jp-esim-usimsa-3d-tokyo",
+    "cp-powerbank-spidy"
+   ],
+   "related": [
+    "japan-souvenir-list",
+    "japan-donki-tax-free-guide",
+    "japan-shopping-gift-list",
+    "travel-card-packing-guide",
+    "osaka-kyoto-3n4d"
+   ],
+   "ctaTitle": "내 일본 일정 식비, 편의점으로 계산해 보기",
+   "ctaText": "인원과 일수를 넣으면 항공·숙소·식비·eSIM까지 같은 기준으로 총액을 계산합니다.",
+   "fxNote": "100엔=838원 (사이트 공통)",
+   "faq": [
+    [
+     "일본 편의점에서 600엔으로 한 끼가 되나요?",
+     "됩니다. 나나치키 250.56엔 + 참치마요 주먹밥 196엔 = 446엔, 파미치킨 248엔 + 주먹밥 185엔 = 433엔, 카라아게군 288엔 + 소금 주먹밥 2개 298엔 = 586엔입니다. 우리 돈 3,630~4,910원입니다."
+    ],
+    [
+     "파미치킨은 얼마인가요?",
+     "2026년 11월 기준 248엔(약 2,080원)입니다. 2026년 3월 240엔에서 8엔 올랐고, 매운맛 레드는 258엔입니다. 나나치키는 250.56엔, 카라아게군 5개입은 288엔입니다."
+    ],
+    [
+     "편의점에서 카카오페이로 결제할 수 있나요?",
+     "됩니다. 카카오페이·네이버페이는 PayPay 가맹점 QR을 앱의 해외 결제 기능으로 스캔해 결제합니다. 세븐·로손·패밀리마트 모두 PayPay 가맹점입니다. 다만 세븐은 QR 스캔이 아니라 앱에 뜬 바코드를 제시하는 방식만 됩니다."
+    ],
+    [
+     "포장과 매장 식사 세금이 다른가요?",
+     "다릅니다. 포장(테이크아웃)은 경감세율 8%, 매장 안에서 먹으면 10%입니다. 500엔어치면 40엔과 50엔 차이입니다. 계산 전에 어느 쪽인지 말해야 합니다."
+    ],
+    [
+     "편의점 ATM에서 돈을 뽑을 수 있나요?",
+     "세븐은행 ATM이 가장 편합니다. 24시간이고 1회 10만 엔까지 인출됩니다. Mastercard 트래블로그는 세븐은행 ATM에서 기기 수수료까지 0원으로 안내되어 있습니다. 로손은 로손은행 ATM이 있고 5만 엔 한도인 경우가 많습니다."
+    ]
+   ],
+   "ogImage": "images/og/v43-convenience-store-og.jpg"
+  },
+  {
+   "slug": "overseas-roaming-esim-install-troubleshooting",
+   "category": "준비물·경비",
+   "navTitle": "eSIM이 안 터질 때 1분 해결 가이드",
+   "h1": "eSIM이 안 터질 때, <em>도착 1분</em>에 데이터 살리는 순서",
+   "seoTitle": "eSIM 안 터질 때 해결 2026 — 아이폰·갤럭시 데이터 로밍·APN·듀얼심 통화비 폭탄 방지 | 트립픽",
+   "dek": "eSIM을 설치했는데 인터넷이 안 되는 원인은 대부분 세 가지입니다. 아이폰·갤럭시 설정 경로, 원인 7가지, 통화비 폭탄 막는 설정, 로밍 9,900원과 eSIM 590원의 차이를 정리했습니다.",
+   "desc": "eSIM 안 터질 때 확인 순서: 데이터 회선 eSIM → 회선 사용 켜기 → 데이터 로밍 켜기. 아이폰 설정→셀룰러, 갤럭시 설정→연결→SIM 관리자 경로와 APN·수동 네트워크·재부팅, 데이터 전환 허용 끄기로 로밍 통화비 막는 법, 2인 4일 로밍 79,200원 vs eSIM 4,720원.",
+   "keywords": "eSIM 안됨, eSIM 안 터질 때, eSIM 데이터 로밍, 아이폰 eSIM 설정, 갤럭시 eSIM 설정, eSIM APN, 듀얼심 통화비, 로밍 요금 폭탄, eSIM 재설치, 해외 데이터 안될 때, eSIM 590원",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 11,
+   "image": "images/v43/esim-troubleshoot.jpg",
+   "imageAlt": "캐리어 위에서 아이폰 화면으로 eSIM을 활성화하는 여행자",
+   "imageCredit": "사진: Joey Tran / Pexels (2026)",
+   "tours": [],
+   "essentials": [
+    "jp-esim-usimsa-3d",
+    "vn-esim-usimsa-3d"
+   ],
+   "related": [
+    "esim-roaming-insurance-guide",
+    "japan-esim",
+    "vietnam-esim",
+    "travel-card-packing-guide",
+    "airport-arrival-city-transfer-guide"
+   ],
+   "ctaTitle": "내 일정에 맞는 eSIM·로밍 총액 계산하기",
+   "ctaText": "출발일과 인원을 넣으면 eSIM·유심·로밍을 같은 기준으로 비교해 보여줍니다.",
+   "fxNote": "상품가 2026-11 확인 · 로밍 1일 9,900원 기준",
+   "faq": [
+    [
+     "eSIM을 설치했는데 인터넷이 안 되면 무엇부터 보나요?",
+     "데이터 회선이 eSIM으로 되어 있는지부터 봅니다. 다음으로 eSIM 회선의 ‘이 회선 사용’이 켜져 있는지, ‘데이터 로밍’이 켜져 있는지 확인합니다. 이 세 가지로 대부분 해결됩니다."
+    ],
+    [
+     "아이폰에서 eSIM 설정은 어디서 하나요?",
+     "설정 → 셀룰러에서 회선별로 관리합니다. 셀룰러 데이터를 eSIM으로, 기본 음성 회선을 한국 SIM으로 두고, ‘셀룰러 데이터 전환 허용’은 끕니다. eSIM 회선의 데이터 로밍만 켭니다."
+    ],
+    [
+     "갤럭시는 어떻게 설정하나요?",
+     "설정 → 연결 → SIM 관리자에서 모바일 데이터를 eSIM으로, 통화를 한국 SIM으로 선택합니다. eSIM 회선의 데이터 로밍을 켜고 ‘자동 데이터 전환’은 끕니다."
+    ],
+    [
+     "로밍 통화비가 나오지 않게 하려면?",
+     "한국 SIM의 데이터 로밍을 끄고, 데이터 전환 허용을 끕니다. 데이터는 eSIM, 음성은 한국 SIM으로 두면 문자 인증은 받으면서 데이터 로밍 요금은 피할 수 있습니다. 받는 전화에도 요금이 붙으니 모르는 번호는 받지 않는 편이 안전합니다."
+    ],
+    [
+     "eSIM을 삭제하면 다시 설치할 수 있나요?",
+     "대부분 안 됩니다. QR은 1회용이고, ‘eSIM 삭제’를 누르면 재설치가 안 되는 상품이 많습니다. 설치 전 QR 화면을 캡처해 두고, 설치 후에는 회선을 지우지 마세요."
+    ]
+   ],
+   "ogImage": "images/og/v43-esim-troubleshoot-og.jpg"
   }
  ],
  "pages": [

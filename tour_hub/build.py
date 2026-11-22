@@ -1290,6 +1290,104 @@ def dday_strip_html() -> str:
 </div>"""
 
 
+# ----------------------------------------------------------------------
+# v43 — 내 여행 D-Day 위젯(홈·/checklist 공통)
+# ----------------------------------------------------------------------
+def trip_widget_payload(hubs: list, guides: list, ess_by_id: dict) -> dict:
+    """도시 13곳의 필수 가이드 2편·미예약 필수품과 단계별 할 일을 JS 에 넘긴다.
+
+    값은 data/city_hubs.json·guides.json·essentials.json/timeline.json 에서만 만든다.
+    """
+    by_slug = {g["slug"]: g for g in guides}
+    guide_pick = {
+        "osaka": ["airport-arrival-city-transfer-guide", "osaka-kyoto-3n4d"],
+        "tokyo": ["airport-arrival-city-transfer-guide", "tokyo-subway-ticket"],
+        "fukuoka": ["airport-arrival-city-transfer-guide", "fukuoka-yufuin"],
+        "danang": ["airport-arrival-city-transfer-guide", "danang-food-route"],
+        "bangkok": ["airport-arrival-city-transfer-guide", "bangkok-pattaya-3n5d-course-budget"],
+        "taipei": ["airport-arrival-city-transfer-guide", "taipei-food-route"],
+        "nhatrang": ["nhatrang-3n4d-food-resort", "nhatrang-dalat-tour-vs-free"],
+        "jeju": ["jeju-3n4d-course-budget", "jeju-aircarotel-3-packages"],
+        "seoul": ["seoul-seongsu-bukchon-1d", "incheon-airport-smartpass-lounge"],
+        "busan": ["busan-haeundae-gwangalli-2d", "busan-yacht"],
+        "gangneung": ["gangwon-gangneung-winter-sea-2d", "gangwon-ski"],
+        "yeosu": ["yeosu-night-sea-2d", "busan-haeundae-gwangalli-2d"],
+        "gyeongju": ["gyeongju-hwangridangil-2d", "busan-haeundae-gwangalli-2d"],
+    }
+    country_ess = {"jp": "jp-esim-usimsa-3d", "vn": "vn-esim-usimsa-3d",
+                   "th": "th-esim-usimsa-3d", "tw": "tw-esim-usimsa-3d"}
+    short = {"osaka": "오사카", "tokyo": "도쿄", "fukuoka": "후쿠오카", "danang": "다낭",
+             "bangkok": "방콕", "taipei": "타이베이", "nhatrang": "나트랑", "jeju": "제주",
+             "seoul": "서울", "busan": "부산", "gangneung": "강릉", "yeosu": "여수", "gyeongju": "경주"}
+    cities = []
+    for h in hubs:
+        slug = h["slug"]
+        picks = []
+        for gs in guide_pick.get(slug, []):
+            g = by_slug.get(gs)
+            if g:
+                picks.append({"t": g["navTitle"], "u": f"guides/{gs}.html", "m": f'{g["category"]} · {g["read"]}분'})
+        ess = None
+        eid = country_ess.get(h.get("country"))
+        if eid and eid in ess_by_id:
+            e = ess_by_id[eid]
+            ess = {"k": "미예약 필수품", "t": e["categoryLabel"].split("(")[0],
+                   "p": f'{e["price"]:,}원 · {e["store"]}', "u": e.get("url") or e["naverMe"]}
+        else:
+            ess = {"k": "미예약 숙소", "t": "숙소 아직 안 잡았다면", "p": "평점·1박 최저가 비교", "u": "stays.html"}
+        cities.append({"s": slug, "n": h["name"], "short": short.get(slug, h["name"]),
+                       "hub": f"{slug}.html", "g": picks, "e": ess})
+
+    stages = [
+        {"d": "D-14", "t": "투어·eSIM", "items": [
+            {"t": "투어·입장권 예약", "h": "취소 규정·최소 인원 확인", "u": "index.html#regions"},
+            {"t": "eSIM·유심 구매", "h": "출국 전 설치·개통", "u": "index.html#essentials"},
+            {"t": "교통패스 본전 계산", "h": "하루 몇 번 타면 남는지", "u": "passes.html"}]},
+        {"d": "D-7", "t": "서류·보험", "items": [
+            {"t": "여권 만료일 확인", "h": "6개월 이상 남기기", "u": "guides/passport-application-guide.html"},
+            {"t": "비자·입국서류 확인", "h": "국가별 수수료·시기", "u": "guides/entry-immigration-guide.html"},
+            {"t": "여행자보험 가입", "h": "휴대품·지연·의료비", "u": "index.html#travelins"}]},
+        {"d": "D-3", "t": "짐·환전", "items": [
+            {"t": "기내·위탁 수하물", "h": "항공사별 무게·개수", "u": "baggage.html"},
+            {"t": "보조배터리 2개 이하", "h": "기내 휴대만", "u": "guides/packing-powerbank-liquid.html"},
+            {"t": "환전·트래블카드", "h": "수수료·환율 비교", "u": "exchange.html"}]},
+        {"d": "D-1", "t": "체크인·서류", "items": [
+            {"t": "온라인 체크인·좌석", "h": "출발 24~48시간 전", "u": "guides/airport-checkin-customs-guide.html"},
+            {"t": "입국 QR·예약서 저장", "h": "오프라인으로도 열리게", "u": "checklist.html"},
+            {"t": "공항 도착 시간", "h": "국제선 2시간 전", "u": "guides/airport-arrival-city-transfer-guide.html"}]},
+        {"d": "현지", "t": "도착 후", "items": [
+            {"t": "데이터 회선 확인", "h": "eSIM·로밍 1분 점검", "u": "guides/overseas-roaming-esim-install-troubleshooting.html"},
+            {"t": "공항→숙소 이동", "h": "막차·요금 다시 확인", "u": "guides/airport-arrival-city-transfer-guide.html"},
+            {"t": "첫 끼니·첫 일정", "h": "도시 페이지에서 고르기", "u": "cities/index.html"}]},
+    ]
+    return {"cities": cities, "stages": stages}
+
+
+def trip_widget_html(hubs: list, guides: list, ess_by_id: dict) -> str:
+    """홈(#planner 위)·/checklist 상단의 D-Day 위젯. 값이 없으면 JS 가 입력 바만 보여 준다."""
+    payload = json.dumps(trip_widget_payload(hubs, guides, ess_by_id), ensure_ascii=False,
+                         separators=(",", ":")).replace("</", "<\\/")
+    opts = "".join(f'<option value="{esc(c["s"])}">{esc(c["short"])}</option>' for c in trip_widget_payload(hubs, guides, ess_by_id)["cities"])
+    return f"""<section class="tp-trip" id="tpTrip" aria-label="내 여행 D-Day">
+  <div class="wrap">
+    <div class="tp-trip-card" data-tp-trip>
+      <span class="tp-trip-kicker">MY TRIP · 다시 오면 여기서 이어집니다</span>
+      <form class="tp-trip-form" data-tp-trip-form>
+        <b>내 여행 D-Day</b>
+        <p>도시와 출발일만 넣으면 D-14부터 현지 도착까지 할 일과 그 도시 가이드 2편을 이 자리에 보여드립니다. 저장은 이 브라우저에만 됩니다.</p>
+        <div class="tp-trip-ctl">
+          <select data-tp-trip-city aria-label="여행 도시">{opts}</select>
+          <input type="date" data-tp-trip-date aria-label="출발일" />
+          <button class="tp-trip-save" type="submit">D-Day 저장</button>
+        </div>
+      </form>
+      <div class="tp-trip-saved" data-tp-trip-saved hidden></div>
+    </div>
+    <script type="application/json" id="tpTripData">{payload}</script>
+  </div>
+</section>"""
+
+
 def render_checklist(check: dict, ess_by_id: dict, tripcom: dict) -> str:
     """나라를 고르면 입국서류·기내반입·준비물 체크가 바뀌는 인터랙티브 섹션.
 
@@ -2630,6 +2728,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @ESSENTIALS -->", render_essentials(essentials))
     html = replace_block(html, "<!-- @RESTAURANTS -->", render_restaurants(data, rest, guides, tripcom))
     html = replace_block(html, "<!-- @GIFTS -->", render_gifts(data, gifts, essentials, tripcom, guides))
+    html = replace_block(html, "<!-- @TRIPWIDGET -->", trip_widget_html(HUB_LIST, guides["guides"], ess_by_id))
     html = replace_block(html, "<!-- @DDAYSTRIP -->", dday_strip_html())
     html = replace_block(html, "<!-- @CHECKLIST -->", render_checklist(checklist, ess_by_id, tripcom))
     html = replace_block(html, "<!-- @MONEYKIT -->", render_depart_kit(checklist))
