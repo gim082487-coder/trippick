@@ -67,7 +67,11 @@
       var tab = e.target.closest('[data-qs-tab]');
       if (tab) { QS.tab = tab.getAttribute('data-qs-tab'); syncQSTabs(); renderQS(); QS.input.focus(); return; }
       var row = e.target.closest('[data-qs-go]');
-      if (row) { location.href = row.getAttribute('data-qs-go'); }
+      if (row) {
+        var u = row.getAttribute('data-qs-go');
+        closeQS();
+        goResult(u);
+      }
     });
     QS.input.addEventListener('input', function () { QS.cur = -1; renderQS(); });
     QS.input.addEventListener('keydown', function (e) {
@@ -78,10 +82,34 @@
         paintQS();
       } else if (e.key === 'Enter') {
         var pick = QS.cur >= 0 ? QS.shown[QS.cur] : QS.shown[0];
-        if (pick) { e.preventDefault(); location.href = pick.u; }
+        if (pick) { e.preventDefault(); closeQS(); goResult(pick.u); }
       }
     });
   }
+
+  function goResult(u) {
+    // 같은 페이지 안의 해시(#t-…·#도시·#맛집카드)로 갈 때는 해시가 그대로면 hashchange 가
+    // 오지 않으므로, 접힌 상세를 열고 직접 스크롤까지 해 준다.
+    var same = u.charAt(0) === '/' && u.indexOf('/#') === 0 && location.pathname === '/';
+    if (same) {
+      var id = u.slice(2);
+      if (location.hash === '#' + id) {
+        var el = D.getElementById(id);
+        if (el) {
+          var det = el.closest('details'); if (det) det.open = true;
+          setTimeout(function () {
+            var hd = D.querySelector('.site-head');
+            var top = el.getBoundingClientRect().top + window.scrollY - ((hd ? hd.offsetHeight : 0) + 10);
+            window.scrollTo({ top: Math.max(top, 0) });
+          }, 60);
+        }
+        return;
+      }
+    }
+    location.href = u;
+  }
+
+  D.addEventListener('hashchange', closeQS);
 
   function loadQS() {
     if (QS.idx || QS.loading) return;
