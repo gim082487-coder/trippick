@@ -980,6 +980,19 @@
 .sc-year-table tr[hidden],.sc-table tr[hidden]{display:none}
 .sc-cell.dim{opacity:.3}
 
+/* v45 — 가이드 상단 도구 바(환율·패스·SOS 프리셋) */
+.gtools{display:flex;flex-wrap:wrap;align-items:stretch;gap:7px;margin:13px 0 0;padding:10px 11px;
+  border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#FBFDFF,#fff)}
+.gtools-k{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:750;color:var(--ink-3);
+  padding:0 6px 0 2px;white-space:nowrap}
+.gtools-k b{color:var(--ink);font-weight:850}
+.gtool{display:grid;gap:1px;flex:1 1 150px;min-width:0;padding:7px 11px;border:1px solid var(--line);
+  border-radius:11px;background:#fff;transition:.16s}
+.gtool:hover{border-color:var(--blue-line);background:#FBFDFF;box-shadow:var(--sh-1);transform:translateY(-1px)}
+.gtool-k{font-size:9.4px;font-weight:850;letter-spacing:.06em;color:var(--blue-600)}
+.gtool b{font-size:12.6px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1.4}
+.gtool-n{font-size:10.8px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
 /* 도시 허브의 도구 2개 */
 .hub-tools{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0 0}
 .hub-tool{display:grid;gap:2px;border:1px solid var(--line);border-radius:14px;padding:11px 14px;background:#fff;transition:.16s}
@@ -1471,7 +1484,39 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
 @media print{
   .sos-cc,.sos-ov,.sos-tips,.sos-badge,.sos-top::after{display:none!important}
   .sos-panel{break-inside:avoid;border-color:#ccc}
+  /* v45: 인쇄·PDF 저장에서는 고른 나라만이 아니라 10개국 패널을 모두 담는다 */
+  .sos-panel[hidden]{display:block!important}
+  .site-head,body>footer,.share-row,.sos-save,.sos-rel,.sos-faq,.pg-crumb,.hub-city-row,.gact
+    {display:none!important}
+  .sos-body .wrap,.pg-hero .wrap{max-width:none;padding:0}
+  .sos-num,.sos-call,.sos-panel{border-color:#bbb!important;box-shadow:none!important;background:#fff!important}
+  .sos-num .go,.sos-call .go{display:none}
+  body{background:#fff}
+  a{color:#111!important;text-decoration:none!important}
 }
+
+/* v45 — /exchange ?cur= · ?city= 프리셋 */
+.fx-preset{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:10px 0 0;padding:8px 12px;
+  border:1px solid #DCE8F6;border-radius:12px;background:#F5FAFF;font-size:12px;color:var(--ink-2)}
+.fx-preset b{color:var(--blue-700);font-weight:850}
+.fx-preset a{color:var(--blue-700);font-weight:800;text-decoration:underline;text-underline-offset:2px}
+.fx-preset[hidden]{display:none}
+.fx-presets{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 4px}
+.fx-presets a{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border:1px solid var(--line);
+  border-radius:999px;background:#fff;font-size:11.8px;font-weight:800;color:var(--ink-2);transition:.15s}
+.fx-presets a:hover{border-color:var(--blue-line);color:var(--blue-700);background:#FBFDFF}
+.fx-presets a[aria-current="true"]{border-color:var(--blue-line);background:#EFF6FF;color:var(--blue-700)}
+
+/* v45 — /sos 저장·인쇄 버튼 */
+.sos-save{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:12px 0 0;padding:10px 13px;
+  border:1px solid #DCE8F6;border-radius:13px;background:#F5FAFF}
+.sos-save-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border:0;border-radius:999px;
+  background:var(--ink);color:#fff;font-size:12.8px;font-weight:850;cursor:pointer;white-space:nowrap;
+  font-family:inherit;letter-spacing:-.01em}
+.sos-save-btn:hover{background:#1B2530}
+.sos-save span{font-size:11.6px;color:var(--ink-2);line-height:1.5;flex:1 1 190px}
+.sos-save span b{color:var(--ink);font-weight:850}
+@media (max-width:420px){.sos-save{padding:9px 11px}.sos-save-btn{padding:8px 13px;font-size:12.2px}}
 
 /* /sos FAQ·전체 표 */
 .sos-faq{display:grid;gap:8px}

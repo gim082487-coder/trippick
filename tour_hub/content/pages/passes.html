@@ -603,8 +603,11 @@
       if (history.replaceState) history.replaceState(null, '', '#' + city);
     });
   });
-  var h = (location.hash || '').replace('#', '');
-  var startBtn = document.querySelector('.pk-tab[data-city="' + h + '"]');
+  // v45: 도시 허브·가이드에서 ?city=tokyo 로 넘어오면 그 탭이 열린 상태로 시작한다(해시도 그대로 지원).
+  var QS = window.URLSearchParams ? new URLSearchParams(location.search) : null;
+  var qCity = (QS ? String(QS.get('city') || '') : '').toLowerCase();
+  var h = String(qCity || (location.hash || '').replace('#', '')).replace(/[^a-z]/g, '');
+  var startBtn = h ? document.querySelector('.pk-tab[data-city="' + h + '"]') : null;
   if (startBtn) startBtn.click();
 
   calcOsaka(); calcTokyo(); calcBkk(); calcTpe(); calcSg();

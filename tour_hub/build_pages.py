@@ -49,11 +49,11 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 22)
-CSS_V = "42"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v44: /sos)
+CSS_V = "43"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v45: 도구 프리셋·인쇄)
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "35"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
 JS_V43 = "2"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
-JS_V44 = "1"   # assets/tp-v44.js (/sos 국가 전환 · 현지어 큰 글씨 카드) 캐시 버전
+JS_V44 = "2"   # assets/tp-v44.js (/sos 국가 전환 · 현지어 큰 글씨 카드 · v45 ?country= 프리셋) 캐시 버전
 
 
 def ga4_head() -> str:
@@ -116,6 +116,44 @@ HUB_PASS_TOOL = {
     "danang": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이·싱가포르"),
     "jeju": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이·싱가포르"),
 }
+
+# 도시 허브·가이드 → 도구 페이지 원클릭 프리셋 (v45)
+#   /exchange?cur=JPY · /passes?city=tokyo · /sos?country=JP  — 도착하면 그 도시·국가가 이미 선택된 상태
+CUR_OF_COUNTRY = {"jp": "JPY", "vn": "VND", "th": "THB", "tw": "TWD"}
+SOS_OF_COUNTRY = {"jp": "JP", "vn": "VN", "th": "TH", "tw": "TW", "kr": "KR"}
+CUR_UNIT = {"JPY": (100, "엔"), "VND": (100, "동"), "THB": (1, "밧"), "TWD": (1, "대만달러"),
+            "USD": (1, "달러"), "EUR": (1, "유로"), "GBP": (1, "파운드")}
+_FX_PER_UNIT: dict = {}
+
+
+def fx_basis(code: str) -> str:
+    """fx.json staticBasis.perUnit 에서 ‘100엔 = 838원’ 같은 표기를 만든다(환율이 바뀌면 따라온다)."""
+    global _FX_PER_UNIT
+    if not _FX_PER_UNIT:
+        _FX_PER_UNIT = load_json("fx.json")["staticBasis"]["perUnit"]
+    raw = str(_FX_PER_UNIT.get(code) or "")
+    if not raw:
+        return ""
+    try:
+        val = float(raw.split()[0])
+    except ValueError:
+        return raw
+    unit, name = CUR_UNIT.get(code, (1, code))
+    total = val * unit
+    text = f"{total:,.2f}".rstrip("0").rstrip(".")
+    return f"{unit}{name} = {text}원"
+
+
+def tool_links(hub_slug: str, country: str, up: str = "") -> dict:
+    """허브 slug·국가 코드 → 도구 3종 주소(프리셋 파라미터 포함)."""
+    cur = CUR_OF_COUNTRY.get(country)
+    # HTML 속성에 들어가므로 & 는 &amp; 로 쓴다
+    exchange = (f"{up}exchange.html?cur={cur}&amp;city={hub_slug}" if cur else f"{up}exchange.html")
+    pass_city = hub_slug if hub_slug in ("osaka", "tokyo", "bangkok", "taipei", "singapore") else ""
+    passes = f"{up}passes.html?city={pass_city}" if pass_city else f"{up}passes.html"
+    sos = f"{up}sos.html?country={SOS_OF_COUNTRY.get(country, 'KR')}"
+    return {"exchange": exchange, "passes": passes, "sos": sos, "cur": cur or ""}
+
 
 VERIFY_META = """<meta name="google-site-verification" content="LcZmYDzmsn2pIDvvwDXtLezOnQi8dEOjQ67-xBWdfCw" />
 <meta name="google-site-verification" content="Y3lrh6zGKCcwxVcFKL8ujJ1QK1Xi4HjHaL2KhZLku78" />
@@ -1042,6 +1080,42 @@ def guide_bm(g: dict) -> str:
       </div>"""
 
 
+def guide_tool_hub(g: dict):
+    """v45: 가이드가 다루는 도시(첫 투어의 city) → 도시 허브. 없으면 None."""
+    order = {}
+    for h in hub_list():
+        for cid in (h.get("cityIds") or [h["slug"]]):
+            order[cid] = h
+    if g.get("toolHub") and g["toolHub"] in order:
+        return order[g["toolHub"]]
+    for tid in g.get("tours") or []:
+        t = next((x for x in TOURS if x["id"] == tid), None)
+        if t and t.get("city") in order:
+            return order[t["city"]]
+    return None
+
+
+def guide_tools(g: dict) -> str:
+    """v45: 가이드 상단 도구 바 — 환율·패스·SOS 를 이 글의 도시 프리셋으로.
+
+    도시를 특정할 수 없는 글(준비물·비교)은 도구 페이지만 연결하고 도시 문구는 뺀다.
+    """
+    hub = guide_tool_hub(g)
+    slug = hub["slug"] if hub else ""
+    country = (hub.get("country") if hub else "") or ""
+    links = tool_links(slug, country, up="../")
+    if not hub:   # 도시를 특정할 수 없는 글은 국가 프리셋 없이 도구만 연결한다
+        links["sos"] = "../sos.html"
+    fx_text = fx_basis(links["cur"]) if links["cur"] else "12개 통화 · 일본 면세"
+    where = esc(hub["name"]) if hub else "여행지"
+    return f"""      <nav class="gtools" aria-label="{where} 바로 쓰는 도구">
+        <span class="gtools-k"><b>{where}</b> 바로 쓰는 도구</span>
+        <a class="gtool" href="{links['exchange']}"><span class="gtool-k">EXCHANGE</span><b>환율 계산</b><span class="gtool-n">{esc(fx_text)}</span></a>
+        <a class="gtool" href="{links['passes']}"><span class="gtool-k">PASS</span><b>교통패스 본전</b><span class="gtool-n">하루 몇 회 타면 남는지</span></a>
+        <a class="gtool" href="{links['sos']}"><span class="gtool-k">SOS</span><b>현지 긴급번호</b><span class="gtool-n">경찰·구급·공관·현지어</span></a>
+      </nav>"""
+
+
 def guide_page(out_root: Path, g: dict, base: str) -> Path:
     slug = g["slug"]
     body_html = read(GUIDES / f"{slug}.html")
@@ -1130,6 +1204,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         <span>{esc(g.get('fxNote') or '가격 확인 2026.11.20')}</span>
       </div>
 {guide_bm(g)}
+{guide_tools(g)}
     </div>
 {hero_img}
   </div>
@@ -1892,9 +1967,15 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     _season = SEASON_IDS
     cal_href = f"calendar.html#{slug}" if slug in _season else "calendar.html"
     cal_note = "성수기·항공권 참고가" if slug in _season else "19개 도시 12개월 캘린더"
+    # v45: 환율·패스·SOS 를 이 도시 프리셋으로 바로 연다 (/exchange?cur=JPY · /passes?city=tokyo · /sos?country=JP)
+    _links = tool_links(slug, hub.get("country") or "kr")
+    pass_href = _links["passes"]
+    fx_basis_text = fx_basis(_links["cur"]) if _links["cur"] else "12개 통화 · 일본 면세 환급"
     hub_tools_html = f"""<div class="hub-tools" aria-label="{esc(hub['name'])} 도구">
+  <a class="hub-tool" href="{_links['exchange']}"><span class="hub-tool-k">EXCHANGE</span><b>환율 계산 · 면세 환급</b><span class="hub-tool-n">{esc(fx_basis_text)}</span></a>
   <a class="hub-tool" href="{pass_href}"><span class="hub-tool-k">PASS</span><b>{esc(pass_title)}</b><span class="hub-tool-n">{esc(pass_sub)}</span></a>
-  <a class="hub-tool" href="{cal_href}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">{cal_note}</span></a>
+  <a class="hub-tool" href="{_links['sos']}"><span class="hub-tool-k">SOS</span><b>현지 긴급번호 · 현지어 카드</b><span class="hub-tool-n">{esc(hub['name'])} 경찰·구급·공관</span></a>
+  <a class="hub-tool" href="{cal_href}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">{esc(cal_note)}</span></a>
 </div>"""
 
     meta = [f'<span><b>트립픽 편집</b></span>', '<i></i>', '<span>업데이트 2026.11.20</span>', '<i></i>']

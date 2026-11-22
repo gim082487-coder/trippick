@@ -7,6 +7,15 @@
   'use strict';
   var D = document;
   var KEY = 'trippick.sos.cc';
+
+  /* v45 — 데이터가 끊기기 전에 인쇄·PDF 저장 (인쇄 CSS 가 10개국 패널을 모두 펼친다) */
+  var printBtn = D.getElementById('sosPrint');
+  if (printBtn) {
+    printBtn.addEventListener('click', function () {
+      if (D.activeElement && D.activeElement.blur) D.activeElement.blur();
+      window.print();
+    });
+  }
   var cc = D.getElementById('sosCC');
   var host = D.getElementById('sosPanels');
   if (!cc || !host) return;
@@ -61,10 +70,15 @@
     select(tabs[next].getAttribute('data-cc'), { remember: true, scrollTab: true });
   });
 
-  /* 시작 국가 — 저장값 → 주소 #jp → 첫 번째 */
+  /* 시작 국가 — ?country=jp (도시 허브·가이드 프리셋) → 주소 #JP → 저장값 → 첫 번째 */
   var start = read();
+  var q = '';
+  if (window.URLSearchParams) {
+    q = String(new URLSearchParams(location.search).get('country') || '').toUpperCase();
+  }
   var hash = (location.hash || '').replace(/^#/, '').toUpperCase();
-  if (known(hash)) start = hash;
+  if (known(q)) start = q;
+  else if (known(hash)) start = hash;
   if (!known(start)) start = panels[0].getAttribute('data-panel-cc');
   select(start, { scrollTab: false });
 

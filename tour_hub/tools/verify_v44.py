@@ -5,10 +5,10 @@
 뒤에 실행한다.
 
 검사 항목
- 1. 가이드 94편 · v44 신규 3편 본문/이미지/FAQ
+ 1. 가이드 97편(v45에서 3편 추가) · v44 신규 3편 본문/이미지/FAQ
  2. /sos 산출물 — 10개국 탭·패널, tel: 링크(공통 2 + 국가별), 현지어 카드 60개, 화면 FAQ 5문항
  3. /sos 진입점 — 헤더 도구 드롭다운·모바일 SOS 버튼·푸터·위기상황 가이드 2편
- 4. sitemap 122 URL · search_index 도구(page) 1건 · GSC action.md 122개·/sos
+ 4. sitemap 125 URL · search_index 도구(page) 1건 · GSC action.md 122개·/sos
  5. 자산 — assets/tp-v44.js(국가 전환·큰 글씨), site.css 의 .sos- 규칙
 """
 import json
@@ -40,7 +40,7 @@ def load(name):
 
 # ---------------------------------------------------------------- 1. 가이드
 guides = load("guides.json")["guides"]
-check(len(guides) == 94, f"가이드 {len(guides)}편 (기대 94)")
+check(len(guides) == 97, f"가이드 {len(guides)}편 (기대 97)")
 by = {g["slug"]: g for g in guides}
 for slug in NEW:
     g = by.get(slug)
@@ -109,7 +109,7 @@ for slug in NEW[:2]:
 
 # ---------------------------------------------------------------- 4. sitemap·색인·action
 locs = re.findall(r"<loc>([^<]+)</loc>", read(OUT / "sitemap.xml"))
-check(len(locs) == 122, f"sitemap {len(locs)} URL (기대 122)")
+check(len(locs) == 125, f"sitemap {len(locs)} URL (기대 125)")
 check("https://trippick.pages.dev/sos" in locs, "sitemap 에 /sos 없음")
 idx = json.loads(read(OUT / "search_index.json"))
 items = idx.get("items") or []
@@ -118,7 +118,7 @@ check(len(pages) == 1 and pages[0]["u"] == "/sos", f"search_index 도구 항목 
 if ACTION.exists():
     act = read(ACTION)
     check(act.startswith("---\ntitle:"), "action.md 프론트매터가 맨 앞에 없음")
-    check("122개" in act, "action.md 사이트맵 기준 수(122개) 미갱신")
+    check("125개" in act, "action.md 사이트맵 기준 수(125개) 미갱신")
     check("https://trippick.pages.dev/sos" in act, "action.md 에 /sos URL 없음")
     for slug in NEW:
         check(f"https://trippick.pages.dev/guides/{slug}" in act, f"action.md 에 {slug} URL 없음")

@@ -10,6 +10,7 @@
         <span id="fxBaseMeta">기준 환율 <b id="fxBaseDate">{{FX_DATE}}</b> 고시</span><i></i>
         <span>참고용 · 은행·카드사 환율과 다름</span>
       </div>
+      <p class="fx-preset" id="fxPreset" hidden></p>
     </div>
   </div>
 </div>
@@ -27,6 +28,15 @@
               <h2 id="fxTitle">여행 환율 계산기</h2>
             </div>
             <span class="fx-live" id="fxLive" data-state="wait">확인 중</span>
+          </div>
+
+          <div class="fx-presets" aria-label="통화 바로가기">
+            <a href="exchange.html?cur=JPY" data-cur="JPY">🇯🇵 엔화</a>
+            <a href="exchange.html?cur=VND" data-cur="VND">🇻🇳 동화</a>
+            <a href="exchange.html?cur=THB" data-cur="THB">🇹🇭 바트</a>
+            <a href="exchange.html?cur=TWD" data-cur="TWD">🇹🇼 대만달러</a>
+            <a href="exchange.html?cur=USD" data-cur="USD">🇺🇸 달러</a>
+            <a href="exchange.html?cur=EUR" data-cur="EUR">🇪🇺 유로</a>
           </div>
 
           <div class="fx-modes" role="group" aria-label="계산 방향">
@@ -265,7 +275,33 @@
   curEl.innerHTML = DATA.currencies.map(function (c) {
     return '<option value="' + c.code + '">' + c.symbol + ' ' + c.name + ' (' + c.code + ')</option>';
   }).join('');
+  /* v45: 도시 허브·가이드에서 넘어올 때 ?cur=JPY&city=tokyo 로 통화가 미리 선택된다.
+     city 는 안내 문구에만 쓰고, 값은 아래 화이트리스트에서만 꺼내 쓴다(주소 값 직접 삽입 금지). */
+  var CITY_NAME = {
+    osaka: '오사카·교토', tokyo: '도쿄', fukuoka: '후쿠오카·규슈', danang: '다낭·호이안',
+    nhatrang: '나트랑·달랏', bangkok: '방콕', taipei: '타이베이', jeju: '제주', seoul: '서울',
+    busan: '부산', gangneung: '강릉·평창', yeosu: '여수', gyeongju: '경주'
+  };
+  var QS = window.URLSearchParams ? new URLSearchParams(location.search) : null;
+  var qCur = QS ? String(QS.get('cur') || '').toUpperCase() : '';
+  if (qCur && CUR[qCur]) cur = qCur;
+  var qCity = QS ? String(QS.get('city') || '').toLowerCase() : '';
+  var qCityName = CITY_NAME[qCity] || '';
+
   curEl.value = cur;
+
+  var presetBox = el('fxPreset');
+  if (presetBox && (qCur || qCityName)) {
+    var cName = CUR[cur].name;
+    var label = qCityName ? qCityName + '에서 오셨습니다' : '통화를 미리 골라 두었습니다';
+    presetBox.innerHTML = '<b>' + label + '</b> · ' + cName + '(' + cur + ') 기본 선택 · ' +
+      (qCityName ? '<a href="' + qCity + '.html">' + qCityName + ' 여행 페이지로</a> · ' : '') +
+      '<a href="index.html#planner">같은 날짜로 총액 계산</a>';
+    presetBox.hidden = false;
+  }
+  document.querySelectorAll('.fx-presets a').forEach(function (a) {
+    if (a.getAttribute('data-cur') === cur) a.setAttribute('aria-current', 'true');
+  });
 
   curEl.addEventListener('change', function () {
     cur = curEl.value;
