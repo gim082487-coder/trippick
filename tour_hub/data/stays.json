@@ -541,6 +541,46 @@
      "label": "스페인 5박7일"
     }
    ]
+  },
+  {
+   "id": "sapporo",
+   "name": "삿포로",
+   "country": "일본",
+   "note": "삿포로역·오도리 시내와 조잔케이 온천이 갈립니다. 시내는 역 도보권으로 잡고, 온천은 조잔케이에서 1박을 따로 쓰는 편이 좋습니다.",
+   "count": 4,
+   "top": "삿포로 그랜드 호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=641&display=%EC%82%BF%ED%8F%AC%EB%A1%9C&optionId=641&optionType=City&optionName=%EC%82%BF%ED%8F%AC%EB%A1%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_sapporo&trip_sub3=D21372570",
+   "cityId": "641",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "sapporo-hokkaido-3n4d-winter",
+     "label": "삿포로 3박4일 겨울"
+    },
+    {
+     "slug": "sapporo-winter",
+     "label": "삿포로 겨울 복장·예산"
+    }
+   ]
+  },
+  {
+   "id": "singapore",
+   "name": "싱가포르",
+   "country": "싱가포르",
+   "note": "마리나 베이·시청은 관광 동선, 벤쿨렌·부기스는 가성비, 센토사는 유니버설과 비치 중심입니다. 3박이면 두 지역을 나눠 잡는 편이 동선이 짧습니다.",
+   "count": 4,
+   "top": "스위소텔 더 스탬퍼드, 싱가포르",
+   "listUrl": "https://kr.trip.com/hotels/list?city=73&display=%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4&optionId=73&optionType=City&optionName=%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_singapore&trip_sub3=D21372570",
+   "cityId": "73",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "singapore-3n4d-course-budget",
+     "label": "싱가포르 3박4일 경비"
+    }
+   ]
   }
  ],
  "hotels": [
@@ -3579,6 +3619,259 @@
    "roomSample": "트윈룸",
    "checkedAt": "2026-11-21",
    "priceNote": "표시가 186,313원 + 도시세 27,290원(현지 결제) = 세금 포함 213,603원"
+  },
+  {
+   "region": "singapore",
+   "id": "687472",
+   "name": "칼튼 호텔 싱가포르",
+   "en": "Carlton Hotel Singapore",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 2030,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.7",
+    "위치": "9.4",
+    "서비스": "8.9"
+   },
+   "zone": "마리나 베이",
+   "access": "브라스바사역 410m·도보 6분 / 시청역 도보권",
+   "reason": "2026년 객실 리모델링을 마쳤고 브라스바사역 410m입니다. 포트 캐닝 520m·클라크 퀘이 1.2km라 저녁 동선이 짧고, 2,030개 리뷰에 위치 9.4입니다.",
+   "price": 244375,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/singapore-687472.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=73&hotelId=687472&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_singapore_687472&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "리모델링 2026",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "singapore",
+   "id": "998612",
+   "name": "스위소텔 더 스탬퍼드, 싱가포르",
+   "en": "Swissotel The Stamford Singapore",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 4219,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "9.0",
+    "위치": "9.4",
+    "서비스": "9.0"
+   },
+   "zone": "마리나 베이",
+   "access": "시청역 160m·도보 3분",
+   "reason": "시청역 160m로 라플스 시티와 바로 이어집니다. 4,219개 리뷰에 9.2, 오션 뷰 객실과 레스토랑 평가가 높아 마리나 베이 일정의 중심으로 쓰기 좋습니다.",
+   "price": 386190,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/singapore-998612.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=73&hotelId=998612&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_singapore_998612&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "station"
+   ],
+   "pointTags": [
+    "오션 뷰",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "singapore",
+   "id": "110360649",
+   "name": "호텔 미 로처",
+   "en": "Hotel Mi Rochor",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 4405,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.6",
+    "위치": "9.2",
+    "서비스": "9.1"
+   },
+   "zone": "벤쿨렌",
+   "access": "로코르역 180m·도보 3분",
+   "reason": "로코르역 180m, 2023년 문을 연 4성입니다. 4,405개 리뷰 9.0에 서비스 9.1, 야외 수영장이 있고 부기스·리틀인디아가 도보권이라 저녁 이동이 짧습니다.",
+   "price": 128557,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/singapore-110360649.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=73&hotelId=110360649&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_singapore_110360649&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station",
+    "pool"
+   ],
+   "pointTags": [
+    "가성비",
+    "야외 수영장"
+   ]
+  },
+  {
+   "region": "singapore",
+   "id": "25469473",
+   "name": "빌리지 호텔 센토사 바이 파 이스트 호스피탈리티",
+   "en": "Village Hotel Sentosa by Far East Hospitality",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 2621,
+   "sub": {
+    "청결도": "8.8",
+    "시설": "8.6",
+    "위치": "9.1",
+    "서비스": "8.6"
+   },
+   "zone": "센토사 아일랜드",
+   "access": "임비아역 260m·도보 4분",
+   "reason": "유니버설 스튜디오 240m, 임비아역 260m입니다. 가족용 수영장과 야외 영화관이 있고 센토사 안에서 하루를 끝낼 수 있지만, 시내까지는 30분 걸립니다.",
+   "price": 255040,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/singapore-25469473.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=73&hotelId=25469473&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_singapore_25469473&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": [
+    "유니버설 240m",
+    "가족 수영장"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "993375",
+   "name": "삿포로 그랜드 호텔",
+   "en": "Sapporo Grand Hotel",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.4,
+   "reviews": 1033,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.1",
+    "위치": "9.6",
+    "서비스": "9.5"
+   },
+   "zone": "오도리",
+   "access": "삿포로역 640m·오도리 공원 390m",
+   "reason": "1934년 개업한 시내 중심 호텔로 오도리 공원 390m·삿포로역 640m입니다. 1,033개 리뷰 9.4, 위치 9.6·서비스 9.5로 시내 일정의 기준점이 됩니다.",
+   "price": 164944,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-993375.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=993375&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_993375&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "위치 최고",
+    "서비스 최고"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "993365",
+   "name": "게이오 플라자 호텔 삿포로",
+   "en": "Keio Plaza Hotel Sapporo",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 3118,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.0",
+    "위치": "9.2",
+    "서비스": "9.4"
+   },
+   "zone": "삿포로역",
+   "access": "삿포로역 610m·지하철 삿포로역 470m",
+   "reason": "삿포로역 610m, 3,118개 리뷰 9.3입니다. 일본식 조식 평가가 높고 공항 JR·오타루 이동이 짧아 3박 이상 머물 때 동선이 편합니다.",
+   "price": 148842,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-993365.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=993365&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_993365&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "일본식 조식",
+    "서비스 최고"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "124300563",
+   "name": "삿포로 호텔 by 그랑벨",
+   "en": "SAPPORO HOTEL by GRANBELL",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 949,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "9.0",
+    "위치": "8.5",
+    "서비스": "8.7"
+   },
+   "zone": "삿포로역",
+   "access": "삿포로역 460m·도보 6분",
+   "reason": "2025년 문을 연 호텔로 삿포로역 460m입니다. 꼭대기층 루프탑 온천에서 270도 전망을 보고, 949개 리뷰 8.8·청결도 9.2입니다.",
+   "price": 210359,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-124300563.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=124300563&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_124300563&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "station"
+   ],
+   "pointTags": [
+    "루프탑 온천",
+    "고층 야경"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "105315199",
+   "name": "조잔케이 온센 유라쿠소안",
+   "en": "Jozankei Onsen Yurakusoan",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 550,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.2",
+    "위치": "9.2",
+    "서비스": "9.0"
+   },
+   "zone": "조잔케이 온천",
+   "access": "삿포로역에서 갓파라이너 약 60분·조잔케이 온천 230m",
+   "reason": "조잔케이 온천 중심 230m, 550개 리뷰 9.2입니다. 유황 노천탕을 단독으로 쓰는 프라이빗 온천과 홋카이도 제철 가이세키가 평가의 중심입니다.",
+   "price": 694357,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-105315199.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=105315199&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_105315199&trip_sub3=D21372570",
+   "themes": [
+    "onsen"
+   ],
+   "pointTags": [
+    "프라이빗 온천",
+    "가이세키"
+   ]
   }
  ]
 }

@@ -79,6 +79,7 @@ CITY_COUNTRY = {
     **{c: "vn" for c in ("다낭", "나트랑", "푸꾸옥", "호이안", "하노이")},
     **{c: "th" for c in ("방콕", "푸켓", "치앙마이", "파타야")},
     **{c: "tw" for c in ("타이베이", "가오슝", "타이중")},
+    **{c: "sg" for c in ("싱가포르",)},
     **{c: "kr" for c in ("제주", "부산", "강원")},
 }
 
@@ -799,7 +800,11 @@ def ess_url(e: dict) -> str:
 
 
 def ess_cta(e: dict) -> str:
-    return "쿠팡에서 구매" if e.get("partner") == "coupang" else "네이버에서 구매"
+    if e.get("partner") == "coupang":
+        return "쿠팡에서 구매"
+    if e.get("partner") == "trip.com":
+        return "트립닷컴에서 예약"
+    return "네이버에서 구매"
 
 
 def render_essentials(essentials: dict) -> str:

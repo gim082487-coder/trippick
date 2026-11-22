@@ -3078,6 +3078,7 @@ STAY_COUNTRY_ISO = {
     "osaka": "jp", "tokyo": "jp", "fukuoka": "jp",
     "danang": "vn", "nhatrang": "vn", "bangkok": "th", "taipei": "tw",
     "paris": "fr", "london": "gb", "rome": "it", "barcelona": "es",
+    "sapporo": "jp", "singapore": "sg",
 }
 
 
@@ -3236,6 +3237,7 @@ STAYS_GUIDE_REGION = [
     ("osaka", "osaka"), ("tokyo", "tokyo"), ("fukuoka", "fukuoka"), ("yufuin", "fukuoka"),
     ("danang", "danang"), ("hoian", "danang"), ("nhatrang", "nhatrang"), ("dalat", "nhatrang"),
     ("bangkok", "bangkok"), ("taipei", "taipei"), ("yehliu", "taipei"), ("jiufen", "taipei"),
+    ("sapporo", "sapporo"), ("singapore", "singapore"),
     ("jeju", "jeju"), ("busan", "busan"), ("gangwon", "gangneung"), ("ulleung", "gangneung"),
     ("seoul", "seoul"), ("yeosu", "yeosu"), ("gyeongju", "gyeongju"),
 ]
@@ -3514,7 +3516,7 @@ def stays_page(out_root: Path, base: str) -> Path:
         ),
         keywords=(
             "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 가평 호텔, 춘천 호텔, 남이섬 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 거제 호텔, 거제 오션뷰 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
-            "가성비 호텔, 가족 호텔, 풀빌라, 10만원 이하 호텔, 부산 호텔 가격, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 파리 호텔 추천, 런던 호텔 추천, 로마 호텔 추천, 바르셀로나 호텔 추천, 유럽 호텔, 트립닷컴 숙소"
+            "가성비 호텔, 가족 호텔, 풀빌라, 10만원 이하 호텔, 부산 호텔 가격, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 파리 호텔 추천, 런던 호텔 추천, 로마 호텔 추천, 바르셀로나 호텔 추천, 싱가포르 호텔 추천, 삿포로 호텔 추천, 유럽 호텔, 트립닷컴 숙소"
         ),
         body=body,
         base=base,

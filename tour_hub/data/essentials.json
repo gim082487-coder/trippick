@@ -1399,6 +1399,154 @@
    "usage": "출장·여행 중 머리 손질. 배터리 분리형이라 보조배터리와 같은 기준(기내 휴대)으로 설명할 수 있습니다.",
    "caution": "\"기내반입 가능\"은 상품명 표기이며, 항공사가 배터리 용량(Wh)을 따로 봅니다. 예약 전 배터리 용량 표기와 항공사 규정을 확인하세요.",
    "checkedAt": "2026-11-21"
+  },
+  {
+   "id": "sg-esim-trip-46011732",
+   "partner": "trip.com",
+   "category": "eSIM",
+   "categoryLabel": "싱가포르 eSIM(1일 500MB부터)",
+   "name": "싱가포르 4G eSIM | Google 지도·ChatGPT 지원 | 1~30일 QR 코드",
+   "store": "트립닷컴",
+   "price": 109,
+   "listPrice": 109,
+   "discountRate": 0,
+   "url": "https://kr.trip.com/things-to-do/detail/46011732/?Allianceid=11407530&SID=336341874&trip_sub1=ess_sg_esim&trip_sub3=D21303312",
+   "productId": "46011732",
+   "cities": [
+    "싱가포르"
+   ],
+   "courses": [
+    "singapore"
+   ],
+   "reviews": 5512,
+   "pitch": "1일 500MB 요금제 109원부터. 4.6점·리뷰 5,512개로 싱가포르 eSIM 중 후기가 많은 상품입니다.",
+   "usage": "3박4일이면 3일 총량형이나 1일 2GB형을 고르고, 도착 전 QR로 설치합니다.",
+   "caution": "표시가는 1일 500MB 최저가입니다. 총량형·무제한형은 요금이 다르고, 기기 eSIM 지원 여부를 먼저 확인하세요.",
+   "checkedAt": "2026-11-22"
+  },
+  {
+   "id": "sp-esim-trip-45999298",
+   "partner": "trip.com",
+   "category": "eSIM",
+   "categoryLabel": "일본 eSIM(1일 500MB부터)",
+   "name": "일본 5G eSIM | Google Maps·ChatGPT 지원 | 1~30일 QR 코드",
+   "store": "트립닷컴",
+   "price": 109,
+   "listPrice": 109,
+   "discountRate": 0,
+   "url": "https://kr.trip.com/things-to-do/detail/45999298/?Allianceid=11407530&SID=336341874&trip_sub1=ess_sp_esim&trip_sub3=D21303312",
+   "productId": "45999298",
+   "cities": [
+    "삿포로",
+    "도쿄",
+    "오사카"
+   ],
+   "courses": [
+    "sapporo",
+    "tokyo",
+    "osaka"
+   ],
+   "reviews": 13835,
+   "pitch": "1일 500MB 109원부터, 4.5점·리뷰 13,835개. 삿포로·홋카이도에서도 같은 상품을 씁니다.",
+   "usage": "겨울 삿포로 3박4일이면 4일 총량형이 낫습니다. 지도·교통 앱을 하루 2시간 이상 쓰면 500MB로는 부족합니다.",
+   "caution": "일본 5G eSIM은 기기 호환(밴드)에 따라 LTE로 붙을 수 있습니다. 설치 후 출국 전에 한 번 켜서 확인하세요.",
+   "checkedAt": "2026-11-22"
+  },
+  {
+   "id": "sg-gardens-ticket",
+   "partner": "trip.com",
+   "category": "입장권",
+   "categoryLabel": "가든스 바이 더 베이 입장권",
+   "name": "가든스 바이 더 베이 플라워 돔·클라우드 포레스트(쥬라기 월드) 입장권",
+   "store": "트립닷컴",
+   "price": 35815,
+   "listPrice": 35815,
+   "discountRate": 0,
+   "url": "https://kr.trip.com/things-to-do/detail/109759541/?Allianceid=11407530&SID=336341874&trip_sub1=ess_sg_gardens&trip_sub3=D21303312",
+   "productId": "109759541",
+   "cities": [
+    "싱가포르"
+   ],
+   "courses": [
+    "singapore"
+   ],
+   "reviews": 18,
+   "pitch": "플라워 돔+클라우드 포레스트 조합 35,815원부터. 4.8점.",
+   "usage": "비거주자 성인 현장가 46싱가포르달러(약 4만 8천원)보다 싸게 사는 경우가 많습니다. 오전 입장이 덜 붐빕니다.",
+   "caution": "패키지별 포함 범위가 다릅니다(슈퍼트리 전망대·OCBC 스카이웨이 별도). 취소 불가 상품입니다.",
+   "checkedAt": "2026-11-22"
+  },
+  {
+   "id": "sg-uss-ticket",
+   "partner": "trip.com",
+   "category": "입장권",
+   "categoryLabel": "유니버설 스튜디오 싱가포르",
+   "name": "유니버설 스튜디오 싱가포르 1일 입장권(성인)",
+   "store": "트립닷컴",
+   "price": 70552,
+   "listPrice": 79109,
+   "discountRate": 10,
+   "url": "https://kr.trip.com/travel-guide/attraction/singapore/universal-studios-singapore-89732?curr=KRW&locale=ko-KR&poiType=3&scene=ticket&Allianceid=11407530&SID=336341874&trip_sub1=ess_sg_uss&trip_sub3=D21303312",
+   "productId": "89732",
+   "cities": [
+    "싱가포르"
+   ],
+   "courses": [
+    "singapore"
+   ],
+   "reviews": 35046,
+   "pitch": "성인 1일권 70,552원(정가 79,109원, 10% 할인). 4.7점·리뷰 35,046개.",
+   "usage": "센토사에서 하루를 쓰는 날에 배치하세요. 오전 입장 후 오후 5시 퍼레이드까지가 기본입니다.",
+   "caution": "날짜 지정 상품이고 취소 불가입니다. 익스프레스 패스는 별도입니다.",
+   "checkedAt": "2026-11-22"
+  },
+  {
+   "id": "sg-attractions-pass",
+   "partner": "trip.com",
+   "category": "입장권",
+   "categoryLabel": "싱가포르 명소 패스(9+)",
+   "name": "싱가포르 가이드 투어 & 명소 9+ 패스",
+   "store": "트립닷컴",
+   "price": 128920,
+   "listPrice": 128920,
+   "discountRate": 0,
+   "url": "https://kr.trip.com/things-to-do/detail/111132502/?Allianceid=11407530&SID=336341874&trip_sub1=ess_sg_pass&trip_sub3=D21303312",
+   "productId": "111132502",
+   "cities": [
+    "싱가포르"
+   ],
+   "courses": [
+    "singapore"
+   ],
+   "reviews": null,
+   "pitch": "9개 이상 명소를 한 장으로. 128,920원부터.",
+   "usage": "가든스·스카이파크·센토사 등 3곳 이상을 넣을 계획이면 개별 구매와 비교해 보세요.",
+   "caution": "포함 명소와 사용 기한이 패스마다 다릅니다. 리뷰가 아직 없어 조건을 상세페이지에서 확인해야 합니다.",
+   "checkedAt": "2026-11-22"
+  },
+  {
+   "id": "sg-bigbus-ticket",
+   "partner": "trip.com",
+   "category": "교통",
+   "categoryLabel": "빅 버스(1일·2일)",
+   "name": "싱가포르 Big Bus Hop-on Hop-off 버스 1일/2일 티켓",
+   "store": "트립닷컴",
+   "price": 72173,
+   "listPrice": 72173,
+   "discountRate": 0,
+   "url": "https://kr.trip.com/things-to-do/detail/65162939/?Allianceid=11407530&SID=336341874&trip_sub1=ess_sg_bigbus&trip_sub3=D21303312",
+   "productId": "65162939",
+   "cities": [
+    "싱가포르"
+   ],
+   "courses": [
+    "singapore"
+   ],
+   "reviews": 5,
+   "pitch": "시티·리버·센토사 노선을 하루에 도는 1일권 72,173원부터. 4.4점.",
+   "usage": "MRT보다 비싸지만 주요 명소를 환승 없이 한 번에 볼 때 유용합니다. 1일권이면 오전 시티, 오후 센토사로 나눠 타세요.",
+   "caution": "야간 코스는 별도 상품입니다. 리뷰가 5개뿐이라 운영 노선을 예약 전에 확인하세요.",
+   "checkedAt": "2026-11-22"
   }
  ],
  "coupangDisclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
