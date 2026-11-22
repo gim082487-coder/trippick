@@ -5,7 +5,7 @@
 뒤에 실행한다.
 
 검사 항목
- 1. search_index.json — 도시 30·가이드 85·숙소 102·투어 84·맛집 75, URL 이 전부 실제로 열리는 곳인지
+ 1. search_index.json — 도시 30·가이드 88·숙소 102·투어 84·맛집 75, URL 이 전부 실제로 열리는 곳인지
     (가이드 파일 존재 / 홈 앵커 존재 / /stays 지역 존재 / 도시 허브 파일 존재)
  2. 카드의 찜·비교 버튼 키가 비교 데이터(tpCompare)와 1:1 인지, 찜 데이터 JSON 이 파싱되는지
  3. 결정 배지가 데이터에 있는 속성만 말하는지 — 즉시확정·모바일 바우처는 안내문에 그 표현이 있을 때만,
@@ -47,7 +47,7 @@ items = idx.get("items") or []
 counts = {}
 for it in items:
     counts[it["k"]] = counts.get(it["k"], 0) + 1
-expect = {"city": 30, "guide": 85, "stay": 102, "tour": 84, "food": 75}
+expect = {"city": 30, "guide": 88, "stay": 102, "tour": 84, "food": 75}
 for k, n in expect.items():
     check(counts.get(k) == n, f"search_index.json {k} {counts.get(k)}건 (기대 {n})")
 
@@ -155,22 +155,24 @@ for name, html in (("index.html", home), ("stays.html", stays)):
     check(not dup, f"{name}: 새 id 중복 {dup[:5]}")
 
 # ---------------------------------------------------------------- 6. JS
-js = OUT / "assets" / "tp-v41.js"
-check(js.exists(), "assets/tp-v41.js 없음")
+# v42: v41 의 퀵서치·찜·비교가 tp-v42.js 로 옮겨 가고 찜 견적서가 더해졌다.
+js = OUT / "assets" / "tp-v42.js"
+check(js.exists(), "assets/tp-v42.js 없음")
+check(not (OUT / "assets" / "tp-v41.js").exists(), "구 assets/tp-v41.js 가 남아 있음")
 if js.exists():
     src = read(js)
-    check("data-qs-open" in src and "tpCompare" in src and "trippick.wish.v1" in src, "tp-v41.js 핵심 기능 누락")
+    check("data-qs-open" in src and "tpCompare" in src and "trippick.wish.v1" in src, "tp-v42.js 핵심 기능 누락")
     try:
         import esprima
         try:
             esprima.parseScript(src)
         except Exception as e:
-            fails.append(f"tp-v41.js 문법 오류: {str(e)[:90]}")
+            fails.append(f"tp-v42.js 문법 오류: {str(e)[:90]}")
     except ImportError:
         try:
             r = subprocess.run(["node", "--check", str(js)], capture_output=True, text=True)
             if r.returncode != 0:
-                fails.append("tp-v41.js 문법 오류(node): " + r.stderr[:120])
+                fails.append("tp-v42.js 문법 오류(node): " + r.stderr[:120])
         except FileNotFoundError:
             print("(esprima·node 없음 — JS 문법 검사 생략)")
 

@@ -49,10 +49,10 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 22)
-CSS_V = "38"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "39"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "35"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
-JS_V41 = "1"   # assets/tp-v41.js (통합 퀵서치 · 찜 · 나란히 비교) 캐시 버전
+JS_V42 = "1"   # assets/tp-v42.js (통합 퀵서치 · 어디든지 파인더 · 찜 견적서 · 나란히 비교) 캐시 버전
 
 
 def ga4_head() -> str:
@@ -92,7 +92,7 @@ NAV = [
 TOOLS = [
     ("exchange.html", "환율·일본 면세 계산기", "exchange", "12개 통화 · 면세 환급"),
     ("baggage.html", "항공사 수하물 규정", "baggage", "기내·위탁·배터리"),
-    ("passes.html", "교통패스 본전 계산기", "passes", "오사카·도쿄·방콕·타이베이"),
+    ("passes.html", "교통패스 본전 계산기", "passes", "오사카·도쿄·방콕·타이베이·싱가포르"),
     ("calendar.html", "월별 시즌 캘린더", "calendar", "19개 도시 12개월"),
 ]
 TOOL_KEYS = {k for _, _, k, _ in TOOLS}
@@ -110,9 +110,9 @@ HUB_PASS_TOOL = {
     "tokyo": ("passes.html#tokyo", "도쿄 지하철 패스·나리타 비교", "24·48·72시간 본전"),
     "bangkok": ("passes.html#bangkok", "방콕 BTS 1일권 본전", "150밧 vs 개별권"),
     "taipei": ("passes.html#taipei", "타이베이 펑패스 vs 이지카드", "1·2·3·5일 비교"),
-    "fukuoka": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이"),
-    "danang": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이"),
-    "jeju": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이"),
+    "fukuoka": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이·싱가포르"),
+    "danang": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이·싱가포르"),
+    "jeju": ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이·싱가포르"),
 }
 
 VERIFY_META = """<meta name="google-site-verification" content="LcZmYDzmsn2pIDvvwDXtLezOnQi8dEOjQ67-xBWdfCw" />
@@ -476,7 +476,7 @@ def page(
 <script src="{up}assets/trip-save.js?v={JS_V}" defer></script>
 {f'<script type="application/json" id="tpBundles">{bundles_payload()}</script>' if "data-tp-bundle" in body else ''}
 <script src="{up}assets/tp-v35.js?v={JS_V35}" defer></script>
-<script src="{up}assets/tp-v41.js?v={JS_V41}" defer></script>
+<script src="{up}assets/tp-v42.js?v={JS_V42}" defer></script>
 </body>
 </html>
 """
@@ -1864,7 +1864,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
 
     # v18: 도시 페이지에서 바로 쓰는 도구 — 패스 본전 계산기 + 월별 시즌 캘린더
     pass_href, pass_title, pass_sub = HUB_PASS_TOOL.get(
-        slug, ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이")
+        slug, ("passes.html", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이·싱가포르")
     )
     _season = SEASON_IDS
     cal_href = f"calendar.html#{slug}" if slug in _season else "calendar.html"
@@ -2556,6 +2556,16 @@ def pass_links(slug: str) -> str:
         tr = _tc("transfers", id="transfer_tpe")
         if tr:
             out.append(pk_link_card("트립닷컴", "타오위안공항 픽업", "시내 호텔까지", tr["url"], "요금 보기"))
+    elif slug == "singapore":
+        e = _ess("sg-esim-trip-46011732")
+        if e:
+            out.append(pk_link_card("트립닷컴", "싱가포르 eSIM (1~30일)", f'{won(e["price"])}원~ · 도착 전 설치', B.ess_url(e), "eSIM 보기"))
+        h = _tc("hotels", cityId="singapore")
+        if h:
+            out.append(pk_link_card("트립닷컴", "싱가포르 숙소", "시티홀·오차드·차이나타운", h["url"], "요금 보기"))
+        es = _ess("sg-gardens-ticket")
+        if es:
+            out.append(pk_link_card("트립닷컴", "가든스 바이 더 베이 입장권", f'{won(es["price"])}원', B.ess_url(es), "입장권 보기"))
     return "\n            ".join(out)
 
 
@@ -2594,15 +2604,22 @@ def passes_page(out_root: Path, base: str) -> Path:
     )
 
     body = read(PAGES / "passes.html")
+    sg_chips = "\n              ".join(
+        f'<button type="button" class="pk-btn{" on" if t["days"] == 3 else ""}" data-sg="{t["id"]}" aria-pressed="{"true" if t["days"] == 3 else "false"}">'
+        f'<b>{t["days"]}일권</b><span>{_n(t["price"])}싱가포르달러</span><em>{"무제한" if t["days"] == 1 else "하루 " + _n(t["price"] / t["days"]) + "싱가포르달러"}</em></button>'
+        for t in data["singapore"]["touristPass"]
+    )
     body = body.replace("<!-- @OSAKA_PASSES -->", chips)
     body = body.replace("<!-- @OSAKA_FACILITIES -->", facs)
     body = body.replace("<!-- @TOKYO_TICKETS -->", tok_chips)
     body = body.replace("<!-- @NARITA_ROWS -->", narita_rows)
     body = body.replace("<!-- @TAIPEI_PASSES -->", tpe_chips)
-    for slug in ("osaka", "tokyo", "bangkok", "taipei"):
+    body = body.replace("<!-- @SG_PASSES -->", sg_chips)
+    for slug in ("osaka", "tokyo", "bangkok", "taipei", "singapore"):
         body = body.replace(f"<!-- @LINKS_{slug.upper()} -->", pass_links(slug))
     payload = json.dumps({"fx": data["fx"], "osaka": data["osaka"], "tokyo": data["tokyo"],
-                          "bangkok": data["bangkok"], "taipei": data["taipei"]},
+                          "bangkok": data["bangkok"], "taipei": data["taipei"],
+                          "singapore": data["singapore"]},
                          ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     body = body.replace("<!-- @PK_DATA -->", f'<script type="application/json" id="pkData">{payload}</script>')
 
@@ -2615,11 +2632,13 @@ def passes_page(out_root: Path, base: str) -> Path:
          "아니요. 산 날 자정까지입니다. BTS만 되고 MRT·공항철도는 포함되지 않습니다."),
         ("타이베이 펀패스와 첩운 1일권의 차이는 무엇인가요?",
          "첩운 1일권 150대만달러는 지하철만, 펀패스 교통권 210대만달러는 지하철+버스+관광 셔틀 6개 노선까지 무제한입니다."),
+        ("싱가포르는 컨택트리스 카드와 Tourist Pass 중 뭐가 낫나요?",
+         "3박4일이면 해외 결제 가능한 컨택트리스 카드가 쌉니다. 외국 카드는 사용한 날마다 0.60싱가포르달러가 붙지만 3일이면 1.80싱가포르달러입니다. Tourist Pass 3일권 29싱가포르달러는 하루 6회 이상 타야 본전이고, 1·2·3일권만 있어 4일 이상 일정에는 맞지 않습니다. EZ-Link는 카드값 5가 환불되지 않아 8~9일 이상일 때 유리합니다."),
     ]
     jsonld = _page_jsonld(
         "passes.html",
         "트립픽 교통패스 본전 계산기",
-        "오사카 주유패스·도쿄 지하철 패스·방콕 BTS·타이베이 펀패스가 내 일정에서 본전을 넘는지 계산하는 도구.",
+        "오사카 주유패스·도쿄 지하철 패스·방콕 BTS·타이베이 펀패스·싱가포르 Tourist Pass가 내 일정에서 본전을 넘는지 계산하는 도구.",
         base,
         faq,
         [("트립픽", ""), ("교통패스 본전 계산기", None)],
@@ -2627,12 +2646,12 @@ def passes_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "passes.html",
-        title="교통패스 본전 계산기 — 오사카 주유패스·도쿄 지하철·BTS·펀패스 | 트립픽",
-        desc="오사카 주유패스 3,500엔, 도쿄 지하철 800/1,200/1,500엔, 방콕 BTS 150밧, 타이베이 펀패스 210대만달러가 내 일정에서 본전을 넘는지 계산합니다. 시설 입장료와 지하철 횟수를 넣으면 엔·바트·대만달러와 원화로 이득·손해가 나옵니다.",
+        title="교통패스 본전 계산기 — 오사카 주유패스·도쿄 지하철·BTS·펀패스·싱가포르 | 트립픽",
+        desc="오사카 주유패스 3,500엔, 도쿄 지하철 800/1,200/1,500엔, 방콕 BTS 150밧, 타이베이 펀패스 210대만달러, 싱가포르 Tourist Pass 17/24/29싱가포르달러가 내 일정에서 본전을 넘는지 계산합니다. 싱가포르는 컨택트리스(외국 카드 하루 0.60싱가포르달러)·EZ-Link(카드값 5 불환)와 같은 이동 횟수로 비교합니다. 시설 입장료와 탑승 횟수를 넣으면 현지 통화와 원화로 이득·손해가 나옵니다.",
         body=body,
         base=base,
         active="passes",
-        keywords="오사카 주유패스 본전, 도쿄 지하철 패스, 나리타 스카이라이너, 방콕 BTS 1일권, 타이베이 펀패스, 교통패스 계산기",
+        keywords="오사카 주유패스 본전, 도쿄 지하철 패스, 나리타 스카이라이너, 방콕 BTS 1일권, 타이베이 펀패스, 싱가포르 Tourist Pass, 싱가포르 컨택트리스, EZ-Link, 교통패스 계산기",
         jsonld=jsonld,
     )
 
@@ -3187,6 +3206,9 @@ def stay_wish_item(h: dict, region: dict) -> str:
         "i": h["img"],
         "p": f'{label} {h["price"]:,}원~',
         "t": f'숙소 · {region.get("name", "")}',
+        "pr": h["price"],
+        "un": "1박",
+        "ct": region.get("name", ""),
     }
     return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
 
@@ -4329,7 +4351,7 @@ def checklist_page(out_root: Path, base: str) -> Path:
         ("stays.html", "D-30", "찐숙소 " + str(len(STAYS.get("hotels", []))) + "곳", f"국내 {_stay_kr_regions}개 지역 + 해외 {_stay_intl_regions}개 도시를 평점·리뷰·1박 최저가로 비교"),
         ("calendar.html", "D-30", "월별 시즌 캘린더", "19개 도시 12개월 성수기·비수기와 항공권 가격이 오르는 달을 먼저 봅니다"),
         ("index.html#travelins", "D-30", "여행자보험 3곳 비교", "보장 항목·자기부담금을 카드사·보험사 공식 조건으로 비교"),
-        ("passes.html", "D-14", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이 패스가 하루 이동 횟수로 남는지 계산"),
+        ("passes.html", "D-14", "교통패스 본전 계산기", "오사카·도쿄·방콕·타이베이·싱가포르 패스가 하루 이동 횟수로 남는지 계산"),
         ("index.html#essentials", "D-14", "eSIM·필수템", "나라별 eSIM 1일 100원대(유럽·이탈리아 102~109원)부터, 어댑터·보조배터리 구매 링크"),
         ("index.html#regions", "D-14", "투어·입장권 비교", "같은 도시 상품을 가격·현장 추가금·취소 규정까지 같은 기준으로 비교"),
         ("baggage.html", "D-3", "항공사 수하물 8곳", "기내·위탁 무게와 보조배터리 규정을 항공사별로 확인"),
@@ -4509,10 +4531,13 @@ def write_assets(style: str, out_root: Path):
         stale = out_root / "assets" / "tp-v34.js"
         if stale.exists():
             stale.unlink()
-    # v41: 통합 퀵서치 · 찜 · 비교 스크립트(홈·서브페이지 공통)
-    js41 = CONTENT / "v41.js"
-    if js41.exists():
-        shutil.copy2(js41, out_root / "assets" / "tp-v41.js")
+    # v42: 통합 퀵서치 · 어디든지 파인더 · 찜 견적서 · 비교 스크립트(홈·서브페이지 공통)
+    js42 = CONTENT / "v42.js"
+    if js42.exists():
+        shutil.copy2(js42, out_root / "assets" / "tp-v42.js")
+        stale = out_root / "assets" / "tp-v41.js"
+        if stale.exists():
+            stale.unlink()
     # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
     hdr = ROOT / "_headers"
     if hdr.exists():

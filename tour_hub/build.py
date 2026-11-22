@@ -341,10 +341,32 @@ def badges_html(t: dict) -> str:
     ) + "</div>"
 
 
+_TICKET_CACHE = None
+
+
+def tour_ticket_url(city: str) -> str:
+    """도시 코드 → 트립닷컴 입장권·액티비티 목록 링크(있는 도시만)."""
+    global _TICKET_CACHE
+    if _TICKET_CACHE is None:
+        try:
+            _TICKET_CACHE = json.loads((DATA / "tripcom.json").read_text(encoding="utf-8")).get("tickets") or []
+        except (OSError, ValueError):
+            _TICKET_CACHE = []
+    for tk in _TICKET_CACHE:
+        if tk.get("cityId") == city:
+            return tk["url"]
+    return ""
+
+
 def wish_item(t: dict) -> str:
     """찜 버튼이 localStorage 에 남길 최소 정보(이름·링크·사진·가격)."""
     unit = "1팀" if is_team_item(t) else "1인"
-    data = {"n": t["title"], "u": t["url"], "i": t["img"], "p": f"{unit} {won(t['sale'])}원~", "t": "투어"}
+    data = {"n": t["title"], "u": t["url"], "i": t["img"], "p": f"{unit} {won(t['sale'])}원~", "t": "투어",
+            "pr": t["sale"], "un": unit, "ct": t.get("city_label", "")}
+    # v42: 같은 도시의 트립닷컴 입장권·액티비티 목록이 있으면 견적서에 두 번째 CTA 로 붙인다
+    ticket = tour_ticket_url(t.get("city"))
+    if ticket:
+        data["tu"] = ticket
     return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
 
 
@@ -2392,6 +2414,121 @@ def ga4_head() -> str:
             f"gtag('js',new Date());gtag('config','{mid}',{{anonymize_ip:true}});</script>")
 
 
+# ----------------------------------------------------------------------
+# v42 — 「어디든지 1초 추천 파인더」
+#   season.json(기온·강수·성수기·score) + stays.json(1박 최저가) + tours.json(1팀·1인가)을
+#   한 줄로 합쳐, 시기·인원·예산을 고르면 도시 3곳이 바로 나오게 한다.
+#   계산에 쓰는 값은 데이터에 있는 것만 쓴다(항공 구간·숙소 1박가·투어 1인가).
+# ----------------------------------------------------------------------
+FINDER_SEASONS = [("spring", "봄", [3, 4, 5]), ("summer", "여름", [6, 7, 8]),
+                  ("autumn", "가을", [9, 10, 11]), ("winter", "겨울", [12, 1, 2])]
+BAND_RANK = {"off": 0, "shoulder": 1, "peak": 2}
+
+
+def finder_payload() -> str:
+    season = json.loads((DATA / "season.json").read_text(encoding="utf-8"))
+    stays = json.loads((DATA / "stays.json").read_text(encoding="utf-8"))
+    tours = json.loads((DATA / "tours.json").read_text(encoding="utf-8"))["tours"]
+    theme_name = {t["code"]: t["name"] for t in ((season.get("filters") or {}).get("themes") or [])}
+    out = []
+    for c in season["cities"]:
+        fare = c.get("fare")
+        reg = (c.get("links") or {}).get("stays")
+        if not fare or not reg:
+            continue
+        hotels = [h for h in stays["hotels"] if h.get("region") == reg]
+        ts = [t for t in tours if t.get("city") == c["id"]]
+        if not hotels or not ts:
+            continue
+        stay = min(hotels, key=lambda h: h["price"])
+        tour = min(ts, key=lambda t: t["sale"])
+        seasons = {}
+        for code, _name, months in FINDER_SEASONS:
+            band = max((c["season"][m - 1] for m in months), key=lambda b: BAND_RANK.get(b, 0))
+            themes = []
+            for m in months:
+                for th in (c["themes"][m - 1] or []):
+                    nm = theme_name.get(th)
+                    if nm and nm not in themes:
+                        themes.append(nm)
+            seasons[code] = {
+                "band": band,
+                "score": round(sum(c["score"][m - 1] for m in months) / 3),
+                "temp": round(sum(c["temp"][m - 1] for m in months) / 3, 1),
+                "rain": round(sum(c["rainDays"][m - 1] for m in months) / 3, 1),
+                "themes": themes[:3],
+            }
+        city_page = (c.get("links") or {}).get("cityPage")
+        if city_page:
+            hub = f"/{city_page}"
+        elif reg:
+            hub = f"/stays#{reg}"
+        else:
+            hub = "/calendar"
+        out.append({
+            "id": c["id"], "n": c["name"], "flag": c.get("flag") or "",
+            "country": c.get("country") or "", "region": c.get("region") or "",
+            "trip": c.get("trip") or "international",
+            "fare": fare, "se": seasons, "hub": hub,
+            "stay": {"n": stay["name"], "p": stay["price"], "sc": stay["score"],
+                     "u": stay["url"], "z": stay.get("zone") or "", "r": reg},
+            "tour": {"n": tour["title"], "p": tour["sale"], "u": tour["url"],
+                      "d": tour.get("duration") or "", "s": tour.get("seller") or ""},
+        })
+    payload = {"seasons": [{"code": c, "n": n, "months": m} for c, n, m in FINDER_SEASONS],
+               "cities": out}
+    return (json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+            .replace("</", "<\\/"))
+
+
+def render_finder() -> str:
+    payload = finder_payload()
+    season_btns = "".join(
+        f'<button type="button" class="pc-chip" data-fd-season="{code}" aria-pressed="false">{name}</button>'
+        for code, name, _m in FINDER_SEASONS
+    ) + '<button type="button" class="pc-chip" data-fd-season="any" aria-pressed="true">상관없음</button>'
+    budgets = [("b50", "50만 이하"), ("b100", "50~100만"), ("b200", "100~200만"), ("b200p", "200만+")]
+    budget_btns = "".join(
+        f'<button type="button" class="pc-chip" data-fd-budget="{bid}" aria-pressed="false">{label}</button>'
+        for bid, label in budgets
+    )
+    return f"""<section class="finder" id="find">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t">
+        <span class="kicker">ANYWHERE FINDER</span>
+        <h2>시기와 예산만 고르면 <em>갈 도시 3곳</em>이 바로 나옵니다</h2>
+        <p>봄·여름·가을·겨울과 1인·2인 예산을 고르면, {len(json.loads(payload)["cities"])}개 도시의 시즌 기온·강수일·항공 구간·숙소 1박 최저가·투어 1인가를 한 번에 계산해 추천 3곳을 보여 줍니다.</p>
+      </div>
+      <div class="sh-meta">예상 총액은 <b>항공 최저가 + 숙소 2박 + 대표 투어 1개</b>입니다. 세금·식비·현지 교통은 빠져 있고, 숙소는 2인 1실 1박가를 인원으로 나눕니다.</div>
+    </div>
+    <div class="fd-card">
+      <div class="fd-controls">
+        <div class="pc-group">
+          <span class="pc-label">출발 시기</span>
+          <div class="pc-chips" data-group="fd-season">{season_btns}</div>
+        </div>
+        <div class="pc-group">
+          <span class="pc-label">인원</span>
+          <div class="pc-chips" data-group="fd-people">
+            <button type="button" class="pc-chip" data-fd-people="1" aria-pressed="false">1인</button>
+            <button type="button" class="pc-chip" data-fd-people="2" aria-pressed="true">2인</button>
+          </div>
+        </div>
+        <div class="pc-group">
+          <span class="pc-label">예산(총액)</span>
+          <div class="pc-chips" data-group="fd-budget">{budget_btns}</div>
+        </div>
+      </div>
+      <div class="fd-note" id="fdNote" aria-live="polite"></div>
+      <div class="fd-list" id="fdList" aria-live="polite"></div>
+      <noscript><p class="fd-note">추천 계산은 자바스크립트로 동작합니다. 스크립트가 꺼져 있으면 <a href="/calendar">월별 시즌 캘린더</a>에서 같은 값을 직접 볼 수 있습니다.</p></noscript>
+    </div>
+  </div>
+  <script type="application/json" id="tpFinder">{payload}</script>
+</section>"""
+
+
 def render_ad_slots() -> dict:
     return {
         "<!-- @AD_SLOT_1 -->": ad_slot(
@@ -2499,6 +2636,7 @@ def main() -> int:
     html = replace_block(html, "<!-- @TRIPCOM -->", render_tripcom(tripcom, klook))
     html = replace_block(html, "<!-- @PACKAGES -->", render_packages(packages))
     html = replace_block(html, "<!-- @HUB_STRIP -->", render_hub_strip(data))
+    html = replace_block(html, "<!-- @FINDER -->", render_finder())
     html = replace_block(html, "<!-- @QUICKSTRIP -->", render_quickstrip(data, courses, essentials, tripcom))
     html = replace_block(html, "<!-- @HOTSTRIP -->", render_hot_strip(data, courses, essentials, tripcom))
     html = replace_block(html, "<!-- @REGION_CHIPS -->", render_region_chips())

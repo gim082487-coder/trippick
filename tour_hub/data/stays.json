@@ -175,6 +175,10 @@
     {
      "slug": "bangkok-3-packages",
      "label": "방콕 3박 패키지"
+    },
+    {
+     "slug": "bangkok-pattaya-3n5d-course-budget",
+     "label": "방콕·파타야 3박5일"
     }
    ]
   },
@@ -219,6 +223,10 @@
     {
      "slug": "jeju-aircarotel-3-packages",
      "label": "제주 렌터카 패키지"
+    },
+    {
+     "slug": "jeju-3n4d-course-budget",
+     "label": "제주 3박4일 코스·경비"
     }
    ]
   },

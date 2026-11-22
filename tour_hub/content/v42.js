@@ -1,6 +1,7 @@
-/* 트립픽 v41 — 통합 퀵서치(Ctrl/⌘+K) · 찜 · 나란히 비교
+/* 트립픽 v42 — 통합 퀵서치(Ctrl/⌘+K) · 어디든지 파인더 · 찜 여행 견적서 · 나란히 비교
    - 모든 페이지: 헤더 돋보기 → /search_index.json(빌드 생성)에서 도시·가이드·숙소·투어·맛집 검색
-   - 모든 페이지: 찜(localStorage) · 헤더 하트 → 찜 목록
+   - 홈(#tpFinder): 시기·인원·예산 → 도시 3곳 추천(항공+숙소 2박+투어 1개)
+   - 모든 페이지: 찜(localStorage) → 헤더 하트 → 숙소 N박·투어 N인 견적서(합산·복사)
    - #tpCompare 가 있는 페이지(홈·/stays): 최대 3개 비교 바 + 비교 모달(localStorage)
    값은 빌드가 데이터에서 만든 것만 씁니다(없는 속성을 지어내지 않음). */
 (function () {
@@ -307,11 +308,71 @@
     } else {
       var d = {};
       try { d = JSON.parse(btn.getAttribute('data-wish-item') || '{}'); } catch (e) {}
-      wish.push({ k: key, n: d.n || '', u: d.u || '', i: d.i || '', p: d.p || '', t: d.t || (key.indexOf('stay:') === 0 ? '숙소' : '투어'), at: Date.now() });
-      toast('찜했어요 · 헤더 ♥ 에서 모아 볼 수 있어요');
+      wish.push({
+        k: key, n: d.n || '', u: d.u || '', i: d.i || '', p: d.p || '',
+        pr: d.pr || 0, un: d.un || '', ct: d.ct || '', tu: d.tu || '',
+        t: d.t || (key.indexOf('stay:') === 0 ? '숙소' : '투어'),
+        ni: 2, px: 2, at: Date.now()
+      });
+      toast('찜했어요 · 헤더 ♥ 에서 견적을 계산할 수 있어요');
     }
     write(WKEY, wish.slice(-80));
     syncWish();
+  }
+
+  /* ---------- 찜 견적서: 1박·1인 단가와 수량 ---------- */
+  function wNum(w) {
+    var n = Number(w.pr);
+    if (!n) {
+      var m = String(w.p || '').match(/([\d,]{2,})\s*원/);
+      n = m ? Number(m[1].replace(/,/g, '')) : 0;
+    }
+    return n;
+  }
+  function wUnit(w) {
+    if (w.un === '1박' || w.un === '1인' || w.un === '1팀') return w.un;
+    var p = String(w.p || '');
+    if (p.indexOf('1팀') >= 0) return '1팀';
+    if (p.indexOf('박') >= 0) return '1박';
+    return '1인';
+  }
+  function wQty(w) {
+    if (wUnit(w) === '1박') return clamp(Number(w.ni) || 2, 1, 14);
+    if (wUnit(w) === '1팀') return 1;
+    return clamp(Number(w.px) || 2, 1, 9);
+  }
+  function wCalc(w) {
+    var price = wNum(w), qty = wQty(w);
+    return { price: price, qty: qty, unit: wUnit(w), total: price * qty };
+  }
+  function wParty() {
+    for (var i = 0; i < wish.length; i++) {
+      if (wUnit(wish[i]) === '1인') return clamp(Number(wish[i].px) || 2, 1, 9);
+    }
+    return 2;
+  }
+  function wCta(u) {
+    var s = String(u || '');
+    if (s.indexOf('trip.com') >= 0) return '트립닷컴에서 예약';
+    if (s.indexOf('naver.me') >= 0) return '네이버 여행에서 예약';
+    if (s.indexOf('coupang.com') >= 0) return '쿠팡에서 보기';
+    if (s.indexOf('klook.com') >= 0) return '클룩에서 예약';
+    return '예약 페이지';
+  }
+  function wTotals() {
+    var stays = 0, tours = 0;
+    wish.forEach(function (w) {
+      var c = wCalc(w);
+      if (c.unit === '1박') stays += c.total; else tours += c.total;
+    });
+    return { stays: stays, tours: tours, total: stays + tours };
+  }
+
+  function qtyHtml(key, qty, unit) {
+    return '<span class="wl-qty">' +
+      '<button type="button" data-wl-step="' + esc(key) + '" data-delta="-1" aria-label="줄이기">−</button>' +
+      '<b>' + qty + unit + '</b>' +
+      '<button type="button" data-wl-step="' + esc(key) + '" data-delta="1" aria-label="늘리기">＋</button></span>';
   }
 
   function buildWL() {
@@ -321,39 +382,91 @@
     d.id = 'wlModal';
     d.hidden = true;
     d.innerHTML = '<div class="cmp-sheet wl-sheet" role="dialog" aria-modal="true" aria-labelledby="wlTitle">' +
-      '<div class="cmp-head"><div><b id="wlTitle">찜한 항목</b> <span class="hint">이 브라우저에만 저장됩니다</span></div>' +
+      '<div class="cmp-head"><div><b id="wlTitle">내 여행 견적·바구니</b> <span class="hint">찜한 숙소·투어를 합쳐 계산합니다</span></div>' +
       '<span class="cmp-head-act"><button class="cmp-close" type="button" data-wl-close>닫기</button></span></div>' +
       '<div class="cmp-scroll wl-body" id="wlBody"></div></div>';
     D.body.appendChild(d);
     WL.modal = d;
     WL.body = d.querySelector('#wlBody');
-    d.addEventListener('click', function (e) {
-      if (e.target === d || e.target.closest('[data-wl-close]')) { closeWL(); return; }
-      var del = e.target.closest('[data-wl-del]');
-      if (del) {
-        var i = wishIdx(del.getAttribute('data-wl-del'));
-        if (i >= 0) { wish.splice(i, 1); write(WKEY, wish); syncWish(); renderWish(); toast('찜에서 뺐어요'); }
-      }
-    });
   }
 
   function renderWish() {
     if (!WL.body) return;
     if (!wish.length) {
       WL.body.innerHTML = '<div class="qs-empty"><b>아직 찜한 항목이 없습니다.</b>' +
-        '<p>숙소·투어 카드의 <b>♥</b> 를 누르면 여기에 모입니다. 숙소는 <a href="/stays">/stays</a>에서 비교해 보세요.</p></div>';
+        '<p>숙소·투어 카드의 <b>♥</b> 를 누르면 여기에 모입니다. 숙소는 <a href="/stays">/stays</a>에서, 투어는 홈 <a href="/#regions">지역·투어</a>에서 골라 보세요.</p></div>';
       return;
     }
-    var html = '<div class="wl-list">';
+    var people = wParty();
+    var rows = '';
     wish.slice().reverse().forEach(function (w) {
-      html += '<div class="wl-row">' +
+      var c = wCalc(w);
+      var qty = c.unit === '1팀' ? '<span class="wl-qty"><b>1팀</b></span>' : qtyHtml(w.k, c.qty, c.unit === '1박' ? '박' : '인');
+      rows += '<div class="wl-row">' +
         (w.i ? '<img src="' + esc(w.i) + '" alt="" width="64" height="46" loading="lazy" />' : '<span class="wl-ph">' + esc(w.t) + '</span>') +
-        '<span class="wl-t"><a href="' + esc(w.u) + '" target="_blank" rel="noopener sponsored"><b>' + esc(w.n) + '</b></a>' +
-        '<span>' + esc(w.t) + (w.p ? ' · ' + esc(w.p) : '') + '</span></span>' +
-        '<button class="cmpt-del" type="button" data-wl-del="' + esc(w.k) + '">빼기</button></div>';
+        '<div class="wl-mid"><b>' + esc(w.n) + '</b>' +
+        '<span class="wl-line">' + esc(w.ct && String(w.t || '').indexOf(w.ct) < 0 ? String(w.t || '') + ' · ' + w.ct : (w.t || '')) + ' · ' +
+        (c.price ? won(c.price) + '원' + (c.unit === '1팀' ? ' (1팀 단가)' : ' / ' + c.unit) : '가격 확인') + '</span>' +
+        '<span class="wl-line">' + qty + '</span></div>' +
+        '<div class="wl-right"><span class="wl-sub' + (c.total ? '' : ' zero') + '">' + (c.total ? won(c.total) + '원' : '—') + '</span>' +
+        (w.u ? '<a class="wl-cta" href="' + esc(w.u) + '" target="_blank" rel="noopener sponsored">' + esc(wCta(w.u)) + '</a>' : '') +
+        (w.tu ? '<a class="wl-cta alt" href="' + esc(w.tu) + '" target="_blank" rel="noopener sponsored">트립닷컴 투어 목록</a>' : '') +
+        '<button class="wl-del" type="button" data-wl-del="' + esc(w.k) + '">빼기</button></div></div>';
     });
-    html += '</div><p class="wl-note">찜은 이 브라우저(localStorage)에만 저장되고 서버로 보내지 않습니다. 다른 기기와 공유되지 않습니다.</p>';
-    WL.body.innerHTML = html;
+    var T = wTotals();
+    WL.body.innerHTML = rows +
+      '<div class="wl-sum">' +
+      '<div class="wl-sum-row"><span>숙소 소계</span><b>' + won(T.stays) + '원</b></div>' +
+      '<div class="wl-sum-row"><span>투어 소계</span><b>' + won(T.tours) + '원</b></div>' +
+      '<div class="wl-total"><span>예상 총액<em>' + people + '인 기준 · 1인 ' + won(Math.round(T.total / people)) + '원</em></span><b>' + won(T.total) + '원</b></div>' +
+      '</div>' +
+      '<div class="wl-acts"><button class="wl-btn primary" type="button" data-wl-copy>견적 요약 복사</button>' +
+      '<button class="wl-btn" type="button" data-wl-clear>전체 비우기</button></div>' +
+      '<p class="wl-note">숙소는 1박가 × 박수, 투어는 1인가 × 인원으로 계산했습니다. 세금·현장 추가금·식비는 빠져 있고, 저장은 이 브라우저(localStorage)에만 됩니다.</p>';
+  }
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function quoteText() {
+    var lines = [];
+    var people = wParty();
+    var d = new Date();
+    var day = d.getFullYear() + '.' + pad2(d.getMonth() + 1) + '.' + pad2(d.getDate());
+    wish.forEach(function (w) {
+      var c = wCalc(w);
+      var q = c.unit === '1박' ? c.qty + '박' : (c.unit === '1팀' ? '1팀' : c.qty + '인');
+      lines.push('· ' + (c.unit === '1박' ? '숙소' : '투어') + ' | ' + w.n + ' — ' + won(c.price) + '원 × ' + q + ' = ' + won(c.total) + '원');
+    });
+    var T = wTotals();
+    return '트립픽 여행 견적 (' + day + ')\n' + lines.join('\n') +
+      '\n\n예상 총액 ' + won(T.total) + '원 · 1인 ' + won(Math.round(T.total / people)) + '원' +
+      '\n※ 1박·1인 표시가 기준, 세금·현장 추가금·식비 제외' +
+      '\n' + (location.origin || 'https://trippick.pages.dev');
+  }
+  function copyText(text) {
+    function fallback() {
+      try {
+        var ta = D.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        D.body.appendChild(ta);
+        ta.select();
+        var ok = D.execCommand('copy');
+        D.body.removeChild(ta);
+        if (ok) { toast('견적 요약을 복사했어요 · 카톡·메모장에 붙여넣으세요'); return; }
+      } catch (e) {}
+      toast('복사가 막혔어요. 아래 견적을 길게 눌러 복사해 주세요');
+      var box = D.createElement('textarea');
+      box.value = text; box.className = 'wl-copybox'; box.rows = 6;
+      WL.body.appendChild(box);
+      box.focus(); box.select();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        toast('견적 요약을 복사했어요 · 카톡·메모장에 붙여넣으세요');
+      }, fallback);
+    } else fallback();
   }
 
   var wlLastFocus = null;
@@ -375,13 +488,161 @@
 
   D.addEventListener('click', function (e) {
     if (e.target.closest('[data-wl-open]')) { e.preventDefault(); openWL(); return; }
+    if (e.target.closest('[data-wl-close]')) { closeWL(); return; }
     var w = e.target.closest('[data-wish]');
-    if (w) { e.preventDefault(); toggleWish(w); }
+    if (w) { e.preventDefault(); toggleWish(w); return; }
+    var step = e.target.closest('[data-wl-step]');
+    if (step) {
+      var i = wishIdx(step.getAttribute('data-wl-step'));
+      if (i < 0) return;
+      var delta = Number(step.getAttribute('data-delta')) || 0;
+      var it = wish[i];
+      if (wUnit(it) === '1박') it.ni = clamp((Number(it.ni) || 2) + delta, 1, 14);
+      else if (wUnit(it) === '1인') it.px = clamp((Number(it.px) || 2) + delta, 1, 9);
+      write(WKEY, wish);
+      renderWish();
+      syncWish();
+      return;
+    }
+    var del = e.target.closest('[data-wl-del]');
+    if (del) {
+      var j = wishIdx(del.getAttribute('data-wl-del'));
+      if (j >= 0) { wish.splice(j, 1); write(WKEY, wish); syncWish(); renderWish(); toast('찜에서 뺐어요'); }
+      return;
+    }
+    if (e.target.closest('[data-wl-copy]')) { copyText(quoteText()); return; }
+    if (e.target.closest('[data-wl-clear]')) {
+      if (!wish.length) return;
+      wish.length = 0; write(WKEY, wish); syncWish(); renderWish();
+      toast('찜을 모두 비웠어요');
+      return;
+    }
   });
   D.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && WL.modal && !WL.modal.hidden) closeWL();
   });
   syncWish();
+
+  /* =========================================================
+     3. 어디든지 1초 추천 파인더 (홈)
+     ========================================================= */
+  var FD_EL = D.getElementById('tpFinder');
+  if (FD_EL) {
+    var FD = null;
+    try { FD = JSON.parse(FD_EL.textContent); } catch (e) { FD = null; }
+    var fdList = D.getElementById('fdList');
+    var fdNote = D.getElementById('fdNote');
+    var FD_BUDGET = {
+      b50: { min: 0, max: 500000, label: '50만원 이하' },
+      b100: { min: 500000, max: 1000000, label: '50~100만원' },
+      b200: { min: 1000000, max: 2000000, label: '100~200만원' },
+      b200p: { min: 2000000, max: 0, label: '200만원 이상' }
+    };
+    var MONTH_SEASON = { 3: 'spring', 4: 'spring', 5: 'spring', 6: 'summer', 7: 'summer', 8: 'summer',
+      9: 'autumn', 10: 'autumn', 11: 'autumn', 12: 'winter', 1: 'winter', 2: 'winter' };
+    var fd = { season: MONTH_SEASON[new Date().getMonth() + 1] || 'any', people: 2, budget: 'b200' };
+
+    function fdSeasonName(code) {
+      var nm = { spring: '봄', summer: '여름', autumn: '가을', winter: '겨울', any: '상관없음' };
+      return nm[code] || '상관없음';
+    }
+    function fdMan(n) { return won(Math.round(n / 10000) * 10000) + '원'; }
+    function fdPickSeason(c) {
+      if (fd.season !== 'any') return { code: fd.season, se: c.se[fd.season] };
+      var best = null;
+      ['spring', 'summer', 'autumn', 'winter'].forEach(function (k) {
+        var se = c.se[k];
+        if (!se) return;
+        if (!best || se.score > best.se.score) best = { code: k, se: se };
+      });
+      return best;
+    }
+    function fdEst(c, se) {
+      var band = c.fare[se.band] || c.fare.off;
+      return band[0] * fd.people + Math.round(c.stay.p * 2) + c.tour.p * fd.people;
+    }
+    function fdRender() {
+      if (!FD || !fdList) return;
+      var b = FD_BUDGET[fd.budget] || FD_BUDGET.b200;
+      var rows = [];
+      (FD.cities || []).forEach(function (c) {
+        var pick = fdPickSeason(c);
+        if (!pick || !pick.se) return;
+        var est = fdEst(c, pick.se);
+        var cls = 0;
+        if (est > b.max && b.max) cls = est > b.max ? 2 : 0;
+        if (b.min && est < b.min) cls = 1;
+        if (b.max && est <= b.max && est >= b.min) cls = 0;
+        rows.push({ c: c, se: pick.se, code: pick.code, est: est, cls: cls });
+      });
+      rows.sort(function (x, y) {
+        if (x.cls !== y.cls) return x.cls - y.cls;
+        if (y.se.score !== x.se.score) return y.se.score - x.se.score;
+        return x.est - y.est;
+      });
+      var top = rows.slice(0, 3);
+      var over = 0;
+      var html = '';
+      top.forEach(function (r, i) {
+        var c = r.c, se = r.se;
+        var gapTxt = '';
+        if (r.cls === 2) { over++; gapTxt = '예산 +' + Math.round((r.est - b.max) / 10000) + '만원'; }
+        else if (r.cls === 1) gapTxt = '예산보다 ' + Math.round((b.min - r.est) / 10000) + '만원 낮음';
+        else gapTxt = '예산 안';
+        var why = [];
+        if (se.themes && se.themes.length) why.push(se.themes.join('·'));
+        why.push(fdSeasonName(r.code) + ' 평균 ' + se.temp + '도 · 비 ' + se.rain + '일');
+        why.push('시즌 점수 ' + se.score);
+        html += '<article class="fd-item">' +
+          '<div class="fd-top"><span class="fd-rank">' + (i + 1) + '</span>' +
+          '<div class="fd-name"><b>' + esc(c.n) + '</b><span>' + esc(c.country) + ' · ' + esc(gapTxt) + '</span></div>' +
+          '<span class="fd-price' + (r.cls === 2 ? ' over' : '') + '">' + fdMan(r.est) + '<em>' + (fd.people > 1 ? fd.people + '인 총액 · 1인 ' + fdMan(r.est / fd.people) : '1인 총액') + '</em></span></div>' +
+          '<p class="fd-why">' + esc(why.join(' · ')) + '</p>' +
+          '<div class="fd-parts">' +
+          '<a class="fd-part" href="' + esc(c.stay.u) + '" target="_blank" rel="noopener sponsored"><span>숙소 · 최저가</span><b>' + esc(c.stay.n) + '</b><em>1박 ' + won(c.stay.p) + '원 · ' + c.stay.sc + '점 · ' + esc(c.stay.z) + '</em></a>' +
+          '<a class="fd-part" href="' + esc(c.tour.u) + '" target="_blank" rel="noopener sponsored"><span>투어 · 최저가</span><b>' + esc(c.tour.n) + '</b><em>1인 ' + won(c.tour.p) + '원 · ' + esc(c.tour.d) + '</em></a>' +
+          '</div>' +
+          '<div class="fd-acts">' +
+          '<a class="fd-go primary" href="' + esc(c.stay.u) + '" target="_blank" rel="noopener sponsored">숙소 예약</a>' +
+          '<a class="fd-go" href="' + esc(c.tour.u) + '" target="_blank" rel="noopener sponsored">투어 보기</a>' +
+          '<a class="fd-go" href="' + esc(c.hub) + '">도시 페이지</a>' +
+          '</div></article>';
+      });
+      fdList.innerHTML = html || '<p class="fd-note">조건에 맞는 도시를 찾지 못했습니다. 예산을 한 단계 올려 보세요.</p>';
+      if (fdNote) {
+        var msg = fdSeasonName(fd.season) + ' · ' + fd.people + '인 · ' + b.label + ' — ' + (FD.cities || []).length + '개 도시에서 3곳을 골랐습니다. ';
+        msg += over ? '<span class="fd-warn">위에서 ' + over + '곳은 예산을 넘습니다(가까운 순).</span>' : '<span class="fd-good">세 곳 모두 예산 안입니다.</span>';
+        fdNote.innerHTML = msg + ' 예상 총액은 항공 최저가 + 숙소 2박 + 대표 투어 1개이고, 세금·식비·현지 교통은 빠져 있습니다.';
+      }
+    }
+    function fdSync() {
+      Array.prototype.forEach.call(D.querySelectorAll('[data-fd-season]'), function (btn) {
+        var on = btn.getAttribute('data-fd-season') === fd.season;
+        btn.classList.toggle('on', on);
+        btn.setAttribute('aria-pressed', String(on));
+      });
+      Array.prototype.forEach.call(D.querySelectorAll('[data-fd-people]'), function (btn) {
+        var on = Number(btn.getAttribute('data-fd-people')) === fd.people;
+        btn.classList.toggle('on', on);
+        btn.setAttribute('aria-pressed', String(on));
+      });
+      Array.prototype.forEach.call(D.querySelectorAll('[data-fd-budget]'), function (btn) {
+        var on = btn.getAttribute('data-fd-budget') === fd.budget;
+        btn.classList.toggle('on', on);
+        btn.setAttribute('aria-pressed', String(on));
+      });
+    }
+    D.addEventListener('click', function (e) {
+      var s1 = e.target.closest('[data-fd-season]');
+      if (s1) { fd.season = s1.getAttribute('data-fd-season'); fdSync(); fdRender(); return; }
+      var p1 = e.target.closest('[data-fd-people]');
+      if (p1) { fd.people = Number(p1.getAttribute('data-fd-people')) || 2; fdSync(); fdRender(); return; }
+      var b1 = e.target.closest('[data-fd-budget]');
+      if (b1) { fd.budget = b1.getAttribute('data-fd-budget'); fdSync(); fdRender(); return; }
+    });
+    fdSync();
+    fdRender();
+  }
 
   /* =========================================================
      3. 나란히 비교 (홈 투어 · /stays 숙소)

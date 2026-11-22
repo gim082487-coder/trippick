@@ -1321,3 +1321,6 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
   .sf-row--budget .sf-sort{width:100%;justify-content:stretch}
   .sf-row--budget .sf-sort .gf-chip{flex:1 1 0;justify-content:center}
 }
+
+/* v42 — 교통패스 페이지 환율 줄: 항목이 늘어도 390px에서 줄바꿈되게 */
+#pkRate{display:flex;flex-wrap:wrap;gap:2px 8px;flex:1 1 100%;min-width:0;white-space:normal}
