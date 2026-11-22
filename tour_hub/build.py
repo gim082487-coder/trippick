@@ -106,6 +106,25 @@ def won(n: int) -> str:
     return f"{n:,}"
 
 
+def body_text(html_text: str) -> str:
+    """본문 HTML 에서 태그·스크립트·목차를 걷어낸 순수 텍스트.
+
+    글자수 기반 읽기 시간 계산에 쓴다. 손으로 쓴 <nav class="toc"> 는
+    화면 맨 위 목차라 본문 분량에서 뺀다.
+    """
+    t = re.sub(r'<nav class="toc".*?</nav>', " ", html_text or "", flags=re.S)
+    t = re.sub(r"<(script|style)\b.*?</\1>", " ", t, flags=re.S | re.I)
+    t = re.sub(r"<[^>]+>", " ", t)
+    t = re.sub(r"&[a-zA-Z]+;|&#\d+;", " ", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def read_minutes(html_text: str) -> int:
+    """공백 제외 글자수 ÷ 분당 450자, 올림, 최소 2분(2026-11 v38 기준)."""
+    chars = len(re.sub(r"\s", "", body_text(html_text)))
+    return max(2, -(-chars // 450))
+
+
 def esc(s) -> str:
     return escape(str(s), quote=True)
 
@@ -2283,6 +2302,11 @@ def main() -> int:
     checklist = json.loads((DATA / "checklist.json").read_text(encoding="utf-8"))
     gifts = json.loads((DATA / "gifts.json").read_text(encoding="utf-8"))
     guides = json.loads((DATA / "guides.json").read_text(encoding="utf-8"))
+    # v38: 읽기 시간은 본문 글자수에서 자동 계산한다(guides.json 의 read 는 기본값일 뿐)
+    for _g in guides.get("guides", []):
+        _p = ROOT / "content" / "guides" / f"{_g['slug']}.html"
+        if _p.exists():
+            _g["read"] = read_minutes(_p.read_text(encoding="utf-8"))
     rest = json.loads((DATA / "restaurants.json").read_text(encoding="utf-8"))
     global TIMELINE
     TIMELINE = json.loads((DATA / "timeline.json").read_text(encoding="utf-8"))

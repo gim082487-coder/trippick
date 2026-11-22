@@ -2549,6 +2549,33 @@
 .doc .toc a{text-decoration:none;color:var(--ink-2);font-weight:600}
 .doc .toc a:hover{color:var(--blue);text-decoration:underline}
 
+/* v38: 읽기 시간 + h2 자동 목차 바로가기 */
+.doc .gtoc{margin:0 0 28px;border:1px solid var(--line);border-radius:var(--r);background:#fff;overflow:hidden}
+.doc .gtoc-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;background:#FAFBFC;border-bottom:1px solid var(--line-2)}
+.doc .gtoc-read{display:inline-flex;align-items:center;gap:6px;font-size:12.2px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.doc .gtoc-read svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+.doc .gtoc-btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;font-weight:800;color:var(--blue-700);
+  background:var(--blue-soft);border:1px solid var(--blue-line);border-radius:999px;padding:5px 10px;cursor:pointer}
+.doc .gtoc-btn b{font-size:11px;font-weight:800;color:#fff;background:var(--blue);border-radius:999px;padding:1px 5px;line-height:1.4}
+.doc .gtoc-cv{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;transition:transform .18s}
+.doc .gtoc-btn[aria-expanded="true"] .gtoc-cv{transform:rotate(180deg)}
+.doc .gtoc-chips{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+.doc .gtoc-chips::-webkit-scrollbar{display:none}
+.doc .gtoc-chips a{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;max-width:78vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:12.6px;font-weight:700;color:var(--ink-2);background:var(--soft);border:1px solid var(--line);border-radius:999px;
+  padding:7px 12px 7px 8px;text-decoration:none;scroll-snap-align:start}
+.doc .gtoc-chips a i{flex:0 0 auto;font-style:normal;font-size:10.5px;font-weight:800;color:var(--blue-600);background:#fff;border-radius:5px;padding:1px 4px}
+.doc .gtoc-chips a:hover{border-color:var(--blue-line);color:var(--blue-700);background:var(--blue-soft);text-decoration:none}
+.doc .gtoc-list{margin:0;padding:8px 18px 14px 36px;border-top:1px solid var(--line-2);font-size:13.2px;line-height:1.8;background:#fff}
+.doc .gtoc-list li::marker{color:var(--ink-3);font-size:11px}
+.doc .gtoc-list a{text-decoration:none;color:var(--ink-2);font-weight:600}
+.doc .gtoc-list a:hover{color:var(--blue);text-decoration:underline}
+@media (max-width:640px){
+  .doc .gtoc-top{flex-wrap:wrap;gap:6px}
+  .doc .gtoc-chips{padding:9px 10px}
+  .doc .gtoc-chips a{font-size:12.2px;max-width:70vw}
+}
+
 /* 글 하단 출처/기준 */
 .doc .src{margin:34px 0 0;padding:16px 18px;border-radius:var(--r);background:var(--soft);font-size:12.4px;line-height:1.75;color:var(--ink-3)}
 .doc .src b{color:var(--ink-2)}

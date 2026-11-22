@@ -49,7 +49,7 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 22)
-CSS_V = "35"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "36"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "35"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
 
@@ -945,11 +945,101 @@ def guide_filter_script() -> str:
 
 
 # ----------------------------------------------------------------------
+# 가이드 목차 바로가기 + 읽기 시간 (v38)
+# ----------------------------------------------------------------------
+def _toc_label(inner: str) -> str:
+    """h2 안의 태그를 걷어내고 칩에 넣을 짧은 제목으로 다듬는다."""
+    t = html.unescape(re.sub(r"<[^>]+>", "", inner))
+    t = re.sub(r"\s+", " ", t).strip()
+    if len(t) > 28:
+        for sep in (" — ", " – ", " · ", "·", ",", "("):
+            if sep in t:
+                cut = t.split(sep)[0].strip()
+                if len(cut) >= 6:
+                    t = cut
+                    break
+    if len(t) > 30:
+        t = t[:29].rstrip() + "…"
+    return t
+
+
+def auto_toc(body_html: str) -> tuple[str, str, int, int]:
+    """본문 h2 에서 목차·읽기 시간을 자동 생성한다.
+
+    손으로 쓴 <nav class="toc"> 는 같은 목차가 두 번 나오지 않도록 걷어내고,
+    h2 에 id 가 없으면 secN 을 붙여 앵커를 만든다.
+    반환: (정리된 본문, 목차 HTML, 공백 제외 글자수, 예상 읽기 분)
+    """
+    body_html = re.sub(r'<nav class="toc".*?</nav>\s*', "", body_html, count=1, flags=re.S)
+    heads: list[tuple[str, str]] = []
+
+    def _h2(m: "re.Match") -> str:
+        attrs, inner = m.group(1), m.group(2)
+        mid = re.search(r'id="([^"]+)"', attrs)
+        if mid:
+            hid = mid.group(1)
+        else:
+            hid = f"sec{len(heads) + 1}"
+            attrs = f'{attrs} id="{hid}"'
+        heads.append((hid, _toc_label(inner)))
+        return f"<h2{attrs}>{inner}</h2>"
+
+    body_html = re.sub(r"<h2([^>]*)>(.*?)</h2>", _h2, body_html, flags=re.S)
+    chars = len(re.sub(r"\s", "", B.body_text(body_html)))
+    mins = max(2, -(-chars // 450))
+    if len(heads) < 2:
+        return body_html, "", chars, mins
+
+    chips = "".join(
+        f'<a href="#{esc(hid)}"><i>{i}</i>{esc(label)}</a>'
+        for i, (hid, label) in enumerate(heads, 1)
+    )
+    rows = "".join(
+        f'<li><a href="#{esc(hid)}">{esc(label)}</a></li>' for hid, label in heads
+    )
+    toc = f"""<div class="gtoc">
+  <div class="gtoc-top">
+    <span class="gtoc-read"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> 본문 {chars:,}자 · 약 {mins}분</span>
+    <button class="gtoc-btn" type="button" aria-expanded="false" aria-controls="gtoc-list"><span>전체 목차</span><b>{len(heads)}</b><span class="gtoc-cv" aria-hidden="true"></span></button>
+  </div>
+  <nav class="gtoc-chips" aria-label="목차 바로가기">{chips}</nav>
+  <ol class="gtoc-list" id="gtoc-list" hidden>{rows}</ol>
+</div>
+<script>(function(){{var b=document.querySelector('.gtoc-btn');if(!b)return;var l=document.getElementById('gtoc-list');b.addEventListener('click',function(){{var open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',open?'false':'true');if(l)l.hidden=open;}});}})();</script>"""
+    return body_html, toc, chars, mins
+
+
+# ----------------------------------------------------------------------
 # 가이드 페이지
 # ----------------------------------------------------------------------
 def guide_page(out_root: Path, g: dict, base: str) -> Path:
     slug = g["slug"]
     body_html = read(GUIDES / f"{slug}.html")
+    body_html, toc_html, _chars, read_min = auto_toc(body_html)
+    g["read"] = read_min
+
+    # v38: guides.json 의 faq 배열 한 곳에서 화면 FAQ 와 FAQPage JSON-LD 를 같이 만든다
+    faq_json = ""
+    if g.get("faq"):
+        faq_html = "".join(
+            f'<details class="fq"><summary><span class="fq-q"><b>Q.</b> {esc(q)}</span>'
+            f'<span class="fq-ic" aria-hidden="true"></span></summary>'
+            f'<div class="fq-a">{esc(a)}</div></details>'
+            for q, a in g["faq"]
+        )
+        body_html = body_html.replace("<!-- @FAQ -->", faq_html)
+        faq_json = json.dumps(
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": q,
+                     "acceptedAnswer": {"@type": "Answer", "text": a}}
+                    for q, a in g["faq"]
+                ],
+            },
+            ensure_ascii=False,
+        )
     body_html = inject_mid_ad(
         body_html,
         ad_slot(
@@ -1021,6 +1111,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
     <div class="pg-grid">
       <article class="doc">
 {guide_summary(g)}
+{toc_html}
 {body_html}
       </article>
       <aside class="pg-side">
@@ -1074,7 +1165,8 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         keywords=g.get("keywords", ""),
         og_image=f"{base.rstrip('/')}/{g.get('ogImage') or g['image']}" if g.get("image") else "",
         og_image_alt=g.get("imageAlt", ""),
-        jsonld=f'<script type="application/ld+json">{related_json}</script>\n<script type="application/ld+json">{breadcrumb}</script>',
+        jsonld=f'<script type="application/ld+json">{related_json}</script>\n<script type="application/ld+json">{breadcrumb}</script>'
+        + (f'\n<script type="application/ld+json">{faq_json}</script>' if faq_json else ""),
     )
 
 
@@ -3988,6 +4080,7 @@ def checklist_page(out_root: Path, base: str) -> Path:
         ("index.html#regions", "D-14", "투어·입장권 비교", "같은 도시 상품을 가격·현장 추가금·취소 규정까지 같은 기준으로 비교"),
         ("baggage.html", "D-3", "항공사 수하물 8곳", "기내·위탁 무게와 보조배터리 규정을 항공사별로 확인"),
         ("exchange.html", "D-3", "환율·일본 면세 계산기", "12개 통화 환율과 일본 면세 환급액을 같은 날 기준으로 계산"),
+        ("guides/flight-delay-card-lost-emergency", "D-0", "지연·분실 대처 순서", "지연 확인서·PIR·카드 정지까지 공항에서 첫 30분에 할 일"),
         ("index.html#fxcards", "D-3", "환전 카드 3종", "트래블로그·트래블월렛·하나카드 수수료와 환율을 비교"),
     ]
     tool_cards = "".join(
@@ -4276,6 +4369,11 @@ def main():
 
     gspec = load_json("guides.json")
     GUIDES_LIST = gspec["guides"]
+    # v38: 목록 카드·허브의 읽기 시간도 본문 글자수 기준으로 통일
+    for _g in GUIDES_LIST:
+        _p = GUIDES / f"{_g['slug']}.html"
+        if _p.exists():
+            _g["read"] = B.read_minutes(read(_p))
     CAT_NOTE = gspec.get("categoryNotes", {})
     EXTRA = load_json("guide_extra.json")
 
