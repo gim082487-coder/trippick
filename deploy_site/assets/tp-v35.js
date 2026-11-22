@@ -333,10 +333,13 @@
   var fxHost = document.querySelector('[data-tp-bundle="exchange"]');
   if (fxHost) {
     var map = BD.currencyCity || {};
+    // v45: /exchange?city=tokyo 로 들어오면 통화가 같아도(JPY) 도쿄 상품으로 묶는다
+    var qCity = '';
+    try { qCity = (new URLSearchParams(location.search).get('city') || '').toLowerCase(); } catch (e) {}
     function fxCity() {
       var sel = document.getElementById('fxCur');
       var code = sel ? sel.value : 'JPY';
-      var cid = map[code] || 'osaka';
+      var cid = (qCity && cityOf(qCity)) ? qCity : (map[code] || 'osaka');
       var c = cityOf(cid);
       if (c) c.code = code;
       return c;

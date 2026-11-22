@@ -1,0 +1,266 @@
+[
+ {
+  "shot": "tokyo_1280_tools.png",
+  "url": "/tokyo",
+  "desc": "도쿄 허브 도구 4개",
+  "vp": [
+   1280,
+   900
+  ],
+  "overflow": {
+   "sw": 1280,
+   "iw": 1280,
+   "ob": 1280
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": false,
+   "gtools": 0
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "tokyo_1280_pass.png",
+  "url": "/tokyo",
+  "desc": "도쿄 허브 도구 4개(패스 1개 더)",
+  "vp": [
+   1280,
+   900
+  ],
+  "overflow": {
+   "sw": 1280,
+   "iw": 1280,
+   "ob": 1280
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": false,
+   "gtools": 0
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "exchange_1280_preset.png",
+  "url": "/exchange?cur=JPY&city=tokyo",
+  "desc": "환율 프리셋",
+  "vp": [
+   1280,
+   900
+  ],
+  "overflow": {
+   "sw": 1280,
+   "iw": 1280,
+   "ob": 1280
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": "JPY",
+   "fxPreset": "도쿄에서 오셨습니다 · 일본 엔(JPY) 기본 선택 · 도쿄 여행 페이지로 · 같은 날짜로 총액 계산",
+   "passTab": null,
+   "print": false,
+   "gtools": 0
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "passes_1280_taipei.png",
+  "url": "/passes?city=taipei",
+  "desc": "패스 프리셋",
+  "vp": [
+   1280,
+   900
+  ],
+  "overflow": {
+   "sw": 1280,
+   "iw": 1280,
+   "ob": 1280
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": "타이베이 펀패스",
+   "print": false,
+   "gtools": 0
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "danang_guide_1280.png",
+  "url": "/guides/danang-hoian-3n5d",
+  "desc": "다낭 가이드 상단",
+  "vp": [
+   1280,
+   900
+  ],
+  "overflow": {
+   "sw": 1280,
+   "iw": 1280,
+   "ob": 1280
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": false,
+   "gtools": 3
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "danang_guide_1280_body.png",
+  "url": "/guides/danang-hoian-3n5d",
+  "desc": "다낭 가이드 예산표",
+  "vp": [
+   1280,
+   900
+  ],
+  "overflow": {
+   "sw": 1280,
+   "iw": 1280,
+   "ob": 1280
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": false,
+   "gtools": 3
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "taipei_guide_1280.png",
+  "url": "/guides/taipei-3n4d-course-budget",
+  "desc": "타이베이 가이드 상단",
+  "vp": [
+   1280,
+   900
+  ],
+  "overflow": {
+   "sw": 1280,
+   "iw": 1280,
+   "ob": 1280
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": false,
+   "gtools": 3
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "currency_guide_1280.png",
+  "url": "/guides/currency-payment-fees",
+  "desc": "환전 수수료표",
+  "vp": [
+   1280,
+   900
+  ],
+  "overflow": {
+   "sw": 1280,
+   "iw": 1280,
+   "ob": 1280
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": false,
+   "gtools": 3
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "danang_guide_390.png",
+  "url": "/guides/danang-hoian-3n5d",
+  "desc": "다낭 가이드 모바일",
+  "vp": [
+   390,
+   844
+  ],
+  "overflow": {
+   "sw": 390,
+   "iw": 390,
+   "ob": 390
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": false,
+   "gtools": 3
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "tools_390.png",
+  "url": "/tokyo",
+  "desc": "도쿄 허브 도구 모바일",
+  "vp": [
+   390,
+   844
+  ],
+  "overflow": {
+   "sw": 390,
+   "iw": 390,
+   "ob": 390
+  },
+  "state": {
+   "sosTab": null,
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": false,
+   "gtools": 0
+  },
+  "pageerrors": [],
+  "console": []
+ },
+ {
+  "shot": "sos_390_print.png",
+  "url": "/sos?country=JP",
+  "desc": "SOS 프리셋+인쇄",
+  "vp": [
+   390,
+   844
+  ],
+  "overflow": {
+   "sw": 390,
+   "iw": 390,
+   "ob": 390
+  },
+  "state": {
+   "sosTab": "🇯🇵일본",
+   "fxCur": null,
+   "fxPreset": null,
+   "passTab": null,
+   "print": true,
+   "gtools": 0
+  },
+  "pageerrors": [],
+  "console": []
+ }
+]
