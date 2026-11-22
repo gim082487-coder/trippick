@@ -12,7 +12,7 @@ JOBS = [
     # (파일명, 경로, 뷰포트, 스크롤 대상 셀렉터, 설명)
     ("tokyo_1280_tools.png", "/tokyo", (1280, 900), ".hub-tools", "도쿄 허브 도구 4개"),
     ("tokyo_1280_pass.png", "/tokyo", (1280, 900), ".hub-tools", "도쿄 허브 도구 4개(패스 1개 더)"),
-    ("exchange_1280_preset.png", "/exchange?cur=JPY&city=tokyo", (1280, 900), ".fx-card", "환율 프리셋"),
+    ("exchange_1280_preset.png", "/exchange?cur=JPY&city=tokyo", (1280, 900), ".pg-head", "환율 프리셋(상단 안내)"),
     ("passes_1280_taipei.png", "/passes?city=taipei", (1280, 900), ".pk-card", "패스 프리셋"),
     ("danang_guide_1280.png", "/guides/danang-hoian-3n5d", (1280, 900), ".pg-hero", "다낭 가이드 상단"),
     ("danang_guide_1280_body.png", "/guides/danang-hoian-3n5d", (1280, 900), "#money", "다낭 가이드 예산표"),

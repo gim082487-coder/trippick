@@ -50,7 +50,7 @@
  {
   "shot": "exchange_1280_preset.png",
   "url": "/exchange?cur=JPY&city=tokyo",
-  "desc": "환율 프리셋",
+  "desc": "환율 프리셋(상단 안내)",
   "vp": [
    1280,
    900
