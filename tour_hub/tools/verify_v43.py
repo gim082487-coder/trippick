@@ -73,6 +73,7 @@ for slug, hubword in NEW.items():
     if page.exists():
         html = read(page)
         check(html.count('"@type": "Question"') == 5, f"{slug}: FAQPage JSON-LD 5문항 아님")
+        check(html.count('details class="fq"') == 5, f"{slug}: 화면 FAQ {html.count('details class=\"fq\"')}문항 (기대 5)")
         check("FAQPage" in html, f"{slug}: FAQPage JSON-LD 없음")
         check('rel="noopener sponsored"' in html, f"{slug}: rel=\"noopener sponsored\" 제휴 링크 없음")
         check(html.count('rel="noopener sponsored"') >= 2, f"{slug}: 제휴 링크 2개 미만")
