@@ -1379,7 +1379,7 @@
    ],
    "related": [
     "luggage-size-weight-airline-guide",
-    "taipei-food-route",
+    "travel-hacks-hotel-flight-restaurant",
     "japan-esim",
     "vietnam-esim",
     "sapporo-winter",
@@ -1929,7 +1929,7 @@
     "japan-esim",
     "vietnam-esim",
     "japan-shopping-gift-list",
-    "southeast-asia-gift-list",
+    "passport-phone-lost-emergency",
     "taiwan-hongkong-gift-list"
    ],
    "ctaTitle": "내 여행 총액으로 다시 계산하기",
@@ -2017,7 +2017,8 @@
     "packing-powerbank-liquid",
     "passport-application-guide",
     "entry-immigration-guide",
-    "travel-card-packing-guide"
+    "travel-card-packing-guide",
+    "passport-phone-lost-emergency"
    ],
    "ctaTitle": "내 짐과 면세액을 미리 계산하면?",
    "ctaText": "보조배터리 Wh와 면세 초과액을 넣으면 기내 반입 가능 여부와 과세 대상 금액을 계산합니다. 자진신고 감면까지 반영해 보세요.",
@@ -2050,7 +2051,7 @@
     "japan-esim",
     "vietnam-esim",
     "travel-card-packing-guide",
-    "passport-application-guide"
+    "overseas-sick-hospital-insurance-claim"
    ],
    "ctaTitle": "내 기기와 여행지에 맞는 eSIM은?",
    "ctaText": "기기·여행지·일수를 넣으면 eSIM·유심·포켓와이파이·로밍 총액을 같은 기준으로 계산합니다. 보험은 의료비·휴대품·지연 한도부터 비교하세요.",
@@ -2581,7 +2582,7 @@
     "paris-london-5n7d",
     "italy-rome-florence-venice",
     "spain-barcelona-madrid",
-    "europe-train-eurail-vs-point"
+    "passport-phone-lost-emergency"
    ],
    "ctaTitle": "내 유럽 일정으로 총액 계산하기",
    "ctaText": "도시와 날짜를 넣으면 항공·숙소·투어·eSIM을 같은 기준으로 계산합니다.",
@@ -2637,7 +2638,8 @@
     "travel-card-packing-guide",
     "esim-roaming-insurance-guide",
     "airport-checkin-customs-guide",
-    "europe-pickpocket-tax-refund-guide"
+    "europe-pickpocket-tax-refund-guide",
+    "passport-phone-lost-emergency"
    ],
    "ctaTitle": "내 항공권으로 보상 기준 계산하기",
    "ctaText": "구간 운임과 지연 시간을 넣으면 국내 기준 배상액을 계산해 보여줍니다.",
@@ -2910,7 +2912,7 @@
     "sg-esim-trip-46011732"
    ],
    "related": [
-    "solo-vs-couple-travel-budget",
+    "travel-hacks-hotel-flight-restaurant",
     "singapore-3n4d-course-budget",
     "sapporo-hokkaido-3n4d-winter",
     "travel-card-packing-guide",
@@ -3328,6 +3330,166 @@
     ]
    ],
    "ogImage": "images/og/v43-esim-troubleshoot-og.jpg"
+  },
+  {
+   "slug": "passport-phone-lost-emergency",
+   "category": "준비물·경비",
+   "navTitle": "여권·휴대폰·지갑 분실 10분 행동 매뉴얼",
+   "h1": "여권·휴대폰·지갑을 잃었다면, <em>첫 10분</em>에 하는 일",
+   "seoTitle": "해외 여권·휴대폰·지갑 분실 대처 2026 — 영사콜센터 +82-2-3210-0404, 긴급여권 수수료·서류, IMEI 차단 | 트립픽",
+   "dek": "여권을 잃으면 공관, 휴대폰을 잃으면 통신사, 지갑을 잃으면 카드사가 먼저입니다. 세 가지 분실의 첫 10분 순서와 긴급여권 실제 수수료(오사카 6,500엔·방콕 1,700바트·파리 43.20유로), 보험 청구 서류를 한 장에 정리했습니다.",
+   "desc": "해외 여권·휴대폰·지갑 분실 대처. 영사안전콜센터 +82-2-3210-0404 24시간, 긴급여권 오사카 6,500엔·방콕 1,700바트·호치민 48달러·파리 43.20유로·타이베이 NT$1,536, 통신사 분실정지 SKT +82-2-6343-9000·KT +82-2-2190-0901·LG U+ +82-2-3416-7010, IMEI 차단, 신속해외송금 3,000달러, 휴대품 보험 청구 서류.",
+   "keywords": "여권 분실, 해외 여권 잃어버렸을 때, 긴급여권 수수료, 영사콜센터 02-3210-0404, 휴대폰 분실 IMEI, 통신사 분실정지, 지갑 분실, 카드 분실, 신속해외송금, 여행자보험 휴대품 손해, police report, 여권 분실 신고",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 13,
+   "image": "images/v44/passport-lost.jpg",
+   "imageAlt": "호텔 침대 위에 놓인 여권·휴대폰·지갑",
+   "imageCredit": "이미지: 트립픽 제작(2026)",
+   "tours": [],
+   "essentials": [
+    "cp-passport-reindeer",
+    "cp-powerbank-anker-maggo"
+   ],
+   "related": [
+    "flight-delay-card-lost-emergency",
+    "esim-roaming-insurance-guide",
+    "travel-card-packing-guide",
+    "packing-powerbank-liquid",
+    "overseas-sick-hospital-insurance-claim"
+   ],
+   "ctaTitle": "내 여행 보험·준비물 한 번에 점검하기",
+   "ctaText": "출발일과 인원을 넣으면 항공·숙소·eSIM·여행자보험까지 같은 기준으로 총액을 계산합니다.",
+   "fxNote": "100엔=838원 · 1달러=1,335원 · 1유로=1,472원 · 2026-11-22 확인",
+   "faq": [
+    [
+     "여권을 잃으면 경찰 신고부터 해야 하나요?",
+     "도난이면 경찰 신고가 먼저입니다. 공관은 경찰 접수증(간이 접수증 가능)을 요구하는 곳이 많습니다. 단순 분실도 공관마다 요구가 달라 영사안전콜센터(+82-2-3210-0404)에 관할 공관의 준비물을 먼저 확인하세요. 분실 신고가 접수된 여권은 나중에 찾아도 다시 쓸 수 없으니 주변을 충분히 확인한 뒤 신고하세요."
+    ],
+    [
+     "긴급여권 수수료는 얼마인가요?",
+     "공관마다 다릅니다. 2026년 11월 안내 기준 오사카 6,500엔, 방콕 1,700바트, 호치민 미화 48달러, 파리 43.20유로, 타이베이 NT$1,536입니다. 한국에서는 50,000원(미화 50달러)입니다. 현금만 받는 공관이 많고 사진·신분증·항공권이 필요합니다."
+    ],
+    [
+     "휴대폰을 잃으면 IMEI 차단만 하면 되나요?",
+     "아닙니다. 원격 잠금이 먼저입니다. 아이폰은 icloud.com/find에서 분실 모드, 안드로이드는 내 기기 허브에서 잠급니다. 통신사 분실정지(SKT +82-2-6343-9000·KT +82-2-2190-0901·LG U+ +82-2-3416-7010)로 로밍 요금을 막고, IMEI는 국내 통신사 간 차단이므로 해외 현지 통신망까지 보장되지는 않습니다."
+    ],
+    [
+     "지갑을 잃어 현금이 없으면 어떻게 하나요?",
+     "재외공관의 신속해외송금을 이용합니다. 국내 가족이 외교부 협력은행에 입금하면 공관에서 1회 미화 3,000달러 상당까지 현지 통화로 받습니다. 공관 근무시간 방문이 필요하고 국내 수수료 3만 원과 공관 수수료가 붙습니다. 오후 3시 이전 신청이 당일 수령에 유리합니다."
+    ],
+    [
+     "도난 보험 청구에 경찰 리포트가 꼭 필요한가요?",
+     "휴대품 손해 특약은 도난·파손만 보상하고 단순 분실은 제외합니다. 도난 사실을 증명하려면 현지 경찰서의 Police Report와 사건번호·물품 목록이 필요합니다. 구입 영수증, IMEI·통신사 가입증명, 여권 사본을 함께 내야 하며 물품별 한도와 자기부담금, 감가상각이 적용됩니다."
+    ]
+   ],
+   "ogImage": "images/og/v44-passport-lost-og.jpg"
+  },
+  {
+   "slug": "overseas-sick-hospital-insurance-claim",
+   "category": "준비물·경비",
+   "navTitle": "해외 배탈·고열·병원 & 보험 청구 총정리",
+   "h1": "해외에서 열이 나고 배탈이 났을 때, <em>구급차 번호</em>부터",
+   "seoTitle": "해외여행 배탈·고열·병원·여행자보험 청구 2026 — 국가별 응급번호·119 재외국민 상담·진료비 서류 | 트립픽",
+   "dek": "일본 119·#7119, 태국 1669·1155, 베트남 115, 유럽 112. 나라별 응급번호와 ‘구급차를 불러야 하나’ 판단 기준, 약국에서 쓸 다국어 카드, 귀국 후 진료비 청구 서류를 순서대로 정리했습니다.",
+   "desc": "해외여행 배탈·고열·병원·보험 청구. 일본 119·110·JNTO 050-3816-2787, 태국 1669·관광경찰 1155, 베트남 115·1087, 대만 119·110, 유럽 112, 미국 911. 119 재외국민 응급의료상담 +82-44-320-0119 24시간, 영사콜센터 +82-2-3210-0404, 진료비 원본 영수증·진단명·처방전 청구 서류.",
+   "keywords": "해외여행 배탈, 해외 고열, 여행 중 병원, 국가별 응급번호, 일본 119, 일본 7119, 태국 1669, 베트남 115, 유럽 112, 119 재외국민 응급의료상담, 영사콜센터, 여행자보험 진료비 청구, 진단서 처방전 영수증",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 14,
+   "image": "images/v44/sick-hotel.jpg",
+   "imageAlt": "호텔 협탁 위에 놓인 체온계·물컵·약",
+   "imageCredit": "이미지: 트립픽 제작(2026)",
+   "tours": [],
+   "essentials": [
+    "cp-passport-reindeer"
+   ],
+   "related": [
+    "flight-delay-card-lost-emergency",
+    "esim-roaming-insurance-guide",
+    "passport-phone-lost-emergency",
+    "travel-card-packing-guide"
+   ],
+   "ctaTitle": "내 여행 보험 담보·병원비 계산하기",
+   "ctaText": "출발일과 인원을 넣으면 항공·숙소·여행자보험까지 같은 기준으로 총액을 계산합니다.",
+   "fxNote": "의료비는 병원별 상이 · 환율 2026-11-22 확인",
+   "faq": [
+    [
+     "해외에서 39도 열이 나면 응급실에 가야 하나요?",
+     "숨이 차거나 의식이 흐리면 즉시 119·112로 구급차를 부르세요. 39도라도 해열제로 내려가고 물을 마실 수 있으면 당일 클리닉으로 갑니다. 39도 이상 열이 이틀 넘게 가거나 목이 뻣뻣하면 응급실입니다. 판단이 안 서면 119 재외국민 응급의료상담(+82-44-320-0119)에 증상을 말하세요."
+    ],
+    [
+     "여행자보험 없이 병원비를 내면 얼마인가요?",
+     "나라·병원·진료과마다 크게 다릅니다. 응급실은 기본 검사만으로 수십만 원이 나올 수 있고 입원은 보증금을 요구하기도 합니다. 진료 전에 추정 비용을 물어보고 카드 한도를 확인하세요. 여행자보험은 출국 전에 가입해야 하며 이미 아픈 뒤에는 가입·보장이 제한됩니다."
+    ],
+    [
+     "진단서에 질병코드가 없으면 청구가 안 되나요?",
+     "보험사는 진단명을 확인합니다. 가능하면 영문 진단명과 ICD-10 코드를 요청하세요. 통원 3만 원 이하 등 일부는 진단명이 적힌 영수증·처방전으로 대체되지만 보험사·상품마다 달라 청구 전 확인이 필요합니다."
+    ],
+    [
+     "약국에서 항생제를 살 수 있나요?",
+     "대부분 나라에서 처방전이 필요합니다. 태국·베트남 일부 약국에서 쉽게 팔지만 임의 복용은 금물입니다. 설사에 피가 섞이거나 38.5도 이상 열이 동반되면 지사제·항생제를 사 먹지 말고 병원에 가세요."
+    ],
+    [
+     "귀국 후 진료비 청구는 언제까지 하나요?",
+     "보험금 청구권은 3년이지만 보험사가 정한 접수 기한이 따로 있을 수 있습니다. 삼성화재 다이렉트는 서류 접수일부터 3영업일 이내 지급을 안내합니다. 원본 영수증·세부내역·진단서·처방전을 귀국 전에 모두 받아 두고 바로 청구하세요."
+    ]
+   ],
+   "ogImage": "images/og/v44-sick-hotel-og.jpg"
+  },
+  {
+   "slug": "travel-hacks-hotel-flight-restaurant",
+   "category": "준비물·경비",
+   "navTitle": "아는 사람만 쓰는 해외여행 꿀팁 15선",
+   "h1": "같은 방·같은 표인데 <em>조용히 더 내는</em> 사람의 차이",
+   "seoTitle": "해외여행 꿀팁 15선 2026 — 얼리체크인·무료 업그레이드·DCC 3~8%·보조배터리 2개·시차 | 트립픽",
+   "dek": "같은 항공권·호텔방인데 결제 금액이 다른 이유는 버튼 하나, 말 한마디입니다. 체크인 48시간 전, DCC 3~8% 차단, 보조배터리 2개, 얼리체크인·방 교체·레이트 체크아웃까지 15가지를 정리했습니다.",
+   "desc": "해외여행 꿀팁 15선. 대한항공 국제선 체크인 48시간 전·미주 24시간, 보조배터리 1인 2개·160Wh, 액체 100ml·1L, 기내 습도 10~20%, 시차 동쪽 1시간·서쪽 1.5시간, 힐튼 16시 체크인·얼리체크인 24시간 전 요청, DCC 3~8% 차단, 프랑스 service compris·이탈리아 coperto.",
+   "keywords": "해외여행 꿀팁, 얼리체크인, 호텔 무료 업그레이드, 레이트 체크아웃, DCC 차단, 해외원화결제, 보조배터리 2개, 기내 액체류, 시차 적응, 구글맵 인기 시간, 해외 식당 팁, 이탈리아 coperto, 프랑스 service compris",
+   "published": "2026-11-22",
+   "updated": "2026-11-22",
+   "read": 12,
+   "image": "images/v44/travel-hacks.jpg",
+   "imageAlt": "호텔 창가 책상 위에 놓인 탑승권·여권·카드·커피",
+   "imageCredit": "이미지: 트립픽 제작(2026)",
+   "tours": [],
+   "essentials": [
+    "cp-powerbank-anker-maggo",
+    "cp-adapter-nemotab"
+   ],
+   "related": [
+    "hotel-booking-timing-refund-tips",
+    "packing-powerbank-liquid",
+    "travel-card-packing-guide",
+    "flight-cheap-booking-baggage",
+    "flight-delay-card-lost-emergency"
+   ],
+   "ctaTitle": "내 일정으로 항공·숙소·환전 총액 계산하기",
+   "ctaText": "출발일과 인원을 넣으면 항공·숙소·eSIM·환전까지 같은 기준으로 총액을 계산합니다.",
+   "fxNote": "100엔=838원 · 1달러=1,335원 · 1유로=1,472원 · 2026-11-22 확인",
+   "faq": [
+    [
+     "얼리체크인은 얼마 전에 요청해야 하나요?",
+     "도착 24시간 전에 호텔에 직접 메일·전화하는 것이 가장 빠릅니다. 가능 여부는 숙소 사정에 따라 다르고 요금이 붙을 수 있습니다. 방이 준비되지 않아도 짐 보관은 대부분 무료이니 얼리체크인이 안 되면 짐부터 맡기세요."
+    ],
+    [
+     "무료 업그레이드는 어떻게 받나요?",
+     "보장된 방법은 없습니다. 평일·비수기·짧은 숙박에 체크인 직후 카운터에서 정중히 물어보는 것이 온라인 요청보다 낫습니다. 로열티 등급이 있으면 유리하고, 업그레이드가 안 되면 고층·조용한 방을 요청하세요."
+    ],
+    [
+     "DCC 차단을 하면 해외 결제가 안 되나요?",
+     "현지 통화 결제는 정상입니다. 원화(KRW) 결제만 거절됩니다. 국내 결제도 그대로 됩니다. 차단은 카드사 앱에서 카드별로 신청할 수 있고 해제도 앱에서 할 수 있습니다."
+    ],
+    [
+     "보조배터리는 몇 개까지 되나요?",
+     "2026년 4월 20일부터 1인 2개, 개당 160Wh 이하입니다. 위탁은 안 되고 기내만 됩니다. 기내에서 충전·사용은 금지이고, 선반이 아니라 몸이나 좌석 앞 주머니에 보관해야 합니다. 100Wh 초과~160Wh는 항공사 승인을 확인하세요."
+    ],
+    [
+     "시차 적응에 가장 효과적인 방법은?",
+     "동쪽으로 갈수록 하루 1시간, 서쪽은 1.5시간 정도 몸이 적응합니다. 도착 첫날 낮잠은 20~30분으로 제한하고 동쪽 여행은 아침 강한 빛을 피해 오후 햇빛을 쬐세요. 멜라토닌은 0.5~1mg이 안내되지만 복용 중인 약이 있으면 의사와 상담하세요."
+    ]
+   ],
+   "ogImage": "images/og/v44-travel-hacks-og.jpg"
   }
  ],
  "pages": [

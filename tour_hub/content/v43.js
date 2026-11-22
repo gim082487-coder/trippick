@@ -136,8 +136,8 @@
       });
   }
 
-  var KIND_LABEL = { city: '도시', guide: '가이드', stay: '숙소', tour: '투어', food: '맛집' };
-  var KIND_ORDER = ['city', 'guide', 'stay', 'tour', 'food'];
+  var KIND_LABEL = { page: '도구', city: '도시', guide: '가이드', stay: '숙소', tour: '투어', food: '맛집' };
+  var KIND_ORDER = ['page', 'city', 'guide', 'stay', 'tour', 'food'];
 
   function buildQSTabs() {
     var items = QS.idx.items || [];
@@ -204,7 +204,7 @@
         if (s >= 0) out.push({ it: it, s: s, i: i });
       });
     }
-    var kindRank = { city: 0, guide: 1, stay: 2, tour: 3, food: 4 };
+    var kindRank = { page: -1, city: 0, guide: 1, stay: 2, tour: 3, food: 4 };
     function krank(k) { return kindRank[k] == null ? 9 : kindRank[k]; }
     out.sort(function (a, b) {
       if (b.s !== a.s) return b.s - a.s;

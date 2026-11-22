@@ -2445,6 +2445,14 @@
   .hd-ico .hd-n{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--blue);color:#fff;
     font-size:9.5px;font-weight:850;display:inline-flex;align-items:center;justify-content:center;border:2px solid #fff;font-variant-numeric:tabular-nums}
   .hd-ico .hd-n[hidden]{display:none}
+  /* v44 — 모바일(≤900px, 주요 메뉴가 숨는 폭)에서 위기상황 SOS 는 헤더에 항상 남긴다 */
+  .hd-sos{display:none;align-items:center;justify-content:center;gap:5px;height:40px;flex:0 0 auto;
+    padding:0 11px;border:1px solid #F3C7C0;border-radius:12px;background:#FDF1EF;color:#B23A22;
+    font-size:12.4px;font-weight:850;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+  .hd-sos>svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .hd-sos:hover{background:#FBE3DF;border-color:#EBA79D;color:#8F2E1A}
+  @media (max-width:900px){ .hd-sos{display:inline-flex} }
+  @media (max-width:560px){ .hd-sos{padding:0;width:40px} .hd-sos>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap} }
 
   /* 퀵서치 모달 */
   .qs-modal{position:fixed;inset:0;z-index:130;display:flex;justify-content:center;align-items:flex-start;padding:10vh 18px 20px;
@@ -2473,6 +2481,7 @@
   .qs-k.k-stay{background:#EAF6F1;color:#0B6B4F}
   .qs-k.k-tour{background:#FFF4E8;color:#8A5E1C}
   .qs-k.k-food{background:#FBEDE9;color:#A33B27}
+  .qs-k.k-page{background:#FDEBE6;color:#B23A22}
   .qs-b{min-width:0;display:grid;gap:1px}
   .qs-t{font-size:13.6px;font-weight:750;color:var(--ink);letter-spacing:-.02em;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .qs-t mark{background:#FFF0B8;color:inherit;border-radius:3px;padding:0 1px}
@@ -4071,3 +4080,160 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
 
 /* v42 — 교통패스 페이지 환율 줄: 항목이 늘어도 390px에서 줄바꿈되게 */
 #pkRate{display:flex;flex-wrap:wrap;gap:2px 8px;flex:1 1 100%;min-width:0;white-space:normal}
+
+/* =====================================================================
+   v44 — /sos 「여행 중 위기상황 SOS」 (10개국 긴급번호 + 현지어 카드)
+   페이지 하나에서만 쓰므로 모든 클래스는 sos- 접두사.
+   ===================================================================== */
+/* 상단 히어로 — 긴급 페이지라 어둡게. 기존 .pg-hero 토큰을 물려받고 색만 바꾼다. */
+.sos-top{background:linear-gradient(158deg,#0C2C42 0%,#124E72 56%,#146E76 100%);border-bottom-color:transparent;position:relative;overflow:hidden}
+.sos-top::after{content:"";position:absolute;right:-90px;top:-110px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
+.sos-top .wrap{position:relative;z-index:1}
+.sos-top .pg-crumb,.sos-top .pg-crumb a{color:#AFCFDF}
+.sos-top .pg-crumb a:hover{color:#fff}
+.sos-top .pg-crumb b{color:#fff}
+.sos-top .pg-crumb i{background:rgba(255,255,255,.35)}
+.sos-top .pg-kicker{color:#B9E9D3;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.26)}
+.sos-top .pg-head h1{color:#fff}
+.sos-top .pg-head h1 em{color:#7DE3C3}
+.sos-top .pg-head .dek{color:#D3E7F0}
+.sos-top .pg-head .dek b{color:#fff}
+.sos-top .pg-meta{color:#B7D2DF}
+.sos-top .pg-meta b{color:#fff}
+.sos-top .pg-meta i{background:rgba(255,255,255,.22)}
+
+.sos-body{padding-top:0}
+
+/* 공통 긴급 연락처 2장 — 히어로 아래로 살짝 겹치게 */
+.sos-common{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:-26px 0 22px;position:relative;z-index:2}
+.sos-call{display:flex;flex-direction:column;gap:3px;background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  padding:15px 16px;box-shadow:var(--sh-2);transition:border-color .15s,box-shadow .15s,transform .12s;min-width:0}
+.sos-call:hover{border-color:var(--blue-line);box-shadow:var(--sh-3);text-decoration:none}
+.sos-call:active{transform:scale(.99)}
+.sos-call small{font-size:10.6px;font-weight:850;letter-spacing:.03em;color:var(--blue-600)}
+.sos-call b{font-size:15.6px;font-weight:850;letter-spacing:-.025em;color:var(--ink);line-height:1.35}
+.sos-call span{font-size:11.8px;color:var(--ink-3);line-height:1.5}
+.sos-call .num{font-size:19px;font-weight:900;color:var(--blue-700);font-variant-numeric:tabular-nums;letter-spacing:.01em;margin-top:3px;white-space:nowrap}
+.sos-call .go{font-size:11.4px;font-weight:850;color:var(--blue-600);margin-top:5px}
+
+.sos-lead{margin:0 0 18px;font-size:13.6px;line-height:1.75;color:var(--ink-2)}
+.sos-lead b{color:var(--ink);font-weight:800}
+.sos-h2{font-size:clamp(18px,2.2vw,22px);line-height:1.4;font-weight:850;letter-spacing:-.03em;color:var(--ink);margin:30px 0 12px}
+.sos-h2::before{content:"";display:block;width:30px;height:3px;border-radius:2px;background:var(--blue);margin-bottom:11px}
+
+/* 국가 탭 */
+.sos-cc{display:flex;gap:7px;overflow-x:auto;padding:2px 0 12px;margin:0 -2px;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),rgba(0,0,0,.2) 100%);
+  mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 22px),rgba(0,0,0,.2) 100%)}
+.sos-cc::-webkit-scrollbar{display:none}
+.sos-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;
+  padding:9px 13px;font-size:13px;font-weight:800;color:var(--ink-2);cursor:pointer;transition:.15s;white-space:nowrap}
+.sos-tab b{font-size:15px;line-height:1}
+.sos-tab:hover{border-color:var(--blue-line);background:var(--blue-soft);color:var(--blue-700)}
+.sos-tab[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* 국가 패널 */
+.sos-panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:17px 18px 18px;margin-bottom:14px;scroll-margin-top:90px}
+.sos-phh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:13px}
+.sos-phh h2{margin:0;font-size:19px;line-height:1.35;letter-spacing:-.03em;font-weight:900;color:var(--ink)}
+.sos-phh h2 span{font-size:12.5px;font-weight:800;color:var(--ink-3);letter-spacing:0;margin-left:6px}
+.sos-phh p{margin:3px 0 0;font-size:12.2px;color:var(--ink-3)}
+.sos-badge{flex:0 0 auto;font-size:10.8px;font-weight:850;color:var(--ok);background:var(--ok-soft);border:1px solid #CBEADF;
+  border-radius:999px;padding:5px 9px;white-space:nowrap}
+
+.sos-nums{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.sos-num{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:14px;padding:12px 13px;background:var(--soft);
+  min-width:0;transition:border-color .15s,transform .12s,background .15s}
+.sos-num:hover{border-color:var(--blue-line);background:#fff;text-decoration:none}
+.sos-num:active{transform:scale(.99)}
+.sos-num.primary{background:var(--blue-soft);border-color:var(--blue-line)}
+.sos-num .k{font-size:10.8px;font-weight:850;color:var(--blue-600);letter-spacing:.01em}
+.sos-num .v{font-size:clamp(16px,2.4vw,20px);font-weight:900;color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.28;
+  margin-top:2px;overflow-wrap:anywhere}
+.sos-num.primary .v{color:var(--blue-700)}
+.sos-num .m{font-size:11px;color:var(--ink-3);line-height:1.5;overflow-wrap:anywhere}
+.sos-num .go{font-size:10.6px;font-weight:850;color:var(--blue-600);margin-top:auto;padding-top:7px}
+.sos-addr{font-size:11.8px;color:var(--ink-3);border-top:1px solid var(--line-2);padding-top:11px;margin:13px 0 0;overflow-wrap:anywhere}
+.sos-addr b{color:var(--ink-2);font-weight:800}
+
+/* 현지어 카드 */
+.sos-sec{margin:18px 0 9px;font-size:13.4px;font-weight:850;color:var(--ink);letter-spacing:-.02em}
+.sos-sec span{font-weight:700;color:var(--ink-3);font-size:11.8px;margin-left:5px}
+.sos-pcs{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.sos-pc{display:flex;flex-direction:column;gap:3px;text-align:left;border:1px solid var(--line);border-radius:14px;background:#fff;
+  padding:12px 13px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .12s;min-width:0;min-height:118px}
+.sos-pc:hover{border-color:var(--blue-line);box-shadow:var(--sh-2)}
+.sos-pc:active{transform:scale(.99)}
+.sos-pc:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.sos-pc .ko{font-size:11.4px;font-weight:850;color:var(--blue-600)}
+.sos-pc .loc{font-size:clamp(17px,2.5vw,21px);font-weight:900;letter-spacing:-.01em;line-height:1.32;color:var(--ink);
+  word-break:keep-all;overflow-wrap:anywhere}
+.sos-pc .pron{font-size:11.2px;color:var(--ink-3);line-height:1.45;overflow-wrap:anywhere}
+.sos-pc .en{font-size:10.8px;color:var(--ink-3);margin-top:auto;border-top:1px dashed var(--line);padding-top:6px;overflow-wrap:anywhere}
+
+.sos-notes{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:7px}
+.sos-notes li{position:relative;font-size:12.4px;line-height:1.6;color:var(--ink-2);padding-left:14px;overflow-wrap:anywhere}
+.sos-notes li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--blue)}
+
+/* 전화 스크립트 */
+.sos-tips{background:var(--amber-soft);border:1px solid var(--amber-line);border-radius:var(--r);padding:15px 17px;margin:18px 0 6px}
+.sos-tips b{display:block;font-size:12px;font-weight:850;color:var(--amber);letter-spacing:.03em;margin-bottom:5px}
+.sos-tips p{margin:0;font-size:12.8px;line-height:1.7;color:#6B4A17;overflow-wrap:anywhere}
+
+/* 상황별 링크 */
+.sos-rel{margin-top:8px}
+.sos-rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sos-rel-grid a{display:flex;flex-direction:column;gap:3px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px 14px;
+  transition:border-color .15s,box-shadow .15s;min-width:0}
+.sos-rel-grid a:hover{border-color:var(--blue-line);box-shadow:var(--sh-2);text-decoration:none}
+.sos-rel-grid b{font-size:13.4px;font-weight:850;color:var(--ink);letter-spacing:-.02em}
+.sos-rel-grid span{font-size:11.6px;color:var(--ink-3);line-height:1.5;overflow-wrap:anywhere}
+.sos-foot{margin:26px 0 0;font-size:11.4px;line-height:1.8;color:var(--ink-3)}
+.sos-foot b{color:var(--ink-2)}
+
+/* 전체 화면 큰 글씨 카드 */
+.sos-ov{position:fixed;inset:0;z-index:200;background:#0B1B25;color:#fff;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(20px,5vw,46px);overflow:auto;-webkit-overflow-scrolling:touch}
+.sos-ov-x{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.06);
+  color:#fff;border-radius:999px;padding:9px 14px;font-size:12.5px;font-weight:800;cursor:pointer}
+.sos-ov-ko{font-size:clamp(13px,3.4vw,16px);font-weight:850;color:#8FD8F0;letter-spacing:.01em}
+.sos-ov-big{font-size:clamp(34px,10vw,72px);line-height:1.24;font-weight:900;letter-spacing:-.03em;margin:14px 0 12px;
+  word-break:keep-all;overflow-wrap:anywhere}
+.sos-ov-pron{font-size:clamp(15px,3.6vw,19px);color:#C7DDE6;line-height:1.5}
+.sos-ov-en{font-size:clamp(13px,3.2vw,15px);color:#9FB9C4;margin-top:16px;line-height:1.6}
+.sos-ov-hint{margin-top:auto;padding-top:26px;font-size:12px;line-height:1.6;color:#8FA8B3}
+
+/* 반응형 — 390px에서도 가로 넘침 0 */
+@media (max-width:760px){
+  .sos-common{grid-template-columns:1fr;margin:-20px 0 18px}
+  .sos-panel{padding:15px 14px 16px;border-radius:16px}
+  .sos-nums{grid-template-columns:1fr}
+  .sos-num{min-height:0;padding:11px 12px}
+  .sos-pcs{grid-template-columns:1fr}
+  .sos-pc{min-height:0}
+  .sos-rel-grid{grid-template-columns:1fr}
+  .sos-badge{display:none}
+}
+@media (max-width:420px){
+  .sos-call .num{font-size:17.5px}
+  .sos-phh h2{font-size:17.5px}
+}
+@media print{
+  .sos-cc,.sos-ov,.sos-tips,.sos-badge,.sos-top::after{display:none!important}
+  .sos-panel{break-inside:avoid;border-color:#ccc}
+}
+
+/* /sos FAQ·전체 표 */
+.sos-faq{display:grid;gap:8px}
+.sos-all-n{font-size:11.5px;font-weight:800;color:var(--ok);background:var(--ok-soft);border:1px solid #CBEADF;border-radius:999px;padding:3px 8px;margin-left:6px;vertical-align:2px}
+.sos-tb-sc{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:var(--r);background:#fff}
+.sos-tb{width:100%;border-collapse:collapse;min-width:600px;font-size:12.6px}
+.sos-tb th{position:sticky;top:0;background:var(--soft);font-size:11.4px;font-weight:850;color:var(--ink-2);text-align:left;
+  padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+.sos-tb td{padding:10px 12px;border-bottom:1px solid var(--line-2);vertical-align:top;color:var(--ink-2);line-height:1.55}
+.sos-tb tr:last-child td{border-bottom:0}
+.sos-tb td:first-child{font-weight:850;color:var(--ink);white-space:nowrap}
+.sos-tb a{color:var(--blue-700);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sos-tb a:hover{text-decoration:underline}
+.sos-tb em{font-style:normal;color:var(--ink-3);font-weight:700}
+.sos-tb .sos-tb-n{display:block;margin-bottom:2px}

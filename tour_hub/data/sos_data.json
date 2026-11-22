@@ -1,0 +1,1117 @@
+{
+  "version": "v44.1",
+  "updated": "2026-11-22",
+  "verified": "2026-11-22",
+  "title": "여행 중 위기상황 SOS",
+  "subtitle": "전화 한 번, 문장 한 장",
+  "note": "번호는 2026-11-22 외교부·각국 정부·관광청 공식 안내로 확인했습니다. 현지 사정으로 바뀔 수 있으니 출국 전에 저장하고, 긴급하지 않으면 영사안전콜센터에 먼저 물어보세요.",
+  "consular": {
+    "name": "외교부 영사안전콜센터",
+    "phone": "+82-2-3210-0404",
+    "tel": "+82232100404",
+    "hours": "24시간 연중무휴",
+    "languages": "한국어 + 영어·중국어·일본어·베트남어·프랑스어·러시아어·스페인어 통역",
+    "app": "영사안전콜센터 무료전화",
+    "note": "와이파이에서 무료 통화, 카카오톡 채널 상담"
+  },
+  "medicalConsult": {
+    "name": "119 재외국민 응급의료상담",
+    "phone": "+82-44-320-0119",
+    "tel": "+82443200119",
+    "hours": "24시간",
+    "note": "응급의학 전문의가 응급처치·복약·현지 병원 이용을 상담"
+  },
+  "callScript": [
+    "지금 있는 곳(호텔 이름·주소·근처 건물)",
+    "환자 나이·성별, 의식과 호흡",
+    "증상과 시작 시각",
+    "지병·복용약·임신 여부",
+    "다시 걸 수 있는 전화번호"
+  ],
+  "countries": [
+    {
+      "code": "KR",
+      "name": "한국",
+      "nameEn": "Korea",
+      "flag": "🇰🇷",
+      "lang": "한국어",
+      "numbers": [
+        {
+          "kind": "police",
+          "label": "경찰",
+          "number": "112",
+          "tel": "112",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "ambulance",
+          "label": "구급·소방",
+          "number": "119",
+          "tel": "119",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "tourist",
+          "label": "관광통역안내 1330",
+          "number": "1330",
+          "tel": "1330",
+          "hours": "07:00~24:00",
+          "languages": "한국어·영어·일본어·중국어 등 8개",
+          "note": "해외에서 +82-2-1330"
+        },
+        {
+          "kind": "consular",
+          "label": "영사안전콜센터",
+          "number": "02-3210-0404",
+          "tel": "0232100404",
+          "hours": "24시간",
+          "languages": "한국어·7개 언어 통역",
+          "primary": true
+        },
+        {
+          "kind": "medical_consult",
+          "label": "119 재외국민 응급의료상담",
+          "number": "+82-44-320-0119",
+          "tel": "+82443200119",
+          "hours": "24시간",
+          "note": "해외 체류·여행 중 응급의학 전문의 상담",
+          "primary": true
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "도와주세요",
+          "pron": "도와주세요",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "한국어 통역 부탁해요",
+          "pron": "한국어 통역 부탁해요",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "여권을 잃어버렸어요",
+          "pron": "여권을 잃어버렸어요",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "병원에 가야 해요",
+          "pron": "병원에 가야 해요",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "경찰을 불러 주세요",
+          "pron": "경찰을 불러 주세요",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "약국이 어디예요?",
+          "pron": "약국이 어디예요?",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "한국에서는 112·119가 긴급신고, 1330은 관광통역(07~24시)입니다.",
+        "해외에서 119 재외국민 응급의료상담은 +82-44-320-0119."
+      ]
+    },
+    {
+      "code": "JP",
+      "name": "일본",
+      "nameEn": "Japan",
+      "flag": "🇯🇵",
+      "lang": "일본어",
+      "address": "도쿄도 미나토구 미나미아자부 1-2-5",
+      "numbers": [
+        {
+          "kind": "police",
+          "label": "경찰",
+          "number": "110",
+          "tel": "110",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "ambulance",
+          "label": "구급·소방",
+          "number": "119",
+          "tel": "119",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "tourist",
+          "label": "JNTO 관광 핫라인",
+          "number": "050-3816-2787",
+          "tel": "05038162787",
+          "hours": "24시간",
+          "languages": "영어·중국어·한국어",
+          "note": "해외에서 +81-50-3816-2787",
+          "primary": true
+        },
+        {
+          "kind": "consult",
+          "label": "응급상담 #7119",
+          "number": "#7119",
+          "tel": "%237119",
+          "hours": "24시간",
+          "note": "일본어만. 연결 안 되면 03-3212-2323"
+        },
+        {
+          "kind": "embassy",
+          "label": "주일본 한국대사관",
+          "number": "+81-3-3452-7611",
+          "tel": "+81334527611",
+          "hours": "평일 09:00~18:00",
+          "note": "영사 03-3455-2601"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대사관 긴급(야간·휴일)",
+          "number": "+81-70-2153-5454",
+          "tel": "+817021535454",
+          "hours": "평일 18시 이후·휴일",
+          "primary": true
+        },
+        {
+          "kind": "consulate",
+          "label": "주오사카 총영사관",
+          "number": "+81-6-4256-2345",
+          "tel": "+81642562345",
+          "hours": "평일 09:00~17:30",
+          "note": "오사카·교토·시가·나라·와카야마"
+        },
+        {
+          "kind": "consulate_emergency",
+          "label": "오사카 총영사관 긴급",
+          "number": "+81-90-3050-0746",
+          "tel": "+819030500746",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "consulate",
+          "label": "주후쿠오카 총영사관",
+          "number": "+81-92-771-0461",
+          "tel": "+81927710461",
+          "hours": "평일 09:00~17:30",
+          "note": "후쿠오카·규슈·오키나와"
+        },
+        {
+          "kind": "consulate_emergency",
+          "label": "후쿠오카 총영사관 긴급",
+          "number": "+81-80-8588-2806",
+          "tel": "+818085882806",
+          "hours": "24시간",
+          "primary": true
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "助けてください",
+          "pron": "타스케테 쿠다사이",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "韓国語の通訳をお願いします",
+          "pron": "칸코쿠고노 츠야쿠오 오네가이시마스",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "パスポートをなくしました",
+          "pron": "파스포오토오 나쿠시마시타",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "病院に行きたいです",
+          "pron": "뵤오인니 이키타이 데스",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "警察を呼んでください",
+          "pron": "케이사츠오 욘데 쿠다사이",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "薬局はどこですか",
+          "pron": "얏쿄쿠와 도코 데스카",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "119는 구급차와 소방, 110은 경찰입니다.",
+        "#7119는 일본어 상담. 한국어는 JNTO 050-3816-2787(24시간).",
+        "도쿄 병원 안내는 히마와리 03-5285-8181(09~20시, 한국어).",
+        "오사카·교토는 주오사카 총영사관, 후쿠오카·규슈·오키나와는 주후쿠오카 총영사관 관할입니다."
+      ]
+    },
+    {
+      "code": "TH",
+      "name": "태국",
+      "nameEn": "Thailand",
+      "flag": "🇹🇭",
+      "lang": "태국어",
+      "address": "방콕 랏차다피섹 티암루암밋로드 23",
+      "numbers": [
+        {
+          "kind": "police",
+          "label": "경찰",
+          "number": "191",
+          "tel": "191",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "ambulance",
+          "label": "응급의료",
+          "number": "1669",
+          "tel": "1669",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "fire",
+          "label": "소방·구조",
+          "number": "199",
+          "tel": "199",
+          "hours": "24시간"
+        },
+        {
+          "kind": "tourist",
+          "label": "관광경찰",
+          "number": "1155",
+          "tel": "1155",
+          "hours": "24시간",
+          "languages": "영어·태국어 등 8개",
+          "primary": true
+        },
+        {
+          "kind": "tourist",
+          "label": "태국관광청 1672",
+          "number": "1672",
+          "tel": "1672",
+          "hours": "24시간",
+          "note": "관광 정보"
+        },
+        {
+          "kind": "embassy",
+          "label": "주태국 한국대사관",
+          "number": "+66-2-481-6000",
+          "tel": "+6624816000",
+          "hours": "평일 08:00~12:00, 13:30~16:30"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대사관 긴급(근무시간 외)",
+          "number": "+66-81-914-5803",
+          "tel": "+66819145803",
+          "hours": "24시간",
+          "primary": true
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "ช่วยด้วย",
+          "pron": "추아이 두아이",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "ขอล่ามภาษาเกาหลี",
+          "pron": "커 람 파사 까올리",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "หนังสือเดินทางหาย",
+          "pron": "낭스 도은탕 하이",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "ต้องไปโรงพยาบาล",
+          "pron": "똥 빠이 롱파야반",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "ช่วยเรียกตำรวจ",
+          "pron": "추아이 리악 땀루앗",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "ร้านขายยาอยู่ที่ไหน",
+          "pron": "란 카이 야 유 티 나이",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "관광경찰 1155는 24시간, 여행자 분쟁·통역을 도와줍니다.",
+        "긴급여권을 받아도 태국 이민국에서 입국기록 확인 후 출국해야 합니다.",
+        "방콕 병원: 범룽랏 +66-2066-8888(24시간, 영어), 사미티벳 수쿰빗 +66-2022-2222(일본어)."
+      ]
+    },
+    {
+      "code": "VN",
+      "name": "베트남",
+      "nameEn": "Vietnam",
+      "flag": "🇻🇳",
+      "lang": "베트남어",
+      "address": "하노이 쑤언딘 도년거리 SQ4 외교단지 / 호치민 응우옌주 107",
+      "numbers": [
+        {
+          "kind": "police",
+          "label": "경찰",
+          "number": "113",
+          "tel": "113",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "ambulance",
+          "label": "구급",
+          "number": "115",
+          "tel": "115",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "fire",
+          "label": "소방·구조",
+          "number": "114",
+          "tel": "114",
+          "hours": "24시간"
+        },
+        {
+          "kind": "tourist",
+          "label": "관광 핫라인 1087",
+          "number": "1087",
+          "tel": "1087",
+          "hours": "24시간",
+          "languages": "베트남어·영어",
+          "note": "무료, 택시 분쟁 등",
+          "primary": true
+        },
+        {
+          "kind": "embassy",
+          "label": "주베트남 대사관(하노이)",
+          "number": "+84-24-3771-0404",
+          "tel": "+842437710404",
+          "hours": "평일 08:30~12:00, 13:30~17:30",
+          "note": "영사·여권"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대사관 긴급(하노이)",
+          "number": "+84-90-402-6126",
+          "tel": "+84904026126",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "consulate",
+          "label": "주호치민 총영사관",
+          "number": "+84-28-3822-5757",
+          "tel": "+842838225757",
+          "hours": "평일 08:30~12:00, 13:30~17:30",
+          "note": "남부(호치민·다낭·나트랑) 관할"
+        },
+        {
+          "kind": "consulate_emergency",
+          "label": "총영사관 긴급(호치민)",
+          "number": "+84-93-850-0238",
+          "tel": "+84938500238",
+          "hours": "24시간",
+          "primary": true
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "Làm ơn giúp tôi",
+          "pron": "람 언 줍 또이",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "Làm ơn gọi phiên dịch tiếng Hàn",
+          "pron": "람 언 고이 피엔 딕 띠엥 한",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "Tôi bị mất hộ chiếu",
+          "pron": "또이 비 멋 호 찌에우",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "Tôi cần đến bệnh viện",
+          "pron": "또이 껀 덴 벤 비엔",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "Làm ơn gọi cảnh sát",
+          "pron": "람 언 고이 까인 삿",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "Nhà thuốc ở đâu?",
+          "pron": "냐 투옥 어 더우",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "북부는 하노이 대사관, 남부(호치민·다낭·나트랑)는 호치민 총영사관 관할입니다.",
+        "긴급여권 발급 후 출국비자를 별도로 받아야 합니다.",
+        "1087은 무료 관광 핫라인(24시간)."
+      ]
+    },
+    {
+      "code": "TW",
+      "name": "대만",
+      "nameEn": "Taiwan",
+      "flag": "🇹🇼",
+      "lang": "중국어(번체)",
+      "address": "타이베이 지룽루 1단 333호 15층 1506실",
+      "numbers": [
+        {
+          "kind": "police",
+          "label": "경찰",
+          "number": "110",
+          "tel": "110",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "ambulance",
+          "label": "구급·소방",
+          "number": "119",
+          "tel": "119",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "tourist",
+          "label": "관광 상담 0800-011-765",
+          "number": "0800-011-765",
+          "tel": "0800011765",
+          "hours": "24시간",
+          "languages": "중국어·영어·일본어·한국어",
+          "note": "대만 내 무료",
+          "primary": true
+        },
+        {
+          "kind": "tourist",
+          "label": "외국인 생활 상담 1990",
+          "number": "1990",
+          "tel": "1990",
+          "hours": "24시간",
+          "note": "해외에서 +886-800-001990"
+        },
+        {
+          "kind": "embassy",
+          "label": "주타이베이 대표부",
+          "number": "+886-2-2758-8320",
+          "tel": "+886227588320",
+          "hours": "평일 08:30~17:30"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대표부 긴급(야간·휴일)",
+          "number": "+886-912-069-230",
+          "tel": "+886912069230",
+          "hours": "평일 18시~익일 09시·휴일 24시간",
+          "primary": true
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "請幫幫我",
+          "pron": "칭 방방 워",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "請幫我找韓語翻譯",
+          "pron": "칭 방 워 자오 한위 판이",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "我的護照丟了",
+          "pron": "워 더 후자오 디우 러",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "我需要去醫院",
+          "pron": "워 쉬야오 취 이위안",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "請報警",
+          "pron": "칭 바오징",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "藥局在哪裡",
+          "pron": "야오쥐 자이 나리",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "긴급여권 신청 전에 대만 이민서에서 여권분실신고 증명서를 받아야 합니다.",
+        "0800-011-765는 한국어 상담이 되는 24시간 무료 전화입니다.",
+        "110은 경찰, 119는 구급차·소방."
+      ]
+    },
+    {
+      "code": "SG",
+      "name": "싱가포르",
+      "nameEn": "Singapore",
+      "flag": "🇸🇬",
+      "lang": "영어",
+      "address": "47 Scotts Road, Goldbell Towers #08-00",
+      "numbers": [
+        {
+          "kind": "police",
+          "label": "경찰",
+          "number": "999",
+          "tel": "999",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "police",
+          "label": "경찰 문자 신고",
+          "number": "70999",
+          "tel": "70999",
+          "hours": "24시간",
+          "note": "말하기 어려울 때"
+        },
+        {
+          "kind": "ambulance",
+          "label": "구급·소방",
+          "number": "995",
+          "tel": "995",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "tourist",
+          "label": "관광 안내 1800-736-2000",
+          "number": "1800-736-2000",
+          "tel": "18007362000",
+          "hours": "평일 09:00~18:00",
+          "note": "공휴일 제외, 해외에서 +65-6736-2000"
+        },
+        {
+          "kind": "embassy",
+          "label": "주싱가포르 한국대사관",
+          "number": "+65-6256-1188",
+          "tel": "+6562561188",
+          "hours": "평일 09:00~18:00"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대사관 긴급(근무시간 외)",
+          "number": "+65-9654-3528",
+          "tel": "+6596543528",
+          "hours": "24시간",
+          "primary": true
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "Help me",
+          "pron": "헬프 미",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "I need a Korean interpreter, please.",
+          "pron": "아이 니드 어 코리안 인터프리터, 플리즈",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "I lost my passport.",
+          "pron": "아이 로스트 마이 패스포트",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "I need to go to a hospital.",
+          "pron": "아이 니드 투 고 투 어 하스피털",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "Please call the police.",
+          "pron": "플리즈 콜 더 폴리스",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "Where is a pharmacy?",
+          "pron": "웨어 이즈 어 파머시",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "999는 경찰, 995는 구급차·소방. 70999는 말하기 어려울 때 문자 신고.",
+        "관광 안내 1800-736-2000은 평일 09~18시만 운영합니다.",
+        "긴급여권은 경찰 분실 신고서와 함께 신청하며, 출국 시 심사관에게 제출합니다."
+      ]
+    },
+    {
+      "code": "FR",
+      "name": "프랑스",
+      "nameEn": "France",
+      "flag": "🇫🇷",
+      "lang": "프랑스어",
+      "address": "41-43 Rue Saint-Dominique, 75007 Paris",
+      "numbers": [
+        {
+          "kind": "emergency",
+          "label": "통합 응급 112",
+          "number": "112",
+          "tel": "112",
+          "hours": "24시간",
+          "note": "경찰·소방·구급, 유럽 공통",
+          "primary": true
+        },
+        {
+          "kind": "police",
+          "label": "경찰·헌병 17",
+          "number": "17",
+          "tel": "17",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "ambulance",
+          "label": "응급의료 SAMU 15",
+          "number": "15",
+          "tel": "15",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "fire",
+          "label": "소방 18",
+          "number": "18",
+          "tel": "18",
+          "hours": "24시간"
+        },
+        {
+          "kind": "consult",
+          "label": "청각장애 응급 114",
+          "number": "114",
+          "tel": "114",
+          "hours": "24시간",
+          "note": "문자·앱·영상"
+        },
+        {
+          "kind": "embassy",
+          "label": "주프랑스 한국대사관",
+          "number": "+33-1-4753-0101",
+          "tel": "+33147530101",
+          "hours": "평일 09:30~18:00"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대사관 긴급(근무시간 외)",
+          "number": "+33-6-8028-5396",
+          "tel": "+33680285396",
+          "hours": "24시간",
+          "primary": true
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "Aidez-moi",
+          "pron": "에데 무아",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "Un interprète coréen, s'il vous plaît",
+          "pron": "앙 앵테르프레트 코레앙, 실 부 플레",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "J'ai perdu mon passeport",
+          "pron": "제 페르뒤 몽 파스포르",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "Je dois aller à l'hôpital",
+          "pron": "주 드와 알레 아 로피탈",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "Appelez la police, s'il vous plaît",
+          "pron": "아플레 라 폴리스, 실 부 플레",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "Où est la pharmacie ?",
+          "pron": "우 에 라 파르마시",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "112는 유럽 공통. 프랑스에서는 15(의료)·17(경찰)·18(소방)도 사용합니다.",
+        "112는 유심이 없거나 잔액이 없어도 걸 수 있습니다.",
+        "긴급여권 수수료는 43.20유로 현금, 사진 1매, 사전예약이 필요합니다."
+      ]
+    },
+    {
+      "code": "IT",
+      "name": "이탈리아",
+      "nameEn": "Italy",
+      "flag": "🇮🇹",
+      "lang": "이탈리아어",
+      "address": "Via Piemonte 54, 00187 Roma",
+      "numbers": [
+        {
+          "kind": "emergency",
+          "label": "통합 응급 112",
+          "number": "112",
+          "tel": "112",
+          "hours": "24시간",
+          "note": "경찰·소방·구급",
+          "primary": true
+        },
+        {
+          "kind": "police",
+          "label": "경찰 113",
+          "number": "113",
+          "tel": "113",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "ambulance",
+          "label": "응급의료 118",
+          "number": "118",
+          "tel": "118",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "fire",
+          "label": "소방 115",
+          "number": "115",
+          "tel": "115",
+          "hours": "24시간"
+        },
+        {
+          "kind": "embassy",
+          "label": "주이탈리아 한국대사관",
+          "number": "+39-06-420-4021",
+          "tel": "+39064204021",
+          "hours": "평일 09:30~12:00, 14:00~16:30"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대사관 긴급(근무시간 외)",
+          "number": "+39-335-185-0499",
+          "tel": "+393351850499",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "consulate",
+          "label": "주밀라노 총영사관",
+          "number": "+39-02-2906-2641",
+          "tel": "+390229062641",
+          "hours": "평일 09:30~12:00, 14:00~16:30",
+          "note": "북부 8개주 관할"
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "Aiutatemi",
+          "pron": "아유타테미",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "Un interprete coreano, per favore",
+          "pron": "운 인테르프레테 코레아노, 페르 파보레",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "Ho perso il passaporto",
+          "pron": "오 페르소 일 파사포르토",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "Devo andare in ospedale",
+          "pron": "데보 안다레 인 오스페달레",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "Chiami la polizia, per favore",
+          "pron": "키아미 라 폴리치아, 페르 파보레",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "Dov'è la farmacia?",
+          "pron": "도베 라 파르마차",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "112는 통합 응급번호. 113(경찰)·118(구급)·115(소방)도 지역에 따라 사용됩니다.",
+        "로마·중남부는 주이탈리아 대사관, 밀라노·북부 8개주는 주밀라노 총영사관 관할입니다.",
+        "긴급여권 수수료는 45유로(밀라노 기준), 당일 발급 원칙."
+      ]
+    },
+    {
+      "code": "ES",
+      "name": "스페인",
+      "nameEn": "Spain",
+      "flag": "🇪🇸",
+      "lang": "스페인어",
+      "address": "C/ González Amigó 15, 28033 Madrid",
+      "numbers": [
+        {
+          "kind": "emergency",
+          "label": "통합 응급 112",
+          "number": "112",
+          "tel": "112",
+          "hours": "24시간",
+          "note": "경찰·소방·구급",
+          "primary": true
+        },
+        {
+          "kind": "police",
+          "label": "국가경찰 091",
+          "number": "091",
+          "tel": "091",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "police",
+          "label": "지방경찰 092",
+          "number": "092",
+          "tel": "092",
+          "hours": "24시간"
+        },
+        {
+          "kind": "ambulance",
+          "label": "응급의료 061",
+          "number": "061",
+          "tel": "061",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "embassy",
+          "label": "주스페인 한국대사관",
+          "number": "+34-91-353-2000",
+          "tel": "+34913532000",
+          "hours": "평일 09:00~14:00, 16:00~18:00"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대사관 긴급(야간·휴일)",
+          "number": "+34-648-924-695",
+          "tel": "+34648924695",
+          "hours": "24시간",
+          "primary": true
+        },
+        {
+          "kind": "consulate",
+          "label": "주바르셀로나 총영사관",
+          "number": "+34-93-487-3153",
+          "tel": "+34934873153",
+          "hours": "평일 근무시간",
+          "note": "카탈루냐·바르셀로나 관할"
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "Ayúdeme",
+          "pron": "아유데메",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "Un intérprete de coreano, por favor",
+          "pron": "운 인테르프레테 데 코레아노, 포르 파보르",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "He perdido mi pasaporte",
+          "pron": "에 페르디도 미 파사포르테",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "Necesito ir al hospital",
+          "pron": "네세시토 이르 알 오스피탈",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "Llame a la policía, por favor",
+          "pron": "야메 아 라 폴리시아, 포르 파보르",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "¿Dónde hay una farmacia?",
+          "pron": "돈데 아이 우나 파르마시아",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "112는 무료, 유심이 없거나 잠긴 휴대폰에서도 걸 수 있습니다.",
+        "091·092·061은 유료일 수 있으니 급하면 112를 누르세요.",
+        "바르셀로나 등 카탈루냐는 주바르셀로나 총영사관 관할입니다.",
+        "바르셀로나·카탈루냐는 주바르셀로나 총영사관 +34-93-487-3153로 연락합니다."
+      ]
+    },
+    {
+      "code": "GB",
+      "name": "영국",
+      "nameEn": "United Kingdom",
+      "flag": "🇬🇧",
+      "lang": "영어",
+      "address": "60 Buckingham Gate, London SW1E 6AJ",
+      "numbers": [
+        {
+          "kind": "ambulance",
+          "label": "경찰·소방·구급 999",
+          "number": "999",
+          "tel": "999",
+          "hours": "24시간",
+          "note": "경찰·소방·구급 통합, 112도 동일"
+        },
+        {
+          "kind": "emergency",
+          "label": "유럽 공통 112",
+          "number": "112",
+          "tel": "112",
+          "hours": "24시간",
+          "note": "999와 동일 연결"
+        },
+        {
+          "kind": "police",
+          "label": "비긴급 경찰 101",
+          "number": "101",
+          "tel": "101",
+          "hours": "24시간",
+          "note": "분실·피해 신고"
+        },
+        {
+          "kind": "consult",
+          "label": "NHS 비응급 의료 111",
+          "number": "111",
+          "tel": "111",
+          "hours": "24시간",
+          "note": "증상 상담·진료 연결",
+          "primary": true
+        },
+        {
+          "kind": "embassy",
+          "label": "주영국 한국대사관",
+          "number": "+44-20-7227-5500",
+          "tel": "+442072275500",
+          "hours": "평일 09:00~12:00, 14:00~16:00"
+        },
+        {
+          "kind": "embassy_emergency",
+          "label": "대사관 긴급(24시간)",
+          "number": "+44-78-7650-6895",
+          "tel": "+447876506895",
+          "hours": "24시간",
+          "primary": true
+        }
+      ],
+      "phrases": [
+        {
+          "ko": "도와주세요",
+          "local": "Help me",
+          "pron": "헬프 미",
+          "en": "Help me"
+        },
+        {
+          "ko": "한국어 통역 부탁해요",
+          "local": "I need a Korean interpreter, please.",
+          "pron": "아이 니드 어 코리안 인터프리터, 플리즈",
+          "en": "I need a Korean interpreter, please."
+        },
+        {
+          "ko": "여권을 잃어버렸어요",
+          "local": "I lost my passport.",
+          "pron": "아이 로스트 마이 패스포트",
+          "en": "I lost my passport."
+        },
+        {
+          "ko": "병원에 가야 해요",
+          "local": "I need to go to a hospital.",
+          "pron": "아이 니드 투 고 투 어 하스피털",
+          "en": "I need to go to a hospital."
+        },
+        {
+          "ko": "경찰을 불러 주세요",
+          "local": "Please call the police.",
+          "pron": "플리즈 콜 더 폴리스",
+          "en": "Please call the police."
+        },
+        {
+          "ko": "약국이 어디예요?",
+          "local": "Where is a pharmacy?",
+          "pron": "웨어 이즈 어 파머시",
+          "en": "Where is a pharmacy?"
+        }
+      ],
+      "notes": [
+        "999와 112는 같은 응급 서비스로 연결됩니다.",
+        "생명이 위험하지 않으면 NHS 111, 경찰 비긴급은 101.",
+        "여권 분실 시 경찰 신고 후 대사관에서 긴급여권을 신청합니다."
+      ]
+    }
+  ]
+}

@@ -49,10 +49,11 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 22)
-CSS_V = "40"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "41"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v44: /sos)
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "35"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
-JS_V43 = "1"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
+JS_V43 = "2"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
+JS_V44 = "1"   # assets/tp-v44.js (/sos 국가 전환 · 현지어 큰 글씨 카드) 캐시 버전
 
 
 def ga4_head() -> str:
@@ -90,6 +91,7 @@ NAV = [
 
 # 드롭다운에 들어가는 계산기·표 페이지 (v18에 /passes · /calendar 추가)
 TOOLS = [
+    ("sos.html", "여행 중 위기상황 SOS", "sos", "10개국 경찰·구급·대사관"),
     ("exchange.html", "환율·일본 면세 계산기", "exchange", "12개 통화 · 면세 환급"),
     ("baggage.html", "항공사 수하물 규정", "baggage", "기내·위탁·배터리"),
     ("passes.html", "교통패스 본전 계산기", "passes", "오사카·도쿄·방콕·타이베이·싱가포르"),
@@ -204,6 +206,7 @@ def header_html(up: str, active: str = "") -> str:
       <button class="hd-ico" type="button" data-wl-open aria-label="찜한 항목" title="찜한 항목">
         <svg aria-hidden="true"><use href="#i-heart"/></svg><span class="hd-n" data-wl-count hidden>0</span>
       </button>
+      <a class="hd-sos" href="{up}sos.html" aria-label="여행 중 위기상황 SOS — 10개국 긴급번호"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>SOS</span></a>
       <a class="btn" href="{up}index.html#regions">투어 {TOTAL}개 찾기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -231,6 +234,7 @@ def footer_html(up: str) -> str:
           <a href="{up}baggage.html">항공사 수하물 규정</a>
           <a href="{up}passes.html">교통패스 본전 계산기</a>
           <a href="{up}calendar.html">월별 시즌·최저가 캘린더</a>
+          <a href="{up}sos.html">여행 중 위기상황 SOS</a>
           <a href="{up}cities/index.html">도시별 여행 페이지</a>
           <a href="{up}stays.html">찐숙소 — 국내·해외 {len(STAYS.get("hotels", [])) or 30}곳</a>
           <a href="{up}guides/index.html">여행 가이드</a>
@@ -405,6 +409,7 @@ def page(
     og_image: str = "",
     og_image_alt: str = "",
     og_image_size: tuple[int, int] | None = None,
+    scripts: str = "",
 ) -> Path:
     up = "../" * rel_path.count("/")
     canonical = f"{base.rstrip('/')}/{rel_path}"
@@ -477,6 +482,8 @@ def page(
 {f'<script type="application/json" id="tpBundles">{bundles_payload()}</script>' if "data-tp-bundle" in body else ''}
 <script src="{up}assets/tp-v35.js?v={JS_V35}" defer></script>
 <script src="{up}assets/tp-v43.js?v={JS_V43}" defer></script>
+{f'<script src="{up}assets/tp-v44.js?v={JS_V44}" defer></script>' if 'id="sosPanels"' in body else ''}
+{scripts}
 </body>
 </html>
 """
@@ -3313,6 +3320,15 @@ def build_search_index() -> dict:
 
     items = []
 
+    # v44 — 위기상황 SOS 도구 페이지. 응급 상황에서 '경찰' '병원' '대사관' 같은
+    # 단어로도 닿게 색인 맨 앞에 둔다(검색 탭은 v43.js 의 KIND_ORDER 에 page 를 추가했다).
+    items.append({
+        "t": "여행 중 위기상황 SOS",
+        "k": "page",
+        "m": "10개국 경찰·구급·대사관 번호 · 현지어 카드",
+        "u": "/sos",
+        "q": norm("위기상황 응급 긴급 sos 경찰 구급 소방 대사관 영사콜센터 공관 여권 분실 지갑 휴대폰 병원 응급실 약국 통역 현지어 여행 중 아플 때 사고 신고"),
+    })
     # 도시 30 — 허브가 있는 도시 먼저
     def city_n(c):
         return sum(1 for x in TOURS if x["city"] == c["id"])
@@ -4301,6 +4317,7 @@ def not_found_page(out_root: Path, base: str) -> Path:
             ("/baggage", "수하물 규정"),
             ("/passes", "교통패스 본전 계산기"),
             ("/calendar", "월별 시즌 캘린더"),
+            ("/sos", "여행 중 위기상황 SOS"),
             ("/#planner", "예산 계산기"),
         ]
     )
@@ -4491,6 +4508,207 @@ def checklist_page(out_root: Path, base: str) -> Path:
     )
 
 
+def _sos_tel(n: dict) -> str:
+    """tel: 링크용 값. 데이터의 tel 은 숫자와 + 만 담고 있다(#7119 → %237119)."""
+    t = (n.get("tel") or re.sub(r"[^0-9+#]", "", n.get("number", ""))).strip()
+    return "tel:" + t
+
+
+SOS_LANG = {"KR": "ko", "JP": "ja", "TH": "th", "VN": "vi", "TW": "zh-Hant",
+            "SG": "en", "FR": "fr", "IT": "it", "ES": "es", "GB": "en"}
+
+
+def sos_page(out_root: Path, base: str) -> Path:
+    """v44 /sos — 여행 중 위기상황 SOS(10개국 긴급번호 + 현지어 카드).
+
+    데이터는 data/sos_data.json 한 곳. 국가 패널을 서버에서 모두 그려 두고
+    (검색·JS 꺼짐 대비) tp-v44.js 가 탭 전환·큰 글씨 카드만 맡는다.
+    """
+    sos = load_json("sos_data.json")
+    cons = sos["consular"]
+    med = sos["medicalConsult"]
+    countries = sos["countries"]
+
+    def tel_link(n: dict, extra: str = "") -> str:
+        tail = f' <em>{esc(extra)}</em>' if extra else ""
+        return f'<a href="{_sos_tel(n)}">{esc(n["number"])}</a>{tail}'
+
+    common = "\n      ".join([
+        f"""<a class="sos-call" href="{_sos_tel(cons)}">
+        <small>외교부 · {esc(cons["hours"])}</small>
+        <b>{esc(cons["name"])}</b>
+        <span>{esc(cons["languages"])}</span>
+        <span class="num">{esc(cons["phone"])}</span>
+        <span class="go">눌러서 전화 →</span>
+      </a>""",
+        f"""<a class="sos-call" href="{_sos_tel(med)}">
+        <small>소방청 · {esc(med["hours"])}</small>
+        <b>{esc(med["name"])}</b>
+        <span>{esc(med["note"])}</span>
+        <span class="num">{esc(med["phone"])}</span>
+        <span class="go">눌러서 전화 →</span>
+      </a>""",
+    ])
+
+    tabs = "\n      ".join(
+        f'<button class="sos-tab" type="button" role="tab" id="sosTab-{c["code"]}" data-cc="{c["code"]}" '
+        f'aria-controls="sos-{c["code"]}" aria-selected="{"true" if i == 0 else "false"}">'
+        f'<b aria-hidden="true">{c["flag"]}</b>{esc(c["name"])}</button>'
+        for i, c in enumerate(countries)
+    )
+
+    panels = []
+    for i, c in enumerate(countries):
+        lang = SOS_LANG.get(c["code"], "ko")
+        cards = []
+        for n in c["numbers"]:
+            meta = " · ".join(x for x in (n.get("hours"), n.get("languages")) if x)
+            note = n.get("note")
+            meta_html = esc(meta) + (f"<br>{esc(note)}" if note else "")
+            cls = "sos-num primary" if n.get("primary") else "sos-num"
+            cards.append(
+                f'<a class="{cls}" href="{_sos_tel(n)}">'
+                f'<span class="k">{esc(n["label"])}</span>'
+                f'<span class="v">{esc(n["number"])}</span>'
+                f'<span class="m">{meta_html}</span>'
+                f'<span class="go">눌러서 전화 →</span></a>'
+            )
+        phrases = []
+        for p in c["phrases"]:
+            phrases.append(
+                f'<button class="sos-pc" type="button" aria-label="{esc(p["ko"])} 크게 보기"'
+                f' data-ko="{esc(p["ko"])}" data-local="{esc(p["local"])}"'
+                f' data-pron="{esc(p["pron"])}" data-en="{esc(p["en"])}">'
+                f'<span class="ko">{esc(p["ko"])}</span>'
+                f'<span class="loc" lang="{lang}">{esc(p["local"])}</span>'
+                f'<span class="pron">{esc(p["pron"])}</span>'
+                f'<span class="en" lang="en">{esc(p["en"])}</span></button>'
+            )
+        notes = "".join(f"<li>{esc(x)}</li>" for x in c.get("notes") or [])
+        addr = (
+            f'<p class="sos-addr"><b>공관 주소</b> · {esc(c["address"])}</p>'
+            if c.get("address") else ""
+        )
+        hidden = "" if i == 0 else " hidden"
+        panels.append(
+            f"""<section class="sos-panel" id="sos-{c["code"]}" data-panel-cc="{c["code"]}" role="tabpanel" aria-labelledby="sosTab-{c["code"]}"{hidden}>
+        <div class="sos-phh">
+          <div>
+            <h2>{c["flag"]} {esc(c["name"])} <span>{esc(c["nameEn"])}</span></h2>
+            <p>{esc(c["lang"])} · 긴급번호 {len(c["numbers"])}개</p>
+          </div>
+          <span class="sos-badge">전화하려면 누르세요</span>
+        </div>
+        <div class="sos-nums">
+          {"".join(cards)}
+        </div>
+        {addr}
+        <h3 class="sos-sec">현지어 카드 <span>누르면 큰 글씨로 전체 화면</span></h3>
+        <div class="sos-pcs">
+          {"".join(phrases)}
+        </div>
+        <ul class="sos-notes">{notes}</ul>
+      </section>"""
+        )
+
+    # 전체 표 — 카드가 안 열리는 환경(JS 꺼짐·인쇄)에서도 번호를 찾을 수 있게
+    rows = []
+    for c in countries:
+        urgent = [
+            f'<span class="sos-tb-n">{tel_link(n, n["label"])}</span>'
+            for n in c["numbers"] if n["kind"] in ("police", "ambulance", "fire", "emergency")
+        ]
+        kmb = [
+            f'<span class="sos-tb-n">{tel_link(n, n["label"])}</span>'
+            for n in c["numbers"]
+            if n["kind"] in ("embassy", "embassy_emergency", "consular", "medical_consult")
+        ]
+        rows.append(
+            f'<tr><td>{c["flag"]} {esc(c["name"])}</td>'
+            f'<td>{"".join(urgent) or "—"}</td>'
+            f'<td>{"".join(kmb) or "—"}</td></tr>'
+        )
+
+    faq = [
+        ("해외에서 응급상황인데 현지어를 못 하면 어떻게 하나요?",
+         "먼저 현지 응급번호(일본 119·태국 1669·유럽 112)로 전화하세요. 통역이 필요하면 24시간 영사안전콜센터 +82-2-3210-0404로 걸면 한국어로 받고, 필요할 때 현지 경찰·병원과의 통역을 연결해 줍니다. "
+         "이 페이지의 현지어 카드를 눌러 큰 글씨 화면을 상대방에게 보여주는 것이 가장 빠릅니다. '한국어 통역 부탁해요' 문장은 10개국 모두 들어 있습니다."),
+        ("유심이 없거나 잠긴 휴대폰에서도 긴급번호가 걸리나요?",
+         "대부분 국가에서 잠금 화면의 '긴급 전화'로 112·119·911 같은 번호를 걸 수 있고, 유럽 통합 112는 유심·잔액 없이도 연결되는 경우가 많습니다. "
+         "반대로 1330·영사안전콜센터 같은 일반 번호는 유심이나 와이파이 통화 앱이 필요합니다. 그래서 이 페이지를 출국 전에 홈 화면에 추가해 두는 것이 좋습니다."),
+        ("영사안전콜센터와 119 재외국민 응급의료상담은 무엇이 다른가요?",
+         "영사안전콜센터(+82-2-3210-0404, 24시간)는 7개 언어 통역으로 현지 경찰·병원·공관과 연결하고 여권 분실 같은 영사 업무를 안내합니다. "
+         "119 재외국민 응급의료상담(+82-44-320-0119, 24시간)은 응급의학 전문의가 증상·복약·현지 병원 이용을 상담합니다. 의료 판단이 필요하면 119, 통역·행정이 필요하면 영사안전콜센터입니다."),
+        ("대사관이 문을 닫은 밤이나 주말에는 어디로 전화하나요?",
+         "각 공관의 '긴급(근무시간 외)' 번호로 겁니다. 이 페이지의 대사관 긴급 번호가 그 번호이고, 영사안전콜센터 +82-2-3210-0404는 24시간 연중무휴입니다. "
+         "주말·야간에는 영사안전콜센터가 먼저 받아 관할 공관·긴급 담당자와 연결해 주는 편이 빠릅니다."),
+        ("이 번호가 바뀌었는지 어떻게 확인하나요?",
+         "외교부 해외안전여행 앱·홈페이지, 각 공관 홈페이지, 각국 정부·관광청 공식 안내에서 확인합니다. 이 페이지는 2026-11-22 기준으로 확인했고, "
+         "태국 관광경찰(1155)처럼 앱으로도 신고할 수 있는 곳은 앱 안내를 함께 적었습니다. 번호는 현지 사정으로 바뀔 수 있습니다."),
+    ]
+    faq_html = "".join(
+        f'<details class="fq"><summary><span class="fq-q"><b>Q.</b> {esc(q)}</span>'
+        f'<span class="fq-ic" aria-hidden="true"></span></summary>'
+        f'<div class="fq-a">{esc(a)}</div></details>'
+        for q, a in faq
+    )
+    jsonld = '<script type="application/ld+json">' + json.dumps({
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "name": "여행 중 위기상황 SOS — 10개국 긴급번호·현지어 카드",
+                "description": "한국·일본·태국·베트남·대만·싱가포르·프랑스·이탈리아·스페인·영국의 경찰·구급·관광경찰·한국 공관 번호와 현지어 문장 6개를 한 번의 탭으로.",
+                "url": f"{base.rstrip('/')}/sos.html",
+                "inLanguage": "ko",
+                "isAccessibleForFree": True,
+                "dateModified": sos.get("verified") or TODAY.isoformat(),
+                "publisher": {"@type": "Organization", "name": SITE_NAME},
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                    for q, a in faq
+                ],
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "트립픽", "item": base.rstrip("/") + "/"},
+                    {"@type": "ListItem", "position": 2, "name": "여행 중 위기상황 SOS"},
+                ],
+            },
+        ],
+    }, ensure_ascii=False) + "</script>"
+
+    body = read(PAGES / "sos.html")
+    body = body.replace("<!-- @SOS_COMMON -->", common)
+    body = body.replace("<!-- @SOS_TABS -->", tabs)
+    body = body.replace("<!-- @SOS_COUNTRIES -->", "\n".join(panels))
+    body = body.replace("<!-- @SOS_TABLE -->", "\n            ".join(rows))
+    body = body.replace("<!-- @SOS_FAQS -->", faq_html)
+    body = body.replace("<!-- @SOS_SHARE -->", share_row("page"))
+
+    return page(
+        out_root,
+        "sos.html",
+        title="여행 중 위기상황 SOS — 10개국 경찰·구급·대사관 번호와 현지어 문장 | 트립픽",
+        desc=(
+            "한국·일본·태국·베트남·대만·싱가포르·프랑스·이탈리아·스페인·영국의 경찰·구급·관광경찰·한국 공관 번호를 한 번의 탭으로 겁니다. "
+            "영사안전콜센터 +82-2-3210-0404(24시간)·119 재외국민 응급의료상담 +82-44-320-0119, 현지어 6문장 큰 글씨 카드. 2026-11-22 공식 안내 확인."
+        ),
+        keywords=(
+            "여행 중 위기상황, 해외 응급전화, 영사안전콜센터, 119 재외국민 응급의료상담, 해외 경찰 전화, "
+            "일본 119, 태국 1669, 유럽 112, 대사관 긴급번호, 여행 현지어 카드, 해외 여권 분실"
+        ),
+        body=body,
+        base=base,
+        active="sos",
+        jsonld=jsonld,
+    )
+
+
 def write_sitemap(out_root: Path, base: str):
     b = base.rstrip("/")
     urls = [(f"{b}/", "1.0", "weekly")]
@@ -4507,6 +4725,7 @@ def write_sitemap(out_root: Path, base: str):
         (f"{b}/quiz.html", "0.9", "monthly"),
         (f"{b}/baggage.html", "0.8", "monthly"),
         (f"{b}/checklist.html", "0.9", "monthly"),
+        (f"{b}/sos.html", "0.9", "monthly"),
         (f"{b}/stays.html", "0.9", "weekly"),
         (f"{b}/passes.html", "0.9", "monthly"),
         (f"{b}/calendar.html", "0.9", "monthly"),
@@ -4557,6 +4776,10 @@ def write_assets(style: str, out_root: Path):
             stale = out_root / "assets" / name
             if stale.exists():
                 stale.unlink()
+    # v44: /sos 국가 전환 · 현지어 큰 글씨 카드(이 페이지에서만 로드)
+    js44 = CONTENT / "v44.js"
+    if js44.exists():
+        shutil.copy2(js44, out_root / "assets" / "tp-v44.js")
     # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
     hdr = ROOT / "_headers"
     if hdr.exists():
@@ -4705,6 +4928,7 @@ def main():
         made.append(baggage_page(out_root, args.base))
         made.append(passes_page(out_root, args.base))
         made.append(calendar_page(out_root, args.base))
+        made.append(sos_page(out_root, args.base))
         made.append(quiz_page(out_root, args.base))
         made.append(checklist_page(out_root, args.base))
         made.append(stays_page(out_root, args.base))

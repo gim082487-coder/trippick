@@ -67,7 +67,13 @@ for slug in NEW:
 
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == len(list(OUT.glob("**/*.html"))) - 3, f"sitemap {len(locs)} URL (HTML 페이지 수와 불일치)")
+# 사이트맵에 들어가는 실제 페이지 수와 1:1인지. deploy_site 에는 noindex 인 404.html 과
+# 검색엔진 소유확인용 정적 파일(google….html·naver….html)이 같이 있어서 그것만 뺀다.
+_html_pages = [
+    p for p in OUT.glob("**/*.html")
+    if p.name != "404.html" and not re.fullmatch(r"(?:google|naver)[0-9a-f]+\.html", p.name)
+]
+check(len(locs) == len(_html_pages), f"sitemap {len(locs)} URL · 실제 페이지 {len(_html_pages)}개 (불일치)")
 for slug in NEW:
     check(f"/guides/{slug}" in sm, f"sitemap 에 /guides/{slug} 없음")
 
@@ -225,7 +231,7 @@ if ACTION.exists():
     check("kind: scheduled-action" in fm and "schedule:" in fm, "action.md 프론트매터 내용 변경됨")
     for slug in NEW:
         check(f"https://trippick.pages.dev/guides/{slug}" in act, f"action.md 에 {slug} URL 없음")
-    check("118개" in act, "action.md 사이트맵 기준 수(118개) 미갱신")
+    check("122개" in act, "action.md 사이트맵 기준 수(122개) 미갱신")
 else:
     fails.append(f"action.md 없음: {ACTION}")
 
