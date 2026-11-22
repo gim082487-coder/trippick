@@ -2655,6 +2655,7 @@
 .tp-trip-save{height:40px;border:0;border-radius:10px;background:var(--blue-700);color:#fff;
   font-size:13px;font-weight:850;padding:0 16px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .tp-trip-save:hover{background:var(--blue)}
+.tp-trip-acts{display:flex;gap:6px;margin-left:auto}
 .tp-trip-edit{height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink-2);
   font-size:11.6px;font-weight:800;padding:0 10px;cursor:pointer;font-family:inherit}
 .tp-trip-edit:hover{border-color:var(--blue);color:var(--blue-700)}
@@ -2741,6 +2742,7 @@
   .tp-trip-list{grid-template-columns:1fr}
   .tp-trip-foot{grid-template-columns:1fr}
   .tp-day b{font-size:21px}
+  .tp-trip-acts{margin-left:0;flex:1 1 100%;justify-content:flex-end}
 }
 
 /* =====================================================================

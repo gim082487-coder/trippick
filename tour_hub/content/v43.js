@@ -834,8 +834,8 @@
       TP_SAVED.innerHTML =
         '<div class="tp-trip-head"><span class="tp-day">' + esc(dayLabel(n)) + '</span>' +
         '<div class="tp-trip-title"><b>' + esc((c && c.short) || trip.s) + ' · 지금 할 일</b><span>' + esc(sub) + '</span></div>' +
-        '<button class="tp-trip-edit" type="button" data-tp-trip-edit>수정</button>' +
-        '<button class="tp-trip-edit" type="button" data-tp-trip-del>삭제</button></div>' +
+        '<span class="tp-trip-acts"><button class="tp-trip-edit" type="button" data-tp-trip-edit>수정</button>' +
+        '<button class="tp-trip-edit" type="button" data-tp-trip-del>삭제</button></span></div>' +
         '<div class="tp-trip-stages" aria-label="단계별 체크리스트">' + chips + '</div>' +
         '<ul class="tp-trip-list">' + items + '</ul>' +
         '<div class="tp-trip-foot">' + guides + ess + '</div>';
