@@ -2435,6 +2435,119 @@
     /* 카드가 홀수로 끝나면 마지막 카드는 한 줄을 다 쓴다(빈 칸 방지) */
     .tp-b-grid > .tp-b-card:last-child:nth-child(odd){grid-column:1 / -1}
   }
+  /* ===================== v41: 통합 퀵서치 · 찜 · 나란히 비교 ===================== */
+  .head-right{gap:7px}
+  .hd-ico{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:5px;height:40px;min-width:40px;
+    padding:0 9px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink-2);cursor:pointer;transition:.15s;flex:0 0 auto}
+  .hd-ico>svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .hd-ico kbd{font:inherit;font-size:10px;font-weight:800;color:var(--ink-3);background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 4px;line-height:1.3}
+  .hd-ico:hover{border-color:var(--blue-line);background:var(--blue-soft);color:var(--blue-700)}
+  .hd-ico .hd-n{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--blue);color:#fff;
+    font-size:9.5px;font-weight:850;display:inline-flex;align-items:center;justify-content:center;border:2px solid #fff;font-variant-numeric:tabular-nums}
+  .hd-ico .hd-n[hidden]{display:none}
+
+  /* 퀵서치 모달 */
+  .qs-modal{position:fixed;inset:0;z-index:130;display:flex;justify-content:center;align-items:flex-start;padding:10vh 18px 20px;
+    background:rgba(8,18,30,.42);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  .qs-modal[hidden]{display:none}
+  .qs-sheet{width:min(660px,100%);max-height:min(78vh,720px);display:flex;flex-direction:column;background:#fff;border-radius:20px;
+    box-shadow:0 28px 70px rgba(6,15,27,.3);overflow:hidden;border:1px solid rgba(255,255,255,.6)}
+  .qs-top{flex:0 0 auto;display:flex;align-items:center;gap:11px;padding:15px 16px;border-bottom:1px solid var(--line)}
+  .qs-ic{width:19px;height:19px;flex:0 0 auto;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round}
+  .qs-in{flex:1 1 auto;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:15.5px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  .qs-in::placeholder{color:var(--ink-3);font-weight:600;font-size:14px}
+  .qs-esc{flex:0 0 auto;border:1px solid var(--line);background:var(--soft);color:var(--ink-3);border-radius:7px;font-size:10.5px;font-weight:800;padding:4px 7px;cursor:pointer}
+  .qs-tabs{flex:0 0 auto;display:flex;gap:5px;padding:10px 12px;border-bottom:1px solid var(--line-2);overflow-x:auto;scrollbar-width:none}
+  .qs-tabs::-webkit-scrollbar{display:none}
+  .qs-tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;color:var(--ink-2);cursor:pointer}
+  .qs-tab i{font-style:normal;font-weight:800;color:var(--ink-3);font-size:10.5px}
+  .qs-tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .qs-tab.on i{color:rgba(255,255,255,.7)}
+  .qs-list{flex:1 1 auto;overflow:auto;padding:6px 6px 10px;-webkit-overflow-scrolling:touch}
+  .qs-lead{margin:6px 10px 4px;font-size:10.6px;font-weight:850;color:var(--ink-3);letter-spacing:.02em}
+  .qs-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;align-items:center;padding:9px 10px;border-radius:12px;color:inherit}
+  .qs-row:hover,.qs-row.on{background:var(--blue-soft)}
+  .qs-k{width:40px;height:34px;white-space:nowrap;border-radius:10px;display:grid;place-items:center;font-size:10px;font-weight:850;letter-spacing:-.02em;background:var(--soft);color:var(--ink-2)}
+  .qs-k.k-city{background:#EAF2F8;color:#0F5C97}
+  .qs-k.k-guide{background:#F2F1FB;color:#4B4A96}
+  .qs-k.k-stay{background:#EAF6F1;color:#0B6B4F}
+  .qs-k.k-tour{background:#FFF4E8;color:#8A5E1C}
+  .qs-k.k-food{background:#FBEDE9;color:#A33B27}
+  .qs-b{min-width:0;display:grid;gap:1px}
+  .qs-t{font-size:13.6px;font-weight:750;color:var(--ink);letter-spacing:-.02em;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qs-t mark{background:#FFF0B8;color:inherit;border-radius:3px;padding:0 1px}
+  .qs-m{font-size:11.2px;font-weight:600;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qs-go{font-size:10.5px;font-weight:850;color:var(--blue-700);opacity:0;transition:.12s}
+  .qs-row.on .qs-go,.qs-row:hover .qs-go{opacity:1}
+  .qs-empty{padding:34px 22px;text-align:center;color:var(--ink-3)}
+  .qs-empty b{display:block;font-size:14px;font-weight:800;color:var(--ink);margin-bottom:5px}
+  .qs-empty p{margin:0;font-size:12.4px;line-height:1.65}
+  .qs-empty a{color:var(--blue-700);font-weight:800;text-decoration:underline}
+  .qs-foot{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 14px;border-top:1px solid var(--line);background:#FAFCFD;font-size:10.6px;font-weight:650;color:var(--ink-3)}
+  .qs-keys b{color:var(--ink-2);font-weight:850}
+  body.qs-on{overflow:hidden}
+
+  /* 찜 */
+  .wish-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:38px;padding:0 10px;border:1px solid var(--line);
+    border-radius:10px;background:#fff;color:var(--ink-3);font-size:12px;font-weight:800;cursor:pointer;transition:.15s;flex:0 0 auto}
+  .wish-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .wish-btn:hover{color:#C9503C;border-color:#F2D3CB;background:#FDF7F5}
+  .wish-btn[aria-pressed="true"]{color:#C9503C;background:#FBEDE9;border-color:#F0CFC6}
+  .wish-btn[aria-pressed="true"] svg{fill:currentColor}
+  .wl-sheet{width:min(560px,100%)}
+  .wl-body{padding:12px}
+  .wl-list{display:grid;gap:8px}
+  .wl-row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:8px;background:#fff}
+  .wl-row img{width:64px;height:46px;object-fit:cover;border-radius:8px;background:var(--soft)}
+  .wl-ph{width:64px;height:46px;border-radius:8px;background:var(--soft);display:grid;place-items:center;font-size:10px;font-weight:800;color:var(--ink-3)}
+  .wl-t{min-width:0;display:grid;gap:2px;overflow:hidden}
+  .wl-t a{color:inherit;display:block;min-width:0;overflow:hidden}
+  .wl-t b{font-size:12.6px;font-weight:800;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .wl-t span{font-size:10.8px;color:var(--ink-3);font-weight:650}
+  .wl-note{margin:12px 2px 2px;font-size:10.6px;color:var(--ink-3);line-height:1.6}
+
+  /* 카드 결정 배지 */
+  .dbadges{display:flex;flex-wrap:wrap;gap:3px;margin:6px 0 0}
+  .db{display:inline-flex;align-items:center;gap:3px;border:1px solid var(--line);border-radius:6px;background:#FBFCFD;color:var(--ink-2);
+    font-size:10px;font-weight:800;padding:2px 6px;line-height:1.5;white-space:nowrap;letter-spacing:-.015em}
+  .db--ko{background:#EEF6FF;border-color:#D6E6F7;color:#155C97}
+  .db--now{background:#FFF4E8;border-color:#F2DFC4;color:#8A5E1C}
+  .db--free{background:#EAF6F1;border-color:#CFE9DE;color:#0B6B4F}
+  .db--warn{background:#FBEDE9;border-color:#F2D3CB;color:#A33B27}
+  .db--tax{background:#F2F1FB;border-color:#DEDCF2;color:#4B4A96}
+  .db--plain{background:#F7F8FA}
+  .db--date{background:transparent;border-color:transparent;color:var(--ink-3);font-weight:700;padding-left:0}
+  .scard .dbadges{margin:5px 0 0}
+  .sc-acts{display:flex;gap:6px;align-items:stretch;margin:10px 0 0}
+  .sc-acts .cmp-btn{width:auto;flex:1 1 auto;min-height:36px;border-radius:10px;font-size:11.8px}
+  .sc-acts .wish-btn{min-height:36px}
+  .cmpt-badges{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px}
+  .cmpt-sub{display:block;font-size:11px;line-height:1.6;color:var(--ink-2)}
+
+  @media (max-width:1320px){ .hd-ico kbd{display:none} .head-right .btn{padding:10px 12px;font-size:12.6px} }
+  @media (max-width:900px){ .head-right{gap:6px} }
+  @media (max-width:620px){
+    .hd-ico{height:38px;min-width:38px;border-radius:11px;padding:0 8px}
+    .qs-modal{padding:0}
+    .qs-sheet{width:100%;height:100%;max-height:100%;border-radius:0;border:0}
+    .qs-top{padding:13px}
+    .qs-in{font-size:14.6px}
+    .qs-tabs{flex-wrap:wrap;overflow:visible;padding:9px 10px;gap:4px}
+    .qs-tab{padding:5px 9px;font-size:11.4px}
+    .qs-k{width:36px;height:30px;font-size:9px}
+    .qs-list{padding:4px 4px 8px}
+    .qs-t{font-size:13px}
+    .qs-go{display:none}
+    .qs-keys{display:none}
+    .wl-body{padding:10px}
+    .wl-row{grid-template-columns:52px minmax(0,1fr) auto}
+    .wl-row img,.wl-ph{width:52px;height:40px}
+    .card-actions{gap:5px}
+    .card-actions .book{font-size:11.2px;padding-left:8px;padding-right:8px;gap:4px;white-space:nowrap}
+    .card-actions .cmp-btn{width:34px;font-size:10.8px;padding:0;white-space:nowrap}
+    .card-actions .wish-btn{width:30px;min-width:30px;padding:0}
+    .card-actions .wish-btn .wish-t{display:none}
+  }
 
 /* =====================================================================
    트립픽 콘텐츠 페이지 (가이드·소개·약관·개인정보·문의) 전용 스타일

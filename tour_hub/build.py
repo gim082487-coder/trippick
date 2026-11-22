@@ -269,6 +269,86 @@ def book_cta(t: dict) -> str:
     return "네이버 여행에서 예약"
 
 
+# ---------------------------------------------------------------- v41 결정 배지
+# 데이터에 실제로 적혀 있는 속성만 배지로 만든다. 없는 값은 만들지 않는다.
+BADGE_TEXT_FIELDS = ("perks", "meeting")
+
+
+def _badge_text(t: dict) -> str:
+    return " ".join(str(t.get(k) or "") for k in BADGE_TEXT_FIELDS)
+
+
+def decide_badges(t: dict, limit: int = 4) -> list:
+    """카드·비교표에 붙일 (문구, 클래스, 설명) 목록.
+
+    - 한국어 가이드: guide 값에 '한국어'가 있을 때만
+    - 즉시확정·모바일 바우처/티켓: perks·meeting 안내문에 그 표현이 있을 때만
+      (caution 의 '즉시 확정되는 상품이 아닙니다' 같은 부정 문장은 읽지 않는다)
+    - 무료 취소 / 취소 불가: cancelShort·cancel 규정 문구 그대로
+    - 노쇼핑·출발확정·단독·노팁·1팀 단가: tags·private·priceUnit
+    """
+    out: list = []
+
+    def add(txt: str, cls: str, title: str = "") -> None:
+        if len(out) < limit:
+            out.append((txt, cls, title))
+
+    guide = str(t.get("guide") or "")
+    if "한국어" in guide:
+        add("한국어 가이드", "ko", f"가이드 언어: {guide}")
+    txt = _badge_text(t)
+    if re.search(r"즉시\s*확정", txt):
+        add("즉시확정", "now", "상품 안내에 '즉시 확정'으로 적힌 상품")
+    if "모바일 바우처" in txt:
+        add("모바일 바우처", "now", "현장에서 모바일 바우처를 제시")
+    elif "모바일 티켓" in txt:
+        add("모바일 티켓", "now", "모바일 티켓으로 발송")
+    cs = str(t.get("cancelShort") or "")
+    if "무료" in cs or "전액 환불" in cs:
+        add("무료 취소", "free", str(t.get("cancel") or cs))
+    elif cs in ("취소 불가", "취소·변경 불가"):
+        add("취소 불가", "warn", str(t.get("cancel") or cs))
+    if is_noshop(t):
+        add("노쇼핑", "plain", "쇼핑 0회 상품")
+    if "출발확정" in (t.get("tags") or []) or str(t.get("booked") or "") in ("출발확정", "실시간 확정"):
+        add("출발확정", "plain", "출발이 확정된 상품")
+    if t.get("private"):
+        add("단독 진행", "plain", "단독(프라이빗) 상품")
+    if "노팁" in (t.get("tags") or []):
+        add("노팁", "plain", "팁 없음")
+    if t.get("priceUnit") == "team":
+        add("1팀 단가", "plain", "인원수와 무관한 팀(척) 단가")
+    return out
+
+
+def _date_badge(day: str):
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", str(day or ""))
+    if not m:
+        return None
+    return (f"{m.group(2)}.{m.group(3)} 조회", "date", f"가격·조건 확인일 {day}")
+
+
+def badges_html(t: dict) -> str:
+    items = decide_badges(t)
+    if t.get("checkedAt"):
+        d = _date_badge(t["checkedAt"])
+        if d:
+            items.append(d)
+    if not items:
+        return ""
+    return '<div class="dbadges">' + "".join(
+        f'<span class="db db--{c}" title="{esc(ti)}">{esc(x)}</span>' for x, c, ti in items
+    ) + "</div>"
+
+
+def wish_item(t: dict) -> str:
+    """찜 버튼이 localStorage 에 남길 최소 정보(이름·링크·사진·가격)."""
+    unit = "1팀" if is_team_item(t) else "1인"
+    data = {"n": t["title"], "u": t["url"], "i": t["img"], "p": f"{unit} {won(t['sale'])}원~", "t": "투어"}
+    return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+
+
+
 def card_html(t: dict, order: int, extra_cls: str = "") -> str:
     search_key = " ".join([
         t["title"], t["seller"], t.get("theme", ""), t.get("label", ""),
@@ -291,7 +371,7 @@ def card_html(t: dict, order: int, extra_cls: str = "") -> str:
     caution = (f'<p class="caution"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>'
                f'<span>{esc(t["caution"])}</span></p>') if t.get("caution") else ""
 
-    return f"""<article class="pcard{(' ' + extra_cls) if extra_cls else ''}" data-id="{t['id']}" data-city="{t['city']}" data-country="{t['country']}"
+    return f"""<article class="pcard{(' ' + extra_cls) if extra_cls else ''}" id="t-{t['id']}" data-id="{t['id']}" data-city="{t['city']}" data-country="{t['country']}"
         data-type="{esc(t.get('type',''))}" data-fee="{t.get('fee', 3)}"
         data-extra="{1 if t['extraFees'] else 0}" data-korean="{1 if '한국어' in t['guide'] else 0}"
         data-notip="{1 if '노팁' in t.get('tags', []) else 0}" data-noshop="{1 if is_noshop(t) else 0}"
@@ -306,6 +386,7 @@ def card_html(t: dict, order: int, extra_cls: str = "") -> str:
         <div class="body">
           <p class="loc">{flag_svg(t['country'], 15, 10.5)}<span>{esc(t['city_label'])} · {esc(t['seller'])}</span></p>
           <h3>{esc(t['title'])}</h3>
+          {badges_html(t)}
           {rating_html(t)}
           <ul class="specs">{''.join(specs)}</ul>
           <p class="cancels"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>{esc(t['cancelShort'])}</p>
@@ -314,7 +395,10 @@ def card_html(t: dict, order: int, extra_cls: str = "") -> str:
           {real_line(t)}
           <div class="card-actions">
             <a class="book" href="{esc(t['url'])}" target="_blank" rel="noopener sponsored">{book_cta(t)} <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <button class="cmp-btn" type="button" data-cmp-add="{t['id']}" aria-pressed="false" title="이 상품을 비교 바구니에 담기">비교</button>
+            <button class="cmp-btn" type="button" data-cmp-add="tour:{t['id']}" aria-pressed="false" title="이 상품을 비교 바구니에 담기">비교</button>
+            <button class="wish-btn" type="button" data-wish="tour:{t['id']}" data-wish-item="{esc(wish_item(t))}" aria-pressed="false" aria-label="찜하기" title="찜하기">
+              <svg aria-hidden="true"><use href="#i-heart"/></svg><span class="wish-t">찜</span>
+            </button>
           </div>
         </div>
       </article>"""
@@ -2090,6 +2174,45 @@ def render_search_index(data: dict, guides: dict, hubs: list) -> str:
     return '<script type="application/json" id="tpSearch">' + payload + "</script>"
 
 
+def render_compare_json(data: dict) -> str:
+    """v41 — 홈 투어 카드의 「나란히 비교」가 쓰는 값(최대 3개).
+
+    비교표에 필요한 값만 데이터에서 옮긴다: 가격·현장 추가금·실질가·평점·출발/소요·
+    포함 내역·취소 규정·배지·예약 링크. 화면(JS)은 이 값을 그대로 그린다.
+    """
+    items = {}
+    for t in data["tours"]:
+        ex = extra_rec(t)
+        items["tour:" + t["id"]] = {
+            "k": "tour",
+            "n": t["title"],
+            "im": t["img"],
+            "u": t["url"],
+            "sub": f'{t.get("city_label", "")} · {t.get("seller", "")} · {t.get("type", "")}',
+            "p": t["sale"],
+            "was": t["price"] if t["price"] > t["sale"] else 0,
+            "ptm": is_team_item(t),
+            "ex": ex["krw"],
+            "exb": ex["basis"],
+            "exas": ex["aside"],
+            "real": t["sale"] + ex["krw"],
+            "rt": t.get("rating"),
+            "rv": t.get("reviews") or 0,
+            "book": t.get("booked") or "",
+            "de": depart_of(t),
+            "du": t.get("duration") or "",
+            "gui": t.get("guide") or "",
+            "inc": t.get("includes") or "",
+            "ca": t.get("cancelShort") or "",
+            "caf": t.get("cancel") or "",
+            "bd": [[x, c] for x, c, _ in decide_badges(t)],
+            "cta": book_cta(t),
+        }
+    payload = json.dumps(items, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return ('<script type="application/json" id="tpCompare" data-kind="tour" data-max="3">'
+            + payload + "</script>")
+
+
 def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
     tours = data["tours"]
     FAQ_TOKENS = faq_tokens(data, courses, essentials)
@@ -2388,6 +2511,7 @@ def main() -> int:
     # v34: 도시별 「한 번에 예약·준비 묶음」 링크 표(data/bundles.json)를 홈에 심는다
     html = replace_block(html, "<!-- @TP_BUNDLES -->", render_bundles_json())
     html = replace_block(html, "<!-- @SEARCH_INDEX -->", render_search_index(data, guides, HUB_LIST))
+    html = replace_block(html, "<!-- @COMPARE_DATA -->", render_compare_json(data))
     html = replace_block(html, "<!-- @JSONLD -->", render_jsonld(data, courses, essentials))
     # v35: GA4 — data/analytics.json 의 측정 ID 한 곳으로 전체 계측을 켠다(비워 두면 아무 스크립트도 넣지 않는다)
     html = html.replace("<!-- @GA4 -->", ga4_head())

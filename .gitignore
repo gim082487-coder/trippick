@@ -24,3 +24,6 @@ _preview390.html
 .cache/
 .npm/
 .venv/
+
+# v41 생성물(빌드가 다시 만든다)
+tour_hub/search_index.json

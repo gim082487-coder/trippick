@@ -49,9 +49,10 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 22)
-CSS_V = "37"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "38"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "35"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
+JS_V41 = "1"   # assets/tp-v41.js (통합 퀵서치 · 찜 · 나란히 비교) 캐시 버전
 
 
 def ga4_head() -> str:
@@ -197,6 +198,12 @@ def header_html(up: str, active: str = "") -> str:
 {nav}
     </nav>
     <div class="head-right">
+      <button class="hd-ico" type="button" data-qs-open aria-label="통합 검색" title="통합 검색 (Ctrl/⌘ K)">
+        <svg aria-hidden="true"><use href="#i-search"/></svg><kbd>⌘K</kbd>
+      </button>
+      <button class="hd-ico" type="button" data-wl-open aria-label="찜한 항목" title="찜한 항목">
+        <svg aria-hidden="true"><use href="#i-heart"/></svg><span class="hd-n" data-wl-count hidden>0</span>
+      </button>
       <a class="btn" href="{up}index.html#regions">투어 {TOTAL}개 찾기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -469,6 +476,7 @@ def page(
 <script src="{up}assets/trip-save.js?v={JS_V}" defer></script>
 {f'<script type="application/json" id="tpBundles">{bundles_payload()}</script>' if "data-tp-bundle" in body else ''}
 <script src="{up}assets/tp-v35.js?v={JS_V35}" defer></script>
+<script src="{up}assets/tp-v41.js?v={JS_V41}" defer></script>
 </body>
 </html>
 """
@@ -3127,13 +3135,221 @@ def _stay_tags(h: dict) -> str:
     names = _stay_theme_name()
     out = []
     for t in (h.get("themes") or [])[:2]:
-        if t in names:
+        if t in names and t != "station":  # v41: 역·도보권은 결정 배지로 한 번만
             out.append(f'<span class="sc-theme t-{t}">{esc(names[t])}</span>')
     for p in (h.get("pointTags") or [])[:2]:
         out.append(f'<span class="sc-pt">{esc(p)}</span>')
     if not out:
         return ""
     return '<div class="sc-tags">' + "".join(out) + "</div>"
+
+
+# ---------------------------------------------------------------- v41 결정 배지·찜·비교
+def stay_badges(h: dict) -> list:
+    """숙소 카드에 붙일 (문구, 클래스, 설명) — stays.json 에 있는 값만 쓴다."""
+    out = []
+    basis = h.get("priceBasis") or ""
+    if "세금" in basis:
+        out.append(("세금·봉사료 포함", "tax", basis))
+    w = (h.get("sub") or {}).get("위치")
+    try:
+        if w and float(w) >= 9.2:
+            out.append((f"위치 {w}", "ko", "트립닷컴 투숙객 위치 점수(10점 만점)"))
+    except (TypeError, ValueError):
+        pass
+    if "station" in (h.get("themes") or []):
+        out.append(("역·도보권", "now", "역·도보로 움직이기 편한 위치"))
+    if "2인 총액" in basis:
+        out.append(("2인 총액 기준", "warn", basis))
+    return out[:3]
+
+
+def stay_badges_html(h: dict) -> str:
+    items = stay_badges(h)
+    m = re.match(r"(\d{4}-\d{2}-\d{2})", h.get("priceBasis") or "")
+    if m:
+        d = B._date_badge(m.group(1))
+        if d:
+            items.append(d)
+    if not items:
+        return ""
+    return '<div class="dbadges">' + "".join(
+        f'<span class="db db--{c}" title="{esc(ti)}">{esc(x)}</span>' for x, c, ti in items
+    ) + "</div>"
+
+
+def stay_wish_item(h: dict, region: dict) -> str:
+    basis = h.get("priceBasis") or ""
+    label = "2인 총액" if "2인 총액" in basis else "1박"
+    data = {
+        "n": h["name"],
+        "u": h["url"],
+        "i": h["img"],
+        "p": f'{label} {h["price"]:,}원~',
+        "t": f'숙소 · {region.get("name", "")}',
+    }
+    return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+
+
+def stays_compare_json() -> str:
+    """v41 — /stays 「나란히 비교」 데이터(최대 3곳). 카드에 있는 값만 옮긴다."""
+    names = {r["id"]: r for r in STAYS.get("regions", [])}
+    theme_name = _stay_theme_name()
+    items = {}
+    for h in STAYS.get("hotels", []):
+        r = names.get(h["region"], {})
+        basis = h.get("priceBasis") or ""
+        items["stay:" + str(h["id"])] = {
+            "k": "stay",
+            "n": h["name"],
+            "im": h["img"],
+            "u": h["url"],
+            "sub": f'{r.get("name", "")} · {h.get("typeLabel", "")} · {h.get("star", "")}성',
+            "p": h["price"],
+            "pl": "1박·2인·세금 포함" if "2인 총액" not in basis else "2인 총액·세금 포함",
+            "sc": h["score"],
+            "rv": h["reviews"],
+            "ss": h.get("sub") or {},
+            "zone": h.get("zone") or "",
+            "ac": h.get("access") or "",
+            "th": [theme_name[x] for x in (h.get("themes") or []) if x in theme_name],
+            "pt": (h.get("pointTags") or [])[:2],
+            "basis": basis,
+            "bd": [[x, c] for x, c, _ in stay_badges(h)],
+            "cta": "트립닷컴에서 예약",
+        }
+    payload = json.dumps(items, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return ('<script type="application/json" id="tpCompare" data-kind="stay" data-max="3">'
+            + payload + "</script>")
+
+
+def compare_shell(title: str = "숙소 나란히 비교", hint: str = "1박 가격·평점·위치 기준") -> str:
+    """홈과 같은 비교 바·모달 마크업(js: assets/tp-v41.js)."""
+    return f"""<div class="cmp-bar" id="cmpBar" aria-label="비교 바구니">
+  <div class="wrap">
+    <div class="cb-list" id="cbList"></div>
+    <div class="cb-act">
+      <span class="cb-count" id="cbCount">0 / 3</span>
+      <button class="cb-open" type="button" id="cbOpen" disabled>나란히 비교</button>
+      <button class="cb-clear" type="button" id="cbClear">비우기</button>
+    </div>
+  </div>
+</div>
+
+<div class="cmp-modal" id="cmpModal" hidden>
+  <div class="cmp-sheet" role="dialog" aria-modal="true" aria-labelledby="cmpTitle">
+    <div class="cmp-head">
+      <div><b id="cmpTitle">{title}</b> <span class="hint">{hint}</span></div>
+      <span class="cmp-head-act">
+        <button class="cmp-close" type="button" id="cmpClearAll">전체 비우기</button>
+        <button class="cmp-close" type="button" id="cmpClose">닫기</button>
+      </span>
+    </div>
+    <p class="cmp-scroll-hint">표는 좌우로 밀어서 볼 수 있어요 · 맨 왼쪽 열은 항목 이름입니다</p>
+    <div class="cmp-scroll" id="cmpBody"></div>
+  </div>
+</div>"""
+
+
+def build_search_index() -> dict:
+    """v41 통합 퀵서치 색인 — 도시 30 · 가이드 85 · 숙소 102 · 투어 84 · 맛집 75.
+
+    URL 은 Cloudflare Pages 가 200 으로 서빙하는 확장자 없는 주소다. 도시 허브가 없는
+    도시는 홈의 그 도시 섹션(#id), 투어는 홈 카드(#t-id), 숙소는 지역 필터(/stays?region=),
+    맛집은 홈 맛집 카드(#id — 그 도시 탭이 열린다)로 바로 간다.
+    """
+    tours_doc = load_json("tours.json")
+    cities = tours_doc.get("cities", [])
+    hubs = {h["slug"]: h for h in hub_list()}
+    hub_of = {}
+    for h in hub_list():
+        for cid in (h.get("cityIds") or [h["slug"]]):
+            hub_of[cid] = h["slug"]
+    stay_regions = {r["id"]: r for r in STAYS.get("regions", [])}
+    stay_count = {}
+    for h in STAYS.get("hotels", []):
+        stay_count[h["region"]] = stay_count.get(h["region"], 0) + 1
+
+    def norm(s) -> str:
+        return re.sub(r"\s+", " ", str(s or "")).strip().lower()
+
+    items = []
+
+    # 도시 30 — 허브가 있는 도시 먼저
+    def city_n(c):
+        return sum(1 for x in TOURS if x["city"] == c["id"])
+    ordered = sorted(cities, key=lambda c: (0 if c["id"] in hub_of else 1, -city_n(c)))
+    for c in ordered:
+        slug = hub_of.get(c["id"])
+        region = stay_regions.get(slug or c["id"])
+        n_stay = stay_count.get(region["id"], 0) if region else 0
+        cname = "국내" if c["country"] == "kr" else B.COUNTRY_NAME.get(c["country"], "")
+        meta = f'{cname} · 투어 {city_n(c)}개' + (f" · 찐숙소 {n_stay}곳" if n_stay else "")
+        items.append({
+            "t": c["name"] + " 여행",
+            "k": "city",
+            "m": meta,
+            "u": f"/{slug}" if slug else f'/#{c["id"]}',
+            "q": norm(" ".join([c["name"], c["title"], c.get("tagline", ""), c.get("duration_note", ""),
+                                hubs.get(slug, {}).get("keywords", "") if slug else ""])),
+        })
+
+    # 가이드 85
+    extra = EXTRA.get("guides") or {}
+    region_names = {r["code"]: r["name"] for r in (EXTRA.get("regions") or [])}
+    for g in GUIDES_LIST:
+        ex = extra.get(g["slug"]) or {}
+        q = " ".join([
+            g.get("navTitle", ""), strip_tags(g.get("h1", "")), g.get("dek", ""), g.get("keywords", ""),
+            g.get("category", ""), " ".join(ex.get("tags") or []),
+            " ".join(region_names.get(x, x) for x in (ex.get("regions") or [])), ex.get("takeaway") or "",
+        ])
+        items.append({
+            "t": g["navTitle"],
+            "k": "guide",
+            "m": f'{g["category"]} · {g["read"]}분 · 최종 검증 {g["updated"].replace("-", ".")}',
+            "u": f'/guides/{g["slug"]}',
+            "q": norm(q)[:460],
+        })
+
+    # 숙소 102
+    for r in STAYS.get("regions", []):
+        for h in [x for x in STAYS.get("hotels", []) if x["region"] == r["id"]]:
+            items.append({
+                "t": h["name"],
+                "k": "stay",
+                "m": f'{r["name"]} · {h["score"]:.1f}점 · 리뷰 {h["reviews"]:,} · 1박 {h["price"]:,}원~',
+                "u": f'/stays?region={r["id"]}',
+                "q": norm(" ".join([h["name"], h.get("en", ""), r["name"], r.get("country", ""),
+                                    h.get("zone", ""), h.get("access", ""), h.get("typeLabel", ""),
+                                    h.get("reason", "")]))[:360],
+            })
+
+    # 투어 84
+    for x in TOURS:
+        unit = "1팀" if B.is_team_item(x) else "1인"
+        items.append({
+            "t": x["title"],
+            "k": "tour",
+            "m": f'{x.get("city_label", "")} · {unit} {x["sale"]:,}원~ · {x["type"]}',
+            "u": f'/#t-{x["id"]}',
+            "q": norm(" ".join([x["title"], x.get("city_label", ""), x.get("seller", ""), x["type"],
+                                x.get("theme", ""), " ".join(x.get("tags") or [])]))[:320],
+        })
+
+    # 맛집 75
+    for c in (RESTAURANTS.get("cities") or []):
+        for it in c.get("items") or []:
+            items.append({
+                "t": f'{it["nameKo"]} ({it["name"]})',
+                "k": "food",
+                "m": f'{c["name"]} · {it["category"]} · {it["price"]}',
+                "u": f'/#{it["id"]}',
+                "q": norm(" ".join([it["name"], it["nameKo"], c["name"], it.get("area", ""),
+                                    it.get("category", ""), it.get("dish", ""), it.get("tip", "")]))[:360],
+            })
+
+    return {"generated": "2026-11-22", "items": items}
 
 
 def stays_card(h: dict, region: dict, group: str | None = None) -> str:
@@ -3153,10 +3369,17 @@ def stays_card(h: dict, region: dict, group: str | None = None) -> str:
       <div class="sc-body">
         <div class="sc-top"><span class="sc-region">{esc(region['name'])} <i class="sc-flag{' kr' if scope == 'kr' else ''}">{flag_ic}{esc(flag)}</i></span><i></i><span>{h['star']}성</span></div>
         <h3><a href="{esc(h['url'])}" target="_blank" rel="noopener sponsored">{esc(h['name'])}</a></h3>
+        {stay_badges_html(h)}
         <p class="sc-loc"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>{esc(h['access'])}</span></p>
         <p class="sc-reason">{esc(h['reason'])}</p>
         {_stay_tags(h)}
         {sub}
+        <div class="sc-acts">
+          <button class="cmp-btn" type="button" data-cmp-add="stay:{h['id']}" aria-pressed="false" title="이 숙소를 비교 바구니에 담기">비교</button>
+          <button class="wish-btn" type="button" data-wish="stay:{h['id']}" data-wish-item="{esc(stay_wish_item(h, region))}" aria-pressed="false" aria-label="찜하기" title="찜하기">
+            <svg aria-hidden="true"><use href="#i-heart"/></svg><span class="wish-t">찜</span>
+          </button>
+        </div>
         <div class="sc-foot">
           <span class="sc-price"><b>{h['price']:,}원</b>1박~ <em class="sc-basis">{_stay_basis_short(h)}</em></span>
           <a class="sc-cta" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored">예약 <span class="sc-ext">트립닷컴</span> <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -3503,7 +3726,9 @@ def stays_page(out_root: Path, base: str) -> Path:
 {share_row('stays')}
   </div>
 </div>
-{stays_filter_script()}"""
+{stays_filter_script()}
+{compare_shell()}
+{stays_compare_json()}"""
 
     return page(
         out_root,
@@ -4284,6 +4509,10 @@ def write_assets(style: str, out_root: Path):
         stale = out_root / "assets" / "tp-v34.js"
         if stale.exists():
             stale.unlink()
+    # v41: 통합 퀵서치 · 찜 · 비교 스크립트(홈·서브페이지 공통)
+    js41 = CONTENT / "v41.js"
+    if js41.exists():
+        shutil.copy2(js41, out_root / "assets" / "tp-v41.js")
     # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
     hdr = ROOT / "_headers"
     if hdr.exists():
@@ -4435,6 +4664,13 @@ def main():
         made.append(quiz_page(out_root, args.base))
         made.append(checklist_page(out_root, args.base))
         made.append(stays_page(out_root, args.base))
+
+    if args.only == "":
+        idx = build_search_index()
+        payload = json.dumps(idx, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        (out_root / "search_index.json").write_text(payload, encoding="utf-8")
+        if (ROOT / "search_index.json").resolve() != (out_root / "search_index.json").resolve():
+            (ROOT / "search_index.json").write_text(payload, encoding="utf-8")
 
     write_sitemap(out_root, args.base)
     not_found_page(out_root, args.base)

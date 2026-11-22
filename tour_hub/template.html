@@ -2476,8 +2476,123 @@
     /* 카드가 홀수로 끝나면 마지막 카드는 한 줄을 다 쓴다(빈 칸 방지) */
     .tp-b-grid > .tp-b-card:last-child:nth-child(odd){grid-column:1 / -1}
   }
+  /* ===================== v41: 통합 퀵서치 · 찜 · 나란히 비교 ===================== */
+  .head-right{gap:7px}
+  .hd-ico{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:5px;height:40px;min-width:40px;
+    padding:0 9px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink-2);cursor:pointer;transition:.15s;flex:0 0 auto}
+  .hd-ico>svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .hd-ico kbd{font:inherit;font-size:10px;font-weight:800;color:var(--ink-3);background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 4px;line-height:1.3}
+  .hd-ico:hover{border-color:var(--blue-line);background:var(--blue-soft);color:var(--blue-700)}
+  .hd-ico .hd-n{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--blue);color:#fff;
+    font-size:9.5px;font-weight:850;display:inline-flex;align-items:center;justify-content:center;border:2px solid #fff;font-variant-numeric:tabular-nums}
+  .hd-ico .hd-n[hidden]{display:none}
+
+  /* 퀵서치 모달 */
+  .qs-modal{position:fixed;inset:0;z-index:130;display:flex;justify-content:center;align-items:flex-start;padding:10vh 18px 20px;
+    background:rgba(8,18,30,.42);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  .qs-modal[hidden]{display:none}
+  .qs-sheet{width:min(660px,100%);max-height:min(78vh,720px);display:flex;flex-direction:column;background:#fff;border-radius:20px;
+    box-shadow:0 28px 70px rgba(6,15,27,.3);overflow:hidden;border:1px solid rgba(255,255,255,.6)}
+  .qs-top{flex:0 0 auto;display:flex;align-items:center;gap:11px;padding:15px 16px;border-bottom:1px solid var(--line)}
+  .qs-ic{width:19px;height:19px;flex:0 0 auto;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round}
+  .qs-in{flex:1 1 auto;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:15.5px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+  .qs-in::placeholder{color:var(--ink-3);font-weight:600;font-size:14px}
+  .qs-esc{flex:0 0 auto;border:1px solid var(--line);background:var(--soft);color:var(--ink-3);border-radius:7px;font-size:10.5px;font-weight:800;padding:4px 7px;cursor:pointer}
+  .qs-tabs{flex:0 0 auto;display:flex;gap:5px;padding:10px 12px;border-bottom:1px solid var(--line-2);overflow-x:auto;scrollbar-width:none}
+  .qs-tabs::-webkit-scrollbar{display:none}
+  .qs-tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;color:var(--ink-2);cursor:pointer}
+  .qs-tab i{font-style:normal;font-weight:800;color:var(--ink-3);font-size:10.5px}
+  .qs-tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .qs-tab.on i{color:rgba(255,255,255,.7)}
+  .qs-list{flex:1 1 auto;overflow:auto;padding:6px 6px 10px;-webkit-overflow-scrolling:touch}
+  .qs-lead{margin:6px 10px 4px;font-size:10.6px;font-weight:850;color:var(--ink-3);letter-spacing:.02em}
+  .qs-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:11px;align-items:center;padding:9px 10px;border-radius:12px;color:inherit}
+  .qs-row:hover,.qs-row.on{background:var(--blue-soft)}
+  .qs-k{width:40px;height:34px;white-space:nowrap;border-radius:10px;display:grid;place-items:center;font-size:10px;font-weight:850;letter-spacing:-.02em;background:var(--soft);color:var(--ink-2)}
+  .qs-k.k-city{background:#EAF2F8;color:#0F5C97}
+  .qs-k.k-guide{background:#F2F1FB;color:#4B4A96}
+  .qs-k.k-stay{background:#EAF6F1;color:#0B6B4F}
+  .qs-k.k-tour{background:#FFF4E8;color:#8A5E1C}
+  .qs-k.k-food{background:#FBEDE9;color:#A33B27}
+  .qs-b{min-width:0;display:grid;gap:1px}
+  .qs-t{font-size:13.6px;font-weight:750;color:var(--ink);letter-spacing:-.02em;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qs-t mark{background:#FFF0B8;color:inherit;border-radius:3px;padding:0 1px}
+  .qs-m{font-size:11.2px;font-weight:600;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qs-go{font-size:10.5px;font-weight:850;color:var(--blue-700);opacity:0;transition:.12s}
+  .qs-row.on .qs-go,.qs-row:hover .qs-go{opacity:1}
+  .qs-empty{padding:34px 22px;text-align:center;color:var(--ink-3)}
+  .qs-empty b{display:block;font-size:14px;font-weight:800;color:var(--ink);margin-bottom:5px}
+  .qs-empty p{margin:0;font-size:12.4px;line-height:1.65}
+  .qs-empty a{color:var(--blue-700);font-weight:800;text-decoration:underline}
+  .qs-foot{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:9px 14px;border-top:1px solid var(--line);background:#FAFCFD;font-size:10.6px;font-weight:650;color:var(--ink-3)}
+  .qs-keys b{color:var(--ink-2);font-weight:850}
+  body.qs-on{overflow:hidden}
+
+  /* 찜 */
+  .wish-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:38px;padding:0 10px;border:1px solid var(--line);
+    border-radius:10px;background:#fff;color:var(--ink-3);font-size:12px;font-weight:800;cursor:pointer;transition:.15s;flex:0 0 auto}
+  .wish-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .wish-btn:hover{color:#C9503C;border-color:#F2D3CB;background:#FDF7F5}
+  .wish-btn[aria-pressed="true"]{color:#C9503C;background:#FBEDE9;border-color:#F0CFC6}
+  .wish-btn[aria-pressed="true"] svg{fill:currentColor}
+  .wl-sheet{width:min(560px,100%)}
+  .wl-body{padding:12px}
+  .wl-list{display:grid;gap:8px}
+  .wl-row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:8px;background:#fff}
+  .wl-row img{width:64px;height:46px;object-fit:cover;border-radius:8px;background:var(--soft)}
+  .wl-ph{width:64px;height:46px;border-radius:8px;background:var(--soft);display:grid;place-items:center;font-size:10px;font-weight:800;color:var(--ink-3)}
+  .wl-t{min-width:0;display:grid;gap:2px;overflow:hidden}
+  .wl-t a{color:inherit;display:block;min-width:0;overflow:hidden}
+  .wl-t b{font-size:12.6px;font-weight:800;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .wl-t span{font-size:10.8px;color:var(--ink-3);font-weight:650}
+  .wl-note{margin:12px 2px 2px;font-size:10.6px;color:var(--ink-3);line-height:1.6}
+
+  /* 카드 결정 배지 */
+  .dbadges{display:flex;flex-wrap:wrap;gap:3px;margin:6px 0 0}
+  .db{display:inline-flex;align-items:center;gap:3px;border:1px solid var(--line);border-radius:6px;background:#FBFCFD;color:var(--ink-2);
+    font-size:10px;font-weight:800;padding:2px 6px;line-height:1.5;white-space:nowrap;letter-spacing:-.015em}
+  .db--ko{background:#EEF6FF;border-color:#D6E6F7;color:#155C97}
+  .db--now{background:#FFF4E8;border-color:#F2DFC4;color:#8A5E1C}
+  .db--free{background:#EAF6F1;border-color:#CFE9DE;color:#0B6B4F}
+  .db--warn{background:#FBEDE9;border-color:#F2D3CB;color:#A33B27}
+  .db--tax{background:#F2F1FB;border-color:#DEDCF2;color:#4B4A96}
+  .db--plain{background:#F7F8FA}
+  .db--date{background:transparent;border-color:transparent;color:var(--ink-3);font-weight:700;padding-left:0}
+  .scard .dbadges{margin:5px 0 0}
+  .sc-acts{display:flex;gap:6px;align-items:stretch;margin:10px 0 0}
+  .sc-acts .cmp-btn{width:auto;flex:1 1 auto;min-height:36px;border-radius:10px;font-size:11.8px}
+  .sc-acts .wish-btn{min-height:36px}
+  .cmpt-badges{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px}
+  .cmpt-sub{display:block;font-size:11px;line-height:1.6;color:var(--ink-2)}
+
+  @media (max-width:1320px){ .hd-ico kbd{display:none} .head-right .btn{padding:10px 12px;font-size:12.6px} }
+  @media (max-width:900px){ .head-right{gap:6px} }
+  @media (max-width:620px){
+    .hd-ico{height:38px;min-width:38px;border-radius:11px;padding:0 8px}
+    .qs-modal{padding:0}
+    .qs-sheet{width:100%;height:100%;max-height:100%;border-radius:0;border:0}
+    .qs-top{padding:13px}
+    .qs-in{font-size:14.6px}
+    .qs-tabs{flex-wrap:wrap;overflow:visible;padding:9px 10px;gap:4px}
+    .qs-tab{padding:5px 9px;font-size:11.4px}
+    .qs-k{width:36px;height:30px;font-size:9px}
+    .qs-list{padding:4px 4px 8px}
+    .qs-t{font-size:13px}
+    .qs-go{display:none}
+    .qs-keys{display:none}
+    .wl-body{padding:10px}
+    .wl-row{grid-template-columns:52px minmax(0,1fr) auto}
+    .wl-row img,.wl-ph{width:52px;height:40px}
+    .card-actions{gap:5px}
+    .card-actions .book{font-size:11.2px;padding-left:8px;padding-right:8px;gap:4px;white-space:nowrap}
+    .card-actions .cmp-btn{width:34px;font-size:10.8px;padding:0;white-space:nowrap}
+    .card-actions .wish-btn{width:30px;min-width:30px;padding:0}
+    .card-actions .wish-btn .wish-t{display:none}
+  }
+
 </style>
-<noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}</style></noscript>
+<noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}
+</style></noscript>
 </head>
 <body>
 
@@ -2489,6 +2604,7 @@
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.6-3.1 7.7-7 9-3.9-1.3-7-4.4-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4.5"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.4-4.6-7.4-9.6A4.4 4.4 0 0 1 12 7.4a4.4 4.4 0 0 1 7.4 3C19.4 15.4 12 20 12 20Z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 7l5 5-5 5"/></symbol>
   <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.4"/></symbol>
   <symbol id="i-won" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8 8.5 10 15.5 12 9.5 14 15.5 16 8.5"/></symbol>
@@ -2545,6 +2661,12 @@
       <a href="#alert" data-nav="alert" data-hide-sm>특가 알림</a>
     </nav>
     <div class="head-right">
+      <button class="hd-ico" type="button" data-qs-open aria-label="통합 검색" title="통합 검색 (Ctrl/⌘ K)">
+        <svg aria-hidden="true"><use href="#i-search"/></svg><kbd>⌘K</kbd>
+      </button>
+      <button class="hd-ico" type="button" data-wl-open aria-label="찜한 항목" title="찜한 항목">
+        <svg aria-hidden="true"><use href="#i-heart"/></svg><span class="hd-n" data-wl-count hidden>0</span>
+      </button>
       <a class="btn" href="#regions">투어 {{TOTAL}}개 찾기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
@@ -3129,6 +3251,7 @@
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
 <!-- @TP_DATA -->
+<!-- @COMPARE_DATA -->
 <!-- @TP_BUNDLES -->
 <!-- @SEARCH_INDEX -->
 <script>
@@ -3453,7 +3576,17 @@ document.addEventListener('change', (e) => {
   function openHash() {
     if (!location.hash || location.hash.length < 2) return;
     var t = document.getElementById(location.hash.slice(1));
-    if (t) openFolds(t);
+    if (t) {
+      openFolds(t);
+      setTimeout(function () {
+        var r = t.getBoundingClientRect();
+        if (r.top < 0 || r.top > window.innerHeight - 40) {
+          var hd = document.querySelector('.site-head');
+          var top = r.top + window.scrollY - ((hd ? hd.offsetHeight : 0) + 10);
+          window.scrollTo({ top: Math.max(top, 0) });
+        }
+      }, 80);
+    }
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
@@ -3844,178 +3977,6 @@ if (searchForm) {
   })();
 
   renderAll();
-})();
-
-/* ================= 상품 3개 비교 ================= */
-(function () {
-  var bar = document.getElementById('cmpBar');
-  var modal = document.getElementById('cmpModal');
-  var list = document.getElementById('cbList');
-  var countEl = document.getElementById('cbCount');
-  var openBtn = document.getElementById('cbOpen');
-  var clearBtn = document.getElementById('cbClear');
-  var closeBtn = document.getElementById('cmpClose');
-  var modalBody = document.getElementById('cmpBody');
-  var tpEl = document.getElementById('tpData');
-  if (!bar || !modal || !tpEl) return;
-
-  var TP = JSON.parse(tpEl.textContent);
-  var picked = [];
-  var MAX = 3;
-  var lastFocus = null;
-
-  function won(n) { return Math.round(n).toLocaleString('ko-KR'); }
-  function esc(v) {
-    return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
-    });
-  }
-  function realP(t) { return t.sa + t.ex; }
-  function shortName(t) {
-    return t.ti.length > 26 ? t.ti.slice(0, 25) + '…' : t.ti;
-  }
-
-  function syncButtons() {
-    document.querySelectorAll('[data-cmp-add]').forEach(function (b) {
-      var on = picked.indexOf(b.dataset.cmpAdd) >= 0;
-      b.setAttribute('aria-pressed', String(on));
-      b.textContent = on ? '담김' : '비교';
-    });
-  }
-
-  function renderBar() {
-    list.innerHTML = picked.map(function (id) {
-      var t = TP.tours[id];
-      return '<div class="cb-item"><img src="' + esc(t.im) + '" alt="" width="26" height="26" loading="lazy" />' +
-        '<span>' + esc(shortName(t)) + '</span>' +
-        '<button class="cb-x" type="button" data-cmp-del="' + esc(id) + '" aria-label="비교에서 빼기">✕</button></div>';
-    }).join('');
-    countEl.textContent = (window.matchMedia && window.matchMedia('(max-width:620px)').matches)
-      ? picked.length + '개 선택'
-      : picked.length + ' / ' + MAX;
-    openBtn.disabled = picked.length < 2;
-    openBtn.textContent = picked.length >= 2 ? '나란히 비교 (' + picked.length + ')' : '나란히 비교';
-    bar.classList.toggle('on', picked.length > 0);
-    document.body.classList.toggle('cmp-on', picked.length > 0);
-    syncButtons();
-  }
-
-  function toggle(id) {
-    if (!TP.tours[id]) return;
-    var i = picked.indexOf(id);
-    if (i >= 0) {
-      picked.splice(i, 1);
-    } else {
-      if (picked.length >= MAX) {
-        toast('비교는 최대 ' + MAX + '개까지 담을 수 있어요. 하나를 빼고 담아주세요.');
-        return;
-      }
-      picked.push(id);
-      toast('비교에 담았어요 · ' + picked.length + '/' + MAX);
-    }
-    renderBar();
-    if (!modal.hidden) {
-      if (picked.length < 2) closeModal();
-      else renderModal();
-    }
-  }
-
-  function renderModal() {
-    if (!picked.length) return;
-    var best = Math.min.apply(null, picked.map(function (id) { return realP(TP.tours[id]); }));
-    function head() {
-      return '<tr><th scope="col">항목</th>' + picked.map(function (id) {
-        var t = TP.tours[id];
-        return '<th scope="col"><div class="cmpt-prod"><img src="' + esc(t.im) + '" alt="" loading="lazy" />' +
-          '<b>' + esc(t.ti) + '</b><span>' + esc(t.se) + ' · ' + esc(t.ty) + '</span>' +
-          '<button class="cmpt-del" type="button" data-cmp-del="' + esc(t.id || '') + '">이 상품 빼기</button></div></th>';
-      }).join('') + '</tr>';
-    }
-    function row(label, fn) {
-      return '<tr><th scope="row">' + label + '</th>' + picked.map(function (id) {
-        return '<td>' + fn(TP.tours[id]) + '</td>';
-      }).join('') + '</tr>';
-    }
-    var rows = [
-      row('1인 상품가', function (t) { return '<b>' + won(t.sa) + '원</b>' + (t.ptm ? '<br><span class="cmpt-soft">1팀(1척) 단가 · 인원수 무관</span>' : ''); }),
-      row('현장 추가금', function (t) {
-        if (!t.ex) return '<span class="cmpt-soft">' + (t.as ? '금액 표기 없음<br>' + esc(t.as) : '없음') + '</span>';
-        return '<b>' + won(t.ex) + '원</b><br><span class="cmpt-soft">' + esc(t.ba) + '</span>' +
-          (t.pt ? '<br><span class="cmpt-soft">* 상세페이지 금액 미표시 항목 있음</span>' : '');
-      }),
-      row('실질 1인가', function (t) {
-        var v = realP(t);
-        return '<span class="cmpt-real">' + won(v) + '원</span>' + (v === best ? '<span class="cmpt-best">최저</span>' : '') +
-          (t.ptm ? '<br><span class="cmpt-soft">단독대여는 팀 단가</span>' : '');
-      }),
-      row('항공·숙소', function (t) { return t.fl ? '포함' : '<span class="cmpt-soft">별도</span>'; }),
-      row('출발지', function (t) { return esc(t.de); }),
-      row('소요·가이드', function (t) { return esc(t.du); }),
-      row('쇼핑', function (t) {
-        if (t.ns) return '노쇼핑(0회)';
-        if (t.sh != null) return '쇼핑 ' + t.sh + '회';
-        return '<span class="cmpt-soft">표기 없음</span>';
-      }),
-      row('취소 규정', function (t) { return esc(t.ca); }),
-      row('포함 내역', function (t) { return '<span class="cmpt-soft">' + esc(t.inc) + '</span>'; }),
-      row('예약', function (t) {
-        return '<a class="cmpt-cta" href="' + esc(t.u) + '" target="_blank" rel="noopener sponsored">' +
-          (t.co === 'kr' && t.ty === '레저·액티비티' ? '구매 페이지' : '보러 가기') + '</a>';
-      })
-    ];
-    modalBody.innerHTML = '<table class="cmpt"><caption class="sr-only">선택한 상품 ' + picked.length +
-      '개 비교표</caption><thead>' + head() + '</thead><tbody>' + rows.join('') + '</tbody></table>';
-  }
-
-  function openModal() {
-    if (picked.length < 2) return;
-    lastFocus = document.activeElement;
-    renderModal();
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    if (closeBtn) closeBtn.focus();
-  }
-  function closeModal() {
-    modal.hidden = true;
-    document.body.style.overflow = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  document.addEventListener('click', function (e) {
-    var add = e.target.closest('[data-cmp-add]');
-    if (add) {
-      e.preventDefault();
-      toggle(add.dataset.cmpAdd);
-      return;
-    }
-    var del = e.target.closest('[data-cmp-del]');
-    if (del) {
-      toggle(del.dataset.cmpDel);
-      return;
-    }
-    if (e.target.closest('#cbOpen')) { openModal(); return; }
-    if (e.target.closest('#cbClear')) {
-      picked.length = 0;
-      renderBar();
-      if (!modal.hidden) closeModal();
-      toast('비교 바구니를 비웠어요');
-      return;
-    }
-    if (e.target.closest('#cmpClearAll')) {
-      picked.length = 0;
-      closeModal();
-      renderBar();
-      toast('비교 바구니를 비웠어요');
-      return;
-    }
-    if (e.target.closest('#cmpClose') || e.target === modal) { closeModal(); }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hidden) closeModal();
-  });
-
-  renderBar();
 })();
 
 /* ============================== 나라별 선물·기념품 ============================== */
@@ -4422,5 +4383,6 @@ applyFilters();
 </script>
 <script src="assets/trip-save.js?v=26" defer></script>
 <script src="assets/tp-v35.js?v=35" defer></script>
+<script src="assets/tp-v41.js?v=1" defer></script>
 </body>
 </html>
