@@ -49,7 +49,7 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = date(2026, 11, 22)
-CSS_V = "36"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
+CSS_V = "37"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "35"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
 
@@ -3142,7 +3142,8 @@ def stays_card(h: dict, region: dict, group: str | None = None) -> str:
     iso = STAY_COUNTRY_ISO.get(region.get("id", ""))
     flag_ic = f'<span class="sc-fl">{B.flag_svg(iso, 13, 9.1)}</span>' if (scope != "kr" and iso) else ""
     grp = group or stay_group_of(region)
-    return f"""    <article class="scard" data-region="{h['region']}" data-tp-city="{h['region']}" data-group="{grp}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}">
+    bud = "low" if h["price"] <= 100000 else ("mid" if h["price"] <= 200000 else "high")
+    return f"""    <article class="scard" data-region="{h['region']}" data-tp-city="{h['region']}" data-group="{grp}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}" data-budget="{bud}">
       <a class="sc-thumb" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored" aria-label="{esc(h['name'])} 트립닷컴에서 보기">
         <img src="{esc(h['img'])}" alt="{esc(region['name'])} {esc(h['name'])} 숙소 사진" width="720" height="480" loading="lazy" />
         <span class="sc-score{_stay_score_class(h['score'])}">{h['score']:.1f}</span>
@@ -3375,14 +3376,23 @@ def stays_page(out_root: Path, base: str) -> Path:
         '<div><b>예약은 트립닷컴에서</b><p>카드의 예약 버튼은 그 숙소의 트립닷컴 페이지로 바로 갑니다. 결제·취소는 트립닷컴 약관을 따릅니다.</p></div>'
     )
 
+    # v39: 예산대 필터 — 1박 가격(2인·세금 포함)으로 10만 이하 / 10~20만 / 20만 이상
+    bud_n = {"low": sum(1 for h in hotels if h["price"] <= 100000),
+             "mid": sum(1 for h in hotels if 100000 < h["price"] <= 200000),
+             "high": sum(1 for h in hotels if h["price"] > 200000)}
+    budget_chips = "".join(
+        f'<button class="gf-chip{" on" if bid == "all" else ""}" type="button" data-budget="{bid}">{label} <span>{bud_n[bid] if bid != "all" else total}</span></button>'
+        for bid, label in (("all", "전체"), ("low", "10만 원 이하"), ("mid", "10~20만 원"), ("high", "20만 원 이상"))
+    )
+
     body = f"""<div class="pg-hero stays-hero">
   <div class="wrap">
     <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><b>찐숙소</b></nav>
     <span class="pg-kicker">TRIPPICK STAYS · 국내 {kr_region_n}개 지역 + 해외 {len(intl_groups)}개 도시 {total}곳</span>
     <div class="pg-head">
-      <h1><em>찐숙소</em> {total}곳 — 권역으로 고르고, 테마로 좁힙니다</h1>
+      <h1><em>찐숙소</em> {total}곳 — 권역으로 고르고, 예산·테마로 좁힙니다</h1>
       <p class="dek">국내 {kr_region_n}개 지역 {kr_total}곳({kr_names})과 해외 {len(intl_groups)}개 도시 {intl_total}곳, <b>국내·해외 {len(groups)}개 지역 {total}곳</b>을 한 화면에 올렸습니다.
-      <b>수도권·강원·경상·전라·제주</b> 권역으로 먼저 묶어 보고, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마로 다시 좁힐 수 있습니다.
+      <b>수도권·강원·경상·전라·제주</b> 권역으로 먼저 묶어 보고, <b>1박 10만 원 이하·10~20만·20만 원 이상</b> 예산대로 걸러 본 뒤, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마로 다시 좁힐 수 있습니다. 정렬은 <b>추천순·가격 낮은순·평점 높은순</b>입니다.
       평점 <b>{score_min:.1f}~{score_max:.1f}</b>, 1박 <b>{price_min:,}~{price_max:,}원</b> 구간이고, 평점·리뷰 수·가격은 트립닷컴 목록의 실제 값을 그대로 옮겼습니다.</p>
       <div class="pg-meta">
         <span><b>트립픽 숙소 편집</b></span><i></i>
@@ -3424,9 +3434,16 @@ def stays_page(out_root: Path, base: str) -> Path:
           <button class="gf-chip on" type="button" data-theme="all">테마 전체</button>
           {theme_chips}
         </div>
+      </div>
+      <div class="sf-row sf-row--budget">
+        <div class="sf-chips" role="group" aria-label="예산대">
+          <span class="sf-label">예산</span>
+          {budget_chips}
+        </div>
         <div class="sf-sort" role="group" aria-label="정렬">
-          <button class="gf-chip on" type="button" data-sort="score">평점 높은 순</button>
+          <button class="gf-chip on" type="button" data-sort="rec">추천순</button>
           <button class="gf-chip" type="button" data-sort="price">가격 낮은 순</button>
+          <button class="gf-chip" type="button" data-sort="score">평점 높은 순</button>
         </div>
         <span class="sf-count"><b id="sfCount">{total}</b>곳</span>
       </div>
@@ -3441,7 +3458,7 @@ def stays_page(out_root: Path, base: str) -> Path:
 
     <div class="gfind-empty" id="sfEmpty" hidden>
       <b>조건에 맞는 숙소가 없습니다.</b>
-      <p>국내/해외·지역·테마를 ‘전체’로 바꿔 보세요. 테마는 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 여섯 가지입니다.</p>
+      <p>국내/해외·지역·테마·예산을 ‘전체’로 바꿔 보세요. 예산대는 1박 10만 원 이하·10~20만 원·20만 원 이상, 테마는 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 여섯 가지입니다.</p>
       <button type="button" id="sfReset">필터 초기화</button>
     </div>
 
@@ -3489,15 +3506,15 @@ def stays_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "stays.html",
-        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 서울·인천·가평·춘천·강릉·속초·양양·전주·부산·경주·통영·거제·여수·제주 + 해외 {len(intl_groups)}개 도시 평점·가격 비교 (2026) | 트립픽",
+        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 10만 원 이하·10~20만·20만 원 이상 예산별 호텔 비교 (2026) | 트립픽",
         desc=(
             f"국내 {kr_names} {kr_total}곳과 해외 {intl_names} {intl_total}곳, 숙소 {total}곳을 "
             f"트립닷컴 평점·리뷰 수·1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
-            "수도권·강원·경상·전라·제주 권역별 보기, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터, 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-21 확인."
+            "수도권·강원·경상·전라·제주 권역별 보기, 1박 10만 원 이하·10~20만 원·20만 원 이상 예산 필터, 추천순·가격 낮은순·평점 높은순 정렬, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터, 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-22 확인."
         ),
         keywords=(
             "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 가평 호텔, 춘천 호텔, 남이섬 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 거제 호텔, 거제 오션뷰 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
-            "가성비 호텔, 가족 호텔, 풀빌라, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 파리 호텔 추천, 런던 호텔 추천, 로마 호텔 추천, 바르셀로나 호텔 추천, 유럽 호텔, 트립닷컴 숙소"
+            "가성비 호텔, 가족 호텔, 풀빌라, 10만원 이하 호텔, 부산 호텔 가격, 오사카 호텔 추천, 도쿄 호텔 추천, 다낭 리조트 추천, 제주 호텔 추천, 파리 호텔 추천, 런던 호텔 추천, 로마 호텔 추천, 바르셀로나 호텔 추천, 유럽 호텔, 트립닷컴 숙소"
         ),
         body=body,
         base=base,
@@ -3521,12 +3538,17 @@ def stays_filter_script() -> str:
   var regionBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-chips [data-region]'));
   var groupBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-chips [data-group]'));
   var themeBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-chips [data-theme]'));
+  var budgetBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-row--budget [data-budget]'));
   var sortBtns = Array.prototype.slice.call(document.querySelectorAll('.sf-sort [data-sort]'));
-  var state = { scope: 'all', group: 'all', region: 'all', theme: 'all', sort: 'score' };
+  /* v39: 추천순은 편집 순서(원래 DOM 순서)를 그대로 쓴다. */
+  cards.forEach(function(c, i){ c.setAttribute('data-rec', i); });
+  var state = { scope: 'all', group: 'all', region: 'all', theme: 'all', budget: 'all', sort: 'rec' };
 
   function scoreOf(c){ return parseFloat(c.getAttribute('data-score')) || 0; }
   function priceOf(c){ return parseInt(c.getAttribute('data-price'), 10) || 0; }
+  function recOf(c){ return parseInt(c.getAttribute('data-rec'), 10) || 0; }
   function themesOf(c){ return (c.getAttribute('data-themes') || '').split(' ').filter(Boolean); }
+  function budgetOf(c){ return c.getAttribute('data-budget') || 'high'; }
 
   function render(sync){
     var shown = cards.filter(function(c){
@@ -3534,10 +3556,13 @@ def stays_filter_script() -> str:
       var okG = state.group === 'all' || c.getAttribute('data-group') === state.group;
       var okR = state.region === 'all' || c.getAttribute('data-region') === state.region;
       var okT = state.theme === 'all' || themesOf(c).indexOf(state.theme) >= 0;
-      return okS && okG && okR && okT;
+      var okB = state.budget === 'all' || budgetOf(c) === state.budget;
+      return okS && okG && okR && okT && okB;
     });
     shown.sort(function(a, b){
-      return state.sort === 'price' ? priceOf(a) - priceOf(b) : scoreOf(b) - scoreOf(a);
+      if (state.sort === 'price') return priceOf(a) - priceOf(b);
+      if (state.sort === 'score') return scoreOf(b) - scoreOf(a) || priceOf(a) - priceOf(b);
+      return recOf(a) - recOf(b);
     });
     cards.forEach(function(c){ c.hidden = true; });
     shown.forEach(function(c){ c.hidden = false; grid.appendChild(c); });
@@ -3549,7 +3574,8 @@ def stays_filter_script() -> str:
       if (state.group !== 'all') p.push('group=' + state.group);
       if (state.region !== 'all') p.push('region=' + state.region);
       if (state.theme !== 'all') p.push('theme=' + state.theme);
-      if (state.sort !== 'score') p.push('sort=' + state.sort);
+      if (state.budget !== 'all') p.push('budget=' + state.budget);
+      if (state.sort !== 'rec') p.push('sort=' + state.sort);
       var url = location.pathname + (p.length ? '?' + p.join('&') : '');
       history.replaceState(null, '', url);
     }
@@ -3571,6 +3597,7 @@ def stays_filter_script() -> str:
   bind(regionBtns, 'region', 'data-region');
   bind(groupBtns, 'group', 'data-group');
   bind(themeBtns, 'theme', 'data-theme');
+  bind(budgetBtns, 'budget', 'data-budget');
   bind(sortBtns, 'sort', 'data-sort');
 
   /* v26: 권역·지역·국내/해외가 서로 어긋나 빈 화면이 되지 않게 맞춰 줍니다. */
@@ -3621,12 +3648,13 @@ def stays_filter_script() -> str:
   });
 
   var qs = new URLSearchParams(location.search);
-  var qTheme = qs.get('theme'), qRegion = qs.get('region'), qScope = qs.get('scope'), qSort = qs.get('sort'), qGroup = qs.get('group');
+  var qTheme = qs.get('theme'), qRegion = qs.get('region'), qScope = qs.get('scope'), qSort = qs.get('sort'), qGroup = qs.get('group'), qBudget = qs.get('budget');
   var needJump = false;
   if (qGroup){ var gb = groupBtns.filter(function(b){ return b.getAttribute('data-group') === qGroup; })[0]; if (gb){ mark(groupBtns, gb); state.group = qGroup; } }
   if (qScope){ var sb = scopeBtns.filter(function(b){ return b.getAttribute('data-scope') === qScope; })[0]; if (sb){ mark(scopeBtns, sb); state.scope = qScope; } }
   if (qRegion){ setRegion(qRegion); needJump = true; }
   if (qTheme){ var tb = themeBtns.filter(function(b){ return b.getAttribute('data-theme') === qTheme; })[0]; if (tb){ mark(themeBtns, tb); state.theme = qTheme; } }
+  if (qBudget){ var bb = budgetBtns.filter(function(b){ return b.getAttribute('data-budget') === qBudget; })[0]; if (bb){ mark(budgetBtns, bb); state.budget = qBudget; } }
   if (qSort){ var so = sortBtns.filter(function(b){ return b.getAttribute('data-sort') === qSort; })[0]; if (so){ mark(sortBtns, so); state.sort = qSort; } }
   if (location.hash && location.hash.length > 1) setRegion(location.hash.slice(1));
   window.addEventListener('hashchange', function(){
@@ -3643,8 +3671,8 @@ def stays_filter_script() -> str:
 
   var reset = document.getElementById('sfReset');
   if (reset) reset.addEventListener('click', function(){
-    state.scope = 'all'; state.group = 'all'; state.region = 'all'; state.theme = 'all'; state.sort = 'score';
-    mark(scopeBtns, scopeBtns[0]); mark(groupBtns, groupBtns[0]); mark(regionBtns, regionBtns[0]); mark(themeBtns, themeBtns[0]);
+    state.scope = 'all'; state.group = 'all'; state.region = 'all'; state.theme = 'all'; state.budget = 'all'; state.sort = 'rec';
+    mark(scopeBtns, scopeBtns[0]); mark(groupBtns, groupBtns[0]); mark(regionBtns, regionBtns[0]); mark(themeBtns, themeBtns[0]); mark(budgetBtns, budgetBtns[0]);
     if (sortBtns.length) mark(sortBtns, sortBtns[0]);
     render();
   });
@@ -3652,7 +3680,6 @@ def stays_filter_script() -> str:
   if (needJump){ var sf = document.getElementById('sf'); if (sf && sf.scrollIntoView) sf.scrollIntoView({ block: 'start' }); }
 })();
 </script>"""
-
 
 
 def quiz_links(base: str) -> dict:
@@ -4079,6 +4106,7 @@ def checklist_page(out_root: Path, base: str) -> Path:
         ("index.html#essentials", "D-14", "eSIM·필수템", "나라별 eSIM 1일 100원대(유럽·이탈리아 102~109원)부터, 어댑터·보조배터리 구매 링크"),
         ("index.html#regions", "D-14", "투어·입장권 비교", "같은 도시 상품을 가격·현장 추가금·취소 규정까지 같은 기준으로 비교"),
         ("baggage.html", "D-3", "항공사 수하물 8곳", "기내·위탁 무게와 보조배터리 규정을 항공사별로 확인"),
+        ("guides/flight-cheap-booking-baggage", "D-30", "항공권·수하물 총액", "대한항공·LCC 7곳 기내·위탁 기준과 사전 구매 요금을 같은 표로 비교"),
         ("exchange.html", "D-3", "환율·일본 면세 계산기", "12개 통화 환율과 일본 면세 환급액을 같은 날 기준으로 계산"),
         ("guides/flight-delay-card-lost-emergency", "D-0", "지연·분실 대처 순서", "지연 확인서·PIR·카드 정지까지 공항에서 첫 30분에 할 일"),
         ("index.html#fxcards", "D-3", "환전 카드 3종", "트래블로그·트래블월렛·하나카드 수수료와 환율을 비교"),

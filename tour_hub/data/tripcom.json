@@ -6,7 +6,8 @@
   "site": "https://trippick.pages.dev",
   "checked": "2026-11-21",
   "method": "파트너스 어필리에이트 링크 생성기(한국어 링크 · Hotels page / Flights page)에서 도시·노선별로 발급. 입장권·공항픽업·렌터카 16종은 2026-11-18 Affiliate Link > Create links(Attractions & Tours / Custom link)로 별도 발급. v20: 후쿠오카·타이베이 항공권 링크 2건을 파트너스 링크 생성기('항공권 페이지'/맞춤 URL)로 새로 발급(trip_sub3 D21333748). v34: 유럽 4도시(파리 CDG·런던 LHR·로마 FCO·바르셀로나 BCN) 항공권 4건·공항픽업 4건·호텔 목록 4건·투어 목록 4건을 기존 검증 패턴(Allianceid 11407530/SID 336341874, trip_sub3 D21275837·D21285812)으로 추가하고 관리 브라우저로 제목·도시·요금을 확인했다(파트너스 콘솔은 이 환경에서 접속 차단). v35: 유럽 4도시(파리 192·런던 338·로마 343·바르셀로나 40795) eSIM·유심 목록 4건과 유럽 전역 eSIM 상품 1건(53369178)을 기존 검증 패턴(Allianceid 11407530/SID 336341874, trip_sub3 D21303312)으로 추가했다. 5개 URL 모두 curl(iPhone UA) HTTP 200 + 한국어 title, 상품 수·최저가는 JSON-LD(ItemList.numberOfItems·Offer.price), 평점은 페이지 구조화 데이터에서 확인했다.",
-  "rate": "호텔 5%(예약 0~199건) → 6%(200~999) → 7%(1000+), 국제선 항공 0.5%(0~299) → 0.8%(300+), 투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%"
+  "rate": "호텔 5%(예약 0~199건) → 6%(200~999) → 7%(1000+), 국제선 항공 0.5%(0~299) → 0.8%(300+), 투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%",
+  "v39": "2026-11-22: 싱가포르 호텔 목록(city=73)·싱가포르 eSIM·삿포로 eSIM 3건을 로컬 크롬 headless·curl로 HTTP 200 + 한국어 <title> 확인 후 추가(동일 Allianceid/SID·trip_sub3 D21275837/D21303312)."
  },
  "hotels": [
   {
@@ -221,6 +222,18 @@
    "cityId": "barcelona",
    "tags": [
     "europe"
+   ]
+  },
+  {
+   "city": "싱가포르",
+   "flag": "sg",
+   "sub": "차이나타운·오차드·마리나베이",
+   "note": "12월 연말 성수기, 무료 취소 조건 확인",
+   "url": "https://kr.trip.com/hotels/list?city=73&display=%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4&optionId=73&optionType=City&optionName=%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_singapore&trip_sub3=D21275837",
+   "cityId": "singapore",
+   "tags": [
+    "value",
+    "airport"
    ]
   }
  ],
@@ -859,6 +872,34 @@
    "url": "https://kr.trip.com/things-to-do/detail/53369178/?Allianceid=11407530&SID=336341874&trip_sub1=esim_europe&trip_sub3=D21303312",
    "status": "verified_200_ko",
    "checked": "2026-11-21"
+  },
+  {
+   "id": "esim_singapore",
+   "city": "싱가포르",
+   "cityId": "singapore",
+   "country": "싱가포르",
+   "flag": "sg",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "싱가포르 유심·eSIM",
+   "highlight": "싱가포르 eSIM · 3~30일 총량형",
+   "summary": "싱가포르 도착 전에 설치하는 eSIM·유심. 500MB/일 저가형부터 3~30일 총량형까지 있고, QR 설치형과 공항 수령형이 함께 팔립니다. 항목·가격은 상품마다 다릅니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/singapore-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_singapore&trip_sub3=D21303312",
+   "status": "verified_200_ko"
+  },
+  {
+   "id": "esim_sapporo",
+   "city": "삿포로",
+   "cityId": "sapporo",
+   "country": "일본",
+   "flag": "jp",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "삿포로 유심·eSIM",
+   "highlight": "홋카이도 eSIM · 1일 2GB부터",
+   "summary": "삿포로·홋카이도 도착 전 설치하는 일본 eSIM·유심. 삿포로 목록에 SoftBank·docomo 요금제와 3~30일 총량형이 함께 있고, 도착 후 QR 설치·무료 취소 조건은 상품마다 다릅니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/sapporo-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_sapporo&trip_sub3=D21303312",
+   "status": "verified_200_ko"
   }
  ],
  "rails": [

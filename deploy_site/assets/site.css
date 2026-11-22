@@ -3750,3 +3750,12 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
 /* v26: 맛집 도시 탭이 17개로 늘어 1440px에서도 가로 스크롤 — 오른쪽 끝을 흐리게 해 스크롤 위치를 알립니다 */
 .food-tabs{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),rgba(0,0,0,.15) 100%);
   mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),rgba(0,0,0,.15) 100%)}
+
+/* v39: /stays 예산대 빠른 필터 — 1박 10만 이하·10~20만·20만 이상 */
+.sf-row--budget .sf-chips .gf-chip[data-budget]{font-weight:800}
+.sf-row--budget .sf-chips .gf-chip[data-budget].on{background:var(--blue-700);border-color:var(--blue-700)}
+.sf-row--budget .sf-sort{flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:760px){
+  .sf-row--budget .sf-sort{width:100%;justify-content:stretch}
+  .sf-row--budget .sf-sort .gf-chip{flex:1 1 0;justify-content:center}
+}

@@ -3931,20 +3931,18 @@
    ],
    "links": {
     "cityPage": null,
-    "guide": null,
+    "guide": "singapore-3n4d-course-budget",
     "stays": null
    },
    "affiliate": {
     "flight": false,
-    "hotel": false,
+    "hotel": true,
     "ticket": true,
     "transfer": true,
-    "esim": false
+    "esim": true
    },
    "affiliateTodo": [
-    "flight: SEL-SIN",
-    "hotel: 싱가포르",
-    "esim: 싱가포르"
+    "flight: SEL-SIN"
    ]
   },
   {
