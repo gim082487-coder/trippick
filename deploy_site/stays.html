@@ -3112,6 +3112,7 @@
       var url = location.pathname + (p.length ? '?' + p.join('&') : '');
       history.replaceState(null, '', url);
     }
+    if (typeof syncFold === 'function') syncFold();
   }
 
   function mark(btns, el){
@@ -3194,12 +3195,27 @@
     if (location.hash && location.hash.length > 1) setRegion(location.hash.slice(1));
   });
 
+  /* v46: 모바일에서 ?region=guam 으로 들어오면 접힌 「지역 선택」 버튼에 선택 지역 이름을 보여 준다 */
+  function foldName(){
+    if (state.region && state.region !== 'all'){
+      var b = regionBtns.filter(function(x){ return x.getAttribute('data-region') === state.region; })[0];
+      if (b) return '지역: ' + b.textContent.replace(/[0-9]/g, '').trim();
+    }
+    return '지역 선택';
+  }
+  function syncFold(){
+    var f = document.getElementById('sfFold'), sf = document.getElementById('sf');
+    if (!f || !sf) return;
+    f.innerHTML = foldName() + ' <i>' + (sf.classList.contains('open-regions') ? '▴' : '▾') + '</i>';
+  }
+
   var fold = document.getElementById('sfFold');
   if (fold) fold.addEventListener('click', function(){
     var sf = document.getElementById('sf');
     var open = sf.classList.toggle('open-regions');
     fold.setAttribute('aria-expanded', open ? 'true' : 'false');
-    fold.innerHTML = open ? '지역 선택 <i>▴</i>' : '지역 선택 <i>▾</i>';
+    syncFold();
+    revealChips();
   });
 
   var reset = document.getElementById('sfReset');
@@ -3222,6 +3238,7 @@
   }
   render(false);
   revealChips();
+  syncFold();
   if (needJump){ var sf = document.getElementById('sf'); if (sf && sf.scrollIntoView) sf.scrollIntoView({ block: 'start' }); revealChips(); }
 })();
 </script>

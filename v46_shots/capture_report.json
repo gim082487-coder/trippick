@@ -53,7 +53,19 @@
    ],
    "sw": 1280,
    "iw": 1280,
-   "active": "괌\n3"
+   "active": "괌\n3",
+   "chip": {
+    "text": "괌\n3",
+    "inView": true,
+    "box": [
+     113,
+     1167
+    ],
+    "chip": [
+     1041,
+     1090
+    ]
+   }
   },
   {
    "stays": "saipan",
@@ -74,7 +86,19 @@
    ],
    "sw": 1280,
    "iw": 1280,
-   "active": "사이판\n3"
+   "active": "사이판\n3",
+   "chip": {
+    "text": "사이판\n3",
+    "inView": true,
+    "box": [
+     113,
+     1167
+    ],
+    "chip": [
+     1096,
+     1167
+    ]
+   }
   },
   {
    "stays": "guam",
@@ -95,7 +119,19 @@
    ],
    "sw": 390,
    "iw": 390,
-   "active": "괌 3"
+   "active": "괌 3",
+   "chip": {
+    "text": "괌 3",
+    "inView": false,
+    "box": [
+     0,
+     0
+    ],
+    "chip": [
+     0,
+     0
+    ]
+   }
   },
   {
    "stays": "saipan",
@@ -116,7 +152,19 @@
    ],
    "sw": 390,
    "iw": 390,
-   "active": "사이판 3"
+   "active": "사이판 3",
+   "chip": {
+    "text": "사이판 3",
+    "inView": false,
+    "box": [
+     0,
+     0
+    ],
+    "chip": [
+     0,
+     0
+    ]
+   }
   }
  ],
  "fails": []

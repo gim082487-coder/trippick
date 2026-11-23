@@ -66,11 +66,16 @@ with sync_playwright() as p:
                       names: vis.map(e => (e.querySelector('b, h3, .scard-name') || {}).innerText || '').slice(0, 6),
                       regions: vis.map(e => e.getAttribute('data-region')).slice(0, 6),
                       sw: document.documentElement.scrollWidth, iw: window.innerWidth,
-                      active: (document.querySelector('[data-region].on, .chip.on, [aria-selected="true"]') || {}).innerText || null}
+                      active: (document.querySelector('[data-region].on, .chip.on, [aria-selected="true"]') || {}).innerText || null,
+                      chip: (() => { const c = document.querySelector('.sf-regionchips .gf-chip.on'); if (!c) return null;
+                        const b = c.parentElement.getBoundingClientRect(), r = c.getBoundingClientRect();
+                        return {text: c.innerText, inView: r.left < b.right - 1 && r.right > b.left + 1, box: [Math.round(b.left), Math.round(b.right)], chip: [Math.round(r.left), Math.round(r.right)]}; })()}
             }""")
             ok(info['visible'] == 3, f'stays {rid} {w}: visible {info["visible"]} / total {info["total"]}')
             ok(all(r == rid for r in info['regions']), f'stays {rid} {w}: 다른 지역 카드 노출 {info["regions"]}')
             ok(info['sw'] <= info['iw'] + 1, f'stays {rid} {w}: 가로 넘침 {info["sw"]}>{info["iw"]}')
+            if w == 1280:
+                ok(info['chip'] and info['chip']['inView'], f'stays {rid} {w}: 선택 칩이 스크롤 밖 {info["chip"]}')
             pg.screenshot(path=f'{SHOTS}/stays_{rid}_{w}.png')
             report.append({'stays': rid, 'w': w, **info})
         ok(not errs, f'stays {w}: JS 오류 {errs[:3]}')
