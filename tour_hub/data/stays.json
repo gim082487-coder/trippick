@@ -589,6 +589,46 @@
      "label": "싱가포르 3박4일 경비"
     }
    ]
+  },
+  {
+   "id": "guam",
+   "name": "괌",
+   "country": "미국",
+   "note": "투몬 베이 한 축에 리조트·쇼핑·식당이 몰려 있습니다. 공항에서 차로 10~15분이라 도착일 이동이 짧고, 남부 드라이브는 렌터카가 필요합니다.",
+   "count": 3,
+   "top": "더 츠바키 타워",
+   "listUrl": "https://kr.trip.com/hotels/list?city=753&display=%EA%B4%8C&optionId=753&optionType=City&optionName=%EA%B4%8C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_guam&trip_sub3=D21372570",
+   "cityId": "753",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "guam-vs-saipan-comparison",
+     "label": "괌 vs 사이판 비교"
+    },
+    {
+     "slug": "guam-resorts",
+     "label": "괌 4박5일 리조트"
+    }
+   ]
+  },
+  {
+   "id": "saipan",
+   "name": "사이판",
+   "country": "북마리아나 제도",
+   "note": "가라판 중심과 마나가하·그로토 쪽 북부가 차로 20~40분 떨어집니다. 리조트에서 쉬는 여행이면 가라판, 섬과 자연이 목적이면 북부 동선을 먼저 보세요.",
+   "count": 3,
+   "top": "코럴 오션 리조트",
+   "listUrl": "https://kr.trip.com/hotels/list?city=4081&display=%EC%82%AC%EC%9D%B4%ED%8C%90&optionId=4081&optionType=City&optionName=%EC%82%AC%EC%9D%B4%ED%8C%90&Allianceid=11407530&SID=336341874&trip_sub1=hotel_saipan&trip_sub3=D21372570",
+   "cityId": "4081",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "guam-vs-saipan-comparison",
+     "label": "괌 vs 사이판 비교"
+    }
+   ]
   }
  ],
  "hotels": [
@@ -3879,6 +3919,169 @@
    "pointTags": [
     "프라이빗 온천",
     "가이세키"
+   ]
+  },
+  {
+   "region": "guam",
+   "id": "2593613",
+   "name": "두짓타니 괌 리조트",
+   "en": "Dusit Thani Guam Resort",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 322,
+   "zone": "투몬",
+   "access": "투몬 베이 해변 바로 앞 · DFS 도보 3분",
+   "reason": "리뷰 322개·8.9 — 투몬 중심에서 해변과 쇼핑몰이 바로 연결됩니다. 위치 9.6으로 세부 점수 중 가장 높고, 오션프론트 객실과 조식 뷔페 평가가 좋습니다. 시설 8.4는 2015년 개관 후 노후화 지적이 있습니다.",
+   "price": 314743,
+   "priceBasis": "2026-12-01~02 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/guam-2593613.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=259802&hotelId=2593613&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_guam_2593613&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "pool"
+   ],
+   "pointTags": [
+    "오션프론트",
+    "투몬"
+   ],
+   "sub": {
+    "청결도": "8.8",
+    "시설": "8.4",
+    "위치": "9.6",
+    "서비스": "8.8"
+   }
+  },
+  {
+   "region": "guam",
+   "id": "47395785",
+   "name": "더 츠바키 타워",
+   "en": "The Tsubaki Tower",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.4,
+   "reviews": 172,
+   "zone": "건 비치",
+   "access": "건 비치·투몬 북쪽 · 니코 호텔 수영장 이용",
+   "reason": "리뷰 172개·9.4 — 괌 호텔 중 최고 평점. 전 객실 발코니 오션프론트이고 27층 인피니티 풀과 라운지 평가가 높습니다. 투몬 중심까지 도보 20분·차로 2~3분이라 위치보다 객실·전망을 사는 숙소입니다.",
+   "price": 475553,
+   "priceBasis": "2026-12-01~02 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/guam-47395785.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=259802&hotelId=47395785&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_guam_47395785&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "pool"
+   ],
+   "pointTags": [
+    "인피니티풀",
+    "오션프론트"
+   ]
+  },
+  {
+   "region": "guam",
+   "id": "2197136",
+   "name": "괌 플라자 리조트",
+   "en": "Guam Plaza Resort",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.4,
+   "reviews": 443,
+   "zone": "투몬",
+   "access": "투몬 중심 · 쇼핑·식당 도보권",
+   "reason": "리뷰 443개·8.4 — 1박 12.5만 원으로 괌에서 가장 낮은 축입니다. 객실·욕실 컨디션이 가격보다 낫고 수영장·위치 만족도가 높습니다. 5성 리조트의 오션프론트는 아니지만, 낮에 나가고 밤에만 묵는 일정이면 충분합니다.",
+   "price": 125474,
+   "priceBasis": "2026-12-01~02 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/guam-2197136.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=259802&hotelId=2197136&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_guam_2197136&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "가성비",
+    "투몬"
+   ]
+  },
+  {
+   "region": "saipan",
+   "id": "7087449",
+   "name": "코럴 오션 리조트",
+   "en": "Coral Ocean Resort",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 57,
+   "zone": "아스 곤노",
+   "access": "공항 5분 · 18홀 골프장",
+   "reason": "리뷰 57개·9.0 — 사이판에서 평점이 가장 높은 축입니다. 공항에서 5분이고 LPGA 규격 18홀 골프장과 오션뷰 객실이 강점입니다. 가라판 시내와는 차로 15분이라 조용한 리조트·골프 목적에 맞습니다.",
+   "price": 141439,
+   "priceBasis": "2026-12-01~02 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/saipan-7087449.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=4081&hotelId=7087449&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_saipan_7087449&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "pool"
+   ],
+   "pointTags": [
+    "골프",
+    "오션뷰"
+   ]
+  },
+  {
+   "region": "saipan",
+   "id": "1860592",
+   "name": "퍼시픽 아일랜드 클럽 사이판",
+   "en": "Pacific Islands Club Saipan",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.5,
+   "reviews": 115,
+   "zone": "아페트나",
+   "access": "아페트나 비치 · 워터파크·레지리버",
+   "reason": "리뷰 115개·8.5 — 워터파크와 40여 가지 액티비티가 포함된 올인클루시브형 리조트입니다. 아이 동반 가족 비중이 높고 한국어 스태프가 상주합니다. 객실 노후화 지적은 있지만 물놀이 시설 만족도가 이를 덮습니다.",
+   "price": 161369,
+   "priceBasis": "2026-12-01~02 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/saipan-1860592.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=4081&hotelId=1860592&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_saipan_1860592&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "워터파크",
+    "가족"
+   ]
+  },
+  {
+   "region": "saipan",
+   "id": "718481",
+   "name": "크라운 플라자 리조트 사이판",
+   "en": "Crowne Plaza Resort Saipan by IHG",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.7,
+   "reviews": 256,
+   "zone": "가라판",
+   "access": "가라판 중심 · 마이크로 비치 도보",
+   "reason": "리뷰 256개·8.7 — 가라판 시내와 마이크로 비치 사이에 있어 식당·쇼핑·해변이 모두 도보권입니다. 사이판 프리미엄 호텔 2위, 전용 백사장과 야외 수영장 평가가 좋습니다. 발코니가 작고 객실이 전형적이라는 의견은 있습니다.",
+   "price": 240293,
+   "priceBasis": "2026-12-01~02 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/saipan-718481.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=4081&hotelId=718481&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_saipan_718481&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "pool",
+    "station"
+   ],
+   "pointTags": [
+    "가라판",
+    "전용해변"
    ]
   }
  ]

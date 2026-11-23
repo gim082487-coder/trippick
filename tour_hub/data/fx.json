@@ -1,8 +1,8 @@
 {
   "api": "https://open.er-api.com/v6/latest/KRW",
   "apiNote": "open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) → 실패 시 cdn.jsdelivr.net/@fawazahmed0/currency-api — 하루 1회 갱신",
-  "fallbackUpdatedKst": "2026-11-21 09:00",
-  "fallbackSource": "2026-11-21 00:00 UTC(한국 09:00) jsDelivr currency-api 고시값(1 KRW 기준 역산) · 2026-11-22 08:45 KST 갱신. open.er-api.com은 2026-11-20 00:02 UTC 이후 갱신이 멈춰 있어(2026-11-22 확인) 최신 source를 fallback 쪽으로 씀.",
+  "fallbackUpdatedKst": "2026-11-23 09:02",
+  "fallbackSource": "2026-11-23 00:02 UTC(한국 09:02) open.er-api.com 고시값(1 KRW 기준 역산). 2026-11-20 00:02 UTC 이후 멈춰 있던 open.er-api.com이 2026-11-23 00:02 UTC로 다시 갱신되어 2026-11-22까지 쓰던 jsDelivr currency-api 대신 원래 주 API 값으로 돌아왔습니다(2026-11-23 확인).",
   "currencies": [
     {
       "code": "JPY",
@@ -11,7 +11,7 @@
       "symbol": "¥",
       "unit": 100,
       "decimals": 0,
-      "krw": 8.4891,
+      "krw": 8.4522,
       "presets": [
         1000,
         5000,
@@ -26,7 +26,7 @@
       "symbol": "₫",
       "unit": 100,
       "decimals": 0,
-      "krw": 0.0523,
+      "krw": 0.0521,
       "presets": [
         100000,
         500000,
@@ -41,7 +41,7 @@
       "symbol": "฿",
       "unit": 1,
       "decimals": 0,
-      "krw": 39.6051,
+      "krw": 39.5491,
       "presets": [
         500,
         1000,
@@ -56,7 +56,7 @@
       "symbol": "NT$",
       "unit": 1,
       "decimals": 0,
-      "krw": 40.8239,
+      "krw": 40.7714,
       "presets": [
         500,
         1000,
@@ -71,7 +71,7 @@
       "symbol": "₱",
       "unit": 1,
       "decimals": 1,
-      "krw": 21.0327,
+      "krw": 21.0283,
       "presets": [
         1000,
         5000,
@@ -86,7 +86,7 @@
       "symbol": "US$",
       "unit": 1,
       "decimals": 2,
-      "krw": 1345.9501,
+      "krw": 1344.086,
       "presets": [
         50,
         100,
@@ -101,7 +101,7 @@
       "symbol": "€",
       "unit": 1,
       "decimals": 2,
-      "krw": 1476.2407,
+      "krw": 1472.7541,
       "presets": [
         50,
         100,
@@ -116,7 +116,7 @@
       "symbol": "S$",
       "unit": 1,
       "decimals": 2,
-      "krw": 1043.2539,
+      "krw": 1040.5827,
       "presets": [
         50,
         100,
@@ -131,7 +131,7 @@
       "symbol": "HK$",
       "unit": 1,
       "decimals": 1,
-      "krw": 171.711,
+      "krw": 170.9694,
       "presets": [
         500,
         1000,
@@ -146,7 +146,7 @@
       "symbol": "CN¥",
       "unit": 1,
       "decimals": 0,
-      "krw": 201.7354,
+      "krw": 199.8801,
       "presets": [
         500,
         1000,
@@ -161,7 +161,7 @@
       "symbol": "A$",
       "unit": 1,
       "decimals": 2,
-      "krw": 891.1159,
+      "krw": 891.2656,
       "presets": [
         100,
         200,
@@ -176,7 +176,7 @@
       "symbol": "£",
       "unit": 1,
       "decimals": 2,
-      "krw": 1761.5584,
+      "krw": 1757.4692,
       "presets": [
         50,
         100,

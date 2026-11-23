@@ -1547,6 +1547,32 @@
    "usage": "MRT보다 비싸지만 주요 명소를 환승 없이 한 번에 볼 때 유용합니다. 1일권이면 오전 시티, 오후 센토사로 나눠 타세요.",
    "caution": "야간 코스는 별도 상품입니다. 리뷰가 5개뿐이라 운영 노선을 예약 전에 확인하세요.",
    "checkedAt": "2026-11-22"
+  },
+  {
+   "id": "gu-esim-trip-101949204",
+   "partner": "trip.com",
+   "category": "eSIM",
+   "categoryLabel": "괌·사이판 eSIM(1일부터)",
+   "name": "사이판·괌 5G/4G eSIM | 1~30일 QR 코드",
+   "store": "트립닷컴",
+   "price": 1050,
+   "listPrice": 1313,
+   "discountRate": 20,
+   "url": "https://kr.trip.com/things-to-do/detail/101949204/?Allianceid=11407530&SID=336341874&trip_sub1=ess_gu_esim&trip_sub3=D21303312",
+   "productId": "101949204",
+   "cities": [
+    "괌",
+    "사이판"
+   ],
+   "courses": [
+    "guam",
+    "saipan"
+   ],
+   "reviews": 124,
+   "pitch": "1일 요금제 1,050원부터(정가 1,313원, 20% 특가). 4.4점·리뷰 124개·4,045명 예약으로 괌·사이판 eSIM 중 후기가 많은 상품입니다.",
+   "usage": "4박5일이면 5일 총량형이나 1일 2GB형을 고르고, 출국 전 QR로 설치합니다.",
+   "caution": "표시가는 1일 최저가입니다. 괌·사이판 공용 상품인지, 기기 eSIM 지원 여부를 먼저 확인하세요.",
+   "checkedAt": "2026-11-23"
   }
  ],
  "coupangDisclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."

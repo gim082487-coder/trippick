@@ -10,7 +10,7 @@
  3. 가이드 91편 전체에 ★ 참고 글 저장 버튼(data-bm · data-bm-item)
  4. 홈·/checklist 의 D-Day 위젯(도시 13곳·단계 5개·localStorage 키)과 tp-v43.js 로드
  5. tp-v43.js 에 v42 기능(퀵서치·찜 견적서·비교)과 v43 기능(D-Day·북마크)이 함께 있는지
- 6. sitemap 121 URL · action.md 에 v43 3편 URL·121개 기준
+ 6. sitemap 128 URL · action.md 에 v43 3편 URL·128개 기준
  7. 구 assets/tp-v42.js·tp-v41.js 잔존 없음
 """
 import json
@@ -49,7 +49,7 @@ def check(ok, msg):
 
 guides = load("guides.json")["guides"]
 by = {g["slug"]: g for g in guides}
-check(len(guides) == 94, f"가이드 {len(guides)}편 (기대 94)")
+check(len(guides) == 100, f"가이드 {len(guides)}편 (기대 100)")
 
 # ---------------------------------------------------------------- 1. 신규 3편
 for slug, hubword in NEW.items():
@@ -100,7 +100,7 @@ for f in guide_files:
     html = read(f)
     if 'class="bm-btn"' in html and f'data-bm="/guides/{f.name}"' in html and "data-bm-item=" in html:
         bms += 1
-check(bms == 94, f"★ 참고 글 저장 버튼이 있는 가이드 {bms}편 (기대 94)")
+check(bms == 100, f"★ 참고 글 저장 버튼이 있는 가이드 {bms}편 (기대 100)")
 
 # ---------------------------------------------------------------- 3. D-Day 위젯
 home = read(OUT / "index.html")
@@ -150,7 +150,7 @@ if js.exists():
 # ---------------------------------------------------------------- 5. sitemap·action
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 122, f"sitemap {len(locs)} URL (기대 122)")
+check(len(locs) == 128, f"sitemap {len(locs)} URL (기대 128)")
 for slug in NEW:
     check(f"/guides/{slug}" in sm, f"sitemap 에 /guides/{slug} 없음")
 if ACTION.exists():
@@ -159,7 +159,7 @@ if ACTION.exists():
     check("kind: scheduled-action" in act, "action.md kind 변경됨")
     for slug in NEW:
         check(f"https://trippick.pages.dev/guides/{slug}" in act, f"action.md 에 {slug} URL 없음")
-    check("122개" in act, "action.md 사이트맵 기준 수(122개) 미갱신")
+    check("128개" in act, "action.md 사이트맵 기준 수(128개) 미갱신")
 else:
     fails.append(f"action.md 없음: {ACTION}")
 

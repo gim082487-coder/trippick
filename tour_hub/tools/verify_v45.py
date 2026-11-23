@@ -5,10 +5,10 @@
 뒤에 실행한다.
 
 검사 항목
- 1. 가이드 97편 · v45 신규 3편(다낭 3박5일·타이베이 3박4일·환전 수수료) 본문/이미지/FAQ
+ 1. 가이드 100편 · v45 신규 3편(다낭 3박5일·타이베이 3박4일·환전 수수료) 본문/이미지/FAQ
  2. 신규 가이드 og:image 가 1200×630 이고 100KB 이상인지
  3. 도시 허브 13곳의 도구 4개 — 환율(?cur=)·패스(?city=)·SOS(?country=) 프리셋이 국가에 맞는지
- 4. 가이드 상단 도구 바(.gtools) — 97편 전부에 있고, 도시가 특정되는 글은 그 도시 통화·국가로 연결되는지
+ 4. 가이드 상단 도구 바(.gtools) — 100편 전부에 있고, 도시가 특정되는 글은 그 도시 통화·국가로 연결되는지
  5. /exchange ?cur= · /passes ?city= · /sos ?country= 를 처리하는 스크립트가 산출물에 있는지
  6. /sos 인쇄·PDF 저장 버튼(#sosPrint)과 인쇄 CSS(패널 펼침) 존재
  7. 신규 가이드의 제휴 링크가 rel="sponsored" + trip_sub3 를 갖는지
@@ -45,7 +45,7 @@ def check(ok, msg):
 def main():
     guides = load("guides.json")["guides"]
     by_slug = {g["slug"]: g for g in guides}
-    check(len(guides) == 97, f"가이드 {len(guides)}편 (기대 97)")
+    check(len(guides) == 100, f"가이드 {len(guides)}편 (기대 100)")
 
     # 1·2·7 신규 가이드
     for slug in NEW:
