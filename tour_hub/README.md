@@ -8,6 +8,13 @@
 - 모바일 미리보기 하네스: `_preview390.html` (390px iframe + 가로 넘침 측정)
 - 기준일: 2026-11-16 (여행 커넥트) / 2026-11-17 (부산·강원 쇼핑 커넥트 레저) / 2026-11-19 (v19 신규 상품 24종·클룩)
 
+## v47 (2026-11-24) — Core Web Vitals CLS · sitemap 날짜 자동화 · 애드센스 점검
+1. **CLS 원인 3가지와 수정** — ① `cdn.jsdelivr.net` Pretendard 스타일시트가 `assets/site.css` 앞에서 렌더를 막아, 하위 페이지가 스타일 없이 먼저 그려졌습니다(데스크톱 `/stays` CLS 0.338). → 폰트 CSS·woff2 92개 청크를 `assets/fonts/`로 자체 호스팅하고 `site.css` 다음에 둡니다. ② 폰트 교체(FOUT) 때 긴 리드 문단의 줄 수가 바뀌어 28px씩 밀렸습니다. → `@font-face "Pretendard Fallback"`에 실측 비율 `size-adjust:93.1%`(Pretendard 16,155 : Noto Sans KR 17,355)를 걸어 대체 폰트 폭을 맞춥니다(폰트는 그대로 Pretendard 사용). ③ 홈 `#fdList` 파인더 결과와 내 여행 D-Day 띠가 JS로 뒤늦게 삽입되어 아래 콘텐츠를 밀었습니다. → 파인더 기본 상태(이번 달 시즌·2인·100~200만원)를 `build.py: finder_default_view()`로 서버에서 먼저 렌더(모바일 홈 CLS 0.078→0), D-Day 띠는 흐름에서 빼고 화면 아래 고정 필로 바꿉니다(재방문 CLS 0.027~0.144→0).
+2. **측정** — 1280·390, 14개 페이지 × 신규/재방문 시나리오에서 CLS: 모바일 전부 0.000, 데스크톱 0.001 이하(재방문 `/quiz` 0.061·`/checklist` 0.074는 D-Day 카드가 저장 상태로 바뀌며 생기는 값). 수정 전 라이브: 데스크톱 `/stays` 0.338, 모바일 홈 0.078.
+3. **sitemap `<lastmod>` 자동화** — `build_pages.py`의 `TODAY = date(2026,11,22)`·`build.py`의 `lastmod = "2026-11-20"` 하드코딩을 없애고 실행 시점 KST(`datetime.now(ZoneInfo("Asia/Seoul"))`)를 씁니다. 가이드 최종 검증일·`sitemap.xml` 128 URL 이 같은 날짜로 나옵니다.
+4. **애드센스 점검** — `/_mp`·`/mp`는 `_redirects`의 301 정리(의도된 것)이고 내부 잔재 링크는 0건. 구 미리보기 `/v17m`·`/v18m`(+`.html`) 404도 같은 방식으로 홈 301에 추가했습니다. `/about`·`/privacy`·`/terms`·`/contact` 푸터 링크 131페이지 전부, `ads.txt` 1줄(`pub-9563082990728787`), 로더·`google-adsense-account` 메타 128페이지 확인.
+5. **캐시 버전** — `CSS_V 44`, `JS_V43 3`(홈 템플릿 `tp-v43.js?v=3` 도 함께). 폰트는 `assets/fonts/pretendard.css`(원본 CSS의 url()만 로컬 경로로 치환).
+
 ## v19 (2026-11-19) — 신규 상품 24종(쿠팡 6 · 트립닷컴 휴양지 16 · 네이버 패키지 2) + 클룩 3
 1. **쿠팡 여행필수템 6종** (`data/essentials.json`, `category: "여행필수템"`) — 홈 `#essentials` 새 그룹 '🎒 출발 전 필수템'과 `/baggage#esspack`에 같은 데이터로 나옵니다. 65W GaN 충전기(13,890) · 디지털 캐리어 저울(5,390) · 접이식 보스턴백(12,900) · 샤워기 필터(14,900) · 3단 우양산(24,900) · IPX8 방수팩(9,900). 썸네일은 `assets/ess/cp-*.jpg`(400×400, 쿠팡 상품 이미지).
 2. **트립닷컴 휴양지 8곳** (`data/tripcom.json` 의 `resorts`) — 나트랑·푸꾸옥·싱가포르·홍콩·발리·세부·코타키나발루·치앙마이. 도시 허브 없이 홈 `#tcResorts`(탭 '휴양지 8곳')와 `/cities` 하단 카드에서 **입장권·공항픽업 두 링크**로 바로 연결합니다. `tickets`/`transfers` 배열과 섞지 않았습니다(도시 허브가 없는 도시라 필터·허브 렌더를 건드리지 않으려고).

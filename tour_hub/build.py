@@ -15,8 +15,10 @@ template.html 의 마커 자리에 data/*.json 내용을 그려 index.html 을 �
 import json
 import re
 import sys
+from datetime import datetime
 from html import escape
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).parent
 DATA = ROOT / "data"
@@ -2434,7 +2436,8 @@ def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
 
 
 def render_sitemap(data: dict, courses: dict) -> str:
-    lastmod = "2026-11-20"
+    # v47: 하드코딩("2026-11-20") 제거 — 빌드 실행 시점의 KST 날짜를 씁니다.
+    lastmod = datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat()
     # 단일 페이지 사이트: #fragment 는 검색엔진이 별도 URL로 색인하지 않으므로
     # 사이트맵에는 정규 URL만 넣는다(중복·무효 URL 경고 방지).
     # 가이드·필수 페이지(data/guides.json)가 있으면 그 URL도 함께 넣는다.
@@ -2522,6 +2525,112 @@ FINDER_SEASONS = [("spring", "봄", [3, 4, 5]), ("summer", "여름", [6, 7, 8]),
                   ("autumn", "가을", [9, 10, 11]), ("winter", "겨울", [12, 1, 2])]
 BAND_RANK = {"off": 0, "shoulder": 1, "peak": 2}
 
+# v47: 파인더 기본 상태(이번 달 시즌 · 2인 · 100~200만원)를 서버에서 먼저 그립니다.
+#   전에는 #fdList 가 비어 있다가 tp-v43.js 가 3곳을 채우면서 아래 콘텐츠가 1,100px 밀렸습니다(모바일 CLS 0.078).
+#   기본 상태를 HTML 로 미리 그리면 JS 가 같은 내용으로 다시 그려도 높이가 같아 이동이 없고,
+#   자바스크립트가 늦게 오거나 꺼져 있어도 추천 3곳이 보입니다(색인·애드센스 심사에도 도움).
+FD_MONTH_SEASON = {3: "spring", 4: "spring", 5: "spring", 6: "summer", 7: "summer", 8: "summer",
+                   9: "autumn", 10: "autumn", 11: "autumn", 12: "winter", 1: "winter", 2: "winter"}
+FD_BUDGETS = {"b50": (0, 500000, "50만원 이하"), "b100": (500000, 1000000, "50~100만원"),
+              "b200": (1000000, 2000000, "100~200만원"), "b200p": (2000000, 0, "200만원 이상")}
+FD_SEASON_NAME = {"spring": "봄", "summer": "여름", "autumn": "가을", "winter": "겨울", "any": "상관없음"}
+
+
+def _fd_esc(value) -> str:
+    return (str("" if value is None else value)
+            .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def _fd_won(n) -> str:
+    return f"{int(round(float(n or 0))):,}"
+
+
+def _fd_man(n) -> str:
+    return _fd_won(int(round(float(n or 0) / 10000.0)) * 10000) + "원"
+
+
+def finder_default_view(payload: dict) -> tuple[str, str]:
+    """tp-v43.js 의 fdRender() 기본 상태와 같은 HTML 을 만든다(높이가 같아 CLS 없음)."""
+    month = datetime.now(ZoneInfo("Asia/Seoul")).month
+    season = FD_MONTH_SEASON.get(month, "any")
+    people = 2
+    b_min, b_max, b_label = FD_BUDGETS["b200"]
+    rows = []
+    for c in payload.get("cities") or []:
+        se_map = c.get("se") or {}
+        if season != "any":
+            code, se = season, se_map.get(season)
+        else:
+            code, se = None, None
+            for key in ("spring", "summer", "autumn", "winter"):
+                cand = se_map.get(key)
+                if not cand:
+                    continue
+                if se is None or cand["score"] > se["score"]:
+                    code, se = key, cand
+        if not se:
+            continue
+        band = (c.get("fare") or {}).get(se["band"]) or (c.get("fare") or {}).get("off") or [0, 0]
+        est = band[0] * people + int(round(c["stay"]["p"] * 2)) + c["tour"]["p"] * people
+        cls = 0
+        if b_max and est > b_max:
+            cls = 2
+        if b_min and est < b_min:
+            cls = 1
+        if b_max and b_min <= est <= b_max:
+            cls = 0
+        rows.append({"c": c, "se": se, "code": code, "est": est, "cls": cls})
+    rows.sort(key=lambda r: (r["cls"], -r["se"]["score"], r["est"]))
+    over = 0
+    parts = []
+    for i, r in enumerate(rows[:3]):
+        c, se = r["c"], r["se"]
+        if r["cls"] == 2:
+            over += 1
+            gap = "예산 +" + str(int(round((r["est"] - b_max) / 10000.0))) + "만원"
+        elif r["cls"] == 1:
+            gap = "예산보다 " + str(int(round((b_min - r["est"]) / 10000.0))) + "만원 낮음"
+        else:
+            gap = "예산 안"
+        why = []
+        themes = se.get("themes") or []
+        if themes:
+            why.append("·".join(themes))
+        why.append(f"{FD_SEASON_NAME.get(r['code'], '상관없음')} 평균 {se['temp']}도 · 비 {se['rain']}일")
+        why.append(f"시즌 점수 {se['score']}")
+        price_note = (f"{people}인 총액 · 1인 " + _fd_man(r["est"] / people)) if people > 1 else "1인 총액"
+        parts.append(
+            '<article class="fd-item">'
+            f'<div class="fd-top"><span class="fd-rank">{i + 1}</span>'
+            f'<div class="fd-name"><b>{_fd_esc(c["n"])}</b>'
+            f'<span>{_fd_esc(c["country"])} · {_fd_esc(gap)}</span></div>'
+            f'<span class="fd-price{" over" if r["cls"] == 2 else ""}">{_fd_man(r["est"])}'
+            f'<em>{_fd_esc(price_note)}</em></span></div>'
+            f'<p class="fd-why">{_fd_esc(" · ".join(why))}</p>'
+            '<div class="fd-parts">'
+            f'<a class="fd-part" href="{_fd_esc(c["stay"]["u"])}" target="_blank" rel="noopener sponsored">'
+            f'<span>숙소 · 최저가</span><b>{_fd_esc(c["stay"]["n"])}</b>'
+            f'<em>1박 {_fd_won(c["stay"]["p"])}원 · {c["stay"]["sc"]}점 · {_fd_esc(c["stay"]["z"])}</em></a>'
+            f'<a class="fd-part" href="{_fd_esc(c["tour"]["u"])}" target="_blank" rel="noopener sponsored">'
+            f'<span>투어 · 최저가</span><b>{_fd_esc(c["tour"]["n"])}</b>'
+            f'<em>1인 {_fd_won(c["tour"]["p"])}원 · {_fd_esc(c["tour"]["d"])}</em></a>'
+            '</div>'
+            '<div class="fd-acts">'
+            f'<a class="fd-go primary" href="{_fd_esc(c["stay"]["u"])}" target="_blank" rel="noopener sponsored">숙소 예약</a>'
+            f'<a class="fd-go" href="{_fd_esc(c["tour"]["u"])}" target="_blank" rel="noopener sponsored">투어 보기</a>'
+            f'<a class="fd-go" href="{_fd_esc(c["hub"])}">도시 페이지</a>'
+            '</div></article>'
+        )
+    list_html = "".join(parts) or '<p class="fd-note">조건에 맞는 도시를 찾지 못했습니다. 예산을 한 단계 올려 보세요.</p>'
+    msg = (f"{FD_SEASON_NAME.get(season, '상관없음')} · {people}인 · {b_label} — "
+           f"{len(payload.get('cities') or [])}개 도시에서 3곳을 골랐습니다. ")
+    if over:
+        msg += f'<span class="fd-warn">위에서 {over}곳은 예산을 넘습니다(가까운 순).</span>'
+    else:
+        msg += '<span class="fd-good">세 곳 모두 예산 안입니다.</span>'
+    msg += " 예상 총액은 항공 최저가 + 숙소 2박 + 대표 투어 1개이고, 세금·식비·현지 교통은 빠져 있습니다."
+    return list_html, msg
+
 
 def finder_payload() -> str:
     season = json.loads((DATA / "season.json").read_text(encoding="utf-8"))
@@ -2581,6 +2690,7 @@ def finder_payload() -> str:
 
 def render_finder() -> str:
     payload = finder_payload()
+    fd_list_html, fd_note_html = finder_default_view(json.loads(payload))
     season_btns = "".join(
         f'<button type="button" class="pc-chip" data-fd-season="{code}" aria-pressed="false">{name}</button>'
         for code, name, _m in FINDER_SEASONS
@@ -2618,8 +2728,8 @@ def render_finder() -> str:
           <div class="pc-chips" data-group="fd-budget">{budget_btns}</div>
         </div>
       </div>
-      <div class="fd-note" id="fdNote" aria-live="polite"></div>
-      <div class="fd-list" id="fdList" aria-live="polite"></div>
+      <div class="fd-note" id="fdNote" aria-live="polite">{fd_note_html}</div>
+      <div class="fd-list" id="fdList" aria-live="polite">{fd_list_html}</div>
       <noscript><p class="fd-note">추천 계산은 자바스크립트로 동작합니다. 스크립트가 꺼져 있으면 <a href="/calendar">월별 시즌 캘린더</a>에서 같은 값을 직접 볼 수 있습니다.</p></noscript>
     </div>
   </div>

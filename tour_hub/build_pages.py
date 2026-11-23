@@ -32,8 +32,9 @@ import json
 import re
 import shutil
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import build as B  # 상품 카드·비교표·추가금 계산을 홈과 똑같이 쓰기 위해
 
@@ -48,11 +49,11 @@ SITE_NAME = "트립픽"
 SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
-TODAY = date(2026, 11, 22)
-CSS_V = "43"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v45: 도구 프리셋·인쇄)
+TODAY = datetime.now(ZoneInfo("Asia/Seoul")).date()   # v47: 하드코딩 제거 — 실행 시점 KST 날짜(사이트맵 lastmod·최종 검증일)
+CSS_V = "44"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v47: 폰트 대체 메트릭·D-Day 필)
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "36"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
-JS_V43 = "2"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
+JS_V43 = "3"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
 JS_V44 = "2"   # assets/tp-v44.js (/sos 국가 전환 · 현지어 큰 글씨 카드 · v45 ?country= 프리셋) 캐시 버전
 
 
@@ -501,9 +502,11 @@ def page(
 <meta name="twitter:description" content="{esc(desc)}" />
 <meta name="twitter:image" content="{share_img}" />
 <meta name="twitter:image:alt" content="{esc(og_image_alt or title)}" />
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="preload" as="font" type="font/woff2" href="{up}assets/fonts/PretendardVariable.subset.91.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="{up}assets/fonts/PretendardVariable.subset.86.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="{up}assets/fonts/PretendardVariable.subset.90.woff2" crossorigin />
 <link rel="stylesheet" href="{up}assets/site.css?v={CSS_V}" />
+<link rel="stylesheet" href="{up}assets/fonts/pretendard.css" />
 <link rel="icon" href="{FAVICON}" />
 {ga4_head()}
 {jsonld}
@@ -4894,6 +4897,15 @@ def write_assets(style: str, out_root: Path):
     hdr = ROOT / "_headers"
     if hdr.exists():
         shutil.copy2(hdr, out_root / "_headers")
+    # v47: 자체 호스팅 Pretendard(assets/fonts/*.woff2 + pretendard.css) 동기화
+    font_src = ROOT / "assets" / "fonts"
+    if font_src.is_dir():
+        font_dst = out_root / "assets" / "fonts"
+        font_dst.mkdir(parents=True, exist_ok=True)
+        for f in font_src.iterdir():
+            if f.is_file() and (not (font_dst / f.name).exists()
+                                or f.stat().st_mtime > (font_dst / f.name).stat().st_mtime):
+                shutil.copy2(f, font_dst / f.name)
     # v20: 상품 이미지·에셋도 배포 폴더로 동기화(없거나 더 새로운 파일만 복사)
     for src_dir, dst_rel in ((ROOT / "assets" / "ess", "assets/ess"), (ROOT / "images", "images")):
         if not src_dir.is_dir():

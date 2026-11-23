@@ -769,16 +769,24 @@
 
   function tripStrip() {
     if (!trip || D.querySelector('[data-tp-trip]') || D.querySelector('.tp-strip')) return;
-    var head = D.querySelector('.site-head');
-    if (!head) return;
+    try { if (sessionStorage.getItem('trippick.strip.v1') === 'off') return; } catch (e) {}
     var c = tripCity(trip.s);
     var name = trip.n || (c && c.short) || trip.s;
     var n = ddayOf(trip.date);
-    var a = D.createElement('a');
-    a.className = 'tp-strip';
-    a.href = '/#tpTrip';
-    a.innerHTML = '<span class="wrap"><b>' + esc(dayLabel(n)) + '</b><span>' + esc(name) + ' · 지금 할 일 보기</span><i>열기 →</i></span>';
-    head.insertAdjacentElement('afterend', a);
+    // v47: 흐름에 넣지 않고 화면 아래 고정 필로 — 재방문 시 본문이 밀리던 CLS(0.03~0.14)를 없앱니다.
+    var d = D.createElement('div');
+    d.className = 'tp-strip';
+    d.setAttribute('role', 'region');
+    d.setAttribute('aria-label', '내 여행 D-Day');
+    d.innerHTML = '<a class="tp-strip-a" href="/checklist#tpTrip"><b>' + esc(dayLabel(n)) + '</b>' +
+      '<span>' + esc(name) + ' · 지금 할 일 보기</span><i>열기 →</i></a>' +
+      '<button class="tp-strip-x" type="button" aria-label="D-Day 안내 닫기">×</button>';
+    D.body.appendChild(d);
+    var x = d.querySelector('.tp-strip-x');
+    if (x) x.addEventListener('click', function () {
+      if (d.parentNode) d.parentNode.removeChild(d);
+      try { sessionStorage.setItem('trippick.strip.v1', 'off'); } catch (e) {}
+    });
   }
 
   var TP = D.querySelector('[data-tp-trip]');
