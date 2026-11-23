@@ -1,0 +1,123 @@
+{
+ "report": [
+  {
+   "guide": "1280",
+   "title": "괌 vs 사이판 완벽 비교 — 비행 4시간·숙소 1박·가족·커플·예산 총정리 (2026) | 트립픽",
+   "h1": "괌 vs 사이판, 같은 4박에 숙소 50만 vs 57만부터",
+   "tables": 7,
+   "rows": 37,
+   "cmp": 0,
+   "gtools": true,
+   "sponsors": 20,
+   "faq": 5,
+   "bm": true,
+   "sw": 1280,
+   "iw": 1280,
+   "imgs": [],
+   "hero": null,
+   "errors": []
+  },
+  {
+   "guide": "390",
+   "title": "괌 vs 사이판 완벽 비교 — 비행 4시간·숙소 1박·가족·커플·예산 총정리 (2026) | 트립픽",
+   "h1": "괌 vs 사이판, 같은 4박에 숙소 50만 vs 57만부터",
+   "tables": 7,
+   "rows": 37,
+   "cmp": 0,
+   "gtools": true,
+   "sponsors": 20,
+   "faq": 5,
+   "bm": true,
+   "sw": 390,
+   "iw": 390,
+   "imgs": [],
+   "hero": null,
+   "errors": []
+  },
+  {
+   "stays": "guam",
+   "w": 1280,
+   "url": "https://trippick.pages.dev/stays?group=intl&region=guam",
+   "total": 108,
+   "visible": 3,
+   "hidden": 105,
+   "names": [
+    "두짓타니 괌 리조트",
+    "더 츠바키 타워",
+    "괌 플라자 리조트"
+   ],
+   "regions": [
+    "guam",
+    "guam",
+    "guam"
+   ],
+   "sw": 1280,
+   "iw": 1280,
+   "active": "괌\n3"
+  },
+  {
+   "stays": "saipan",
+   "w": 1280,
+   "url": "https://trippick.pages.dev/stays?group=intl&region=saipan",
+   "total": 108,
+   "visible": 3,
+   "hidden": 105,
+   "names": [
+    "코럴 오션 리조트",
+    "퍼시픽 아일랜드 클럽 사이판",
+    "크라운 플라자 리조트 사이판"
+   ],
+   "regions": [
+    "saipan",
+    "saipan",
+    "saipan"
+   ],
+   "sw": 1280,
+   "iw": 1280,
+   "active": "사이판\n3"
+  },
+  {
+   "stays": "guam",
+   "w": 390,
+   "url": "https://trippick.pages.dev/stays?group=intl&region=guam",
+   "total": 108,
+   "visible": 3,
+   "hidden": 105,
+   "names": [
+    "두짓타니 괌 리조트",
+    "더 츠바키 타워",
+    "괌 플라자 리조트"
+   ],
+   "regions": [
+    "guam",
+    "guam",
+    "guam"
+   ],
+   "sw": 390,
+   "iw": 390,
+   "active": "괌 3"
+  },
+  {
+   "stays": "saipan",
+   "w": 390,
+   "url": "https://trippick.pages.dev/stays?group=intl&region=saipan",
+   "total": 108,
+   "visible": 3,
+   "hidden": 105,
+   "names": [
+    "코럴 오션 리조트",
+    "퍼시픽 아일랜드 클럽 사이판",
+    "크라운 플라자 리조트 사이판"
+   ],
+   "regions": [
+    "saipan",
+    "saipan",
+    "saipan"
+   ],
+   "sw": 390,
+   "iw": 390,
+   "active": "사이판 3"
+  }
+ ],
+ "fails": []
+}

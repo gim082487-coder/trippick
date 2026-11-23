@@ -3209,8 +3209,20 @@
     if (sortBtns.length) mark(sortBtns, sortBtns[0]);
     render();
   });
+  /* v46: ?region=guam 처럼 줄 끝 지역으로 들어오면 선택된 칩이 가로 스크롤 밖에 있어 안 보이던 문제 */
+  function revealChips(){
+    Array.prototype.forEach.call(document.querySelectorAll('.sf-chips'), function(box){
+      var on = box.querySelector('.gf-chip.on');
+      if (!on || !box.clientWidth) return;
+      var b = box.getBoundingClientRect(), c = on.getBoundingClientRect();
+      if (c.left < b.left || c.right > b.right){
+        box.scrollLeft += (c.left - b.left) - (b.width - c.width) / 2;
+      }
+    });
+  }
   render(false);
-  if (needJump){ var sf = document.getElementById('sf'); if (sf && sf.scrollIntoView) sf.scrollIntoView({ block: 'start' }); }
+  revealChips();
+  if (needJump){ var sf = document.getElementById('sf'); if (sf && sf.scrollIntoView) sf.scrollIntoView({ block: 'start' }); revealChips(); }
 })();
 </script>
 <div class="cmp-bar" id="cmpBar" aria-label="비교 바구니">
