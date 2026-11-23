@@ -4895,7 +4895,7 @@ def write_assets(style: str, out_root: Path):
         shutil.copy2(js44, out_root / "assets" / "tp-v44.js")
     # v22: Cloudflare Pages 캐시 헤더(_headers)도 배포 폴더로 복사
     hdr = ROOT / "_headers"
-    if hdr.exists():
+    if hdr.exists() and hdr.resolve() != (out_root / "_headers").resolve():
         shutil.copy2(hdr, out_root / "_headers")
     # v47: 자체 호스팅 Pretendard(assets/fonts/*.woff2 + pretendard.css) 동기화
     font_src = ROOT / "assets" / "fonts"

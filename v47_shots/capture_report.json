@@ -1,0 +1,187 @@
+{
+ "report": [
+  {
+   "page": "home",
+   "viewport": "1280",
+   "title": "트립픽(TripPick) | 오사카·도쿄·다낭·후지·제주 여행 코스 추천 & 가이드투어·패키지 특가 비교",
+   "h1": "설레는 여행은,\n동선에서 시작됩니다",
+   "sw": 1280,
+   "iw": 1280,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "stays",
+   "viewport": "1280",
+   "title": "국내 54·해외 54 찐숙소 108곳 — 10만 원 이하·10~20만·20만 원 이상 예산별 호텔 비교 (2026) | 트립픽",
+   "h1": "찐숙소 108곳 — 권역으로 고르고, 예산·테마로 좁힙니다",
+   "sw": 1280,
+   "iw": 1280,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "guide_guam_vs_saipan",
+   "viewport": "1280",
+   "title": "괌 vs 사이판 완벽 비교 — 비행 4시간·숙소 1박·가족·커플·예산 총정리 (2026) | 트립픽",
+   "h1": "괌 vs 사이판, 같은 4박에 숙소 50만 vs 57만부터",
+   "sw": 1280,
+   "iw": 1280,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "exchange",
+   "viewport": "1280",
+   "title": "환율 계산기 · 일본 면세 환급 계산기 (2026.11.1 리펀드) | 트립픽",
+   "h1": "엔화·동·바트, 결제 전에 원화로 바로 계산",
+   "sw": 1280,
+   "iw": 1280,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "sos",
+   "viewport": "1280",
+   "title": "여행 중 위기상황 SOS — 10개국 경찰·구급·대사관 번호와 현지어 문장 | 트립픽",
+   "h1": "여행 중 위기상황 SOS",
+   "sw": 1280,
+   "iw": 1280,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "home",
+   "viewport": "390",
+   "title": "트립픽(TripPick) | 오사카·도쿄·다낭·후지·제주 여행 코스 추천 & 가이드투어·패키지 특가 비교",
+   "h1": "설레는 여행은,\n동선에서 시작됩니다",
+   "sw": 390,
+   "iw": 390,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "stays",
+   "viewport": "390",
+   "title": "국내 54·해외 54 찐숙소 108곳 — 10만 원 이하·10~20만·20만 원 이상 예산별 호텔 비교 (2026) | 트립픽",
+   "h1": "찐숙소 108곳 — 권역으로 고르고, 예산·테마로 좁힙니다",
+   "sw": 390,
+   "iw": 390,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "guide_guam_vs_saipan",
+   "viewport": "390",
+   "title": "괌 vs 사이판 완벽 비교 — 비행 4시간·숙소 1박·가족·커플·예산 총정리 (2026) | 트립픽",
+   "h1": "괌 vs 사이판, 같은 4박에 숙소 50만 vs 57만부터",
+   "sw": 390,
+   "iw": 390,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "exchange",
+   "viewport": "390",
+   "title": "환율 계산기 · 일본 면세 환급 계산기 (2026.11.1 리펀드) | 트립픽",
+   "h1": "엔화·동·바트, 결제 전에 원화로 바로 계산",
+   "sw": 390,
+   "iw": 390,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "sos",
+   "viewport": "390",
+   "title": "여행 중 위기상황 SOS — 10개국 경찰·구급·대사관 번호와 현지어 문장 | 트립픽",
+   "h1": "여행 중 위기상황 SOS",
+   "sw": 390,
+   "iw": 390,
+   "font": "\"Pretendard Variable\"",
+   "pretendard": true,
+   "broken": 0,
+   "adsense": true,
+   "policyLinks": 4,
+   "errors": []
+  },
+  {
+   "page": "dday_strip_stays",
+   "viewport": "1280",
+   "strip": true,
+   "stripRect": [
+    517,
+    844,
+    246,
+    40
+   ],
+   "saved": false,
+   "dday": null
+  },
+  {
+   "page": "dday_checklist",
+   "viewport": "1280",
+   "strip": false,
+   "stripRect": null,
+   "saved": true,
+   "dday": "D-11"
+  },
+  {
+   "page": "dday_strip_stays",
+   "viewport": "390",
+   "strip": true,
+   "stripRect": [
+    73,
+    794,
+    243,
+    38
+   ],
+   "saved": false,
+   "dday": null
+  },
+  {
+   "page": "dday_checklist",
+   "viewport": "390",
+   "strip": false,
+   "stripRect": null,
+   "saved": true,
+   "dday": "D-11"
+  }
+ ],
+ "fails": []
+}
