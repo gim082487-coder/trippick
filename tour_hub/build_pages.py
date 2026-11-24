@@ -53,7 +53,7 @@ TODAY = datetime.now(ZoneInfo("Asia/Seoul")).date()   # v47: 하드코딩 제거
 CSS_V = "44"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v47: 폰트 대체 메트릭·D-Day 필)
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "36"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
-JS_V43 = "3"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
+JS_V43 = "4"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
 JS_V44 = "2"   # assets/tp-v44.js (/sos 국가 전환 · 현지어 큰 글씨 카드 · v45 ?country= 프리셋) 캐시 버전
 
 

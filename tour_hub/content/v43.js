@@ -662,7 +662,7 @@
       var on = bmIdx(b.getAttribute('data-bm')) >= 0;
       b.setAttribute('aria-pressed', String(on));
       var t = b.querySelector('.bm-t');
-      if (t) t.textContent = on ? '저장한 참고 글' : '★ 참고 글 저장';
+      if (t) t.textContent = on ? '저장한 참고 글' : '참고 글 저장';   // v48: 별 아이콘(.bm-star)과 겹쳐 '★ ★'로 보이던 중복 제거
       b.title = on ? '저장 해제' : '이 글을 저장해 두고 다시 보기';
     });
   }
