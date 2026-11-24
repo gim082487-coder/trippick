@@ -9,7 +9,7 @@
   "aff": 2,
   "per": 3296,
   "h2": 11,
-  "indeg": 20
+  "indeg": 22
  },
  {
   "file": "airport-checkin-customs-guide.html",
@@ -477,7 +477,19 @@
   "aff": 0,
   "per": 2314,
   "h2": 6,
-  "indeg": 38
+  "indeg": 42
+ },
+ {
+  "file": "japan-ic-card.html",
+  "slug": "japan-ic-card",
+  "title": "일본 교통 IC카드 — 스이카·이코카·웰컴스이카 보증금·환불 (2026) | 트립픽",
+  "h1": "일본 IC카드, 보증금 500엔과 환불 220엔 만 알면 끝",
+  "desc": "일본 교통 IC카드를 JR 동일본·JR 서일본 공식 안내로 비교했습니다. 보증금 500엔, 환불 수수료 220엔 계산 예시, 웰컴스이카 28일·환불 불가, 현금 충전 20,000엔 한도, 아이폰·갤럭시 모바일 지원 차이까지 2026년 11월 기준.",
+  "chars": 4455,
+  "aff": 4,
+  "per": 1114,
+  "h2": 9,
+  "indeg": 4
  },
  {
   "file": "japan-ryokan-onsen-etiquette-budget.html",
@@ -514,6 +526,18 @@
   "per": 3579,
   "h2": 5,
   "indeg": 36
+ },
+ {
+  "file": "japan-winter-clothing.html",
+  "slug": "japan-winter-clothing",
+  "title": "겨울 일본 옷차림 — 도쿄·오사카·삿포로 11~2월 복장·준비물 (2026) | 트립픽",
+  "h1": "겨울 일본 옷차림, 1월 -3.2도와 5.4도 를 같이 갈 때",
+  "desc": "겨울 일본 옷차림을 도쿄·오사카·삿포로 평년값으로 정리했습니다. 1월 평균 -3.2도와 5.4도 차이, 삿포로 강설 137cm·최심적설 76cm, 기온별 겹 수와 방수 부츠·핫팩 등 준비물 체크리스트까지 2026년 11월 기준.",
+  "chars": 4096,
+  "aff": 4,
+  "per": 1024,
+  "h2": 8,
+  "indeg": 6
  },
  {
   "file": "jeju-3n4d-course-budget.html",
@@ -585,7 +609,7 @@
   "aff": 5,
   "per": 915,
   "h2": 7,
-  "indeg": 8
+  "indeg": 9
  },
  {
   "file": "narita-haneda-transfer.html",
@@ -657,7 +681,7 @@
   "aff": 0,
   "per": 3550,
   "h2": 7,
-  "indeg": 22
+  "indeg": 27
  },
  {
   "file": "osaka-food-route.html",
@@ -681,7 +705,7 @@
   "aff": 0,
   "per": 4550,
   "h2": 8,
-  "indeg": 32
+  "indeg": 35
  },
  {
   "file": "osaka-usj-transfer.html",
@@ -693,7 +717,7 @@
   "aff": 0,
   "per": 2764,
   "h2": 7,
-  "indeg": 14
+  "indeg": 16
  },
  {
   "file": "osaka-vs-fukuoka-comparison.html",
@@ -741,7 +765,7 @@
   "aff": 0,
   "per": 3145,
   "h2": 5,
-  "indeg": 52
+  "indeg": 54
  },
  {
   "file": "paris-london-5n7d.html",
@@ -789,7 +813,7 @@
   "aff": 0,
   "per": 3456,
   "h2": 7,
-  "indeg": 6
+  "indeg": 9
  },
  {
   "file": "sapporo-hokkaido-3n4d-winter.html",
@@ -801,7 +825,7 @@
   "aff": 4,
   "per": 1615,
   "h2": 12,
-  "indeg": 6
+  "indeg": 9
  },
  {
   "file": "sapporo-winter.html",
@@ -813,7 +837,7 @@
   "aff": 0,
   "per": 2379,
   "h2": 7,
-  "indeg": 14
+  "indeg": 18
  },
  {
   "file": "sea-grab-taxi-scam-guide.html",
@@ -1008,6 +1032,18 @@
   "indeg": 15
  },
  {
+  "file": "tokyo-disney-parks.html",
+  "slug": "tokyo-disney-parks",
+  "title": "도쿄 디즈니랜드 vs 디즈니씨 — 1일권 10,900~12,400엔 비교 (2026) | 트립픽",
+  "h1": "도쿄 디즈니랜드 vs 디즈니씨, 값은 같고 답은 키와 목적",
+  "desc": "도쿄 디즈니랜드와 디즈니씨를 같은 값(10,900~12,400엔)에서 비교했습니다. 102cm·117cm 키 제한, 2026년 8월 31일 종료된 무료 패스트패스, DPA 1,000~2,500엔, 2인 총액 24만원대까지 2026년 11월 기준.",
+  "chars": 4918,
+  "aff": 4,
+  "per": 1230,
+  "h2": 9,
+  "indeg": 5
+ },
+ {
   "file": "tokyo-food-route.html",
   "slug": "tokyo-food-route",
   "title": "도쿄 맛집 5선 츠키지·신주쿠·시부야 (2026 가격·휴시일·동선) | 트립픽",
@@ -1017,7 +1053,7 @@
   "aff": 0,
   "per": 2631,
   "h2": 6,
-  "indeg": 20
+  "indeg": 19
  },
  {
   "file": "tokyo-fuji-tour.html",
@@ -1029,7 +1065,7 @@
   "aff": 0,
   "per": 2707,
   "h2": 7,
-  "indeg": 9
+  "indeg": 12
  },
  {
   "file": "tokyo-package-4d-vs-3d.html",
@@ -1041,7 +1077,7 @@
   "aff": 0,
   "per": 3023,
   "h2": 7,
-  "indeg": 15
+  "indeg": 18
  },
  {
   "file": "tokyo-subway-ticket.html",
@@ -1053,7 +1089,7 @@
   "aff": 0,
   "per": 2497,
   "h2": 6,
-  "indeg": 19
+  "indeg": 25
  },
  {
   "file": "tongyeong-geoje-2d.html",
@@ -1164,6 +1200,18 @@
   "indeg": 16
  },
  {
+  "file": "usj-express-pass.html",
+  "slug": "usj-express-pass",
+  "title": "USJ 익스프레스 패스 4 vs 7 — 12월 가격·닌텐도 확약 (2026) | 트립픽",
+  "h1": "USJ 익스프레스 4 vs 7, 같은 4도 18종 입니다",
+  "desc": "USJ 익스프레스 패스 4와 7을 2026년 12월 가격으로 비교했습니다. 4는 9,800~26,800엔·7은 21,800~31,800엔, 닌텐도 월드 확약 포함 기준, 122·132cm 키 제한, 2일권이 1일+익스프레스보다 12,400엔 싼 계산까지.",
+  "chars": 4605,
+  "aff": 4,
+  "per": 1151,
+  "h2": 9,
+  "indeg": 3
+ },
+ {
   "file": "vietnam-esim.html",
   "slug": "vietnam-esim",
   "title": "베트남 eSIM vs 로밍 — 2인 5일 2,000원 vs 99,000원 (2026) | 트립픽",
@@ -1209,7 +1257,7 @@
   "aff": 4,
   "per": 944,
   "h2": 7,
-  "indeg": 5
+  "indeg": 6
  },
  {
   "file": "winter-december-best6.html",
@@ -1233,7 +1281,7 @@
   "aff": 0,
   "per": 3001,
   "h2": 9,
-  "indeg": 4
+  "indeg": 5
  },
  {
   "file": "winter-warm-resorts5.html",

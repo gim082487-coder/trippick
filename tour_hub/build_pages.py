@@ -142,7 +142,8 @@ def fx_basis(code: str) -> str:
         return raw
     unit, name = CUR_UNIT.get(code, (1, code))
     total = val * unit
-    text = f"{total:,.2f}".rstrip("0").rstrip(".")
+    # v51: 도구 바 한 줄에는 본문·고시 문구와 같은 원 단위로 반올림해 보여 준다(838.34원 → 838원).
+    text = f"{round(total):,}"
     return f"{unit}{name} = {text}원"
 
 

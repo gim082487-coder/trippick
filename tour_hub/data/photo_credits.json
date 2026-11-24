@@ -392,6 +392,58 @@
    "pexels_id": 38550497,
    "photographer": "Xlenz Creatives",
    "url": "https://www.pexels.com/photo/38550497/"
+  },
+  "v51/japan-winter-clothing": {
+   "pexels_id": 36038222,
+   "photographer": "travelers_tw",
+   "url": "https://www.pexels.com/photo/36038222/",
+   "subject": "눈 내리는 삿포로 거리, 겨울 옷을 입은 행인",
+   "file": "images/v51/japan-winter-clothing.jpg"
+  },
+  "v51/tokyo-disney-parks": {
+   "pexels_id": 3067949,
+   "photographer": "Edgar Mirambel",
+   "url": "https://www.pexels.com/photo/boat-on-water-3067949/",
+   "subject": "도쿄 디즈니씨 지중해 항구",
+   "file": "images/v51/tokyo-disney-parks.jpg"
+  },
+  "v51/japan-ic-card": {
+   "pexels_id": 5905655,
+   "photographer": "Imani Williams",
+   "url": "https://www.pexels.com/photo/commuters-at-subway-station-5905655/",
+   "subject": "도쿄 지하철 개찰구",
+   "file": "images/v51/japan-ic-card.jpg"
+  },
+  "v51/usj-express-pass": {
+   "source": "Wikimedia Commons",
+   "file": "UNIVERSAL STUDIOS JAPAN GATE.jpg",
+   "photographer": "MaedaAkihiko",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:UNIVERSAL_STUDIOS_JAPAN_GATE.jpg",
+   "subject": "유니버설 스튜디오 재팬 게이트",
+   "note": "1200×800 크롭. OG 1200×630 별도 저장."
+  },
+  "v51-japan-winter-clothing-og": {
+   "pexels_id": 36038222,
+   "photographer": "travelers_tw",
+   "url": "https://www.pexels.com/photo/36038222/"
+  },
+  "v51-tokyo-disney-parks-og": {
+   "pexels_id": 3067949,
+   "photographer": "Edgar Mirambel",
+   "url": "https://www.pexels.com/photo/boat-on-water-3067949/"
+  },
+  "v51-japan-ic-card-og": {
+   "pexels_id": 5905655,
+   "photographer": "Imani Williams",
+   "url": "https://www.pexels.com/photo/commuters-at-subway-station-5905655/"
+  },
+  "v51-usj-express-pass-og": {
+   "source": "Wikimedia Commons",
+   "file": "UNIVERSAL STUDIOS JAPAN GATE.jpg",
+   "photographer": "MaedaAkihiko",
+   "license": "CC BY-SA 4.0",
+   "url": "https://commons.wikimedia.org/wiki/File:UNIVERSAL_STUDIOS_JAPAN_GATE.jpg"
   }
  }
 }

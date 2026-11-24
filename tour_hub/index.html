@@ -2832,10 +2832,11 @@
 .flow > section{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 #regions .city{content-visibility:auto;contain-intrinsic-size:auto 2100px}
 .gi-sec{content-visibility:auto;contain-intrinsic-size:auto 1500px}
-/* v50: /stays 카드는 첫 24장만 그리고 나머지는 「더 보기」로 붙이므로 content-visibility 를 쓰지 않는다.
-   v49의 `.sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 430px}` 는
-   실제 카드 높이(390px 화면 700~900px)보다 작은 430px을 잡아 두어 스크롤할 때 흰 여백과
-   위치 밀림을 만들었습니다(실측: 더 보기 버튼이 3,156px 아래로 밀림). */
+/* v50 — /stays 카드: 첫 24장만 그리므로 content-visibility 는 남기되, v49의 430px 은
+   실제 카드 높이(390px 화면 1,000px 안팎)보다 작아 브라우저가 '아직 화면 밖'으로 오판해
+   보이는 카드까지 건너뛰며 흰 여백이 생겼습니다. 실제 높이에 가깝게 잡습니다(auto 는 한 번 그린 뒤 실측값을 기억). */
+.sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 760px}
+@media (max-width:640px){ .sgrid > .scard{contain-intrinsic-size:auto 780px} }
 /* v50 — /stays 점진 렌더: 첫 24곳만 그리고 「더 보기」·스크롤로 이어 붙인다 */
 .scard[hidden]{display:none}
 .sgrid-more{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:24px 0 4px;padding:18px 16px;border:1px solid var(--line);border-radius:14px;background:var(--line-2)}
@@ -3136,7 +3137,7 @@
     <a class="qn" href="#essentials"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><b>필수품</b><i>60개</i></a>
     <a class="qn" href="#gifts"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-ticket"/></svg></span><b>선물·기념품</b><i>6개국</i></a>
     <a class="qn" href="#foods"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><b>맛집</b><i>75곳</i></a>
-    <a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>106편</i></a>
+    <a class="qn" href="guides/"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-compass"/></svg></span><b>여행 가이드</b><i>110편</i></a>
     <a class="qn" href="#alert"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></span><b>특가 알림</b><i>무료</i></a>
     <a class="qn" href="#courses"><span class="qn-ic"><svg aria-hidden="true"><use href="#i-image"/></svg></span><b>여행 코스</b><i>5개</i></a>
     <button class="qn" type="button" data-quick-scope="kr"><span class="qn-ic"><svg class="flag-ic" aria-hidden="true"><use href="#f-kr"/></svg></span><b>국내</b><i>18개</i></button>
