@@ -2787,6 +2787,14 @@
 .gi-sec{content-visibility:auto;contain-intrinsic-size:auto 1500px}
 /* /stays 는 한 그리드에 108장 카드가 있어 카드 단위로 건너뛴다 */
 .sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 430px}
+/* v50 — /stays 점진 렌더: 첫 24곳만 그리고 「더 보기」·스크롤로 이어 붙인다 */
+.scard[hidden]{display:none}
+.sgrid-more{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:24px 0 4px;padding:18px 16px;border:1px solid var(--line);border-radius:14px;background:var(--line-2)}
+.sgrid-more[hidden]{display:none}
+.sgrid-more button{min-height:44px;padding:0 22px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:inherit;font-weight:750;cursor:pointer;transition:.15s}
+.sgrid-more button:hover{background:#1c3145}
+.sf-more-note{font-weight:750;color:var(--ink)}
+.sf-more-hint{font-size:12.4px;color:var(--ink-3)}
 @media print{ .flow > section,#regions .city,.gi-sec{content-visibility:visible} }
 
 /* =====================================================================

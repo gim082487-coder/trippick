@@ -84,10 +84,21 @@ tour_doc = load("tours.json")
 
 
 def compare_payload(html):
-    m = re.search(r'<script type="application/json" id="tpCompare" data-kind="([a-z]+)"[^>]*>(.*?)</script>', html, re.S)
+    m = re.search(r'<script type="application/json" id="tpCompare"([^>]*)>(.*?)</script>', html, re.S)
     if not m:
         return None, {}
-    return m.group(1), json.loads(m.group(2))
+    attrs = m.group(1)
+    kind_m = re.search(r'data-kind="([a-z]+)"', attrs)
+    kind = kind_m.group(1) if kind_m else None
+    body = (m.group(2) or "").strip()
+    if not body:
+        src = re.search(r'data-src="([^"]+)"', attrs)
+        p = OUT / src.group(1) if src else None
+        if p and p.exists():
+            body = p.read_text(encoding="utf-8")
+    if not body:
+        return kind, {}
+    return kind, json.loads(body)
 
 
 kind, cmp_map = compare_payload(home)

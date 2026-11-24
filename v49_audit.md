@@ -63,6 +63,8 @@ DOM 1.5만 노드를 첫 화면에서 전부 스타일·레이아웃하고 있�
 
 ## 2. 콘텐츠 품질·애드센스 리스크 (가이드 103편 전수)
 
+> **정정(2026-11-24 v50)** — 이 절의 “1,446자 최단 가이드 / 1,800자 미만 7편”은 계수 버그입니다. `tools/v49_content_audit.py`가 요약박스(g-sum)를 지울 때 쓴 `re.sub(r'<div class="g-sum">.*?</div>\s*</div>')`가 일부 글에서 본문 대부분을 함께 삭제했습니다(예: travel-hacks 11,933자 중 9,089자). div 깊이를 세는 균형 파서로 바꾼 `tools/v50_content_audit.py`로 다시 재면 **최단 2,214자·중앙값 3,550자·1,800자 미만 0편**입니다. 제휴 링크 밀도 상위 3편(괌vs사이판·오사카vs후쿠오카·다낭vs나트랑)과 제목 유사도 지적은 유효합니다.
+
 - 본문(3줄 요약·목차 박스 제외, 공백 제외) 글자수: 최소 1,446 · p10 1,860 · 중앙값 **2,738** · 최대 6,136.
 - **1,500자 미만 1편**: `travel-hacks-hotel-flight-restaurant` 1,446자(내부링크 2).
 - **1,800자 미만 7편**: 위 1편 + `nhatrang-dalat-tour-vs-free` 1,704 · `tokyo-package-4d-vs-3d` 1,727 · `tokyo-food-route` 1,741 · `vietnam-golf-54-vs-36` 1,787 · `hawaii-hyatt-vs-sheraton` 1,794 · `jeju-aircarotel-3-packages` 1,823.

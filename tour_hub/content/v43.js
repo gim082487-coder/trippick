@@ -885,6 +885,10 @@
      ========================================================= */
   var dataEl = D.getElementById('tpCompare');
   if (!dataEl) return;
+  var cmpReady = false;
+  var pendingCmp = [];
+  /* v50: 홈의 비교 데이터는 정적 JSON(data/tp-compare.json)에서 받는다 */
+  function cmpBoot() {
   var bar = D.getElementById('cmpBar');
   var modal = D.getElementById('cmpModal');
   var list = D.getElementById('cbList');
@@ -1069,4 +1073,19 @@
   });
 
   renderBar();
+  cmpReady = true;
+  /* 데이터 로드 전에 누른 「비교」·「나란히 비교」를 재생한다 */
+  pendingCmp.splice(0).forEach(function (k) {
+    if (k === 'open') { if (picked.length >= 2) openCmp(); } else toggleCmp(k);
+  });
+  }
+  if (window.tpLazy) {
+    var goCmp = window.tpLazy(['tpCompare'], cmpBoot, { on: ['pointerdown:[data-cmp-add]'], idle: 1200 });
+    D.addEventListener('click', function (e) {
+      if (cmpReady || !e.target.closest) return;
+      var add = e.target.closest('[data-cmp-add]');
+      if (add) { e.preventDefault(); pendingCmp.push(add.getAttribute('data-cmp-add')); goCmp(); return; }
+      if (e.target.closest('#cbOpen')) { pendingCmp.push('open'); goCmp(); }
+    }, true);
+  } else cmpBoot();
 })();

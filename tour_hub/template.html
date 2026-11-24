@@ -2834,6 +2834,14 @@
 .gi-sec{content-visibility:auto;contain-intrinsic-size:auto 1500px}
 /* /stays 는 한 그리드에 108장 카드가 있어 카드 단위로 건너뛴다 */
 .sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 430px}
+/* v50 — /stays 점진 렌더: 첫 24곳만 그리고 「더 보기」·스크롤로 이어 붙인다 */
+.scard[hidden]{display:none}
+.sgrid-more{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:24px 0 4px;padding:18px 16px;border:1px solid var(--line);border-radius:14px;background:var(--line-2)}
+.sgrid-more[hidden]{display:none}
+.sgrid-more button{min-height:44px;padding:0 22px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:inherit;font-weight:750;cursor:pointer;transition:.15s}
+.sgrid-more button:hover{background:#1c3145}
+.sf-more-note{font-weight:750;color:var(--ink)}
+.sf-more-hint{font-size:12.4px;color:var(--ink-3)}
 @media print{ .flow > section,#regions .city,.gi-sec{content-visibility:visible} }
 </style>
 <noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}
@@ -3504,6 +3512,57 @@
 
 <div class="toast" role="status" aria-live="polite" data-toast></div>
 
+<script>
+/* v50: 무거운 JSON(tpData·plansData·tpSearch·tpCompare)은 첫 화면을 막지 않고
+   필요해질 때 받는다. <script id> 자리에 data-src 가 있으면 fetch 해서 채운 뒤 cb 를 부른다.
+   opts: { target: IntersectionObserver 로 지켜볼 선택자, rootMargin, on: ['이벤트:선택자'], idle: ms } */
+window.tpLazy = function (ids, cb, opts) {
+  opts = opts || {};
+  var els = {}, need = [], started = false;
+  ids.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    els[id] = el;
+    if (!(el.textContent || '').trim() && el.getAttribute('data-src')) need.push(el);
+  });
+  function go() {
+    if (started) return;
+    started = true;
+    if (!need.length) { cb(els); return; }
+    var left = need.length;
+    need.forEach(function (el) {
+      fetch(el.getAttribute('data-src'), { credentials: 'same-origin' })
+        .then(function (r) { return r.ok ? r.text() : ''; })
+        .then(function (t) { el.textContent = t; })
+        .catch(function () {})
+        .then(function () { if (--left === 0) cb(els); });
+    });
+  }
+  go.go = go;
+  if (opts.target && 'IntersectionObserver' in window) {
+    var t = document.querySelector(opts.target);
+    if (t) {
+      var io = new IntersectionObserver(function (es) {
+        for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) { io.disconnect(); go(); }
+      }, { rootMargin: opts.rootMargin || '900px 0px' });
+      io.observe(t);
+    }
+  }
+  (opts.on || []).forEach(function (spec) {
+    var p = String(spec).split(':'), type = p.shift() || 'pointerdown', sel = p.join(':');
+    document.addEventListener(type, function (e) {
+      if (sel && !(e.target && e.target.closest && e.target.closest(sel))) return;
+      go();
+    }, true);
+  });
+  if (opts.idle) {
+    var arm = function () { setTimeout(go, opts.idle); };
+    if (document.readyState === 'complete') arm(); else window.addEventListener('load', arm);
+  }
+  return go;
+};
+</script>
+
 <!-- @TP_DATA -->
 <!-- @COMPARE_DATA -->
 <!-- @TP_BUNDLES -->
@@ -4012,6 +4071,7 @@ if (searchForm) {
 
 /* ================= 예산 계산기 ================= */
 (function () {
+  function boot() {
   var body = document.getElementById('plBody');
   var tpEl = document.getElementById('tpData');
   var planEl = document.getElementById('plansData');
@@ -4249,6 +4309,34 @@ if (searchForm) {
   })();
 
   renderAll();
+  plReady = true;
+  /* 데이터가 늦게 도착했을 때: 그 전에 누른 계산기 버튼을 그대로 다시 눌러 준다 */
+  pendingPl.splice(0).forEach(function (sel) { var t = document.querySelector(sel); if (t) { try { t.click(); } catch (e) {} } });
+  }
+  /* v50: 계산기 데이터는 이 섹션에 가까워졌을 때 받는다. 로드 전에 버튼을 누르면
+     그 클릭을 기억해 두었다가 데이터가 오면 재생한다(첫 탭이 먹통이 되지 않게). */
+  var plReady = false;
+  var pendingPl = [];
+  /* 공유 링크(?pax=·region=·style=·plan=)나 #planner 로 바로 들어오면 그 설정이 첫 화면에 맞아야 하므로 즉시 받는다 */
+  var plQs = new URLSearchParams(location.search);
+  var plDirect = plQs.has('pax') || plQs.has('region') || plQs.has('style') || plQs.has('plan') || location.hash === '#planner';
+  if (window.tpLazy) {
+    var goPl = window.tpLazy(['tpData', 'plansData'], boot,
+      plDirect ? null : { target: '#planner', rootMargin: '900px 0px' });
+    document.addEventListener('click', function (e) {
+      if (plReady || !e.target.closest) return;
+      var el = e.target.closest('#planner .pc-chip, #planner .pl-tab, #planner button, #planner a');
+      if (!el) return;
+      var sel = '';
+      if (el.hasAttribute('data-region')) sel = '.pc-chip[data-region="' + el.getAttribute('data-region') + '"]';
+      else if (el.hasAttribute('data-style')) sel = '.pc-chip[data-style="' + el.getAttribute('data-style') + '"]';
+      else if (el.hasAttribute('data-plan-tab')) sel = '.pl-tab[data-plan-tab="' + el.getAttribute('data-plan-tab') + '"]';
+      else if (el.hasAttribute('data-pax-step')) sel = '[data-pax-step="' + el.getAttribute('data-pax-step') + '"]';
+      if (sel && pendingPl.indexOf(sel) < 0) pendingPl.push(sel);
+      goPl();
+    }, true);
+    if (plDirect) goPl();
+  } else boot();
 })();
 
 /* ============================== 나라별 선물·기념품 ============================== */
@@ -4541,6 +4629,7 @@ applyFilters();
    data/guides.json·tours.json·city_hubs.json 색인을 그대로 써서
    입력하는 순간 가이드·투어·도시를 같이 찾아 준다. */
 (function () {
+  function boot() {
   var form = document.getElementById('searchForm');
   if (!form) return;
   var q = document.getElementById('q');
@@ -4640,6 +4729,13 @@ applyFilters();
   });
   window.addEventListener('scroll', function () { if (!box.hidden) place(); }, { passive: true });
   window.addEventListener('resize', function () { if (!box.hidden) place(); });
+  /* 데이터를 늦게 받은 경우 이미 입력된 검색어로 결과를 바로 보여 준다 */
+  if ((q.value || '').trim()) search();
+  }
+  /* v50: 검색 색인은 검색창을 건드릴 때(또는 유휴 시간) 받는다 */
+  if (window.tpLazy) {
+    window.tpLazy(['tpSearch'], boot, { on: ['focusin:#q', 'pointerdown:#q'], idle: 1800 });
+  } else boot();
 })();
 </script>
 <script>
@@ -4655,6 +4751,6 @@ applyFilters();
 </script>
 <script src="assets/trip-save.js?v=26" defer></script>
 <script src="assets/tp-v35.js?v=35" defer></script>
-<script src="assets/tp-v43.js?v=3" defer></script>
+<script src="assets/tp-v43.js?v=5" defer></script>
 </body>
 </html>

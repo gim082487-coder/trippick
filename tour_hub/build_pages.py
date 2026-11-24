@@ -53,7 +53,7 @@ TODAY = datetime.now(ZoneInfo("Asia/Seoul")).date()   # v47: 하드코딩 제거
 CSS_V = "44"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v47: 폰트 대체 메트릭·D-Day 필)
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "36"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
-JS_V43 = "4"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
+JS_V43 = "5"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
 JS_V44 = "2"   # assets/tp-v44.js (/sos 국가 전환 · 현지어 큰 글씨 카드 · v45 ?country= 프리셋) 캐시 버전
 
 
@@ -103,6 +103,7 @@ TOOL_KEYS = {k for _, _, k, _ in TOOLS}
 # 1080px 이하에서 숨길 보조 메뉴(핵심 메뉴와 드롭다운만 남긴다)
 HIDE_SM = {"checklist", "foods", "alert"}
 STAYS: dict = {}   # data/stays.json — v21 /stays
+GLOBAL_CSS = ""    # v50: assets/site.css 내용(빌드 시 채움) — 특정 페이지는 HTML 안에 인라인한다
 SEASON_IDS: set = set()   # data/season.json 도시 — 허브의 시즌 캘린더 탭 앵커 판단
 KLOOK: dict = {}   # data/klook.json (main 에서 채운다)
 PACKAGES: dict = {}  # data/packages.json — v20 고단가 패키지
@@ -463,6 +464,7 @@ def page(
     og_image_alt: str = "",
     og_image_size: tuple[int, int] | None = None,
     scripts: str = "",
+    inline_css: bool = False,
 ) -> Path:
     up = "../" * rel_path.count("/")
     canonical = f"{base.rstrip('/')}/{rel_path}"
@@ -544,6 +546,11 @@ def page(
 """
     target = out_root / rel_path
     target.parent.mkdir(parents=True, exist_ok=True)
+    if inline_css:
+        # v50: /stays 처럼 유입이 많은 페이지는 CSS 를 HTML 안에 넣어 왕복(RTT) 한 번을 줄인다
+        link = f'<link rel="stylesheet" href="{up}assets/site.css?v={CSS_V}" />'
+        if link in head and GLOBAL_CSS:
+            head = head.replace(link, "<style>\n" + GLOBAL_CSS + "\n</style>", 1)
     # v49: 지연 로드 이미지는 디코딩을 메인 스레드에서 떼어낸다(INP·렌더 부담 감소)
     html_out = re.sub(r'<img\b(?![^>]*\bdecoding=)', '<img decoding="async"', clean_site_urls(head, base))
     target.write_text(html_out, encoding="utf-8")
@@ -3289,6 +3296,8 @@ def _stays_region_by_id() -> dict:
 STAY_TYPE_ORDER = ["hotel", "resort", "onsen", "value", "hostel"]
 STAY_TYPE_CHIP = {"hotel": "호텔", "resort": "리조트·풀빌라", "onsen": "온천 료칸", "value": "가성비", "hostel": "호스텔"}
 STAY_THEME_ORDER = ["pool", "ocean", "onsen", "station", "value", "villa"]
+# v50: /stays 는 첫 화면에 STAY_CHUNK곳만 그리고 나머지는 「더 보기」·스크롤로 이어 붙인다
+STAY_CHUNK = 24
 
 # v26: /stays 권역별 보기 — 국내 숙소를 권역으로 묶어 한눈에 고른다
 STAY_GROUPS = [
@@ -3590,7 +3599,7 @@ def build_search_index() -> dict:
     return {"generated": "2026-11-22", "items": items}
 
 
-def stays_card(h: dict, region: dict, group: str | None = None) -> str:
+def stays_card(h: dict, region: dict, group: str | None = None, hidden: bool = False) -> str:
     sub = _stay_subs(h)
     scope = region.get("scope", "intl")
     flag = "국내" if scope == "kr" else (region.get("country") or "해외")
@@ -3598,7 +3607,7 @@ def stays_card(h: dict, region: dict, group: str | None = None) -> str:
     flag_ic = f'<span class="sc-fl">{B.flag_svg(iso, 13, 9.1)}</span>' if (scope != "kr" and iso) else ""
     grp = group or stay_group_of(region)
     bud = "low" if h["price"] <= 100000 else ("mid" if h["price"] <= 200000 else "high")
-    return f"""    <article class="scard" data-region="{h['region']}" data-tp-city="{h['region']}" data-group="{grp}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}" data-budget="{bud}">
+    return f"""    <article class="scard"{' hidden' if hidden else ''}" data-region="{h['region']}" data-tp-city="{h['region']}" data-group="{grp}" data-scope="{scope}" data-type="{h['type']}" data-themes="{' '.join(h.get('themes') or [])}" data-score="{h['score']}" data-price="{h['price']}" data-budget="{bud}">
       <a class="sc-thumb" href="{esc(h['url'])}" target="_blank" rel="noopener sponsored" aria-label="{esc(h['name'])} 트립닷컴에서 보기">
         <img src="{esc(h['img'])}" alt="{esc(region['name'])} {esc(h['name'])} 숙소 사진" width="720" height="480" loading="lazy" />
         <span class="sc-score{_stay_score_class(h['score'])}">{h['score']:.1f}</span>
@@ -3805,9 +3814,12 @@ def stays_page(out_root: Path, base: str) -> Path:
         for t in STAY_THEME_ORDER if t in theme_name
     )
     cards = []
+    _seen = 0
     for r, hs in groups:
         for h in hs:
-            cards.append(stays_card(h, r, STAY_REGION_GROUP.get(r["id"]) if r.get("scope") == "kr" else "intl"))
+            cards.append(stays_card(h, r, STAY_REGION_GROUP.get(r["id"]) if r.get("scope") == "kr" else "intl",
+                                     hidden=_seen >= STAY_CHUNK))
+            _seen += 1
 
     region_anchors = "".join(f'<span id="{r["id"]}"></span>' for r, _ in groups)
     region_links = "".join(
@@ -3919,6 +3931,12 @@ def stays_page(out_root: Path, base: str) -> Path:
 {chr(10).join(cards)}
     </div>
 
+    <div class="sgrid-more" id="sfMoreWrap">
+      <span class="sf-more-note" id="sfMoreNote">{total}곳 중 {min(STAY_CHUNK, total)}곳 표시</span>
+      <button type="button" id="sfMore">숙소 {min(STAY_CHUNK, total)}곳 더 보기</button>
+      <span class="sf-more-hint">아래로 스크롤하면 자동으로 이어집니다</span>
+    </div>
+
     <div class="gfind-empty" id="sfEmpty" hidden>
       <b>조건에 맞는 숙소가 없습니다.</b>
       <p>국내/해외·지역·테마·예산을 ‘전체’로 바꿔 보세요. 예산대는 1박 10만 원 이하·10~20만 원·20만 원 이상, 테마는 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 여섯 가지입니다.</p>
@@ -3989,6 +4007,7 @@ def stays_page(out_root: Path, base: str) -> Path:
         jsonld=f'<script type="application/ld+json">{stays_jsonld(base, groups)}</script>\n'
         + graph_ld(org_ld(base), website_ld(base),
                    breadcrumb_ld(base, [("트립픽", "/"), ("찐숙소", None)])),
+        inline_css=True,
     )
 
 
@@ -4010,13 +4029,47 @@ def stays_filter_script() -> str:
   cards.forEach(function(c, i){ c.setAttribute('data-rec', i); });
   var state = { scope: 'all', group: 'all', region: 'all', theme: 'all', budget: 'all', sort: 'rec' };
 
+  var CHUNK = 24;
+  var shownAll = [];
+  var limit = CHUNK;
+  var moreWrap = document.getElementById('sfMoreWrap');
+  var moreBtn = document.getElementById('sfMore');
+  var moreNote = document.getElementById('sfMoreNote');
+
+  /* v50: 처음 CHUNK곳만 그린다(직접 108곳을 그리면 모바일 LCP가 늦어짐). 더 보기·스크롤로 이어 붙인다. */
+  function draw(){
+    var take = shownAll.slice(0, limit);
+    cards.forEach(function(c){ c.hidden = true; });
+    take.forEach(function(c){ c.hidden = false; grid.appendChild(c); });
+    countEl.textContent = shownAll.length;
+    emptyEl.hidden = shownAll.length > 0;
+    if (moreWrap){
+      var rest = shownAll.length - take.length;
+      moreWrap.hidden = rest <= 0;
+      if (moreBtn) moreBtn.textContent = '숙소 ' + Math.min(CHUNK, rest) + '곳 더 보기';
+      if (moreNote) moreNote.textContent = shownAll.length + '곳 중 ' + take.length + '곳 표시';
+    }
+  }
+  function more(){
+    if (shownAll.length <= limit) return;
+    limit += CHUNK;
+    draw();
+  }
+  if (moreBtn) moreBtn.addEventListener('click', more);
+  if (moreWrap && 'IntersectionObserver' in window){
+    var moreIO = new IntersectionObserver(function(es){
+      for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) more();
+    }, { rootMargin: '320px 0px' });
+    moreIO.observe(moreWrap);
+  }
+
   function scoreOf(c){ return parseFloat(c.getAttribute('data-score')) || 0; }
   function priceOf(c){ return parseInt(c.getAttribute('data-price'), 10) || 0; }
   function recOf(c){ return parseInt(c.getAttribute('data-rec'), 10) || 0; }
   function themesOf(c){ return (c.getAttribute('data-themes') || '').split(' ').filter(Boolean); }
   function budgetOf(c){ return c.getAttribute('data-budget') || 'high'; }
 
-  function render(sync){
+  function render(sync, keepLimit){
     var shown = cards.filter(function(c){
       var okS = state.scope === 'all' || c.getAttribute('data-scope') === state.scope;
       var okG = state.group === 'all' || c.getAttribute('data-group') === state.group;
@@ -4030,10 +4083,9 @@ def stays_filter_script() -> str:
       if (state.sort === 'score') return scoreOf(b) - scoreOf(a) || priceOf(a) - priceOf(b);
       return recOf(a) - recOf(b);
     });
-    cards.forEach(function(c){ c.hidden = true; });
-    shown.forEach(function(c){ c.hidden = false; grid.appendChild(c); });
-    countEl.textContent = shown.length;
-    emptyEl.hidden = shown.length > 0;
+    shownAll = shown;
+    if (!keepLimit) limit = CHUNK;
+    draw();
     if (sync !== false && window.history && history.replaceState){
       var p = [];
       if (state.scope !== 'all') p.push('scope=' + state.scope);
@@ -5160,11 +5212,20 @@ def main():
     EXTRA = load_json("guide_extra.json")
 
     write_assets(style, out_root)
+    global GLOBAL_CSS
+    GLOBAL_CSS = (out_root / "assets" / "site.css").read_text(encoding="utf-8")
 
     # v20: 홈(index.html)은 build.py가 만든 것을 그대로 배포 폴더로 복사한다.
     home = ROOT / "index.html"
     if home.exists() and home.resolve() != (out_root / "index.html").resolve():
         shutil.copy2(home, out_root / "index.html")
+    # v50: 홈이 fetch 하는 정적 JSON(tp-data·tp-plans·tp-search·tp-compare)
+    for _f in ("tp-data.json", "tp-plans.json", "tp-search.json", "tp-compare.json"):
+        _src = ROOT / "data" / _f
+        _dst = out_root / "data" / _f
+        if _src.exists() and _src.resolve() != _dst.resolve():
+            _dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(_src, _dst)
 
     made = []
     if args.only in ("", "pages"):

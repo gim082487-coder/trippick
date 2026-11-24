@@ -29,6 +29,12 @@
   ! Cache-Control
   Cache-Control: public, max-age=604800
 
+# 4-1) v50: 홈이 fetch 하는 JSON(tp-data·tp-plans·tp-search·tp-compare) — 1일
+/data/*
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+  Content-Type: application/json; charset=utf-8
+
 # 5) 루트에 바로 놓인 이미지 확장자
 /*.jpg
   ! Cache-Control

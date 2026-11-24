@@ -2091,7 +2091,7 @@ def render_planner_default(plans: dict, tours_by_id: dict, ess_by_id: dict, cour
     )
 
 
-def render_tp_data(data: dict, essentials: dict, courses: dict) -> str:
+def tp_data_payload(data: dict, essentials: dict, courses: dict) -> dict:
     tours = {}
     for t in data["tours"]:
         ex = extra_rec(t)
@@ -2111,9 +2111,19 @@ def render_tp_data(data: dict, essentials: dict, courses: dict) -> str:
             "u": ess_url(e), "v": 1 if e["category"] == "공항픽업" else 0,
         }
     course = {c["city"]: {"id": c["id"], "title": c["title"]} for c in courses["courses"] if c.get("city")}
-    payload = {"tours": tours, "ess": ess, "fx": PLANNER["fx"], "course": course}
-    raw = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    return f'<script type="application/json" id="tpData">{raw}</script>'
+    return {"tours": tours, "ess": ess, "fx": PLANNER["fx"], "course": course}
+
+
+def plans_payload(plans: dict, notes: dict) -> dict:
+    return {"plans": plans, "notes": notes}
+
+
+def lazy_json_script(eid: str, src: str, extra: str = "") -> str:
+    """v50: 첫 화면을 막지 않도록 무거운 JSON 은 정적 파일로 빼고 필요할 때 fetch 한다.
+
+    <script id> 자리는 그대로 두어 기존 스크립트·검증이 같은 id 로 찾을 수 있게 한다.
+    """
+    return f'<script type="application/json" id="{eid}" data-src="{src}"{extra}></script>'
 
 
 def render_bundles_json() -> str:
@@ -2258,7 +2268,7 @@ def faq_tokens(data: dict, courses: dict, essentials: dict) -> dict:
     }
 
 
-def render_search_index(data: dict, guides: dict, hubs: list) -> str:
+def search_payload(data: dict, guides: dict, hubs: list) -> list:
     """홈 검색창 드롭다운용 색인 — 가이드 44편 + 투어 57개 + 도시 7곳.
 
     URL 은 Cloudflare Pages 가 200 으로 서빙하는 확장자 없는 주소로 직접 적는다.
@@ -2308,11 +2318,10 @@ def render_search_index(data: dict, guides: dict, hubs: list) -> str:
             "u": h["slug"],
             "q": norm(" ".join([h["name"], h.get("keywords", ""), h.get("nav", "")])),
         })
-    payload = json.dumps(items, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    return '<script type="application/json" id="tpSearch">' + payload + "</script>"
+    return items
 
 
-def render_compare_json(data: dict) -> str:
+def compare_payload(data: dict) -> dict:
     """v41 — 홈 투어 카드의 「나란히 비교」가 쓰는 값(최대 3개).
 
     비교표에 필요한 값만 데이터에서 옮긴다: 가격·현장 추가금·실질가·평점·출발/소요·
@@ -2346,9 +2355,7 @@ def render_compare_json(data: dict) -> str:
             "bd": [[x, c] for x, c, _ in decide_badges(t)],
             "cta": book_cta(t),
         }
-    payload = json.dumps(items, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    return ('<script type="application/json" id="tpCompare" data-kind="tour" data-max="3">'
-            + payload + "</script>")
+    return items
 
 
 def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
@@ -2909,11 +2916,14 @@ def main() -> int:
     html = replace_block(html, "<!-- @PLAN_TABS -->", render_plan_tabs(DEFAULT_REGION, DEFAULT_STYLE, DEFAULT_PAX, plans, tours_by_id, courses_by_city))
     html = replace_block(html, "<!-- @PLAN_BODY -->", render_planner_default(plans, tours_by_id, ess_by_id, courses_by_city))
     html = replace_block(html, "<!-- @FAQ -->", render_faq(FAQ["items"], faq_tokens(data, courses, essentials)))
-    html = replace_block(html, "<!-- @TP_DATA -->", render_tp_data(data, essentials, courses) + "\n" + render_plans_json(plans, plan_notes))
+    html = replace_block(html, "<!-- @TP_DATA -->",
+                         lazy_json_script("tpData", "data/tp-data.json") + "\n"
+                         + lazy_json_script("plansData", "data/tp-plans.json"))
     # v34: 도시별 「한 번에 예약·준비 묶음」 링크 표(data/bundles.json)를 홈에 심는다
     html = replace_block(html, "<!-- @TP_BUNDLES -->", render_bundles_json())
-    html = replace_block(html, "<!-- @SEARCH_INDEX -->", render_search_index(data, guides, HUB_LIST))
-    html = replace_block(html, "<!-- @COMPARE_DATA -->", render_compare_json(data))
+    html = replace_block(html, "<!-- @SEARCH_INDEX -->", lazy_json_script("tpSearch", "data/tp-search.json"))
+    html = replace_block(html, "<!-- @COMPARE_DATA -->",
+                         lazy_json_script("tpCompare", "data/tp-compare.json", ' data-kind="tour" data-max="3"'))
     html = replace_block(html, "<!-- @JSONLD -->", render_jsonld(data, courses, essentials))
     # v35: GA4 — data/analytics.json 의 측정 ID 한 곳으로 전체 계측을 켠다(비워 두면 아무 스크립트도 넣지 않는다)
     html = html.replace("<!-- @GA4 -->", ga4_head())
@@ -2940,6 +2950,19 @@ def main() -> int:
     # v49: 지연 로드 이미지는 디코딩을 메인 스레드에서 떼어낸다
     html = re.sub(r'<img\b(?![^>]*\bdecoding=)', '<img decoding="async"', html)
     out_path.write_text(html, encoding="utf-8")
+
+    # v50: 홈 인라인 JSON(약 260KB)을 정적 파일로 분리 — 첫 화면 파싱·전송량을 줄인다
+    payloads = {
+        "tp-data.json": tp_data_payload(data, essentials, courses),
+        "tp-plans.json": plans_payload(plans, plan_notes),
+        "tp-search.json": search_payload(data, guides, HUB_LIST),
+        "tp-compare.json": compare_payload(data),
+    }
+    for fname, payload in payloads.items():
+        raw = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        for d in {(ROOT / "data"), (out_path.parent / "data")}:
+            d.mkdir(parents=True, exist_ok=True)
+            (d / fname).write_text(raw, encoding="utf-8")
     (ROOT / "sitemap.xml").write_text(clean_site_urls(render_sitemap(data, courses)), encoding="utf-8")
     print(f"index.html 생성 완료 — 상품 {len(data['tours'])}개, 도시 {len(data['cities'])}곳, "
           f"코스 {len(courses['courses'])}개, 필수품 {len(essentials['products'])}개, {len(html) // 1024}KB")
