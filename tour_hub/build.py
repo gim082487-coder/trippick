@@ -657,7 +657,7 @@ def render_hot_strip(data: dict, courses: dict, essentials: dict, tripcom: dict)
         short = re.split(r"\s*[(（]", t["title"])[0].strip()
         cards.append(
             f'<a class="hot-c" href="{esc(t["url"])}" target="_blank" rel="noopener sponsored">'
-            f'<span class="hot-th"><img src="{esc(t["img"])}" alt="" width="320" height="180" loading="lazy" /></span>'
+            f'<span class="hot-th"><img src="{esc(t["img"])}" alt="{esc(short)} — {esc(t["city_label"])} 여행 상품 사진" width="320" height="180" loading="lazy" /></span>'
             f'<span class="hot-k">{flag_svg(t["country"], 13, 9.1)} {esc(t["city_label"])}</span>'
             f'<b>{esc(short)}</b>'
             f'<span class="hot-p">{won(t["sale"])}원~ <em>1인</em></span></a>'
@@ -2387,6 +2387,16 @@ def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
         "@context": "https://schema.org",
         "@graph": [
             {
+                "@type": "Organization",
+                "@id": SITE + "/#organization",
+                "name": "트립픽",
+                "alternateName": "TripPick",
+                "url": SITE + "/",
+                "logo": {"@type": "ImageObject", "url": SITE + "/images/logo-512.png",
+                          "width": 512, "height": 512},
+                "description": "여행 상품·숙소·환전·수하물·공항 이동을 같은 기준으로 비교하는 여행 준비 사이트",
+            },
+            {
                 "@type": "WebSite",
                 "@id": SITE + "/#website",
                 "url": SITE + "/",
@@ -2394,7 +2404,7 @@ def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
                 "alternateName": "TripPick",
                 "description": "네이버 여행 실제 판매 상품을 가격·미팅·입장료·현장 추가금·취소 규정까지 같은 기준으로 비교하는 여행 코스·투어 사이트",
                 "inLanguage": "ko-KR",
-                "publisher": {"@type": "Organization", "name": "트립픽", "url": SITE + "/"},
+                "publisher": {"@id": SITE + "/#organization"},
             },
             {
                 "@type": "ItemList",
@@ -2403,6 +2413,13 @@ def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
                 "description": "오사카·교토, 도쿄·후지, 다낭·호이안, 삿포로·홋카이도, 제주 2박3일 일차별 동선",
                 "numberOfItems": len(course_items),
                 "itemListElement": course_items,
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": SITE + "/#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "트립픽", "item": SITE + "/"},
+                ],
             },
             {
                 "@type": "FAQPage",
@@ -2435,6 +2452,19 @@ def render_jsonld(data: dict, courses: dict, essentials: dict) -> str:
     return '<script type="application/ld+json">' + payload + "</script>"
 
 
+# v48: 사이트맵에 함께 넣는 도구·계산기 페이지 — build_pages.py 의 write_sitemap() 과 동일하게 유지한다.
+TOOL_PAGES = [
+    ("exchange", "0.8", "monthly"),
+    ("quiz", "0.9", "monthly"),
+    ("baggage", "0.8", "monthly"),
+    ("checklist", "0.9", "monthly"),
+    ("sos", "0.9", "monthly"),
+    ("stays", "0.9", "weekly"),
+    ("passes", "0.9", "monthly"),
+    ("calendar", "0.9", "monthly"),
+]
+
+
 def render_sitemap(data: dict, courses: dict) -> str:
     # v47: 하드코딩("2026-11-20") 제거 — 빌드 실행 시점의 KST 날짜를 씁니다.
     lastmod = datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat()
@@ -2445,6 +2475,11 @@ def render_sitemap(data: dict, courses: dict) -> str:
     hpath = DATA / "city_hubs.json"
     if hpath.exists():
         hs = json.loads(hpath.read_text(encoding="utf-8"))["cities"]
+        # v48: build_pages.py 의 HUB_ORDER 와 같은 순서로 정렬해 두 빌드의 sitemap 이 한 글자까지 같게 한다.
+        _order = {s: i for i, s in enumerate(
+            ["osaka", "tokyo", "fukuoka", "danang", "nhatrang", "bangkok", "taipei",
+             "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju"])}
+        hs = sorted(hs, key=lambda h: _order.get(h["slug"], 99))
         urls.append((SITE + "/cities/", "0.9", "weekly"))
         urls += [(f"{SITE}/{h['slug']}.html", "0.9", "weekly") for h in hs]
     gpath = DATA / "guides.json"
@@ -2452,6 +2487,10 @@ def render_sitemap(data: dict, courses: dict) -> str:
         gspec = json.loads(gpath.read_text(encoding="utf-8"))
         urls.append((SITE + "/guides/", "0.9", "weekly"))
         urls += [(f"{SITE}/guides/{g['slug']}.html", "0.8", "monthly") for g in gspec.get("guides", [])]
+        # v48: 도구 8개 페이지 — build_pages.py 의 write_sitemap() 과 같은 목록·순서·우선순위여야
+        # 두 빌드가 어느 순서로 돌아도 sitemap 이 같습니다(이전에는 build.py 가 도구 URL 없이
+        # 120개로 덮어써서 /exchange·/quiz·/stays·/sos 등이 사이트맵에서 빠졌습니다).
+        urls += [(f"{SITE}/{slug}.html", pr, cf) for slug, pr, cf in TOOL_PAGES]
         urls += [(f"{SITE}/{p['slug']}.html", "0.6" if p["slug"] in ("about", "contact") else "0.4",
                   "monthly" if p["slug"] in ("about", "contact") else "yearly") for p in gspec.get("pages", [])]
     body = "".join(

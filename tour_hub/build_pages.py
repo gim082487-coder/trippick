@@ -535,6 +535,58 @@ def page(
 
 
 # ----------------------------------------------------------------------
+# v48 — 구조화 데이터 공통 노드(Organization·WebSite·BreadcrumbList)
+#   구글은 Article·도구 페이지의 publisher/logo 와 사이트 단위 Organization 을
+#   같은 @id 로 묶을 때 브랜드 엔티티를 안정적으로 인식합니다.
+#   로고는 images/logo-512.png(빌드가 deploy_site 로 복사합니다).
+# ----------------------------------------------------------------------
+ORG_LOGO_PATH = "/images/logo-512.png"
+ORG_DESC = "여행 상품·숙소·환전·수하물·공항 이동을 같은 기준으로 비교하는 여행 준비 사이트"
+
+
+def org_ld(base: str) -> dict:
+    b = base.rstrip("/")
+    return {
+        "@type": "Organization",
+        "@id": b + "/#organization",
+        "name": SITE_NAME,
+        "url": b + "/",
+        "logo": {"@type": "ImageObject", "url": b + ORG_LOGO_PATH, "width": 512, "height": 512},
+        "description": ORG_DESC,
+    }
+
+
+def website_ld(base: str) -> dict:
+    b = base.rstrip("/")
+    return {
+        "@type": "WebSite",
+        "@id": b + "/#website",
+        "url": b + "/",
+        "name": SITE_NAME,
+        "inLanguage": "ko-KR",
+        "publisher": {"@id": b + "/#organization"},
+    }
+
+
+def breadcrumb_ld(base: str, items: list) -> dict:
+    """items = [(이름, 경로 or None), …] — 마지막 항목은 현재 페이지라 item 을 비웁니다."""
+    b = base.rstrip("/")
+    els = []
+    for i, (name, path) in enumerate(items, 1):
+        node = {"@type": "ListItem", "position": i, "name": name}
+        if path:
+            node["item"] = b + "/" + path.lstrip("/")
+        els.append(node)
+    return {"@type": "BreadcrumbList", "itemListElement": els}
+
+
+def graph_ld(*nodes) -> str:
+    body = {"@context": "https://schema.org", "@graph": [n for n in nodes if n]}
+    raw = json.dumps(body, ensure_ascii=False).replace("</", "<\\/")
+    return f'<script type="application/ld+json">{raw}</script>'
+
+
+# ----------------------------------------------------------------------
 # 상품 카드 (data/*.json 의 실제 판매 상품)
 # ----------------------------------------------------------------------
 def won(n) -> str:
@@ -1165,6 +1217,14 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
         <figcaption>{esc(g.get('imageCredit', '사진: Pexels'))}</figcaption>
       </figure>"""
 
+    b0 = base.rstrip("/")
+    pub = {
+        "@type": "Organization",
+        "@id": b0 + "/#organization",
+        "name": SITE_NAME,
+        "url": b0 + "/",
+        "logo": {"@type": "ImageObject", "url": b0 + ORG_LOGO_PATH, "width": 512, "height": 512},
+    }
     related_json = json.dumps(
         {
             "@context": "https://schema.org",
@@ -1174,10 +1234,13 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
             "datePublished": g["published"],
             "dateModified": g["updated"],
             "inLanguage": "ko",
-            "author": {"@type": "Organization", "name": SITE_NAME},
-            "publisher": {"@type": "Organization", "name": SITE_NAME},
-            "mainEntityOfPage": f"{base.rstrip('/')}/guides/{slug}.html",
-            "image": f"{base.rstrip('/')}/{g['image']}" if g.get("image") else None,
+            "author": pub,
+            "publisher": pub,
+            "articleSection": g.get("category", ""),
+            "keywords": g.get("keywords", ""),
+            "mainEntityOfPage": f"{b0}/guides/{slug}",
+            "isPartOf": {"@id": b0 + "/#website"},
+            "image": f"{b0}/{g['image']}" if g.get("image") else None,
         },
         ensure_ascii=False,
     )
@@ -1188,7 +1251,7 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
             "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "트립픽", "item": f"{base.rstrip('/')}/"},
                 {"@type": "ListItem", "position": 2, "name": "여행 가이드", "item": f"{base.rstrip('/')}/guides/"},
-                {"@type": "ListItem", "position": 3, "name": g["navTitle"]},
+                {"@type": "ListItem", "position": 3, "name": g["navTitle"], "item": f"{base.rstrip('/')}/guides/{slug}"},
             ],
         },
         ensure_ascii=False,
@@ -1422,16 +1485,16 @@ def guides_index(out_root: Path, base: str) -> Path:
         "guides/index.html",
         title=f"여행 가이드 {len(GUIDES_LIST)}편 | 교통패스 본전·공항 이동·패키지 실지출 — 트립픽",
         desc=(
-            f"나리타·하네다 공항에서 시내까지, 교토 버스투어 vs 자유일정, 오사카 주유패스·도쿄 지하철패스 본전, "
-            f"오사카·교토 3박4일 실경비, 방콕·이탈리아 패키지 실지출, 괌 리조트 조식 비교, 다낭 우기, 제주·울릉·강원, "
-            f"일본·베트남 eSIM, 미서부·미동부·스페인·포르투갈·호주·뉴질랜드 장거리 실지출, 다낭 54홀 vs 푸꾸옥 36홀 골프, "
-            f"장가계 특별약관, 보조배터리·액체류 기내 규정, 일본·베트남·대만·태국 기념품 리스트까지. 예약 전에 숫자로 확인하는 여행 가이드 {len(GUIDES_LIST)}편."
+            f"공항에서 시내까지, 교통패스 본전 계산, 3박4일 실경비, 패키지 실지출, 우기·시즌, eSIM, "
+            f"기내 반입 규정, 기념품 리스트까지 — 예약 전에 숫자로 확인하는 여행 가이드 {len(GUIDES_LIST)}편. 2026년 11월 기준."
         ),
         body=body,
         base=base,
         active="guides",
         keywords="여행 가이드, 나리타 공항 시내 이동, 교토 버스투어 비교, 오사카 주유패스 본전, 도쿄 지하철 패스, 오사카 교토 3박4일 경비, 방콕 패키지 실지출, 이탈리아 패키지 비교, 괌 리조트 비교, 다낭 우기, 제주 3박4일, 울릉도 배편, 강원 스키장 비교, 일본 eSIM, 베트남 eSIM, 일본 기념품 리스트, 다낭 기념품, 대만 펑리수, 태국 기념품",
-        jsonld=f'<script type="application/ld+json">{listing}</script>',
+        jsonld=f'<script type="application/ld+json">{listing}</script>'
+        + graph_ld(org_ld(base), website_ld(base),
+                   breadcrumb_ld(base, [("트립픽", "/"), ("여행 가이드", None)])),
     )
 
 
@@ -1498,7 +1561,21 @@ def content_page(out_root: Path, spec: dict, base: str) -> Path:
         body=body,
         base=base,
         keywords=spec.get("keywords", ""),
-        jsonld=f'<script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@type": "WebPage", "name": spec["navTitle"], "url": f"{base.rstrip('/')}/{slug}.html", "inLanguage": "ko", "dateModified": spec["updated"]}, ensure_ascii=False)}</script>',
+        jsonld=graph_ld(
+            {
+                "@type": "WebPage",
+                "@id": f"{base.rstrip('/')}/{slug}",
+                "name": spec["navTitle"],
+                "url": f"{base.rstrip('/')}/{slug}",
+                "inLanguage": "ko",
+                "dateModified": spec["updated"],
+                "isPartOf": {"@id": f"{base.rstrip('/')}/#website"},
+                "publisher": {"@id": f"{base.rstrip('/')}/#organization"},
+            },
+            org_ld(base),
+            website_ld(base),
+            breadcrumb_ld(base, [("트립픽", "/"), (spec["navTitle"], None)]),
+        ),
     )
 
 
@@ -1868,7 +1945,7 @@ def hub_jsonld(hub: dict, tours: list, guides: list, base: str) -> str:
             {"@type": "ListItem", "position": 3, "name": hub["name"]},
         ],
     }
-    graph = {"@context": "https://schema.org", "@graph": [page_ld, dest, tour_ld, guide_ld, crumb]}
+    graph = {"@context": "https://schema.org", "@graph": [page_ld, dest, tour_ld, guide_ld, crumb, org_ld(base), website_ld(base)]}
     raw = json.dumps(graph, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     return f'<script type="application/ld+json">{raw}</script>'
 
@@ -2353,7 +2430,8 @@ def cities_index(out_root: Path, base: str) -> Path:
         base=base,
         active="cities",
         keywords="도시별 여행, 오사카 여행, 도쿄 여행, 후쿠오카 여행, 다낭 여행, 방콕 여행, 타이베이 여행, 제주 여행, 도시별 맛집, 도시별 선물",
-        jsonld=f'<script type="application/ld+json">{listing}</script>\n<script type="application/ld+json">{crumb}</script>',
+        jsonld=f'<script type="application/ld+json">{listing}</script>\n<script type="application/ld+json">{crumb}</script>\n'
+        + graph_ld(org_ld(base), website_ld(base)),
     )
 
 
@@ -2540,7 +2618,7 @@ def baggage_page(out_root: Path, base: str) -> Path:
     cards = []
     for c in data["coupang"]:
         cards.append(f"""<a class="cpd-item" href="{c["url"]}" target="_blank" rel="noopener sponsored">
-              <span class="cpd-top"><img src="{c["img"]}" alt="" width="52" height="52" loading="lazy" />
+              <span class="cpd-top"><img src="{c["img"]}" alt="{esc(c["name"])}" width="52" height="52" loading="lazy" />
                 <span><span class="cpd-tag">{esc(c["tag"])}</span><span class="cpd-name">{esc(c["name"])}</span><span class="cpd-hint">{esc(c["hint"])}</span></span></span>
               <span class="cpd-foot"><span class="cpd-price">{c["price"]:,}원</span><span class="cpd-go">쿠팡에서 보기 →</span></span>
             </a>""")
@@ -2754,7 +2832,7 @@ def passes_page(out_root: Path, base: str) -> Path:
         out_root,
         "passes.html",
         title="교통패스 본전 계산기 — 오사카 주유패스·도쿄 지하철·BTS·펀패스·싱가포르 | 트립픽",
-        desc="오사카 주유패스 3,500엔, 도쿄 지하철 800/1,200/1,500엔, 방콕 BTS 150밧, 타이베이 펀패스 210대만달러, 싱가포르 Tourist Pass 17/24/29싱가포르달러가 내 일정에서 본전을 넘는지 계산합니다. 싱가포르는 컨택트리스(외국 카드 하루 0.60싱가포르달러)·EZ-Link(카드값 5 불환)와 같은 이동 횟수로 비교합니다. 시설 입장료와 탑승 횟수를 넣으면 현지 통화와 원화로 이득·손해가 나옵니다.",
+        desc="오사카 주유패스 3,500엔, 도쿄 지하철 800/1,200/1,500엔, 방콕 BTS 150밧, 타이베이 펀패스 210대만달러가 내 일정에서 본전을 넘는지 계산합니다. 탑승 횟수와 시설 입장료를 넣으면 원화로 이득·손해가 나옵니다.",
         body=body,
         base=base,
         active="passes",
@@ -3167,7 +3245,7 @@ def calendar_page(out_root: Path, base: str) -> Path:
         out_root,
         "calendar.html",
         title="월별 여행 시즌 캘린더 — 19개 도시 12개월 날씨·성수기·항공권 가격대 | 트립픽",
-        desc="서울·부산·강릉·경주·여수·제주·오사카·도쿄·후쿠오카·타이베이·홍콩·다낭·나트랑·방콕·싱가포르·파리·런던·로마·바르셀로나 19개 도시의 1~12월 평균기온·강수량·비 온 날·성수기와 항공권 참고 가격대를 한 화면에서 비교합니다. 계절·월·테마·지역으로 좁히면 그 달의 항공·숙소·투어 링크로 바로 이어집니다.",
+        desc="서울·부산·제주·오사카·도쿄·타이베이·다낭·방콕·파리·런던 등 19개 도시의 1~12월 평균기온·강수량·비 온 날·성수기와 항공권 가격대를 비교합니다. 그 달의 항공·숙소·투어로 이어집니다.",
         body=body,
         base=base,
         active="calendar",
@@ -3871,11 +3949,10 @@ def stays_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "stays.html",
-        title=f"국내 {kr_total}·해외 {intl_total} 찐숙소 {total}곳 — 10만 원 이하·10~20만·20만 원 이상 예산별 호텔 비교 (2026) | 트립픽",
+        title=f"찐숙소 {total}곳 — 10만 원 이하·10~20만 예산별 비교 (2026) | 트립픽",
         desc=(
-            f"국내 {kr_names} {kr_total}곳과 해외 {intl_names} {intl_total}곳, 숙소 {total}곳을 "
-            f"트립닷컴 평점·리뷰 수·1박 최저가(세금 포함)로 비교했습니다. 평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. "
-            "수도권·강원·경상·전라·제주 권역별 보기, 1박 10만 원 이하·10~20만 원·20만 원 이상 예산 필터, 추천순·가격 낮은순·평점 높은순 정렬, 호캉스·수영장, 오션뷰, 온천·스파, 역세권·도보, 가성비, 가족·풀빌라 테마 필터, 국내/해외 구분, 도시 가이드 연결, 예약은 트립닷컴 제휴 딥링크. 2026-11-22 확인."
+            f"국내 {kr_total}곳·해외 {intl_total}곳 숙소 {total}곳을 트립닷컴 평점·리뷰 수·1박 최저가(세금 포함)로 비교했습니다. "
+            f"평점 {score_min:.1f}~{score_max:.1f}, 1박 {price_min:,}~{price_max:,}원. 10만 원 이하·테마 필터, 2026-11-22 확인."
         ),
         keywords=(
             "국내 호텔 추천, 서울 호텔, 인천 호텔, 영종도 호텔, 가평 호텔, 춘천 호텔, 남이섬 호텔, 부산 호텔, 강릉 호텔, 속초 호텔, 양양 호텔, 전주 호텔, 통영 호텔, 거제 호텔, 거제 오션뷰 호텔, 여수 호텔, 경주 호텔, 오션뷰 호텔, 호캉스 호텔, 온천 호텔, "
@@ -3887,7 +3964,9 @@ def stays_page(out_root: Path, base: str) -> Path:
         og_image=f"{base.rstrip('/')}/images/og/stays.jpg",
         og_image_alt=f"국내·해외 {len(groups)}개 지역 찐숙소 {total}곳 — 트립픽",
         og_image_size=(1200, 630),
-        jsonld=f'<script type="application/ld+json">{stays_jsonld(base, groups)}</script>',
+        jsonld=f'<script type="application/ld+json">{stays_jsonld(base, groups)}</script>\n'
+        + graph_ld(org_ld(base), website_ld(base),
+                   breadcrumb_ld(base, [("트립픽", "/"), ("찐숙소", None)])),
     )
 
 
@@ -4238,7 +4317,9 @@ def quiz_page(out_root: Path, base: str) -> Path:
         og_image_size=(1200, 630),
         jsonld=(
             f'<script type="application/ld+json">{app_json}</script>\n'
-            f'<script type="application/ld+json">{faq_json}</script>'
+            f'<script type="application/ld+json">{faq_json}</script>\n'
+            + graph_ld(org_ld(base), website_ld(base),
+                       breadcrumb_ld(base, [("트립픽", "/"), ("여행지 취향 퀴즈", None)]))
         ),
     )
 
@@ -4604,11 +4685,10 @@ def checklist_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "checklist.html",
-        title=f"여행 준비 D-Day 순서 — D-30 숙소·항공 → D-14 투어·eSIM → D-3 수하물·환전 → 당일 체크인 (2026) | 트립픽",
+        title=f"여행 준비 D-Day — D-30 숙소·항공 → D-14 투어·eSIM → D-3 수하물 | 트립픽",
         desc=(
-            "여행 갈 때 무엇부터 해야 할지 4단계로 정리했습니다. D-30 숙소·항공, D-14 투어·입장권·eSIM, "
-            f"D-3 수하물·환전·트래블카드, 출발 당일 체크인·공항픽업·면세. 국내여행으로 바꾸면 여권·환전·eSIM 항목이 빠지고 {dom_total}개만 남습니다. "
-            "체크 상태는 브라우저에 저장되고, 각 단계에서 찐숙소·수하물 규정·환율 계산기·패스 계산기로 바로 이어집니다."
+            "여행 준비를 D-30 숙소·항공, D-14 투어·eSIM, D-3 수하물·환전, 당일 체크인 4단계로 정리했습니다. "
+            f"국내여행은 여권·환전 항목이 빠지고 {dom_total}개만 남으며, 체크 상태는 브라우저에 저장됩니다."
         ),
         keywords=(
             "여행 준비 순서, 여행 D-Day, 여행 준비물 체크리스트, 출국 준비, 국내여행 준비물, "
@@ -4617,7 +4697,21 @@ def checklist_page(out_root: Path, base: str) -> Path:
         body=body,
         base=base,
         active="checklist",
-        jsonld=f'<script type="application/ld+json">{howto_json}</script>\n<script type="application/ld+json">{faq_json}</script>',
+        jsonld=(f'<script type="application/ld+json">{howto_json}</script>\n<script type="application/ld+json">{faq_json}</script>\n'
+                + graph_ld(
+                    {
+                        "@type": "WebApplication",
+                        "name": "여행 준비 D-Day 체크리스트",
+                        "url": f"{base.rstrip('/')}/checklist",
+                        "applicationCategory": "TravelApplication",
+                        "operatingSystem": "Web",
+                        "inLanguage": "ko",
+                        "isAccessibleForFree": True,
+                        "publisher": {"@id": f"{base.rstrip('/')}/#organization"},
+                    },
+                    org_ld(base), website_ld(base),
+                    breadcrumb_ld(base, [("트립픽", "/"), ("여행 준비 D-Day", None)]),
+                )),
     )
 
 
@@ -4809,7 +4903,7 @@ def sos_page(out_root: Path, base: str) -> Path:
         title="여행 중 위기상황 SOS — 10개국 경찰·구급·대사관 번호와 현지어 문장 | 트립픽",
         desc=(
             "한국·일본·태국·베트남·대만·싱가포르·프랑스·이탈리아·스페인·영국의 경찰·구급·관광경찰·한국 공관 번호를 한 번의 탭으로 겁니다. "
-            "영사안전콜센터 +82-2-3210-0404(24시간)·119 재외국민 응급의료상담 +82-44-320-0119, 현지어 6문장 큰 글씨 카드. 2026-11-22 공식 안내 확인."
+            "영사안전콜센터 +82-2-3210-0404, 현지어 6문장 큰 글씨 카드. 2026-11-22 공식 안내 확인."
         ),
         keywords=(
             "여행 중 위기상황, 해외 응급전화, 영사안전콜센터, 119 재외국민 응급의료상담, 해외 경찰 전화, "
@@ -4857,6 +4951,24 @@ def write_sitemap(out_root: Path, base: str):
         f"{items}\n</urlset>\n"
     )
     (out_root / "sitemap.xml").write_text(clean_site_urls(xml, b), encoding="utf-8")
+
+
+def write_indexnow_key(out_root: Path):
+    """v48: IndexNow 키 파일 — data/indexnow.json 의 key 를 `<key>.txt` 로 사이트 루트에 둡니다.
+
+    IndexNow(빙·네이버·얀덱스 등 참여 검색엔진)는 이 파일로 소유 확인을 하므로,
+    https://trippick.pages.dev/<key>.txt 가 200 으로 열려야 URL 제출이 유효합니다.
+    """
+    path = DATA / "indexnow.json"
+    if not path.exists():
+        return
+    try:
+        key = str(json.loads(path.read_text(encoding="utf-8")).get("key") or "").strip()
+    except (OSError, ValueError):
+        return
+    if not re.fullmatch(r"[a-f0-9]{16,64}", key):
+        return
+    (out_root / f"{key}.txt").write_text(key + "\n", encoding="utf-8")
 
 
 def write_assets(style: str, out_root: Path):
@@ -5063,6 +5175,7 @@ def main():
             (ROOT / "search_index.json").write_text(payload, encoding="utf-8")
 
     write_sitemap(out_root, args.base)
+    write_indexnow_key(out_root)
     not_found_page(out_root, args.base)
     print(f"[build_pages] {len(made)}개 페이지 + sitemap.xml + assets/site.css → {out_root}")
     for p in made:

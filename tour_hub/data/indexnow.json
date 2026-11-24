@@ -1,0 +1,6 @@
+{
+ "key": "d16dc1afee78be1aedd3c22f121a569d",
+ "note": "v48 IndexNow 키 — build_pages.py 가 사이트 루트에 <key>.txt 로 배포합니다(빙·네이버·얀덱스 등 IndexNow 참여 검색엔진에 URL을 알릴 때 사용).",
+ "endpoint": "https://api.indexnow.org/indexnow",
+ "host": "trippick.pages.dev"
+}
