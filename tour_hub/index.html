@@ -34,7 +34,9 @@
 <meta name="twitter:description" content="추천 코스 5개 · 12개국 30개 도시 84개 투어·패키지 · eSIM·패스 60개" />
 <meta name="twitter:image" content="https://trippick.pages.dev/images/courses/hero_kyoto_street.jpg" />
 <meta name="twitter:image:alt" content="교토 야사카 탑이 보이는 골목 풍경" />
-<link rel="preload" as="image" href="images/courses/hero_kyoto_street.jpg" />
+<link rel="preload" as="image" type="image/webp" href="images/courses/hero_kyoto_street-720.webp"
+      imagesrcset="images/courses/hero_kyoto_street-480.webp 480w, images/courses/hero_kyoto_street-720.webp 720w, images/courses/hero_kyoto_street-960.webp 960w, images/courses/hero_kyoto_street-1440.webp 1440w"
+      imagesizes="100vw" />
 <!-- v47: Pretendard 자체 호스팅 — 서드파티(cdn.jsdelivr.net) 스타일시트가 렌더를 막아
      하위 페이지가 스타일 없이 먼저 그려지던 CLS(최대 0.34)를 없앱니다.
      폰트 청크는 많이 쓰이는 순서(91→86→90)로 미리 받아 첫 화면 텍스트의 폰트 교체도 줄입니다. -->
@@ -138,6 +140,7 @@
 
   /* ============================== 히어로 ============================== */
   .hero{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:#10202E}
+  picture{display:contents}
   .hero .bg{position:absolute;inset:0;z-index:-2}
   .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 46%}
   .hero::after{content:"";position:absolute;inset:0;z-index:-1;
@@ -2605,8 +2608,9 @@
     .wl-row img,.wl-ph{width:52px;height:40px}
     .card-actions{gap:5px}
     .card-actions .book{font-size:11.2px;padding-left:8px;padding-right:8px;gap:4px;white-space:nowrap}
-    .card-actions .cmp-btn{width:34px;font-size:10.8px;padding:0;white-space:nowrap}
-    .card-actions .wish-btn{width:30px;min-width:30px;padding:0}
+    /* v49: 손가락 터치 영역 44px — 34px·30px 는 옆 버튼을 잘못 눌렀다 */
+    .card-actions .cmp-btn{width:44px;min-width:44px;font-size:10.8px;padding:0;white-space:nowrap}
+    .card-actions .wish-btn{width:44px;min-width:44px;padding:0}
     .card-actions .wish-btn .wish-t{display:none}
   }
 
@@ -2822,6 +2826,15 @@
   .tp-trip-acts{margin-left:0;flex:1 1 100%;justify-content:flex-end}
 }
 
+
+/* v49 — 화면 밖 큰 블록은 렌더·스타일 계산을 건너뛴다(첫 화면 레이아웃 비용 감소).
+   contain-intrinsic-size:auto 는 한 번 그린 높이를 기억해 스크롤 튐을 줄인다. */
+.flow > section{content-visibility:auto;contain-intrinsic-size:auto 1100px}
+#regions .city{content-visibility:auto;contain-intrinsic-size:auto 2100px}
+.gi-sec{content-visibility:auto;contain-intrinsic-size:auto 1500px}
+/* /stays 는 한 그리드에 108장 카드가 있어 카드 단위로 건너뛴다 */
+.sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 430px}
+@media print{ .flow > section,#regions .city,.gi-sec{content-visibility:visible} }
 </style>
 <noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}
 </style></noscript>
@@ -2909,8 +2922,10 @@
 
 <section class="hero" id="top">
   <div class="bg" aria-hidden="true">
+    <picture><source type="image/webp" sizes="100vw"
+      srcset="images/courses/hero_kyoto_street-480.webp 480w, images/courses/hero_kyoto_street-720.webp 720w, images/courses/hero_kyoto_street-960.webp 960w, images/courses/hero_kyoto_street-1440.webp 1440w" />
     <img src="images/courses/hero_kyoto_street.jpg" srcset="images/courses/hero_kyoto_street_sm.jpg 1000w, images/courses/hero_kyoto_street.jpg 2000w"
-         sizes="100vw" alt="교토 야사카 탑이 보이는 골목 풍경" width="2000" height="1125" fetchpriority="high" />
+         sizes="100vw" alt="교토 야사카 탑이 보이는 골목 풍경" width="2000" height="1125" fetchpriority="high" decoding="async" /></picture>
   </div>
   <div class="wrap">
     <div class="hero-inner">
@@ -3122,7 +3137,7 @@
 </div>
 
 <div class="hot" aria-label="최저가 바로가기">
-  <div class="hot-head"><b>지금 눈에 띄는 최저가</b><span>1인 기준</span><a href="#regions">투어 84개 전체 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div class="hot-row"><a class="hot-c" href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored"><span class="hot-th"><img src="images/n_os_g_sm.jpg" alt="오사카·교토 일일 버스투어 — 오사카·교토 여행 상품 사진" width="320" height="180" loading="lazy" /></span><span class="hot-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg> 오사카·교토</span><b>오사카·교토 일일 버스투어</b><span class="hot-p">56,050원~ <em>1인</em></span></a><a class="hot-c" href="https://kr.trip.com/things-to-do/detail/104250830/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=v30_tokyo_kamakura&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="hot-th"><img src="images/n_v30_tokyo_kamakura_sm.jpg" alt="도쿄 출발 가마쿠라·에노시마 일일투어 — 도쿄 여행 상품 사진" width="320" height="180" loading="lazy" /></span><span class="hot-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg> 도쿄</span><b>도쿄 출발 가마쿠라·에노시마 일일투어</b><span class="hot-p">61,019원~ <em>1인</em></span></a><a class="hot-c" href="https://kr.trip.com/things-to-do/detail/47501050/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=v30_danang_hoian&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="hot-th"><img src="images/n_v30_danang_hoian_sm.jpg" alt="다낭 오행산 — 다낭 여행 상품 사진" width="320" height="180" loading="lazy" /></span><span class="hot-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-vn"/></svg> 다낭</span><b>다낭 오행산</b><span class="hot-p">24,130원~ <em>1인</em></span></a><a class="hot-c" href="https://kr.trip.com/things-to-do/detail/51928362/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=v30_jeju_pass&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="hot-th"><img src="images/n_v30_jeju_pass_sm.jpg" alt="제주투어패스 프리패스 자유이용권 — 제주 여행 상품 사진" width="320" height="180" loading="lazy" /></span><span class="hot-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-kr"/></svg> 제주</span><b>제주투어패스 프리패스 자유이용권</b><span class="hot-p">15,900원~ <em>1인</em></span></a><a class="hot-c" href="https://kr.trip.com/hotels/list?city=219&amp;display=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;optionId=219&amp;optionType=City&amp;optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_osaka&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="hot-th hot-th--ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><span class="hot-k">트립닷컴 · 숙소</span><b>오사카 숙소 최저가 검색</b><span class="hot-p">가격비교 <em>무료취소</em></span></a><a class="hot-c" href="https://naver.me/5DZ0H2Wv" target="_blank" rel="noopener sponsored"><span class="hot-th hot-th--ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><span class="hot-k">일본 · eSIM</span><b>일본 eSIM 3일 무제한</b><span class="hot-p">16,830원~ <em>도착 즉시</em></span></a></div>
+  <div class="hot-head"><b>지금 눈에 띄는 최저가</b><span>1인 기준</span><a href="#regions">투어 84개 전체 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div><div class="hot-row"><a class="hot-c" href="https://naver.me/52apPOcU" target="_blank" rel="noopener sponsored"><span class="hot-th"><img decoding="async" src="images/n_os_g_sm.jpg" alt="오사카·교토 일일 버스투어 — 오사카·교토 여행 상품 사진" width="320" height="180" loading="lazy" /></span><span class="hot-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg> 오사카·교토</span><b>오사카·교토 일일 버스투어</b><span class="hot-p">56,050원~ <em>1인</em></span></a><a class="hot-c" href="https://kr.trip.com/things-to-do/detail/104250830/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=v30_tokyo_kamakura&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="hot-th"><img decoding="async" src="images/n_v30_tokyo_kamakura_sm.jpg" alt="도쿄 출발 가마쿠라·에노시마 일일투어 — 도쿄 여행 상품 사진" width="320" height="180" loading="lazy" /></span><span class="hot-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-jp"/></svg> 도쿄</span><b>도쿄 출발 가마쿠라·에노시마 일일투어</b><span class="hot-p">61,019원~ <em>1인</em></span></a><a class="hot-c" href="https://kr.trip.com/things-to-do/detail/47501050/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=v30_danang_hoian&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="hot-th"><img decoding="async" src="images/n_v30_danang_hoian_sm.jpg" alt="다낭 오행산 — 다낭 여행 상품 사진" width="320" height="180" loading="lazy" /></span><span class="hot-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-vn"/></svg> 다낭</span><b>다낭 오행산</b><span class="hot-p">24,130원~ <em>1인</em></span></a><a class="hot-c" href="https://kr.trip.com/things-to-do/detail/51928362/?Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=v30_jeju_pass&amp;trip_sub3=D21303312" target="_blank" rel="noopener sponsored"><span class="hot-th"><img decoding="async" src="images/n_v30_jeju_pass_sm.jpg" alt="제주투어패스 프리패스 자유이용권 — 제주 여행 상품 사진" width="320" height="180" loading="lazy" /></span><span class="hot-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-kr"/></svg> 제주</span><b>제주투어패스 프리패스 자유이용권</b><span class="hot-p">15,900원~ <em>1인</em></span></a><a class="hot-c" href="https://kr.trip.com/hotels/list?city=219&amp;display=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;optionId=219&amp;optionType=City&amp;optionName=%EC%98%A4%EC%82%AC%EC%B9%B4&amp;Allianceid=11407530&amp;SID=336341874&amp;trip_sub1=hotel_osaka&amp;trip_sub3=D21275837" target="_blank" rel="noopener sponsored"><span class="hot-th hot-th--ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><span class="hot-k">트립닷컴 · 숙소</span><b>오사카 숙소 최저가 검색</b><span class="hot-p">가격비교 <em>무료취소</em></span></a><a class="hot-c" href="https://naver.me/5DZ0H2Wv" target="_blank" rel="noopener sponsored"><span class="hot-th hot-th--ic"><svg aria-hidden="true"><use href="#i-signal"/></svg></span><span class="hot-k">일본 · eSIM</span><b>일본 eSIM 3일 무제한</b><span class="hot-p">16,830원~ <em>도착 즉시</em></span></a></div>
 </div>
 
 <div class="trust">
@@ -3627,31 +3642,36 @@
     <div class="picker" role="tablist" aria-label="추천 코스 선택">
       <button type="button" class="pick" role="tab" data-course="osaka" aria-selected="true"
         aria-controls="course-osaka" id="cpick-osaka">
-        <img src="images/courses/osaka.jpg" alt="오사카·교토 3박 4일 대표 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/osaka-480.webp 480w, images/courses/osaka-720.webp 720w, images/courses/osaka-960.webp 960w" sizes="(max-width:620px) 46vw, 260px" />
+        <img src="images/courses/osaka.jpg" alt="오사카·교토 3박 4일 대표 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <span class="pk-tag">지금 단풍</span>
         <span class="pk-b"><b>오사카·교토 3박 4일</b><span class="pk-d">4일 일정 · 예약 링크 9곳</span></span>
       </button>
       <button type="button" class="pick" role="tab" data-course="tokyo" aria-selected="false"
         aria-controls="course-tokyo" id="cpick-tokyo">
-        <img src="images/courses/tokyo.jpg" alt="도쿄·후지 3박 4일 대표 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/tokyo-480.webp 480w, images/courses/tokyo-720.webp 720w, images/courses/tokyo-960.webp 960w" sizes="(max-width:620px) 46vw, 260px" />
+        <img src="images/courses/tokyo.jpg" alt="도쿄·후지 3박 4일 대표 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <span class="pk-tag">후지 뷰</span>
         <span class="pk-b"><b>도쿄·후지 3박 4일</b><span class="pk-d">4일 일정 · 예약 링크 7곳</span></span>
       </button>
       <button type="button" class="pick" role="tab" data-course="danang" aria-selected="false"
         aria-controls="course-danang" id="cpick-danang">
-        <img src="images/courses/danang.jpg" alt="다낭·호이안 3박 5일 대표 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/danang-480.webp 480w, images/courses/danang-720.webp 720w, images/courses/danang-960.webp 960w" sizes="(max-width:620px) 46vw, 260px" />
+        <img src="images/courses/danang.jpg" alt="다낭·호이안 3박 5일 대표 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <span class="pk-tag">5성급 3박</span>
         <span class="pk-b"><b>다낭·호이안 3박 5일</b><span class="pk-d">5일 일정 · 예약 링크 7곳</span></span>
       </button>
       <button type="button" class="pick" role="tab" data-course="sapporo" aria-selected="false"
         aria-controls="course-sapporo" id="cpick-sapporo">
-        <img src="images/courses/sapporo.jpg" alt="삿포로·홋카이도 3박 4일 대표 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/sapporo-480.webp 480w, images/courses/sapporo-720.webp 720w, images/courses/sapporo-960.webp 960w" sizes="(max-width:620px) 46vw, 260px" />
+        <img src="images/courses/sapporo.jpg" alt="삿포로·홋카이도 3박 4일 대표 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <span class="pk-tag">온천·설경</span>
         <span class="pk-b"><b>삿포로·홋카이도 3박 4일</b><span class="pk-d">4일 일정 · 예약 링크 3곳</span></span>
       </button>
       <button type="button" class="pick" role="tab" data-course="jeju" aria-selected="false"
         aria-controls="course-jeju" id="cpick-jeju">
-        <img src="images/courses/jeju.jpg" alt="제주 2박 3일 대표 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/jeju-480.webp 480w, images/courses/jeju-720.webp 720w, images/courses/jeju-960.webp 960w" sizes="(max-width:620px) 46vw, 260px" />
+        <img src="images/courses/jeju.jpg" alt="제주 2박 3일 대표 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <span class="pk-tag">국내</span>
         <span class="pk-b"><b>제주 2박 3일</b><span class="pk-d">3일 일정 · 예약 링크 2곳</span></span>
       </button>
@@ -3659,7 +3679,8 @@
 
     <div class="panel active" id="course-osaka" role="tabpanel" aria-labelledby="cpick-osaka">
       <div class="panel-hero">
-        <img src="images/courses/osaka.jpg" alt="오사카·교토 3박 4일 분위기 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/osaka-480.webp 480w, images/courses/osaka-720.webp 720w, images/courses/osaka-960.webp 960w" sizes="(max-width:620px) 92vw, 800px" />
+        <img src="images/courses/osaka.jpg" alt="오사카·교토 3박 4일 분위기 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <div class="ph-t">
           <div class="left">
             <span class="ph-k">COURSE 01 · 일본 · 지금 단풍</span>
@@ -3680,7 +3701,7 @@
           <ol class="timeline">
             <li class="day">
             <div class="day-no"><span>DAY</span><b>1</b></div>
-            <div class="day-photo"><img src="images/courses/osaka_d1.jpg" alt="인천 → 간사이 → 난바" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/osaka_d1.jpg" alt="인천 → 간사이 → 난바" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>인천 → 간사이 → 난바</h4>
               <p class="day-memo">도착 후 라피트로 난바까지 38분. 체크인 후 도톤보리 야경.</p>
@@ -3701,7 +3722,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>2</b></div>
-            <div class="day-photo"><img src="images/courses/osaka_d2.jpg" alt="교토 하루 — 후시미이나리 → 아라시야마 → 청수사" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/osaka_d2.jpg" alt="교토 하루 — 후시미이나리 → 아라시야마 → 청수사" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>교토 하루 — 후시미이나리 → 아라시야마 → 청수사</h4>
               <p class="day-memo">버스로만 도는 동선이라 하루 가이드투어가 가장 빠릅니다. 입장료는 별도인 곳이 많습니다.</p>
@@ -3722,7 +3743,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>3</b></div>
-            <div class="day-photo"><img src="images/courses/osaka_d3.jpg" alt="오사카 시내 · USJ" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/osaka_d3.jpg" alt="오사카 시내 · USJ" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>오사카 시내 · USJ</h4>
               <p class="day-memo">USJ 방문이면 이동을 미리 잡아두세요. 4인 동반이면 단독차량 1건으로 왕복이 해결됩니다.</p>
@@ -3797,7 +3818,8 @@
 
     <div class="panel" id="course-tokyo" role="tabpanel" aria-labelledby="cpick-tokyo" hidden>
       <div class="panel-hero">
-        <img src="images/courses/tokyo.jpg" alt="도쿄·후지 3박 4일 분위기 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/tokyo-480.webp 480w, images/courses/tokyo-720.webp 720w, images/courses/tokyo-960.webp 960w" sizes="(max-width:620px) 92vw, 800px" />
+        <img src="images/courses/tokyo.jpg" alt="도쿄·후지 3박 4일 분위기 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <div class="ph-t">
           <div class="left">
             <span class="ph-k">COURSE 02 · 일본 · 후지 뷰</span>
@@ -3818,7 +3840,7 @@
           <ol class="timeline">
             <li class="day">
             <div class="day-no"><span>DAY</span><b>1</b></div>
-            <div class="day-photo"><img src="images/courses/tokyo_d1.jpg" alt="나리타 → 우에노" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/tokyo_d1.jpg" alt="나리타 → 우에노" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>나리타 → 우에노</h4>
               <p class="day-memo">스카이라이너 41분 직통. 우에노·아사쿠사 숙소면 이동이 짧습니다.</p>
@@ -3839,7 +3861,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>2</b></div>
-            <div class="day-photo"><img src="images/courses/tokyo_d2.jpg" alt="후지산 하루 — 센겐공원 → 오시노핫카이 → 가와구치호" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/tokyo_d2.jpg" alt="후지산 하루 — 센겐공원 → 오시노핫카이 → 가와구치호" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>후지산 하루 — 센겐공원 → 오시노핫카이 → 가와구치호</h4>
               <p class="day-memo">도쿄역·신주쿠 출발 버스투어. 맑은 날을 골라야 오층탑 앞 후지산이 보입니다.</p>
@@ -3860,7 +3882,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>3</b></div>
-            <div class="day-photo"><img src="images/courses/tokyo_d3.jpg" alt="도쿄 시내 자유 — 시부야·긴자·아사쿠사" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/tokyo_d3.jpg" alt="도쿄 시내 자유 — 시부야·긴자·아사쿠사" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>도쿄 시내 자유 — 시부야·긴자·아사쿠사</h4>
               <p class="day-memo">메트로 패스 24~72시간으로 이동을 묶고, 쇼핑은 저녁에.</p>
@@ -3923,7 +3945,8 @@
 
     <div class="panel" id="course-danang" role="tabpanel" aria-labelledby="cpick-danang" hidden>
       <div class="panel-hero">
-        <img src="images/courses/danang.jpg" alt="다낭·호이안 3박 5일 분위기 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/danang-480.webp 480w, images/courses/danang-720.webp 720w, images/courses/danang-960.webp 960w" sizes="(max-width:620px) 92vw, 800px" />
+        <img src="images/courses/danang.jpg" alt="다낭·호이안 3박 5일 분위기 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <div class="ph-t">
           <div class="left">
             <span class="ph-k">COURSE 03 · 베트남 · 5성급 3박</span>
@@ -3944,7 +3967,7 @@
           <ol class="timeline">
             <li class="day">
             <div class="day-no"><span>DAY</span><b>1</b></div>
-            <div class="day-photo"><img src="images/courses/danang_d1.jpg" alt="인천 → 다낭" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/danang_d1.jpg" alt="인천 → 다낭" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>인천 → 다낭</h4>
               <p class="day-memo">심야 도착도 추가금 없는 단독차량을 잡으면 새벽 도착이 편합니다.</p>
@@ -3965,7 +3988,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>2</b></div>
-            <div class="day-photo"><img src="images/courses/danang_d2.jpg" alt="바나힐 — 케이블카·골든브릿지" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/danang_d2.jpg" alt="바나힐 — 케이블카·골든브릿지" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>바나힐 — 케이블카·골든브릿지</h4>
               <p class="day-memo">입장권과 케이블카가 한 상품입니다. 차량 포함 옵션은 금액이 올라갑니다.</p>
@@ -3986,7 +4009,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>3</b></div>
-            <div class="day-photo"><img src="images/courses/danang_d3.jpg" alt="호이안 올드타운 · 야경" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/danang_d3.jpg" alt="호이안 올드타운 · 야경" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>호이안 올드타운 · 야경</h4>
               <p class="day-memo">해 질 무렵 도착해 등불 야경까지 보는 동선. 쇼핑 커넥트에 호이안 단독 투어 상품은 없어 패키지로 붙였습니다.</p>
@@ -4001,7 +4024,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>4</b></div>
-            <div class="day-photo"><img src="images/courses/danang_d4.jpg" alt="미케비치 자유일정" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/danang_d4.jpg" alt="미케비치 자유일정" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>미케비치 자유일정</h4>
               <p class="day-memo">마사지·카페·해변. 별도 예약 없이 숙소 근처에서 정리하는 날로 두었습니다.</p>
@@ -4058,7 +4081,8 @@
 
     <div class="panel" id="course-sapporo" role="tabpanel" aria-labelledby="cpick-sapporo" hidden>
       <div class="panel-hero">
-        <img src="images/courses/sapporo.jpg" alt="삿포로·홋카이도 3박 4일 분위기 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/sapporo-480.webp 480w, images/courses/sapporo-720.webp 720w, images/courses/sapporo-960.webp 960w" sizes="(max-width:620px) 92vw, 800px" />
+        <img src="images/courses/sapporo.jpg" alt="삿포로·홋카이도 3박 4일 분위기 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <div class="ph-t">
           <div class="left">
             <span class="ph-k">COURSE 04 · 일본 · 온천·설경</span>
@@ -4079,7 +4103,7 @@
           <ol class="timeline">
             <li class="day">
             <div class="day-no"><span>DAY</span><b>1</b></div>
-            <div class="day-photo"><img src="images/courses/sapporo_d1.jpg" alt="인천 → 신치토세 → 삿포로" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/sapporo_d1.jpg" alt="인천 → 신치토세 → 삿포로" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>인천 → 신치토세 → 삿포로</h4>
               <p class="day-memo">공항에서 JR 쾌속으로 삿포로역까지 37분. 체크인 후 오도리 공원과 TV타워 야경.</p>
@@ -4094,7 +4118,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>2</b></div>
-            <div class="day-photo"><img src="images/courses/sapporo_d2.jpg" alt="비에이·후라노 — 청의호수 · 흰수염폭포" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/sapporo_d2.jpg" alt="비에이·후라노 — 청의호수 · 흰수염폭포" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>비에이·후라노 — 청의호수 · 흰수염폭포</h4>
               <p class="day-memo">청의호수 → 흰수염폭포 → 팜토미타. 왕복 5시간이라 아침 출발을 권합니다.</p>
@@ -4109,7 +4133,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>3</b></div>
-            <div class="day-photo"><img src="images/courses/sapporo_d3.jpg" alt="삿포로 시내 자유 — 스스키노 · 라멘 · 맥주박물관" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/sapporo_d3.jpg" alt="삿포로 시내 자유 — 스스키노 · 라멘 · 맥주박물관" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>삿포로 시내 자유 — 스스키노 · 라멘 · 맥주박물관</h4>
               <p class="day-memo">눈이 오면 오도리 공원이 가장 예쁩니다. 저녁은 스스키노 골목에서.</p>
@@ -4159,7 +4183,8 @@
 
     <div class="panel" id="course-jeju" role="tabpanel" aria-labelledby="cpick-jeju" hidden>
       <div class="panel-hero">
-        <img src="images/courses/jeju.jpg" alt="제주 2박 3일 분위기 사진" width="1600" height="1000" loading="lazy" />
+        <picture><source type="image/webp" srcset="images/courses/jeju-480.webp 480w, images/courses/jeju-720.webp 720w, images/courses/jeju-960.webp 960w" sizes="(max-width:620px) 92vw, 800px" />
+        <img src="images/courses/jeju.jpg" alt="제주 2박 3일 분위기 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <div class="ph-t">
           <div class="left">
             <span class="ph-k">COURSE 05 · 국내 (서울·경주·제주·부산·강원) · 국내</span>
@@ -4180,7 +4205,7 @@
           <ol class="timeline">
             <li class="day">
             <div class="day-no"><span>DAY</span><b>1</b></div>
-            <div class="day-photo"><img src="images/courses/jeju_d1.jpg" alt="김포 → 제주, 협재 해변 · 새별오름 노을" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/jeju_d1.jpg" alt="김포 → 제주, 협재 해변 · 새별오름 노을" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>김포 → 제주, 협재 해변 · 새별오름 노을</h4>
               <p class="day-memo">13시 전 도착편이면 서쪽 한 바퀴가 됩니다. 렌터카 포함 상품이면 공항에서 바로 인수해 이동이 자유롭습니다.</p>
@@ -4195,7 +4220,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>2</b></div>
-            <div class="day-photo"><img src="images/courses/jeju_d2.jpg" alt="성산일출봉 → 송악산 둘레길 → 중산간 카페" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/jeju_d2.jpg" alt="성산일출봉 → 송악산 둘레길 → 중산간 카페" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>성산일출봉 → 송악산 둘레길 → 중산간 카페</h4>
               <p class="day-memo">일출을 보려면 6시 전 출발. 낮에는 송악산 둘레길을 걷고 오후는 카페에서 쉽니다.</p>
@@ -4203,7 +4228,7 @@
             </div>
           </li><li class="day">
             <div class="day-no"><span>DAY</span><b>3</b></div>
-            <div class="day-photo"><img src="images/courses/jeju_d3.jpg" alt="동문시장 → 김포" width="900" height="600" loading="lazy" /></div>
+            <div class="day-photo"><img decoding="async" src="images/courses/jeju_d3.jpg" alt="동문시장 → 김포" width="900" height="600" loading="lazy" /></div>
             <div class="day-main">
               <h4>동문시장 → 김포</h4>
               <p class="day-memo">오전 시장에서 기념품. 15시 이후 편으로 돌아오면 여유롭습니다.</p>
@@ -4368,7 +4393,7 @@
         data-premium="0" data-private="0"
         data-price="56050" data-cancel="7" data-order="0" data-search="오사카·교토 일일 버스투어 (후시미이나리·아라시야마·은각사·청수사) 인디고트래블 후시미이나리·아라시야마·은각사·청수사 가이드투어 5% 가이드투어 일본 오사카·교토 한국어가이드 대형버스">
         <div class="thumb">
-          <img src="images/n_os_g_sm.jpg" srcset="images/n_os_g_sm.jpg 660w, images/n_os_g.jpg 1200w"
+          <img decoding="async" src="images/n_os_g_sm.jpg" srcset="images/n_os_g_sm.jpg 660w, images/n_os_g.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="후시미이나리·아라시야마·은각사·청수사 — 오사카·교토 일일 버스투어 (후시미이나리·아라시야마·은각사·청수사)" loading="lazy" />
           <span class="tag">가이드투어 5%</span>
@@ -4399,7 +4424,7 @@
         data-premium="0" data-private="0"
         data-price="775903" data-cancel="30" data-order="1" data-search="대구 출발 오사카·고베·교토·나라 3일 (판매1위·조석패턴) 하나투어 고베·교토·나라 3일 베스트 풀패키지 일본 오사카·교토 출발확정 인솔자동행">
         <div class="thumb">
-          <img src="images/n_os_p1_sm.jpg" srcset="images/n_os_p1_sm.jpg 660w, images/n_os_p1.jpg 1200w"
+          <img decoding="async" src="images/n_os_p1_sm.jpg" srcset="images/n_os_p1_sm.jpg 660w, images/n_os_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="고베·교토·나라 3일 — 대구 출발 오사카·고베·교토·나라 3일 (판매1위·조석패턴)" loading="lazy" />
           <span class="tag hot">베스트</span>
@@ -4430,7 +4455,7 @@
         data-premium="0" data-private="0"
         data-price="616550" data-cancel="30" data-order="2" data-search="인천 출발 오사카 3일 (온천호텔·기모노숲·고베야경) 교원투어 여행이지 교토·고베·오사카 3일 최저가 풀패키지 일본 오사카·교토 출발확정 스루가이드">
         <div class="thumb">
-          <img src="images/n_os_p2_sm.jpg" srcset="images/n_os_p2_sm.jpg 660w, images/n_os_p2.jpg 1200w"
+          <img decoding="async" src="images/n_os_p2_sm.jpg" srcset="images/n_os_p2_sm.jpg 660w, images/n_os_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="교토·고베·오사카 3일 — 인천 출발 오사카 3일 (온천호텔·기모노숲·고베야경)" loading="lazy" />
           <span class="tag hot">최저가</span>
@@ -4461,7 +4486,7 @@
         data-premium="0" data-private="0"
         data-price="57832" data-cancel="2" data-order="67" data-search="오사카 출발 교토&amp;나라 일일 투어 (기요미즈데라·후시미이나리·나라공원·13인 소규모·한국어 가능) 트립닷컴 교토 기요미즈데라·후시미이나리·나라 리뷰 1,861 · 4.9 가이드투어 일본 오사카·교토 한국어가이드 노쇼핑 소규모 당일">
         <div class="thumb">
-          <img src="images/n_v30_osaka_kyoto_nara_sm.jpg" srcset="images/n_v30_osaka_kyoto_nara_sm.jpg 660w, images/n_v30_osaka_kyoto_nara.jpg 1200w"
+          <img decoding="async" src="images/n_v30_osaka_kyoto_nara_sm.jpg" srcset="images/n_v30_osaka_kyoto_nara_sm.jpg 660w, images/n_v30_osaka_kyoto_nara.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="교토 기요미즈데라·후시미이나리·나라 — 오사카 출발 교토&amp;나라 일일 투어 (기요미즈데라·후시미이나리·나라공원·13인 소규모·한국어 가능)" loading="lazy" />
           <span class="tag">리뷰 1,861 · 4.9</span><span class="tag noshop">노쇼핑</span>
@@ -4577,7 +4602,7 @@
         data-premium="0" data-private="0"
         data-price="65550" data-cancel="7" data-order="3" data-search="도쿄 후지산 1일 버스투어 (한국인 가이드·dslr 촬영) 인디고트래블 후지산·가와구치코·센겐공원 가이드투어 5% 가이드투어 일본 도쿄 한국어가이드 사진촬영">
         <div class="thumb">
-          <img src="images/n_tk_g_sm.jpg" srcset="images/n_tk_g_sm.jpg 660w, images/n_tk_g.jpg 1200w"
+          <img decoding="async" src="images/n_tk_g_sm.jpg" srcset="images/n_tk_g_sm.jpg 660w, images/n_tk_g.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="후지산·가와구치코·센겐공원 — 도쿄 후지산 1일 버스투어 (한국인 가이드·DSLR 촬영)" loading="lazy" />
           <span class="tag">가이드투어 5%</span>
@@ -4608,7 +4633,7 @@
         data-premium="0" data-private="0"
         data-price="806550" data-cancel="30" data-order="4" data-search="인천 출발 도쿄 4일 (시내호텔 3연박·1일 자유 or 하코네) 노랑풍선 도쿄·하코네·요코하마 4일 베스트 세미패키지 일본 도쿄 출발확정 시내호텔">
         <div class="thumb">
-          <img src="images/n_tk_p1_sm.jpg" srcset="images/n_tk_p1_sm.jpg 660w, images/n_tk_p1.jpg 1200w"
+          <img decoding="async" src="images/n_tk_p1_sm.jpg" srcset="images/n_tk_p1_sm.jpg 660w, images/n_tk_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="도쿄·하코네·요코하마 4일 — 인천 출발 도쿄 4일 (시내호텔 3연박·1일 자유 or 하코네)" loading="lazy" />
           <span class="tag hot">베스트</span>
@@ -4639,7 +4664,7 @@
         data-premium="0" data-private="0"
         data-price="969030" data-cancel="30" data-order="5" data-search="부산 출발 도쿄 3일 (도쿄 베스트·1일 자유 or 디즈니) 모두투어 시부야·아사쿠사·자유일정 2박 3일 세미패키지 일본 도쿄 출발확정 자유일정">
         <div class="thumb">
-          <img src="images/n_tk_p2_sm.jpg" srcset="images/n_tk_p2_sm.jpg 660w, images/n_tk_p2.jpg 1200w"
+          <img decoding="async" src="images/n_tk_p2_sm.jpg" srcset="images/n_tk_p2_sm.jpg 660w, images/n_tk_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="시부야·아사쿠사·자유일정 — 부산 출발 도쿄 3일 (도쿄 베스트·1일 자유 or 디즈니)" loading="lazy" />
           <span class="tag">2박 3일</span>
@@ -4670,7 +4695,7 @@
         data-premium="0" data-private="0"
         data-price="61019" data-cancel="1" data-order="68" data-search="도쿄 출발 가마쿠라·에노시마 일일투어 (에노덴 전차·시치리가하마·고토쿠인·한국인 가이드) 트립닷컴 가마쿠라·에노시마 한국어 가이드 가이드투어 일본 도쿄 한국어가이드 당일 1명출발">
         <div class="thumb">
-          <img src="images/n_v30_tokyo_kamakura_sm.jpg" srcset="images/n_v30_tokyo_kamakura_sm.jpg 660w, images/n_v30_tokyo_kamakura.jpg 1200w"
+          <img decoding="async" src="images/n_v30_tokyo_kamakura_sm.jpg" srcset="images/n_v30_tokyo_kamakura_sm.jpg 660w, images/n_v30_tokyo_kamakura.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="가마쿠라·에노시마 — 도쿄 출발 가마쿠라·에노시마 일일투어 (에노덴 전차·시치리가하마·고토쿠인·한국인 가이드)" loading="lazy" />
           <span class="tag">한국어 가이드</span>
@@ -4786,7 +4811,7 @@
         data-premium="0" data-private="0"
         data-price="56050" data-cancel="7" data-order="6" data-search="후쿠오카 유후인 일일 버스투어 (유후다케·히타·다자이후) 인디고트래블 유후인·유후다케·히타·다자이후 가이드투어 5% 가이드투어 일본 후쿠오카·규슈 한국어가이드 온천">
         <div class="thumb">
-          <img src="images/n_fk_g_sm.jpg" srcset="images/n_fk_g_sm.jpg 660w, images/n_fk_g.jpg 1200w"
+          <img decoding="async" src="images/n_fk_g_sm.jpg" srcset="images/n_fk_g_sm.jpg 660w, images/n_fk_g.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="유후인·유후다케·히타·다자이후 — 후쿠오카 유후인 일일 버스투어 (유후다케·히타·다자이후)" loading="lazy" />
           <span class="tag">가이드투어 5%</span>
@@ -4817,7 +4842,7 @@
         data-premium="0" data-private="0"
         data-price="678030" data-cancel="0" data-order="7" data-search="인천 출발 후쿠오카 3일 (온천호텔 1박+힐튼 1박·나카스 크루즈) 노랑풍선 온천호텔·힐튼·나카스크루즈·다자이후 온천+힐튼 풀패키지 일본 후쿠오카·규슈 출발확정 온천 쇼핑1회">
         <div class="thumb">
-          <img src="images/n_fk_p1_sm.jpg" srcset="images/n_fk_p1_sm.jpg 660w, images/n_fk_p1.jpg 1200w"
+          <img decoding="async" src="images/n_fk_p1_sm.jpg" srcset="images/n_fk_p1_sm.jpg 660w, images/n_fk_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="온천호텔·힐튼·나카스크루즈·다자이후 — 인천 출발 후쿠오카 3일 (온천호텔 1박+힐튼 1박·나카스 크루즈)" loading="lazy" />
           <span class="tag">온천+힐튼</span>
@@ -4848,7 +4873,7 @@
         data-premium="0" data-private="0"
         data-price="818680" data-cancel="30" data-order="8" data-search="부산 출발 북큐슈 4일 (1일 자유·스기노이 온천 1박) 참좋은여행 벳푸·유후인·아소·스기노이 자유일정 세미패키지 일본 후쿠오카·규슈 출발확정 자유일정 온천">
         <div class="thumb">
-          <img src="images/n_fk_p2_sm.jpg" srcset="images/n_fk_p2_sm.jpg 660w, images/n_fk_p2.jpg 1200w"
+          <img decoding="async" src="images/n_fk_p2_sm.jpg" srcset="images/n_fk_p2_sm.jpg 660w, images/n_fk_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="벳푸·유후인·아소·스기노이 — 부산 출발 북큐슈 4일 (1일 자유·스기노이 온천 1박)" loading="lazy" />
           <span class="tag">자유일정</span>
@@ -4954,7 +4979,7 @@
         data-premium="0" data-private="0"
         data-price="540550" data-cancel="20" data-order="12" data-search="부산 출발 다낭·호이안 5일 (노팁·노옵션·5성급) 노랑풍선 다낭·호이안 5일 노팁·노옵션 풀패키지 베트남 다낭 노팁 노옵션">
         <div class="thumb">
-          <img src="images/n_dn_p1_sm.jpg" srcset="images/n_dn_p1_sm.jpg 660w, images/n_dn_p1.jpg 1200w"
+          <img decoding="async" src="images/n_dn_p1_sm.jpg" srcset="images/n_dn_p1_sm.jpg 660w, images/n_dn_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="다낭·호이안 5일 — 부산 출발 다낭·호이안 5일 (노팁·노옵션·5성급)" loading="lazy" />
           <span class="tag">노팁·노옵션</span>
@@ -4985,7 +5010,7 @@
         data-premium="0" data-private="0"
         data-price="322905" data-cancel="30" data-order="13" data-search="인천 출발 다낭·호이안 5일 (바나힐·스윗룸·전신마사지) 노랑풍선 바나힐·미케비치·호이안 5일 최저가 풀패키지 베트남 다낭 5성호텔 바나힐">
         <div class="thumb">
-          <img src="images/n_dn_p2_sm.jpg" srcset="images/n_dn_p2_sm.jpg 660w, images/n_dn_p2.jpg 1200w"
+          <img decoding="async" src="images/n_dn_p2_sm.jpg" srcset="images/n_dn_p2_sm.jpg 660w, images/n_dn_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="바나힐·미케비치·호이안 5일 — 인천 출발 다낭·호이안 5일 (바나힐·스윗룸·전신마사지)" loading="lazy" />
           <span class="tag hot">최저가</span>
@@ -5016,7 +5041,7 @@
         data-premium="0" data-private="0"
         data-price="569905" data-cancel="30" data-order="14" data-search="인천 출발 다낭·호이안 5일 (노옵션·노팁·야경투어) 노랑풍선 다낭·호이안 5일 (노옵션) 노옵션 풀패키지 베트남 다낭 노팁 노옵션">
         <div class="thumb">
-          <img src="images/n_dn_p3_sm.jpg" srcset="images/n_dn_p3_sm.jpg 660w, images/n_dn_p3.jpg 1200w"
+          <img decoding="async" src="images/n_dn_p3_sm.jpg" srcset="images/n_dn_p3_sm.jpg 660w, images/n_dn_p3.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="다낭·호이안 5일 (노옵션) — 인천 출발 다낭·호이안 5일 (노옵션·노팁·야경투어)" loading="lazy" />
           <span class="tag">노옵션</span>
@@ -5047,7 +5072,7 @@
         data-premium="0" data-private="0"
         data-price="24130" data-cancel="1" data-order="66" data-search="다낭 오행산(마블마운틴) &amp; 호이안 올드타운 가이드 투어 (시내 호텔 픽업·야경 코스) 트립닷컴 오행산·호이안 야경 오후·야경 데이투어 베트남 다낭 야경 픽업 입장권포함 당일">
         <div class="thumb">
-          <img src="images/n_v30_danang_hoian_sm.jpg" srcset="images/n_v30_danang_hoian_sm.jpg 660w, images/n_v30_danang_hoian.jpg 1200w"
+          <img decoding="async" src="images/n_v30_danang_hoian_sm.jpg" srcset="images/n_v30_danang_hoian_sm.jpg 660w, images/n_v30_danang_hoian.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="오행산·호이안 야경 — 다낭 오행산(마블마운틴) &amp; 호이안 올드타운 가이드 투어 (시내 호텔 픽업·야경 코스)" loading="lazy" />
           <span class="tag">오후·야경</span>
@@ -5163,7 +5188,7 @@
         data-premium="0" data-private="0"
         data-price="52155" data-cancel="4" data-order="15" data-search="나트랑 달랏 1일 투어 (린푸억·다딴라폭포·크레이지하우스) 산티아고 투어 달랏 린푸억사원·다딴라폭포·기차역·크레이지하우스 가이드투어 5% 가이드투어 베트남 나트랑·달랏 한국어가이드 점심포함">
         <div class="thumb">
-          <img src="images/n_nt_g_sm.jpg" srcset="images/n_nt_g_sm.jpg 660w, images/n_nt_g.jpg 1200w"
+          <img decoding="async" src="images/n_nt_g_sm.jpg" srcset="images/n_nt_g_sm.jpg 660w, images/n_nt_g.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="달랏 린푸억사원·다딴라폭포·기차역·크레이지하우스 — 나트랑 달랏 1일 투어 (린푸억·다딴라폭포·크레이지하우스)" loading="lazy" />
           <span class="tag">가이드투어 5%</span>
@@ -5194,7 +5219,7 @@
         data-premium="0" data-private="0"
         data-price="687730" data-cancel="30" data-order="16" data-search="부산 출발 나트랑·판랑 5일 (노팁·풀옵션·호핑투어·머드온천) 참좋은여행 판랑 사막·럭셔리 호핑투어·갈리나 머드온천 노팁·풀옵션 풀패키지 베트남 나트랑·달랏 노팁 풀옵션 쇼핑3회">
         <div class="thumb">
-          <img src="images/n_na_p1_sm.jpg" srcset="images/n_na_p1_sm.jpg 660w, images/n_na_p1.jpg 1200w"
+          <img decoding="async" src="images/n_na_p1_sm.jpg" srcset="images/n_na_p1_sm.jpg 660w, images/n_na_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="판랑 사막·럭셔리 호핑투어·갈리나 머드온천 — 부산 출발 나트랑·판랑 5일 (노팁·풀옵션·호핑투어·머드온천)" loading="lazy" />
           <span class="tag">노팁·풀옵션</span>
@@ -5225,7 +5250,7 @@
         data-premium="0" data-private="0"
         data-price="732350" data-cancel="0" data-order="17" data-search="인천 출발 나트랑 자유 5일 (인터컨티넨탈 오션뷰 3박) 노랑풍선 인터컨티넨탈 나트랑 클래식 오션뷰 3박 자유여행 에어텔 베트남 나트랑·달랏 자유일정 5성호텔 조식포함">
         <div class="thumb">
-          <img src="images/n_na_p2_sm.jpg" srcset="images/n_na_p2_sm.jpg 660w, images/n_na_p2.jpg 1200w"
+          <img decoding="async" src="images/n_na_p2_sm.jpg" srcset="images/n_na_p2_sm.jpg 660w, images/n_na_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="인터컨티넨탈 나트랑 클래식 오션뷰 3박 — 인천 출발 나트랑 자유 5일 (인터컨티넨탈 오션뷰 3박)" loading="lazy" />
           <span class="tag">자유여행</span>
@@ -5331,7 +5356,7 @@
         data-premium="0" data-private="0"
         data-price="920530" data-cancel="30" data-order="18" data-search="인천 출발 방콕·파타야 5일 (노팁·노옵션·$230 혜택) 참좋은여행 방콕 왕궁·파타야·왓포사원 인기 1위 풀패키지 태국 방콕·파타야 노팁 노옵션 쇼핑3회">
         <div class="thumb">
-          <img src="images/n_bk_p1_sm.jpg" srcset="images/n_bk_p1_sm.jpg 660w, images/n_bk_p1.jpg 1200w"
+          <img decoding="async" src="images/n_bk_p1_sm.jpg" srcset="images/n_bk_p1_sm.jpg 660w, images/n_bk_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="방콕 왕궁·파타야·왓포사원 — 인천 출발 방콕·파타야 5일 (노팁·노옵션·$230 혜택)" loading="lazy" />
           <span class="tag hot">인기 1위</span>
@@ -5362,7 +5387,7 @@
         data-premium="0" data-private="0"
         data-price="591603" data-cancel="30" data-order="19" data-search="부산 출발 방콕·파타야 5일 (5성 호텔·수상시장·카오키여우) 하나투어 방콕 왕궁·파타야 수상시장·카오키여우 최저가 풀패키지 태국 방콕·파타야 출발확정 5성호텔 쇼핑3회">
         <div class="thumb">
-          <img src="images/n_bk_p2_sm.jpg" srcset="images/n_bk_p2_sm.jpg 660w, images/n_bk_p2.jpg 1200w"
+          <img decoding="async" src="images/n_bk_p2_sm.jpg" srcset="images/n_bk_p2_sm.jpg 660w, images/n_bk_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="방콕 왕궁·파타야 수상시장·카오키여우 — 부산 출발 방콕·파타야 5일 (5성 호텔·수상시장·카오키여우)" loading="lazy" />
           <span class="tag hot">최저가</span>
@@ -5393,7 +5418,7 @@
         data-premium="0" data-private="0"
         data-price="1085430" data-cancel="0" data-order="20" data-search="인천 출발 방콕·파타야 5일 (노쇼핑·코럴아일랜드 요트·5성) 하나투어 방콕 왕궁·에메랄드사원·코럴아일랜드 요트 베스트셀러 풀패키지 태국 방콕·파타야 출발확정 노쇼핑 5성호텔 요트">
         <div class="thumb">
-          <img src="images/n_bk_p3_sm.jpg" srcset="images/n_bk_p3_sm.jpg 660w, images/n_bk_p3.jpg 1200w"
+          <img decoding="async" src="images/n_bk_p3_sm.jpg" srcset="images/n_bk_p3_sm.jpg 660w, images/n_bk_p3.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="방콕 왕궁·에메랄드사원·코럴아일랜드 요트 — 인천 출발 방콕·파타야 5일 (노쇼핑·코럴아일랜드 요트·5성)" loading="lazy" />
           <span class="tag hot">베스트셀러</span><span class="tag noshop">노쇼핑</span>
@@ -5424,7 +5449,7 @@
         data-premium="0" data-private="0"
         data-price="28043" data-cancel="1" data-order="65" data-search="방콕 담넌싸두억 수상시장 + 매끌렁 기찻길 시장 당일 투어 (늦은 출발·호텔 픽업 선택) 트립닷컴 담넌싸두억·매끌렁 시장 리뷰 1,239 데이투어 태국 방콕·파타야 데이투어 수상시장 소규모 당일">
         <div class="thumb">
-          <img src="images/n_v30_bkk_market_sm.jpg" srcset="images/n_v30_bkk_market_sm.jpg 660w, images/n_v30_bkk_market.jpg 1200w"
+          <img decoding="async" src="images/n_v30_bkk_market_sm.jpg" srcset="images/n_v30_bkk_market_sm.jpg 660w, images/n_v30_bkk_market.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="담넌싸두억·매끌렁 시장 — 방콕 담넌싸두억 수상시장 + 매끌렁 기찻길 시장 당일 투어 (늦은 출발·호텔 픽업 선택)" loading="lazy" />
           <span class="tag">리뷰 1,239</span>
@@ -5540,7 +5565,7 @@
         data-premium="0" data-private="0"
         data-price="35000" data-cancel="7" data-order="21" data-search="타이베이 예스진지 1일 버스투어 (예류·스펀·지우펀·시먼딩) 인디고트래블 예류·스펀 천등·지우펀·시먼딩 가이드투어 5% 가이드투어 대만 타이베이·대만 한국어가이드 천등">
         <div class="thumb">
-          <img src="images/n_tw_g_sm.jpg" srcset="images/n_tw_g_sm.jpg 660w, images/n_tw_g.jpg 1200w"
+          <img decoding="async" src="images/n_tw_g_sm.jpg" srcset="images/n_tw_g_sm.jpg 660w, images/n_tw_g.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="예류·스펀 천등·지우펀·시먼딩 — 타이베이 예스진지 1일 버스투어 (예류·스펀·지우펀·시먼딩)" loading="lazy" />
           <span class="tag">가이드투어 5%</span>
@@ -5571,7 +5596,7 @@
         data-premium="0" data-private="0"
         data-price="872903" data-cancel="30" data-order="22" data-search="인천 출발 대만 4일 (노쇼핑·101전망대·예스진지·천등체험) 모두투어 타이베이·단수이·예류·스펀·지우펀 베스트 풀패키지 대만 타이베이·대만 노쇼핑 출발확정 101전망대">
         <div class="thumb">
-          <img src="images/n_tw_p1_sm.jpg" srcset="images/n_tw_p1_sm.jpg 660w, images/n_tw_p1.jpg 1200w"
+          <img decoding="async" src="images/n_tw_p1_sm.jpg" srcset="images/n_tw_p1_sm.jpg 660w, images/n_tw_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="타이베이·단수이·예류·스펀·지우펀 — 인천 출발 대만 4일 (노쇼핑·101전망대·예스진지·천등체험)" loading="lazy" />
           <span class="tag hot">베스트</span><span class="tag noshop">노쇼핑</span>
@@ -5602,7 +5627,7 @@
         data-premium="0" data-private="0"
         data-price="759050" data-cancel="30" data-order="23" data-search="김포 출발 대만 3일 (노쇼핑·단독일정·예스진지) 참좋은여행 타이베이·예류·스펀·지우펀·고궁박물관 2박 3일 풀패키지 대만 타이베이·대만 출발확정 노쇼핑 김포출발">
         <div class="thumb">
-          <img src="images/n_tw_p2_sm.jpg" srcset="images/n_tw_p2_sm.jpg 660w, images/n_tw_p2.jpg 1200w"
+          <img decoding="async" src="images/n_tw_p2_sm.jpg" srcset="images/n_tw_p2_sm.jpg 660w, images/n_tw_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="타이베이·예류·스펀·지우펀·고궁박물관 — 김포 출발 대만 3일 (노쇼핑·단독일정·예스진지)" loading="lazy" />
           <span class="tag">2박 3일</span><span class="tag noshop">노쇼핑</span>
@@ -5708,7 +5733,7 @@
         data-premium="0" data-private="0"
         data-price="159000" data-cancel="0" data-order="45" data-search="[선착순특가/2박3일] 부담없이 떠나는 제주도 2박3일 패키지 (전국출발 가능) 교원투어 여행이지 제주 2박3일 선착순 특가 국내패키지 국내 (서울·경주·제주·부산·강원) 제주 국내 전국출발 특가">
         <div class="thumb">
-          <img src="images/n_jeju_p3_sm.jpg" srcset="images/n_jeju_p3_sm.jpg 660w, images/n_jeju_p3.jpg 1200w"
+          <img decoding="async" src="images/n_jeju_p3_sm.jpg" srcset="images/n_jeju_p3_sm.jpg 660w, images/n_jeju_p3.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="제주 2박3일 — [선착순특가/2박3일] 부담없이 떠나는 제주도 2박3일 패키지 (전국출발 가능)" loading="lazy" />
           <span class="tag">선착순 특가</span><span class="tag confirm">출발확정</span>
@@ -5739,7 +5764,7 @@
         data-premium="0" data-private="0"
         data-price="189000" data-cancel="0" data-order="46" data-search="[제주 3박 4일/특가상품] 전국 출발 · 새별오름 · 송악산둘레길 교원투어 여행이지 새별오름·송악산둘레길 3박4일 특가 국내패키지 국내 (서울·경주·제주·부산·강원) 제주 국내 전국출발 특가">
         <div class="thumb">
-          <img src="images/n_jeju_p4_sm.jpg" srcset="images/n_jeju_p4_sm.jpg 660w, images/n_jeju_p4.jpg 1200w"
+          <img decoding="async" src="images/n_jeju_p4_sm.jpg" srcset="images/n_jeju_p4_sm.jpg 660w, images/n_jeju_p4.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="새별오름·송악산둘레길 — [제주 3박 4일/특가상품] 전국 출발 · 새별오름 · 송악산둘레길" loading="lazy" />
           <span class="tag">3박4일 특가</span><span class="tag confirm">출발확정</span>
@@ -5770,7 +5795,7 @@
         data-premium="0" data-private="0"
         data-price="439000" data-cancel="0" data-order="47" data-search="[에어카텔/2박3일] 대한·아시아나항공 + 그랜드하얏트 + 렌터카(자차 포함) 교원투어 여행이지 그랜드하얏트 2박 + 렌터카 에어카텔 에어텔 국내 (서울·경주·제주·부산·강원) 제주 국내 자유여행 렌터카">
         <div class="thumb">
-          <img src="images/n_jeju_air_sm.jpg" srcset="images/n_jeju_air_sm.jpg 660w, images/n_jeju_air.jpg 1200w"
+          <img decoding="async" src="images/n_jeju_air_sm.jpg" srcset="images/n_jeju_air_sm.jpg 660w, images/n_jeju_air.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="그랜드하얏트 2박 + 렌터카 — [에어카텔/2박3일] 대한·아시아나항공 + 그랜드하얏트 + 렌터카(자차 포함)" loading="lazy" />
           <span class="tag">에어카텔</span>
@@ -5801,7 +5826,7 @@
         data-premium="0" data-private="0"
         data-price="69000" data-cancel="1" data-order="61" data-search="제주 동부 유네스코 당일 투어 (성산일출봉·만장굴·해녀쇼·귤 따기·광치기해변) 트립닷컴 성산일출봉·만장굴 제주 동부 가이드투어 국내 (서울·경주·제주·부산·강원) 제주 노쇼핑 당일 픽업 유네스코">
         <div class="thumb">
-          <img src="images/n_v30_jeju_east_sm.jpg" srcset="images/n_v30_jeju_east_sm.jpg 660w, images/n_v30_jeju_east.jpg 1200w"
+          <img decoding="async" src="images/n_v30_jeju_east_sm.jpg" srcset="images/n_v30_jeju_east_sm.jpg 660w, images/n_v30_jeju_east.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="성산일출봉·만장굴 — 제주 동부 유네스코 당일 투어 (성산일출봉·만장굴·해녀쇼·귤 따기·광치기해변)" loading="lazy" />
           <span class="tag">제주 동부</span><span class="tag noshop">노쇼핑</span>
@@ -5832,7 +5857,7 @@
         data-premium="0" data-private="0"
         data-price="15900" data-cancel="0" data-order="62" data-search="제주투어패스 프리패스 자유이용권 (24·48·72·120시간권) 트립닷컴 제주투어패스 24~120시간 패스 패스 국내 (서울·경주·제주·부산·강원) 제주 패스 자유이용권 모바일티켓">
         <div class="thumb">
-          <img src="images/n_v30_jeju_pass_sm.jpg" srcset="images/n_v30_jeju_pass_sm.jpg 660w, images/n_v30_jeju_pass.jpg 1200w"
+          <img decoding="async" src="images/n_v30_jeju_pass_sm.jpg" srcset="images/n_v30_jeju_pass_sm.jpg 660w, images/n_v30_jeju_pass.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="제주투어패스 24~120시간 — 제주투어패스 프리패스 자유이용권 (24·48·72·120시간권)" loading="lazy" />
           <span class="tag">패스</span>
@@ -5965,7 +5990,7 @@
         data-premium="0" data-private="0"
         data-price="17000" data-cancel="0" data-order="49" data-search="부산요트투어 위드요트 — 광안리 출발 · 야경·폭죽·드론쇼 (소인/주간) 부산요트투어 위드요트 광안리 야경 요트 요트투어 레저·액티비티 국내 (서울·경주·제주·부산·강원) 부산 국내 부산 요트">
         <div class="thumb">
-          <img src="images/n_busan_withyacht_sm.jpg" srcset="images/n_busan_withyacht_sm.jpg 660w, images/n_busan_withyacht.jpg 1200w"
+          <img decoding="async" src="images/n_busan_withyacht_sm.jpg" srcset="images/n_busan_withyacht_sm.jpg 660w, images/n_busan_withyacht.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="광안리 야경 요트 — 부산요트투어 위드요트 — 광안리 출발 · 야경·폭죽·드론쇼 (소인/주간)" loading="lazy" />
           <span class="tag">요트투어</span>
@@ -5996,7 +6021,7 @@
         data-premium="0" data-private="0"
         data-price="17000" data-cancel="0" data-order="50" data-search="부산요트투어 라나요트 — 광안리 해변 탑승 · 퍼블릭(합승) 야경 코스 부산요트투어 라나요트 광안리 퍼블릭 요트 퍼블릭 요트 레저·액티비티 국내 (서울·경주·제주·부산·강원) 부산 국내 부산 요트">
         <div class="thumb">
-          <img src="images/n_busan_lanayacht_sm.jpg" srcset="images/n_busan_lanayacht_sm.jpg 660w, images/n_busan_lanayacht.jpg 1200w"
+          <img decoding="async" src="images/n_busan_lanayacht_sm.jpg" srcset="images/n_busan_lanayacht_sm.jpg 660w, images/n_busan_lanayacht.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="광안리 퍼블릭 요트 — 부산요트투어 라나요트 — 광안리 해변 탑승 · 퍼블릭(합승) 야경 코스" loading="lazy" />
           <span class="tag">퍼블릭 요트</span>
@@ -6027,7 +6052,7 @@
         data-premium="0" data-private="0"
         data-price="8000" data-cancel="0" data-order="51" data-search="해운대리버크루즈 — 야경·드론쇼 퍼블릭 크루즈 (소인/주간권) 해운대리버크루즈 해운대 크루즈 리버크루즈 레저·액티비티 국내 (서울·경주·제주·부산·강원) 부산 국내 부산 크루즈">
         <div class="thumb">
-          <img src="images/n_busan_rivercruise_sm.jpg" srcset="images/n_busan_rivercruise_sm.jpg 660w, images/n_busan_rivercruise.jpg 1200w"
+          <img decoding="async" src="images/n_busan_rivercruise_sm.jpg" srcset="images/n_busan_rivercruise_sm.jpg 660w, images/n_busan_rivercruise.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="해운대 크루즈 — 해운대리버크루즈 — 야경·드론쇼 퍼블릭 크루즈 (소인/주간권)" loading="lazy" />
           <span class="tag">리버크루즈</span>
@@ -6058,7 +6083,7 @@
         data-premium="0" data-private="0"
         data-price="249000" data-cancel="0" data-order="52" data-search="부산요트투어 라나요트 — 한 팀만 단독대여 (주간·야경) 부산요트투어 라나요트 한 팀 단독 요트 단독대여 레저·액티비티 국내 (서울·경주·제주·부산·강원) 부산 국내 부산 단독대여">
         <div class="thumb">
-          <img src="images/n_busan_lana_private_sm.jpg" srcset="images/n_busan_lana_private_sm.jpg 660w, images/n_busan_lana_private.jpg 1200w"
+          <img decoding="async" src="images/n_busan_lana_private_sm.jpg" srcset="images/n_busan_lana_private_sm.jpg 660w, images/n_busan_lana_private.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="한 팀 단독 요트 — 부산요트투어 라나요트 — 한 팀만 단독대여 (주간·야경)" loading="lazy" />
           <span class="tag">단독대여</span>
@@ -6089,7 +6114,7 @@
         data-premium="0" data-private="0"
         data-price="74770" data-cancel="1" data-order="60" data-search="부산 해운대 스카이캡슐 + 동부산 일몰 야경 투어 (청사포·더베이101·광안대교·북항) 트립닷컴 해운대 스카이캡슐·광안대교 야경 야경투어 야경투어 국내 (서울·경주·제주·부산·강원) 부산 야경 스카이캡슐 픽업 당일">
         <div class="thumb">
-          <img src="images/n_v30_busan_night_sm.jpg" srcset="images/n_v30_busan_night_sm.jpg 660w, images/n_v30_busan_night.jpg 1200w"
+          <img decoding="async" src="images/n_v30_busan_night_sm.jpg" srcset="images/n_v30_busan_night_sm.jpg 660w, images/n_v30_busan_night.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="해운대 스카이캡슐·광안대교 야경 — 부산 해운대 스카이캡슐 + 동부산 일몰 야경 투어 (청사포·더베이101·광안대교·북항)" loading="lazy" />
           <span class="tag">야경투어</span>
@@ -6222,7 +6247,7 @@
         data-premium="0" data-private="0"
         data-price="54000" data-cancel="0" data-order="53" data-search="비발디파크 리프트권 — 4시간·6시간 타임패스 + 렌탈 제임스보드 비발디파크 리프트 리프트권 레저·액티비티 국내 (서울·경주·제주·부산·강원) 강원 국내 강원 스키">
         <div class="thumb">
-          <img src="images/n_gw_vivaldi_lift_sm.jpg" srcset="images/n_gw_vivaldi_lift_sm.jpg 660w, images/n_gw_vivaldi_lift.jpg 1200w"
+          <img decoding="async" src="images/n_gw_vivaldi_lift_sm.jpg" srcset="images/n_gw_vivaldi_lift_sm.jpg 660w, images/n_gw_vivaldi_lift.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="비발디파크 리프트 — 비발디파크 리프트권 — 4시간·6시간 타임패스 + 렌탈" loading="lazy" />
           <span class="tag">리프트권</span>
@@ -6253,7 +6278,7 @@
         data-premium="0" data-private="0"
         data-price="54000" data-cancel="0" data-order="54" data-search="스키장 왕복 셔틀 패키지 — 리프트권 + 장비·의류 + 렌탈샵 픽업 제임스보드 스키장 셔틀 패키지 스키 셔틀 레저·액티비티 국내 (서울·경주·제주·부산·강원) 강원 국내 강원 스키">
         <div class="thumb">
-          <img src="images/n_gw_james_shuttle_sm.jpg" srcset="images/n_gw_james_shuttle_sm.jpg 660w, images/n_gw_james_shuttle.jpg 1200w"
+          <img decoding="async" src="images/n_gw_james_shuttle_sm.jpg" srcset="images/n_gw_james_shuttle_sm.jpg 660w, images/n_gw_james_shuttle.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="스키장 셔틀 패키지 — 스키장 왕복 셔틀 패키지 — 리프트권 + 장비·의류 + 렌탈샵 픽업" loading="lazy" />
           <span class="tag">스키 셔틀</span>
@@ -6284,7 +6309,7 @@
         data-premium="0" data-private="0"
         data-price="39500" data-cancel="3" data-order="55" data-search="강원도 뚜벅이 버스투어 — 강릉·속초·양양 당일치기 강원도버스투어 강릉 당일 버스투어 버스투어 레저·액티비티 국내 (서울·경주·제주·부산·강원) 강원 국내 강원 버스투어">
         <div class="thumb">
-          <img src="images/n_gw_gangwon_bustour_sm.jpg" srcset="images/n_gw_gangwon_bustour_sm.jpg 660w, images/n_gw_gangwon_bustour.jpg 1200w"
+          <img decoding="async" src="images/n_gw_gangwon_bustour_sm.jpg" srcset="images/n_gw_gangwon_bustour_sm.jpg 660w, images/n_gw_gangwon_bustour.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="강릉 당일 버스투어 — 강원도 뚜벅이 버스투어 — 강릉·속초·양양 당일치기" loading="lazy" />
           <span class="tag">버스투어</span>
@@ -6315,7 +6340,7 @@
         data-premium="0" data-private="0"
         data-price="329000" data-cancel="0" data-order="56" data-search="정선 가리왕산 1박2일 기차여행 — 청풍호 유람선·청령포·케이블카 강원도버스투어 정선 가리왕산 1박2일 기차여행 레저·액티비티 국내 (서울·경주·제주·부산·강원) 강원 국내 강원 기차여행">
         <div class="thumb">
-          <img src="images/n_gw_gariwangsan_sm.jpg" srcset="images/n_gw_gariwangsan_sm.jpg 660w, images/n_gw_gariwangsan.jpg 1200w"
+          <img decoding="async" src="images/n_gw_gariwangsan_sm.jpg" srcset="images/n_gw_gariwangsan_sm.jpg 660w, images/n_gw_gariwangsan.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="정선 가리왕산 — 정선 가리왕산 1박2일 기차여행 — 청풍호 유람선·청령포·케이블카" loading="lazy" />
           <span class="tag">1박2일 기차여행</span>
@@ -6431,7 +6456,7 @@
         data-premium="0" data-private="0"
         data-price="35141" data-cancel="0" data-order="57" data-search="서울 야경 버스 투어 (광화문 출발·n서울타워 포토스톱·오디오 가이드 12개 언어) 트립닷컴 광화문·n서울타워 야경 야경투어 야경투어 국내 (서울·경주·제주·부산·강원) 서울 야경 오디오가이드 당일">
         <div class="thumb">
-          <img src="images/n_v30_seoul_nightbus_sm.jpg" srcset="images/n_v30_seoul_nightbus_sm.jpg 660w, images/n_v30_seoul_nightbus.jpg 1200w"
+          <img decoding="async" src="images/n_v30_seoul_nightbus_sm.jpg" srcset="images/n_v30_seoul_nightbus_sm.jpg 660w, images/n_v30_seoul_nightbus.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="광화문·N서울타워 야경 — 서울 야경 버스 투어 (광화문 출발·N서울타워 포토스톱·오디오 가이드 12개 언어)" loading="lazy" />
           <span class="tag">야경투어</span>
@@ -6462,7 +6487,7 @@
         data-premium="0" data-private="0"
         data-price="70667" data-cancel="1" data-order="58" data-search="서울 남이섬 + 아침고요수목원 1일 투어 (서울 출발 전용차량 픽업·한국어 가이드 선택) 트립닷컴 남이섬·아침고요수목원 리뷰 73 · 4.8 가이드투어 국내 (서울·경주·제주·부산·강원) 서울 한국어가이드 입장료포함 당일 픽업">
         <div class="thumb">
-          <img src="images/n_v30_seoul_nami_sm.jpg" srcset="images/n_v30_seoul_nami_sm.jpg 660w, images/n_v30_seoul_nami.jpg 1200w"
+          <img decoding="async" src="images/n_v30_seoul_nami_sm.jpg" srcset="images/n_v30_seoul_nami_sm.jpg 660w, images/n_v30_seoul_nami.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="남이섬·아침고요수목원 — 서울 남이섬 + 아침고요수목원 1일 투어 (서울 출발 전용차량 픽업·한국어 가이드 선택)" loading="lazy" />
           <span class="tag">리뷰 73 · 4.8</span>
@@ -6565,7 +6590,7 @@
         data-premium="0" data-private="0"
         data-price="49000" data-cancel="1" data-order="59" data-search="부산 출발 경주 당일 투어 (불국사·대릉원·황리단길·월정교·아홉산숲) 트립닷컴 불국사·대릉원·월정교 경주 당일 가이드투어 국내 (서울·경주·제주·부산·강원) 경주 당일 픽업 유네스코">
         <div class="thumb">
-          <img src="images/n_v30_gyeongju_sm.jpg" srcset="images/n_v30_gyeongju_sm.jpg 660w, images/n_v30_gyeongju.jpg 1200w"
+          <img decoding="async" src="images/n_v30_gyeongju_sm.jpg" srcset="images/n_v30_gyeongju_sm.jpg 660w, images/n_v30_gyeongju.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="불국사·대릉원·월정교 — 부산 출발 경주 당일 투어 (불국사·대릉원·황리단길·월정교·아홉산숲)" loading="lazy" />
           <span class="tag">경주 당일</span>
@@ -6666,7 +6691,7 @@
         data-premium="0" data-private="0"
         data-price="75050" data-cancel="7" data-order="9" data-search="삿포로 비에이·후라노 1일 버스투어 (청의호수·흰수염폭포) 인디고트래블 비에이 청의호수·흰수염폭포·사계채의 언덕·팜도미타 가이드투어 5% 가이드투어 일본 삿포로·홋카이도 한국어가이드 매장식사">
         <div class="thumb">
-          <img src="images/n_sp_g_sm.jpg" srcset="images/n_sp_g_sm.jpg 660w, images/n_sp_g.jpg 1200w"
+          <img decoding="async" src="images/n_sp_g_sm.jpg" srcset="images/n_sp_g_sm.jpg 660w, images/n_sp_g.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="비에이 청의호수·흰수염폭포·사계채의 언덕·팜도미타 — 삿포로 비에이·후라노 1일 버스투어 (청의호수·흰수염폭포)" loading="lazy" />
           <span class="tag">가이드투어 5%</span>
@@ -6697,7 +6722,7 @@
         data-premium="0" data-private="0"
         data-price="1169820" data-cancel="30" data-order="10" data-search="부산 출발 삿포로 4일 (대욕장+온천+시내호텔·스노우래프팅) 노랑풍선 후라노·비에이·오타루·도야·노보리베츠 베스트 풀패키지 일본 삿포로·홋카이도 출발확정 온천 스노우래프팅">
         <div class="thumb">
-          <img src="images/n_sp_p1_sm.jpg" srcset="images/n_sp_p1_sm.jpg 660w, images/n_sp_p1.jpg 1200w"
+          <img decoding="async" src="images/n_sp_p1_sm.jpg" srcset="images/n_sp_p1_sm.jpg 660w, images/n_sp_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="후라노·비에이·오타루·도야·노보리베츠 — 부산 출발 삿포로 4일 (대욕장+온천+시내호텔·스노우래프팅)" loading="lazy" />
           <span class="tag hot">베스트</span>
@@ -6728,7 +6753,7 @@
         data-premium="0" data-private="0"
         data-price="872030" data-cancel="61" data-order="11" data-search="인천 출발 삿포로 자유 4일 (머큐어 삿포로 3박) 하나투어 삿포로 시내 3박 자유일정 자유여행 에어텔 일본 삿포로·홋카이도 출발확정 자유일정 시내숙박">
         <div class="thumb">
-          <img src="images/n_sp_p3_sm.jpg" srcset="images/n_sp_p3_sm.jpg 660w, images/n_sp_p3.jpg 1200w"
+          <img decoding="async" src="images/n_sp_p3_sm.jpg" srcset="images/n_sp_p3_sm.jpg 660w, images/n_sp_p3.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="삿포로 시내 3박 자유일정 — 인천 출발 삿포로 자유 4일 (머큐어 삿포로 3박)" loading="lazy" />
           <span class="tag">자유여행</span>
@@ -6759,7 +6784,7 @@
         data-premium="0" data-private="0"
         data-price="2647130" data-cancel="30" data-order="41" data-search="청주 출발 홋카이도 4일 (비에이·아오이이케·3대 온천) 하나투어 홋카이도 온천 3박 4일 노쇼핑 풀패키지 일본 삿포로·홋카이도 노쇼핑 홋카이도 청주출발">
         <div class="thumb">
-          <img src="images/n_hk4_cju_sm.jpg" srcset="images/n_hk4_cju_sm.jpg 660w, images/n_hk4_cju.jpg 1200w"
+          <img decoding="async" src="images/n_hk4_cju_sm.jpg" srcset="images/n_hk4_cju_sm.jpg 660w, images/n_hk4_cju.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="홋카이도 온천 3박 4일 — 청주 출발 홋카이도 4일 (비에이·아오이이케·3대 온천)" loading="lazy" />
           <span class="tag">노쇼핑</span>
@@ -6790,7 +6815,7 @@
         data-premium="0" data-private="0"
         data-price="75138" data-cancel="1" data-order="76" data-search="비에이 하이라이트 5곳 일일투어 (크리스마스트리·청의호수·흰수염폭포·한국어 가이드) 트립닷컴 비에이 크리스마스트리·청의호수·흰수염폭포 한국어 가이드 가이드투어 일본 삿포로·홋카이도 한국어가이드 조인투어">
         <div class="thumb">
-          <img src="images/n_v40_biei_sm.jpg" srcset="images/n_v40_biei_sm.jpg 660w, images/n_v40_biei.jpg 1200w"
+          <img decoding="async" src="images/n_v40_biei_sm.jpg" srcset="images/n_v40_biei_sm.jpg 660w, images/n_v40_biei.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="비에이 크리스마스트리·청의호수·흰수염폭포 — 비에이 하이라이트 5곳 일일투어 (크리스마스트리·청의호수·흰수염폭포·한국어 가이드)" loading="lazy" />
           <span class="tag">한국어 가이드</span>
@@ -6821,7 +6846,7 @@
         data-premium="0" data-private="0"
         data-price="57948" data-cancel="3" data-order="77" data-search="조잔케이 온천 + 홋카이도 신궁 + 시로이코이비토 파크 + 삿포로 맥주 박물관 당일 투어 트립닷컴 조잔케이 온천·신궁·시로이코이비토 온천 포함 동선 가이드투어 일본 삿포로·홋카이도 조인투어 온천">
         <div class="thumb">
-          <img src="images/n_v40_jozankei_sm.jpg" srcset="images/n_v40_jozankei_sm.jpg 660w, images/n_v40_jozankei.jpg 1200w"
+          <img decoding="async" src="images/n_v40_jozankei_sm.jpg" srcset="images/n_v40_jozankei_sm.jpg 660w, images/n_v40_jozankei.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="조잔케이 온천·신궁·시로이코이비토 — 조잔케이 온천 + 홋카이도 신궁 + 시로이코이비토 파크 + 삿포로 맥주 박물관 당일 투어" loading="lazy" />
           <span class="tag">온천 포함 동선</span>
@@ -6852,7 +6877,7 @@
         data-premium="0" data-private="0"
         data-price="60226" data-cancel="1" data-order="78" data-search="삿포로 + 오타루 하이라이트 (홋카이도 신궁·마루야마공원·부처의 언덕·오타루 자유시간) 트립닷컴 오타루 운하·스시 거리·부처의 언덕 1명도 출발 가이드투어 일본 삿포로·홋카이도 조인투어 1명출발">
         <div class="thumb">
-          <img src="images/n_v40_otaru_sm.jpg" srcset="images/n_v40_otaru_sm.jpg 660w, images/n_v40_otaru.jpg 1200w"
+          <img decoding="async" src="images/n_v40_otaru_sm.jpg" srcset="images/n_v40_otaru_sm.jpg 660w, images/n_v40_otaru.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="오타루 운하·스시 거리·부처의 언덕 — 삿포로 + 오타루 하이라이트 (홋카이도 신궁·마루야마공원·부처의 언덕·오타루 자유시간)" loading="lazy" />
           <span class="tag">1명도 출발</span>
@@ -6997,7 +7022,7 @@
         data-premium="0" data-private="0"
         data-price="1690100" data-cancel="50" data-order="42" data-search="다낭 황제 골프 54홀 3박 5일 (진에어·오션뷰) 편한여행사 다낭 골프 3박 5일 골프 골프패키지 베트남 다낭·푸꾸옥 골프 골프 다낭 54홀">
         <div class="thumb">
-          <img src="images/n_dn_golf54_sm.jpg" srcset="images/n_dn_golf54_sm.jpg 660w, images/n_dn_golf54.jpg 1200w"
+          <img decoding="async" src="images/n_dn_golf54_sm.jpg" srcset="images/n_dn_golf54_sm.jpg 660w, images/n_dn_golf54.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="다낭 골프 3박 5일 — 다낭 황제 골프 54홀 3박 5일 (진에어·오션뷰)" loading="lazy" />
           <span class="tag">골프</span>
@@ -7028,7 +7053,7 @@
         data-premium="0" data-private="0"
         data-price="1656700" data-cancel="50" data-order="43" data-search="푸꾸옥 vvip 골프 36홀 3박 5일 (5성호텔) 편한여행사 푸꾸옥 골프 3박 5일 골프 골프패키지 베트남 다낭·푸꾸옥 골프 골프 푸꾸옥 36홀">
         <div class="thumb">
-          <img src="images/n_pqc_golf36_sm.jpg" srcset="images/n_pqc_golf36_sm.jpg 660w, images/n_pqc_golf36.jpg 1200w"
+          <img decoding="async" src="images/n_pqc_golf36_sm.jpg" srcset="images/n_pqc_golf36_sm.jpg 660w, images/n_pqc_golf36.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="푸꾸옥 골프 3박 5일 — 푸꾸옥 VVIP 골프 36홀 3박 5일 (5성호텔)" loading="lazy" />
           <span class="tag">골프</span>
@@ -7130,7 +7155,7 @@
         data-premium="0" data-private="0"
         data-price="2745500" data-cancel="30" data-order="24" data-search="이탈리아+스위스 2국 9일 (융프라우·체르마트·핵심일주) 참좋은여행 밀라노·피렌체·로마·융프라우·체르마트 인기 1위 풀패키지 유럽 이탈리아·스위스 인솔자동행 융프라우 쇼핑3회">
         <div class="thumb">
-          <img src="images/n_it_p1_sm.jpg" srcset="images/n_it_p1_sm.jpg 660w, images/n_it_p1.jpg 1200w"
+          <img decoding="async" src="images/n_it_p1_sm.jpg" srcset="images/n_it_p1_sm.jpg 660w, images/n_it_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="밀라노·피렌체·로마·융프라우·체르마트 — 이탈리아+스위스 2국 9일 (융프라우·체르마트·핵심일주)" loading="lazy" />
           <span class="tag hot">인기 1위</span>
@@ -7161,7 +7186,7 @@
         data-premium="1" data-private="0"
         data-price="3103030" data-cancel="30" data-order="25" data-search="스위스·이탈리아 2국 9일 (노쇼핑·융프라우·콜로세움 내부) 모두투어 루체른·융프라우·피사·폼페이·로마 노쇼핑 풀패키지 유럽 이탈리아·스위스 출발확정 노쇼핑 인솔자동행">
         <div class="thumb">
-          <img src="images/n_it_p2_sm.jpg" srcset="images/n_it_p2_sm.jpg 660w, images/n_it_p2.jpg 1200w"
+          <img decoding="async" src="images/n_it_p2_sm.jpg" srcset="images/n_it_p2_sm.jpg 660w, images/n_it_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="루체른·융프라우·피사·폼페이·로마 — 스위스·이탈리아 2국 9일 (노쇼핑·융프라우·콜로세움 내부)" loading="lazy" />
           <span class="tag">노쇼핑</span>
@@ -7192,7 +7217,7 @@
         data-premium="0" data-private="0"
         data-price="2909030" data-cancel="30" data-order="26" data-search="이탈리아 일주 9일 (노쇼핑·3대 자유시간·13대 특식) 모두투어 베네치아·피렌체·로마·토스카나·산마리노 자유시간 3회 세미패키지 유럽 이탈리아·스위스 출발확정 노쇼핑 자유시간">
         <div class="thumb">
-          <img src="images/n_it_p3_sm.jpg" srcset="images/n_it_p3_sm.jpg 660w, images/n_it_p3.jpg 1200w"
+          <img decoding="async" src="images/n_it_p3_sm.jpg" srcset="images/n_it_p3_sm.jpg 660w, images/n_it_p3.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="베네치아·피렌체·로마·토스카나·산마리노 — 이탈리아 일주 9일 (노쇼핑·3대 자유시간·13대 특식)" loading="lazy" />
           <span class="tag">자유시간 3회</span><span class="tag noshop">노쇼핑</span>
@@ -7223,7 +7248,7 @@
         data-premium="1" data-private="0"
         data-price="5334030" data-cancel="0" data-order="31" data-search="스위스/이탈리아 2국 9일 (노팁·노쇼핑·융프라우·수네가) 모두투어 스위스·이탈리아 2국 7박 9일 노쇼핑 풀패키지 유럽 이탈리아·스위스 노쇼핑 노팁 스위스 융프라우">
         <div class="thumb">
-          <img src="images/n_sw_it9_noshop_sm.jpg" srcset="images/n_sw_it9_noshop_sm.jpg 660w, images/n_sw_it9_noshop.jpg 1200w"
+          <img decoding="async" src="images/n_sw_it9_noshop_sm.jpg" srcset="images/n_sw_it9_noshop_sm.jpg 660w, images/n_sw_it9_noshop.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="스위스·이탈리아 2국 7박 9일 — 스위스/이탈리아 2국 9일 (노팁·노쇼핑·융프라우·수네가)" loading="lazy" />
           <span class="tag">노쇼핑</span>
@@ -7254,7 +7279,7 @@
         data-premium="0" data-private="0"
         data-price="2708240" data-cancel="30" data-order="40" data-search="이탈리아 클래식 일주 9일 (피사·아시시·친퀘테레) 참좋은여행 이탈리아 일주 8박 9일 베스트 풀패키지 유럽 이탈리아·스위스 이탈리아 친퀘테레 피사">
         <div class="thumb">
-          <img src="images/n_it9_classic_sm.jpg" srcset="images/n_it9_classic_sm.jpg 660w, images/n_it9_classic.jpg 1200w"
+          <img decoding="async" src="images/n_it9_classic_sm.jpg" srcset="images/n_it9_classic_sm.jpg 660w, images/n_it9_classic.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="이탈리아 일주 8박 9일 — 이탈리아 클래식 일주 9일 (피사·아시시·친퀘테레)" loading="lazy" />
           <span class="tag hot">베스트</span>
@@ -7386,7 +7411,7 @@
         data-premium="1" data-private="0"
         data-price="3695500" data-cancel="30" data-order="36" data-search="서유럽 4개국 10일 (융프라우+파리 베르사유) 참좋은여행 서유럽 4개국 9박 10일 프리미엄 풀패키지 유럽 서유럽 4개국 서유럽 융프라우 파리">
         <div class="thumb">
-          <img src="images/n_eu4_10_sm.jpg" srcset="images/n_eu4_10_sm.jpg 660w, images/n_eu4_10.jpg 1200w"
+          <img decoding="async" src="images/n_eu4_10_sm.jpg" srcset="images/n_eu4_10_sm.jpg 660w, images/n_eu4_10.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="서유럽 4개국 9박 10일 — 서유럽 4개국 10일 (융프라우+파리 베르사유)" loading="lazy" />
           <span class="tag">프리미엄</span>
@@ -7478,7 +7503,7 @@
         data-premium="1" data-private="0"
         data-price="3521100" data-cancel="30" data-order="37" data-search="스페인+포르투갈 11일 (전 일정 1급 호텔·포르티망) 참좋은여행 스페인·포르투갈 10박 11일 프리미엄 풀패키지 유럽 스페인·포르투갈 스페인 포르투갈 포르티망">
         <div class="thumb">
-          <img src="images/n_sp_pt11_sm.jpg" srcset="images/n_sp_pt11_sm.jpg 660w, images/n_sp_pt11.jpg 1200w"
+          <img decoding="async" src="images/n_sp_pt11_sm.jpg" srcset="images/n_sp_pt11_sm.jpg 660w, images/n_sp_pt11.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="스페인·포르투갈 10박 11일 — 스페인+포르투갈 11일 (전 일정 1급 호텔·포르티망)" loading="lazy" />
           <span class="tag">프리미엄</span>
@@ -7509,7 +7534,7 @@
         data-premium="0" data-private="0"
         data-price="2805240" data-cancel="30" data-order="39" data-search="스페인+포르투갈 9일 (베스트 오브 베스트·1급 호텔 2박 up) 참좋은여행 스페인·포르투갈 8박 9일 베스트 풀패키지 유럽 스페인·포르투갈 스페인 포르투갈 론다">
         <div class="thumb">
-          <img src="images/n_sp_pt9_bob_sm.jpg" srcset="images/n_sp_pt9_bob_sm.jpg 660w, images/n_sp_pt9_bob.jpg 1200w"
+          <img decoding="async" src="images/n_sp_pt9_bob_sm.jpg" srcset="images/n_sp_pt9_bob_sm.jpg 660w, images/n_sp_pt9_bob.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="스페인·포르투갈 8박 9일 — 스페인+포르투갈 9일 (베스트 오브 베스트·1급 호텔 2박 UP)" loading="lazy" />
           <span class="tag hot">베스트</span>
@@ -7611,7 +7636,7 @@
         data-premium="0" data-private="0"
         data-price="949630" data-cancel="0" data-order="27" data-search="인천 출발 괌 5일 (두짓타니 오션프론트·전일정 조식) 노랑풍선 두짓타니 리조트 4박 자유일정 리조트 에어텔 괌·사이판 괌·사이판 자유일정 5성리조트 조식포함">
         <div class="thumb">
-          <img src="images/n_gu_p1_sm.jpg" srcset="images/n_gu_p1_sm.jpg 660w, images/n_gu_p1.jpg 1200w"
+          <img decoding="async" src="images/n_gu_p1_sm.jpg" srcset="images/n_gu_p1_sm.jpg 660w, images/n_gu_p1.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="두짓타니 리조트 4박 자유일정 — 인천 출발 괌 5일 (두짓타니 오션프론트·전일정 조식)" loading="lazy" />
           <span class="tag">리조트</span>
@@ -7642,7 +7667,7 @@
         data-premium="0" data-private="0"
         data-price="581030" data-cancel="0" data-order="28" data-search="인천 출발 괌 5일 (리가로얄 오션뷰·공항 셔틀·최저가) 하나투어 리가로얄 오션뷰 4박 자유일정 최저가 에어텔 괌·사이판 괌·사이판 출발확정 자유일정 최저가">
         <div class="thumb">
-          <img src="images/n_gu_p2_sm.jpg" srcset="images/n_gu_p2_sm.jpg 660w, images/n_gu_p2.jpg 1200w"
+          <img decoding="async" src="images/n_gu_p2_sm.jpg" srcset="images/n_gu_p2_sm.jpg 660w, images/n_gu_p2.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="리가로얄 오션뷰 4박 자유일정 — 인천 출발 괌 5일 (리가로얄 오션뷰·공항 셔틀·최저가)" loading="lazy" />
           <span class="tag hot">최저가</span>
@@ -7673,7 +7698,7 @@
         data-premium="0" data-private="0"
         data-price="792490" data-cancel="30" data-order="29" data-search="부산 출발 괌 5일 (pic 골드패스·워터파크·노팁) 참좋은여행 pic 리조트 골드패스·워터파크·서커스 pic 에어텔 괌·사이판 괌·사이판 노팁 골드패스 가족">
         <div class="thumb">
-          <img src="images/n_gu_p3_sm.jpg" srcset="images/n_gu_p3_sm.jpg 660w, images/n_gu_p3.jpg 1200w"
+          <img decoding="async" src="images/n_gu_p3_sm.jpg" srcset="images/n_gu_p3_sm.jpg 660w, images/n_gu_p3.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="PIC 리조트 골드패스·워터파크·서커스 — 부산 출발 괌 5일 (PIC 골드패스·워터파크·노팁)" loading="lazy" />
           <span class="tag">PIC</span>
@@ -7778,7 +7803,7 @@
         data-premium="1" data-private="0"
         data-price="5819030" data-cancel="0" data-order="30" data-search="미동부+캐나다 10일 (힐튼 폭포뷰·아시아나) 노랑풍선 미동부·나이아가라·토론토 8박 10일 프리미엄 풀패키지 미주·하와이 미동부·캐나다 미동부 캐나다 힐튼폭포뷰">
         <div class="thumb">
-          <img src="images/n_use_ca10_oz_sm.jpg" srcset="images/n_use_ca10_oz_sm.jpg 660w, images/n_use_ca10_oz.jpg 1200w"
+          <img decoding="async" src="images/n_use_ca10_oz_sm.jpg" srcset="images/n_use_ca10_oz_sm.jpg 660w, images/n_use_ca10_oz.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="미동부·나이아가라·토론토 8박 10일 — 미동부+캐나다 10일 (힐튼 폭포뷰·아시아나)" loading="lazy" />
           <span class="tag">프리미엄</span>
@@ -7809,7 +7834,7 @@
         data-premium="1" data-private="0"
         data-price="5237030" data-cancel="0" data-order="32" data-search="미동부+캐나다 10일 (힐튼 폭포뷰·대한항공) 노랑풍선 미동부·나이아가라·토론토 8박 10일 프리미엄 풀패키지 미주·하와이 미동부·캐나다 미동부 캐나다 힐튼폭포뷰">
         <div class="thumb">
-          <img src="images/n_use_ca10_ke_sm.jpg" srcset="images/n_use_ca10_ke_sm.jpg 660w, images/n_use_ca10_ke.jpg 1200w"
+          <img decoding="async" src="images/n_use_ca10_ke_sm.jpg" srcset="images/n_use_ca10_ke_sm.jpg 660w, images/n_use_ca10_ke.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="미동부·나이아가라·토론토 8박 10일 — 미동부+캐나다 10일 (힐튼 폭포뷰·대한항공)" loading="lazy" />
           <span class="tag">프리미엄</span>
@@ -7911,7 +7936,7 @@
         data-premium="1" data-private="0"
         data-price="3200030" data-cancel="30" data-order="38" data-search="미서부 9일 (4대캐년·자이언캐년·온천욕) 노랑풍선 미서부 캐년 7박 9일 노쇼핑 풀패키지 미주·하와이 미서부 노쇼핑 미서부 캐년">
         <div class="thumb">
-          <img src="images/n_usw9_sm.jpg" srcset="images/n_usw9_sm.jpg 660w, images/n_usw9.jpg 1200w"
+          <img decoding="async" src="images/n_usw9_sm.jpg" srcset="images/n_usw9_sm.jpg 660w, images/n_usw9.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="미서부 캐년 7박 9일 — 미서부 9일 (4대캐년·자이언캐년·온천욕)" loading="lazy" />
           <span class="tag">노쇼핑</span>
@@ -8003,7 +8028,7 @@
         data-premium="1" data-private="0"
         data-price="3757586" data-cancel="0" data-order="34" data-search="하와이 하얏트 리젠시 와이키키 8일 (오션뷰→오션프론트) 모두투어 하와이 와이키키 6박 8일 프리미엄 세미패키지 미주·하와이 하와이 하와이 와이키키 하얏트">
         <div class="thumb">
-          <img src="images/n_hi_hyatt8_sm.jpg" srcset="images/n_hi_hyatt8_sm.jpg 660w, images/n_hi_hyatt8.jpg 1200w"
+          <img decoding="async" src="images/n_hi_hyatt8_sm.jpg" srcset="images/n_hi_hyatt8_sm.jpg 660w, images/n_hi_hyatt8.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="하와이 와이키키 6박 8일 — 하와이 하얏트 리젠시 와이키키 8일 (오션뷰→오션프론트)" loading="lazy" />
           <span class="tag">프리미엄</span>
@@ -8034,7 +8059,7 @@
         data-premium="1" data-private="0"
         data-price="3738186" data-cancel="0" data-order="35" data-search="[허니문] 하와이 쉐라톤 와이키키 오션프론트 5박 7일 모두투어 하와이 허니문 5박 7일 허니문 세미패키지 미주·하와이 하와이 하와이 허니문 쉐라톤">
         <div class="thumb">
-          <img src="images/n_hi_sheraton7_sm.jpg" srcset="images/n_hi_sheraton7_sm.jpg 660w, images/n_hi_sheraton7.jpg 1200w"
+          <img decoding="async" src="images/n_hi_sheraton7_sm.jpg" srcset="images/n_hi_sheraton7_sm.jpg 660w, images/n_hi_sheraton7.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="하와이 허니문 5박 7일 — [허니문] 하와이 쉐라톤 와이키키 오션프론트 5박 7일" loading="lazy" />
           <span class="tag">허니문</span>
@@ -8136,7 +8161,7 @@
         data-premium="1" data-private="0"
         data-price="3885500" data-cancel="30" data-order="33" data-search="호주+뉴질랜드 남북섬 10일 (마운트쿡 트래킹) 참좋은여행 호주·뉴질랜드 남북섬 8박 10일 베스트 풀패키지 대양주 호주·뉴질랜드 호주 뉴질랜드 마운트쿡">
         <div class="thumb">
-          <img src="images/n_au_nz10_sm.jpg" srcset="images/n_au_nz10_sm.jpg 660w, images/n_au_nz10.jpg 1200w"
+          <img decoding="async" src="images/n_au_nz10_sm.jpg" srcset="images/n_au_nz10_sm.jpg 660w, images/n_au_nz10.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="호주·뉴질랜드 남북섬 8박 10일 — 호주+뉴질랜드 남북섬 10일 (마운트쿡 트래킹)" loading="lazy" />
           <span class="tag hot">베스트</span>
@@ -8228,7 +8253,7 @@
         data-premium="0" data-private="0"
         data-price="1212403" data-cancel="0" data-order="44" data-search="장가계/원가계 5일 (대한항공·노팁·노옵션·노쇼핑) 노랑풍선 장가계·원가계 3박 5일 노쇼핑 풀패키지 중국 장가계·원가계 노쇼핑 노팁 장가계 효도">
         <div class="thumb">
-          <img src="images/n_zgj5_sm.jpg" srcset="images/n_zgj5_sm.jpg 660w, images/n_zgj5.jpg 1200w"
+          <img decoding="async" src="images/n_zgj5_sm.jpg" srcset="images/n_zgj5_sm.jpg 660w, images/n_zgj5.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="장가계·원가계 3박 5일 — 장가계/원가계 5일 (대한항공·노팁·노옵션·노쇼핑)" loading="lazy" />
           <span class="tag">노쇼핑</span>
@@ -8320,7 +8345,7 @@
         data-premium="0" data-private="0"
         data-price="469000" data-cancel="0" data-order="48" data-search="[묵호출발] 울릉도+독도 포함 2박3일 (씨스타 1호·실시간 확정) 비바트립 울릉도·독도 실시간 확정 국내패키지 국내 (서울·경주·제주·부산·강원) 울릉도·독도 국내 독도포함 실시간확정">
         <div class="thumb">
-          <img src="images/n_ulleung_p3_sm.jpg" srcset="images/n_ulleung_p3_sm.jpg 660w, images/n_ulleung_p3.jpg 1200w"
+          <img decoding="async" src="images/n_ulleung_p3_sm.jpg" srcset="images/n_ulleung_p3_sm.jpg 660w, images/n_ulleung_p3.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="울릉도·독도 — [묵호출발] 울릉도+독도 포함 2박3일 (씨스타 1호·실시간 확정)" loading="lazy" />
           <span class="tag">실시간 확정</span>
@@ -8412,7 +8437,7 @@
         data-premium="0" data-private="0"
         data-price="69300" data-cancel="1" data-order="63" data-search="싱가포르 시내 반나절 데이투어 (머라이언 공원·턘 혹 켕 사원·가든스 바이 더 베이·호텔 픽업) 트립닷컴 머라이언·가든스 바이 더 베이 반나절 데이투어 싱가포르 싱가포르 반나절 픽업 데이투어">
         <div class="thumb">
-          <img src="images/n_v30_sg_city_sm.jpg" srcset="images/n_v30_sg_city_sm.jpg 660w, images/n_v30_sg_city.jpg 1200w"
+          <img decoding="async" src="images/n_v30_sg_city_sm.jpg" srcset="images/n_v30_sg_city_sm.jpg 660w, images/n_v30_sg_city.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="머라이언·가든스 바이 더 베이 — 싱가포르 시내 반나절 데이투어 (머라이언 공원·턘 혹 켕 사원·가든스 바이 더 베이·호텔 픽업)" loading="lazy" />
           <span class="tag">반나절</span>
@@ -8443,7 +8468,7 @@
         data-premium="0" data-private="0"
         data-price="35815" data-cancel="0" data-order="79" data-search="가든스 바이 더 베이 입장권 (플라워 돔·클라우드 포레스트 쥬라기 월드) 트립닷컴 가든스 바이 더 베이·클라우드 포레스트 입장권 입장권 싱가포르 싱가포르 입장권 즉시확정">
         <div class="thumb">
-          <img src="images/n_v40_gardens_sm.jpg" srcset="images/n_v40_gardens_sm.jpg 660w, images/n_v40_gardens.jpg 1200w"
+          <img decoding="async" src="images/n_v40_gardens_sm.jpg" srcset="images/n_v40_gardens_sm.jpg 660w, images/n_v40_gardens.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="가든스 바이 더 베이·클라우드 포레스트 — 가든스 바이 더 베이 입장권 (플라워 돔·클라우드 포레스트 쥬라기 월드)" loading="lazy" />
           <span class="tag">입장권</span>
@@ -8474,7 +8499,7 @@
         data-premium="0" data-private="0"
         data-price="60314" data-cancel="0" data-order="80" data-search="빅 버스 싱가포르 나이트 시티 투어 (야경 코스 버스) 트립닷컴 마리나베이 야경·시빅 디스트릭트 야경투어 야경투어 싱가포르 싱가포르 야경 버스투어">
         <div class="thumb">
-          <img src="images/n_v40_nightbus_sm.jpg" srcset="images/n_v40_nightbus_sm.jpg 660w, images/n_v40_nightbus.jpg 1200w"
+          <img decoding="async" src="images/n_v40_nightbus_sm.jpg" srcset="images/n_v40_nightbus_sm.jpg 660w, images/n_v40_nightbus.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="마리나베이 야경·시빅 디스트릭트 — 빅 버스 싱가포르 나이트 시티 투어 (야경 코스 버스)" loading="lazy" />
           <span class="tag">야경투어</span>
@@ -8505,7 +8530,7 @@
         data-premium="0" data-private="0"
         data-price="52314" data-cancel="3" data-order="81" data-search="라이온 시티 투어 — 하루에 12개 명소 (소규모 조인 투어) 트립닷컴 머라이언·차이나타운·캄퐁글람 12개 명소 시티투어 싱가포르 싱가포르 시티투어 소규모">
         <div class="thumb">
-          <img src="images/n_v40_lioncity_sm.jpg" srcset="images/n_v40_lioncity_sm.jpg 660w, images/n_v40_lioncity.jpg 1200w"
+          <img decoding="async" src="images/n_v40_lioncity_sm.jpg" srcset="images/n_v40_lioncity_sm.jpg 660w, images/n_v40_lioncity.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="머라이언·차이나타운·캄퐁글람 — 라이온 시티 투어 — 하루에 12개 명소 (소규모 조인 투어)" loading="lazy" />
           <span class="tag">12개 명소</span>
@@ -8536,7 +8561,7 @@
         data-premium="0" data-private="0"
         data-price="70552" data-cancel="0" data-order="82" data-search="유니버설 스튜디오 싱가포르 1일 입장권 (성인) 트립닷컴 유니버설 스튜디오·센토사 입장권 입장권 싱가포르 싱가포르 입장권 즉시이용">
         <div class="thumb">
-          <img src="images/n_v40_uss_sm.jpg" srcset="images/n_v40_uss_sm.jpg 660w, images/n_v40_uss.jpg 1200w"
+          <img decoding="async" src="images/n_v40_uss_sm.jpg" srcset="images/n_v40_uss_sm.jpg 660w, images/n_v40_uss.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="유니버설 스튜디오·센토사 — 유니버설 스튜디오 싱가포르 1일 입장권 (성인)" loading="lazy" />
           <span class="tag">입장권</span>
@@ -8668,7 +8693,7 @@
         data-premium="0" data-private="0"
         data-price="102596" data-cancel="2" data-order="64" data-search="홍콩 프리미엄 당일 투어 (피크 트램 우선탑승·센트럴 산책·스타페리·빅토리아 하버 야경·딤섬 시식) 트립닷컴 빅토리아 피크·하버 야경 야경투어 야경투어 홍콩 홍콩 야경 피크트램 영어가이드 당일">
         <div class="thumb">
-          <img src="images/n_v30_hk_premium_sm.jpg" srcset="images/n_v30_hk_premium_sm.jpg 660w, images/n_v30_hk_premium.jpg 1200w"
+          <img decoding="async" src="images/n_v30_hk_premium_sm.jpg" srcset="images/n_v30_hk_premium_sm.jpg 660w, images/n_v30_hk_premium.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="빅토리아 피크·하버 야경 — 홍콩 프리미엄 당일 투어 (피크 트램 우선탑승·센트럴 산책·스타페리·빅토리아 하버 야경·딤섬 시식)" loading="lazy" />
           <span class="tag">야경투어</span>
@@ -8760,7 +8785,7 @@
         data-premium="0" data-private="0"
         data-price="189804" data-cancel="1" data-order="69" data-search="바티칸 미술관 소규모 패키지 투어 (성 베드로 대성당 입장권 포함) 트립닷컴 바티칸 미술관·시스티나·성 베드로 바티칸 반일 가이드투어 유럽 로마·바티칸 빠른입장 소규모">
         <div class="thumb">
-          <img src="images/tours/it_vat_small_sm.jpg" srcset="images/tours/it_vat_small_sm.jpg 660w, images/tours/it_vat_small.jpg 1200w"
+          <img decoding="async" src="images/tours/it_vat_small_sm.jpg" srcset="images/tours/it_vat_small_sm.jpg 660w, images/tours/it_vat_small.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="바티칸 미술관·시스티나·성 베드로 — 바티칸 미술관 소규모 패키지 투어 (성 베드로 대성당 입장권 포함)" loading="lazy" />
           <span class="tag">바티칸 반일</span>
@@ -8791,7 +8816,7 @@
         data-premium="0" data-private="0"
         data-price="101523" data-cancel="2" data-order="70" data-search="바티칸 미술관, 시스티나 성당 &amp; 성 베드로 대성당: 가이드 투어 트립닷컴 성 베드로 대성당·시스티나 바티칸 가이드 가이드투어 유럽 로마·바티칸 빠른입장 가이드">
         <div class="thumb">
-          <img src="images/tours/it_vat_guided_sm.jpg" srcset="images/tours/it_vat_guided_sm.jpg 660w, images/tours/it_vat_guided.jpg 1200w"
+          <img decoding="async" src="images/tours/it_vat_guided_sm.jpg" srcset="images/tours/it_vat_guided_sm.jpg 660w, images/tours/it_vat_guided.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="성 베드로 대성당·시스티나 — 바티칸 미술관, 시스티나 성당 &amp; 성 베드로 대성당: 가이드 투어" loading="lazy" />
           <span class="tag">바티칸 가이드</span>
@@ -8822,7 +8847,7 @@
         data-premium="0" data-private="0"
         data-price="69154" data-cancel="5" data-order="71" data-search="로마: 콜로세움, 포로 로마노 &amp; 팔라티노 – 가이드 투어, ai 및 아레나 트립닷컴 콜로세움·포로 로마노·팔라티노 콜로세움 3곳 가이드투어 유럽 로마·바티칸 입장권 가이드">
         <div class="thumb">
-          <img src="images/tours/it_colosseum_sm.jpg" srcset="images/tours/it_colosseum_sm.jpg 660w, images/tours/it_colosseum.jpg 1200w"
+          <img decoding="async" src="images/tours/it_colosseum_sm.jpg" srcset="images/tours/it_colosseum_sm.jpg 660w, images/tours/it_colosseum.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="콜로세움·포로 로마노·팔라티노 — 로마: 콜로세움, 포로 로마노 &amp; 팔라티노 – 가이드 투어, AI 및 아레나" loading="lazy" />
           <span class="tag">콜로세움 3곳</span>
@@ -8927,7 +8952,7 @@
         data-premium="0" data-private="0"
         data-price="94019" data-cancel="0" data-order="73" data-search="루브르 박물관: 전용 입장 + 가이드 투어 트립닷컴 루브르 박물관 루브르 가이드 가이드투어 유럽 파리·몽생미셸 가이드 취소불가">
         <div class="thumb">
-          <img src="images/tours/fr_louvre_sm.jpg" srcset="images/tours/fr_louvre_sm.jpg 660w, images/tours/fr_louvre.jpg 1200w"
+          <img decoding="async" src="images/tours/fr_louvre_sm.jpg" srcset="images/tours/fr_louvre_sm.jpg 660w, images/tours/fr_louvre.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="루브르 박물관 — 루브르 박물관: 전용 입장 + 가이드 투어" loading="lazy" />
           <span class="tag">루브르 가이드</span>
@@ -8958,7 +8983,7 @@
         data-premium="0" data-private="0"
         data-price="209237" data-cancel="3" data-order="74" data-search="프랑스 몽생미셀 당일 치기 여행(파리 왕복 + 수도원 입장권 포함 + 선택 가능한 언어 가이드) 트립닷컴 몽생미셸 수도원 몽생미셸 당일 데이투어 유럽 파리·몽생미셸 당일치기 왕복차량">
         <div class="thumb">
-          <img src="images/tours/fr_montsm_sm.jpg" srcset="images/tours/fr_montsm_sm.jpg 660w, images/tours/fr_montsm.jpg 1200w"
+          <img decoding="async" src="images/tours/fr_montsm_sm.jpg" srcset="images/tours/fr_montsm_sm.jpg 660w, images/tours/fr_montsm.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="몽생미셸 수도원 — 프랑스 몽생미셀 당일 치기 여행(파리 왕복 + 수도원 입장권 포함 + 선택 가능한 언어 가이드)" loading="lazy" />
           <span class="tag">몽생미셸 당일</span>
@@ -8989,7 +9014,7 @@
         data-premium="0" data-private="0"
         data-price="16429" data-cancel="0" data-order="83" data-search="파리 바토 무슈 센강 유람선 티켓 (1시간·오디오 가이드) 트립닷컴 센강·에펠탑·노트르담 센강 크루즈 크루즈  파리·몽생미셸 크루즈 당일이용">
         <div class="thumb">
-          <img src="images/n_v40_seine_sm.jpg" srcset="images/n_v40_seine_sm.jpg 660w, images/n_v40_seine.jpg 1200w"
+          <img decoding="async" src="images/n_v40_seine_sm.jpg" srcset="images/n_v40_seine_sm.jpg 660w, images/n_v40_seine.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="센강·에펠탑·노트르담 — 파리 바토 무슈 센강 유람선 티켓 (1시간·오디오 가이드)" loading="lazy" />
           <span class="tag">센강 크루즈</span>
@@ -9094,7 +9119,7 @@
         data-premium="0" data-private="0"
         data-price="138704" data-cancel="1" data-order="75" data-search="런던에서 출발: 코츠월즈 &amp; 옥스퍼드 가이드 일일투어 트립닷컴 코츠월즈·옥스퍼드 코츠월즈 당일 데이투어 유럽 런던·코츠월즈 당일치기 근교">
         <div class="thumb">
-          <img src="images/tours/uk_cotswolds_sm.jpg" srcset="images/tours/uk_cotswolds_sm.jpg 660w, images/tours/uk_cotswolds.jpg 1200w"
+          <img decoding="async" src="images/tours/uk_cotswolds_sm.jpg" srcset="images/tours/uk_cotswolds_sm.jpg 660w, images/tours/uk_cotswolds.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="코츠월즈·옥스퍼드 — 런던에서 출발: 코츠월즈 &amp; 옥스퍼드 가이드 일일투어" loading="lazy" />
           <span class="tag">코츠월즈 당일</span>
@@ -9186,7 +9211,7 @@
         data-premium="0" data-private="0"
         data-price="79453" data-cancel="1" data-order="72" data-search="사그라다 파밀리아: 빠른 입장 서비스 + 가이드 투어 트립닷컴 사그라다 파밀리아 사그라다 가이드 가이드투어 유럽 바르셀로나·가우디 빠른입장 가우디">
         <div class="thumb">
-          <img src="images/tours/es_sagrada_sm.jpg" srcset="images/tours/es_sagrada_sm.jpg 660w, images/tours/es_sagrada.jpg 1200w"
+          <img decoding="async" src="images/tours/es_sagrada_sm.jpg" srcset="images/tours/es_sagrada_sm.jpg 660w, images/tours/es_sagrada.jpg 1200w"
                sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px"
                width="1200" height="800" alt="사그라다 파밀리아 — 사그라다 파밀리아: 빠른 입장 서비스 + 가이드 투어" loading="lazy" />
           <span class="tag">사그라다 가이드</span>
@@ -9299,77 +9324,77 @@
       <div class="ess-ghead"><h3>🧳 여행 준비물 · 쿠팡</h3><span class="n">11</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">출발 3일 전에 주문하면 배송일 안에 도착</span></div>
       <div class="ess-grid ess-grid-4">
         <a class="ess" href="https://link.coupang.com/a/iKiDFEr6wm" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-adapter-nemotab.png" alt="네모탭 해외여행용 멀티어댑터 PD35W 5포트" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-adapter-nemotab.png" alt="네모탭 해외여행용 멀티어댑터 PD35W 5포트" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 해외 멀티어댑터</span>
               <b>네모탭 해외여행용 멀티어댑터 PD35W 5포트</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">12,900원<small class="sl">28,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iKiHMeYyES" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-carrier-botn.jpg" alt="보튼캐리어 CL15 하드 캐리어 20인치" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-carrier-botn.jpg" alt="보튼캐리어 CL15 하드 캐리어 20인치" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 기내용 캐리어 20인치</span>
               <b>보튼캐리어 CL15 하드 캐리어 20인치</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">29,900원<small class="sl">42,900원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iKiJGbykx2" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-compress-urbantrip.png" alt="어반트립 부피제로 여행용 압축 파우치 5종 세트" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-compress-urbantrip.png" alt="어반트립 부피제로 여행용 압축 파우치 5종 세트" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 압축 파우치 5종</span>
               <b>어반트립 부피제로 여행용 압축 파우치 5종 세트</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">12,000원<small class="sl">29,900원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iKiLyrquui" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-powerbank-spidy.jpg" alt="스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-powerbank-spidy.jpg" alt="스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 보조배터리 10000mAh</span>
               <b>스피디 슬림 듀얼 10000 보조배터리 + C타입 케이블</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">8,990원<small class="sl">33,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iKiNv5XIMC" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-neckpillow-rango.jpg" alt="랑고 올인원 메모리폼 목베개 (파우치 포함)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-neckpillow-rango.jpg" alt="랑고 올인원 메모리폼 목베개 (파우치 포함)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 메모리폼 목베개</span>
               <b>랑고 올인원 메모리폼 목베개 (파우치 포함)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">13,520원<small class="sl">17,900원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iKiP8FH93s" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-passport-reindeer.jpg" alt="레인디어 RFID 차단 여권지갑 (크로스백형)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-passport-reindeer.jpg" alt="레인디어 RFID 차단 여권지갑 (크로스백형)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · RFID 여권지갑</span>
               <b>레인디어 RFID 차단 여권지갑 (크로스백형)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">13,900원<small class="sl">19,900원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iKiSl9e5SK" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-washbag-bromi.png" alt="브로미 스탠딩 세면도구 파우치 (메쉬, 블랙)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-washbag-bromi.png" alt="브로미 스탠딩 세면도구 파우치 (메쉬, 블랙)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 스탠딩 세면도구 파우치</span>
               <b>브로미 스탠딩 세면도구 파우치 (메쉬, 블랙)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">4,900원<small class="sl">25,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iKiUoBTOAm" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-sleepmask-slipfit.png" alt="슬립핏 4D 고급 암막 수면안대" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-sleepmask-slipfit.png" alt="슬립핏 4D 고급 암막 수면안대" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 암막 수면안대</span>
               <b>슬립핏 4D 고급 암막 수면안대</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">5,900원<small class="sl">35,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNEzG3wHNk" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-philips-adapter70w.jpg" alt="필립스 여행용 멀티어댑터 70W USB-C 고속충전 (파우치 증정)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-philips-adapter70w.jpg" alt="필립스 여행용 멀티어댑터 70W USB-C 고속충전 (파우치 증정)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 멀티어댑터 70W</span>
               <b>필립스 여행용 멀티어댑터 70W USB-C 고속충전 (파우치 증정)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">67,900원<small class="sl">69,900원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNEAVHdPdk" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-miniyu-compress6.jpg" alt="미니유 프리미엄 여행용 압축파우치 6종세트" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-miniyu-compress6.jpg" alt="미니유 프리미엄 여행용 압축파우치 6종세트" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 압축 파우치 6종</span>
               <b>미니유 프리미엄 여행용 압축파우치 6종세트</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">22,800원<small class="sl">99,900원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iQwxAYRl8e" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-neckpillow-codenine.jpg" alt="코드나인 또아리360 비행기 여행용 메모리폼 목베개" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-neckpillow-codenine.jpg" alt="코드나인 또아리360 비행기 여행용 메모리폼 목베개" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 프리미엄 넥필로우</span>
               <b>코드나인 또아리360 비행기 여행용 메모리폼 목베개</b>
               <span class="ess-store">쿠팡</span>
@@ -9383,42 +9408,42 @@
       <div class="ess-ghead"><h3>🎒 출발 전 필수템 · 쿠팡</h3><span class="n">6</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">충전기·저울·보조가방·샤워필터·우양산·방수팩 6종</span></div>
       <div class="ess-grid ess-grid-4">
         <a class="ess" href="https://link.coupang.com/a/iNuMfSoQnc" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-gan65w.jpg" alt="홈플래닛 GaN PD PPS 65W 3포트 초고속 멀티충전기 + C to C 케이블" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-gan65w.jpg" alt="홈플래닛 GaN PD PPS 65W 3포트 초고속 멀티충전기 + C to C 케이블" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 65W 멀티 충전기</span>
               <b>홈플래닛 GaN PD PPS 65W 3포트 초고속 멀티충전기 + C to C 케이블</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">13,890원<small class="sl">45,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNuOrg1BqC" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-luggagescale.jpg" alt="홈플래닛 휴대용 손저울 (디지털 캐리어 저울)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-luggagescale.jpg" alt="홈플래닛 휴대용 손저울 (디지털 캐리어 저울)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 디지털 캐리어 저울</span>
               <b>홈플래닛 휴대용 손저울 (디지털 캐리어 저울)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">5,390원<small class="sl">11,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNuQgFQrU4" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-bostonbag.jpg" alt="몽땅겟 접이식 여행용 보스턴백 (캐리어 결합)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-bostonbag.jpg" alt="몽땅겟 접이식 여행용 보스턴백 (캐리어 결합)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 접이식 보스턴백</span>
               <b>몽땅겟 접이식 여행용 보스턴백 (캐리어 결합)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">12,900원<small class="sl">20,420원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNuR5MZMC4" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-showerfilter.jpg" alt="듀벨 여행용 세디먼트 필터 4개 + 석회방지 헤드필터" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-showerfilter.jpg" alt="듀벨 여행용 세디먼트 필터 4개 + 석회방지 헤드필터" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k"><svg class="flag-ic" style="width:13px;height:9.1px" aria-hidden="true"><use href="#f-vn"/></svg>나트랑 · 해외용 샤워기 필터</span>
               <b>듀벨 여행용 세디먼트 필터 4개 + 석회방지 헤드필터</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">14,900원<small class="sl">19,800원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNuTVziXcq" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-umbrella.jpg" alt="크로커다일 UV 자외선 차단 전자동 3단 암막 우산 양산 (2개)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-umbrella.jpg" alt="크로커다일 UV 자외선 차단 전자동 3단 암막 우산 양산 (2개)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 3단 경량 우양산</span>
               <b>크로커다일 UV 자외선 차단 전자동 3단 암막 우산 양산 (2개)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">24,900원<small class="sl">39,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNuVwhnQY0" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-waterproof.jpg" alt="신지모루 IPX8 튜브형 스마트폰 방수팩 (크로스·암밴드 포함)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-waterproof.jpg" alt="신지모루 IPX8 튜브형 스마트폰 방수팩 (크로스·암밴드 포함)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 고화질 방수팩</span>
               <b>신지모루 IPX8 튜브형 스마트폰 방수팩 (크로스·암밴드 포함)</b>
               <span class="ess-store">쿠팡</span>
@@ -9432,98 +9457,98 @@
       <div class="ess-ghead"><h3>🎧 오래 쓰는 여행 장비 · 쿠팡</h3><span class="n">14</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">캐리어·노이즈캔슬링·보조배터리처럼 한 번 사서 여러 번 쓰는 것</span></div>
       <div class="ess-grid ess-grid-4">
         <a class="ess" href="https://link.coupang.com/a/iNjOJY92Ky" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-carrier-sm0320.jpg" alt="스위스밀리터리 여행 캐리어 20인치 기내용(PC)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-carrier-sm0320.jpg" alt="스위스밀리터리 여행 캐리어 20인치 기내용(PC)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 기내용 캐리어 20인치</span>
               <b>스위스밀리터리 여행 캐리어 20인치 기내용(PC)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">117,760원<small class="sl">178,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNkObZJQAu" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-carrier-botn-cl23.jpg" alt="보튼캐리어 CL23 알루미늄 프레임 24인치" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-carrier-botn-cl23.jpg" alt="보튼캐리어 CL23 알루미늄 프레임 24인치" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 대형 캐리어 24인치</span>
               <b>보튼캐리어 CL23 알루미늄 프레임 24인치</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">170,100원<small class="sl">269,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNj0E9bW0G" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-powerbank-anker-maggo.jpg" alt="앤커 맥고 파워뱅크 10,000mAh 30W (Qi2)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-powerbank-anker-maggo.jpg" alt="앤커 맥고 파워뱅크 10,000mAh 30W (Qi2)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 맥세이프 보조배터리</span>
               <b>앤커 맥고 파워뱅크 10,000mAh 30W (Qi2)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">61,900원<small class="sl">79,990원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNklTvmmWG" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-actioncam-dji-pocket3.jpg" alt="DJI 오즈모 포켓 3 (4K 짐벌 카메라)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-actioncam-dji-pocket3.jpg" alt="DJI 오즈모 포켓 3 (4K 짐벌 카메라)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 여행 액션캠</span>
               <b>DJI 오즈모 포켓 3 (4K 짐벌 카메라)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">538,000원<small class="sl">726,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNkpUPnsJw" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-earbuds-airpods-pro3.jpg" alt="Apple 에어팟 프로 3 (USB-C)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-earbuds-airpods-pro3.jpg" alt="Apple 에어팟 프로 3 (USB-C)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 노이즈캔슬링 이어폰</span>
               <b>Apple 에어팟 프로 3 (USB-C)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">296,000원<small class="sl">369,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNkrXh1Tj2" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-neckpillow-silverbay.jpg" alt="실버채 기내용 목베개(목 둘레 조절)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-neckpillow-silverbay.jpg" alt="실버채 기내용 목베개(목 둘레 조절)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 장거리 비행 목베개</span>
               <b>실버채 기내용 목베개(목 둘레 조절)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">37,800원<small class="sl">98,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNEvF6Qmzs" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-natgeo-carrier28.jpg" alt="내셔널지오그래픽 대형 폴리카보네이트 여행용 캐리어 (수화물 확장형)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-natgeo-carrier28.jpg" alt="내셔널지오그래픽 대형 폴리카보네이트 여행용 캐리어 (수화물 확장형)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 대형 캐리어 28인치</span>
               <b>내셔널지오그래픽 대형 폴리카보네이트 여행용 캐리어 (수화물 확장형)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">238,000원<small class="sl">328,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNExh5Cw6m" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-sony-wh1000xm5.jpg" alt="소니 노이즈캔슬링 블루투스 헤드폰 WH-1000XM5 (플래티넘실버)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-sony-wh1000xm5.jpg" alt="소니 노이즈캔슬링 블루투스 헤드폰 WH-1000XM5 (플래티넘실버)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 노이즈캔슬링 헤드폰</span>
               <b>소니 노이즈캔슬링 블루투스 헤드폰 WH-1000XM5 (플래티넘실버)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">379,000원<small class="sl">519,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iNEyzUbfa0" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-sony-wf1000xm5.jpg" alt="소니 노이즈캔슬링 블루투스 이어폰 WF-1000XM5 (블랙)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-sony-wf1000xm5.jpg" alt="소니 노이즈캔슬링 블루투스 이어폰 WF-1000XM5 (블랙)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 노이즈캔슬링 이어폰</span>
               <b>소니 노이즈캔슬링 블루투스 이어폰 WF-1000XM5 (블랙)</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">289,000원<small class="sl">359,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iQwt9mzz3Y" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-carrier-28.jpg" alt="스위스밀리터리 20·24·28인치 여행용 확장형 캐리어 루니토" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-carrier-28.jpg" alt="스위스밀리터리 20·24·28인치 여행용 확장형 캐리어 루니토" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 28인치 대형 캐리어</span>
               <b>스위스밀리터리 20·24·28인치 여행용 확장형 캐리어 루니토</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">186,120원<small class="sl">278,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iQwvNybgzc" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-hairdryer-unix.jpg" alt="유닉스 디오 폴드 프리볼트 BLDC 접이식 드라이기 1500W" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-hairdryer-unix.jpg" alt="유닉스 디오 폴드 프리볼트 BLDC 접이식 드라이기 1500W" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 프리볼트 헤어드라이어</span>
               <b>유닉스 디오 폴드 프리볼트 BLDC 접이식 드라이기 1500W</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">100,540원<small class="sl">149,900원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iQwzgX1K8a" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-backpack-swisston.jpg" alt="스위스톤 대용량 노트북 백팩 확장형 ST4D18" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-backpack-swisston.jpg" alt="스위스톤 대용량 노트북 백팩 확장형 ST4D18" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 기내용 확장 백팩</span>
               <b>스위스톤 대용량 노트북 백팩 확장형 ST4D18</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">29,800원<small class="sl">98,000원</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iQwNgt8qsu" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-actioncam-osmonano.jpg" alt="DJI Osmo Nano 스탠더드 콤보 액션캠 128GB" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-actioncam-osmonano.jpg" alt="DJI Osmo Nano 스탠더드 콤보 액션캠 128GB" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 액션캠</span>
               <b>DJI Osmo Nano 스탠더드 콤보 액션캠 128GB</b>
               <span class="ess-store">쿠팡</span>
               <span class="ess-foot"><span class="ess-price">449,000원<small>~</small></span>
                 <span class="ess-go">쿠팡에서 구매 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span></span>
             </a><a class="ess" href="https://link.coupang.com/a/iQwOWpjdYW" target="_blank" rel="noopener sponsored">
-              <span class="ess-thumb"><img src="assets/ess/cp-hairiron-oa.jpg" alt="오아 프리온 무선 배터리분리 미니 고데기 (기내반입 가능)" width="400" height="400" loading="lazy" /></span>
+              <span class="ess-thumb"><img decoding="async" src="assets/ess/cp-hairiron-oa.jpg" alt="오아 프리온 무선 배터리분리 미니 고데기 (기내반입 가능)" width="400" height="400" loading="lazy" /></span>
               <span class="ess-k">모든 여행지 · 기내반입 미니 고데기</span>
               <b>오아 프리온 무선 배터리분리 미니 고데기 (기내반입 가능)</b>
               <span class="ess-store">쿠팡</span>
@@ -12642,22 +12667,35 @@ document.addEventListener('change', (e) => {
   }
 });
 
-/* 접어 둔 지역 <details> — 해시 링크로 들어와도 내용이 보이게 */
+/* 접어 둔 지역 <details> — 해시 링크로 들어와도 내용이 보이게
+   v49: 화면 밖 섹션을 나중에 그리면서(#sections 등) 앞 블록 높이가 바뀌어
+   해시 목표가 밀리는 문제 보정. 사용자가 직접 스크롤하면 손대지 않는다. */
 (function () {
+  var userMoved = false, timers = [];
+  function markMoved() { userMoved = true; }
+  ['wheel', 'touchmove', 'keydown'].forEach(function (ev) {
+    window.addEventListener(ev, markMoved, { passive: true });
+  });
+  function alignNow(t) {
+    if (userMoved || !t) return;
+    var r = t.getBoundingClientRect();
+    var hd = document.querySelector('.site-head');
+    var want = r.top + window.scrollY - ((hd ? hd.offsetHeight : 0) + 10);
+    var delta = want - window.scrollY;
+    if (r.top < -8 || r.top > 120 || Math.abs(delta) > 40) {
+      window.scrollTo({ top: Math.max(want, 0), behavior: 'instant' });
+    }
+  }
   function openHash() {
     if (!location.hash || location.hash.length < 2) return;
     var t = document.getElementById(location.hash.slice(1));
-    if (t) {
-      openFolds(t);
-      setTimeout(function () {
-        var r = t.getBoundingClientRect();
-        if (r.top < 0 || r.top > window.innerHeight - 40) {
-          var hd = document.querySelector('.site-head');
-          var top = r.top + window.scrollY - ((hd ? hd.offsetHeight : 0) + 10);
-          window.scrollTo({ top: Math.max(top, 0) });
-        }
-      }, 80);
-    }
+    if (!t) return;
+    userMoved = false;
+    openFolds(t);
+    timers.forEach(clearTimeout);
+    timers = [80, 350, 900, 1600].map(function (ms) {
+      return setTimeout(function () { alignNow(t); }, ms);
+    });
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
@@ -12666,6 +12704,11 @@ document.addEventListener('change', (e) => {
     if (!id) return;
     var t = document.getElementById(id);
     if (t) openFolds(t);
+    userMoved = false;
+    timers.forEach(clearTimeout);
+    timers = [120, 450, 1000, 1700].map(function (ms) {
+      return setTimeout(function () { alignNow(t); }, ms);
+    });
   });
   window.addEventListener('hashchange', openHash);
   openHash();

@@ -190,6 +190,20 @@ def strip_tags(s: str) -> str:
     return re.sub(r"<[^>]+>", "", s).strip()
 
 
+# v49: 같은 이미지의 WebP 변형(tools/v49_img_variants.py)이 있으면 <picture> 로 감싸
+#       모바일이 480·720px 변형을 받게 한다. 변형이 없으면 기존 <img> 그대로.
+def pic_sources(img: str, pref: str, sizes: str) -> str:
+    p = ROOT / img
+    if not p.exists() or p.suffix.lower() not in (".jpg", ".jpeg"):
+        return ""
+    folder = img.rsplit("/", 1)[0] + "/" if "/" in img else ""
+    parts = [f"{pref}{folder}{p.stem}-{w}.webp {w}w"
+             for w in (480, 720, 960, 1440) if p.with_name(f"{p.stem}-{w}.webp").exists()]
+    if not parts:
+        return ""
+    return f'<source type="image/webp" srcset="{esc(", ".join(parts))}" sizes="{sizes}" />'
+
+
 def load_json(name: str):
     return json.loads((DATA / name).read_text(encoding="utf-8"))
 
@@ -530,7 +544,9 @@ def page(
 """
     target = out_root / rel_path
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(clean_site_urls(head, base), encoding="utf-8")
+    # v49: 지연 로드 이미지는 디코딩을 메인 스레드에서 떼어낸다(INP·렌더 부담 감소)
+    html_out = re.sub(r'<img\b(?![^>]*\bdecoding=)', '<img decoding="async"', clean_site_urls(head, base))
+    target.write_text(html_out, encoding="utf-8")
     return target
 
 
@@ -1212,8 +1228,12 @@ def guide_page(out_root: Path, g: dict, base: str) -> Path:
 
     hero_img = ""
     if g.get("image"):
+        # v49: 히어로도 WebP 변형을 먼저 제안 (모바일 480·720px), 없으면 원본 JPEG
+        src_set = pic_sources(g["image"], "../", "(max-width:620px) 100vw, 800px")
         hero_img = f"""      <figure class="pg-hero-img">
-        <img src="../{esc(g['image'])}" alt="{esc(g['imageAlt'])}" width="1200" height="630" loading="eager" />
+        <picture>{src_set}
+        <img src="../{esc(g['image'])}" alt="{esc(g['imageAlt'])}" width="1200" height="630" loading="eager" decoding="async" />
+        </picture>
         <figcaption>{esc(g.get('imageCredit', '사진: Pexels'))}</figcaption>
       </figure>"""
 
@@ -1360,7 +1380,8 @@ def guides_index(out_root: Path, base: str) -> Path:
         for g in [x for x in GUIDES_LIST if x["category"] == cat]:
             ex = guide_extra(g["slug"])
             thumb = (
-                f'<div class="thumb"><img src="../{esc(g["image"])}" alt="{esc(g["imageAlt"])}" loading="lazy" width="640" height="360" /></div>'
+                f'<div class="thumb"><picture>{pic_sources(g["image"], "../", "(max-width:620px) 92vw, 346px")}'
+                f'<img src="../{esc(g["image"])}" alt="{esc(g["imageAlt"])}" loading="lazy" decoding="async" width="640" height="360" /></picture></div>'
                 if g.get("image")
                 else '<div class="thumb noimg">TRIPPICK GUIDE</div>'
             )
@@ -1861,7 +1882,8 @@ def hub_guide_cards(guides: list) -> str:
     cards = []
     for g in guides:
         thumb = (
-            f'<div class="thumb"><img src="{esc(g["image"])}" alt="{esc(g["imageAlt"])}" loading="lazy" width="640" height="360" /></div>'
+            f'<div class="thumb"><picture>{pic_sources(g["image"], "", "(max-width:620px) 92vw, 346px")}'
+            f'<img src="{esc(g["image"])}" alt="{esc(g["imageAlt"])}" loading="lazy" decoding="async" width="640" height="360" /></picture></div>'
             if g.get("image")
             else '<div class="thumb noimg">TRIPPICK GUIDE</div>'
         )

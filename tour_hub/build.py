@@ -132,6 +132,20 @@ def esc(s) -> str:
     return escape(str(s), quote=True)
 
 
+# v49: 같은 이미지의 WebP 변형(tools/v49_img_variants.py)이 있으면 <picture> 로 감싼다
+def pic_sources(img: str, pref: str, sizes: str) -> str:
+    p = ROOT / img
+    if not p.exists() or p.suffix.lower() not in (".jpg", ".jpeg"):
+        return ""
+    folder = img.rsplit("/", 1)[0] + "/" if "/" in img else ""
+    parts = [f"{pref}{folder}{p.stem}-{w}.webp {w}w"
+             for w in (480, 720, 960, 1440) if p.with_name(f"{p.stem}-{w}.webp").exists()]
+    if not parts:
+        return ""
+    return f'<source type="image/webp" srcset="{esc(", ".join(parts))}" sizes="{sizes}" />'
+
+
+
 def duration_text(d: str) -> str:
     try:
         h, m = d.split(":")
@@ -795,7 +809,8 @@ def course_pick(course: dict, idx: int, link_count: int) -> str:
         nights = m.group(1)
     return f"""<button type="button" class="pick" role="tab" data-course="{course['id']}" aria-selected="{sel}"
         aria-controls="course-{course['id']}" id="cpick-{course['id']}">
-        <img src="{esc(course['img'])}" alt="{esc(course['title'])} 대표 사진" width="1600" height="1000" loading="lazy" />
+        <picture>{pic_sources(course['img'], "", "(max-width:620px) 46vw, 260px")}
+        <img src="{esc(course['img'])}" alt="{esc(course['title'])} 대표 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <span class="pk-tag">{esc(course.get('tag', nights))}</span>
         <span class="pk-b"><b>{esc(course['title'])}</b><span class="pk-d">{len(course['days'])}일 일정 · 예약 링크 {link_count}곳</span></span>
       </button>"""
@@ -840,7 +855,8 @@ def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict) -> 
 
     return f"""<div class="panel{active}" id="course-{course['id']}" role="tabpanel" aria-labelledby="cpick-{course['id']}"{hidden}>
       <div class="panel-hero">
-        <img src="{esc(course['img'])}" alt="{esc(course['title'])} 분위기 사진" width="1600" height="1000" loading="lazy" />
+        <picture>{pic_sources(course['img'], "", "(max-width:620px) 92vw, 800px")}
+        <img src="{esc(course['img'])}" alt="{esc(course['title'])} 분위기 사진" width="1600" height="1000" loading="lazy" decoding="async" /></picture>
         <div class="ph-t">
           <div class="left">
             <span class="ph-k">COURSE {idx + 1:02d} · {esc(COUNTRY_NAME.get(course['country'], ''))} · {esc(course.get('tag', ''))}</span>
@@ -2921,6 +2937,8 @@ def main() -> int:
         print("변경 없음" if same else "변경 있음 (build.py 실행 필요)")
         return 0 if same else 2
 
+    # v49: 지연 로드 이미지는 디코딩을 메인 스레드에서 떼어낸다
+    html = re.sub(r'<img\b(?![^>]*\bdecoding=)', '<img decoding="async"', html)
     out_path.write_text(html, encoding="utf-8")
     (ROOT / "sitemap.xml").write_text(clean_site_urls(render_sitemap(data, courses)), encoding="utf-8")
     print(f"index.html 생성 완료 — 상품 {len(data['tours'])}개, 도시 {len(data['cities'])}곳, "

@@ -34,7 +34,9 @@
 <meta name="twitter:description" content="추천 코스 {{COURSE_COUNT}}개 · {{COUNTRY_COUNT}}개국 {{CITY_COUNT}}개 도시 {{TOTAL}}개 투어·패키지 · eSIM·패스 {{ESS_COUNT}}개" />
 <meta name="twitter:image" content="https://trippick.pages.dev/images/courses/hero_kyoto_street.jpg" />
 <meta name="twitter:image:alt" content="교토 야사카 탑이 보이는 골목 풍경" />
-<link rel="preload" as="image" href="images/courses/hero_kyoto_street.jpg" />
+<link rel="preload" as="image" type="image/webp" href="images/courses/hero_kyoto_street-720.webp"
+      imagesrcset="images/courses/hero_kyoto_street-480.webp 480w, images/courses/hero_kyoto_street-720.webp 720w, images/courses/hero_kyoto_street-960.webp 960w, images/courses/hero_kyoto_street-1440.webp 1440w"
+      imagesizes="100vw" />
 <!-- v47: Pretendard 자체 호스팅 — 서드파티(cdn.jsdelivr.net) 스타일시트가 렌더를 막아
      하위 페이지가 스타일 없이 먼저 그려지던 CLS(최대 0.34)를 없앱니다.
      폰트 청크는 많이 쓰이는 순서(91→86→90)로 미리 받아 첫 화면 텍스트의 폰트 교체도 줄입니다. -->
@@ -138,6 +140,7 @@
 
   /* ============================== 히어로 ============================== */
   .hero{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:#10202E}
+  picture{display:contents}
   .hero .bg{position:absolute;inset:0;z-index:-2}
   .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 46%}
   .hero::after{content:"";position:absolute;inset:0;z-index:-1;
@@ -2605,8 +2608,9 @@
     .wl-row img,.wl-ph{width:52px;height:40px}
     .card-actions{gap:5px}
     .card-actions .book{font-size:11.2px;padding-left:8px;padding-right:8px;gap:4px;white-space:nowrap}
-    .card-actions .cmp-btn{width:34px;font-size:10.8px;padding:0;white-space:nowrap}
-    .card-actions .wish-btn{width:30px;min-width:30px;padding:0}
+    /* v49: 손가락 터치 영역 44px — 34px·30px 는 옆 버튼을 잘못 눌렀다 */
+    .card-actions .cmp-btn{width:44px;min-width:44px;font-size:10.8px;padding:0;white-space:nowrap}
+    .card-actions .wish-btn{width:44px;min-width:44px;padding:0}
     .card-actions .wish-btn .wish-t{display:none}
   }
 
@@ -2822,6 +2826,15 @@
   .tp-trip-acts{margin-left:0;flex:1 1 100%;justify-content:flex-end}
 }
 
+
+/* v49 — 화면 밖 큰 블록은 렌더·스타일 계산을 건너뛴다(첫 화면 레이아웃 비용 감소).
+   contain-intrinsic-size:auto 는 한 번 그린 높이를 기억해 스크롤 튐을 줄인다. */
+.flow > section{content-visibility:auto;contain-intrinsic-size:auto 1100px}
+#regions .city{content-visibility:auto;contain-intrinsic-size:auto 2100px}
+.gi-sec{content-visibility:auto;contain-intrinsic-size:auto 1500px}
+/* /stays 는 한 그리드에 108장 카드가 있어 카드 단위로 건너뛴다 */
+.sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 430px}
+@media print{ .flow > section,#regions .city,.gi-sec{content-visibility:visible} }
 </style>
 <noscript><style>.panel{display:block!important}.picker{display:none}.panel + .panel{margin-top:16px}
 </style></noscript>
@@ -2909,8 +2922,10 @@
 
 <section class="hero" id="top">
   <div class="bg" aria-hidden="true">
+    <picture><source type="image/webp" sizes="100vw"
+      srcset="images/courses/hero_kyoto_street-480.webp 480w, images/courses/hero_kyoto_street-720.webp 720w, images/courses/hero_kyoto_street-960.webp 960w, images/courses/hero_kyoto_street-1440.webp 1440w" />
     <img src="images/courses/hero_kyoto_street.jpg" srcset="images/courses/hero_kyoto_street_sm.jpg 1000w, images/courses/hero_kyoto_street.jpg 2000w"
-         sizes="100vw" alt="교토 야사카 탑이 보이는 골목 풍경" width="2000" height="1125" fetchpriority="high" />
+         sizes="100vw" alt="교토 야사카 탑이 보이는 골목 풍경" width="2000" height="1125" fetchpriority="high" decoding="async" /></picture>
   </div>
   <div class="wrap">
     <div class="hero-inner">
@@ -3810,22 +3825,35 @@ document.addEventListener('change', (e) => {
   }
 });
 
-/* 접어 둔 지역 <details> — 해시 링크로 들어와도 내용이 보이게 */
+/* 접어 둔 지역 <details> — 해시 링크로 들어와도 내용이 보이게
+   v49: 화면 밖 섹션을 나중에 그리면서(#sections 등) 앞 블록 높이가 바뀌어
+   해시 목표가 밀리는 문제 보정. 사용자가 직접 스크롤하면 손대지 않는다. */
 (function () {
+  var userMoved = false, timers = [];
+  function markMoved() { userMoved = true; }
+  ['wheel', 'touchmove', 'keydown'].forEach(function (ev) {
+    window.addEventListener(ev, markMoved, { passive: true });
+  });
+  function alignNow(t) {
+    if (userMoved || !t) return;
+    var r = t.getBoundingClientRect();
+    var hd = document.querySelector('.site-head');
+    var want = r.top + window.scrollY - ((hd ? hd.offsetHeight : 0) + 10);
+    var delta = want - window.scrollY;
+    if (r.top < -8 || r.top > 120 || Math.abs(delta) > 40) {
+      window.scrollTo({ top: Math.max(want, 0), behavior: 'instant' });
+    }
+  }
   function openHash() {
     if (!location.hash || location.hash.length < 2) return;
     var t = document.getElementById(location.hash.slice(1));
-    if (t) {
-      openFolds(t);
-      setTimeout(function () {
-        var r = t.getBoundingClientRect();
-        if (r.top < 0 || r.top > window.innerHeight - 40) {
-          var hd = document.querySelector('.site-head');
-          var top = r.top + window.scrollY - ((hd ? hd.offsetHeight : 0) + 10);
-          window.scrollTo({ top: Math.max(top, 0) });
-        }
-      }, 80);
-    }
+    if (!t) return;
+    userMoved = false;
+    openFolds(t);
+    timers.forEach(clearTimeout);
+    timers = [80, 350, 900, 1600].map(function (ms) {
+      return setTimeout(function () { alignNow(t); }, ms);
+    });
   }
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
@@ -3834,6 +3862,11 @@ document.addEventListener('change', (e) => {
     if (!id) return;
     var t = document.getElementById(id);
     if (t) openFolds(t);
+    userMoved = false;
+    timers.forEach(clearTimeout);
+    timers = [120, 450, 1000, 1700].map(function (ms) {
+      return setTimeout(function () { alignNow(t); }, ms);
+    });
   });
   window.addEventListener('hashchange', openHash);
   openHash();

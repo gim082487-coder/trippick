@@ -151,7 +151,9 @@
       </nav>
     </div>
       <figure class="pg-hero-img">
-        <img src="../images/card_tokyo_fuji.jpg" alt="후지산과 도쿄 근교 풍경" width="1200" height="630" loading="eager" />
+        <picture><source type="image/webp" srcset="../images/card_tokyo_fuji-480.webp 480w, ../images/card_tokyo_fuji-720.webp 720w, ../images/card_tokyo_fuji-960.webp 960w" sizes="(max-width:620px) 100vw, 800px" />
+        <img src="../images/card_tokyo_fuji.jpg" alt="후지산과 도쿄 근교 풍경" width="1200" height="630" loading="eager" decoding="async" />
+        </picture>
         <figcaption>사진: Pexels</figcaption>
       </figure>
   </div>
