@@ -50,7 +50,7 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = datetime.now(ZoneInfo("Asia/Seoul")).date()   # v47: 하드코딩 제거 — 실행 시점 KST 날짜(사이트맵 lastmod·최종 검증일)
-CSS_V = "45"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v47: 폰트 대체 메트릭·D-Day 필)
+CSS_V = "47"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v47: 폰트 대체 메트릭·D-Day 필)
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "36"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
 JS_V43 = "5"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
@@ -4033,6 +4033,7 @@ def stays_filter_script() -> str:
   var shownAll = [];
   var limit = CHUNK;
   var moreWrap = document.getElementById('sfMoreWrap');
+  var loadIO = null;
   var moreBtn = document.getElementById('sfMore');
   var moreNote = document.getElementById('sfMoreNote');
 
@@ -4049,19 +4050,30 @@ def stays_filter_script() -> str:
       if (moreBtn) moreBtn.textContent = '숙소 ' + Math.min(CHUNK, rest) + '곳 더 보기';
       if (moreNote) moreNote.textContent = shownAll.length + '곳 중 ' + take.length + '곳 표시';
     }
+    /* v50: 「더 보기」 블록이 아니라 '마지막 카드'를 지켜본다.
+       블록을 지켜보면 카드가 위에 붙으면서 버튼이 화면 밖으로 밀려 내려가 스크롤이 튄다. */
+    if (loadIO) { loadIO.disconnect(); loadIO = null; }
+    if ('IntersectionObserver' in window && shownAll.length > limit) {
+      var last = take[take.length - 1];
+      if (last) {
+        loadIO = new IntersectionObserver(function(es){
+          for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) { loadIO.disconnect(); loadIO = null; more(false); return; }
+        }, { rootMargin: '700px 0px' });
+        loadIO.observe(last);
+      }
+    }
   }
-  function more(){
+  function more(manual){
     if (shownAll.length <= limit) return;
+    var prev = limit;
     limit += CHUNK;
     draw();
+    /* 버튼으로 눌렀을 때는 새로 붙은 첫 카드로 이동해 '아무 일도 안 일어난' 느낌을 없앤다 */
+    if (manual && shownAll[prev] && shownAll[prev].scrollIntoView) {
+      shownAll[prev].scrollIntoView({ block: 'start' });
+    }
   }
-  if (moreBtn) moreBtn.addEventListener('click', more);
-  if (moreWrap && 'IntersectionObserver' in window){
-    var moreIO = new IntersectionObserver(function(es){
-      for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) more();
-    }, { rootMargin: '320px 0px' });
-    moreIO.observe(moreWrap);
-  }
+  if (moreBtn) moreBtn.addEventListener('click', function(){ more(true); });
 
   function scoreOf(c){ return parseFloat(c.getAttribute('data-score')) || 0; }
   function priceOf(c){ return parseInt(c.getAttribute('data-price'), 10) || 0; }

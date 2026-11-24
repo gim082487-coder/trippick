@@ -2825,8 +2825,11 @@
 .flow > section{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 #regions .city{content-visibility:auto;contain-intrinsic-size:auto 2100px}
 .gi-sec{content-visibility:auto;contain-intrinsic-size:auto 1500px}
-/* /stays 는 한 그리드에 108장 카드가 있어 카드 단위로 건너뛴다 */
-.sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 430px}
+/* v50 — /stays 카드: 첫 24장만 그리므로 content-visibility 는 남기되, v49의 430px 은
+   실제 카드 높이(390px 화면 1,000px 안팎)보다 작아 브라우저가 '아직 화면 밖'으로 오판해
+   보이는 카드까지 건너뛰며 흰 여백이 생겼습니다. 실제 높이에 가깝게 잡습니다(auto 는 한 번 그린 뒤 실측값을 기억). */
+.sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 760px}
+@media (max-width:640px){ .sgrid > .scard{contain-intrinsic-size:auto 1040px} }
 /* v50 — /stays 점진 렌더: 첫 24곳만 그리고 「더 보기」·스크롤로 이어 붙인다 */
 .scard[hidden]{display:none}
 .sgrid-more{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:24px 0 4px;padding:18px 16px;border:1px solid var(--line);border-radius:14px;background:var(--line-2)}
@@ -7431,6 +7434,7 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
   var shownAll = [];
   var limit = CHUNK;
   var moreWrap = document.getElementById('sfMoreWrap');
+  var loadIO = null;
   var moreBtn = document.getElementById('sfMore');
   var moreNote = document.getElementById('sfMoreNote');
 
@@ -7447,19 +7451,30 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
       if (moreBtn) moreBtn.textContent = '숙소 ' + Math.min(CHUNK, rest) + '곳 더 보기';
       if (moreNote) moreNote.textContent = shownAll.length + '곳 중 ' + take.length + '곳 표시';
     }
+    /* v50: 「더 보기」 블록이 아니라 '마지막 카드'를 지켜본다.
+       블록을 지켜보면 카드가 위에 붙으면서 버튼이 화면 밖으로 밀려 내려가 스크롤이 튄다. */
+    if (loadIO) { loadIO.disconnect(); loadIO = null; }
+    if ('IntersectionObserver' in window && shownAll.length > limit) {
+      var last = take[take.length - 1];
+      if (last) {
+        loadIO = new IntersectionObserver(function(es){
+          for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) { loadIO.disconnect(); loadIO = null; more(false); return; }
+        }, { rootMargin: '700px 0px' });
+        loadIO.observe(last);
+      }
+    }
   }
-  function more(){
+  function more(manual){
     if (shownAll.length <= limit) return;
+    var prev = limit;
     limit += CHUNK;
     draw();
+    /* 버튼으로 눌렀을 때는 새로 붙은 첫 카드로 이동해 '아무 일도 안 일어난' 느낌을 없앤다 */
+    if (manual && shownAll[prev] && shownAll[prev].scrollIntoView) {
+      shownAll[prev].scrollIntoView({ block: 'start' });
+    }
   }
-  if (moreBtn) moreBtn.addEventListener('click', more);
-  if (moreWrap && 'IntersectionObserver' in window){
-    var moreIO = new IntersectionObserver(function(es){
-      for (var i = 0; i < es.length; i++) if (es[i].isIntersecting) more();
-    }, { rootMargin: '320px 0px' });
-    moreIO.observe(moreWrap);
-  }
+  if (moreBtn) moreBtn.addEventListener('click', function(){ more(true); });
 
   function scoreOf(c){ return parseFloat(c.getAttribute('data-score')) || 0; }
   function priceOf(c){ return parseInt(c.getAttribute('data-price'), 10) || 0; }

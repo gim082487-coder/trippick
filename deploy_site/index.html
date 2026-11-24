@@ -2832,8 +2832,10 @@
 .flow > section{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 #regions .city{content-visibility:auto;contain-intrinsic-size:auto 2100px}
 .gi-sec{content-visibility:auto;contain-intrinsic-size:auto 1500px}
-/* /stays 는 한 그리드에 108장 카드가 있어 카드 단위로 건너뛴다 */
-.sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 430px}
+/* v50: /stays 카드는 첫 24장만 그리고 나머지는 「더 보기」로 붙이므로 content-visibility 를 쓰지 않는다.
+   v49의 `.sgrid > .scard{content-visibility:auto;contain-intrinsic-size:auto 430px}` 는
+   실제 카드 높이(390px 화면 700~900px)보다 작은 430px을 잡아 두어 스크롤할 때 흰 여백과
+   위치 밀림을 만들었습니다(실측: 더 보기 버튼이 3,156px 아래로 밀림). */
 /* v50 — /stays 점진 렌더: 첫 24곳만 그리고 「더 보기」·스크롤로 이어 붙인다 */
 .scard[hidden]{display:none}
 .sgrid-more{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:24px 0 4px;padding:18px 16px;border:1px solid var(--line);border-radius:14px;background:var(--line-2)}
