@@ -27,7 +27,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT.parent / "deploy_site"
 SITE = "https://trippick.pages.dev"
-LASTMOD = "2026-11-25"
+LASTMOD = "2026-11-26"
 ACTION = ROOT.parent.parent / "scheduled-actions" / "🔍-구글-서치콘솔-색인-요청-재시도" / "action.md"
 
 NEW = ["japan-mounjaro-injection-guide", "guam-4n5d-course", "hawaii-oahu-5n7d-course"]
@@ -209,7 +209,7 @@ def main():
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 147, f"sitemap {len(locs)} URL (기대 147)")
+    check(len(locs) == 156, f"sitemap {len(locs)} URL (기대 156)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")

@@ -24,8 +24,10 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = (ROOT / "../deploy_site").resolve()
 NEW = ["danang-hoian-3n5d", "taipei-3n4d-course-budget", "currency-payment-fees"]
-CUR = {"jp": "JPY", "vn": "VND", "th": "THB", "tw": "TWD"}
-SOS = {"jp": "JP", "vn": "VN", "th": "TH", "tw": "TW", "kr": "KR"}
+CUR = {"jp": "JPY", "vn": "VND", "th": "THB", "tw": "TWD",
+       "us": "USD", "sg": "SGD", "hk": "HKD", "fr": "EUR", "it": "EUR", "es": "EUR", "gb": "GBP"}
+SOS = {"jp": "JP", "vn": "VN", "th": "TH", "tw": "TW", "kr": "KR",
+       "sg": "SG", "fr": "FR", "it": "IT", "es": "ES", "gb": "GB"}
 fails = []
 
 
@@ -78,7 +80,7 @@ def main():
 
     # 3 도시 허브 프리셋
     hubs = load("city_hubs.json")["cities"]
-    check(len(hubs) == 13, f"도시 허브 {len(hubs)}곳 (기대 13)")
+    check(len(hubs) == 22, f"도시 허브 {len(hubs)}곳 (기대 22)")
     for h in hubs:
         slug, cc = h["slug"], h.get("country") or "kr"
         page = OUT / f"{slug}.html"
@@ -92,7 +94,10 @@ def main():
                   f"허브 {slug}: 환율 프리셋(exchange?cur={want_cur}) 없음")
         else:
             check('href="exchange"' in html, f"허브 {slug}: 환율 도구 링크 없음")
-        check(f"sos?country={SOS[cc]}" in html, f"허브 {slug}: SOS 프리셋(sos?country={SOS[cc]}) 없음")
+        if cc in SOS:
+            check(f"sos?country={SOS[cc]}" in html, f"허브 {slug}: SOS 프리셋(sos?country={SOS[cc]}) 없음")
+        else:
+            check('href="sos"' in html, f"허브 {slug}: SOS 도구 링크 없음")
         if slug in ("osaka", "tokyo", "bangkok", "taipei"):
             check(f"passes?city={slug}" in html, f"허브 {slug}: 패스 프리셋(passes?city=) 없음")
         else:

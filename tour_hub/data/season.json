@@ -3207,7 +3207,7 @@
     7
    ],
    "links": {
-    "cityPage": null,
+    "cityPage": "hongkong",
     "guide": "taiwan-hongkong-gift-list",
     "stays": null
    },
@@ -3930,7 +3930,7 @@
     1
    ],
    "links": {
-    "cityPage": null,
+    "cityPage": "singapore",
     "guide": "singapore-3n4d-course-budget",
     "stays": null
    },
@@ -4124,7 +4124,7 @@
     1
    ],
    "links": {
-    "cityPage": null,
+    "cityPage": "paris",
     "guide": "eu-west-4countries-10d",
     "stays": "paris"
    },
@@ -4316,7 +4316,7 @@
     1
    ],
    "links": {
-    "cityPage": null,
+    "cityPage": "london",
     "guide": "eu-west-4countries-10d",
     "stays": "london"
    },
@@ -4508,7 +4508,7 @@
     1
    ],
    "links": {
-    "cityPage": null,
+    "cityPage": "rome",
     "guide": "italy-9d-packages",
     "stays": "rome"
    },
@@ -4701,7 +4701,7 @@
     1
    ],
    "links": {
-    "cityPage": null,
+    "cityPage": "barcelona",
     "guide": "spain-portugal-9-vs-11",
     "stays": "barcelona"
    },

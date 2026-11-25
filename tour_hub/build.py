@@ -1331,12 +1331,25 @@ def trip_widget_payload(hubs: list, guides: list, ess_by_id: dict) -> dict:
         "gangneung": ["gangwon-gangneung-winter-sea-2d", "gangwon-ski"],
         "yeosu": ["yeosu-night-sea-2d", "busan-haeundae-gwangalli-2d"],
         "gyeongju": ["gyeongju-hwangridangil-2d", "busan-haeundae-gwangalli-2d"],
+        # v55: 해외 9개 도시 허브
+        "guam": ["airport-arrival-city-transfer-guide", "guam-4n5d-course"],
+        "saipan": ["guam-vs-saipan-comparison", "travel-insurance-guide"],
+        "singapore": ["airport-arrival-city-transfer-guide", "singapore-3n4d-course-budget"],
+        "hongkong": ["hongkong-macau-3n4d-course", "airport-arrival-city-transfer-guide"],
+        "macau": ["hongkong-macau-3n4d-course", "currency-payment-fees"],
+        "paris": ["paris-london-5n7d", "europe-shopping-tax-refund"],
+        "london": ["paris-london-5n7d", "entry-immigration-guide"],
+        "rome": ["italy-rome-florence-venice", "europe-shopping-tax-refund"],
+        "barcelona": ["spain-barcelona-madrid", "europe-pickpocket-tax-refund-guide"],
     }
     country_ess = {"jp": "jp-esim-usimsa-3d", "vn": "vn-esim-usimsa-3d",
-                   "th": "th-esim-usimsa-3d", "tw": "tw-esim-usimsa-3d"}
+                   "th": "th-esim-usimsa-3d", "tw": "tw-esim-usimsa-3d",
+                   "us": "gu-esim-trip-101949204", "sg": "sg-esim-trip-46011732"}
     short = {"osaka": "오사카", "tokyo": "도쿄", "fukuoka": "후쿠오카", "danang": "다낭",
              "bangkok": "방콕", "taipei": "타이베이", "nhatrang": "나트랑", "jeju": "제주",
-             "seoul": "서울", "busan": "부산", "gangneung": "강릉", "yeosu": "여수", "gyeongju": "경주"}
+             "seoul": "서울", "busan": "부산", "gangneung": "강릉", "yeosu": "여수", "gyeongju": "경주",
+             "guam": "괌", "saipan": "사이판", "singapore": "싱가포르", "hongkong": "홍콩", "macau": "마카오",
+             "paris": "파리", "london": "런던", "rome": "로마", "barcelona": "바르셀로나"}
     cities = []
     for h in hubs:
         slug = h["slug"]
@@ -2501,6 +2514,8 @@ def render_sitemap(data: dict, courses: dict) -> str:
         # v48: build_pages.py 의 HUB_ORDER 와 같은 순서로 정렬해 두 빌드의 sitemap 이 한 글자까지 같게 한다.
         _order = {s: i for i, s in enumerate(
             ["osaka", "tokyo", "fukuoka", "danang", "nhatrang", "bangkok", "taipei",
+             "singapore", "hongkong", "macau", "guam", "saipan",
+             "paris", "london", "rome", "barcelona",
              "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju"])}
         hs = sorted(hs, key=lambda h: _order.get(h["slug"], 99))
         urls.append((SITE + "/cities/", "0.9", "weekly"))
@@ -2847,6 +2862,13 @@ def main() -> int:
     TIMELINE = json.loads((DATA / "timeline.json").read_text(encoding="utf-8"))
     global HUB_LIST, HUB_OF_CITY, HUB_CITY_IDS
     HUB_LIST = json.loads((DATA / "city_hubs.json").read_text(encoding="utf-8"))["cities"]
+    # v55: 사이트맵·홈 칩 순서를 /cities(build_pages)와 같게 고정한다
+    _order = {s: i for i, s in enumerate([
+        "osaka", "tokyo", "fukuoka", "danang", "nhatrang", "bangkok", "taipei",
+        "singapore", "hongkong", "macau", "guam", "saipan",
+        "paris", "london", "rome", "barcelona",
+        "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju"])}
+    HUB_LIST.sort(key=lambda h: _order.get(h["slug"], 99))
     HUB_CITY_IDS = {cid for h in HUB_LIST for cid in (h.get("cityIds") or [h["slug"]])}
     HUB_OF_CITY = {cid: h["slug"] for h in HUB_LIST for cid in (h.get("cityIds") or [h["slug"]])}
     global FOOD_COUNT, FOOD_CITY

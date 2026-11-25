@@ -4381,6 +4381,14 @@ a.gsb-go:hover{border-color:var(--blue);text-decoration:none}
 .sos-tb em{font-style:normal;color:var(--ink-3);font-weight:700}
 .sos-tb .sos-tb-n{display:block;margin-bottom:2px}
 
+/* v55: 도시 허브 현지 기본 정보 — 공항·교통·환급 숫자만 모은 카드 */
+.hub-tips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0 0}
+.hub-tips-h{grid-column:1/-1;font-size:9.8px;font-weight:850;letter-spacing:.06em;color:var(--blue-600)}
+.hub-tip{display:grid;gap:2px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 13px}
+.hub-tip b{font-size:11.4px;font-weight:850;color:var(--ink);letter-spacing:-.01em}
+.hub-tip span{font-size:12px;line-height:1.6;color:var(--ink-2)}
+@media (max-width:760px){ .hub-tips{grid-template-columns:1fr} }
+
 </style>
 <link rel="stylesheet" href="assets/fonts/pretendard.css" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%231b5cf0'/%3E%3Cpath d='M9 17.5 23 12.8l-3.2 6.4-4.6.7-2 2.6-.7-3.2-3.5-1.8Z' fill='%23fff'/%3E%3C/svg%3E" />

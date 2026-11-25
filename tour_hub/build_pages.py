@@ -50,7 +50,7 @@ SITE_TAGLINE = "여행 코스 · 가이드투어 비교"
 CONTACT_MAIL = "gim082487@gmail.com"
 FORMSPREE = "https://formspree.io/f/xwlolrod"
 TODAY = datetime.now(ZoneInfo("Asia/Seoul")).date()   # v47: 하드코딩 제거 — 실행 시점 KST 날짜(사이트맵 lastmod·최종 검증일)
-CSS_V = "48"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v47: 폰트 대체 메트릭·D-Day 필)
+CSS_V = "49"   # assets/site.css 캐시 버전 — CSS·디자인을 바꿀 때 함께 올린다 (v47: 폰트 대체 메트릭·D-Day 필)
 JS_V = "26"    # assets/trip-save.js (v25 이어보기·공유) 캐시 버전
 JS_V35 = "36"  # assets/tp-v35.js (제휴 클릭 추적 tp_clicks_v1 · 묶음 CTA) 캐시 버전
 JS_V43 = "5"   # assets/tp-v43.js (통합 퀵서치 · 파인더 · 찜 견적서 · 내 여행 D-Day · ★ 참고 글 저장) 캐시 버전
@@ -121,8 +121,10 @@ HUB_PASS_TOOL = {
 
 # 도시 허브·가이드 → 도구 페이지 원클릭 프리셋 (v45)
 #   /exchange?cur=JPY · /passes?city=tokyo · /sos?country=JP  — 도착하면 그 도시·국가가 이미 선택된 상태
-CUR_OF_COUNTRY = {"jp": "JPY", "vn": "VND", "th": "THB", "tw": "TWD"}
-SOS_OF_COUNTRY = {"jp": "JP", "vn": "VN", "th": "TH", "tw": "TW", "kr": "KR"}
+CUR_OF_COUNTRY = {"jp": "JPY", "vn": "VND", "th": "THB", "tw": "TWD",
+                  "us": "USD", "sg": "SGD", "hk": "HKD", "fr": "EUR", "it": "EUR", "es": "EUR", "gb": "GBP"}
+SOS_OF_COUNTRY = {"jp": "JP", "vn": "VN", "th": "TH", "tw": "TW", "kr": "KR",
+                 "sg": "SG", "fr": "FR", "it": "IT", "es": "ES", "gb": "GB"}
 CUR_UNIT = {"JPY": (100, "엔"), "VND": (100, "동"), "THB": (1, "밧"), "TWD": (1, "대만달러"),
             "USD": (1, "달러"), "EUR": (1, "유로"), "GBP": (1, "파운드")}
 _FX_PER_UNIT: dict = {}
@@ -152,9 +154,10 @@ def tool_links(hub_slug: str, country: str, up: str = "") -> dict:
     cur = CUR_OF_COUNTRY.get(country)
     # HTML 속성에 들어가므로 & 는 &amp; 로 쓴다
     exchange = (f"{up}exchange.html?cur={cur}&amp;city={hub_slug}" if cur else f"{up}exchange.html")
-    pass_city = hub_slug if hub_slug in ("osaka", "tokyo", "bangkok", "taipei", "singapore") else ""
+    pass_city = hub_slug if hub_slug in ("osaka", "tokyo", "bangkok", "taipei", "singapore", "hongkong") else ""
     passes = f"{up}passes.html?city={pass_city}" if pass_city else f"{up}passes.html"
-    sos = f"{up}sos.html?country={SOS_OF_COUNTRY.get(country, 'KR')}"
+    # v55: 긴급번호 자료가 있는 나라만 국가를 미리 고른다(없는 나라는 KR로 잘못 열리지 않게 기본 페이지)
+    sos = f"{up}sos.html?country={SOS_OF_COUNTRY[country]}" if country in SOS_OF_COUNTRY else f"{up}sos.html"
     return {"exchange": exchange, "passes": passes, "sos": sos, "cur": cur or ""}
 
 
@@ -1612,9 +1615,12 @@ def content_page(out_root: Path, spec: dict, base: str) -> Path:
 # 도시별 허브 페이지 (/osaka · /tokyo …) + /cities/
 # ----------------------------------------------------------------------
 _hub_cache = None
+_SEASON_CACHE = None
 # v25: 13곳 — 해외 7곳 뒤에 국내 6곳(제주 + 신규 서울·부산·강릉·여수·경주)
 HUB_ORDER = [
     "osaka", "tokyo", "fukuoka", "danang", "nhatrang", "bangkok", "taipei",
+    "singapore", "hongkong", "macau", "guam", "saipan",
+    "paris", "london", "rome", "barcelona",
     "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju",
 ]
 
@@ -1837,6 +1843,23 @@ ESIM_PICK = {
                 "두 상품 모두 출발 전 설치형이라 공항에서 줄 서지 않습니다.",
         "ids": ["tw-esim-lingsim-1d", "tw-esim-usimsa-3d"],
     },
+    # v55: 괌·사이판·싱가포르 — 트립닷컴 eSIM. 가격이 ‘1일 요금제부터’라 단위를 같이 적는다.
+    "us": {
+        "title": "eSIM, 1일 1,050원부터",
+        "lead": "괌·사이판은 통신사 단기 로밍보다 eSIM이 쌉니다. 1일 요금제가 1,050원(정가 1,313원)부터이고 1~30일 중에 고르니, "
+                "4박5일이면 5일권을 한 장 사는 쪽이 1일권 다섯 장보다 계산이 간단합니다. 2인이면 인원수만큼 설치합니다.",
+        "ids": ["gu-esim-trip-101949204"],
+        "badges": {"gu-esim-trip-101949204": "1~30일 선택"},
+        "suffix": " /1일",
+    },
+    "sg": {
+        "title": "eSIM, 1일 109원부터",
+        "lead": "싱가포르 eSIM은 1일 500MB가 109원부터이고, 리뷰 5,512개·4.6점으로 후기가 가장 많은 쪽입니다. "
+                "3박4일이면 4일 총량형을 한 장 사고, 영상통화를 많이 한다면 1일 2GB형을 섞으세요.",
+        "ids": ["sg-esim-trip-46011732"],
+        "badges": {"sg-esim-trip-46011732": "1~30일 선택"},
+        "suffix": " /1일",
+    },
 }
 
 
@@ -1852,7 +1875,8 @@ def hub_esim_section(hub: dict) -> str:
         price = f'{won(e["price"])}원'
         if e.get("listPrice") and e["listPrice"] > e["price"]:
             price += f'<small>{won(e["listPrice"])}원</small>'
-        badge = "1일권" if "1d" in eid else "3일 무제한"
+        price += esc(spec.get("suffix") or "")
+        badge = (spec.get("badges") or {}).get(eid) or ("1일권" if "1d" in eid else "3일 무제한")
         cards.append(f"""<a class="esim-card" href="{esc(B.ess_url(e))}" target="_blank" rel="noopener sponsored">
         <span class="esim-top"><span class="esim-badge">{badge}</span><span class="esim-store">{esc(e['store'])}</span></span>
         <b class="esim-name">{esc(e['name'])}</b>
@@ -1907,6 +1931,51 @@ def hub_guide_cards(guides: list) -> str:
         </a>"""
         )
     return '<div class="gi-grid">' + "".join(cards) + "</div>"
+
+
+def hub_faq_pairs(hub: dict, tours: list) -> list:
+    """v55: 허브 JSON-LD FAQ — 저장소 데이터로 답할 수 있는 질문만 만든다(지어낸 수치 금지)."""
+    global _SEASON_CACHE
+    name = hub["name"]
+    out = []
+    hs = [h for h in STAYS.get("hotels", []) if h["region"] == hub["slug"]]
+    reg = next((r for r in STAYS.get("regions", []) if r["id"] == hub["slug"]), None)
+    if hs:
+        lo, hi = min(h["price"] for h in hs), max(h["price"] for h in hs)
+        top = f" 최고 평점은 {reg['top']}입니다." if reg and reg.get("top") else ""
+        out.append((
+            f"{name} 숙소 1박은 얼마인가요?",
+            f"{name} 숙소 {len(hs)}곳을 평점·리뷰·위치로 골랐습니다. 1박·2인·세금 포함 최저가는 {lo:,}원~{hi:,}원입니다.{top}",
+        ))
+    if _SEASON_CACHE is None:
+        _SEASON_CACHE = {c["id"]: c for c in load_json("season.json")["cities"]}
+    season = _SEASON_CACHE.get(hub["slug"])
+    if season and season.get("access"):
+        a = season["access"]
+        out.append((
+            f"{name}까지 비행시간은 얼마나 걸리나요?",
+            f"{a.get('route', '인천 출발')} · {a.get('mode', '')}. {season.get('fareNote', '')}".replace(" · .", "."),
+        ))
+    spec = ESIM_PICK.get(hub.get("country"))
+    if spec:
+        e = next((x for x in ESSENTIALS if x["id"] == spec["ids"][0]), None)
+        if e:
+            _lp = f"(정가 {won(e['listPrice'])}원)" if e.get("listPrice") and e["listPrice"] > e["price"] else ""
+            out.append((
+                f"{name} eSIM은 얼마인가요?",
+                f"{e['name']} — 1일 {won(e['price'])}원{_lp}부터이고, 기간을 1~30일에서 고릅니다. {e.get('usage', '')}",
+            ))
+    if tours:
+        out.append((
+            f"{name} 투어·패키지는 몇 개 있나요?",
+            f"지금 판매 중인 상품 {len(tours)}개를 1인 가격과 미팅·포함 사항까지 같은 기준으로 비교했습니다. 1인 최저 {won(min(t['sale'] for t in tours))}원입니다.",
+        ))
+    else:
+        out.append((
+            f"{name}는 어떤 방식으로 여행하나요?",
+            hub.get("tourNote") or f"{name}은 단독 투어·패키지 상품 없이 숙소와 동선으로 짜는 여행입니다.",
+        ))
+    return out
 
 
 def hub_jsonld(hub: dict, tours: list, guides: list, base: str) -> str:
@@ -1976,6 +2045,17 @@ def hub_jsonld(hub: dict, tours: list, guides: list, base: str) -> str:
         ],
     }
     graph = {"@context": "https://schema.org", "@graph": [page_ld, dest, tour_ld, guide_ld, crumb, org_ld(base), website_ld(base)]}
+    faq = hub_faq_pairs(hub, tours)
+    if faq:
+        graph["@graph"].insert(4, {
+            "@type": "FAQPage",
+            "@id": url + "#faq",
+            "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in faq
+            ],
+        })
     raw = json.dumps(graph, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     return f'<script type="application/ld+json">{raw}</script>'
 
@@ -2018,6 +2098,30 @@ def hub_stay_cards(slug: str) -> str:
     hs = [h for h in STAYS.get("hotels", []) if h["region"] == slug]
     hs.sort(key=lambda h: (-h["score"], -h["reviews"]))
     return "\n      ".join(stays_card(h, region) for h in hs)
+
+
+def hub_tips(hub: dict) -> str:
+    """v55: 도시 허브 '현지 기본 정보' — 공항·교통·환급처럼 그 도시에서 바로 쓰는 숫자만 모은다."""
+    tips = hub.get("tips") or []
+    if not tips:
+        return ""
+    rows = "".join(
+        f'<div class="hub-tip"><b>{esc(t["k"])}</b><span>{esc(t["v"])}</span></div>' for t in tips
+    )
+    return (f'<div class="hub-tips" aria-label="{esc(hub["name"])} 현지 기본 정보">'
+            f'<span class="hub-tips-h">현지 기본 정보 · 2026.11 확인</span>{rows}</div>')
+
+
+def hub_faq_section(hub: dict, tours: list) -> str:
+    """v55: 허브 화면 FAQ — JSON-LD(FAQPage)와 같은 문답을 본문에도 보이게 둔다."""
+    pairs = hub_faq_pairs(hub, tours)
+    if not pairs:
+        return ""
+    items = "".join(
+        f'<details class="fq"><summary>{esc(q)}</summary><div class="fq-a"><p>{esc(a)}</p></div></details>'
+        for q, a in pairs
+    )
+    return f'<section class="tf-faq" id="faq">\n  <h2>{esc(hub["name"])} 여행 자주 묻는 질문</h2>\n  {items}\n</section>'
 
 
 def hub_page(out_root: Path, hub: dict, base: str) -> Path:
@@ -2080,7 +2184,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     # v45: 환율·패스·SOS 를 이 도시 프리셋으로 바로 연다 (/exchange?cur=JPY · /passes?city=tokyo · /sos?country=JP)
     _links = tool_links(slug, hub.get("country") or "kr")
     pass_href = _links["passes"]
-    fx_basis_text = fx_basis(_links["cur"]) if _links["cur"] else "12개 통화 · 일본 면세 환급"
+    fx_basis_text = (fx_basis(_links["cur"]) if _links["cur"] else "") or "12개 통화 · 면세 환급 계산"
     hub_tools_html = f"""<div class="hub-tools" aria-label="{esc(hub['name'])} 도구">
   <a class="hub-tool" href="{_links['exchange']}"><span class="hub-tool-k">EXCHANGE</span><b>환율 계산 · 면세 환급</b><span class="hub-tool-n">{esc(fx_basis_text)}</span></a>
   <a class="hub-tool" href="{pass_href}"><span class="hub-tool-k">PASS</span><b>{esc(pass_title)}</b><span class="hub-tool-n">{esc(pass_sub)}</span></a>
@@ -2164,8 +2268,8 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
       <h2>{esc(hub['name'])} 현지 맛집</h2></div>
   </div>
   <div class="hub-pending">
-    <b>맛집 5곳은 아직 검증을 마치지 않았습니다.</b>
-    <p>영업 중인지(구글 지도 OPERATIONAL), 공식 메뉴판 가격이 맞는지 확인한 가게만 싣기 때문에 국내 도시는 다음 업데이트에 넣습니다. 그전까지는 아래 가이드에서 식비와 동선을 볼 수 있습니다.</p>
+    <b>맛집 목록은 아직 검증을 마치지 않았습니다.</b>
+    <p>{esc(hub.get('foodFallback') or '영업 중인지(구글 지도 OPERATIONAL), 공식 메뉴판 가격이 맞는지 확인한 가게만 싣습니다. 이 도시는 확인 절차가 끝나는 대로 추가하고, 그전까지는 아래 가이드에서 식비와 동선을 볼 수 있습니다.')}</p>
     <ul class="side-list">{guide_links}</ul>
   </div>
 </section>"""
@@ -2190,7 +2294,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
   <div class="hub-sec-head">
     <div><span class="hub-k">BEFORE YOU GO</span>
       <h2>{esc(hub['name'])} 출발 전 준비물</h2>
-      <p>국내 여행이라 면세 한도·반입 규정이 따로 없습니다. 대신 현지에서 사기 번거로운 준비물을 집에서 미리 주문하는 링크만 모았습니다.</p></div>
+      <p>{esc(hub.get('giftFallback') or '국내 여행이라 면세 한도·반입 규정이 따로 없습니다. 대신 현지에서 사기 번거로운 준비물을 집에서 미리 주문하는 링크만 모았습니다.')}</p></div>
   </div>
   {hub_ess_cards(4)}
   <p class="hub-aff">준비물 링크는 <b>쿠팡 파트너스</b> 제휴 링크입니다. 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
@@ -2326,6 +2430,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
 {cont_bar('도시', hub['nav'] + ' 여행', '/' + slug, hub['image'])}
     <nav class="hub-jump" aria-label="이 페이지 목차">{jump_html}</nav>
 {hub_tools_html}
+{hub_tips(hub)}
 {ad_slot(f"hub-{slug}-top", "이 도시 숙소·항공 최저가", "체크인 날짜만 넣으면 트립닷컴 최저가로 열립니다.", "#stay", "숙소 보기")}
 {tours_html}
 {ad_slot(f"hub-{slug}-mid", "이 도시 일정, 내 예산으로 계산", "인원·지역·스타일만 넣으면 항공·숙소·투어·eSIM 총액을 A/B/C안으로 보여줍니다.", "index.html#planner", "예산 계산기")}
@@ -2334,6 +2439,7 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
 {stay_html}
 {hub_esim_section(hub)}
 {ad_slot(f"hub-{slug}-bottom", "특가가 뜨면 가장 먼저 알려드릴게요", "원하는 여행지와 예산만 남기면 특가·땡처리 소식을 메일로 보내드립니다.", "index.html#alert", "알림 신청")}
+{hub_faq_section(hub, tours)}
 {guides_html}
 
     <div class="hub-others">

@@ -111,7 +111,7 @@ for name, html in (("홈", home), ("/checklist", checklist)):
     check(m is not None, f"{name}: tpTripData 없음")
     if m:
         payload = json.loads(m.group(1).replace("<\\/", "</"))
-        check(len(payload.get("cities") or []) == 13, f"{name}: 도시 {len(payload.get('cities') or [])}곳 (기대 13)")
+        check(len(payload.get("cities") or []) == 22, f"{name}: 도시 {len(payload.get('cities') or [])}곳 (기대 22)")
         stages = [s["d"] for s in payload.get("stages") or []]
         check(stages == ["D-14", "D-7", "D-3", "D-1", "현지"], f"{name}: 단계 {stages}")
         for c in payload["cities"]:
@@ -150,7 +150,7 @@ if js.exists():
 # ---------------------------------------------------------------- 5. sitemap·action
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 147, f"sitemap {len(locs)} URL (기대 147)")
+check(len(locs) == 156, f"sitemap {len(locs)} URL (기대 156)")
 for slug in NEW:
     check(f"/guides/{slug}" in sm, f"sitemap 에 /guides/{slug} 없음")
 if ACTION.exists():
