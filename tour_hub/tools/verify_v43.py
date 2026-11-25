@@ -49,7 +49,7 @@ def check(ok, msg):
 
 guides = load("guides.json")["guides"]
 by = {g["slug"]: g for g in guides}
-check(len(guides) == 110, f"가이드 {len(guides)}편 (기대 110)")
+check(len(guides) == 113, f"가이드 {len(guides)}편 (기대 113)")
 
 # ---------------------------------------------------------------- 1. 신규 3편
 for slug, hubword in NEW.items():
@@ -100,7 +100,7 @@ for f in guide_files:
     html = read(f)
     if 'class="bm-btn"' in html and f'data-bm="/guides/{f.name}"' in html and "data-bm-item=" in html:
         bms += 1
-check(bms == 110, f"★ 참고 글 저장 버튼이 있는 가이드 {bms}편 (기대 110)")
+check(bms == 113, f"★ 참고 글 저장 버튼이 있는 가이드 {bms}편 (기대 113)")
 
 # ---------------------------------------------------------------- 3. D-Day 위젯
 home = read(OUT / "index.html")
@@ -150,7 +150,7 @@ if js.exists():
 # ---------------------------------------------------------------- 5. sitemap·action
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 138, f"sitemap {len(locs)} URL (기대 138)")
+check(len(locs) == 141, f"sitemap {len(locs)} URL (기대 141)")
 for slug in NEW:
     check(f"/guides/{slug}" in sm, f"sitemap 에 /guides/{slug} 없음")
 if ACTION.exists():
@@ -159,7 +159,7 @@ if ACTION.exists():
     check("kind: scheduled-action" in act, "action.md kind 변경됨")
     for slug in NEW:
         check(f"https://trippick.pages.dev/guides/{slug}" in act, f"action.md 에 {slug} URL 없음")
-    check("138개" in act, "action.md 사이트맵 기준 수(138개) 미갱신")
+    check("141개" in act, "action.md 사이트맵 기준 수(141개) 미갱신")
 else:
     fails.append(f"action.md 없음: {ACTION}")
 

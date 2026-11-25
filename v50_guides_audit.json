@@ -9,7 +9,7 @@
   "aff": 2,
   "per": 3296,
   "h2": 11,
-  "indeg": 22
+  "indeg": 23
  },
  {
   "file": "airport-checkin-customs-guide.html",
@@ -21,7 +21,7 @@
   "aff": 0,
   "per": 4212,
   "h2": 8,
-  "indeg": 21
+  "indeg": 23
  },
  {
   "file": "airport-lounge-card-guide.html",
@@ -117,7 +117,7 @@
   "aff": 4,
   "per": 1092,
   "h2": 6,
-  "indeg": 10
+  "indeg": 12
  },
  {
   "file": "danang-food-route.html",
@@ -173,11 +173,11 @@
   "title": "입국신고서·전자여행허가 2026 — 비짓재팬웹·TWAC·TDAC·SGAC·ETA·ESTA 총정리 | 트립픽",
   "h1": "입국신고서, 종이 대신 QR —8개국 제출 시점",
   "desc": "입국신고서·전자여행허가 정리. 일본 비짓재팬웹 무료, 대만 TWAC 7일 전, 태국 TDAC 3일 전, 베트남 PAI 72시간 전, 싱가포르 SGAC 3일 전. 영국 ETA £20·미국 ESTA $40.62, 2026-11 확인.",
-  "chars": 5506,
+  "chars": 6033,
   "aff": 0,
-  "per": 5506,
-  "h2": 10,
-  "indeg": 22
+  "per": 6033,
+  "h2": 11,
+  "indeg": 25
  },
  {
   "file": "esim-roaming-insurance-guide.html",
@@ -213,7 +213,7 @@
   "aff": 0,
   "per": 3437,
   "h2": 8,
-  "indeg": 9
+  "indeg": 10
  },
  {
   "file": "europe-pickpocket-tax-refund-guide.html",
@@ -276,6 +276,18 @@
   "indeg": 19
  },
  {
+  "file": "fukuoka-yufuin-3n4d-course.html",
+  "slug": "fukuoka-yufuin-3n4d-course",
+  "title": "후쿠오카·유후인 3박4일 코스 — 교통·산큐패스·2인 경비 (2026) | 트립픽",
+  "h1": "후쿠오카·유후인 3박4일, 산큐패스 12,000엔 이 이득인 날",
+  "desc": "후쿠오카·유후인 3박4일 코스를 버스 3,250엔·유후인노모리 6,130엔·산큐패스 12,000엔 손익으로 비교했습니다. 하카타 호텔 1박 173,117원부터, 유후인 료칸 2인 1박 2식 25,300엔부터, 2인 현지 경비 144만원까지 2026년 11월 기준.",
+  "chars": 5148,
+  "aff": 4,
+  "per": 1287,
+  "h2": 9,
+  "indeg": 3
+ },
+ {
   "file": "fukuoka-yufuin.html",
   "slug": "fukuoka-yufuin",
   "title": "후쿠오카 유후인 가는 법 (유후인노모리 6,130엔 vs 버스 3,250엔) | 트립픽",
@@ -285,7 +297,7 @@
   "aff": 0,
   "per": 2791,
   "h2": 7,
-  "indeg": 12
+  "indeg": 15
  },
  {
   "file": "gangwon-bustour.html",
@@ -370,6 +382,18 @@
   "per": 2523,
   "h2": 6,
   "indeg": 10
+ },
+ {
+  "file": "hongkong-macau-3n4d-course.html",
+  "slug": "hongkong-macau-3n4d-course",
+  "title": "홍콩·마카오 3박4일 코스 — 교통·숙소·2인 경비 (2026) | 트립픽",
+  "h1": "홍콩·마카오 3박4일, 셔틀 65홍콩달러 와 페리 194의 차이",
+  "desc": "홍콩·마카오 3박4일 코스를 에어포트익스프레스 73~120홍콩달러, 대교 셔틀 65·페리 194홍콩달러, 옥토퍼스 200, 피크트램 116, 디즈니 669~939홍콩달러로 계산했습니다. 숙소 실제 가격과 2인 현지 경비까지 2026년 11월 기준.",
+  "chars": 5471,
+  "aff": 4,
+  "per": 1368,
+  "h2": 10,
+  "indeg": 4
  },
  {
   "file": "hotel-booking-timing-refund-tips.html",
@@ -477,7 +501,7 @@
   "aff": 0,
   "per": 2314,
   "h2": 6,
-  "indeg": 41
+  "indeg": 43
  },
  {
   "file": "japan-ic-card.html",
@@ -489,7 +513,19 @@
   "aff": 4,
   "per": 1120,
   "h2": 9,
-  "indeg": 4
+  "indeg": 9
+ },
+ {
+  "file": "japan-rental-car-etc-guide.html",
+  "slug": "japan-rental-car-etc-guide",
+  "title": "일본 렌터카 — 국제운전면허증·ETC·KEP/HEP·주유 (2026) | 트립픽",
+  "h1": "일본 렌터카, 국제면허 9,000원 과 패스 손익만 알면 됩니다",
+  "desc": "일본 렌터카 준비를 국제운전면허증 9,000원, ETC 카드 220~550엔, KEP 2~10일·HEP 4~8일 가격, 오키나와 ETC 35.5% 할인, 레귤러 170엔/L, 주차·맵코드·사고 대처까지 2026년 11월 공식 안내로 정리했습니다.",
+  "chars": 5528,
+  "aff": 4,
+  "per": 1382,
+  "h2": 10,
+  "indeg": 3
  },
  {
   "file": "japan-ryokan-onsen-etiquette-budget.html",
@@ -501,7 +537,7 @@
   "aff": 5,
   "per": 919,
   "h2": 8,
-  "indeg": 7
+  "indeg": 9
  },
  {
   "file": "japan-shopping-gift-list.html",
@@ -537,7 +573,7 @@
   "aff": 4,
   "per": 1037,
   "h2": 8,
-  "indeg": 6
+  "indeg": 9
  },
  {
   "file": "jeju-3n4d-course-budget.html",
@@ -729,7 +765,7 @@
   "aff": 14,
   "per": 453,
   "h2": 10,
-  "indeg": 6
+  "indeg": 7
  },
  {
   "file": "overseas-roaming-esim-install-troubleshooting.html",
@@ -741,7 +777,7 @@
   "aff": 2,
   "per": 2400,
   "h2": 9,
-  "indeg": 14
+  "indeg": 15
  },
  {
   "file": "overseas-sick-hospital-insurance-claim.html",
@@ -789,7 +825,7 @@
   "aff": 0,
   "per": 5309,
   "h2": 8,
-  "indeg": 10
+  "indeg": 11
  },
  {
   "file": "passport-phone-lost-emergency.html",
@@ -825,7 +861,7 @@
   "aff": 4,
   "per": 1615,
   "h2": 12,
-  "indeg": 9
+  "indeg": 12
  },
  {
   "file": "sapporo-winter.html",
@@ -1005,7 +1041,7 @@
   "aff": 0,
   "per": 4441,
   "h2": 7,
-  "indeg": 5
+  "indeg": 7
  },
  {
   "file": "taiwan-souvenir-list.html",
@@ -1113,7 +1149,7 @@
   "aff": 0,
   "per": 5643,
   "h2": 11,
-  "indeg": 8
+  "indeg": 10
  },
  {
   "file": "travel-card-packing-guide.html",
@@ -1149,7 +1185,7 @@
   "aff": 0,
   "per": 4227,
   "h2": 8,
-  "indeg": 4
+  "indeg": 6
  },
  {
   "file": "travel-medication-rules-guide.html",
@@ -1257,7 +1293,7 @@
   "aff": 4,
   "per": 944,
   "h2": 7,
-  "indeg": 6
+  "indeg": 7
  },
  {
   "file": "winter-december-best6.html",
@@ -1317,6 +1353,6 @@
   "aff": 0,
   "per": 2300,
   "h2": 5,
-  "indeg": 3
+  "indeg": 4
  }
 ]
