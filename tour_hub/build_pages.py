@@ -95,7 +95,7 @@ TOOLS = [
     ("sos.html", "여행 중 위기상황 SOS", "sos", "10개국 경찰·구급·대사관"),
     ("exchange.html", "환율·일본 면세 계산기", "exchange", "12개 통화 · 면세 환급"),
     ("baggage.html", "항공사 수하물 규정", "baggage", "기내·위탁·배터리"),
-    ("passes.html", "교통패스 본전 계산기", "passes", "오사카·도쿄·방콕·타이베이·싱가포르"),
+    ("passes.html", "교통패스 본전 계산기", "passes", "오사카·도쿄·방콕·타이베이·싱가포르·홍콩"),
     ("calendar.html", "월별 시즌 캘린더", "calendar", "19개 도시 12개월"),
 ]
 TOOL_KEYS = {k for _, _, k, _ in TOOLS}
@@ -2761,6 +2761,10 @@ def pass_links(slug: str) -> str:
         h = _tc("hotels", cityId="bangkok")
         if h:
             out.append(pk_link_card("트립닷컴", "방콕 숙소", "수쿰빗·시암", h["url"], "요금 보기"))
+    elif slug == "hongkong":
+        out.append(pk_link_card("트립닷컴", "홍콩 숙소", "침사추이·코즈웨이 베이", "https://kr.trip.com/hotels/list?city=58&display=%ED%99%8D%EC%BD%A9&optionId=58&optionType=City&optionName=%ED%99%8D%EC%BD%A9&Allianceid=11407530&SID=336341874&trip_sub1=passes_hongkong_hotel&trip_sub3=D21275837", "요금 보기"))
+        out.append(pk_link_card("트립닷컴", "홍콩공항(HKG) → 시내", "짐 많을 때 단독차량", "https://kr.trip.com/airport-transfers/airport-hkg/?Allianceid=11407530&SID=336341874&trip_sub1=passes_hongkong_transfer&trip_sub3=D21285812", "요금 보기"))
+        out.append(pk_link_card("트립닷컴", "마카오 숙소", "코타이 리조트·세나도 광장", "https://kr.trip.com/hotels/list?city=59&display=%EB%A7%88%EC%B9%B4%EC%98%A4&optionId=59&optionType=City&optionName=%EB%A7%88%EC%B9%B4%EC%98%A4&Allianceid=11407530&SID=336341874&trip_sub1=passes_macau_hotel&trip_sub3=D21275837", "요금 보기"))
     elif slug == "taipei":
         t = _tc("tickets", id="ticket_taipei")
         if t:
@@ -2830,11 +2834,17 @@ def passes_page(out_root: Path, base: str) -> Path:
     body = body.replace("<!-- @NARITA_ROWS -->", narita_rows)
     body = body.replace("<!-- @TAIPEI_PASSES -->", tpe_chips)
     body = body.replace("<!-- @SG_PASSES -->", sg_chips)
-    for slug in ("osaka", "tokyo", "bangkok", "taipei", "singapore"):
+    hk_chips = "\n              ".join(
+        f'<button type="button" class="pk-btn{" on" if st["id"] == "kowloon" else ""}" data-hk="{st["id"]}" aria-pressed="{"true" if st["id"] == "kowloon" else "false"}">'
+        f'<b>{esc(st["name"])}</b><span>{_n(st["octopus"])}홍콩달러</span><em>왕복권 {_n(st["round"])} · {st["minutes"]}분</em></button>'
+        for st in data["hongkong"]["stations"]
+    )
+    body = body.replace("<!-- @HK_STATIONS -->", hk_chips)
+    for slug in ("osaka", "tokyo", "bangkok", "taipei", "singapore", "hongkong"):
         body = body.replace(f"<!-- @LINKS_{slug.upper()} -->", pass_links(slug))
     payload = json.dumps({"fx": data["fx"], "osaka": data["osaka"], "tokyo": data["tokyo"],
                           "bangkok": data["bangkok"], "taipei": data["taipei"],
-                          "singapore": data["singapore"]},
+                          "singapore": data["singapore"], "hongkong": data["hongkong"]},
                          ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     body = body.replace("<!-- @PK_DATA -->", f'<script type="application/json" id="pkData">{payload}</script>')
 
@@ -2847,13 +2857,15 @@ def passes_page(out_root: Path, base: str) -> Path:
          "아니요. 산 날 자정까지입니다. BTS만 되고 MRT·공항철도는 포함되지 않습니다."),
         ("타이베이 펀패스와 첩운 1일권의 차이는 무엇인가요?",
          "첩운 1일권 150대만달러는 지하철만, 펀패스 교통권 210대만달러는 지하철+버스+관광 셔틀 6개 노선까지 무제한입니다."),
+        ("홍콩 공항철도 왕복권과 2인 묶음표 중 뭐가 싸나요?",
+         "구룡역 기준 왕복권은 1인 195홍콩달러(2인 390), 2인 묶음표는 편도 150홍콩달러라 왕복이면 두 장을 사 300홍콩달러입니다. 날짜가 갈리는 3박4일이면 묶음표가 90홍콩달러 싸고, 같은 날 왕복이면 옥토퍼스 편도가 돌아오는 편 무료라 210홍콩달러로 가장 쌉니다."),
         ("싱가포르는 컨택트리스 카드와 Tourist Pass 중 뭐가 낫나요?",
          "3박4일이면 해외 결제 가능한 컨택트리스 카드가 쌉니다. 외국 카드는 사용한 날마다 0.60싱가포르달러가 붙지만 3일이면 1.80싱가포르달러입니다. Tourist Pass 3일권 29싱가포르달러는 하루 6회 이상 타야 본전이고, 1·2·3일권만 있어 4일 이상 일정에는 맞지 않습니다. EZ-Link는 카드값 5가 환불되지 않아 8~9일 이상일 때 유리합니다."),
     ]
     jsonld = _page_jsonld(
         "passes.html",
         "트립픽 교통패스 본전 계산기",
-        "오사카 주유패스·도쿄 지하철 패스·방콕 BTS·타이베이 펀패스·싱가포르 Tourist Pass가 내 일정에서 본전을 넘는지 계산하는 도구.",
+        "오사카 주유패스·도쿄 지하철 패스·방콕 BTS·타이베이 펀패스·싱가포르 Tourist Pass·홍콩 공항철도가 내 일정에서 본전을 넘는지 계산하는 도구.",
         base,
         faq,
         [("트립픽", ""), ("교통패스 본전 계산기", None)],
@@ -4673,6 +4685,12 @@ def checklist_page(out_root: Path, base: str) -> Path:
         ("exchange.html", "D-3", "환율·일본 면세 계산기", "12개 통화 환율과 일본 면세 환급액을 같은 날 기준으로 계산"),
         ("guides/flight-delay-card-lost-emergency", "D-0", "지연·분실 대처 순서", "지연 확인서·PIR·카드 정지까지 공항에서 첫 30분에 할 일"),
         ("index.html#fxcards", "D-3", "환전 카드 3종", "트래블로그·트래블월렛·하나카드 수수료와 환율을 비교"),
+        ("guides/fukuoka-yufuin-3n4d-course", "D-30", "후쿠오카·유후인 3박4일", "하카타 2박+유후인 1박, 산큐패스 3일 12,000엔이 본전인지부터"),
+        ("guides/chiang-mai-3n4d-course", "D-14", "치앙마이 3박4일", "공항 정액택시 150밧·썽태우 1인 30밧·코끼리 보호구역 2,500밧"),
+        ("guides/bali-ubud-seminyak-3n4d-course", "D-30", "발리 우붓·스미냑 3박4일", "e-VOA 500,000루피아·관광세 150,000·그랩 340,000루피아"),
+        ("guides/hongkong-macau-3n4d-course", "D-14", "홍콩·마카오 3박4일", "에어포트익스프레스 왕복 215·대교 셔틀 65홍콩달러와 면세 800달러"),
+        ("guides/shanghai-2n3d-3n4d-course", "D-30", "상하이 무비자 30일", "2026-12-31까지 무비자 · 전자입국신고서 72시간 전 · 푸둥 지하철 7위안"),
+        ("guides/japan-rental-car-etc-guide", "D-14", "일본 렌터카·국제면허", "국제운전면허 9,000원·ETC 카드·KEP/HEP·오키나와 예외까지"),
     ]
     tool_cards = "".join(
         f'<a class="ddtool" href="{href}"><span class="ddtool-d">{d}</span>'

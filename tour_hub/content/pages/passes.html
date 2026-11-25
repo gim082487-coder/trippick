@@ -4,7 +4,7 @@
     <span class="pg-kicker">PASS BREAK-EVEN · 2026 요금</span>
     <div class="pg-head">
       <h1>그 패스, <em>사면 남는 장사인지</em> 먼저 계산하세요</h1>
-      <p class="dek">오사카 주유패스·도쿄 지하철 패스·방콕 BTS·타이베이 펀패스·싱가포르 Tourist Pass는 “무조건 이득”이 아니라 <b>그날 갈 시설과 지하철 횟수</b>로 값이 갈립니다. 갈 곳을 체크하면 지금 요금 기준으로 <b>몇 엔(몇 바트·몇 대만달러·몇 싱가포르달러) 이득인지, 손해인지</b>와 원화 환산을 바로 보여 줍니다.</p>
+      <p class="dek">오사카 주유패스·도쿄 지하철 패스·방콕 BTS·타이베이 펀패스·싱가포르 Tourist Pass·홍콩 공항철도는 “무조건 이득”이 아니라 <b>그날 갈 시설과 지하철 횟수</b>로 값이 갈립니다. 갈 곳을 체크하면 지금 요금 기준으로 <b>몇 엔(몇 바트·몇 대만달러·몇 싱가포르달러) 이득인지, 손해인지</b>와 원화 환산을 바로 보여 줍니다.</p>
       <div class="pg-meta">
         <span>요금 확인 <b>2026.11.20</b></span><i></i>
         <span>공식 요금표 기준</span><i></i>
@@ -17,13 +17,14 @@
       <button type="button" role="tab" class="pk-tab" data-city="bangkok" aria-selected="false">방콕 BTS</button>
       <button type="button" role="tab" class="pk-tab" data-city="taipei" aria-selected="false">타이베이 펀패스</button>
       <button type="button" role="tab" class="pk-tab" data-city="singapore" aria-selected="false">싱가포르 교통패스</button>
+      <button type="button" role="tab" class="pk-tab" data-city="hongkong" aria-selected="false">홍콩 공항철도</button>
     </div>
   </div>
 </div>
 
 <div class="pg-body">
   <div class="wrap">
-    <div class="pk-anchors" aria-hidden="true"><span id="osaka"></span><span id="tokyo"></span><span id="bangkok"></span><span id="taipei"></span><span id="singapore"></span></div>
+    <div class="pk-anchors" aria-hidden="true"><span id="osaka"></span><span id="tokyo"></span><span id="bangkok"></span><span id="taipei"></span><span id="singapore"></span><span id="hongkong"></span></div>
     <div class="pg-grid">
       <div>
 
@@ -290,6 +291,65 @@
           <p class="pk-aff">eSIM·숙소 링크는 <b>트립닷컴 파트너스</b> 제휴 링크입니다. 구매가 이루어지면 수수료를 받지만 결제 금액은 같습니다.</p>
         </section>
 
+        <!-- ============ 홍콩 ============ -->
+        <section class="pk-panel" id="pkHongkong" data-panel="hongkong" aria-labelledby="pkHongkongTitle" hidden>
+          <div class="pk-top">
+            <div><span class="pk-kicker">AIRPORT EXPRESS · OCTOPUS · CITYBUS</span>
+              <h2 id="pkHongkongTitle">홍콩 공항철도 <em>왕복권 215 vs 버스 34.6홍콩달러</em></h2></div>
+            <span class="pk-badge">2026 요금</span>
+          </div>
+          <p class="pk-lead">홍콩은 <b>숙소가 어느 역에 가까운지</b>로 답이 갈립니다. ① 공항철도(AEL) 왕복권, ② 2~4인 묶음표, ③ 옥토퍼스 편도 2회, ④ 공항버스 A21·A11, ⑤ 택시 다섯 가지를 같은 인원·같은 역으로 계산합니다.</p>
+
+          <div class="pk-seg" role="group" aria-label="도착역">
+            <!-- @HK_STATIONS -->
+          </div>
+
+          <div class="pk-inputs">
+            <label class="pk-field">
+              <span>인원(묶음표는 2~4인)</span>
+              <input id="pkHkPax" type="number" min="1" max="6" step="1" value="2" inputmode="numeric" />
+            </label>
+            <label class="pk-field">
+              <span>공항버스 1인 요금(홍콩달러)</span>
+              <input id="pkHkBus" type="number" min="0" max="200" step="0.1" value="34.6" inputmode="decimal" />
+            </label>
+            <label class="pk-field">
+              <span>택시 1회(홍콩달러)</span>
+              <input id="pkHkTaxi" type="number" min="0" max="900" step="5" value="290" inputmode="numeric" />
+            </label>
+          </div>
+
+          <div class="pk-out" aria-live="polite">
+            <div class="pk-out-main">
+              <span id="pkHkBestLabel">가장 싼 방법 (왕복)</span>
+              <b id="pkHkBest">–</b>
+              <small id="pkHkBestKrw"></small>
+            </div>
+            <div class="pk-out-rows">
+              <div><span>공항철도 왕복권</span><b id="pkHkRound">–</b></div>
+              <div><span>2~4인 묶음표 ×2</span><b id="pkHkGroup">–</b></div>
+              <div><span>옥토퍼스 편도 ×2</span><b id="pkHkOcto">–</b></div>
+              <div><span>공항버스 ×2</span><b id="pkHkBusOut">–</b></div>
+              <div><span>택시 ×2</span><b id="pkHkTaxiOut">–</b></div>
+            </div>
+          </div>
+          <p class="pk-verdict" id="pkHkVerdict"></p>
+
+          <div class="pk-cmp">
+            <div class="pk-cmp-row"><b>에어포트익스프레스</b><span>홍콩역 120 · 구룡 105 · 칭이 73</span><em>옥토퍼스·비접촉 카드 성인 편도. 스마트 티켓은 130·115·80, 왕복권은 215·195·130(30일)</em></div>
+            <div class="pk-cmp-row"><b>2~4인 묶음표</b><span>2인 홍콩역 170</span><em>편도만 팔고 산 날만 씁니다. 공항역 고객센터에서만 판매, 환불 불가·동반 탑승 필수</em></div>
+            <div class="pk-cmp-row"><b>옥토퍼스</b><span>200 = 보증금 50 + 충전 150</span><em>시내 MTR·버스·페리·편의점. 공항역에서는 여행자용(170)만 팔고 일반 카드는 시내 역에서</em></div>
+            <div class="pk-cmp-row"><b>공항버스 A21·A11</b><span>34.6 · 41.9</span><em>침사추이·몽콕은 A21(약 84분), 코즈웨이베이·센트럴은 A11(약 94분). 짐 실을 자리가 있고 한 번에 갑니다</em></div>
+          </div>
+
+          <p class="pk-note">같은 날 같은 옥토퍼스로 공항을 왕복하면 <b>돌아오는 편이 무료</b>입니다(AEL·A21 모두). 3박4일처럼 날짜가 갈리면 이 혜택이 없어 왕복권이나 묶음표가 유리해집니다. 공항철도는 홍콩역 24분·구룡 22분·칭이 14분이고 05:54~00:48에 10분 간격으로 다닙니다. 자정 이후 도착이면 야간버스 N21(23.8)이나 택시를 보세요. 숙소 위치별 선택과 2인 경비는 <a href="/guides/hongkong-macau-3n4d-course">홍콩·마카오 3박4일</a>에 정리했습니다.</p>
+
+          <div class="pk-links">
+            <!-- @LINKS_HONGKONG -->
+          </div>
+          <p class="pk-aff">숙소·eSIM·공항픽업 링크는 <b>트립닷컴 파트너스</b> 제휴 링크입니다. 구매가 이루어지면 수수료를 받지만 결제 금액은 같습니다.</p>
+        </section>
+
         <!-- ============ 공통 체크 ============ -->
         <section class="pk-check" id="check" aria-labelledby="pkCheckTitle">
           <h2 id="pkCheckTitle">패스를 사기 전에 확인할 6가지</h2>
@@ -340,11 +400,13 @@
           <a class="go" href="/osaka">오사카·교토 도시 페이지 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="go" href="/tokyo">도쿄 도시 페이지 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="go" href="/guides/singapore-3n4d-course-budget">싱가포르 3박4일 경비 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="go" href="/guides/hongkong-macau-3n4d-course">홍콩·마카오 3박4일 경비 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="side-card">
           <h3>이 페이지 기준</h3>
           <p>오사카 주유패스는 스룻토 KANSAI·Osaka Metro의 <b>2026년도판</b>(2026.3.25 발매, 2026.4.1~2027.3.31 이용) 요금입니다. 시설 입장료는 각 시설 공식 요금표를 2026.11.20에 확인했습니다.</p>
           <p>도쿄 지하철권은 Tokyo Metro·도쿄도 교통국 공식 요금, 나리타 접근은 게이세이·JR 동일본 운임표, 방콕은 BTS 매표소 판매가, 타이베이는 첩운·FunPASS 공식 안내를 기준으로 했습니다.</p>
+          <p>홍콩은 MTR 공항철도 요금표(옥토퍼스 120/105/73, 왕복권 215/195/130, 2~4인 묶음표)와 시티버스 A21 34.6·A11 41.9홍콩달러를 2026.10~11에 확인했습니다.</p>
           <p>싱가포르는 SimplyGo 공식 요금·수수료 안내(MRT·버스 1.28~2.57싱가포르달러, 외국 카드 하루 0.60싱가포르달러, EZ-Link 카드 10 중 5 불환)와 Singapore Tourist Pass 1·2·3일권 17·24·29싱가포르달러를 2026.11 확인했습니다. 2026-12-26부터 요금이 0.12~0.13싱가포르달러 오릅니다.</p>
           <p>원화 환산은 공개 환율을 한 번 불러와 계산하며, 카드 수수료·스프레드는 반영하지 않습니다.</p>
         </div>
@@ -359,7 +421,7 @@
   var root = document.getElementById('pkData');
   if (!root) return;
   var DATA = JSON.parse(root.textContent);
-  var RATE = { JPY: DATA.fx.JPY, THB: DATA.fx.THB, TWD: DATA.fx.TWD, SGD: DATA.fx.SGD || 1043.25 };
+  var RATE = { JPY: DATA.fx.JPY, THB: DATA.fx.THB, TWD: DATA.fx.TWD, SGD: DATA.fx.SGD || 1043.25, HKD: DATA.fx.HKD || 171.35 };
   var el = function (id) { return document.getElementById(id); };
   function num(v) { var n = Number(String(v == null ? '' : v).replace(/[^0-9.]/g, '')); return isFinite(n) ? n : 0; }
   function fmt(n, d) { return Number(n).toLocaleString('ko-KR', { maximumFractionDigits: d || 0, minimumFractionDigits: d || 0 }); }
@@ -370,10 +432,10 @@
     return Math.round(v);
   }
   function krwText(cur, n) { return '약 ' + fmt(krw(cur, n)) + '원'; }
-  function unit(cur) { return cur === 'JPY' ? '엔' : cur === 'THB' ? '밧' : cur === 'SGD' ? '싱가포르달러' : '대만달러'; }
+  function unit(cur) { return cur === 'JPY' ? '엔' : cur === 'THB' ? '밧' : cur === 'SGD' ? '싱가포르달러' : cur === 'HKD' ? '홍콩달러' : '대만달러'; }
   function setRateText() {
     var t = el('pkRate');
-    if (t) t.innerHTML = '1엔 <b>' + RATE.JPY.toFixed(2) + '원</b> · 1밧 <b>' + RATE.THB.toFixed(2) + '원</b> · 1대만달러 <b>' + RATE.TWD.toFixed(2) + '원</b> · 1싱가포르달러 <b>' + RATE.SGD.toFixed(2) + '원</b>';
+    if (t) t.innerHTML = '1엔 <b>' + RATE.JPY.toFixed(2) + '원</b> · 1밧 <b>' + RATE.THB.toFixed(2) + '원</b> · 1대만달러 <b>' + RATE.TWD.toFixed(2) + '원</b> · 1싱가포르달러 <b>' + RATE.SGD.toFixed(2) + '원</b> · 1홍콩달러 <b>' + RATE.HKD.toFixed(2) + '원</b>';
     var b = el('pkBkkRate');
     if (b) b.textContent = '1밧 = ' + RATE.THB.toFixed(2) + '원';
   }
@@ -594,6 +656,67 @@
     }
   }
 
+  /* ---------- 홍콩 ---------- */
+  var HK = DATA.hongkong;
+  var hkState = { station: 'kowloon', pax: 2, bus: 34.6, taxi: 290 };
+  document.querySelectorAll('[data-hk]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      hkState.station = b.getAttribute('data-hk');
+      document.querySelectorAll('[data-hk]').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); });
+      var st = null;
+      HK.stations.forEach(function (s) { if (s.id === hkState.station) st = s; });
+      var busIn = el('pkHkBus');
+      if (busIn && st) { busIn.value = st.id === 'hkg' ? HK.bus.A11 : HK.bus.A21; hkState.bus = Number(busIn.value); }
+      var taxiIn = el('pkHkTaxi');
+      if (taxiIn && st) { taxiIn.value = st.id === 'hkg' ? HK.taxi.central : HK.taxi.tst; hkState.taxi = Number(taxiIn.value); }
+      calcHk();
+    });
+  });
+  ['pkHkPax', 'pkHkBus', 'pkHkTaxi'].forEach(function (id) {
+    var n = el(id); if (!n) return;
+    n.addEventListener('input', function () { hkState[id === 'pkHkPax' ? 'pax' : id === 'pkHkBus' ? 'bus' : 'taxi'] = num(n.value); calcHk(); });
+  });
+  function calcHk() {
+    if (!HK) return;
+    var st = HK.stations[0];
+    HK.stations.forEach(function (s) { if (s.id === hkState.station) st = s; });
+    var pax = Math.max(1, Math.round(hkState.pax || 1));
+    var round = st.round * pax;
+    var grp = st.group[String(pax)];
+    var grpTotal = grp ? grp * 2 : null;
+    var octo = st.octopus * pax * 2;
+    var bus = hkState.bus * pax * 2;
+    var taxi = hkState.taxi * 2;
+    var opts = [
+      { name: '공항철도 왕복권', price: round },
+      { name: '옥토퍼스 편도 2회', price: octo },
+      { name: '공항버스', price: bus },
+      { name: '택시', price: taxi }
+    ];
+    if (grpTotal) opts.push({ name: '묶음표 ' + pax + '인 ×2', price: grpTotal });
+    opts.sort(function (a, b) { return a.price - b.price; });
+    el('pkHkRound').textContent = fmt(round, 1) + '홍콩달러 (' + krwText('HKD', round) + ')';
+    el('pkHkGroup').textContent = grpTotal ? fmt(grpTotal, 1) + '홍콩달러 (' + krwText('HKD', grpTotal) + ')' : '2~4인만';
+    el('pkHkOcto').textContent = fmt(octo, 1) + '홍콩달러 (' + krwText('HKD', octo) + ')';
+    el('pkHkBusOut').textContent = fmt(bus, 1) + '홍콩달러 (' + krwText('HKD', bus) + ')';
+    el('pkHkTaxiOut').textContent = fmt(taxi, 1) + '홍콩달러 (' + krwText('HKD', taxi) + ')';
+    el('pkHkBest').textContent = opts[0].name + ' ' + fmt(opts[0].price, 1) + '홍콩달러';
+    el('pkHkBestKrw').textContent = krwText('HKD', opts[0].price) + ' · ' + st.name + ' 기준 · ' + pax + '인 왕복';
+    var v = el('pkHkVerdict');
+    var diff = round - bus;
+    if (pax === 1) {
+      v.innerHTML = '<b>혼자면 공항버스(' + fmt(bus, 1) + '홍콩달러)가 가장 쌉니다.</b> 공항철도 왕복권(' + fmt(round, 1) + ')과 ' + fmt(diff, 1) + '홍콩달러(' + krwText('HKD', diff) + ') 차이입니다. 짐이 많고 시간이 아까우면 AEL, 숙소가 버스 정류장 근처면 버스가 맞습니다.';
+    } else if (opts[0].name === '공항버스') {
+      v.innerHTML = '<b>가장 싼 건 공항버스 ' + fmt(opts[0].price, 1) + '홍콩달러입니다.</b> 다만 80~100분 걸립니다. ' + st.name + '까지 ' + st.minutes + '분인 공항철도 왕복권은 ' + fmt(round, 1) + '홍콩달러로 ' + fmt(round - opts[0].price, 1) + '홍콩달러(' + krwText('HKD', round - opts[0].price) + ') 더 비싸고, 짐이 많거나 밤 도착이면 그 값을 시간으로 내는 셈입니다. 2인 AEL 기준으로는 묶음표(' + (grpTotal ? fmt(grpTotal, 1) : '–') + ')가 왕복권보다 쌉니다.';
+    } else if (opts[0].name.indexOf('묶음표') === 0) {
+      v.innerHTML = '<b>' + pax + '인 묶음표가 가장 쌉니다(' + fmt(opts[0].price, 1) + '홍콩달러).</b> 편도 전용이라 공항에서 한 장, 시내에서 한 장을 사야 하고 산 날만 쓸 수 있습니다. 왕복권(' + fmt(round, 1) + ')보다 ' + fmt(round - opts[0].price, 1) + '홍콩달러(' + krwText('HKD', round - opts[0].price) + ') 쌉니다.';
+    } else if (opts[0].name === '택시') {
+      v.innerHTML = '<b>' + pax + '인이면 택시가 ' + fmt(opts[0].price, 1) + '홍콩달러로 가장 쌉니다.</b> 인원이 늘수록 1인 부담이 내려갑니다. 통행료·짐 추가 요금은 별도이고, 귀국일 교통 정체를 감안하세요.';
+    } else {
+      v.innerHTML = '<b>가장 싼 방법은 ' + opts[0].name + '(' + fmt(opts[0].price, 1) + '홍콩달러)입니다.</b> 공항철도 왕복권은 ' + fmt(round, 1) + ', 옥토퍼스 편도 2회는 ' + fmt(octo, 1) + ', 공항버스는 ' + fmt(bus, 1) + '홍콩달러입니다. ' + st.name + '까지 ' + st.minutes + '분이고, 버스는 교통 상황에 따라 80~100분 걸립니다.';
+    }
+  }
+
   /* ---------- 탭 ---------- */
   document.querySelectorAll('.pk-tab').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -610,7 +733,7 @@
   var startBtn = h ? document.querySelector('.pk-tab[data-city="' + h + '"]') : null;
   if (startBtn) startBtn.click();
 
-  calcOsaka(); calcTokyo(); calcBkk(); calcTpe(); calcSg();
+  calcOsaka(); calcTokyo(); calcBkk(); calcTpe(); calcSg(); calcHk();
 
   /* ---------- 실시간 환율(1회) ---------- */
   function tryRate(i) {
@@ -626,11 +749,11 @@
       .then(function (j) {
         var base = i === 0 ? (j && j.rates) : (j && j.krw);
         if (!base) throw new Error('bad');
-        ['JPY', 'THB', 'TWD', 'SGD'].forEach(function (c) {
+        ['JPY', 'THB', 'TWD', 'SGD', 'HKD'].forEach(function (c) {
           var v = base[c] || base[c.toLowerCase()];
           if (v && v > 0) RATE[c] = 1 / v;
         });
-        setRateText(); calcOsaka(); calcTokyo(); calcBkk(); calcTpe(); calcSg(); renderNarita();
+        setRateText(); calcOsaka(); calcTokyo(); calcBkk(); calcTpe(); calcSg(); calcHk(); renderNarita();
       })
       .catch(function () { tryRate(i + 1); })
       .then(function () { if (timer) clearTimeout(timer); });

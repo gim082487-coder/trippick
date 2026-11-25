@@ -194,7 +194,7 @@ for chip in ('data-fd-season="spring"', '"summer"', '"autumn"', '"winter"', 'dat
 stay_html = read(OUT / "stays.html")
 wish_tour = re.findall(r'data-wish="tour:[^"]+" data-wish-item="([^"]*)"', home)
 wish_stay = re.findall(r'data-wish="stay:[^"]+" data-wish-item="([^"]*)"', stay_html)
-check(len(wish_tour) == 84 and len(wish_stay) == 108, f"찜 버튼 홈 {len(wish_tour)} · /stays {len(wish_stay)}")
+check(len(wish_tour) == 84 and len(wish_stay) == 116, f"찜 버튼 홈 {len(wish_tour)} · /stays {len(wish_stay)}")
 badw = 0
 for raw in wish_tour + wish_stay:
     d = json.loads(raw.replace("&quot;", '"').replace("&amp;", "&"))
@@ -231,7 +231,7 @@ if ACTION.exists():
     check("kind: scheduled-action" in fm and "schedule:" in fm, "action.md 프론트매터 내용 변경됨")
     for slug in NEW:
         check(f"https://trippick.pages.dev/guides/{slug}" in act, f"action.md 에 {slug} URL 없음")
-    check("141개" in act, "action.md 사이트맵 기준 수(141개) 미갱신")
+    check("144개" in act, "action.md 사이트맵 기준 수(144개) 미갱신")
 else:
     fails.append(f"action.md 없음: {ACTION}")
 

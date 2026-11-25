@@ -5,7 +5,7 @@
 뒤에 실행한다.
 
 검사 항목
- 1. search_index.json — 도시 30·가이드(데이터 기준)·숙소 108·투어 84·맛집 75, URL 이 전부 실제로 열리는 곳인지
+ 1. search_index.json — 도시 30·가이드(데이터 기준)·숙소 116·투어 84·맛집 75, URL 이 전부 실제로 열리는 곳인지
     (가이드 파일 존재 / 홈 앵커 존재 / /stays 지역 존재 / 도시 허브 파일 존재)
  2. 카드의 찜·비교 버튼 키가 비교 데이터(tpCompare)와 1:1 인지, 찜 데이터 JSON 이 파싱되는지
  3. 결정 배지가 데이터에 있는 속성만 말하는지 — 즉시확정·모바일 바우처는 안내문에 그 표현이 있을 때만,
@@ -48,7 +48,7 @@ counts = {}
 for it in items:
     counts[it["k"]] = counts.get(it["k"], 0) + 1
 expect = {"city": 30, "guide": len(json.loads((DATA / "guides.json").read_text(encoding="utf-8"))["guides"]),
-          "stay": 108, "tour": 84, "food": 75}
+          "stay": 116, "tour": 84, "food": 75}
 for k, n in expect.items():
     check(counts.get(k) == n, f"search_index.json {k} {counts.get(k)}건 (기대 {n})")
 
@@ -117,7 +117,7 @@ for key, raw in wishes:
 
 kind2, cmp2 = compare_payload(stays)
 check(kind2 == "stay", f"/stays tpCompare kind={kind2}")
-check(len(cmp2) == 108, f"/stays 비교 데이터 {len(cmp2)}건 (기대 108)")
+check(len(cmp2) == 116, f"/stays 비교 데이터 {len(cmp2)}건 (기대 116)")
 adds2 = set(re.findall(r'data-cmp-add="(stay:[^"]+)"', stays))
 check(adds2 == set(cmp2), f"/stays 비교 버튼 {len(adds2)}개 ↔ 데이터 {len(cmp2)}개 불일치")
 for key, h in cmp2.items():
