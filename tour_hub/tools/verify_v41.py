@@ -117,7 +117,7 @@ for key, raw in wishes:
 
 kind2, cmp2 = compare_payload(stays)
 check(kind2 == "stay", f"/stays tpCompare kind={kind2}")
-check(len(cmp2) == 116, f"/stays 비교 데이터 {len(cmp2)}건 (기대 116)")
+check(len(cmp2) == 116, f"/stays 비교 데이터 {len(cmp2)}건 (기대 119)")
 adds2 = set(re.findall(r'data-cmp-add="(stay:[^"]+)"', stays))
 check(adds2 == set(cmp2), f"/stays 비교 버튼 {len(adds2)}개 ↔ 데이터 {len(cmp2)}개 불일치")
 for key, h in cmp2.items():

@@ -1,0 +1,115 @@
+{
+ "pc_japan-mounjaro-injection-guide": {
+  "scrollW": 1280,
+  "clientW": 1280,
+  "broken": [],
+  "h2": 9,
+  "tb": 8,
+  "faq": 5,
+  "gact": 6,
+  "overflow": [
+   "A:169",
+   "A:418",
+   "I:201",
+   "A:562",
+   "I:450",
+   "A:684",
+   "I:594"
+  ],
+  "pageerror": []
+ },
+ "pc_guam-4n5d-course": {
+  "scrollW": 1280,
+  "clientW": 1280,
+  "broken": [],
+  "h2": 8,
+  "tb": 7,
+  "faq": 5,
+  "gact": 6,
+  "overflow": [
+   "A:175",
+   "A:341",
+   "I:207",
+   "A:463",
+   "I:373"
+  ],
+  "pageerror": []
+ },
+ "pc_hawaii-oahu-5n7d-course": {
+  "scrollW": 1280,
+  "clientW": 1280,
+  "broken": [],
+  "h2": 8,
+  "tb": 6,
+  "faq": 5,
+  "gact": 6,
+  "overflow": [
+   "A:91",
+   "A:279",
+   "I:123",
+   "A:400",
+   "I:311"
+  ],
+  "pageerror": []
+ },
+ "mo_japan-mounjaro-injection-guide": {
+  "scrollW": 390,
+  "clientW": 390,
+  "broken": [],
+  "h2": 9,
+  "tb": 8,
+  "faq": 5,
+  "gact": 6,
+  "overflow": [
+   "A:94",
+   "A:351",
+   "I:126",
+   "A:479",
+   "I:383",
+   "A:757",
+   "I:511",
+   "A:975"
+  ],
+  "pageerror": []
+ },
+ "mo_guam-4n5d-course": {
+  "scrollW": 390,
+  "clientW": 390,
+  "broken": [],
+  "h2": 8,
+  "tb": 7,
+  "faq": 5,
+  "gact": 6,
+  "overflow": [
+   "A:30",
+   "A:291",
+   "I:62",
+   "A:539",
+   "I:323",
+   "A:742",
+   "I:571",
+   "A:975"
+  ],
+  "pageerror": []
+ },
+ "mo_hawaii-oahu-5n7d-course": {
+  "scrollW": 390,
+  "clientW": 390,
+  "broken": [],
+  "h2": 8,
+  "tb": 6,
+  "faq": 5,
+  "gact": 6,
+  "overflow": [
+   "cont-item:164",
+   "cont-t:133",
+   "EM:133",
+   "B:133",
+   "[object SVGAnimatedString]:153",
+   "[object SVGAnimatedString]:150",
+   "A:14",
+   "A:218"
+  ],
+  "pageerror": []
+ }
+}

@@ -3,7 +3,7 @@
 
     python3 tools/verify_v53.py
 
-1. 가이드 116편 · sitemap 144 URL · 모든 lastmod 2026-11-25(KST)
+1. 가이드 119편 · sitemap 147 URL · 모든 lastmod 2026-11-25(KST)
 2. v53 신규 3편 — 본문 2,200자 이상, Article·BreadcrumbList·FAQPage·Organization,
    히어로 1200×800·OG 1200×630·WebP 변형(picture), FAQ 4문항, 도구 바, 제휴 카드, 제목 60자 이하
 3. 신규 ↔ 기존 양방향 related, guide_extra(지역·요약·확인값), photo_credits
@@ -11,7 +11,7 @@
 5. /passes 홍콩 패널 — 탭·칩 3역·계산 함수·FAQ·제휴 카드
 6. /checklist — v52·v53 가이드 카드
 7. build.py 산출과 build_pages 산출 sitemap 동일 · IndexNow 키 배포본
-8. 서치콘솔 action.md 사이트맵 기준 수(144개)
+8. 서치콘솔 action.md 사이트맵 기준 수(147개)
 """
 from __future__ import annotations
 
@@ -95,7 +95,7 @@ def main():
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 116, f"가이드 {len(guides)}편 (기대 116)")
+    check(len(guides) == 119, f"가이드 {len(guides)}편 (기대 119)")
 
     extra = load("guide_extra.json")
     ex = extra["guides"]
@@ -213,7 +213,7 @@ def main():
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 144, f"sitemap {len(locs)} URL (기대 144)")
+    check(len(locs) == 147, f"sitemap {len(locs)} URL (기대 147)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
@@ -225,7 +225,7 @@ def main():
     # 8. 서치콘솔 action.md
     if ACTION.exists():
         act = read(ACTION)
-        check("144개" in act, "action.md 사이트맵 기준 수(144개) 미갱신")
+        check("147개" in act, "action.md 사이트맵 기준 수(147개) 미갱신")
         check("chiang-mai-3n4d-course" in act, "action.md 에 v53 신규 URL 없음")
     else:
         fails.append(f"action.md 없음: {ACTION}")

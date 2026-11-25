@@ -21,7 +21,7 @@
   "aff": 0,
   "per": 4212,
   "h2": 8,
-  "indeg": 24
+  "indeg": 29
  },
  {
   "file": "airport-lounge-card-guide.html",
@@ -129,7 +129,7 @@
   "aff": 3,
   "per": 1730,
   "h2": 9,
-  "indeg": 5
+  "indeg": 6
  },
  {
   "file": "currency-payment-fees.html",
@@ -201,7 +201,7 @@
   "aff": 0,
   "per": 6147,
   "h2": 11,
-  "indeg": 33
+  "indeg": 41
  },
  {
   "file": "esim-roaming-insurance-guide.html",
@@ -297,7 +297,7 @@
   "aff": 4,
   "per": 1180,
   "h2": 6,
-  "indeg": 19
+  "indeg": 20
  },
  {
   "file": "fukuoka-yufuin-3n4d-course.html",
@@ -360,6 +360,18 @@
   "indeg": 19
  },
  {
+  "file": "guam-4n5d-course.html",
+  "slug": "guam-4n5d-course",
+  "title": "괌 4박5일 코스 — 투몬·렌터카·공항 택시·2인 경비 (2026) | 트립픽",
+  "h1": "괌 4박5일, 투몬 4박 + 남부 드라이브 2인 161만 원",
+  "desc": "괌 4박5일 2026. 무료 G-CNMI ETA 45일·ESTA 40.62달러, 공항→투몬 택시 7.20달러+짐, 레드 셔틀 15달러·렌터카 45달러, 사랑의 절벽 3달러·피시아이 16달러, 숙소 4박 536,184원~, 2인 1,608,617원.",
+  "chars": 5486,
+  "aff": 3,
+  "per": 1829,
+  "h2": 8,
+  "indeg": 3
+ },
+ {
   "file": "guam-resorts.html",
   "slug": "guam-resorts",
   "title": "괌 4박5일 리조트 비교 (리가로얄·PIC·두짓타니 실지출) | 트립픽",
@@ -369,7 +381,7 @@
   "aff": 0,
   "per": 2279,
   "h2": 7,
-  "indeg": 11
+  "indeg": 14
  },
  {
   "file": "guam-vs-saipan-comparison.html",
@@ -381,7 +393,7 @@
   "aff": 16,
   "per": 435,
   "h2": 11,
-  "indeg": 4
+  "indeg": 7
  },
  {
   "file": "gyeongju-hwangridangil-2d.html",
@@ -405,7 +417,19 @@
   "aff": 0,
   "per": 2523,
   "h2": 6,
-  "indeg": 10
+  "indeg": 14
+ },
+ {
+  "file": "hawaii-oahu-5n7d-course.html",
+  "slug": "hawaii-oahu-5n7d-course",
+  "title": "하와이 오아후 5박7일 코스 — 와이키키·예약·경비 (2026) | 트립픽",
+  "h1": "하와이 오아후 5박7일, 예약 3곳 과 2인 288만 원",
+  "desc": "하와이 오아후 5박7일 2026. ESTA 40.62달러, 공항→와이키키 택시 38달러·TheBus 3.25달러, HOLO 7일 45달러, 다이아몬드헤드 5달러+주차10달러, 하나우마 25달러(월·화 휴무), 숙소 5박 1,613,192원~, 2인 2,881,836원.",
+  "chars": 4645,
+  "aff": 3,
+  "per": 1548,
+  "h2": 8,
+  "indeg": 3
  },
  {
   "file": "hongkong-macau-3n4d-course.html",
@@ -453,7 +477,7 @@
   "aff": 2,
   "per": 2292,
   "h2": 7,
-  "indeg": 9
+  "indeg": 10
  },
  {
   "file": "incheon-yeongjongdo-2d.html",
@@ -540,6 +564,18 @@
   "indeg": 9
  },
  {
+  "file": "japan-mounjaro-injection-guide.html",
+  "slug": "japan-mounjaro-injection-guide",
+  "title": "마운자로 일본 여행 반입 규정 — 1개월분·기내 휴대·보관 | 트립픽",
+  "h1": "마운자로 들고 일본 가기, 1개월분·기내·보관 기준",
+  "desc": "마운자로 일본 반입 2026. 처방약·자가주사 1개월분(4펜) 서류 면제, 초과 시 수입확인증, 기내 주사기 허용·젤 아이스팩 100mL, 2~8℃ 보관·30℃ 이하 21일, 귀국 6병·3개월·GLP-1 12개.",
+  "chars": 6028,
+  "aff": 3,
+  "per": 2009,
+  "h2": 9,
+  "indeg": 5
+ },
+ {
   "file": "japan-rental-car-etc-guide.html",
   "slug": "japan-rental-car-etc-guide",
   "title": "일본 렌터카 — 국제운전면허증·ETC·KEP/HEP·주유 (2026) | 트립픽",
@@ -549,7 +585,7 @@
   "aff": 4,
   "per": 1382,
   "h2": 10,
-  "indeg": 6
+  "indeg": 8
  },
  {
   "file": "japan-ryokan-onsen-etiquette-budget.html",
@@ -669,7 +705,7 @@
   "aff": 5,
   "per": 915,
   "h2": 7,
-  "indeg": 9
+  "indeg": 11
  },
  {
   "file": "narita-haneda-transfer.html",
@@ -813,7 +849,7 @@
   "aff": 0,
   "per": 7267,
   "h2": 7,
-  "indeg": 13
+  "indeg": 15
  },
  {
   "file": "packing-powerbank-liquid.html",
@@ -825,7 +861,7 @@
   "aff": 0,
   "per": 3145,
   "h2": 5,
-  "indeg": 54
+  "indeg": 53
  },
  {
   "file": "paris-london-5n7d.html",
@@ -1221,7 +1257,7 @@
   "aff": 0,
   "per": 4227,
   "h2": 8,
-  "indeg": 6
+  "indeg": 9
  },
  {
   "file": "travel-medication-rules-guide.html",
@@ -1233,7 +1269,7 @@
   "aff": 0,
   "per": 3702,
   "h2": 8,
-  "indeg": 15
+  "indeg": 19
  },
  {
   "file": "ulleung-2n3d.html",
@@ -1269,7 +1305,7 @@
   "aff": 0,
   "per": 2357,
   "h2": 5,
-  "indeg": 16
+  "indeg": 17
  },
  {
   "file": "usj-express-pass.html",

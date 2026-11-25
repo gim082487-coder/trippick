@@ -40,7 +40,7 @@ def load(name):
 
 # ---------------------------------------------------------------- 1. 가이드
 guides = load("guides.json")["guides"]
-check(len(guides) == 116, f"가이드 {len(guides)}편 (기대 116)")
+check(len(guides) == 119, f"가이드 {len(guides)}편 (기대 119)")
 by = {g["slug"]: g for g in guides}
 for slug in NEW:
     g = by.get(slug)
@@ -109,7 +109,7 @@ for slug in NEW[:2]:
 
 # ---------------------------------------------------------------- 4. sitemap·색인·action
 locs = re.findall(r"<loc>([^<]+)</loc>", read(OUT / "sitemap.xml"))
-check(len(locs) == 144, f"sitemap {len(locs)} URL (기대 144)")
+check(len(locs) == 147, f"sitemap {len(locs)} URL (기대 147)")
 check("https://trippick.pages.dev/sos" in locs, "sitemap 에 /sos 없음")
 idx = json.loads(read(OUT / "search_index.json"))
 items = idx.get("items") or []
@@ -118,7 +118,7 @@ check(len(pages) == 1 and pages[0]["u"] == "/sos", f"search_index 도구 항목 
 if ACTION.exists():
     act = read(ACTION)
     check(act.startswith("---\ntitle:"), "action.md 프론트매터가 맨 앞에 없음")
-    check("144개" in act, "action.md 사이트맵 기준 수(144개) 미갱신")
+    check("147개" in act, "action.md 사이트맵 기준 수(147개) 미갱신")
     check("https://trippick.pages.dev/sos" in act, "action.md 에 /sos URL 없음")
     for slug in NEW:
         check(f"https://trippick.pages.dev/guides/{slug}" in act, f"action.md 에 {slug} URL 없음")

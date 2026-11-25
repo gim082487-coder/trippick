@@ -90,7 +90,7 @@ def main():
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 116, f"가이드 {len(guides)}편 (기대 116)")
+    check(len(guides) == 119, f"가이드 {len(guides)}편 (기대 119)")
 
     # 1·2 신규 4편
     for slug in NEW:
@@ -137,14 +137,14 @@ def main():
     check("tokyo-disney-parks" in hubs["tokyo"]["guides"], "도쿄 허브에 tokyo-disney-parks 없음")
     check("japan-ic-card" in hubs["tokyo"]["guides"], "도쿄 허브에 japan-ic-card 없음")
     check("usj-express-pass" in hubs["osaka"]["guides"], "오사카 허브에 usj-express-pass 없음")
-    check("관련 가이드 13편" in hubs["tokyo"]["metaDesc"], "도쿄 허브 metaDesc 가이드 수 미갱신")
-    check("관련 가이드 15편" in hubs["osaka"]["metaDesc"], "오사카 허브 metaDesc 가이드 수 미갱신")
+    check("관련 가이드 14편" in hubs["tokyo"]["metaDesc"], "도쿄 허브 metaDesc 가이드 수 미갱신")
+    check("관련 가이드 16편" in hubs["osaka"]["metaDesc"], "오사카 허브 metaDesc 가이드 수 미갱신")
 
     # 3 사이트맵
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 144, f"sitemap {len(locs)} URL (기대 144)")
+    check(len(locs) == 147, f"sitemap {len(locs)} URL (기대 147)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
