@@ -8,6 +8,13 @@
 - 모바일 미리보기 하네스: `_preview390.html` (390px iframe + 가로 넘침 측정)
 - 기준일: 2026-11-16 (여행 커넥트) / 2026-11-17 (부산·강원 쇼핑 커넥트 레저) / 2026-11-19 (v19 신규 상품 24종·클룩)
 
+## v55 (2026-11-26) — 404였던 해외 9개 도시를 검색 랜딩 페이지로
+1. **도시 허브 9곳 신설** — `city_hubs.json`에 괌·사이판·싱가포르·홍콩·마카오·파리·런던·로마·바르셀로나를 넣어 `/guam` … `/barcelona`가 404에서 200이 됐습니다. 기존 허브와 같은 템플릿으로 찐숙소 카드(`stays.json`)·트립닷컴 숙소·투어·패키지(`tours.json`)·eSIM(`essentials.json`)·교통패스(`/passes?city=`)·환율·SOS 프리셋·관련 가이드(`guides.json`)를 자동 연결하고, 사이트맵은 **147 → 156 URL**(루트와 `deploy_site` 산출이 한 글자까지 동일).
+2. **`tips`·FAQ 신규** — 허브마다 `현지 기본 정보` 카드 4개(`build_pages.py: hub_tips()`, CSS `.hub-tips`)와 FAQ 2~4문항(`hub_faq_pairs()`)을 넣었습니다. FAQ 답은 저장소 데이터(stays·season·essentials·tours)에서만 만들고 `FAQPage` JSON-LD와 본문 `details.fq`에 같은 문답을 둡니다.
+3. **허브 날짜** — `city_hubs.json`의 `updated`(도시별)를 쓰도록 바꿔 기존 13곳은 11.20, 신규 9곳은 11.26으로 표기합니다.
+4. **수정** — 방콕 3박5일 예산 표에 사찰 입장료 1,000밧(39,500원) 반영·eSIM 2인 28,900원 보정(총 137만/166만/221만원), 괌 eSIM `1,050원~/1일` 단위 명시, D-Day 위젯 도시 22곳.
+5. **검증** — HTML 159개·내부 링크 17,027개 실패 0, `verify_v36~v54` 전부 통과, 라이브 11 URL × 1280·390 넘침 0·깨진 이미지 0·pageerror 0(`trippick_repo/v55_shots/`), IndexNow 13 URL HTTP 200.
+
 ## v47 (2026-11-24) — Core Web Vitals CLS · sitemap 날짜 자동화 · 애드센스 점검
 1. **CLS 원인 3가지와 수정** — ① `cdn.jsdelivr.net` Pretendard 스타일시트가 `assets/site.css` 앞에서 렌더를 막아, 하위 페이지가 스타일 없이 먼저 그려졌습니다(데스크톱 `/stays` CLS 0.338). → 폰트 CSS·woff2 92개 청크를 `assets/fonts/`로 자체 호스팅하고 `site.css` 다음에 둡니다. ② 폰트 교체(FOUT) 때 긴 리드 문단의 줄 수가 바뀌어 28px씩 밀렸습니다. → `@font-face "Pretendard Fallback"`에 실측 비율 `size-adjust:93.1%`(Pretendard 16,155 : Noto Sans KR 17,355)를 걸어 대체 폰트 폭을 맞춥니다(폰트는 그대로 Pretendard 사용). ③ 홈 `#fdList` 파인더 결과와 내 여행 D-Day 띠가 JS로 뒤늦게 삽입되어 아래 콘텐츠를 밀었습니다. → 파인더 기본 상태(이번 달 시즌·2인·100~200만원)를 `build.py: finder_default_view()`로 서버에서 먼저 렌더(모바일 홈 CLS 0.078→0), D-Day 띠는 흐름에서 빼고 화면 아래 고정 필로 바꿉니다(재방문 CLS 0.027~0.144→0).
 2. **측정** — 1280·390, 14개 페이지 × 신규/재방문 시나리오에서 CLS: 모바일 전부 0.000, 데스크톱 0.001 이하(재방문 `/quiz` 0.061·`/checklist` 0.074는 D-Day 카드가 저장 상태로 바뀌며 생기는 값). 수정 전 라이브: 데스크톱 `/stays` 0.338, 모바일 홈 0.078.
