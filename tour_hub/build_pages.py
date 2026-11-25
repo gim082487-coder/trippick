@@ -2192,7 +2192,8 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
   <a class="hub-tool" href="{cal_href}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">{esc(cal_note)}</span></a>
 </div>"""
 
-    meta = [f'<span><b>트립픽 편집</b></span>', '<i></i>', '<span>업데이트 2026.11.20</span>', '<i></i>']
+    _upd = (hub.get("updated") or hub_specs().get("updated") or "2026-11-20").replace("-", ".")
+    meta = [f'<span><b>트립픽 편집</b></span>', '<i></i>', f'<span>업데이트 {_upd}</span>', '<i></i>']
     if tours:
         meta.append(f'<span>투어·패키지 {len(tours)}개</span><i></i>')
         meta.append(f'<span>1인 {won(lowest)}원~</span>')

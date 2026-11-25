@@ -504,7 +504,8 @@
     "travel-card-fees-comparison",
     "travel-insurance-guide",
     "incheon-airport-smartpass-lounge"
-   ]
+   ],
+   "updated": "2026-11-26"
   },
   {
    "slug": "saipan",
@@ -556,7 +557,8 @@
     "travel-card-fees-comparison",
     "travel-insurance-guide",
     "hotel-booking-timing-refund-tips"
-   ]
+   ],
+   "updated": "2026-11-26"
   },
   {
    "slug": "singapore",
@@ -610,7 +612,8 @@
     "travel-card-fees-comparison",
     "travel-insurance-guide",
     "hotel-booking-timing-refund-tips"
-   ]
+   ],
+   "updated": "2026-11-26"
   },
   {
    "slug": "hongkong",
@@ -660,7 +663,8 @@
     "currency-payment-fees",
     "travel-card-fees-comparison",
     "hotel-booking-timing-refund-tips"
-   ]
+   ],
+   "updated": "2026-11-26"
   },
   {
    "slug": "macau",
@@ -711,7 +715,8 @@
     "travel-card-fees-comparison",
     "airport-arrival-city-transfer-guide",
     "hotel-booking-timing-refund-tips"
-   ]
+   ],
+   "updated": "2026-11-26"
   },
   {
    "slug": "paris",
@@ -767,7 +772,8 @@
     "solo-vs-couple-travel-budget",
     "travel-card-fees-comparison",
     "overseas-roaming-esim-install-troubleshooting"
-   ]
+   ],
+   "updated": "2026-11-26"
   },
   {
    "slug": "london",
@@ -821,7 +827,8 @@
     "currency-payment-fees",
     "solo-vs-couple-travel-budget",
     "airport-arrival-city-transfer-guide"
-   ]
+   ],
+   "updated": "2026-11-26"
   },
   {
    "slug": "rome",
@@ -877,7 +884,8 @@
     "europe-train-eurail-vs-point",
     "travel-insurance-guide",
     "solo-vs-couple-travel-budget"
-   ]
+   ],
+   "updated": "2026-11-26"
   },
   {
    "slug": "barcelona",
@@ -933,7 +941,8 @@
     "solo-vs-couple-travel-budget",
     "currency-payment-fees",
     "travel-insurance-guide"
-   ]
+   ],
+   "updated": "2026-11-26"
   }
  ]
 }
