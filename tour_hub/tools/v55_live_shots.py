@@ -25,6 +25,7 @@ PAGES = [
     ("/london", "london"),
     ("/rome", "rome"),
     ("/barcelona", "barcelona"),
+    ("/", "home"),
     ("/cities/", "cities"),
     ("/guides/bangkok-pattaya-3n5d-course-budget", "bangkok_guide"),
 ]

@@ -97,7 +97,7 @@ def main():
         if cc in SOS:
             check(f"sos?country={SOS[cc]}" in html, f"허브 {slug}: SOS 프리셋(sos?country={SOS[cc]}) 없음")
         else:
-            check('href="sos"' in html, f"허브 {slug}: SOS 도구 링크 없음")
+            check('href="sos"' in html or 'href="sos.html"' in html, f"허브 {slug}: SOS 도구 링크 없음")
         if slug in ("osaka", "tokyo", "bangkok", "taipei"):
             check(f"passes?city={slug}" in html, f"허브 {slug}: 패스 프리셋(passes?city=) 없음")
         else:

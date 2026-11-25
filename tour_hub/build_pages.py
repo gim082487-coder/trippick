@@ -2185,10 +2185,12 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     _links = tool_links(slug, hub.get("country") or "kr")
     pass_href = _links["passes"]
     fx_basis_text = (fx_basis(_links["cur"]) if _links["cur"] else "") or "12개 통화 · 면세 환급 계산"
+    _sos_note = (f"{hub['name']} 경찰·구급·공관" if (hub.get("country") or "kr") in SOS_OF_COUNTRY
+                 else "경찰·구급 10개국 · 이 도시 공관 번호는 직접 확인")
     hub_tools_html = f"""<div class="hub-tools" aria-label="{esc(hub['name'])} 도구">
   <a class="hub-tool" href="{_links['exchange']}"><span class="hub-tool-k">EXCHANGE</span><b>환율 계산 · 면세 환급</b><span class="hub-tool-n">{esc(fx_basis_text)}</span></a>
   <a class="hub-tool" href="{pass_href}"><span class="hub-tool-k">PASS</span><b>{esc(pass_title)}</b><span class="hub-tool-n">{esc(pass_sub)}</span></a>
-  <a class="hub-tool" href="{_links['sos']}"><span class="hub-tool-k">SOS</span><b>현지 긴급번호 · 현지어 카드</b><span class="hub-tool-n">{esc(hub['name'])} 경찰·구급·공관</span></a>
+  <a class="hub-tool" href="{_links['sos']}"><span class="hub-tool-k">SOS</span><b>현지 긴급번호 · 현지어 카드</b><span class="hub-tool-n">{esc(_sos_note)}</span></a>
   <a class="hub-tool" href="{cal_href}"><span class="hub-tool-k">SEASON</span><b>{esc(hub['name'])} 12개월 날씨·가격</b><span class="hub-tool-n">{esc(cal_note)}</span></a>
 </div>"""
 

@@ -107,6 +107,18 @@
   "status": 200,
   "pageerror": []
  },
+ "pc_home": {
+  "scrollW": 1280,
+  "clientW": 1280,
+  "broken": [],
+  "faq": 8,
+  "tips": 0,
+  "tipsOverflow": 0,
+  "title": "트립픽(TripPick) | 오사카·도쿄·다낭 여행 코스 추천 & 투어·패키지 특가 비교",
+  "h1": "설레는 여행은,동선에서 시작됩니다",
+  "status": 200,
+  "pageerror": []
+ },
  "pc_cities": {
   "scrollW": 1280,
   "clientW": 1280,
@@ -236,6 +248,18 @@
   "tipsOverflow": 0,
   "title": "바르셀로나 여행 사그라다 파밀리아·숙소·스페인 일주 총정리 (2026년 11월)",
   "h1": "바르셀로나 여행, 가우디·숙소·스페인 일주를 한 페이지에",
+  "status": 200,
+  "pageerror": []
+ },
+ "mo_home": {
+  "scrollW": 390,
+  "clientW": 390,
+  "broken": [],
+  "faq": 8,
+  "tips": 0,
+  "tipsOverflow": 0,
+  "title": "트립픽(TripPick) | 오사카·도쿄·다낭 여행 코스 추천 & 투어·패키지 특가 비교",
+  "h1": "설레는 여행은,동선에서 시작됩니다",
   "status": 200,
   "pageerror": []
  },
