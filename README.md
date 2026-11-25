@@ -28,7 +28,7 @@
 | `tour_hub/data/stays.json` | 국내외 찐숙소 108곳(29개 지역 · 평점·리뷰·1박 최저가·테마·트립닷컴 trip_sub3 딥링크) |
 | `tour_hub/data/timeline.json` | v26 여행 준비 D-Day 4단계 타임라인(D-30·D-14·D-3·D-0, 해외 21개 / 국내 13개 항목) |
 | `tour_hub/data/checklist.json` | 출국 준비 데이터 — 입국서류·기내반입 + 환전 카드 3종·여행자보험 3곳 비교 |
-| `tour_hub/data/fx.json` | v16 환율·면세 계산기 데이터 — 12개 통화 fallback 환율(2026-11-23 고시)과 빠른 금액, 일본 면세 세율 10%·8% |
+| `tour_hub/data/fx.json` | v16 환율·면세 계산기 데이터 — 12개 통화 fallback 환율(2026-11-25 고시)과 빠른 금액, 일본 면세 세율 10%·8% |
 | `tour_hub/data/baggage.json` | v16 항공사 8곳 수하물 규정(기내·위탁·1개 한도·공식 링크)과 쿠팡 준비물 4종 |
 | `tour_hub/data/city_hubs.json` | 도시별 페이지 7곳 정의(오사카·도쿄·후쿠오카·다낭·방콕·타이베이·제주) — 제목·설명·연결할 상품/맛집/선물/숙소/가이드 |
 | `tour_hub/data/passes.json` | v18 교통패스 계산기 데이터 — 오사카 주유패스 권종·무료 시설 8곳, 도쿄 지하철 24/48/72시간·나리타 접근 5수단, 방콕 BTS·MRT, 타이베이 펀패스·이지카드, v42 싱가포르 SimplyGo EZ-Link·컨택트리스·Tourist Pass 1/2/3일 |
