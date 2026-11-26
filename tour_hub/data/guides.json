@@ -603,7 +603,9 @@
     "bangkok-pattaya-3n5d-course-budget",
     "danang-hoian-rainy",
     "bangkok-3-packages",
-    "nhatrang-dalat-tour-vs-free"
+    "nhatrang-dalat-tour-vs-free",
+    "vietnam-esim",
+    "thailand-souvenir-list"
    ],
    "ctaTitle": "방콕 3박5일 총액 계산",
    "ctaText": "공항 이동과 호텔 위치를 넣으면 교통비까지 포함해 비교합니다.",
@@ -635,7 +637,10 @@
     "packing-powerbank-liquid",
     "osaka-amazing-pass",
     "tokyo-subway-ticket",
-    "danang-hoian-rainy"
+    "danang-hoian-rainy",
+    "japan-souvenir-list",
+    "japan-ic-card",
+    "fukuoka-yufuin-3n4d-course"
    ],
    "ctaTitle": "데이터 비용까지 총액에 넣기",
    "ctaText": "인원을 넣으면 eSIM을 인원수만큼 계산해 1인 실질가로 보여줍니다.",
@@ -893,7 +898,9 @@
     "zhangjiajie-special-terms",
     "bangkok-airport",
     "danang-hoian-rainy",
-    "vietnam-esim"
+    "vietnam-esim",
+    "thailand-souvenir-list",
+    "chiang-mai-3n4d-course"
    ],
    "ctaTitle": "내 출발일로 다시 계산하면?",
    "ctaText": "인원과 기간을 넣으면 항공·숙소·투어를 같은 기준으로 다시 계산합니다.",
@@ -2130,7 +2137,14 @@
     "passport-application-guide",
     "airport-checkin-customs-guide",
     "oceania-eta-nzeta",
-    "japan-esim"
+    "japan-esim",
+    "hongkong-macau-3n4d-course",
+    "chiang-mai-3n4d-course",
+    "bali-ubud-seminyak-3n4d-course",
+    "shanghai-2n3d-3n4d-course",
+    "japan-mounjaro-injection-guide",
+    "guam-4n5d-course",
+    "hawaii-oahu-5n7d-course"
    ],
    "ctaTitle": "내 여행지에 필요한 서류만 모아 보면?",
    "ctaText": "나라와 출국일을 넣으면 입국신고서·전자허가·여권 유효기간을 제출 시점 순서로 정리합니다. 무료 공식 주소와 대행 사이트를 구분해 보여줍니다.",
@@ -2162,7 +2176,11 @@
     "packing-powerbank-liquid",
     "passport-application-guide",
     "entry-immigration-guide",
-    "travel-card-packing-guide"
+    "travel-card-packing-guide",
+    "passport-phone-lost-emergency",
+    "hongkong-macau-3n4d-course",
+    "japan-mounjaro-injection-guide",
+    "hawaii-oahu-5n7d-course"
    ],
    "ctaTitle": "내 짐과 면세액을 미리 계산하면?",
    "ctaText": "보조배터리 Wh와 면세 초과액을 넣으면 기내 반입 가능 여부와 과세 대상 금액을 계산합니다. 자진신고 감면까지 반영해 보세요.",
@@ -2684,7 +2702,8 @@
     "vietnam-esim",
     "southeast-asia-gift-list",
     "esim-roaming-insurance-guide",
-    "chiang-mai-3n4d-course"
+    "chiang-mai-3n4d-course",
+    "bali-ubud-seminyak-3n4d-course"
    ],
    "ctaTitle": "내 도시 공항 요금으로 계산하기",
    "ctaText": "도시와 인원을 넣으면 공항 이동·숙소·투어를 같은 기준으로 계산합니다.",
@@ -2856,7 +2875,10 @@
     "packing-powerbank-liquid",
     "airport-checkin-customs-guide",
     "travel-card-packing-guide",
-    "flight-delay-card-lost-emergency"
+    "flight-delay-card-lost-emergency",
+    "esim-roaming-insurance-guide",
+    "chiang-mai-3n4d-course",
+    "shanghai-2n3d-3n4d-course"
    ],
    "ctaTitle": "내 날짜·노선으로 총액 계산하기",
    "ctaText": "인원과 도시를 넣으면 항공·숙소·투어·수하물까지 같은 기준으로 계산합니다.",
@@ -3364,7 +3386,12 @@
     "incheon-airport-parking-bus",
     "bangkok-airport",
     "osaka-usj-transfer",
-    "fukuoka-yufuin"
+    "fukuoka-yufuin",
+    "taipei-food-route",
+    "japan-ic-card",
+    "fukuoka-yufuin-3n4d-course",
+    "japan-rental-car-etc-guide",
+    "shanghai-2n3d-3n4d-course"
    ],
    "ctaTitle": "내 도착 시각으로 공항→숙소 동선 계산하기",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·공항 이동까지 같은 기준으로 총액을 계산합니다.",
@@ -3473,7 +3500,8 @@
     "japan-esim",
     "vietnam-esim",
     "travel-card-packing-guide",
-    "airport-arrival-city-transfer-guide"
+    "airport-arrival-city-transfer-guide",
+    "hongkong-macau-3n4d-course"
    ],
    "ctaTitle": "내 일정에 맞는 eSIM·로밍 총액 계산하기",
    "ctaText": "출발일과 인원을 넣으면 eSIM·유심·로밍을 같은 기준으로 비교해 보여줍니다.",
@@ -3581,7 +3609,8 @@
     "flight-delay-card-lost-emergency",
     "esim-roaming-insurance-guide",
     "passport-phone-lost-emergency",
-    "travel-card-packing-guide"
+    "travel-card-packing-guide",
+    "japan-mounjaro-injection-guide"
    ],
    "ctaTitle": "내 여행 보험 담보·병원비 계산하기",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·여행자보험까지 같은 기준으로 총액을 계산합니다.",
@@ -3804,7 +3833,13 @@
     "japan-donki-tax-free-guide",
     "europe-shopping-tax-refund",
     "danang-hoian-3n5d",
-    "taipei-3n4d-course-budget"
+    "taipei-3n4d-course-budget",
+    "flight-delay-card-lost-emergency",
+    "solo-vs-couple-travel-budget",
+    "hongkong-macau-3n4d-course",
+    "chiang-mai-3n4d-course",
+    "bali-ubud-seminyak-3n4d-course",
+    "shanghai-2n3d-3n4d-course"
    ],
    "ctaTitle": "내 여행 경비로 수수료를 계산하면?",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·투어·eSIM을 같은 기준으로 계산합니다. 현지 지출은 통화별 카드·현금 비율로 나눠 보세요.",
@@ -4072,10 +4107,14 @@
    "essentials": [],
    "related": [
     "travel-card-fees-comparison",
+    "okinawa-3n4d-course",
+    "southeast-asia-injection-guide",
     "passport-phone-lost-emergency",
     "overseas-sick-hospital-insurance-claim",
-    "okinawa-3n4d-course",
-    "southeast-asia-injection-guide"
+    "solo-vs-couple-travel-budget",
+    "japan-rental-car-etc-guide",
+    "guam-4n5d-course",
+    "hawaii-oahu-5n7d-course"
    ],
    "ctaTitle": "출국 전 준비, 빠진 항목 없는지 확인",
    "ctaText": "D-30부터 당일까지 네 단계로 묶은 체크리스트에서 보험·서류·수하물을 한 번에 점검합니다.",
@@ -4175,7 +4214,8 @@
     "packing-powerbank-liquid",
     "airport-checkin-customs-guide",
     "travel-insurance-guide",
-    "entry-immigration-guide"
+    "entry-immigration-guide",
+    "japan-mounjaro-injection-guide"
    ],
    "ctaTitle": "들고 가는 약, 세관에서 문제없을까",
    "ctaText": "성분·수량·서류 순서로 확인하고, 입국 때 신고 대상이면 자진신고로 30% 감면을 받으세요.",
@@ -4608,7 +4648,8 @@
     "travel-insurance-guide",
     "japan-winter-clothing",
     "sapporo-hokkaido-3n4d-winter",
-    "passport-application-guide"
+    "passport-application-guide",
+    "airport-arrival-city-transfer-guide"
    ],
    "ctaTitle": "내 날짜·공항으로 렌터카 요금 비교",
    "ctaText": "인수 공항과 날짜를 넣으면 컴팩트·SUV·미니밴 요금을 같은 기준으로 비교합니다. 성수기와 주말은 같은 차도 값이 크게 다릅니다.",

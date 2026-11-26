@@ -2500,6 +2500,7 @@ TOOL_PAGES = [
     ("stays", "0.9", "weekly"),
     ("passes", "0.9", "monthly"),
     ("calendar", "0.9", "monthly"),
+    ("coupons", "0.9", "weekly"),
 ]
 
 

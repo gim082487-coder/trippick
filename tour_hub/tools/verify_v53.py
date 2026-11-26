@@ -213,7 +213,7 @@ def main():
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 160, f"sitemap {len(locs)} URL (기대 160)")
+    check(len(locs) == 161, f"sitemap {len(locs)} URL (기대 161)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")

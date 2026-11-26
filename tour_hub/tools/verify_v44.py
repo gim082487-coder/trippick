@@ -109,7 +109,7 @@ for slug in NEW[:2]:
 
 # ---------------------------------------------------------------- 4. sitemap·색인·action
 locs = re.findall(r"<loc>([^<]+)</loc>", read(OUT / "sitemap.xml"))
-check(len(locs) == 160, f"sitemap {len(locs)} URL (기대 160)")
+check(len(locs) == 161, f"sitemap {len(locs)} URL (기대 161)")
 check("https://trippick.pages.dev/sos" in locs, "sitemap 에 /sos 없음")
 idx = json.loads(read(OUT / "search_index.json"))
 items = idx.get("items") or []

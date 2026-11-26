@@ -150,7 +150,7 @@ if js.exists():
 # ---------------------------------------------------------------- 5. sitemap·action
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 160, f"sitemap {len(locs)} URL (기대 160)")
+check(len(locs) == 161, f"sitemap {len(locs)} URL (기대 161)")
 for slug in NEW:
     check(f"/guides/{slug}" in sm, f"sitemap 에 /guides/{slug} 없음")
 if ACTION.exists():
