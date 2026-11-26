@@ -1006,6 +1006,171 @@
     "travel-insurance-guide"
    ],
    "updated": "2026-11-26"
+  },
+  {
+   "slug": "chiangmai",
+   "name": "치앙마이",
+   "nav": "치앙마이",
+   "country": "th",
+   "flag": "th",
+   "kicker": "CHIANG MAI",
+   "seoTitle": "치앙마이 여행 숙소·3박4일·썽태우 요금 총정리 (2026년 11월) | 트립픽",
+   "metaDesc": "치앙마이 숙소 5곳 1박 2만 3,620원~9만 7,722원(2인). 공항 정액택시 150밧·썽태우 30밧, 도이수텝 30밧, eSIM 1일 110원부터.",
+   "keywords": "치앙마이 여행, 치앙마이 숙소, 치앙마이 3박4일, 치앙마이 공항 택시 150밧, 썽태우 30밧, 도이수텝, 님만해민, 치앙마이 eSIM",
+   "h1": "치앙마이 여행, <em>숙소·썽태우·3박4일</em>을 한 페이지에",
+   "intro": "치앙마이는 올드시티(성벽 안)와 님만해민·후웨이 깨우, 야시장이 차로 10~15분씩 떨어져 있어 어디에 묵느냐가 하루 동선을 정합니다. 숙소는 1박·2인 기준 파타라 플레이스 2만 3,620원, 홀리데이 가든 4만 4,392원, 스테이 위드 님만 9만 7,722원이고, 공항에서는 정액택시 150밧(약 5,940원)으로 15분, 시내 이동은 빨간 썽태우 1인 30밧이면 대부분 해결됩니다. 도이수텝 입장료는 30밧, 코끼리 보호구역 반나절은 2,500밧입니다.",
+   "giftFallback": "치앙마이 선물·기념품 가격표는 매장별 확인이 끝나면 다음 업데이트에 넣습니다. 그전까지는 태국 선물 목록 가이드에서 출발 전에 사 두면 좋은 것만 모았습니다.",
+   "foodFallback": "치앙마이 맛집은 영업 여부와 메뉴판 가격을 확인한 뒤 싣습니다. 그전까지 식비와 하루 동선은 아래 3박4일 코스 가이드에 숫자로 계산해 두었습니다.",
+   "hotels": [
+    "chiangmai"
+   ],
+   "image": "images/v59/chiangmai.jpg",
+   "imageAlt": "치앙마이 도이수텝 사원의 금탑과 등불",
+   "imageCredit": "사진: Pexels (Vishal Chokkala)",
+   "ogImage": "images/og/v59-chiangmai-og.jpg",
+   "stayCards": true,
+   "tips": [
+    {
+     "k": "공항 → 시내",
+     "v": "정액택시 150밧(약 5,940원)·15분, SUV 250밧. 그랩 80~200밧, 시내버스 30밧"
+    },
+    {
+     "k": "숙소 1박(2인)",
+     "v": "파타라 2만 3,620원 · 홀리데이 가든 4만 4,392원 · 스테이 위드 님만 9만 7,722원"
+    },
+    {
+     "k": "시내 이동",
+     "v": "빨간 썽태우 1인 30밧(님만해민 40~60밧). 목적지 보여주고 '1인 30밧'을 먼저 말하기"
+    },
+    {
+     "k": "도이수텝",
+     "v": "입장 30밧(현금) + 푸니쿨라 편도 20~50밧. 창푸악 게이트 합승 썽태우 1인 40~50밧"
+    }
+   ],
+   "guides": [
+    "chiang-mai-3n4d-course",
+    "thailand-souvenir-list",
+    "sea-grab-taxi-scam-guide",
+    "entry-immigration-guide",
+    "travel-card-fees-comparison",
+    "travel-insurance-guide",
+    "hotel-booking-timing-refund-tips",
+    "overseas-roaming-esim-install-troubleshooting"
+   ],
+   "cityIds": [
+    "chiangmai"
+   ],
+   "updated": "2026-11-26"
+  },
+  {
+   "slug": "bali",
+   "name": "발리",
+   "nav": "발리",
+   "country": "id",
+   "flag": "id",
+   "kicker": "BALI",
+   "seoTitle": "발리 여행 숙소·비자·관광세·3박4일 총정리 (2026년 11월) | 트립픽",
+   "metaDesc": "발리 숙소 5곳 1박 2만 7,289원~31만 550원(2인). 도착비자 500,000·관광세 150,000루피아, 공항→우붓 그랩 340,000루피아, eSIM 1일 101원.",
+   "keywords": "발리 여행, 발리 숙소, 발리 3박4일, 발리 비자 e-VOA 500000, 발리 관광세 150000, 우붓 리조트, 스미냑 호텔, 발리 eSIM",
+   "h1": "발리 여행, <em>숙소·비자·관광세</em>를 한 페이지에",
+   "intro": "발리는 쿠타·스미냑과 우붓이 차로 1시간 안팎 떨어져 있어, 3박을 어디에 나눌지가 하루 동선을 정합니다. 숙소는 1박·2인 기준 호텔 테라스 앳 쿠타 2만 7,289원, 디프리마 세미냑 3만 440원, 공항 도보권 힐튼 가든 인 7만 9,525원, 우붓 케란 리조트 12만 8,523원, 더 카욘 정글 리조트 31만 550원입니다. 한국 여권은 무비자가 아니라 도착비자(e-VOA) 500,000루피아가 필요하고, 관광세 150,000루피아가 따로 붙습니다.",
+   "giftFallback": "발리 선물·기념품 가격표는 매장별 확인이 끝나면 다음 업데이트에 넣습니다. 그전까지는 출발 전에 사 두면 현지에서 번거로운 준비물만 모았습니다.",
+   "foodFallback": "발리 맛집은 영업 여부와 메뉴판 가격을 확인한 뒤 싣습니다. 그전까지 식비와 동선은 아래 3박4일 코스 가이드에 숫자로 계산해 두었습니다.",
+   "hotels": [
+    "bali"
+   ],
+   "image": "images/v59/bali.jpg",
+   "imageAlt": "발리 우붓 논과 전통 가옥의 초록 풍경",
+   "imageCredit": "사진: Pexels (Evelin Magnus)",
+   "ogImage": "images/og/v59-bali-og.jpg",
+   "stayCards": true,
+   "tips": [
+    {
+     "k": "입국 비자",
+     "v": "e-VOA 500,000루피아(1인). 30일 체류·1회 연장 가능, 여권 6개월 이상"
+    },
+    {
+     "k": "관광세",
+     "v": "150,000루피아 1회. lovebali.baliprov.go.id 또는 러브발리 앱에서 카드 결제"
+    },
+    {
+     "k": "숙소 1박(2인)",
+     "v": "테라스 앳 쿠타 2만 7,289원 · 힐튼 가든 인(공항 도보) 7만 9,525원 · 케란 리조트 우붓 12만 8,523원"
+    },
+    {
+     "k": "공항 → 우붓",
+     "v": "그랩 340,000~380,000루피아·60~120분. 오전 7시 30분 이전 출발이 병목을 피함"
+    }
+   ],
+   "guides": [
+    "bali-ubud-seminyak-3n4d-course",
+    "entry-immigration-guide",
+    "sea-grab-taxi-scam-guide",
+    "currency-payment-fees",
+    "travel-insurance-guide",
+    "travel-card-fees-comparison",
+    "hotel-booking-timing-refund-tips",
+    "overseas-roaming-esim-install-troubleshooting"
+   ],
+   "cityIds": [
+    "bali"
+   ],
+   "updated": "2026-11-26"
+  },
+  {
+   "slug": "shanghai",
+   "name": "상하이",
+   "nav": "상하이",
+   "country": "cn",
+   "flag": "cn",
+   "kicker": "SHANGHAI",
+   "seoTitle": "상하이 여행 숙소·무비자 30일·2박3일 총정리 (2026년 11월) | 트립픽",
+   "metaDesc": "상하이 숙소 5곳 1박 5만 5,837원~14만 9,017원(2인). 무비자 30일(2026-12-31까지), 푸둥공항→인민광장 지하철 7위안, 예원 40위안.",
+   "keywords": "상하이 여행, 상하이 숙소, 상하이 2박3일, 상하이 무비자 30일, 푸둥공항 지하철 7위안, 난징동루 호텔, 예원 입장료, 상하이 eSIM",
+   "h1": "상하이 여행, <em>숙소·무비자·공항 이동</em>을 한 페이지에",
+   "intro": "상하이는 인민광장·난징동루와 푸둥 루자쭈이, 푸동공항 권역이 서로 멀어 숙소 위치가 이동 시간을 정합니다. 숙소는 1박·2인 기준 비엔나 호텔 푸동 에어포트 5만 5,837원, JI 호텔 둥징루 7만 5,402원, SK 루소 12만 181원, 센트럴 호텔 14만 2,930원, 호텔 샬레 14만 9,017원입니다. 한국 여권은 2026년 12월 31일까지 30일 무비자이고, 푸둥공항에서 인민광장까지 지하철 7위안·자기부상 50위안입니다.",
+   "giftFallback": "상하이 선물·기념품 가격표는 매장별 확인이 끝나면 다음 업데이트에 넣습니다. 그전까지는 출발 전에 사 두면 현지에서 번거로운 준비물만 모았습니다.",
+   "foodFallback": "상하이 맛집은 영업 여부와 메뉴판 가격을 확인한 뒤 싣습니다. 그전까지 식비와 동선은 아래 2박3일·3박4일 가이드에 숫자로 계산해 두었습니다.",
+   "hotels": [
+    "shanghai"
+   ],
+   "image": "images/v59/shanghai.jpg",
+   "imageAlt": "와이탄에서 바라본 상하이 푸둥의 야경",
+   "imageCredit": "사진: Pexels (YFS Visuals)",
+   "ogImage": "images/og/v59-shanghai-og.jpg",
+   "stayCards": true,
+   "tips": [
+    {
+     "k": "무비자",
+     "v": "한국 일반여권 30일 무비자(2026-12-31까지). 여권 유효기간 6개월 이상 권장"
+    },
+    {
+     "k": "공항 → 인민광장",
+     "v": "지하철 7위안, 자기부상 50위안(용양로 환승). 푸동공항에서 시내까지 50~70분"
+    },
+    {
+     "k": "숙소 1박(2인)",
+     "v": "비엔나(푸동공항) 5만 5,837원 · JI 호텔(둥징루) 7만 5,402원 · 호텔 샬레(인민광장) 14만 9,017원"
+    },
+    {
+     "k": "입장료",
+     "v": "예원 40위안 · 상하이타워 180위안 · 황푸강 크루즈 120~150위안 · 디즈니 475~799위안"
+    }
+   ],
+   "guides": [
+    "shanghai-2n3d-3n4d-course",
+    "entry-immigration-guide",
+    "currency-payment-fees",
+    "hongkong-macau-3n4d-course",
+    "flight-cheap-booking-baggage",
+    "travel-card-fees-comparison",
+    "travel-insurance-guide",
+    "overseas-roaming-esim-install-troubleshooting"
+   ],
+   "cityIds": [
+    "shanghai"
+   ],
+   "updated": "2026-11-26"
   }
  ]
 }

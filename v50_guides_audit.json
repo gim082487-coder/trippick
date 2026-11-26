@@ -33,7 +33,7 @@
   "aff": 0,
   "per": 4054,
   "h2": 8,
-  "indeg": 6
+  "indeg": 7
  },
  {
   "file": "autumn-travel-destinations.html",
@@ -57,7 +57,7 @@
   "aff": 3,
   "per": 1944,
   "h2": 10,
-  "indeg": 5
+  "indeg": 9
  },
  {
   "file": "bangkok-3-packages.html",
@@ -77,9 +77,9 @@
   "title": "방콕 3박4일 — 파타야 당일치기 vs 시내 집중, 2인 128만 원 (2026) | 트립픽",
   "h1": "방콕 3박4일, 파타야를 넣으면 시내가 하루 로 줄어듭니다",
   "desc": "방콕 3박4일 코스·예산. 사원 3곳 1,000밧, 공항철도 45밧, BTS 1일권 150밧, 파타야 버스 144밧·그랩 왕복 2,000~3,000밧, 숙소 3만 8,837~20만 7,399원. 2인 128만~188만 원, 12월 비 1.0일. 2026-11 확인.",
-  "chars": 3574,
+  "chars": 3625,
   "aff": 0,
-  "per": 3574,
+  "per": 3625,
   "h2": 5,
   "indeg": 13
  },
@@ -132,6 +132,18 @@
   "indeg": 15
  },
  {
+  "file": "cebu-3n4d-course.html",
+  "slug": "cebu-3n4d-course",
+  "title": "세부 3박4일 코스·경비 — 오슬롭 1,000페소·MyBus 50페소 | 트립픽",
+  "h1": "세부 3박4일, 막탄 2박 + 시티 1박 이 기본입니다",
+  "desc": "세부 3박4일 코스. 오슬롭 고래상어 1,000페소(6~10시), 공항 MyBus 50페소, 숙소 1박 3만 6,684~32만 3,657원, 무비자 30일·eTravel, 2인 23만~109만 원(항공 제외). 2026-11 확인.",
+  "chars": 4453,
+  "aff": 4,
+  "per": 1113,
+  "h2": 8,
+  "indeg": 1
+ },
+ {
   "file": "chiang-mai-3n4d-course.html",
   "slug": "chiang-mai-3n4d-course",
   "title": "치앙마이 3박4일 코스·경비 — 공항택시 150밧·썽태우 30밧·숙소 실제가 (2026) | 트립픽",
@@ -141,7 +153,7 @@
   "aff": 3,
   "per": 1730,
   "h2": 9,
-  "indeg": 4
+  "indeg": 10
  },
  {
   "file": "currency-payment-fees.html",
@@ -153,7 +165,7 @@
   "aff": 4,
   "per": 1092,
   "h2": 6,
-  "indeg": 22
+  "indeg": 26
  },
  {
   "file": "danang-food-route.html",
@@ -177,7 +189,7 @@
   "aff": 5,
   "per": 1285,
   "h2": 9,
-  "indeg": 6
+  "indeg": 9
  },
  {
   "file": "danang-hoian-rainy.html",
@@ -189,7 +201,7 @@
   "aff": 0,
   "per": 2684,
   "h2": 6,
-  "indeg": 42
+  "indeg": 44
  },
  {
   "file": "danang-vs-nhatrang-comparison.html",
@@ -213,7 +225,7 @@
   "aff": 0,
   "per": 6147,
   "h2": 11,
-  "indeg": 43
+  "indeg": 55
  },
  {
   "file": "esim-roaming-insurance-guide.html",
@@ -297,7 +309,7 @@
   "aff": 3,
   "per": 2171,
   "h2": 8,
-  "indeg": 14
+  "indeg": 16
  },
  {
   "file": "flight-delay-card-lost-emergency.html",
@@ -381,7 +393,7 @@
   "aff": 3,
   "per": 1829,
   "h2": 8,
-  "indeg": 7
+  "indeg": 9
  },
  {
   "file": "guam-resorts.html",
@@ -420,6 +432,18 @@
   "indeg": 19
  },
  {
+  "file": "hanoi-halong-3n4d-course.html",
+  "slug": "hanoi-halong-3n4d-course",
+  "title": "하노이·하롱베이 3박4일 — 86번 버스 50,000동·관람료 25만동 | 트립픽",
+  "h1": "하노이·하롱베이 3박4일, 1박 크루즈 를 넣으면 하노이가 하루 반",
+  "desc": "하노이·하롱베이 3박4일. 86번 버스 50,000동, 하롱베이 관람료 250,000동·1박 550,000동, 숙소 1박 1만 6,328~10만 9,350원, 무비자 45일, 2인 18만~37만 원(크루즈 제외). 2026-11 확인.",
+  "chars": 4228,
+  "aff": 4,
+  "per": 1057,
+  "h2": 7,
+  "indeg": 2
+ },
+ {
   "file": "hawaii-hyatt-vs-sheraton.html",
   "slug": "hawaii-hyatt-vs-sheraton",
   "title": "하와이 하얏트 8일 vs 쉐라톤 7일 실경비·취소 위약금 비교 | 트립픽",
@@ -453,7 +477,7 @@
   "aff": 4,
   "per": 1386,
   "h2": 10,
-  "indeg": 16
+  "indeg": 17
  },
  {
   "file": "hotel-booking-timing-refund-tips.html",
@@ -465,7 +489,7 @@
   "aff": 3,
   "per": 1400,
   "h2": 7,
-  "indeg": 13
+  "indeg": 15
  },
  {
   "file": "incheon-airport-parking-bus.html",
@@ -773,9 +797,9 @@
   "title": "오키나와 3박4일 코스 렌터카·숙소 — 츄라우미 2,180엔·유이레일 290엔 | 트립픽",
   "h1": "오키나와 3박4일, 나하 3박 vs 나하 2박+온나 1박",
   "desc": "오키나와 3박4일 코스. 숙소 6곳 1박 6만 6,400원~22만 2,461원(2인), 렌터카 3일 16만 7,092~22만 5,574원, 츄라우미 2,180엔, 유이레일 공항→국제거리 290엔·13분, 2인 현지 경비 66만~119만 원(항공 제외). 2026-11 확인.",
-  "chars": 5354,
+  "chars": 5411,
   "aff": 4,
-  "per": 1338,
+  "per": 1353,
   "h2": 7,
   "indeg": 13
  },
@@ -861,7 +885,7 @@
   "aff": 2,
   "per": 2400,
   "h2": 9,
-  "indeg": 22
+  "indeg": 25
  },
  {
   "file": "overseas-sick-hospital-insurance-claim.html",
@@ -873,7 +897,7 @@
   "aff": 0,
   "per": 7267,
   "h2": 7,
-  "indeg": 16
+  "indeg": 15
  },
  {
   "file": "packing-powerbank-liquid.html",
@@ -885,7 +909,7 @@
   "aff": 0,
   "per": 3145,
   "h2": 5,
-  "indeg": 53
+  "indeg": 54
  },
  {
   "file": "paris-london-5n7d.html",
@@ -922,6 +946,18 @@
   "per": 6257,
   "h2": 7,
   "indeg": 9
+ },
+ {
+  "file": "phu-quoc-3n4d-4n5d-course.html",
+  "slug": "phu-quoc-3n4d-4n5d-course",
+  "title": "푸꾸옥 3박4일·4박5일 — 케이블카 85만동·사파리 95만동 | 트립픽",
+  "h1": "푸꾸옥 3박4일, 남부 케이블카 와 북부 사파리 중 하나",
+  "desc": "푸꾸옥 3박4일·4박5일 코스. 혼똠 케이블카 850,000동(아쿠아토피아 포함), 사파리 950,000동, 빈원더스 1,050,000동, 공항 무료 빈버스, 숙소 1박 5만 1,978~45만 5,768원, 2인 42만~116만 원. 2026-11 확인.",
+  "chars": 5122,
+  "aff": 4,
+  "per": 1280,
+  "h2": 8,
+  "indeg": 1
  },
  {
   "file": "sapporo-biei-winter.html",
@@ -969,7 +1005,7 @@
   "aff": 4,
   "per": 1313,
   "h2": 8,
-  "indeg": 18
+  "indeg": 24
  },
  {
   "file": "seoul-seongsu-bukchon-1d.html",
@@ -993,7 +1029,7 @@
   "aff": 3,
   "per": 1634,
   "h2": 8,
-  "indeg": 7
+  "indeg": 10
  },
  {
   "file": "singapore-3n4d-course-budget.html",
@@ -1005,7 +1041,7 @@
   "aff": 4,
   "per": 1448,
   "h2": 9,
-  "indeg": 8
+  "indeg": 9
  },
  {
   "file": "sokcho-yangyang-2d.html",
@@ -1049,11 +1085,11 @@
   "title": "마운자로·위고비 동남아 반입 규정 — 태국 30일·베트남 200달러·필리핀 처방량 | 트립픽",
   "h1": "동남아에 마운자로 들고 가기, 태국·베트남·필리핀 기준",
   "desc": "마운자로·위고비 동남아 반입 2026. 태국 30일분·향정 30일(31~90일 IC-2), 베트남 30일·200달러·연 3회·처방전 사본, 필리핀 처방전 수량·PRC 면허번호. 기내 주사기 허용, 30℃ 21일, 방콕 클리닉 마운자로 8,999밧부터, 귀국 12펜.",
-  "chars": 4431,
+  "chars": 4466,
   "aff": 0,
-  "per": 4431,
+  "per": 4466,
   "h2": 6,
-  "indeg": 14
+  "indeg": 15
  },
  {
   "file": "spain-barcelona-madrid.html",
@@ -1113,7 +1149,7 @@
   "aff": 5,
   "per": 1138,
   "h2": 8,
-  "indeg": 4
+  "indeg": 5
  },
  {
   "file": "taipei-food-route.html",
@@ -1173,7 +1209,7 @@
   "aff": 0,
   "per": 2429,
   "h2": 5,
-  "indeg": 16
+  "indeg": 19
  },
  {
   "file": "tokyo-disney-parks.html",
@@ -1257,7 +1293,7 @@
   "aff": 0,
   "per": 5643,
   "h2": 11,
-  "indeg": 18
+  "indeg": 23
  },
  {
   "file": "travel-card-packing-guide.html",
@@ -1293,7 +1329,7 @@
   "aff": 0,
   "per": 4227,
   "h2": 8,
-  "indeg": 16
+  "indeg": 21
  },
  {
   "file": "travel-medication-rules-guide.html",
@@ -1365,7 +1401,7 @@
   "aff": 0,
   "per": 2369,
   "h2": 7,
-  "indeg": 34
+  "indeg": 37
  },
  {
   "file": "vietnam-golf-54-vs-36.html",
@@ -1377,7 +1413,7 @@
   "aff": 0,
   "per": 2555,
   "h2": 6,
-  "indeg": 11
+  "indeg": 13
  },
  {
   "file": "vietnam-souvenir-list.html",

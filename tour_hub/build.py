@@ -1342,16 +1342,22 @@ def trip_widget_payload(hubs: list, guides: list, ess_by_id: dict) -> dict:
         "london": ["paris-london-5n7d", "entry-immigration-guide"],
         "rome": ["italy-rome-florence-venice", "europe-shopping-tax-refund"],
         "barcelona": ["spain-barcelona-madrid", "europe-pickpocket-tax-refund-guide"],
+        # v59: 치앙마이·발리·상하이 허브
+        "chiangmai": ["chiang-mai-3n4d-course", "thailand-souvenir-list"],
+        "bali": ["bali-ubud-seminyak-3n4d-course", "entry-immigration-guide"],
+        "shanghai": ["shanghai-2n3d-3n4d-course", "currency-payment-fees"],
     }
     country_ess = {"jp": "jp-esim-usimsa-3d", "vn": "vn-esim-usimsa-3d",
                    "th": "th-esim-usimsa-3d", "tw": "tw-esim-usimsa-3d",
-                   "us": "gu-esim-trip-101949204", "sg": "sg-esim-trip-46011732"}
+                   "us": "gu-esim-trip-101949204", "sg": "sg-esim-trip-46011732",
+                   "id": "id-esim-trip-46278708"}
     short = {"osaka": "오사카", "tokyo": "도쿄", "fukuoka": "후쿠오카", "danang": "다낭",
              "bangkok": "방콕", "taipei": "타이베이", "nhatrang": "나트랑", "jeju": "제주",
              "seoul": "서울", "busan": "부산", "gangneung": "강릉", "yeosu": "여수", "gyeongju": "경주",
              "guam": "괌", "saipan": "사이판", "singapore": "싱가포르", "hongkong": "홍콩", "macau": "마카오",
              "okinawa": "오키나와",
-             "paris": "파리", "london": "런던", "rome": "로마", "barcelona": "바르셀로나"}
+             "paris": "파리", "london": "런던", "rome": "로마", "barcelona": "바르셀로나",
+             "chiangmai": "치앙마이", "bali": "발리", "shanghai": "상하이"}
     cities = []
     for h in hubs:
         slug = h["slug"]

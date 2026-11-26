@@ -194,7 +194,7 @@ for chip in ('data-fd-season="spring"', '"summer"', '"autumn"', '"winter"', 'dat
 stay_html = read(OUT / "stays.html")
 wish_tour = re.findall(r'data-wish="tour:[^"]+" data-wish-item="([^"]*)"', home)
 wish_stay = re.findall(r'data-wish="stay:[^"]+" data-wish-item="([^"]*)"', stay_html)
-check(len(wish_tour) == 84 and len(wish_stay) == 126, f"찜 버튼 홈 {len(wish_tour)} · /stays {len(wish_stay)}")
+check(len(wish_tour) == 84 and len(wish_stay) == 141, f"찜 버튼 홈 {len(wish_tour)} · /stays {len(wish_stay)}")
 badw = 0
 for raw in wish_tour + wish_stay:
     d = json.loads(raw.replace("&quot;", '"').replace("&amp;", "&"))

@@ -567,6 +567,42 @@
    "place": "Okinawa, Japan",
    "alt": "오키나와 바다와 해안 도로",
    "url": "https://www.pexels.com/photo/26629179/"
+  },
+  "v59/phu-quoc-3n4d-4n5d-course": {
+   "pexels_id": 14012627,
+   "place": "Phu Quoc, Vietnam",
+   "alt": "푸꾸옥 롱비치의 야자수와 백사장",
+   "url": "https://www.pexels.com/photo/14012627/",
+   "credit": "Quang Nguyen Vinh"
+  },
+  "v59/cebu-3n4d-course": {
+   "pexels_id": 2403531,
+   "place": "Moalboal, Cebu, Philippines",
+   "alt": "세부 모알보알 바다를 헤엄치는 다이버",
+   "url": "https://www.pexels.com/photo/2403531/",
+   "credit": "Elaine Bernadine Castro"
+  },
+  "v59/hanoi-halong-3n4d-course": {
+   "pexels_id": 38003935,
+   "place": "Hanoi, Vietnam",
+   "alt": "하노이 호안끼엠 호수와 응옥썬 사당",
+   "url": "https://www.pexels.com/photo/38003935/",
+   "credit": "Valeria Drozdova"
+  },
+  "v59/chiangmai": {
+   "from": "images/v53/chiang-mai-3n4d-course.jpg",
+   "alt": "치앙마이 도이수텝 사원의 금탑과 등불",
+   "credit": "사진: Pexels (Vishal Chokkala)"
+  },
+  "v59/bali": {
+   "from": "images/v53/bali-ubud-seminyak-3n4d-course.jpg",
+   "alt": "발리 우붓 논과 전통 가옥의 초록 풍경",
+   "credit": "사진: Pexels (Evelin Magnus)"
+  },
+  "v59/shanghai": {
+   "from": "images/v53/shanghai-2n3d-3n4d-course.jpg",
+   "alt": "와이탄에서 바라본 상하이 푸둥의 야경",
+   "credit": "사진: Pexels (YFS Visuals)"
   }
  }
 }

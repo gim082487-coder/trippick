@@ -9,7 +9,8 @@
   "priceNote": "가격은 카드에 적힌 조회 날짜의 1박·성인 2명·세금·서비스비용 포함 최저가입니다. 같은 숙소도 날짜·객실·잔여 상황에 따라 달라집니다.",
   "rate": "숙소 5~7% (예약 건수에 따라)",
   "v53": "2026-11-25: 홍콩(cityId 58)·마카오(cityId 59) 숙소 4곳씩 8곳을 추가했습니다. 트립닷컴 숙소 목록(2026-12-10~11, 성인 2명, KRW)에서 평점·리뷰 수·성급·1박 최저가·대표 이미지를 옮겼고, 상세 페이지 HTTP 200과 한국어 호텔명을 확인한 뒤 파트너스 코드(Allianceid/SID/trip_sub3)를 붙였습니다.",
-  "v56": "2026-11-26: 오키나와 지역(나하 4·온나 2 = 6곳)을 새로 넣고, 홍콩에 MK 스테이·엠파이어 프레스티지 침사추이, 마카오에 베네시안 마카오·골든 크라운 차이나를 추가했습니다. 가격은 트립닷컴 숙소 목록에서 2026-12-10~11(온나 12-11~12) 성인 2명·세금 포함 최저가로 조회한 값이고, 카드마다 기준일을 적었습니다."
+  "v56": "2026-11-26: 오키나와 지역(나하 4·온나 2 = 6곳)을 새로 넣고, 홍콩에 MK 스테이·엠파이어 프레스티지 침사추이, 마카오에 베네시안 마카오·골든 크라운 차이나를 추가했습니다. 가격은 트립닷컴 숙소 목록에서 2026-12-10~11(온나 12-11~12) 성인 2명·세금 포함 최저가로 조회한 값이고, 카드마다 기준일을 적었습니다.",
+  "v59": "2026-11-26: 치앙마이(5)·발리(5)·상하이(5) 숙소 15곳을 새로 넣었습니다. 가격은 트립닷컴 숙소 목록에서 2026-12-10~11 성인 2명·세금 포함 1박 최저가로 조회한 값이고, 성급·존·공항/역 거리는 같은 호텔 상세 페이지에서 확인했습니다."
  },
  "themes": [
   {
@@ -699,6 +700,84 @@
     {
      "slug": "okinawa-3n4d-course",
      "label": "오키나와 3박4일"
+    }
+   ]
+  },
+  {
+   "id": "chiangmai",
+   "name": "치앙마이",
+   "country": "태국",
+   "note": "올드시티(성벽 안)와 님만해민·후웨이 깨우, 야시장(창 클란) 세 축입니다. 사원·도보 관광은 올드시티, 카페·쇼핑은 님만해민이 편하고, 공항에서는 차로 13분 안팎입니다.",
+   "count": 5,
+   "top": "스테이 위드 님만 치앙마이",
+   "listUrl": "https://kr.trip.com/hotels/list?city=623&display=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&optionId=623&optionType=City&optionName=%EC%B9%98%EC%95%99%EB%A7%88%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_chiangmai&trip_sub3=D21372570",
+   "cityId": "623",
+   "scope": "intl",
+   "hub": "chiangmai",
+   "guides": [
+    {
+     "slug": "chiang-mai-3n4d-course",
+     "label": "치앙마이 3박4일"
+    },
+    {
+     "slug": "thailand-souvenir-list",
+     "label": "태국 선물 목록"
+    },
+    {
+     "slug": "sea-grab-taxi-scam-guide",
+     "label": "동남아 그랩·택시"
+    }
+   ]
+  },
+  {
+   "id": "bali",
+   "name": "발리",
+   "country": "인도네시아",
+   "note": "쿠타·스미냑(해변·비치클럽), 우붓(논·사원·요가), 공항 인접 쿠타 투반이 서로 차로 30분~1시간 40분 떨어집니다. 3박이면 우붓 2박+스미냑 1박, 공항 도착일 밤이 늦으면 공항 근처 1박이 안전합니다.",
+   "count": 5,
+   "top": "더 카욘 정글 리조트",
+   "listUrl": "https://kr.trip.com/hotels/list?city=723&display=%EB%B0%9C%EB%A6%AC&optionId=723&optionType=City&optionName=%EB%B0%9C%EB%A6%AC&Allianceid=11407530&SID=336341874&trip_sub1=hotel_bali&trip_sub3=D21372570",
+   "cityId": "723",
+   "scope": "intl",
+   "hub": "bali",
+   "guides": [
+    {
+     "slug": "bali-ubud-seminyak-3n4d-course",
+     "label": "발리 3박4일"
+    },
+    {
+     "slug": "entry-immigration-guide",
+     "label": "입국서류 총정리"
+    },
+    {
+     "slug": "sea-grab-taxi-scam-guide",
+     "label": "그랩·택시 요금"
+    }
+   ]
+  },
+  {
+   "id": "shanghai",
+   "name": "상하이",
+   "country": "중국",
+   "note": "인민광장·난징동루(관광·쇼핑), 푸둥 루자쭈이(전망·비즈니스), 푸동공항·디즈니 쪽이 서로 멉니다. 2박3일이면 인민광장·난징동루에 몰고, 푸동공항 도착이 밤이면 공항 근처 1박이 이동을 줄입니다.",
+   "count": 5,
+   "top": "비엔나 호텔 푸동 에어포트",
+   "listUrl": "https://kr.trip.com/hotels/list?city=2&display=%EC%83%81%ED%95%98%EC%9D%B4&optionId=2&optionType=City&optionName=%EC%83%81%ED%95%98%EC%9D%B4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_shanghai&trip_sub3=D21372570",
+   "cityId": "2",
+   "scope": "intl",
+   "hub": "shanghai",
+   "guides": [
+    {
+     "slug": "shanghai-2n3d-3n4d-course",
+     "label": "상하이 2박3일·3박4일"
+    },
+    {
+     "slug": "entry-immigration-guide",
+     "label": "무비자·입국서류"
+    },
+    {
+     "slug": "currency-payment-fees",
+     "label": "환전·결제 수수료"
     }
    ]
   }
@@ -4606,6 +4685,366 @@
    "pointTags": [
     "반도",
     "가성비"
+   ]
+  },
+  {
+   "region": "chiangmai",
+   "id": "661433",
+   "name": "파타라 플레이스",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 321,
+   "zone": "창 푸악",
+   "access": "치앙마이 기차역 5km · 차로 15분",
+   "reason": "리뷰 321개·9.0 — 1박 2만 3,620원으로 치앙마이 5곳 중 가장 낮습니다. 올드시티 북쪽 창 푸악에 있어 도보 관광보다는 썽태우·그랩 이동 기준으로 잡을 때 맞습니다.",
+   "price": 23620,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/chiangmai-661433.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=623&hotelId=661433&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_chiangmai_661433&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "창 푸악",
+    "가성비"
+   ]
+  },
+  {
+   "region": "chiangmai",
+   "id": "1547475",
+   "name": "홀리데이 가든 호텔 & 리조트 치앙 마이",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.6,
+   "reviews": 1629,
+   "zone": "후웨이 깨우",
+   "access": "치앙마이 국제공항 5.1km · 차로 13분",
+   "reason": "리뷰 1,629개·8.6 — 공항에서 차로 13분, 야외 수영장과 정원이 있는 리조트형입니다. 님만해민 카페 거리까지 도보 15분 거리라 아침·저녁 동선이 짧습니다.",
+   "price": 44392,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/chiangmai-1547475.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=623&hotelId=1547475&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_chiangmai_1547475&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": [
+    "후웨이 깨우",
+    "수영장"
+   ]
+  },
+  {
+   "region": "chiangmai",
+   "id": "25926084",
+   "name": "아이콘 파크 호텔 치앙마이",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 1055,
+   "zone": "창 푸악",
+   "access": "치앙마이 기차역 4.6km · 차로 14분",
+   "reason": "리뷰 1,055개·8.9 — 4성급 중 가격이 낮은 쪽입니다. 성벽 북쪽 창 푸악이라 올드시티 사원까지 차로 5~10분, 야시장은 10분 안팎입니다.",
+   "price": 58461,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/chiangmai-25926084.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=623&hotelId=25926084&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_chiangmai_25926084&trip_sub3=D21372570",
+   "themes": [],
+   "pointTags": [
+    "창 푸악"
+   ]
+  },
+  {
+   "region": "chiangmai",
+   "id": "997792",
+   "name": "두앙따완 호텔 치앙마이",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.2,
+   "reviews": 1225,
+   "zone": "야시장",
+   "access": "치앙마이 기차역 3.2km · 차로 10분",
+   "reason": "리뷰 1,225개·8.2 — 야시장(나이트 바자) 바로 옆이라 저녁 식사·쇼핑이 도보권입니다. 고층 객실 전망이 좋다는 평이 많고, 공항까지 차로 15분 안팎입니다.",
+   "price": 70859,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/chiangmai-997792.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=623&hotelId=997792&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_chiangmai_997792&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "야시장",
+    "도보 관광"
+   ]
+  },
+  {
+   "region": "chiangmai",
+   "id": "12591320",
+   "name": "스테이 위드 님만 치앙마이",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 1834,
+   "zone": "님만해민",
+   "access": "치앙마이 국제공항 4km · 차로 11분",
+   "reason": "리뷰 1,834개·9.1 — 님만해민 한가운데라 카페·마야몰·원님만이 도보권입니다. 공항 11분, 5곳 중 평점이 가장 높습니다.",
+   "price": 97722,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/chiangmai-12591320.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=623&hotelId=12591320&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_chiangmai_12591320&trip_sub3=D21372570",
+   "themes": [
+    "pool"
+   ],
+   "pointTags": [
+    "님만해민",
+    "쇼핑"
+   ]
+  },
+  {
+   "region": "bali",
+   "id": "685020",
+   "name": "호텔 테라스 앳 쿠타",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 328,
+   "zone": "쿠타",
+   "access": "응우라라이 국제공항 5.7km · 차로 19분",
+   "reason": "리뷰 328개·8.9 — 1박 2만 7,289원으로 발리 5곳 중 최저입니다. 쿠타 해변까지 걸어갈 수 있고 공항에서 19분이라, 늦은 도착 첫날 밤에 맞습니다.",
+   "price": 27289,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/bali-685020.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=723&hotelId=685020&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bali_685020&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "쿠타",
+    "가성비"
+   ]
+  },
+  {
+   "region": "bali",
+   "id": "2625052",
+   "name": "디프리마 호텔 페티텡게트 세미냑",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 489,
+   "zone": "스미냑",
+   "access": "응우라라이 국제공항 13.4km · 차로 32분",
+   "reason": "리뷰 489개·8.9 — 스미냑 페티텡게트 거리 안쪽이라 비치클럽·식당이 도보권인데 1박 3만 440원입니다. 수영장이 있는 4성급 중 가장 낮은 값입니다.",
+   "price": 30440,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/bali-2625052.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=723&hotelId=2625052&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bali_2625052&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "pool"
+   ],
+   "pointTags": [
+    "스미냑",
+    "가성비"
+   ]
+  },
+  {
+   "region": "bali",
+   "id": "1837738",
+   "name": "힐튼 가든 인 발리 응우라 라이 에어포트",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.3,
+   "reviews": 1927,
+   "zone": "쿠타(공항)",
+   "access": "응우라라이 국제공항 730m · 도보 10분",
+   "reason": "리뷰 1,927개·8.3 — 공항에서 도보 10분(730m)이라 새벽 출발·심야 도착에 가장 안전합니다. 브랜드 호텔이라 조식과 체크인 절차가 안정적입니다.",
+   "price": 79525,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/bali-1837738.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=723&hotelId=1837738&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bali_1837738&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "공항 도보",
+    "심야 도착"
+   ]
+  },
+  {
+   "region": "bali",
+   "id": "54563964",
+   "name": "케란 리조트 우붓",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.7,
+   "reviews": 419,
+   "zone": "우붓",
+   "access": "응우라라이 국제공항 44.3km · 차로 1시간 25분",
+   "reason": "리뷰 419개·8.7 — 우붓 북쪽 켄데란의 5성 리조트로 1박 12만 8,523원입니다. 우붓 중심까지 차로 15분 안팎이고, 논·계곡 전망 객실이 중심입니다.",
+   "price": 128523,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/bali-54563964.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=723&hotelId=54563964&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bali_54563964&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "villa"
+   ],
+   "pointTags": [
+    "우붓",
+    "리조트"
+   ]
+  },
+  {
+   "region": "bali",
+   "id": "23591673",
+   "name": "더 카욘 정글 리조트",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.6,
+   "reviews": 139,
+   "zone": "우붓(파양안)",
+   "access": "응우라라이 국제공항 52km · 차로 1시간 41분",
+   "reason": "리뷰 139개·9.6 — 발리 5곳 중 평점이 가장 높은 정글 리조트입니다. 공항에서 1시간 41분이라 3박 중 1~2박을 통째로 리조트에서 쓰는 일정에 맞습니다.",
+   "price": 310550,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/bali-23591673.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=723&hotelId=23591673&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_bali_23591673&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "villa"
+   ],
+   "pointTags": [
+    "우붓",
+    "정글뷰"
+   ]
+  },
+  {
+   "region": "shanghai",
+   "id": "1073814",
+   "name": "비엔나 호텔 푸동 에어포트",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.5,
+   "reviews": 18514,
+   "zone": "푸둥·공항지구",
+   "access": "지하철 링콩루 4.3km · 차로 11분",
+   "reason": "리뷰 18,514개·9.5 — 푸동공항 권역에서 평점이 높고 1박 5만 5,837원입니다. 시내 관광보다 환승·새벽 출발에 맞고, 인민광장까지는 지하철로 40분 안팎 걸립니다.",
+   "price": 55837,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/shanghai-1073814.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=2&hotelId=1073814&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_shanghai_1073814&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "푸동공항",
+    "환승"
+   ]
+  },
+  {
+   "region": "shanghai",
+   "id": "98063418",
+   "name": "JI 호텔 상하이 둥징루 스테이션",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.5,
+   "reviews": 1239,
+   "zone": "푸둥와이가오차오",
+   "access": "지하철 둥징루 역 도보권",
+   "reason": "리뷰 1,239개·9.5 — 둥징루 역 도보권이라 2호선으로 인민광장·푸둥을 바로 오갑니다. 1박 7만 5,402원으로 시내 4성급보다 40% 이상 낮습니다.",
+   "price": 75402,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/shanghai-98063418.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=2&hotelId=98063418&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_shanghai_98063418&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "둥징루",
+    "지하철"
+   ]
+  },
+  {
+   "region": "shanghai",
+   "id": "133202575",
+   "name": "상하이 SK 루소 호텔",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 2611,
+   "zone": "인민광장지구",
+   "access": "지하철 난징동루 790m · 도보 13분",
+   "reason": "리뷰 2,611개·9.3 — 인민광장 권역에서 1박 12만 181원으로 가격과 위치의 균형이 좋습니다. 난징동루 보행거리까지 도보 13분, 와이탄은 20분 안팎입니다.",
+   "price": 120181,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/shanghai-133202575.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=2&hotelId=133202575&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_shanghai_133202575&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "인민광장",
+    "난징동루"
+   ]
+  },
+  {
+   "region": "shanghai",
+   "id": "387239",
+   "name": "센트럴 호텔 상하이",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 1831,
+   "zone": "인민광장지구",
+   "access": "지하철 난징동루 320m · 도보 6분",
+   "reason": "리뷰 1,831개·9.0 — 난징동루 역에서 도보 6분이라 짐을 끌고 와도 부담이 없습니다. 와이탄·인민광장·예원이 모두 도보·지하철 한 정거장권입니다.",
+   "price": 142930,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/shanghai-387239.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=2&hotelId=387239&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_shanghai_387239&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "난징동루",
+    "도보 관광"
+   ]
+  },
+  {
+   "region": "shanghai",
+   "id": "72926277",
+   "name": "호텔 샬레 상하이",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.5,
+   "reviews": 15622,
+   "zone": "인민광장지구",
+   "access": "지하철 인민광장 390m · 도보 6분",
+   "reason": "리뷰 15,622개·9.5 — 상하이 5곳 중 리뷰가 가장 많고 평점도 최상위입니다. 인민광장 역 도보 6분이라 1·2·8호선을 모두 쓸 수 있습니다.",
+   "price": 149017,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/shanghai-72926277.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=2&hotelId=72926277&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_shanghai_72926277&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "인민광장",
+    "리뷰 다수"
    ]
   }
  ]

@@ -48,7 +48,7 @@ counts = {}
 for it in items:
     counts[it["k"]] = counts.get(it["k"], 0) + 1
 expect = {"city": 30, "guide": len(json.loads((DATA / "guides.json").read_text(encoding="utf-8"))["guides"]),
-          "stay": 126, "tour": 84, "food": 75}
+          "stay": 141, "tour": 84, "food": 75}
 for k, n in expect.items():
     check(counts.get(k) == n, f"search_index.json {k} {counts.get(k)}건 (기대 {n})")
 
@@ -117,7 +117,7 @@ for key, raw in wishes:
 
 kind2, cmp2 = compare_payload(stays)
 check(kind2 == "stay", f"/stays tpCompare kind={kind2}")
-check(len(cmp2) == 126, f"/stays 비교 데이터 {len(cmp2)}건 (기대 122)")
+check(len(cmp2) == 141, f"/stays 비교 데이터 {len(cmp2)}건 (기대 125)")
 adds2 = set(re.findall(r'data-cmp-add="(stay:[^"]+)"', stays))
 check(adds2 == set(cmp2), f"/stays 비교 버튼 {len(adds2)}개 ↔ 데이터 {len(cmp2)}개 불일치")
 for key, h in cmp2.items():

@@ -3874,7 +3874,8 @@ STAYS_GUIDE_REGION = [
     ("jeju", "jeju"), ("busan", "busan"), ("gangwon", "gangneung"), ("ulleung", "gangneung"),
     ("seoul", "seoul"), ("yeosu", "yeosu"), ("gyeongju", "gyeongju"),
 ]
-STAYS_GUIDE_THEME = {"winter": "onsen", "esim": "station", "packing": "value", "powerbank": "value"}
+STAYS_GUIDE_THEME = {"winter": "onsen", "esim": "station", "packing": "value", "powerbank": "value",
+                     "hanoi": "value", "cebu": "ocean", "phu-quoc": "ocean"}
 
 
 def guide_stays_box(g: dict) -> str:

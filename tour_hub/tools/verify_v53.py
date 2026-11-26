@@ -95,7 +95,7 @@ def main():
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 122, f"가이드 {len(guides)}편 (기대 122)")
+    check(len(guides) == 125, f"가이드 {len(guides)}편 (기대 125)")
 
     extra = load("guide_extra.json")
     ex = extra["guides"]
@@ -213,7 +213,7 @@ def main():
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 161, f"sitemap {len(locs)} URL (기대 161)")
+    check(len(locs) == 167, f"sitemap {len(locs)} URL (기대 167)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
