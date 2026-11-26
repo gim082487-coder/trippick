@@ -114,7 +114,7 @@ check("https://trippick.pages.dev/sos" in locs, "sitemap 에 /sos 없음")
 idx = json.loads(read(OUT / "search_index.json"))
 items = idx.get("items") or []
 pages = [it for it in items if it.get("k") == "page"]
-check(len(pages) == 1 and pages[0]["u"] == "/sos", f"search_index 도구 항목 {pages[:2]}")
+check(len(pages) == 2 and {x["u"] for x in pages} == {"/sos", "/coupons"}, f"search_index 도구 항목 {pages[:3]}")
 if ACTION.exists():
     act = read(ACTION)
     check(act.startswith("---\ntitle:"), "action.md 프론트매터가 맨 앞에 없음")
