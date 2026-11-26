@@ -41,5 +41,5 @@
 - `tools/v62_shots.py`(신규) 1280·390 — site.css?v=62 로딩·body 배경·Pretendard 적용, 코스 카드 21·패널 21(활성 1), 칩 21개(데스크톱 숨김/모바일 표시), 칩·카드 전환 3편 표본, 히어로 280/132px, 가로 넘침 0·깨진 이미지 0·pageerror 0·콘솔 오류 0. `/stays`·`/passes`·`/coupons`·`/osaka` 200·넘침 0.
 
 ### 7. 배포
-- 커밋 `d4f0b9c` → `main` 푸시. 라이브(https://trippick.pages.dev) 홈 1,298,006B · `/stays`·`/passes`·`/coupons`·`/osaka`·`/sitemap.xml` 200, `assets/site.css?v=62` 200.
+- 커밋 `e99fe43`(본문)·`1490154`(라이브 스크린샷) → `main` 푸시. 라이브(https://trippick.pages.dev) 홈 **1,298,220B**(Cloudflare 계측 214B 포함) · `/stays`·`/passes`·`/coupons`·`/osaka`·`/sitemap.xml` 200, `assets/site.css?v=62` 200.
 - 라이브 1280·390 스크린샷 `v62_shots/live_*`, IndexNow 변경 URL 제출.
