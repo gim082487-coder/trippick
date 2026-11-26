@@ -1573,6 +1573,134 @@
    "usage": "4박5일이면 5일 총량형이나 1일 2GB형을 고르고, 출국 전 QR로 설치합니다.",
    "caution": "표시가는 1일 최저가입니다. 괌·사이판 공용 상품인지, 기기 eSIM 지원 여부를 먼저 확인하세요.",
    "checkedAt": "2026-11-23"
+  },
+  {
+   "id": "hk-esim-trip-93409303",
+   "partner": "trip.com",
+   "category": "eSIM",
+   "categoryLabel": "홍콩 eSIM(1일부터)",
+   "store": "트립닷컴",
+   "name": "홍콩 5G eSIM | 듀얼 네트워크 · All AI & TikTok | 1~30일 | QR코드",
+   "price": 112,
+   "listPrice": 112,
+   "discountRate": 0,
+   "rating": 4.7,
+   "url": "https://kr.trip.com/things-to-do/detail/93409303/?Allianceid=11407530&SID=336341874&trip_sub1=ess_hk_esim&trip_sub3=D21303312",
+   "productId": "93409303",
+   "cities": [
+    "홍콩",
+    "마카오"
+   ],
+   "courses": [
+    "hongkong"
+   ],
+   "reviews": 3498,
+   "pitch": "홍콩 eSIM 목록 1위. 1일 112원부터, 4.7점·리뷰 3,498건·듀얼 네트워크.",
+   "usage": "3박4일이면 4일 총량형이나 1일 2GB형을 고르고, 출국 전 QR로 설치합니다. 홍콩·마카오를 같이 돌면 마카오에서도 그대로 터집니다.",
+   "caution": "표시가는 1일 최저가입니다. 총량형·무제한형은 값이 다르고, 기기 eSIM 지원 여부를 먼저 확인하세요.",
+   "checkedAt": "2026-11-26"
+  },
+  {
+   "id": "mo-esim-trip-100451304",
+   "partner": "trip.com",
+   "category": "eSIM",
+   "categoryLabel": "마카오 eSIM(1일부터)",
+   "store": "트립닷컴",
+   "name": "마카오 5G eSIM | ChatGPT | 1~30일 | QR코드",
+   "price": 241,
+   "listPrice": 241,
+   "discountRate": 0,
+   "rating": 4.6,
+   "url": "https://kr.trip.com/things-to-do/detail/100451304/?Allianceid=11407530&SID=336341874&trip_sub1=ess_mo_esim&trip_sub3=D21303312",
+   "productId": "100451304",
+   "cities": [
+    "마카오"
+   ],
+   "courses": [
+    "macau"
+   ],
+   "reviews": 238,
+   "pitch": "마카오 전용 5G eSIM 1일 241원부터. 4.6점·리뷰 238건.",
+   "usage": "마카오만 1~2일 도는 일정이면 이 상품, 홍콩을 같이 돌면 홍콩·마카오 공용 상품이 계산이 쉽습니다.",
+   "caution": "표시가는 1일 최저가입니다. 마카오·홍콩 공용 상품(1일 106~109원)보다 단가가 높으니 일정에 맞춰 고르세요.",
+   "checkedAt": "2026-11-26"
+  },
+  {
+   "id": "th-esim-trip-46275998",
+   "partner": "trip.com",
+   "category": "eSIM",
+   "categoryLabel": "태국 eSIM(1일부터)",
+   "store": "트립닷컴",
+   "name": "태국 5G eSIM | Google 지도 / ChatGPT 지원 | 일일·총 데이터 | 1~30일 | QR코드",
+   "price": 110,
+   "listPrice": 110,
+   "discountRate": 0,
+   "rating": 4.6,
+   "url": "https://kr.trip.com/things-to-do/detail/46275998/?Allianceid=11407530&SID=336341874&trip_sub1=ess_th_esim&trip_sub3=D21303312",
+   "productId": "46275998",
+   "cities": [
+    "방콕",
+    "치앙마이"
+   ],
+   "courses": [
+    "bangkok",
+    "chiangmai"
+   ],
+   "reviews": 16554,
+   "pitch": "태국 eSIM 1일 110원부터. 4.6점·리뷰 16,554건으로 태국 eSIM 중 후기가 가장 많습니다.",
+   "usage": "방콕·치앙마이 모두 같은 상품입니다. 3박4일이면 4일 총량형 한 장, 영상통화가 많으면 1일 2GB형을 섞으세요.",
+   "caution": "표시가는 1일 최저가입니다. 현지 번호·통화가 필요하면 AIS 실명인증형(1일 5,730원)을 따로 보세요.",
+   "checkedAt": "2026-11-26"
+  },
+  {
+   "id": "id-esim-trip-46278708",
+   "partner": "trip.com",
+   "category": "eSIM",
+   "categoryLabel": "인도네시아(발리) eSIM(1일부터)",
+   "store": "트립닷컴",
+   "name": "인도네시아 5G eSIM | Google 지도 / ChatGPT 지원 | 일일·총 데이터 | 1~30일 | QR코드",
+   "price": 101,
+   "listPrice": 101,
+   "discountRate": 0,
+   "rating": 4.6,
+   "url": "https://kr.trip.com/things-to-do/detail/46278708/?Allianceid=11407530&SID=336341874&trip_sub1=ess_id_esim&trip_sub3=D21303312",
+   "productId": "46278708",
+   "cities": [
+    "발리"
+   ],
+   "courses": [
+    "bali"
+   ],
+   "reviews": 6471,
+   "pitch": "발리·인도네시아 eSIM 1일 101원부터. 4.6점·리뷰 6,471건.",
+   "usage": "우붓·스미냑 3박4일이면 4일 총량형 한 장. 길리섬·누사페니다로 넘어가는 날은 해상 구간에서 끊길 수 있습니다.",
+   "caution": "표시가는 1일 최저가입니다. 4대 통신사 지원 상품(1일 103원)이 커버리지가 넓습니다.",
+   "checkedAt": "2026-11-26"
+  },
+  {
+   "id": "jp-esim-trip-37658069",
+   "partner": "trip.com",
+   "category": "eSIM",
+   "categoryLabel": "오키나와·일본 eSIM(SoftBank)",
+   "store": "트립닷컴",
+   "name": "일본 SoftBank 5G eSIM | 일본 IP · All AI & TikTok | 일일·총 데이터 | 1~30일",
+   "price": 388,
+   "listPrice": 388,
+   "discountRate": 0,
+   "rating": 4.7,
+   "url": "https://kr.trip.com/things-to-do/detail/37658069/?Allianceid=11407530&SID=336341874&trip_sub1=ess_jp_esim&trip_sub3=D21303312",
+   "productId": "37658069",
+   "cities": [
+    "오키나와"
+   ],
+   "courses": [
+    "okinawa"
+   ],
+   "reviews": 13841,
+   "pitch": "SoftBank 회선 5G eSIM 1일 388원부터. 4.7점·리뷰 13,841건.",
+   "usage": "오키나와는 나하·온나 모두 SoftBank 커버리지가 좋습니다. 3박4일이면 4일 총량형 한 장으로 끝납니다.",
+   "caution": "표시가는 1일 최저가입니다. 더 싼 일본 전역 상품(1일 110원)은 회선이 달라, 북부 산간에서 속도 차이가 날 수 있습니다.",
+   "checkedAt": "2026-11-26"
   }
  ],
  "coupangDisclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."

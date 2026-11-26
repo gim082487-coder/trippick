@@ -1618,7 +1618,7 @@ _hub_cache = None
 _SEASON_CACHE = None
 # v25: 13곳 — 해외 7곳 뒤에 국내 6곳(제주 + 신규 서울·부산·강릉·여수·경주)
 HUB_ORDER = [
-    "osaka", "tokyo", "fukuoka", "danang", "nhatrang", "bangkok", "taipei",
+    "osaka", "tokyo", "fukuoka", "okinawa", "danang", "nhatrang", "bangkok", "taipei",
     "singapore", "hongkong", "macau", "guam", "saipan",
     "paris", "london", "rome", "barcelona",
     "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju",
@@ -1823,7 +1823,8 @@ ESIM_PICK = {
         "title": "eSIM, 1일 300원권과 3일 무제한",
         "lead": "1일 300~590원권을 날짜별로 끊는 쪽과 3일 완전무제한 14,620원 두 갈래입니다. "
                 "2인 여행이면 인원수만큼 사야 하고, 설치 QR은 출발 전에 받아 두세요.",
-        "ids": ["jp-esim-usimsa-kddi-1d", "jp-esim-lingsim-1d", "jp-esim-usimsa-3d-tokyo"],
+        "ids": ["jp-esim-usimsa-kddi-1d", "jp-esim-lingsim-1d", "jp-esim-usimsa-3d-tokyo", "jp-esim-trip-37658069"],
+        "badges": {"jp-esim-trip-37658069": "1~30일 선택"},
     },
     "vn": {
         "title": "eSIM, 1일 200원부터",
@@ -1835,7 +1836,8 @@ ESIM_PICK = {
         "title": "eSIM, 1일 300원부터",
         "lead": "방콕 시내는 숙소·카페 와이파이가 많아 1일권을 날짜별로 끊어도 충분합니다. "
                 "파타야·섬 일정처럼 이동이 많은 날이 있으면 3일 무제한을 섞으세요.",
-        "ids": ["th-esim-usimsa-1d", "th-esim-usimsa-3d"],
+        "ids": ["th-esim-usimsa-1d", "th-esim-usimsa-3d", "th-esim-trip-46275998"],
+        "badges": {"th-esim-trip-46275998": "1~30일 선택"},
     },
     "tw": {
         "title": "eSIM, 1일 760원부터",
@@ -1850,6 +1852,32 @@ ESIM_PICK = {
                 "4박5일이면 5일권을 한 장 사는 쪽이 1일권 다섯 장보다 계산이 간단합니다. 2인이면 인원수만큼 설치합니다.",
         "ids": ["gu-esim-trip-101949204"],
         "badges": {"gu-esim-trip-101949204": "1~30일 선택"},
+        "suffix": " /1일",
+    },
+    # v56: 홍콩·마카오·인도네시아(발리) — 트립닷컴 eSIM. 가격이 '1일 요금제부터'라 단위를 같이 적는다.
+    "hk": {
+        "title": "eSIM, 1일 112원부터",
+        "lead": "홍콩 eSIM은 1일 500MB 상품이 112원부터이고 4.7점·리뷰 3,498건으로 후기가 가장 많습니다. "
+                "3박4일이면 4일 총량형을 한 장 사고, 마카오를 같이 돌면 공용 상품(1일 106~109원)이 계산이 쉽습니다. "
+                "홍콩 현지 유심은 실명등록이 필요하지만 QR 설치형 eSIM은 그 절차가 없습니다.",
+        "ids": ["hk-esim-trip-93409303"],
+        "badges": {"hk-esim-trip-93409303": "1~30일 선택"},
+        "suffix": " /1일",
+    },
+    "mo": {
+        "title": "eSIM, 1일 106원부터",
+        "lead": "마카오 전용 상품은 1일 241원부터이고, 중국 대륙·홍콩·마카오 공용 상품이 1일 106~109원이라 2곳을 같이 돌면 공용 쪽이 쌉니다. "
+                "1박만 묵고 홍콩으로 돌아오는 일정이면 하루치만 있어도 충분합니다.",
+        "ids": ["mo-esim-trip-100451304"],
+        "badges": {"mo-esim-trip-100451304": "1~30일 선택"},
+        "suffix": " /1일",
+    },
+    "id": {
+        "title": "eSIM, 1일 101원부터",
+        "lead": "발리 eSIM은 1일 101원부터이고 4.6점·리뷰 6,471건입니다. 3박4일이면 4일 총량형 한 장으로 끝나고, "
+                "우붓·스미냑 모두 시내 속도는 비슷합니다. 길리섬·누사페니다로 넘어가는 날은 해상에서 끊길 수 있습니다.",
+        "ids": ["id-esim-trip-46278708"],
+        "badges": {"id-esim-trip-46278708": "1~30일 선택"},
         "suffix": " /1일",
     },
     "sg": {
@@ -1891,7 +1919,7 @@ def hub_esim_section(hub: dict) -> str:
     <div><span class="hub-k">DATA &amp; SIM</span>
       <h2>{esc(hub['name'])} {spec['title']}</h2>
       <p>{esc(spec['lead'])}</p></div>
-    <div class="hub-fx">2026.11.20 네이버 쇼핑 커넥트 확인</div>
+    <div class="hub-fx">2026.11.26 제휴 상품 확인</div>
   </div>
   <div class="esim-cmp">{''.join(cards)}</div>
   <p class="hub-aff">eSIM 카드는 <b>네이버 쇼핑 커넥트</b> 제휴 링크입니다. 이 포스팅은 네이버 쇼핑 커넥트 활동의 일환으로, 구매 발생 시 수수료를 제공받습니다. 결제 금액은 같습니다.</p>
@@ -3829,7 +3857,7 @@ STAYS_GUIDE_REGION = [
     ("osaka", "osaka"), ("tokyo", "tokyo"), ("fukuoka", "fukuoka"), ("yufuin", "fukuoka"),
     ("danang", "danang"), ("hoian", "danang"), ("nhatrang", "nhatrang"), ("dalat", "nhatrang"),
     ("bangkok", "bangkok"), ("taipei", "taipei"), ("yehliu", "taipei"), ("jiufen", "taipei"),
-    ("sapporo", "sapporo"), ("singapore", "singapore"),
+    ("sapporo", "sapporo"), ("singapore", "singapore"), ("okinawa", "okinawa"),
     ("jeju", "jeju"), ("busan", "busan"), ("gangwon", "gangneung"), ("ulleung", "gangneung"),
     ("seoul", "seoul"), ("yeosu", "yeosu"), ("gyeongju", "gyeongju"),
 ]

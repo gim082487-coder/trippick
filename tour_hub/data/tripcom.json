@@ -7,7 +7,8 @@
   "checked": "2026-11-21",
   "method": "파트너스 어필리에이트 링크 생성기(한국어 링크 · Hotels page / Flights page)에서 도시·노선별로 발급. 입장권·공항픽업·렌터카 16종은 2026-11-18 Affiliate Link > Create links(Attractions & Tours / Custom link)로 별도 발급. v20: 후쿠오카·타이베이 항공권 링크 2건을 파트너스 링크 생성기('항공권 페이지'/맞춤 URL)로 새로 발급(trip_sub3 D21333748). v34: 유럽 4도시(파리 CDG·런던 LHR·로마 FCO·바르셀로나 BCN) 항공권 4건·공항픽업 4건·호텔 목록 4건·투어 목록 4건을 기존 검증 패턴(Allianceid 11407530/SID 336341874, trip_sub3 D21275837·D21285812)으로 추가하고 관리 브라우저로 제목·도시·요금을 확인했다(파트너스 콘솔은 이 환경에서 접속 차단). v35: 유럽 4도시(파리 192·런던 338·로마 343·바르셀로나 40795) eSIM·유심 목록 4건과 유럽 전역 eSIM 상품 1건(53369178)을 기존 검증 패턴(Allianceid 11407530/SID 336341874, trip_sub3 D21303312)으로 추가했다. 5개 URL 모두 curl(iPhone UA) HTTP 200 + 한국어 title, 상품 수·최저가는 JSON-LD(ItemList.numberOfItems·Offer.price), 평점은 페이지 구조화 데이터에서 확인했다.",
   "rate": "호텔 5%(예약 0~199건) → 6%(200~999) → 7%(1000+), 국제선 항공 0.5%(0~299) → 0.8%(300+), 투어·티켓 4%(어트랙션·쇼 1.5%), 공항픽업·렌터카 5%",
-  "v39": "2026-11-22: 싱가포르 호텔 목록(city=73)·싱가포르 eSIM·삿포로 eSIM 3건을 로컬 크롬 headless·curl로 HTTP 200 + 한국어 <title> 확인 후 추가(동일 Allianceid/SID·trip_sub3 D21275837/D21303312)."
+  "v39": "2026-11-22: 싱가포르 호텔 목록(city=73)·싱가포르 eSIM·삿포로 eSIM 3건을 로컬 크롬 headless·curl로 HTTP 200 + 한국어 <title> 확인 후 추가(동일 Allianceid/SID·trip_sub3 D21275837/D21303312).",
+  "v56": "2026-11-26: 홍콩·마카오·치앙마이·발리·오키나와 eSIM 목록 5건, 공항픽업 3건(나하·홍콩·치앙마이), 투어·입장권 6건(오키나와·홍콩·마카오·사이판·치앙마이·발리), 항공권 2건(괌·사이판), 오키나와 호텔 목록 1건을 추가했습니다. 모두 기존 검증 패턴(Allianceid 11407530/SID 336341874, trip_sub3 D21303312·D21275837·D21372570)이고, curl(iPhone UA) HTTP 200 + 한국어 title, 상품 수·최저가는 JSON-LD(ItemList.numberOfItems·Offer.price), 공항픽업 차종별 요금은 페이지 표시가, 항공권 2건은 관리 브라우저에서 HTTP 200 + '서울 출발 괌/사이판 도착 저렴한 항공권' 제목으로 확인했습니다."
  },
  "hotels": [
   {
@@ -235,6 +236,18 @@
     "value",
     "airport"
    ]
+  },
+  {
+   "city": "오키나와",
+   "flag": "jp",
+   "sub": "나하·온나 · 오키나와 3박4일",
+   "note": "유이레일 공항역에서 13분",
+   "url": "https://kr.trip.com/hotels/list?city=92573&display=%EC%98%A4%ED%82%A4%EB%82%98%EC%99%80&optionId=92573&optionType=City&optionName=%EC%98%A4%ED%82%A4%EB%82%98%EC%99%80&Allianceid=11407530&SID=336341874&trip_sub1=hotel_okinawa&trip_sub3=D21372570",
+   "cityId": "okinawa",
+   "tags": [
+    "value",
+    "airport"
+   ]
   }
  ],
  "flights": [
@@ -336,6 +349,22 @@
    "tags": [
     "flight",
     "europe"
+   ]
+  },
+  {
+   "route": "서울 → 괌",
+   "sub": "안토니오 B. 원팻(GUM) · 직항",
+   "url": "https://kr.trip.com/flights/Seoul-to-Guam/tickets-SEL-GUM?flighttype=S&dcity=SEL&acity=GUM&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_gum&trip_sub3=D21275837",
+   "tags": [
+    "flight"
+   ]
+  },
+  {
+   "route": "서울 → 사이판",
+   "sub": "프란시스코 C. 아다(SPN) · 직항",
+   "url": "https://kr.trip.com/flights/Seoul-to-Saipan/tickets-SEL-SPN?flighttype=S&dcity=SEL&acity=SPN&Allianceid=11407530&SID=336341874&trip_sub1=flight_sel_spn&trip_sub3=D21275837",
+   "tags": [
+    "flight"
    ]
   }
  ],
@@ -517,6 +546,96 @@
    "summary": "트립닷컴 '바르셀로나 액티비티' 목록(2026-11-21 브라우저 확인). 입장권·가이드투어·패스를 같은 페이지에서 비교한다.",
    "url": "https://kr.trip.com/things-to-do/list?searchkey=40795&searchtype=1&Allianceid=11407530&SID=336341874&trip_sub1=ticket_barcelona&trip_sub3=D21285812",
    "status": "verified_pattern_200_ko"
+  },
+  {
+   "id": "ticket_okinawa",
+   "city": "오키나와",
+   "cityId": "okinawa",
+   "country": "일본",
+   "flag": "jp",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "오키나와 입장권·액티비티",
+   "highlight": "츄라우미 FunPASS·오키나와 월드·네오파크·정글리아",
+   "summary": "오키나와 본섬 입장권·액티비티 4,819개 상품. 츄라우미 수족관 입장권과 어트랙션·교통 할인을 묶은 FunPASS가 41,048원(리뷰 307건), 오키나와 월드 15,800원(4.6점·리뷰 570건), 네오파크 오키나와 9,173원(4.4점·188건), 정글리아 오키나와 72,700원(3.4점·875건), 어린이나라 6,900원(4.6점·429건)입니다. 모노레일 1일 승차권과 쇼핑 할인권 묶음도 7,054원에 있습니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/okinawa/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_okinawa&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "ticket_hongkong",
+   "city": "홍콩",
+   "cityId": "hongkong",
+   "country": "홍콩",
+   "flag": "hk",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "홍콩 투어·액티비티",
+   "highlight": "피크 트램 야경투어·란타우 360·빅토리아 하버",
+   "summary": "홍콩 투어·액티비티 37개 상품. 피크 트램 익스프레스+센트럴 산책+빅토리아 하버 야경투어가 103,217원(4.7점·리뷰 32건), 란타우섬 360 케이블카+빅부다+타이오 투어 147,945원(4.7점·10건), 중환 타이퀸+야경+대관람차 코스 100,607원입니다. 공항철도·피크트램 같은 교통 패스형 상품은 별도 목록에 있습니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/hongkong/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_hongkong&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "ticket_macau",
+   "city": "마카오",
+   "cityId": "macau",
+   "country": "마카오",
+   "flag": "mo",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "마카오 투어·액티비티",
+   "highlight": "야간 리조트투어·세계문화유산 시티투어·오픈탑 버스",
+   "summary": "마카오 투어·액티비티 36개 상품. 윈 팰리스+그랜드 리스보아 야간투어가 42,649원(5.0점·1건), 세계문화유산 시티투어 44,894원, 야경 오픈탑 버스 투어 25,521원(4.7점·리뷰 72건), 7인승 전세차량 하루 20,203원(4.9점·30건)부터입니다. 반도와 코타이를 하루에 묶는 상품이 대부분입니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/macau/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_macau&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "ticket_saipan",
+   "city": "사이판",
+   "cityId": "saipan",
+   "country": "북마리아나 제도",
+   "flag": "gu",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "사이판 투어·액티비티",
+   "highlight": "마나가하·그로토·버드섬 · 현지 액티비티 143개",
+   "summary": "사이판 액티비티 143개 상품. 그로토(4.5점·리뷰 723건)와 버드섬(4.5점·525건)은 무료 입장으로 목록에 있고, 사이판·괌 공용 eSIM이 1,052원부터 섞여 있습니다. 마나가하섬·북부 렌터카 투어처럼 현지에서 붙이는 상품이 많아, 항공·숙소만 잡고 액티비티를 따로 예약하는 방식이 됩니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/saipan/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_saipan&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "ticket_chiangmai",
+   "city": "치앙마이",
+   "cityId": "chiangmai",
+   "country": "태국",
+   "flag": "th",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "치앙마이 투어·액티비티",
+   "highlight": "도이인타논·스티키 폭포·치앙라이 일일투어",
+   "summary": "치앙마이 투어 29개 상품. 도이인타논 국립공원 하이라이트+트레킹이 50,490원(4.7점·15건), 도이수텝·왓우몽 야간투어 21,384원(4.8점·35건), 스티키 폭포 반나절 18,384원(4.8점·26건), 치앙라이 3색 사원+롱넥 빌리지 59,270원(4.7점·43건)입니다. 올드시티 숙소에서 픽업하는 상품이 대부분입니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/chiangmai/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_chiangmai&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "ticket_bali",
+   "city": "발리",
+   "cityId": "bali",
+   "country": "인도네시아",
+   "flag": "id",
+   "category": "ticket",
+   "label": "입장권·액티비티",
+   "title": "발리 투어·액티비티",
+   "highlight": "우붓 원숭이숲·누사페니다 스노클링·전용차량",
+   "summary": "발리 투어 30개 상품. 프라이빗 차량 12시간 대절 52,526원(4.7점·213건), 우붓 원숭이숲·계단식 논·폭포 올인클루시브 42,546원(4.9점·749건), 누사페니다 3~4개 스팟 스노클링 16,162원(4.6점·49건), 한국어 운전기사 남부 데이투어 52,364원입니다. 우붓·스미냑 숙소 픽업이 기본입니다.",
+   "url": "https://kr.trip.com/things-to-do/experiences/bali/?Allianceid=11407530&SID=336341874&trip_sub1=ticket_bali&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
   }
  ],
  "transfers": [
@@ -687,6 +806,51 @@
    "summary": "스탠다드 55,448원~ (미니 55,293원). 공항→바르셀로나 시내 호텔 구간, 차종(스탠다드·미니밴·프리미엄)별 요금과 무료 대기 조건을 같은 페이지에서 비교한다.",
    "url": "https://kr.trip.com/airport-transfers/airport-bcn/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_bcn&trip_sub3=D21285812",
    "status": "verified_200_ko"
+  },
+  {
+   "id": "transfer_oka",
+   "city": "오키나와",
+   "cityId": "okinawa",
+   "country": "일본",
+   "flag": "jp",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "나하공항(OKA) 공항픽업",
+   "highlight": "스탠다드 100,764원~ · 미니 73,768원~",
+   "summary": "나하공항에서 나하 시내·온나·차탄까지 차종별 예약. 미니 차량 73,768원, 스탠다드 100,764원, 택시 114,028원, 비즈니스 6인승 120,917원, 미니버스 9인승 141,069원(2026-11-26 표시가). 짐이 많거나 밤 도착이면 모노레일(290엔·13분)과 비교해 인원수로 나눠 보세요.",
+   "url": "https://kr.trip.com/airport-transfers/airport-oka/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_oka&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "transfer_hkg",
+   "city": "홍콩",
+   "cityId": "hongkong",
+   "country": "홍콩",
+   "flag": "hk",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "홍콩공항(HKG) 공항픽업",
+   "highlight": "스탠다드 51,893원~ · 6인승 70,057원",
+   "summary": "홍콩국제공항에서 침사추이·코즈웨이베이·센트럴까지 단독 차량. 스탠다드 51,893원, 중형 53,159원, 프리미엄 64,348원, 컴포트 플러스 65,906원, 비즈니스 6인승 70,057원(2026-11-26 표시가). 에어포트익스프레스 옥토퍼스 120홍콩달러와 인원수로 비교하면 2인은 공항철도, 4인은 차량이 낮아집니다.",
+   "url": "https://kr.trip.com/airport-transfers/airport-hkg/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_hkg&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "transfer_cnx",
+   "city": "치앙마이",
+   "cityId": "chiangmai",
+   "country": "태국",
+   "flag": "th",
+   "category": "transfer",
+   "label": "공항픽업",
+   "title": "치앙마이공항(CNX) 공항픽업",
+   "highlight": "스탠다드 10,530원~ · 9인승 30,250원",
+   "summary": "치앙마이국제공항에서 올드시티·님만해민까지 단독 차량. 스탠다드 10,530원, 컴포트 플러스 23,781원, 중형 24,184원, 미니버스 9인승 30,250원, 11인승 38,291원(2026-11-26 표시가). 공항 정액택시 150밧(약 5,940원)보다 비싸지만, 심야 도착이나 4인 이상이면 문 앞까지 가는 값으로 낫습니다.",
+   "url": "https://kr.trip.com/airport-transfers/airport-cnx/?Allianceid=11407530&SID=336341874&trip_sub1=transfer_cnx&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
   }
  ],
  "cars": [
@@ -900,6 +1064,91 @@
    "summary": "삿포로·홋카이도 도착 전 설치하는 일본 eSIM·유심. 삿포로 목록에 SoftBank·docomo 요금제와 3~30일 총량형이 함께 있고, 도착 후 QR 설치·무료 취소 조건은 상품마다 다릅니다.",
    "url": "https://kr.trip.com/things-to-do/experiences/sapporo-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_sapporo&trip_sub3=D21303312",
    "status": "verified_200_ko"
+  },
+  {
+   "id": "esim_hongkong",
+   "city": "홍콩",
+   "cityId": "hongkong",
+   "country": "홍콩",
+   "flag": "hk",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "홍콩 유심·eSIM",
+   "highlight": "홍콩 eSIM 26개 상품 · 1일 112원부터",
+   "summary": "홍콩 도착 전에 설치하는 5G eSIM·유심 26개 상품. 1일 요금제가 112원(4.7점·리뷰 3,498건, 듀얼 네트워크)부터이고, 1~30일 요금제가 대부분입니다. 마카오·중국 대륙을 함께 쓰는 5개 통신사 상품(1일 109원·리뷰 24,874건)과 6개 통신사·1~365일 상품(1일 106원)도 같은 목록에 있습니다. 홍콩 현지 유심은 실명등록이 필요하지만, QR로 설치하는 로밍 eSIM은 그 절차가 없습니다.",
+   "products": 26,
+   "fromPrice": 112,
+   "url": "https://kr.trip.com/things-to-do/experiences/hongkong-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_hongkong&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "esim_macau",
+   "city": "마카오",
+   "cityId": "macau",
+   "country": "마카오",
+   "flag": "mo",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "마카오 유심·eSIM",
+   "highlight": "마카오 eSIM 27개 상품 · 1일 106원부터",
+   "summary": "마카오 도착 전에 설치하는 eSIM·유심 27개 상품. 중국 대륙·홍콩·마카오를 함께 쓰는 5개 통신사 상품이 1일 109원(4.6점·리뷰 24,874건), 6개 통신사·1~365일 상품이 1일 106원(4.5점·리뷰 8,345건)입니다. 마카오 전용 상품은 1일 241원(4.6점·리뷰 238건)부터이고, 홍콩을 같이 도는 일정이면 공용 상품 한 장이 계산이 쉽습니다.",
+   "products": 27,
+   "fromPrice": 106,
+   "url": "https://kr.trip.com/things-to-do/experiences/macau-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_macau&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "esim_chiangmai",
+   "city": "치앙마이",
+   "cityId": "chiangmai",
+   "country": "태국",
+   "flag": "th",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "치앙마이 유심·eSIM",
+   "highlight": "태국 eSIM 37개 상품 · 1일 110원부터",
+   "summary": "치앙마이 도착 전에 설치하는 태국 eSIM·유심 37개 상품. 태국 5G eSIM이 1일 110원(4.6점·리뷰 16,554건)부터이고, 방콕·푸켓과 같은 상품을 씁니다. 현지 번호가 필요한 사람은 AIS(리뷰 4,729건)나 Dtac(리뷰 6,277건) 실명인증형이 1일 5,730원입니다.",
+   "products": 37,
+   "fromPrice": 110,
+   "url": "https://kr.trip.com/things-to-do/experiences/chiangmai-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_chiangmai&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "esim_bali",
+   "city": "발리",
+   "cityId": "bali",
+   "country": "인도네시아",
+   "flag": "id",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "발리 유심·eSIM",
+   "highlight": "인도네시아 eSIM 24개 상품 · 1일 101원부터",
+   "summary": "발리 도착 전에 설치하는 인도네시아 eSIM·유심 24개 상품. 인도네시아 5G eSIM이 1일 101원(4.6점·리뷰 6,471건)부터이고 4대 통신사 지원 상품이 103원, 동남아 여러 나라 공용 상품이 110원입니다. 우붓·스미냑 모두 시내 데이터 속도는 비슷하고, 길리섬·누사페니다 쪽은 해상 구간에서 끊길 수 있습니다.",
+   "products": 24,
+   "fromPrice": 101,
+   "url": "https://kr.trip.com/things-to-do/experiences/bali-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_bali&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "esim_okinawa",
+   "city": "오키나와",
+   "cityId": "okinawa",
+   "country": "일본",
+   "flag": "jp",
+   "category": "esim",
+   "label": "eSIM·유심",
+   "title": "오키나와 유심·eSIM",
+   "highlight": "오키나와 eSIM 32개 상품 · 1일 101원부터",
+   "summary": "오키나와 도착 전에 설치하는 일본 eSIM·유심 32개 상품. 일본 전역 5G 상품이 1일 110원(4.6점·리뷰 13,938건)부터이고, SoftBank 회선 5G가 1일 388원(4.7점·리뷰 13,841건), DOCOMO 회선이 1일 150원(4.4점·리뷰 919건)입니다. 렌터카로 북부까지 내려가면 도코모·소프트뱅크 커버리지 차이가 나므로 회선을 확인하세요.",
+   "products": 32,
+   "fromPrice": 101,
+   "url": "https://kr.trip.com/things-to-do/experiences/okinawa-simcard/?Allianceid=11407530&SID=336341874&trip_sub1=esim_okinawa&trip_sub3=D21303312",
+   "status": "verified_200_ko",
+   "checked": "2026-11-26"
   }
  ],
  "rails": [

@@ -1332,6 +1332,7 @@ def trip_widget_payload(hubs: list, guides: list, ess_by_id: dict) -> dict:
         "yeosu": ["yeosu-night-sea-2d", "busan-haeundae-gwangalli-2d"],
         "gyeongju": ["gyeongju-hwangridangil-2d", "busan-haeundae-gwangalli-2d"],
         # v55: 해외 9개 도시 허브
+        "okinawa": ["okinawa-3n4d-course", "japan-rental-car-etc-guide"],
         "guam": ["airport-arrival-city-transfer-guide", "guam-4n5d-course"],
         "saipan": ["guam-vs-saipan-comparison", "travel-insurance-guide"],
         "singapore": ["airport-arrival-city-transfer-guide", "singapore-3n4d-course-budget"],
@@ -1349,6 +1350,7 @@ def trip_widget_payload(hubs: list, guides: list, ess_by_id: dict) -> dict:
              "bangkok": "방콕", "taipei": "타이베이", "nhatrang": "나트랑", "jeju": "제주",
              "seoul": "서울", "busan": "부산", "gangneung": "강릉", "yeosu": "여수", "gyeongju": "경주",
              "guam": "괌", "saipan": "사이판", "singapore": "싱가포르", "hongkong": "홍콩", "macau": "마카오",
+             "okinawa": "오키나와",
              "paris": "파리", "london": "런던", "rome": "로마", "barcelona": "바르셀로나"}
     cities = []
     for h in hubs:
@@ -2513,7 +2515,7 @@ def render_sitemap(data: dict, courses: dict) -> str:
         hs = json.loads(hpath.read_text(encoding="utf-8"))["cities"]
         # v48: build_pages.py 의 HUB_ORDER 와 같은 순서로 정렬해 두 빌드의 sitemap 이 한 글자까지 같게 한다.
         _order = {s: i for i, s in enumerate(
-            ["osaka", "tokyo", "fukuoka", "danang", "nhatrang", "bangkok", "taipei",
+            ["osaka", "tokyo", "fukuoka", "okinawa", "danang", "nhatrang", "bangkok", "taipei",
              "singapore", "hongkong", "macau", "guam", "saipan",
              "paris", "london", "rome", "barcelona",
              "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju"])}

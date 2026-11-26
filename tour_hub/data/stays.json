@@ -8,7 +8,8 @@
   "method": "kr.trip.com 숙소 목록(도시별, 성인 2명·KRW)에서 평점·리뷰 수·세부 점수·위치·1박 최저가·대표 이미지를 그대로 옮겼습니다. 신규 국내 19곳은 2026-11-20~21 조회분, 해외 30곳은 2026-11-19~20 조회분입니다(카드마다 기준일 표기). 각 숙소 상세 페이지에서 이름·도시를 다시 확인했고, 예약 버튼은 그 숙소 상세 페이지에 파트너스 코드(Allianceid/SID/trip_sub3)를 붙인 딥링크입니다.",
   "priceNote": "가격은 카드에 적힌 조회 날짜의 1박·성인 2명·세금·서비스비용 포함 최저가입니다. 같은 숙소도 날짜·객실·잔여 상황에 따라 달라집니다.",
   "rate": "숙소 5~7% (예약 건수에 따라)",
-  "v53": "2026-11-25: 홍콩(cityId 58)·마카오(cityId 59) 숙소 4곳씩 8곳을 추가했습니다. 트립닷컴 숙소 목록(2026-12-10~11, 성인 2명, KRW)에서 평점·리뷰 수·성급·1박 최저가·대표 이미지를 옮겼고, 상세 페이지 HTTP 200과 한국어 호텔명을 확인한 뒤 파트너스 코드(Allianceid/SID/trip_sub3)를 붙였습니다."
+  "v53": "2026-11-25: 홍콩(cityId 58)·마카오(cityId 59) 숙소 4곳씩 8곳을 추가했습니다. 트립닷컴 숙소 목록(2026-12-10~11, 성인 2명, KRW)에서 평점·리뷰 수·성급·1박 최저가·대표 이미지를 옮겼고, 상세 페이지 HTTP 200과 한국어 호텔명을 확인한 뒤 파트너스 코드(Allianceid/SID/trip_sub3)를 붙였습니다.",
+  "v56": "2026-11-26: 오키나와 지역(나하 4·온나 2 = 6곳)을 새로 넣고, 홍콩에 MK 스테이·엠파이어 프레스티지 침사추이, 마카오에 베네시안 마카오·골든 크라운 차이나를 추가했습니다. 가격은 트립닷컴 숙소 목록에서 2026-12-10~11(온나 12-11~12) 성인 2명·세금 포함 최저가로 조회한 값이고, 카드마다 기준일을 적었습니다."
  },
  "themes": [
   {
@@ -652,8 +653,8 @@
    "name": "홍콩",
    "country": "홍콩",
    "note": "침사추이(구룡)와 코즈웨이베이(홍콩섬)가 두 축입니다. 야경·쇼핑은 침사추이, 식당·카페는 코즈웨이베이·센트럴이 편하고, 공항은 에어포트익스프레스로 24분입니다.",
-   "count": 4,
-   "top": "더 엠파이어 호텔 주룽 - 침 사 추이",
+   "count": 6,
+   "top": "엠파이어 프레스티지 침사추이",
    "listUrl": "https://kr.trip.com/hotels/list?city=58&display=%ED%99%8D%EC%BD%A9&optionId=58&optionType=City&optionName=%ED%99%8D%EC%BD%A9&Allianceid=11407530&SID=336341874&trip_sub1=hotel_hongkong&trip_sub3=D21372570",
    "cityId": "58",
    "scope": "intl",
@@ -670,7 +671,7 @@
    "name": "마카오",
    "country": "마카오",
    "note": "코타이(베네시안·파리지앵)는 리조트·카지노, 마카오 반도(세나도 광장·성바울)는 옛 거리와 먹거리입니다. 1박이면 야경을 볼 코타이, 걷고 먹을 반도 쪽이 갈립니다.",
-   "count": 4,
+   "count": 6,
    "top": "호텔 센트럴",
    "listUrl": "https://kr.trip.com/hotels/list?city=59&display=%EB%A7%88%EC%B9%B4%EC%98%A4&optionId=59&optionType=City&optionName=%EB%A7%88%EC%B9%B4%EC%98%A4&Allianceid=11407530&SID=336341874&trip_sub1=hotel_macau&trip_sub3=D21372570",
    "cityId": "59",
@@ -680,6 +681,24 @@
     {
      "slug": "hongkong-macau-3n4d-course",
      "label": "홍콩·마카오 3박4일"
+    }
+   ]
+  },
+  {
+   "id": "okinawa",
+   "name": "오키나와",
+   "country": "일본",
+   "note": "나하는 유이레일 한 줄로 공항·국제거리·슈리성이 이어지고, 온나·차탄은 렌터카로 40~60분 걸립니다. 3박4일이면 나하 2박+온나 1박, 시내만 보면 나하 3박이 이동이 짧습니다.",
+   "count": 6,
+   "top": "JR 규슈 호텔 블라섬 나하",
+   "listUrl": "https://kr.trip.com/hotels/list?city=92573&display=%EC%98%A4%ED%82%A4%EB%82%98%EC%99%80&optionId=92573&optionType=City&optionName=%EC%98%A4%ED%82%A4%EB%82%98%EC%99%80&Allianceid=11407530&SID=336341874&trip_sub1=hotel_okinawa&trip_sub3=D21372570",
+   "cityId": "92573",
+   "scope": "intl",
+   "hub": null,
+   "guides": [
+    {
+     "slug": "okinawa-3n4d-course",
+     "label": "오키나와 3박4일"
     }
    ]
   }
@@ -4340,6 +4359,253 @@
    "pointTags": [
     "관람차",
     "패밀리"
+   ]
+  },
+  {
+   "region": "okinawa",
+   "id": "2612287",
+   "name": "하얏트 리젠시 나하 오키나와",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 1295,
+   "zone": "나하(오모로마치)",
+   "access": "유이레일 오모로마치역 도보권 · 공항 20분",
+   "reason": "리뷰 1,295개·9.3 — 나하 시내에서 국제거리와 오모로마치 사이에 있어 공항에서 모노레일로 20분 안팎입니다. 수영장과 조식 평가가 좋아 3박4일 첫 숙소로 무난하고, 1박 22만 원대는 나하 5성 중 중간값입니다.",
+   "price": 222461,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/okinawa-2612287.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=92573&hotelId=2612287&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_okinawa_2612287&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "station"
+   ],
+   "pointTags": [
+    "오모로마치",
+    "공항 20분"
+   ]
+  },
+  {
+   "region": "okinawa",
+   "id": "7420938",
+   "name": "JR 규슈 호텔 블라섬 나하",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 2002,
+   "zone": "나하(마키시)",
+   "access": "유이레일 마키시역 도보 5분 · 국제거리 동쪽 끝",
+   "reason": "리뷰 2,002개·9.3 — 국제거리 동쪽 끝 마키시역 도보 5분이라 저녁 식사와 쇼핑이 짧습니다. 조식과 청결 평가가 높고, 하얏트보다 1박 1만 5천 원가량 낮습니다.",
+   "price": 207924,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/okinawa-7420938.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=92573&hotelId=7420938&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_okinawa_7420938&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "국제거리",
+    "조식"
+   ]
+  },
+  {
+   "region": "okinawa",
+   "id": "3916196",
+   "name": "알몬트 호텔 나하 겐초마에",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 634,
+   "zone": "나하(겐초마에)",
+   "access": "유이레일 겐초마에역 도보 2분",
+   "reason": "리뷰 634개·9.2 — 겐초마에역에서 2분이라 공항 290엔·13분 동선이 그대로 이어집니다. 1박 9만 5천 원대로 나하 시내 3성 중 평점이 높은 축이고, 방은 좁은 편입니다.",
+   "price": 95239,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/okinawa-3916196.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=92573&hotelId=3916196&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_okinawa_3916196&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "겐초마에",
+    "가성비"
+   ]
+  },
+  {
+   "region": "okinawa",
+   "id": "48522063",
+   "name": "호텔 칵테일 스테이 나하",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 679,
+   "zone": "나하(미에바시)",
+   "access": "유이레일 미에바시역 도보권 · 국제거리 가운데",
+   "reason": "리뷰 679개·9.0 — 1박 6만 6,400원으로 나하 시내에서 가장 낮은 축입니다. 국제거리 가운데 미에바시 쪽이라 식당·편의점이 도보권이고, 객실 크기를 감수하면 3박 예산을 20만 원 넘게 줄입니다.",
+   "price": 66400,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/okinawa-48522063.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=92573&hotelId=48522063&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_okinawa_48522063&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "최저가",
+    "국제거리"
+   ]
+  },
+  {
+   "region": "okinawa",
+   "id": "1005498",
+   "name": "호텔 몬토레 오키나와 스파＆리조트",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 1279,
+   "zone": "온나손(기노자)",
+   "access": "만좌모·푸른동굴 차로 15분 · 해변 리조트",
+   "reason": "리뷰 1,279개·9.3 — 온나손 해안 리조트로 수영장·스파와 오션뷰 객실이 있고, 만좌모·푸른동굴·츄라우미 쪽 동선에 가깝습니다. 12월 11~12일 1박 20만 6,340원으로 나하 5성과 같은 값대라, 3박 중 하루를 리조트로 바꾸는 선택지가 됩니다.",
+   "price": 206340,
+   "priceBasis": "2026-12-11~12 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/okinawa-1005498.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=35725&hotelId=1005498&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_okinawa_1005498&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "villa"
+   ],
+   "pointTags": [
+    "리조트",
+    "온나"
+   ]
+  },
+  {
+   "region": "okinawa",
+   "id": "1182095",
+   "name": "베스트 웨스턴 오키나와 온나 비치",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.7,
+   "reviews": 141,
+   "zone": "온나손(온나 선셋 비치)",
+   "access": "해변 바로 앞 · 만좌모 차로 20분",
+   "reason": "리뷰 141개·8.7 — 온나 해변 바로 앞인데 1박 13만 2,221원으로 온나 리조트 중 가장 낮습니다. 리뷰 수가 적은 대신 위치 값이 확실하고, 렌터카 없이 가면 이동이 불편합니다.",
+   "price": 132221,
+   "priceBasis": "2026-12-11~12 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/okinawa-1182095.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=35725&hotelId=1182095&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_okinawa_1182095&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "value"
+   ],
+   "pointTags": [
+    "비치프론트",
+    "가성비"
+   ]
+  },
+  {
+   "region": "hongkong",
+   "id": "469825",
+   "name": "MK 스테이(이전 명칭: 호텔 MK)",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.0,
+   "reviews": 1819,
+   "zone": "몽콕",
+   "access": "MTR 몽콕역 도보권 · 레이디스 마켓 인접",
+   "reason": "리뷰 1,819개·8.0 — 몽콕 MTR 도보권에 1박 8만 4,386원으로 홍콩 6곳 중 가장 낮습니다. 객실이 좁고 평점은 8.0이라, 잠만 자고 시내를 도는 3박4일에서 값을 아끼는 쪽입니다.",
+   "price": 84386,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/hongkong-469825.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=58&hotelId=469825&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_hongkong_469825&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "몽콕",
+    "가성비"
+   ]
+  },
+  {
+   "region": "hongkong",
+   "id": "24403644",
+   "name": "엠파이어 프레스티지 침사추이",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 7810,
+   "zone": "침사추이",
+   "access": "침사추이 MTR·하버시티 도보권",
+   "reason": "리뷰 7,810개·9.3 — 침사추이 5성 중 평점이 높고 하버시티·빅토리아 하버가 도보권입니다. 1박 22만 7,449원으로 엠파이어 침사추이(18만 원대)보다 4만 원가량 비싸지만 조식과 객실 크기가 다릅니다.",
+   "price": 227449,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/hongkong-24403644.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=58&hotelId=24403644&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_hongkong_24403644&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "침사추이",
+    "5성"
+   ]
+  },
+  {
+   "region": "macau",
+   "id": "344977",
+   "name": "베네시안 마카오",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.5,
+   "reviews": 20160,
+   "zone": "코타이",
+   "access": "코타이 스트립 중심 · 쇼핑몰·공연 건물 내",
+   "reason": "리뷰 20,160개·9.5 — 코타이 5성 중 리뷰가 가장 많은 축입니다. 1박 29만 5,590원으로 파리지앵(27만 원대)보다 2만 원가량 높고, 쇼핑몰·곤돌라·공연이 건물 안에 있습니다.",
+   "price": 295590,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/macau-344977.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=59&hotelId=344977&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_macau_344977&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "villa"
+   ],
+   "pointTags": [
+    "코타이",
+    "5성"
+   ]
+  },
+  {
+   "region": "macau",
+   "id": "531723",
+   "name": "골든 크라운 차이나 호텔",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.5,
+   "reviews": 4280,
+   "zone": "마카오 반도(북쪽)",
+   "access": "세나도 광장 도보 20분 · 국경 검문소 인접",
+   "reason": "리뷰 4,280개·8.5 — 1박 7만 9,551원으로 마카오 6곳 중 최저입니다. 세나도 광장까지 걸어 20분 안팎이고, 홍콩에서 대교 셔틀로 들어와 하루 묵는 일정에 맞습니다.",
+   "price": 79551,
+   "priceBasis": "2026-12-10~11 · 1박 · 성인 2명 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/macau-531723.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=59&hotelId=531723&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_macau_531723&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "반도",
+    "가성비"
    ]
   }
  ]

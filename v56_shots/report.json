@@ -1,0 +1,103 @@
+{
+ "pc_okinawa-3n4d-course": {
+  "scrollW": 1280,
+  "clientW": 1280,
+  "broken": [],
+  "h2": 7,
+  "tb": 8,
+  "faq": 5,
+  "gact": 3,
+  "overflow": [
+   "A:64",
+   "A:147",
+   "I:96"
+  ],
+  "pageerror": []
+ },
+ "pc_southeast-asia-injection-guide": {
+  "scrollW": 1280,
+  "clientW": 1280,
+  "broken": [],
+  "h2": 6,
+  "tb": 3,
+  "faq": 5,
+  "gact": 3,
+  "overflow": [
+   "A:36",
+   "A:180",
+   "I:69"
+  ],
+  "pageerror": []
+ },
+ "pc_bangkok-3n4d-course": {
+  "scrollW": 1280,
+  "clientW": 1280,
+  "broken": [],
+  "h2": 5,
+  "tb": 5,
+  "faq": 5,
+  "gact": 3,
+  "overflow": [],
+  "pageerror": []
+ },
+ "mo_okinawa-3n4d-course": {
+  "scrollW": 390,
+  "clientW": 390,
+  "broken": [],
+  "h2": 7,
+  "tb": 8,
+  "faq": 5,
+  "gact": 3,
+  "overflow": [
+   "A:139",
+   "A:331",
+   "I:171",
+   "A:475",
+   "I:363",
+   "A:622",
+   "I:507",
+   "A:862"
+  ],
+  "pageerror": []
+ },
+ "mo_southeast-asia-injection-guide": {
+  "scrollW": 390,
+  "clientW": 390,
+  "broken": [],
+  "h2": 6,
+  "tb": 3,
+  "faq": 5,
+  "gact": 3,
+  "overflow": [
+   "A:146",
+   "A:389",
+   "I:178",
+   "A:651",
+   "I:421",
+   "A:832",
+   "I:683",
+   "A:977"
+  ],
+  "pageerror": []
+ },
+ "mo_bangkok-3n4d-course": {
+  "scrollW": 390,
+  "clientW": 390,
+  "broken": [],
+  "h2": 5,
+  "tb": 5,
+  "faq": 5,
+  "gact": 3,
+  "overflow": [
+   "cont-item:164",
+   "cont-t:133",
+   "EM:133",
+   "B:133",
+   "[object SVGAnimatedString]:153",
+   "[object SVGAnimatedString]:150",
+   "A:6",
+   "A:204"
+  ],
+  "pageerror": []
+ }
+}

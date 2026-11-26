@@ -80,7 +80,7 @@ def main():
 
         # /stays
         pg.goto(base + "/stays", wait_until="load"); pg.wait_for_timeout(800)
-        check(pg.evaluate("()=>document.querySelectorAll('.scard').length") == 116, "/stays 카드 116")
+        check(pg.evaluate("()=>document.querySelectorAll('.scard').length") == 116, "/stays 카드 126")
         vis0 = pg.evaluate("()=>[...document.querySelectorAll('.scard')].filter(e=>e.getBoundingClientRect().height>0).length")
         check(vis0 == 24, f"/stays 첫 화면 {vis0}장(24장 점진 렌더)")
         pg.click('.gf-chip[data-scope="kr"]'); pg.wait_for_timeout(400)

@@ -95,7 +95,7 @@ def main():
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 119, f"가이드 {len(guides)}편 (기대 119)")
+    check(len(guides) == 122, f"가이드 {len(guides)}편 (기대 122)")
 
     extra = load("guide_extra.json")
     ex = extra["guides"]
@@ -162,7 +162,7 @@ def main():
         if not r:
             continue
         hs = [h for h in stays["hotels"] if h["region"] == rid]
-        check(len(hs) == 4, f"stays {rid}: {len(hs)}곳 (기대 4)")
+        check(len(hs) == 6, f"stays {rid}: {len(hs)}곳 (기대 6)")
         check(r.get("count") == len(hs), f"stays {rid}: count {r.get('count')} ≠ {len(hs)}")
         best = max(hs, key=lambda x: (x["score"], x["reviews"]))
         check(r.get("top") == best["name"], f"stays {rid}: top '{r.get('top')}' ≠ 최고 평점 {best['name']}")
@@ -213,7 +213,7 @@ def main():
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 156, f"sitemap {len(locs)} URL (기대 156)")
+    check(len(locs) == 160, f"sitemap {len(locs)} URL (기대 160)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")

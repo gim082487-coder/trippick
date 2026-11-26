@@ -47,7 +47,7 @@ def check(ok, msg):
 def main():
     guides = load("guides.json")["guides"]
     by_slug = {g["slug"]: g for g in guides}
-    check(len(guides) == 119, f"가이드 {len(guides)}편 (기대 119)")
+    check(len(guides) == 122, f"가이드 {len(guides)}편 (기대 122)")
 
     # 1·2·7 신규 가이드
     for slug in NEW:
@@ -80,7 +80,7 @@ def main():
 
     # 3 도시 허브 프리셋
     hubs = load("city_hubs.json")["cities"]
-    check(len(hubs) == 22, f"도시 허브 {len(hubs)}곳 (기대 22)")
+    check(len(hubs) == 23, f"도시 허브 {len(hubs)}곳 (기대 23)")
     for h in hubs:
         slug, cc = h["slug"], h.get("country") or "kr"
         page = OUT / f"{slug}.html"
