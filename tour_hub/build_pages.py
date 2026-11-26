@@ -3675,11 +3675,15 @@ def build_search_index() -> dict:
         "q": norm("위기상황 응급 긴급 sos 경찰 구급 소방 대사관 영사콜센터 공관 여권 분실 지갑 휴대폰 병원 응급실 약국 통역 현지어 여행 중 아플 때 사고 신고"),
     })
     items.append({
-        "t": "여행 할인코드·쿠폰",
+        "t": "여행 쿠폰·무료혜택",
         "k": "page",
-        "m": "트립닷컴 항공 22,000원·렌터카 8%·투어 6% · 클룩 쿠폰",
+        "m": "트립닷컴 코드 · 일본 면세 쿠폰 9종 · 인천공항 무료혜택 · 현지 카드 · 환전 0원",
         "u": "/coupons",
-        "q": norm("할인코드 쿠폰 할인 프로모션 코드 트립닷컴 클룩 쿠폰 항공권 할인 호텔 할인 렌터카 할인 투어 할인 공항픽업 쿠폰 트래블카드 환전 라운지 여행 할인"),
+        "q": norm("할인코드 쿠폰 할인 프로모션 코드 트립닷컴 클룩 쿠폰 항공권 할인 호텔 할인 렌터카 할인 투어 할인 공항픽업 쿠폰 "
+                  "일본 면세 리펀드 택스리펀드 돈키호테 빅카메라 마츠모토키요시 츠루하 선드럭 드럭스토어 다이마루 마츠자카야 이세탄 미츠코시 세이부 소고 한큐 한신 "
+                  "백화점 5% 쿠폰 게스트 쿠폰 인천공항 스마트패스 냅존 수면실 릴렉스존 코지존 환승투어 K컬처 한복 체험 공항 라운지 "
+                  "방콕 시암파왓 원시아암 아이콘시암 투어리스트 카드 싱가포르 창이 무료 시티투어 홍콩 알리페이 카카오페이 토스페이 라발레빌리지 아울렛 "
+                  "트래블월렛 트래블로그 토스뱅크 외화통장 환전 수수료 해외결제 수수료 ATM 인출 무료 여행 할인 무료혜택"),
     })
     # 도시 30 — 허브가 있는 도시 먼저
     def city_n(c):
@@ -5168,159 +5172,515 @@ def sos_page(out_root: Path, base: str) -> Path:
 
 
 def coupons_page(out_root: Path, base: str) -> Path:
-    """v57: 여행 할인코드·쿠폰 — 2026-11-26 확인된 트립닷컴 공식 코드만 수록.
+    """v58: 여행 할인쿠폰 — 5개 카테고리(예약 코드 / 일본 현지·면세 / 공항 / 동남아·유럽 / 해외결제).
 
-    코드·조건·유효기간은 kr.trip.com/blog/trip-promotions/(2026-11-26 조회)에서 그대로 옮겼고,
-    코드 문자열이 페이지에 없는 쿠폰(호텔·공항픽업·비즈니스석)은 '앱/링크에서 발급'으로만 적는다.
-    클룩은 코드를 확인하지 못해 공식 쿠폰 페이지 링크만 둔다(가짜 코드 금지).
+    원칙: 2026-11-26 공식 페이지에서 URL·할인율·조건이 확인되는 것만 싣는다.
+    - 공식사가 쿠폰을 직접 공개하지 않는 경우(돈키호테·빅카메라·드럭스토어)는
+      공식 면세 안내(공식)와 제휴 쿠폰 페이지(제휴)를 카드에 함께 표기한다.
+    - 확인되지 않은 혜택(인천공항 '무료' 샤워실 등)은 넣지 않는다. 샤워실은 유료다.
     """
-    B = "https://kr.trip.com"
     AID = "Allianceid=11407530&SID=336341874"
+    CHK = "2026-11-26"
 
-    TRIP = [
+    BOOKING = [
         {
-            "id": "flight-new",
-            "badge": "신규회원",
+            "id": "flight-new", "brand": "트립닷컴", "kind": "신규회원",
             "title": "항공권 최대 22,000원 할인",
             "body": "트립닷컴에서 항공권을 처음 예약할 때 쓸 수 있습니다. 22만 원 이상 결제하면 5,000원, 55만 원 이상이면 22,000원이 빠집니다.",
             "code": "TRIPFLIGHT26KR",
             "cond": ["22만 원 이상 5,000원 · 55만 원 이상 22,000원", "신규회원 항공권 첫 예약", "결제 직전 입력"],
+            "when": "예약 결제 화면",
             "expiry": "2026.09.01 ~ 12.31",
-            "cta": f"https://kr.trip.com/flights/?{AID}&trip_sub1=coupons_flight&trip_sub3=D21275837",
-            "ctaLabel": "항공권 검색하며 적용",
+            "src": "공식",
+            "links": [("항공권 검색하며 적용", f"https://kr.trip.com/flights/?{AID}&trip_sub1=coupons_flight&trip_sub3=D21275837")],
         },
         {
-            "id": "hotel-new",
-            "badge": "앱 발급",
+            "id": "hotel-new", "brand": "트립닷컴", "kind": "앱 발급",
             "title": "호텔 신규 최대 10% (최대 13,000원) 할인",
             "body": "트립닷컴 앱을 내려받아 신규 가입하면 첫 호텔 예약에 쓸 수 있는 코드가 발급됩니다. 코드 문자열은 앱에서만 받을 수 있습니다.",
             "code": "",
             "cond": ["최대 10% · 최대 13,000원", "앱 가입 후 첫 호텔 예약", "앱에서 코드 발급"],
+            "when": "예약 결제 화면",
             "expiry": "앱 쿠폰함 표기 확인",
-            "cta": f"https://kr.trip.com/hotels/?{AID}&trip_sub1=coupons_hotel&trip_sub3=D21372570",
-            "ctaLabel": "호텔 최저가 보기",
+            "src": "공식",
+            "links": [("호텔 최저가 보기", f"https://kr.trip.com/hotels/?{AID}&trip_sub1=coupons_hotel&trip_sub3=D21372570")],
         },
         {
-            "id": "car-new",
-            "badge": "신규회원",
+            "id": "car-new", "brand": "트립닷컴", "kind": "신규회원",
             "title": "렌터카 최대 8% 할인",
             "body": "렌터카를 처음 예약하는 계정에 적용됩니다. 예약 화면에서 차량을 고른 뒤 결제 전에 코드를 넣습니다.",
             "code": "TRIPCAR8",
             "cond": ["최대 8%", "렌터카 첫 예약", "결제 전 코드 입력"],
+            "when": "예약 결제 화면",
             "expiry": "페이지 표기 확인",
-            "cta": f"https://kr.trip.com/carhire/?{AID}&trip_sub1=coupons_car&trip_sub3=D21303312",
-            "ctaLabel": "렌터카 검색하며 적용",
+            "src": "공식",
+            "links": [("렌터카 검색하며 적용", f"https://kr.trip.com/carhire/?{AID}&trip_sub1=coupons_car&trip_sub3=D21303312")],
         },
         {
-            "id": "transfer-new",
-            "badge": "앱 전용",
+            "id": "transfer-new", "brand": "트립닷컴", "kind": "앱 전용",
             "title": "공항픽업 최대 10% 할인 (항공권 예약자는 12%)",
             "body": "앱 홈에서 공항픽업을 열면 10% 쿠폰이 바로 발급됩니다. 이미 트립닷컴에서 항공권을 예약했다면 12%까지 적용됩니다.",
             "code": "",
             "cond": ["앱에서만 쿠폰 발급", "픽업 첫 이용 10% · 항공권 예약자 12%", "항공편 지연 시 추가 요금 없음"],
+            "when": "예약 결제 화면",
             "expiry": "앱 쿠폰함 표기 확인",
-            "cta": f"https://kr.trip.com/airport-transfers/?{AID}&trip_sub1=coupons_transfer&trip_sub3=D21303312",
-            "ctaLabel": "공항픽업 보기",
+            "src": "공식",
+            "links": [("공항픽업 보기", f"https://kr.trip.com/airport-transfers/?{AID}&trip_sub1=coupons_transfer&trip_sub3=D21303312")],
         },
         {
-            "id": "tour-ticket",
-            "badge": "코드",
+            "id": "tour-ticket", "brand": "트립닷컴", "kind": "코드",
             "title": "투어·티켓 최대 6% 할인",
             "body": "입장권·투어·액티비티 결제에 쓰는 코드입니다. 도시별 상품 상세의 '쿠폰' 칸에 넣으면 적용 금액이 표시됩니다.",
             "code": "TRIPNAVER",
             "cond": ["투어·티켓 최대 6%", "상품별 적용 여부 다름", "결제 화면에서 최종 확인"],
+            "when": "예약 결제 화면",
             "expiry": "페이지 표기 확인",
-            "cta": f"https://kr.trip.com/things-to-do/?{AID}&trip_sub1=coupons_tour&trip_sub3=D21303312",
-            "ctaLabel": "투어·티켓 보기",
+            "src": "공식",
+            "links": [("투어·티켓 보기", f"https://kr.trip.com/things-to-do/?{AID}&trip_sub1=coupons_tour&trip_sub3=D21303312")],
         },
         {
-            "id": "biz-first",
-            "badge": "링크 발급",
+            "id": "biz-first", "brand": "트립닷컴", "kind": "링크 발급",
             "title": "비즈니스석·일등석 최대 60,000원 할인",
             "body": "비즈니스·일등석 예약에 적용되는 코드입니다. 코드는 트립닷컴 프로모션 페이지의 '비즈니스 항공권 할인 예약하기' 버튼에서 확인합니다.",
             "code": "",
             "cond": ["최대 60,000원", "비즈니스석·일등석", "프로모션 페이지에서 코드 확인"],
+            "when": "예약 결제 화면",
             "expiry": "페이지 표기 확인",
-            "cta": "https://kr.trip.com/blog/trip-promotions/",
-            "ctaLabel": "프로모션 페이지에서 코드 확인",
-            "nofollow": True,
+            "src": "공식",
+            "links": [("프로모션 페이지에서 코드 확인", "https://kr.trip.com/blog/trip-promotions/")],
+        },
+        {
+            "id": "klook", "brand": "클룩", "kind": "공식 페이지",
+            "title": "진행 중인 쿠폰·프로모션 목록",
+            "body": "클룩은 쿠폰을 앱·계정·결제 수단별로 발급해서 공개된 코드 문자열을 확인하지 못했습니다. 공식 쿠폰 페이지에서 내 계정에 발급된 쿠폰과 적용 조건을 확인하세요.",
+            "code": "",
+            "cond": ["계정·결제 수단별 발급", "쿠폰마다 적용 상품·기간 다름", "결제 화면에서 최종 확인"],
+            "when": "예약 결제 화면",
+            "expiry": "공식 페이지 표기",
+            "src": "공식",
+            "links": [("클룩 쿠폰 페이지 열기", "https://www.klook.com/ko/coupons/?aid=144067")],
         },
     ]
 
-    ALWAYS = [
-        ("트래블카드", "해외 결제 수수료 0%", "트래블월렛·트래블로그·토스뱅크는 해외 가맹점 결제 수수료가 0%입니다. 3만 엔을 ATM에서 인출할 때 일반 카드와 6,568원 차이가 납니다.",
-         "guides/travel-card-fees-comparison.html", "카드 3종 수수료 비교"),
-        ("환전", "공항 37,520원 vs 앱 1,460원", "10만 엔을 바꿀 때 인천공항 환전 37,520원, 시내 14,590원, 앱 환전 우대 1,460원입니다. 같은 날 고시 기준입니다.",
-         "guides/travel-card-packing-guide.html", "환전 수수료·짐싸기"),
-        ("라운지", "PP·더라운지 카드 확인", "공항 라운지는 카드에 붙은 PP와 더라운지 중 어느 쪽인지에 따라 쓸 수 있는 라운지가 달라집니다.",
-         "guides/airport-lounge-card-guide.html", "라운지 카드 비교"),
+    JAPAN = [
+        {
+            "id": "donki", "brand": "돈키호테", "kind": "면세 + 쿠폰",
+            "title": "면세(리펀드) + 최대 7% 추가 할인",
+            "body": "2026년 11월 1일부터 일본 면세는 매장에서 세금을 빼주는 방식이 아니라, 세금 포함 가격으로 결제한 뒤 출국 때 세관 확인을 거쳐 돌려받는 리펀드 방식입니다. 돈키호테는 환급 수수료를 받지 않습니다(공항에서 현금으로 받을 때만 환급업체 수수료).",
+            "code": "",
+            "cond": [
+                "같은 날 같은 점포에서 세전 5,000엔 이상 (면세 대상)",
+                "쿠폰: 세금 포함 11,000엔↑ 5% · 33,000엔↑ 7%",
+                "주류·담배·POSA카드·게임기·1점 10만 엔 이상 제외",
+                "스크린샷 불가 — 매장에서 실제 화면 제시",
+                "구매일부터 90일 내 반출 · 180일 내 환급 신청",
+            ],
+            "when": "현지 결제 전 (면세 카운터)",
+            "expiry": "매장·쿠폰 페이지 표기",
+            "src": "공식 + 제휴 쿠폰",
+            "links": [("공식 면세·환급 안내", "https://www.donki.com/service/tax_free/jp/tax_free.php"),
+                      ("5~7% 쿠폰 화면 (LIVE JAPAN)", "https://livejapan.com/public/operation/coupon/donki/ja.html")],
+        },
+        {
+            "id": "biccamera", "brand": "빅카메라", "kind": "면세 + 쿠폰",
+            "title": "면세(리펀드) + 카테고리별 최대 7% 할인",
+            "body": "빅카메라 공식 안내도 리펀드 방식입니다. 쿠폰을 함께 쓰면 가전·카메라·시계는 7%, 의약품·화장품·식품은 5%, 일본주는 3%가 빠집니다.",
+            "code": "",
+            "cond": [
+                "쿠폰 적용 후 5,000엔 이상 (면세 조건)",
+                "카메라·가전·시계·장난감 7% · 의약품·화장품·식품 5% · 일본주 3%",
+                "Apple 정품·롤렉스·게임기·중고·아울렛 등 제외",
+                "술은 주류 전용 계산대에서 별도 결제",
+                "쿠폰 유효 2027-04-30",
+            ],
+            "when": "현지 결제 전",
+            "expiry": "2027-04-30",
+            "src": "공식 + 제휴 쿠폰",
+            "links": [("공식 면세(리펀드) 안내", "https://www.biccamera.com/bc/c/super/okaimono/oshiharai/taxfree/index.jsp"),
+                      ("7% 쿠폰 화면 (LIVE JAPAN)", "https://livejapan.com/public/operation/coupon/biccamera/ja.html")],
+        },
+        {
+            "id": "matsukiyo", "brand": "마츠모토키요시", "kind": "면세 + 쿠폰",
+            "title": "면세 + 구매액 따라 3~7% 할인",
+            "body": "마츠키요코코카라 계열 드럭스토어입니다. 면세 카운터가 있는 점포에서 여권을 내고 결제 전에 쿠폰을 보여주면 구매액에 따라 3~7%가 더 빠집니다.",
+            "code": "",
+            "cond": [
+                "세전 10,000엔↑ 3% · 30,000엔↑ 5% · 50,000엔↑ 7%",
+                "카운슬링 화장품·담배·잡지·주류·POSA·기저귀 등 제외",
+                "결제 전 제시 (결제 후 소급 불가)",
+                "쿠폰 유효 2027-03-31",
+            ],
+            "when": "현지 결제 전",
+            "expiry": "2027-03-31",
+            "src": "공식 + 제휴 쿠폰",
+            "links": [("공식 점포·면세점 찾기", "https://www.matsukiyo.co.jp/map"),
+                      ("3~7% 쿠폰 (iwafu)", "https://www.iwafu.com/jp/coupons/48")],
+        },
+        {
+            "id": "tsuruha", "brand": "츠루하드럭", "kind": "면세 + 쿠폰",
+            "title": "면세 + 구매액 따라 3~7% 할인",
+            "body": "츠루하 공식 사이트에서 면세 취급 점포와 기본 조건을 확인할 수 있습니다. 쿠폰은 세금 포함 결제액 기준으로 3~7%가 적용됩니다.",
+            "code": "",
+            "cond": [
+                "세금 포함 10,000~30,000엔 3% · 30,000~50,000엔 5% · 50,000엔↑ 7%",
+                "면세 대상자만 · 결제 전 제시",
+                "다른 우대·쿠폰과 병용 불가 · 일부 상품 제외",
+                "2026-11-01 제도 개편 후 반출·환급 절차는 매장 안내 기준",
+            ],
+            "when": "현지 결제 전",
+            "expiry": "쿠폰 페이지 표기",
+            "src": "공식 + 제휴 쿠폰",
+            "links": [("공식 면세 점포 안내", "https://www.tsuruha.co.jp/service/tax-free/"),
+                      ("3~7% 쿠폰 (LIVE JAPAN)", "https://livejapan.com/public/operation/coupon/tsuruhadrug/ja.html")],
+        },
+        {
+            "id": "sundrug", "brand": "선드럭", "kind": "면세 + 쿠폰",
+            "title": "면세 + 구매액 따라 3~7% 할인",
+            "body": "도쿄·오사카 주요 역 근처에 많은 드럭스토어입니다. 면세 계산할 때 쿠폰을 같이 내면 3~7%가 추가로 빠집니다.",
+            "code": "",
+            "cond": [
+                "세전 10,000~30,000엔 3% · 30,000~50,000엔 5% · 50,000엔↑ 7%",
+                "면세 계산 시에만 사용 · 결제 전 제시",
+                "의약품·화장품 일부 제외 · 다른 쿠폰 병용 불가",
+            ],
+            "when": "현지 결제 전",
+            "expiry": "쿠폰 페이지 표기",
+            "src": "공식 + 제휴 쿠폰",
+            "links": [("공식 사이트", "https://www.sundrug.co.jp/"),
+                      ("3~7% 쿠폰 (LIVE JAPAN)", "https://livejapan.com/public/operation/coupon/sundrug/ja.html")],
+        },
+        {
+            "id": "daimaru", "brand": "다이마루·마츠자카야", "kind": "백화점 5%",
+            "title": "외국인 5% 할인 쿠폰 (10개 점포)",
+            "body": "다이마루·마츠자카야 공식 외국인 쿠폰 페이지에서 점포를 고르면 5% 할인 쿠폰이 나옵니다. 결제 전에 여권과 함께 제시합니다.",
+            "code": "",
+            "cond": [
+                "1회 결제 세금 포함 3,000엔 이상",
+                "입국 6개월 이내 외국 국적 · 본인 여권",
+                "식품·시계·럭셔리 부티크·레스토랑·특가품 제외",
+                "현금·은련·신용카드·모바일 결제",
+                "대상: 다이마루 7개 점포 + 마츠자카야 3개 점포",
+            ],
+            "when": "현지 결제 전 (매장)",
+            "expiry": "점포별 표기",
+            "src": "공식",
+            "links": [("공식 5% 쿠폰 페이지", "https://www.dmdepart.jp/fl/coupon/j/")],
+        },
+        {
+            "id": "isetan", "brand": "이세탄·미츠코시", "kind": "백화점 5%",
+            "title": "앱 쇼핑 쿠폰 5%",
+            "body": "게스트카드 발급은 2025년 3월 25일 끝났고, 지금은 공식 앱 'MITSUKOSHI ISETAN JAPAN'의 쇼핑 쿠폰으로 5% 할인을 받습니다. 앱에서 쿠폰을 켜고 면세 카운터에서 활성화해야 합니다.",
+            "code": "",
+            "cond": [
+                "외국 여권 + 단기 체류(입국 6개월 미만)",
+                "앱 가입 → 여권 정보 등록 → 면세 카운터에서 활성화",
+                "쿠폰 유효 1년",
+                "1점 3,000엔(세전) 미만·세일·식품·레스토랑·일부 명품 브랜드 제외",
+                "다른 할인·포인트와 중복 불가 (면세는 별도)",
+            ],
+            "when": "현지 결제 전 (면세 카운터에서 활성화)",
+            "expiry": "활성화 후 1년",
+            "src": "공식",
+            "links": [("공식 쇼핑 쿠폰 안내", "https://cp.mistore.jp/global/en/app/shopping-coupon.html")],
+        },
+        {
+            "id": "seibu", "brand": "세이부·소고", "kind": "백화점 5%",
+            "title": "5% OFF + 면세 (지정 6개 점포)",
+            "body": "서울·부산에서 오는 여행자가 많이 가는 이케부쿠로 본점을 포함해 지정 6개 점포에서 5% 할인을 받습니다. 결제 전에 쿠폰 QR과 여권을 보여줍니다.",
+            "code": "",
+            "cond": [
+                "세전 1,000엔 이상 구매",
+                "세이부 이케부쿠로·후쿠이 / 소고 요코하마·치바·히로시마·오미야만",
+                "결제 전 QR 제시 + 본인 여권",
+                "면세 수수료 1.55% 별도",
+                "식품·전문점·일부 명품 브랜드 제외",
+            ],
+            "when": "현지 결제 전 (매장)",
+            "expiry": "페이지 표기",
+            "src": "공식",
+            "links": [("공식 글로벌 안내", "https://www.sogo-seibu.jp/global")],
+        },
+        {
+            "id": "hankyu", "brand": "한큐·한신", "kind": "백화점 5%",
+            "title": "게스트 쿠폰 5% (발급일 포함 7일)",
+            "body": "오사카 우메다·고베·하카타 등 6개 점포에서 여권을 내면 5% 게스트 쿠폰을 발급합니다. 발급일 포함 7일 동안 여러 번 쓸 수 있습니다.",
+            "code": "",
+            "cond": [
+                "면세 자격자 · 발급 시 여권 필요",
+                "발급일 포함 7일간 무제한 사용",
+                "세전 1,000엔 미만·세일·식품·레스토랑·일부 브랜드 제외",
+                "대상: 한큐 우메다·고베 한큐·한큐 멘즈 오사카·멘즈 도쿄·하카타·한신 우메다",
+                "은련·위챗페이·알리페이로 결제하면 5% 즉시 할인 (쿠폰 미사용)",
+            ],
+            "when": "현지 결제 전 (카운터에서 발급)",
+            "expiry": "발급일 포함 7일",
+            "src": "공식",
+            "links": [("공식 게스트 쿠폰 안내", "https://global.hankyu-hanshin-dept.co.jp/ja/store/hankyuhonten/service/")],
+        },
     ]
 
-    cards = []
-    for c in TRIP:
+    AIRPORT = [
+        {
+            "id": "smartpass", "brand": "인천공항", "kind": "무료",
+            "title": "스마트패스 — 얼굴로 출국장·탑승구 통과",
+            "body": "여권·얼굴·탑승권을 한 번 등록하면 출국장 전용 레인과 일부 탑승구를 얼굴 인증만으로 지나갑니다. 비용은 없고, 안면 정보는 5년간 씁니다.",
+            "code": "",
+            "cond": [
+                "무료 · 만 7세 이상 (14세 미만은 보호자 동의)",
+                "여권 재발급 시 재등록 · 탑승권은 출국마다 등록",
+                "대한항공·아시아나·제주·진에어 등은 체크인 시 자동 등록",
+                "전용 출국장·레인 운영 (현장 안내선·사이니지 확인)",
+                "토스·KB·신한·우리·하나·네이버페이 앱에서도 등록",
+            ],
+            "when": "출국 당일 (공항 도착 후 30분 전 등록 권장)",
+            "expiry": "상시",
+            "src": "공식",
+            "links": [("공식 스마트패스 안내", "https://www.airport.kr/ap_ko/889/subview.do")],
+        },
+        {
+            "id": "napzone", "brand": "인천공항", "kind": "무료",
+            "title": "냅존·릴렉스존·코지존 — 24시간 무료 수면·휴식",
+            "body": "출국심사 후 면세구역 4층에 무료 휴식 공간이 있습니다. 새벽 비행을 기다리거나 환승 대기할 때 쓸 수 있고, 예약 없이 자리가 있으면 됩니다.",
+            "code": "",
+            "cond": [
+                "무료(공식 시설 목록에 유료 표기 없음) · 24시간 · 예약 없음",
+                "T1 동편: 냅존(수면실)·코지존·리프레시존",
+                "T1 서편: 릴렉스존",
+                "T2: 231번 게이트 부근(서편), 268번 게이트 부근(동편) 냅존",
+                "모두 출국심사 후 면세구역 안 — 일반지역에서는 갈 수 없음",
+            ],
+            "when": "출국심사 후 · 환승 대기",
+            "expiry": "상시",
+            "src": "공식",
+            "links": [("공식 편의시설 목록 (T1)", "https://airport.kr/ap/ko/svc/getFacilityMain.do?SN=2032&TERMINAL_ID=T1")],
+        },
+        {
+            "id": "transit-tour", "brand": "인천공항", "kind": "무료 코스",
+            "title": "환승투어 — 무료 코스 6개 + 3~4달러 코스",
+            "body": "환승 대기 시간이 24시간 이내면 무비자로 공항 밖 투어에 참가할 수 있습니다. 임진각·애기봉·구읍뱃터·모래내시장·홍대·신포시장 코스는 무료입니다.",
+            "code": "",
+            "cond": [
+                "환승 체류 24시간 이내 · 여권과 출·도착 탑승권",
+                "출발 30분 전까지 T1·T2 1층 등록데스크 도착",
+                "무료: 임진각(5h)·애기봉(4h)·구읍뱃터(5h)·모래내시장(4h)·홍대(3h)·신포시장(3h)",
+                "유료: 경복궁 3달러 · DMZ 4달러 · 서울식물원 4달러",
+                "한국 방문 1회에 입국 1회만 허용 (재입국 불가)",
+            ],
+            "when": "환승 대기 중",
+            "expiry": "상시 (코스별 운행 요일 다름)",
+            "src": "공식",
+            "links": [("공식 환승투어 안내", "https://www.airport.kr/ap_ko/943/subview.do")],
+        },
+        {
+            "id": "kculture", "brand": "인천공항", "kind": "무료 체험",
+            "title": "K-Culture Zone — 한복 체험·한글 공예",
+            "body": "공항을 나가지 않고 환승 구역에서 한복을 입어보고 한글 이름 팔찌·족자를 만드는 무료 체험입니다.",
+            "code": "",
+            "cond": [
+                "무료 · T1 동편 4층 환승라운지 09:00~20:00",
+                "한복 입어보기 · 한글 공예 · 자개 만들기 · 투호",
+                "환승 구역 안이라 출국심사 후 이용",
+            ],
+            "when": "출국심사 후 · 환승 대기",
+            "expiry": "상시",
+            "src": "공식",
+            "links": [("공식 코스 안내에 포함", "https://www.airport.kr/ap_ko/943/subview.do")],
+        },
+        {
+            "id": "lounge-card", "brand": "공항 라운지", "kind": "카드 혜택",
+            "title": "라운지 카드 — PP·더라운지 확인",
+            "body": "공항 라운지는 카드에 붙은 PP(Priority Pass)와 더라운지 중 어느 쪽인지에 따라 쓸 수 있는 라운지가 달라집니다. 인천공항 라운지 5곳 운영시간과 동반 요금은 가이드에 정리했습니다.",
+            "code": "",
+            "cond": ["카드별 무료 동반 횟수 다름", "인천공항 라운지 1회 약 3.5만 원 기준", "연회비 대비 본전 계산은 가이드 참고"],
+            "when": "출국 전 (카드 등록·발급)",
+            "expiry": "카드 약관 기준",
+            "src": "가이드",
+            "links": [("라운지 카드 비교 가이드", "guides/airport-lounge-card-guide.html")],
+        },
+    ]
+
+    ASIA = [
+        {
+            "id": "onesiam", "brand": "방콕 시암피왓", "kind": "무료 카드",
+            "title": "ONESIAM Global Visitor Card — 백화점 5%·VAT 환급",
+            "body": "시암 파라곤·시암 센터·시암 디스커버리·아이콘시암·시암 프리미엄 아울렛·ICS 6개 몰에서 쓰는 무료 방문객 카드입니다. 발급비가 없고, 백화점 5% 할인과 최대 6% VAT 환급, 무료 와이파이가 붙습니다.",
+            "code": "",
+            "cond": [
+                "무료 · 여권 제시 · 2026-01-01~12-31 혜택",
+                "백화점·구르메 마켓·시암 타카시마야 5% 할인 (일부 매장)",
+                "참여 브랜드 최대 80% 할인 · 무료 와이파이",
+                "VAT 환급 최대 6% (공항 환급 절차 별도)",
+                "온라인 사전 등록 후 몰 안내데스크에서 수령",
+            ],
+            "when": "현지 도착 후 (몰 안내데스크)",
+            "expiry": "2026-12-31 (혜택 기준)",
+            "src": "공식",
+            "links": [("공식 카드 혜택 안내", "https://tourist.onesiam.com/en/tourist-card-privileges/")],
+        },
+        {
+            "id": "changi-tour", "brand": "싱가포르 창이", "kind": "무료 투어",
+            "title": "Free Singapore Tour — 2시간 30분 무료 시티투어",
+            "body": "창이공항에서 환승하는 승객이면 무료 버스 투어에 참가할 수 있습니다. 헤리티지·시티·머라이언/마리나베이·센토사 4개 코스 중 하나를 고릅니다.",
+            "code": "",
+            "cond": [
+                "환승객 전용 · 체류 5.5~24시간",
+                "수하물은 최종 목적지까지 연결(bag through) 필요",
+                "영어 진행 (중국어 오디오 요청 가능)",
+                "투어일 50일 전부터 1개 코스 예약 · 부스 08:00~19:00",
+                "출발 90분 전 부스 도착 · 투어 중 입국심사는 1회만",
+            ],
+            "when": "환승 대기 중",
+            "expiry": "상시 (코스별 시간표 확인)",
+            "src": "공식",
+            "links": [("공식 투어 안내", "https://www.changiairport.com/en/experience/tours/free-singapore-tour.html")],
+        },
+        {
+            "id": "hk-winterfest", "brand": "홍콩", "kind": "결제 할인",
+            "title": "윈터페스트 Alipay+ 혜택 — 10% 할인·QTS 20%",
+            "body": "홍콩관광국이 알리페이와 진행하는 겨울 프로모션입니다. 카카오페이·토스페이 등 Alipay+ 제휴 지갑으로 매장 QR을 찍으면 결제액 10%가 빠지고, QTS 인증 매장에서는 20% 할인 쿠폰을 한 번 쓸 수 있습니다.",
+            "code": "",
+            "cond": [
+                "2026-11-18 ~ 2027-01-05 · 해외 방문객",
+                "Alipay+ 제휴 지갑(카카오페이·토스페이·TrueMoney 등)",
+                "결제 10% 할인 최대 5회 · 총 HK$500까지",
+                "QTS 매장 20% 할인 최대 HK$100 · 1인 1회",
+                "매장 200곳 이상 QR · AlipayHK 사용자는 제외",
+            ],
+            "when": "현지 결제 시",
+            "expiry": "2027-01-05",
+            "src": "공식",
+            "links": [("공식 프로모션 안내", "https://www.discoverhongkong.com/eng/events/hong-kong-winterfest/deals-alipay.html")],
+        },
+        {
+            "id": "lavallee", "brand": "파리 라발레빌리지", "kind": "아울렛 10%",
+            "title": "eVIP 패스 10% — 파리 근교 아울렛",
+            "body": "파리에서 40분 거리 아울렛입니다. eVIP 패스를 받으면 참여 부티크에서 정가에서 10% 더 빠지고, 비EU 거주자는 세금 환급도 따로 받습니다.",
+            "code": "",
+            "cond": [
+                "참여 부티크 한정 · 첫 스캔 후 24시간 유효",
+                "본인만 사용 · 다른 오퍼와 중복 불가",
+                "세금 환급: 비EU 거주·16세 이상·부티크 1곳에서 €100.01 이상",
+                "제외 브랜드는 빌리지 Welcome Center에서 확인",
+            ],
+            "when": "현지 결제 전",
+            "expiry": "패스 스캔 후 24시간",
+            "src": "공식",
+            "links": [("공식 eVIP 약관", "https://www.thebicestercollection.com/la-vallee-village/en/partner-offers/evip-visa-crossborder-terms/")],
+        },
+    ]
+
+    MONEY = [
+        {
+            "id": "travelwallet", "brand": "트래블월렛", "kind": "환전·결제 0%",
+            "title": "환전 수수료 0% · 해외 결제 수수료 0%",
+            "body": "46개 통화를 앱에서 충전해 카드로 결제합니다. 해외 가맹점 결제 수수료가 없고, ATM은 월 500달러까지 카드사 수수료를 받지 않습니다.",
+            "code": "",
+            "cond": [
+                "환전 수수료 0% · 해외 결제 수수료 0%",
+                "ATM 월 500달러까지 무료 · 초과분 2%",
+                "ATM 한도 1회 400달러 · 1일 1,000달러 · 월 2,000달러",
+                "충전한 통화와 같은 통화만 출금 가능",
+                "현지 ATM 운영사 수수료는 별도",
+            ],
+            "when": "출국 전 충전 → 현지 결제·ATM",
+            "expiry": "상시 (약관 기준)",
+            "src": "공식",
+            "links": [("공식 사이트", "https://www.travel-wallet.com/ko")],
+        },
+        {
+            "id": "travellog", "brand": "트래블로그", "kind": "환전·결제 0%",
+            "title": "무료 환전 + 해외 결제·ATM 수수료 면제",
+            "body": "하나머니 앱에서 외화로 충전해 트래블로그 카드로 결제합니다. 해외 가맹점 이용 수수료와 국제브랜드 수수료가 면제되고, 해외 ATM 인출 수수료도 면제됩니다.",
+            "code": "",
+            "cond": [
+                "58개 통화 무료 환전(환율 우대 100%)",
+                "해외 가맹점: 해외서비스 수수료·국제브랜드 수수료 면제",
+                "해외 ATM: 인출 수수료 면제 (현지 ATM 수수료 별도)",
+                "해외원화결제(DCC) 차단",
+                "IC칩 비밀번호(PIN) 출국 전 등록 필요",
+            ],
+            "when": "출국 전 충전 → 현지 결제·ATM",
+            "expiry": "상시 (약관 기준)",
+            "src": "공식",
+            "links": [("공식 상품 안내", "https://www.hanacard.co.kr/OPI41000000D.web?CD_PD_SEQ=19227&mID=PI41006884P&schID=pcd")],
+        },
+        {
+            "id": "tossbank", "brand": "토스뱅크", "kind": "환전·결제 0원",
+            "title": "외화통장 환전 수수료 0원 + 체크카드 수수료 0원",
+            "body": "외화통장에 17개 통화를 담고 토스뱅크 체크카드를 연결하면 해외 결제 수수료가 0원입니다. ATM은 월 5회 또는 700달러까지 무료입니다.",
+            "code": "",
+            "cond": [
+                "환전 수수료 0원 (살 때·팔 때 모두) · 17개 통화",
+                "체크카드 해외 결제 수수료 0원",
+                "ATM 월 5회 또는 700달러까지 무료",
+                "초과 시 인출액 1% + 3달러",
+                "현지 ATM 운영사 수수료는 별도",
+            ],
+            "when": "출국 전 환전 → 현지 결제·ATM",
+            "expiry": "상시 (약관 기준)",
+            "src": "공식",
+            "links": [("공식 체크카드 혜택", "https://www.tossbank.com/card/benefits")],
+        },
+        {
+            "id": "card-guide", "brand": "카드 비교", "kind": "가이드",
+            "title": "트래블카드 3종 수수료 비교",
+            "body": "같은 3만 엔을 ATM에서 인출할 때 일반 신용카드와 트래블카드의 차이, 카드별 무료 한도를 표로 정리했습니다.",
+            "code": "",
+            "cond": ["일반 카드 대비 6,568원 차이(3만 엔 기준)", "카드별 ATM 무료 한도 비교", "환전 수수료·DCC 주의점"],
+            "when": "출국 전",
+            "expiry": "가이드 업데이트 기준",
+            "src": "가이드",
+            "links": [("카드 3종 수수료 비교", "guides/travel-card-fees-comparison.html")],
+        },
+    ]
+
+    CATS = [
+        ("booking", "예약 할인코드", "항공·호텔·렌터카·투어를 예약할 때", BOOKING),
+        ("japan", "일본 현지·면세", "현지 매장에서 결제하기 전", JAPAN),
+        ("airport", "공항·출국 무료혜택", "출국 전과 공항에서 기다릴 때", AIRPORT),
+        ("asia", "동남아·홍콩·유럽", "방콕·싱가포르·홍콩·파리에서", ASIA),
+        ("money", "해외결제·환전", "출국 전에 준비할 때", MONEY),
+    ]
+    TOTAL = sum(len(items) for _, _, _, items in CATS)
+
+    def card_html(cat_id: str, c: dict) -> str:
         code_html = (
             f'<div class="cpn-code"><code>{esc(c["code"])}</code>'
             f'<button type="button" class="cpn-copy" data-copy="{esc(c["code"])}" aria-label="{esc(c["code"])} 복사">복사</button></div>'
-            if c["code"] else
-            '<div class="cpn-code cpn-code--none"><span>코드 문자열 없이 앱·링크에서 발급됩니다</span></div>'
+            if c.get("code") else ""
         )
-        rel = "noopener" if c.get("nofollow") else "noopener sponsored"
-        cards.append(f"""<article class="cpn" id="cpn-{c['id']}">
-  <div class="cpn-top"><span class="cpn-p">트립닷컴</span><span class="cpn-b">{esc(c['badge'])}</span></div>
+        cond_html = "".join(f"<li>{esc(x)}</li>" for x in c["cond"])
+        links = []
+        for label, url in c["links"]:
+            external = url.startswith("http")
+            sponsored = ("kr.trip.com" in url or "klook.com" in url) and "/blog/" not in url
+            rel = "noopener sponsored" if sponsored else "noopener"
+            attrs = f' target="_blank" rel="{rel}"' if external else ""
+            links.append(f'<a class="cpn-go" href="{esc(url)}"{attrs}>{esc(label)} →</a>')
+        return f"""<article class="cpn" id="cpn-{c['id']}" data-cat="{cat_id}">
+  <div class="cpn-top"><span class="cpn-p">{esc(c['brand'])}</span><span class="cpn-b">{esc(c['kind'])}</span></div>
   <b class="cpn-t">{esc(c['title'])}</b>
   <p class="cpn-d">{esc(c['body'])}</p>
   {code_html}
-  <ul class="cpn-cond">{''.join(f'<li>{esc(x)}</li>' for x in c['cond'])}</ul>
-  <div class="cpn-foot"><span class="cpn-exp">유효 {esc(c['expiry'])}</span>
-    <a class="cpn-go" href="{esc(c['cta'])}" target="_blank" rel="{rel}">{esc(c['ctaLabel'])} →</a></div>
-</article>""")
+  <ul class="cpn-cond">{cond_html}</ul>
+  <div class="cpn-when"><i>사용 시점</i><span>{esc(c['when'])}</span></div>
+  <div class="cpn-foot"><span class="cpn-src">{esc(c['src'])}</span><span class="cpn-exp">{esc(c['expiry'])}</span></div>
+  <div class="cpn-links">{''.join(links)}</div>
+</article>"""
 
-    always_cards = "".join(
-        f'<a class="cpn cpn--always" href="{href}">'
-        f'<div class="cpn-top"><span class="cpn-p">{esc(kind)}</span><span class="cpn-b">쿠폰 없이</span></div>'
-        f'<b class="cpn-t">{esc(title)}</b><p class="cpn-d">{esc(body)}</p>'
-        f'<span class="cpn-go">{esc(label)} →</span></a>'
-        for kind, title, body, href, label in ALWAYS
-    )
+    tabs = [f'<button type="button" class="cpn-tab on" aria-pressed="true" data-filter="all">전체 <b>{TOTAL}</b></button>']
+    for cid, name, _sub, items in CATS:
+        tabs.append(
+            f'<button type="button" class="cpn-tab" aria-pressed="false" data-filter="{cid}">'
+            f'{esc(name)} <b>{len(items)}</b></button>'
+        )
 
-    faq = [
-        ("트립닷컴 할인코드는 어디에 입력하나요?",
-         "결제 화면의 쿠폰·프로모션 코드 입력 칸에 넣습니다. 항공권은 승객 정보를 넣고 결제 직전 화면, 호텔은 결제 수단을 고르는 화면에 칸이 있습니다. 적용 금액이 표시되지 않으면 조건(최소 결제액·신규회원·상품)이 맞지 않는 경우입니다."),
-        ("신규회원 할인은 계정마다 한 번인가요?",
-         "트립닷컴 신규회원 쿠폰은 계정 기준으로 한 번 발급됩니다. 같은 사람이 계정을 여러 개 만들어 쓰는 것은 약관상 제한될 수 있고, 예약 후 취소·재예약 시 쿠폰이 돌아오지 않는 경우가 있습니다."),
-        ("클룩 할인코드는 왜 코드가 없나요?",
-         "이 페이지는 2026년 11월 26일 기준으로 코드 문자열과 조건이 공개된 것만 싣습니다. 클룩은 쿠폰이 앱·계정·결제 수단별로 발급되어 공개 문자열을 확인하지 못했으므로, 공식 쿠폰 페이지로만 연결합니다. 확인되는 대로 코드를 추가합니다."),
-        ("쿠폰과 카드 할인을 같이 쓸 수 있나요?",
-         "보통 쿠폰 1개와 카드 할인은 함께 적용되지만, 상품·결제 수단에 따라 하나만 적용됩니다. 결제 화면의 할인 내역에 두 줄이 모두 표시되는지 확인하고, 표시되지 않으면 결제를 진행하지 마세요."),
-        ("유효기간이 지난 코드를 넣으면 어떻게 되나요?",
-         "결제 화면에 '사용할 수 없는 코드'로 표시되고 금액은 그대로입니다. 이 페이지는 유효기간이 확인된 코드만 적고, 기간이 끝나면 다음 업데이트에서 지웁니다. 결제 전에 트립닷컴 프로모션 페이지에서 한 번 더 확인하세요."),
-    ]
-    faq_html = "".join(
-        f'<details class="fq"><summary><span class="fq-q"><b>Q.</b> {esc(q)}</span>'
-        f'<span class="fq-ic" aria-hidden="true"></span></summary><div class="fq-a">{esc(a)}</div></details>'
-        for q, a in faq
-    )
-
-    body = f"""<div class="pg-hero">
-  <div class="wrap">
-    <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><b>할인쿠폰</b></nav>
-    <span class="pg-kicker">COUPON</span>
-    <div class="pg-head">
-      <h1>여행 할인코드, <em>확인된 것만</em> 모았습니다</h1>
-      <p class="dek">트립닷컴 공식 프로모션 페이지에서 2026년 11월 26일 확인한 코드와 조건입니다. 코드 문자열이 공개되지 않은 쿠폰은 '앱·링크 발급'으로만 적고, 클룩은 공식 쿠폰 페이지로 연결합니다.</p>
-      <div class="pg-meta">
-        <span><b>트립픽 편집</b></span><i></i><span>최종 검증일 2026.11.26</span><i></i>
-        <span>코드 {sum(1 for c in TRIP if c['code'])}개 · 앱 발급 {sum(1 for c in TRIP if not c['code'])}개</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="pg-body">
-  <div class="wrap">
-    <div class="pg-grid">
-      <article class="doc">
-        <div class="cpn-note">쿠폰 조건·유효기간은 판매처가 바꿀 수 있습니다. 결제 화면에 표시된 최종 금액이 기준이고, 이 페이지는 <b>2026-11-26 확인값</b>만 싣습니다.</div>
+    sections = []
+    for cid, name, sub, items in CATS:
+        cards = "".join(card_html(cid, c) for c in items)
+        extra = ""
+        if cid == "booking":
+            extra = """
         <div class="tb">
           <div class="tb-h"><b>한눈에 보는 트립닷컴 코드</b><span>kr.trip.com 프로모션 페이지 2026-11-26</span></div>
           <div class="tb-scroll">
@@ -5336,31 +5696,64 @@ def coupons_page(out_root: Path, base: str) -> Path:
               </tbody>
             </table>
           </div>
-        </div>
+        </div>"""
+        sections.append(f"""<section class="cpn-sec" id="{cid}" data-cat="{cid}">
+        <div class="cpn-sec-h"><h2>{esc(name)}</h2><p>{esc(sub)} · {len(items)}건</p></div>{extra}
+        <div class="cpn-grid">{cards}</div>
+      </section>""")
 
-        <h2 id="trip">트립닷컴 할인코드 6개</h2>
-        <div class="cpn-grid">{''.join(cards)}</div>
+    faq = [
+        ("일본 면세가 2026년 11월부터 어떻게 바뀌었나요?",
+         "매장에서 세금을 빼고 파는 방식(즉시 면세)이 끝나고, 세금 포함 가격으로 결제한 뒤 출국 때 세관에서 물건을 확인받고 환급받는 리펀드 방식이 됐습니다. 같은 날 같은 점포에서 세전 5,000엔 이상이 기준이고, 구매일부터 90일 안에 반출해야 하며, 환급 신청은 업체별로 정해진 기한(보통 180일) 안에 해야 합니다. 상품권이나 지역화폐로 결제한 금액은 면세 대상에서 빠지는 경우가 많습니다."),
+        ("돈키호테·빅카메라 쿠폰은 공식 쿠폰인가요?",
+         "두 회사는 쿠폰을 자사 사이트에 상시 게시하지 않고, 제휴 쿠폰 페이지(이 페이지에서는 LIVE JAPAN)로 발급합니다. 그래서 카드에 '공식 + 제휴 쿠폰'으로 표시하고, 공식 면세 안내와 쿠폰 화면을 따로 링크했습니다. 매장에서 실제 화면(스크린샷 아님)을 결제 전에 보여줘야 합니다."),
+        ("공항에서 무료로 쓸 수 있는 건 무엇인가요?",
+         "인천공항은 스마트패스(얼굴 인증), 냅존·릴렉스존·코지존(24시간 휴식), 환승투어 무료 코스 6개, K-Culture Zone(한복·한글 공예)이 무료입니다. 반면 샤워실은 2026년 11월 현재 모두 유료로 안내되고 있고, 라운지는 카드 혜택이나 유료 이용입니다."),
+        ("쿠폰과 면세, 카드 할인을 겹쳐 쓸 수 있나요?",
+         "면세(리펀드)와 매장 쿠폰은 함께 쓸 수 있지만, 쿠폰끼리는 대부분 1회 결제에 1장만 됩니다. 백화점 5% 쿠폰도 다른 할인·포인트와 중복이 안 됩니다. 결제 화면에 할인 줄이 생겼는지 확인하고 결제하세요."),
+        ("해외 ATM 수수료는 얼마까지 무료인가요?",
+         "트래블월렛은 월 500달러까지, 토스뱅크는 월 5회 또는 700달러까지 카드사·브랜드 수수료가 면제됩니다. 트래블로그는 금액 한도 없이 인출 수수료를 면제합니다. 다만 현지 ATM 운영사가 붙이는 수수료는 어느 카드든 별도입니다."),
+        ("유효기간이 지난 코드를 넣으면 어떻게 되나요?",
+         "결제 화면에 '사용할 수 없는 코드'로 표시되고 금액은 그대로입니다. 이 페이지는 유효기간이 확인된 것만 적고, 기간이 끝나면 다음 업데이트에서 지웁니다. 결제 전에 판매처 페이지에서 한 번 더 확인하세요."),
+    ]
+    faq_html = "".join(
+        f'<details class="fq"><summary><span class="fq-q"><b>Q.</b> {esc(q)}</span>'
+        f'<span class="fq-ic" aria-hidden="true"></span></summary><div class="fq-a">{esc(a)}</div></details>'
+        for q, a in faq
+    )
 
-        <h2 id="klook">클룩(Klook) 쿠폰</h2>
-        <div class="cpn-grid">
-          <a class="cpn cpn--always" href="https://www.klook.com/ko/coupons/?aid=144067" target="_blank" rel="noopener sponsored">
-            <div class="cpn-top"><span class="cpn-p">클룩</span><span class="cpn-b">공식 페이지</span></div>
-            <b class="cpn-t">진행 중인 쿠폰·프로모션 목록</b>
-            <p class="cpn-d">클룩은 쿠폰을 앱·계정·결제 수단별로 발급해서 공개된 코드 문자열을 확인하지 못했습니다. 공식 쿠폰 페이지에서 내 계정에 발급된 쿠폰과 적용 조건을 확인하세요.</p>
-            <span class="cpn-go">클룩 쿠폰 페이지 열기 →</span>
-          </a>
-        </div>
+    body = f"""<div class="pg-hero">
+  <div class="wrap">
+    <nav class="pg-crumb" aria-label="위치"><a href="index.html">홈</a><i></i><b>할인쿠폰</b></nav>
+    <span class="pg-kicker">COUPON</span>
+    <div class="pg-head">
+      <h1>여행 쿠폰·무료혜택, <em>확인된 것만</em> 모았습니다</h1>
+      <p class="dek">예약 할인코드부터 일본 현지 면세 쿠폰, 공항 무료 혜택, 방콕·싱가포르·홍콩·파리 현지 혜택, 해외결제 카드까지 5개 카테고리 {TOTAL}건입니다. {CHK} 공식 페이지에서 확인한 URL·할인율·조건만 싣고, 확인되지 않은 혜택은 넣지 않았습니다.</p>
+      <div class="pg-meta">
+        <span><b>트립픽 편집</b></span><i></i><span>최종 검증일 {CHK}</span><i></i>
+        <span>카테고리 {len(CATS)}개 · 혜택 {TOTAL}건</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <h2 id="always">코드 없이 상시 적용되는 혜택</h2>
-        <div class="cpn-grid">{always_cards}</div>
+<div class="pg-body">
+  <div class="wrap">
+    <div class="pg-grid">
+      <article class="doc">
+        <div class="cpn-note">쿠폰 조건·유효기간은 판매처가 바꿀 수 있습니다. 결제 화면에 표시된 최종 금액이 기준이고, 이 페이지는 <b>{CHK} 확인값</b>만 싣습니다. 일본 면세는 2026-11-01부터 리펀드(출국 후 환급) 방식입니다.</div>
+
+        <div class="cpn-tabs" aria-label="쿠폰 카테고리">{''.join(tabs)}</div>
+
+        {''.join(sections)}
 
         <h2 id="rules">쓰기 전에 확인할 것</h2>
         <ul>
-          <li><b>결제 화면 금액이 기준</b> — 코드를 넣고 할인 줄이 생겼는지, 최종 결제액이 줄었는지 확인한 뒤 결제하세요.</li>
-          <li><b>신규회원 조건</b> — 계정당 1회이고, 취소 후 재예약 때 쿠폰이 돌아오지 않는 경우가 있습니다.</li>
-          <li><b>앱 전용</b> — 호텔·공항픽업 쿠폰은 앱에서만 발급됩니다. 웹에서는 코드 칸이 보여도 적용되지 않습니다.</li>
-          <li><b>중복</b> — 쿠폰 1개와 카드 할인은 함께 적용되는 경우가 많지만, 상품에 따라 하나만 적용됩니다.</li>
-          <li><b>유효기간</b> — 기간이 지나면 자동으로 만료됩니다. 이 페이지는 확인된 기간만 적고, 끝나면 지웁니다.</li>
+          <li><b>결제 화면 금액이 기준</b> — 코드·쿠폰을 넣고 할인 줄이 생겼는지, 최종 결제액이 줄었는지 확인한 뒤 결제하세요.</li>
+          <li><b>결제 전 제시</b> — 일본 매장 쿠폰은 계산이 끝나면 소급 적용이 안 됩니다. 스크린샷이 아니라 실제 화면을 보여줘야 하는 곳도 있습니다.</li>
+          <li><b>면세는 별도</b> — 쿠폰 할인과 면세 환급은 따로 계산됩니다. 2026-11-01부터는 세금 포함으로 결제하고 출국 때 세관 확인을 받아야 환급됩니다.</li>
+          <li><b>중복 제한</b> — 쿠폰 1장 + 카드 할인은 함께 되는 경우가 많지만, 쿠폰끼리·백화점 우대끼리는 대부분 중복이 안 됩니다.</li>
+          <li><b>제외 품목</b> — 주류·담배·게임기·명품 시계·식품·레스토랑은 거의 모든 쿠폰에서 빠집니다. 카드의 조건 목록을 먼저 보세요.</li>
         </ul>
 
         <h2 id="faq">자주 묻는 질문</h2>
@@ -5368,22 +5761,46 @@ def coupons_page(out_root: Path, base: str) -> Path:
       </article>
       <aside class="pg-side">
         <div class="side-card">
-          <b>쿠폰과 함께 쓰는 도구</b>
-          <a href="stays.html">찐숙소 126곳 — 1박 최저가</a>
-          <a href="passes.html">교통패스 본전 계산기</a>
-          <a href="exchange.html">환율·면세 계산기</a>
-          <a href="checklist.html">여행 준비 D-Day</a>
+          <h3>카테고리 바로가기</h3>
+          <ul class="side-list">
+            <li><a href="#booking">예약 할인코드<span>트립닷컴 6종 · 클룩</span></a></li>
+            <li><a href="#japan">일본 현지·면세<span>돈키호테·드럭스토어·백화점 9건</span></a></li>
+            <li><a href="#airport">공항·출국 무료혜택<span>스마트패스·냅존·환승투어</span></a></li>
+            <li><a href="#asia">동남아·홍콩·유럽<span>방콕·창이·홍콩·파리</span></a></li>
+            <li><a href="#money">해외결제·환전<span>수수료 0원 카드 3종</span></a></li>
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3>쿠폰과 함께 쓰는 도구</h3>
+          <ul class="side-list">
+            <li><a href="stays.html">찐숙소 — 1박 최저가<span>지역·예산 필터</span></a></li>
+            <li><a href="passes.html">교통패스 본전 계산기<span>패스 vs 편도</span></a></li>
+            <li><a href="exchange.html">환율·면세 계산기<span>환율·환급액 계산</span></a></li>
+            <li><a href="checklist.html">여행 준비 D-Day<span>출국 전 체크</span></a></li>
+            <li><a href="sos.html">여행 중 위기상황 SOS<span>10개국 긴급번호</span></a></li>
+          </ul>
         </div>
       </aside>
     </div>
   </div>
 </div>
 <style>
+.cpn-note{{border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:10px;background:#fff;padding:11px 13px;font-size:12.6px;color:var(--ink-2);line-height:1.6}}
+.cpn-tabs{{display:flex;gap:6px;overflow-x:auto;margin:16px 0 6px;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}}
+.cpn-tabs::-webkit-scrollbar{{display:none}}
+.cpn-tab{{flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--ink-2);font-size:12.6px;font-weight:800;border-radius:999px;padding:8px 13px;cursor:pointer;white-space:nowrap}}
+.cpn-tab b{{font-weight:800;color:var(--blue-600);margin-left:3px}}
+.cpn-tab:hover{{border-color:var(--blue)}}
+.cpn-tab.on{{background:var(--blue);border-color:var(--blue);color:#fff}}
+.cpn-tab.on b{{color:#fff}}
+.cpn-sec{{margin:18px 0 4px;scroll-margin-top:90px}}
+.cpn-sec-h h2{{margin:0 0 2px;font-size:19px;color:var(--navy)}}
+.cpn-sec-h p{{margin:0 0 10px;font-size:12.4px;color:var(--ink-3)}}
 .cpn-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 6px}}
 @media(max-width:700px){{.cpn-grid{{grid-template-columns:1fr}}}}
 .cpn{{display:flex;flex-direction:column;gap:7px;border:1px solid var(--line);border-radius:16px;background:#fff;padding:15px 16px}}
 .cpn:hover{{border-color:var(--blue);box-shadow:0 3px 14px rgba(16,32,46,.07);text-decoration:none}}
-.cpn-top{{display:flex;align-items:center;gap:6px}}
+.cpn-top{{display:flex;align-items:center;gap:6px;flex-wrap:wrap}}
 .cpn-p{{font-size:11.5px;font-weight:800;color:var(--blue-600);letter-spacing:.02em}}
 .cpn-b{{font-size:10.5px;font-weight:800;color:var(--ink-2);background:var(--soft);border-radius:999px;padding:2px 8px}}
 .cpn-t{{font-size:15.5px;font-weight:800;color:var(--navy);line-height:1.35}}
@@ -5392,39 +5809,46 @@ def coupons_page(out_root: Path, base: str) -> Path:
 .cpn-code code{{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;font-weight:800;color:var(--navy);letter-spacing:.04em}}
 .cpn-copy{{margin-left:auto;border:1px solid var(--blue);background:#fff;color:var(--blue-600);font-size:11.5px;font-weight:800;border-radius:8px;padding:5px 10px;cursor:pointer}}
 .cpn-copy.on{{background:var(--blue);color:#fff}}
-.cpn-code--none{{border-style:solid;border-color:var(--line);background:var(--soft);font-size:11.8px;color:var(--ink-3)}}
 .cpn-cond{{margin:2px 0 0;padding-left:17px;font-size:12.2px;color:var(--ink-3);line-height:1.6}}
-.cpn-foot{{margin-top:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-top:4px}}
-.cpn-exp{{font-size:11.5px;font-weight:700;color:var(--ink-3)}}
-.cpn-go{{margin-left:auto;font-size:12.2px;font-weight:800;color:var(--blue-600)}}
-.cpn-note{{border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:10px;background:#fff;padding:11px 13px;font-size:12.6px;color:var(--ink-2);line-height:1.6}}
+.cpn-when{{display:flex;gap:7px;align-items:baseline;font-size:11.8px;color:var(--ink-2);background:var(--soft);border-radius:9px;padding:7px 10px}}
+.cpn-when i{{font-style:normal;font-weight:800;color:var(--ink-3);flex:0 0 auto}}
+.cpn-foot{{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-top:2px}}
+.cpn-src{{font-size:10.6px;font-weight:800;color:var(--blue-600);background:var(--blue-soft);border-radius:999px;padding:2px 8px}}
+.cpn-exp{{font-size:11.4px;font-weight:700;color:var(--ink-3)}}
+.cpn-links{{margin-top:auto;display:flex;flex-direction:column;gap:4px;padding-top:4px}}
+.cpn-links .cpn-go{{margin-left:0;font-size:12.2px;font-weight:800;color:var(--blue-600)}}
 </style>"""
+
+    ld_items = []
+    pos = 0
+    for cid, name, _sub, items in CATS:
+        for c in items:
+            pos += 1
+            ld_items.append({
+                "@type": "ListItem",
+                "position": pos,
+                "item": {
+                    "@type": "Offer",
+                    "name": f"{c['brand']} — {c['title']}",
+                    "description": " · ".join(c["cond"]),
+                    "url": f"{base.rstrip('/')}/coupons.html#cpn-{c['id']}",
+                    "availability": "https://schema.org/InStock",
+                    "seller": {"@type": "Organization", "name": c["brand"]},
+                },
+            })
 
     cpn_ld = {
         "@type": "CollectionPage",
-        "name": "여행 할인코드·쿠폰 — 트립닷컴·클룩 (2026년 11월)",
-        "description": "트립닷컴 공식 할인코드 6개와 클룩 쿠폰 페이지, 코드 없이 적용되는 여행 혜택을 2026년 11월 26일 기준으로 정리했습니다.",
+        "name": f"여행 쿠폰·무료혜택 {TOTAL}건 — 예약 코드·일본 면세·공항·현지 혜택 (2026년 11월)",
+        "description": f"트립닷컴 할인코드, 일본 현지 면세 쿠폰(돈키호테·빅카메라·백화점), 인천공항 무료 혜택, 방콕·싱가포르·홍콩·파리 현지 혜택, 해외결제 카드까지 {CHK} 확인값 {TOTAL}건을 정리했습니다.",
         "url": f"{base.rstrip('/')}/coupons.html",
         "inLanguage": "ko-KR",
         "isPartOf": {"@type": "WebSite", "name": SITE_NAME},
+        "dateModified": CHK,
         "mainEntity": {
             "@type": "ItemList",
-            "numberOfItems": len(TRIP),
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": i + 1,
-                    "item": {
-                        "@type": "Offer",
-                        "name": c["title"],
-                        "description": " · ".join(c["cond"]),
-                        "url": f"{base.rstrip('/')}/coupons.html#cpn-{c['id']}",
-                        "availability": "https://schema.org/InStock",
-                        "seller": {"@type": "Organization", "name": "Trip.com"},
-                    },
-                }
-                for i, c in enumerate(TRIP)
-            ],
+            "numberOfItems": TOTAL,
+            "itemListElement": ld_items,
         },
     }
     jsonld = graph_ld(
@@ -5441,6 +5865,30 @@ def coupons_page(out_root: Path, base: str) -> Path:
 
     script = """<script>
 (function () {
+  var tabs = document.querySelectorAll('.cpn-tab');
+  var secs = document.querySelectorAll('.cpn-sec');
+  function apply(cat) {
+    Array.prototype.forEach.call(tabs, function (t) {
+      var on = t.getAttribute('data-filter') === cat;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(secs, function (s) {
+      s.hidden = cat !== 'all' && s.getAttribute('data-cat') !== cat;
+    });
+  }
+  Array.prototype.forEach.call(tabs, function (t) {
+    t.addEventListener('click', function () { apply(t.getAttribute('data-filter')); });
+  });
+  function fromHash() {
+    var id = (location.hash || '').replace('#', '');
+    if (!id) return;
+    for (var i = 0; i < secs.length; i++) {
+      if (secs[i].getAttribute('data-cat') === id) { apply(id); return; }
+    }
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
   var btns = document.querySelectorAll('[data-copy]');
   Array.prototype.forEach.call(btns, function (btn) {
     btn.addEventListener('click', function () {
@@ -5471,16 +5919,15 @@ def coupons_page(out_root: Path, base: str) -> Path:
     return page(
         out_root,
         "coupons.html",
-        title="여행 할인코드·쿠폰 — 트립닷컴·클룩 (2026년 11월) | 트립픽",
-        desc="2026-11-26 확인된 트립닷컴 할인코드 TRIPFLIGHT26KR(항공 최대 22,000원)·TRIPCAR8(렌터카 8%)·TRIPNAVER(투어 6%), 앱 발급 호텔·공항픽업 쿠폰과 클룩 쿠폰 페이지, 카드·환전·라운지 상시 혜택을 한 페이지에 정리했습니다.",
+        title=f"여행 쿠폰·무료혜택 {TOTAL}건 — 트립닷컴 할인코드·일본 면세·공항 혜택 | 트립픽",
+        desc=f"{CHK} 확인 {TOTAL}건. 트립닷컴 할인코드 3종, 돈키호테·빅카메라·마츠모토키요시·백화점 일본 면세 쿠폰, 인천공항 스마트패스·냅존·환승투어, 방콕·창이·홍콩·파리 현지 혜택, 환전 0원 카드.",
         body=body,
         base=base,
         active="coupons",
-        keywords="트립닷컴 할인코드, 트립닷컴 쿠폰, 클룩 할인코드, 여행 할인쿠폰, TRIPFLIGHT26KR, TRIPCAR8, TRIPNAVER, 호텔 할인코드, 항공권 할인, 공항픽업 쿠폰",
+        keywords="여행 쿠폰, 트립닷컴 할인코드, 클룩 쿠폰, 일본 면세 2026, 면세 리펀드, 돈키호테 쿠폰, 빅카메라 쿠폰, 마츠모토키요시 쿠폰, 츠루하 쿠폰, 선드럭 쿠폰, 다이마루 5% 쿠폰, 이세탄 쿠폰, 세이부 소고 5%, 한큐 게스트 쿠폰, 인천공항 스마트패스, 인천공항 냅존, 환승투어, 방콕 투어리스트 카드, 창이 무료 시티투어, 홍콩 알리페이, 라발레빌리지, 트래블월렛, 트래블로그, 토스뱅크 외화통장, 해외결제 수수료",
         jsonld=jsonld,
         scripts=script,
     )
-
 
 
 def write_sitemap(out_root: Path, base: str):
