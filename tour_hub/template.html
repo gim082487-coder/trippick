@@ -356,6 +356,13 @@
   .why-list{margin:0;padding:0;list-style:none;display:grid;gap:9px}
   .why-list li{position:relative;padding-left:19px;font-size:12.3px;line-height:1.6;color:var(--ink-2)}
   .why-list li::before{content:"";position:absolute;left:2px;top:7px;width:5px;height:5px;border-radius:50%;background:var(--blue);opacity:.55}
+  /* v61: 코스 옆 '자세히 보기' 가이드 링크 */
+  .cguide-list{display:grid;gap:7px}
+  .cguide{display:flex;align-items:center;gap:7px;padding:9px 10px;border:1px solid var(--line);border-radius:11px;background:#fff;text-decoration:none;color:inherit}
+  .cguide b{font-size:12.1px;font-weight:760;line-height:1.35;color:var(--navy);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .cguide span{display:none}
+  .cguide svg{width:13px;height:13px;margin-left:auto;flex:0 0 auto;stroke:var(--ink-3);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .cguide:hover{border-color:var(--blue);background:#F7FAFF}
   .lodge{background:var(--soft);border-color:#e9eff6}
   .lodge b{display:block;font-size:13.4px;letter-spacing:-0.02em;margin-bottom:5px}
   .lodge p{margin:0 0 9px;font-size:11.8px;line-height:1.6;color:var(--ink-2)}
@@ -2943,7 +2950,7 @@
     <div class="hero-inner">
       <span class="eyebrow"><i></i>2026.11.21 기준 · 실제 판매 중인 투어·티켓 상품 {{TOTAL}}개</span>
       <h1>설레는 여행은,<br /><em>동선</em>에서 시작됩니다</h1>
-      <p class="lead">오사카 단풍길부터 호이안 등불, 삿포로 눈길, 제주 노을까지. 일차별 추천 코스 {{COURSE_COUNT}}개와 그 동선에 그대로 붙는 투어·eSIM·패스를 한자리에 모았습니다.</p>
+      <p class="lead">오사카 단풍길부터 타이베이 예스진지, 푸꾸옥 케이블카, 융프라우 설산, 프라하·비엔나·부다페스트 기차까지. 일차별 추천 코스 {{COURSE_COUNT}}개와 그 동선에 그대로 붙는 투어·입장권·공항픽업·eSIM·패스를 한자리에 모았습니다.</p>
       <div class="hero-cta">
         <a class="primary" href="#courses">추천 코스 {{COURSE_COUNT}}개 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="ghost" href="#planner">내 예산으로 총액 계산</a>
@@ -3151,7 +3158,7 @@
       <div class="t">
         <span class="kicker">TRAVEL MAGAZINE</span>
         <h2>지금 떠나고 싶어지는 {{COURSE_COUNT}}개의 동선</h2>
-        <p>사진을 고르면 일차별 일정이 열립니다. 하루마다 그날 바로 예약할 수 있는 투어·교통·입장권·eSIM을 붙였습니다.</p>
+        <p>사진을 고르면 일차별 일정이 열립니다. 하루마다 예약할 투어·입장권·공항픽업·eSIM과 그 도시 가이드를 붙였습니다.</p>
       </div>
       <div class="sh-meta">숙소는 <a href="#tripcom">트립닷컴 숙소 섹션</a>에서 도시별 최저가로 확인할 수 있습니다. 계산기는 항공·숙소를 뺀 현지 경비만 더합니다.</div>
     </div>

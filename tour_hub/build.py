@@ -43,6 +43,8 @@ COUNTRY_NAME = {c: n for c, n, _ in COUNTRIES}
 FLAG_SYMBOL = {c: f for c, _, f in COUNTRIES}
 # v32: 유럽 4개국을 국가별 깃발로 표시(홈 국가 탭 목록에는 넣지 않는다)
 FLAG_SYMBOL.update({"fr": "f-fr", "gb": "f-gb", "it": "f-it", "es": "f-es"})
+# v61: 신규 코스 국가 — 홈 국가 탭에는 넣지 않고 이름만 붙인다(깃발 심볼 없음)
+COUNTRY_NAME.update({"ph": "필리핀", "my": "말레이시아", "au": "호주"})
 TYPE_ORDER = ["가이드투어", "데이투어", "야경투어", "패스", "풀패키지", "세미패키지", "에어텔", "골프패키지", "국내패키지", "레저·액티비티"]
 PREMIUM_FLOOR = 3_000_000
 
@@ -777,12 +779,19 @@ PRICE_TEXT = {
 }
 
 
-def course_item_html(item: dict, tours_by_id: dict, ess_by_id: dict) -> str:
+def course_item_html(item: dict, tours_by_id: dict, ess_by_id: dict, tc_by_id: dict | None = None) -> str:
     if item["kind"] == "tour":
         t = tours_by_id[item["ref"]]
         kind = t["type"]
         name = t["title"]
         price = f'{won(t["sale"])}원'
+        url = t["url"]
+    elif item["kind"] == "tc":
+        # v61: 트립닷컴 입장권·공항픽업·eSIM 카드. 가격은 날짜·차종에 따라 달라 비운다.
+        t = (tc_by_id or {})[item["ref"]]
+        kind = t.get("label") or "트립닷컴"
+        name = t["title"]
+        price = "요금 보기"
         url = t["url"]
     else:
         e = ess_by_id[item["ref"]]
@@ -816,11 +825,12 @@ def course_pick(course: dict, idx: int, link_count: int) -> str:
       </button>"""
 
 
-def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict) -> str:
+def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict,
+                 tc_by_id: dict | None = None, guides_by_slug: dict | None = None) -> str:
     days = []
     link_count = 0
     for d in course["days"]:
-        items = "\n              ".join(course_item_html(i, tours_by_id, ess_by_id) for i in d["items"])
+        items = "\n              ".join(course_item_html(i, tours_by_id, ess_by_id, tc_by_id) for i in d["items"])
         link_count += len(d["items"])
         if d.get("img"):
             photo = (f'<div class="day-photo"><img src="{esc(d["img"])}" alt="{esc(d["title"])}" '
@@ -840,8 +850,8 @@ def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict) -> 
             </div>
           </li>""")
 
-    pkg = course["package"]
-    p = tours_by_id[pkg["ref"]]
+    pkg = course.get("package")
+    p = tours_by_id[pkg["ref"]] if pkg else None
     more_n = len(course["days"]) - 2
     days_more = ("" if more_n < 1 else
                  f'<button class="days-more" type="button" data-days-more aria-expanded="false" '
@@ -851,7 +861,28 @@ def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict) -> 
     hidden = "" if idx == 0 else " hidden"
     why = "".join(f"<li>{esc(w)}</li>" for w in course.get("why", []))
     prices = [tours_by_id[i["ref"]]["sale"] for d in course["days"] for i in d["items"] if i["kind"] == "tour"]
-    lowest = min(prices) if prices else p["sale"]
+    if prices:
+        lowest = min(prices)
+    elif p:
+        lowest = p["sale"]
+    else:
+        lowest = None
+    price_fact = f'<span>최저 <b>{won(lowest)}원</b>~</span>' if lowest else ""
+    pkg_html = (f'<a class="side-card pkg" href="{esc(p["url"])}" target="_blank" rel="noopener sponsored">'
+                f'<span class="pkg-k">항공+숙소까지 한 번에</span>'
+                f'<b>{esc(p["title"])}</b>'
+                f'<span class="pkg-p">{won(p["sale"])}원~ · {esc(p["seller"])}</span>'
+                f'<span class="pkg-n">{esc(pkg["note"])}</span>'
+                f'<span class="pkg-go">패키지 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>'
+                '</a>') if p else ""
+    cguides = "".join(
+        f'<a class="cguide" href="guides/{esc(g["slug"])}"><b>{esc((guides_by_slug or {}).get(g["slug"], {}).get("navTitle") or g["label"])}</b>'
+        f'<span>{esc(g["label"])}</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>'
+        for g in (course.get("guides") or [])
+    )
+    cguides_html = (f'<div class="side-card cguide-card">'
+                    f'<span class="side-k"><svg aria-hidden="true"><use href="#i-compass"/></svg>이 코스 자세히 보기</span>'
+                    f'<div class="cguide-list">{cguides}</div></div>') if cguides else ""
 
     return f"""<div class="panel{active}" id="course-{course['id']}" role="tabpanel" aria-labelledby="cpick-{course['id']}"{hidden}>
       <div class="panel-hero">
@@ -866,7 +897,7 @@ def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict) -> 
           <div class="ph-facts">
             <span><b>{len(course['days'])}일</b> 일정</span>
             <span>예약 링크 <b>{link_count}곳</b></span>
-            <span>최저 <b>{won(lowest)}원</b>~</span>
+            {price_fact}
           </div>
         </div>
       </div>
@@ -891,13 +922,8 @@ def course_panel(course: dict, idx: int, tours_by_id: dict, ess_by_id: dict) -> 
             <p>{esc(course['lodge']['note'])}</p>
             <a class="lodge-link" href="#alert">특가 뜨면 알림 신청 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
-          <a class="side-card pkg" href="{esc(p['url'])}" target="_blank" rel="noopener sponsored">
-            <span class="pkg-k">항공+숙소까지 한 번에</span>
-            <b>{esc(p['title'])}</b>
-            <span class="pkg-p">{won(p['sale'])}원~ · {esc(p['seller'])}</span>
-            <span class="pkg-n">{esc(pkg['note'])}</span>
-            <span class="pkg-go">패키지 보기 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-          </a>
+          {cguides_html}
+          {pkg_html}
         </aside>
       </div>
     </div>"""
@@ -911,9 +937,11 @@ def render_course_picker(courses: dict, tours_by_id: dict, ess_by_id: dict) -> s
     return ("\n      ").join(out)
 
 
-def render_course_panels(courses: dict, tours_by_id: dict, ess_by_id: dict) -> str:
+def render_course_panels(courses: dict, tours_by_id: dict, ess_by_id: dict,
+                         tc_by_id: dict | None = None, guides_by_slug: dict | None = None) -> str:
     return ("\n\n    ").join(
-        course_panel(c, i, tours_by_id, ess_by_id) for i, c in enumerate(courses["courses"])
+        course_panel(c, i, tours_by_id, ess_by_id, tc_by_id, guides_by_slug)
+        for i, c in enumerate(courses["courses"])
     )
 
 
@@ -2901,6 +2929,10 @@ def main() -> int:
 
     tours_by_id = {t["id"]: t for t in data["tours"]}
     ess_by_id = {e["id"]: e for e in essentials["products"]}
+    # v61: 코스 일차에 트립닷컴 입장권·공항픽업·eSIM 카드를 붙인다
+    tc_by_id = {x["id"]: x for k in ("tickets", "transfers", "cars", "esims", "rails")
+                for x in (tripcom.get(k) or [])}
+    guides_by_slug = {g["slug"]: g for g in guides.get("guides", [])}
     city_label = {c["id"]: c["name"] for c in data["cities"]}
     for t in data["tours"]:
         t["city_label"] = city_label.get(t["city"], "")
@@ -2923,7 +2955,7 @@ def main() -> int:
 
     html = replace_block(html, "<!-- @CITYSELECT -->", render_city_select(data))
     html = replace_block(html, "<!-- @COURSE_PICKER -->", render_course_picker(courses, tours_by_id, ess_by_id))
-    html = replace_block(html, "<!-- @COURSE_PANELS -->", render_course_panels(courses, tours_by_id, ess_by_id))
+    html = replace_block(html, "<!-- @COURSE_PANELS -->", render_course_panels(courses, tours_by_id, ess_by_id, tc_by_id, guides_by_slug))
     html = replace_block(html, "<!-- @COUNTRY_TABS -->", render_country_tabs(data))
     html = replace_block(html, "<!-- @CITY_CHIPS -->", render_city_chips(data))
     html = replace_block(html, "<!-- @TYPEBAR -->", render_typebar(data))

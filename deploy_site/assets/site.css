@@ -309,6 +309,13 @@
   .why-list{margin:0;padding:0;list-style:none;display:grid;gap:9px}
   .why-list li{position:relative;padding-left:19px;font-size:12.3px;line-height:1.6;color:var(--ink-2)}
   .why-list li::before{content:"";position:absolute;left:2px;top:7px;width:5px;height:5px;border-radius:50%;background:var(--blue);opacity:.55}
+  /* v61: 코스 옆 '자세히 보기' 가이드 링크 */
+  .cguide-list{display:grid;gap:7px}
+  .cguide{display:flex;align-items:center;gap:7px;padding:9px 10px;border:1px solid var(--line);border-radius:11px;background:#fff;text-decoration:none;color:inherit}
+  .cguide b{font-size:12.1px;font-weight:760;line-height:1.35;color:var(--navy);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .cguide span{display:none}
+  .cguide svg{width:13px;height:13px;margin-left:auto;flex:0 0 auto;stroke:var(--ink-3);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .cguide:hover{border-color:var(--blue);background:#F7FAFF}
   .lodge{background:var(--soft);border-color:#e9eff6}
   .lodge b{display:block;font-size:13.4px;letter-spacing:-0.02em;margin-bottom:5px}
   .lodge p{margin:0 0 9px;font-size:11.8px;line-height:1.6;color:var(--ink-2)}

@@ -1,0 +1,84 @@
+{
+ "pc": {
+  "title": "트립픽(TripPick) | 오사카·도쿄·다낭 여행 코스 추천 & 투어·패키지 특가 비교",
+  "picks": 21,
+  "panels": 21,
+  "active": 1,
+  "cguide": 42,
+  "tdl": 88,
+  "price_view": 42,
+  "scrollW": 1280,
+  "clientW": 1280,
+  "broken": [],
+  "overflow": [
+   "qn:62",
+   "qn-ic:43",
+   "[object SVGAnimatedString]:31",
+   "[object SVGAnimatedString]:27",
+   "B:43",
+   "I:30",
+   "qn:146",
+   "qn-ic:127"
+  ],
+  "switch": [
+   [
+    "phu_quoc",
+    true,
+    true
+   ],
+   [
+    "switzerland",
+    true,
+    true
+   ],
+   [
+    "taipei",
+    true,
+    true
+   ]
+  ],
+  "affiliate": [],
+  "pageerror": []
+ },
+ "mo": {
+  "title": "트립픽(TripPick) | 오사카·도쿄·다낭 여행 코스 추천 & 투어·패키지 특가 비교",
+  "picks": 21,
+  "panels": 21,
+  "active": 1,
+  "cguide": 42,
+  "tdl": 88,
+  "price_view": 42,
+  "scrollW": 390,
+  "clientW": 390,
+  "broken": [],
+  "overflow": [
+   "hub-chip:64",
+   "hc-fl:18",
+   "[object SVGAnimatedString]:18",
+   "[object SVGAnimatedString]:17",
+   "hc-t:53",
+   "B:53",
+   "I:53",
+   "hub-chip:136"
+  ],
+  "switch": [
+   [
+    "phu_quoc",
+    true,
+    true
+   ],
+   [
+    "switzerland",
+    true,
+    true
+   ],
+   [
+    "taipei",
+    true,
+    true
+   ]
+  ],
+  "affiliate": [],
+  "pageerror": []
+ }
+}
