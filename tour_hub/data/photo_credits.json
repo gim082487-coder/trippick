@@ -603,6 +603,96 @@
    "from": "images/v53/shanghai-2n3d-3n4d-course.jpg",
    "alt": "와이탄에서 바라본 상하이 푸둥의 야경",
    "credit": "사진: Pexels (YFS Visuals)"
+  },
+  "v60/beppu-onsen-1n2d-course": {
+   "source": "위키미디어 공용",
+   "file": "Beppu_Tower02s4s3200.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Beppu_Tower02s4s3200.jpg",
+   "artist": "663highland",
+   "license": "CC BY 2.5",
+   "place": "Beppu, Oita, Japan",
+   "alt": "벳푸 온천가와 벳푸 타워가 보이는 시가지"
+  },
+  "v60/kaohsiung-tainan-3n4d-course": {
+   "source": "위키미디어 공용",
+   "file": "Cityscape_of_Kaohsiung,_Taiwan_202303.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Cityscape_of_Kaohsiung,_Taiwan_202303.jpg",
+   "artist": "臺灣港務股份有限公司高雄港務分公司",
+   "license": "CC BY-SA 4.0",
+   "place": "Kaohsiung, Taiwan",
+   "alt": "가오슝 항구와 아시아신만구의 항공 전경"
+  },
+  "v60/kota-kinabalu-3n4d-course": {
+   "source": "위키미디어 공용",
+   "file": "Panoramic_view_of_Kota_Kinabalu_City.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Panoramic_view_of_Kota_Kinabalu_City.jpg",
+   "artist": "FILMR Production",
+   "license": "CC BY 3.0",
+   "place": "Kota Kinabalu, Sabah, Malaysia",
+   "alt": "코타키나발루 시내와 앞바다 전경"
+  },
+  "v60/bohol-3n4d-course": {
+   "source": "위키미디어 공용",
+   "file": "Chocolate_Hills_Bohol.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:Chocolate_Hills_Bohol.JPG",
+   "artist": "P199",
+   "license": "CC BY-SA 3.0",
+   "place": "Chocolate Hills, Bohol, Philippines",
+   "alt": "보홀 초콜릿 힐스의 언덕들"
+  },
+  "v60/beijing-3n4d-course": {
+   "source": "위키미디어 공용",
+   "file": "The_Forbidden_City_-_View_from_Coal_Hill.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:The_Forbidden_City_-_View_from_Coal_Hill.jpg",
+   "artist": "Pixelflake",
+   "license": "CC BY-SA 3.0",
+   "place": "Forbidden City, Beijing, China",
+   "alt": "징산공원에서 내려다본 자금성"
+  },
+  "v60/qingdao-2n3d-course": {
+   "source": "위키미디어 공용",
+   "file": "Tsingtao_Brewery_in_Qingdao.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Tsingtao_Brewery_in_Qingdao.jpg",
+   "artist": "Lennartbj",
+   "license": "CC BY-SA 4.0",
+   "place": "Tsingtao Brewery, Qingdao, China",
+   "alt": "칭다오 맥주박물관이 있는 칭다오 맥주공장 옛 건물"
+  },
+  "v60/sydney-4n5d-course": {
+   "source": "위키미디어 공용",
+   "file": "Sydney_Opera_House_2026.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Sydney_Opera_House_2026.jpg",
+   "artist": "BAVhah",
+   "license": "CC BY-SA 4.0",
+   "place": "Sydney, Australia",
+   "alt": "시드니 오페라하우스와 서큘러키 항만"
+  },
+  "v60/switzerland-jungfrau-zermatt-pass": {
+   "source": "위키미디어 공용",
+   "file": "Sphinx_et_Jungfrau_-_img_06980.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Sphinx_et_Jungfrau_-_img_06980.jpg",
+   "artist": "Pmau",
+   "license": "CC BY-SA 4.0",
+   "place": "Jungfraujoch, Switzerland",
+   "alt": "융프라우요흐 스핑크스 전망대와 융프라우 봉우리"
+  },
+  "v60/eastern-europe-prague-vienna-budapest": {
+   "source": "위키미디어 공용",
+   "file": "Prague_(6365119737).jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Prague_(6365119737).jpg",
+   "artist": "Moyan Brenn",
+   "license": "CC BY 2.0",
+   "place": "Prague, Czech Republic",
+   "alt": "카를교와 블타바강 건너로 보이는 프라하 성"
+  },
+  "v60/japan-shinkansen-jr-pass-guide": {
+   "source": "위키미디어 공용",
+   "file": "Series-N700S-J2.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Series-N700S-J2.jpg",
+   "artist": "MaedaAkihiko",
+   "license": "CC BY-SA 4.0",
+   "place": "Tokaido Shinkansen, Japan",
+   "alt": "도카이도 신칸센을 달리는 N700S 노조미"
   }
  }
 }

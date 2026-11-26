@@ -286,7 +286,8 @@
     "packing-powerbank-liquid",
     "japan-ic-card",
     "usj-express-pass",
-    "kyoto-bustour-vs-diy"
+    "kyoto-bustour-vs-diy",
+    "japan-shinkansen-jr-pass-guide"
    ],
    "ctaTitle": "패스 값까지 넣어서 총액 보기",
    "ctaText": "예산 계산기에 교통패스와 eSIM을 함께 넣으면 1인 실질가로 정리됩니다.",
@@ -322,7 +323,8 @@
     "osaka-amazing-pass",
     "packing-powerbank-liquid",
     "japan-ic-card",
-    "tokyo-disney-parks"
+    "tokyo-disney-parks",
+    "japan-shinkansen-jr-pass-guide"
    ],
    "ctaTitle": "도쿄 일정에 패스 값 넣어보기",
    "ctaText": "숙소 위치와 인원을 넣으면 교통패스·공항철도까지 총액에 포함해 계산합니다.",
@@ -393,7 +395,8 @@
     "japan-esim",
     "narita-haneda-transfer",
     "packing-powerbank-liquid",
-    "fukuoka-yufuin-3n4d-course"
+    "fukuoka-yufuin-3n4d-course",
+    "beppu-onsen-1n2d-course"
    ],
    "ctaTitle": "규슈 일정, 료칸 포함해서 계산",
    "ctaText": "유후인·벳푸를 넣은 2박3일 일정의 총액을 인원별로 계산합니다.",
@@ -1200,7 +1203,8 @@
    "related": [
     "us-west-4canyons",
     "packing-powerbank-liquid",
-    "spain-portugal-9-vs-11"
+    "spain-portugal-9-vs-11",
+    "sydney-4n5d-course"
    ],
    "ctaTitle": "내 날짜로 장거리 총액을 계산하면?",
    "ctaText": "인원과 지역을 넣으면 항공·숙소·투어·eSIM을 같은 기준으로 계산합니다.",
@@ -1334,7 +1338,8 @@
    "related": [
     "bangkok-3-packages",
     "us-west-4canyons",
-    "packing-powerbank-liquid"
+    "packing-powerbank-liquid",
+    "beijing-3n4d-course"
    ],
    "ctaTitle": "같은 5일, 다른 지역과 비교하면?",
    "ctaText": "인원과 지역을 넣으면 항공·숙소·투어를 같은 기준으로 계산합니다.",
@@ -1527,7 +1532,9 @@
     "sapporo-winter",
     "danang-hoian-rainy",
     "japan-souvenir-list",
-    "japan-winter-clothing"
+    "japan-winter-clothing",
+    "beijing-3n4d-course",
+    "qingdao-2n3d-course"
    ],
    "ctaTitle": "내 여행지 입국서류까지 한 번에 확인하기",
    "ctaText": "나라를 고르면 입국서류·수수료·기내 규정·준비물 체크리스트가 한 화면에 나옵니다.",
@@ -2047,7 +2054,8 @@
     "taipei-food-route",
     "taipei-yehliu",
     "packing-powerbank-liquid",
-    "hongkong-macau-3n4d-course"
+    "hongkong-macau-3n4d-course",
+    "kaohsiung-tainan-3n4d-course"
    ],
    "ctaTitle": "대만 일정과 선물 값을 함께 보기",
    "ctaText": "인원과 지역을 넣으면 항공·숙소·투어에 선물 예산까지 같은 기준으로 계산합니다.",
@@ -2149,7 +2157,13 @@
     "hawaii-oahu-5n7d-course",
     "phu-quoc-3n4d-4n5d-course",
     "cebu-3n4d-course",
-    "hanoi-halong-3n4d-course"
+    "hanoi-halong-3n4d-course",
+    "beppu-onsen-1n2d-course",
+    "kaohsiung-tainan-3n4d-course",
+    "kota-kinabalu-3n4d-course",
+    "bohol-3n4d-course",
+    "beijing-3n4d-course",
+    "qingdao-2n3d-course"
    ],
    "ctaTitle": "내 여행지에 필요한 서류만 모아 보면?",
    "ctaText": "나라와 출국일을 넣으면 입국신고서·전자허가·여권 유효기간을 제출 시점 순서로 정리합니다. 무료 공식 주소와 대행 사이트를 구분해 보여줍니다.",
@@ -2411,7 +2425,9 @@
     "europe-train-eurail-vs-point",
     "italy-9d-packages",
     "europe-shopping-tax-refund",
-    "spain-barcelona-madrid"
+    "spain-barcelona-madrid",
+    "eastern-europe-prague-vienna-budapest",
+    "switzerland-jungfrau-zermatt-pass"
    ],
    "ctaTitle": "내 날짜로 5박7일 다시 계산하면?",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·유로스타·투어를 같은 기준으로 계산해 3안으로 보여줍니다. 같은 숙소도 주말과 평일 값이 다릅니다.",
@@ -2615,7 +2631,9 @@
     "paris-london-5n7d",
     "italy-9d-packages",
     "spain-barcelona-madrid",
-    "europe-shopping-tax-refund"
+    "europe-shopping-tax-refund",
+    "switzerland-jungfrau-zermatt-pass",
+    "eastern-europe-prague-vienna-budapest"
    ],
    "ctaTitle": "내 유럽 일정으로 기차 값을 계산하면?",
    "ctaText": "도시와 날짜를 넣으면 항공·숙소·기차·투어를 같은 기준으로 계산해 패스와 구간권을 나란히 보여줍니다.",
@@ -2708,7 +2726,9 @@
     "southeast-asia-gift-list",
     "esim-roaming-insurance-guide",
     "chiang-mai-3n4d-course",
-    "bali-ubud-seminyak-3n4d-course"
+    "bali-ubud-seminyak-3n4d-course",
+    "kota-kinabalu-3n4d-course",
+    "bohol-3n4d-course"
    ],
    "ctaTitle": "내 도시 공항 요금으로 계산하기",
    "ctaText": "도시와 인원을 넣으면 공항 이동·숙소·투어를 같은 기준으로 계산합니다.",
@@ -2766,7 +2786,9 @@
     "paris-london-5n7d",
     "italy-rome-florence-venice",
     "spain-barcelona-madrid",
-    "passport-phone-lost-emergency"
+    "passport-phone-lost-emergency",
+    "eastern-europe-prague-vienna-budapest",
+    "switzerland-jungfrau-zermatt-pass"
    ],
    "ctaTitle": "내 유럽 일정으로 총액 계산하기",
    "ctaText": "도시와 날짜를 넣으면 항공·숙소·투어·eSIM을 같은 기준으로 계산합니다.",
@@ -2884,7 +2906,8 @@
     "esim-roaming-insurance-guide",
     "chiang-mai-3n4d-course",
     "shanghai-2n3d-3n4d-course",
-    "hanoi-halong-3n4d-course"
+    "hanoi-halong-3n4d-course",
+    "japan-shinkansen-jr-pass-guide"
    ],
    "ctaTitle": "내 날짜·노선으로 총액 계산하기",
    "ctaText": "인원과 도시를 넣으면 항공·숙소·투어·수하물까지 같은 기준으로 계산합니다.",
@@ -3111,7 +3134,8 @@
     "singapore-3n4d-course-budget",
     "sapporo-hokkaido-3n4d-winter",
     "travel-card-packing-guide",
-    "flight-delay-card-lost-emergency"
+    "flight-delay-card-lost-emergency",
+    "qingdao-2n3d-course"
    ],
    "ctaTitle": "내 날짜로 호텔 최저가 다시 조회하기",
    "ctaText": "도시와 날짜를 넣으면 세금 포함 1박 요금과 무료 취소 조건을 같은 화면에서 비교합니다.",
@@ -3169,7 +3193,8 @@
     "sapporo-winter",
     "japan-esim",
     "japan-donki-tax-free-guide",
-    "fukuoka-yufuin-3n4d-course"
+    "fukuoka-yufuin-3n4d-course",
+    "beppu-onsen-1n2d-course"
    ],
    "ctaTitle": "내 날짜로 료칸·온천 숙소 비교하기",
    "ctaText": "유후인·하코네·조잔케이 료칸을 같은 날짜·2인 기준으로 조회합니다.",
@@ -3398,7 +3423,8 @@
     "japan-ic-card",
     "fukuoka-yufuin-3n4d-course",
     "japan-rental-car-etc-guide",
-    "shanghai-2n3d-3n4d-course"
+    "shanghai-2n3d-3n4d-course",
+    "japan-shinkansen-jr-pass-guide"
    ],
    "ctaTitle": "내 도착 시각으로 공항→숙소 동선 계산하기",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·공항 이동까지 같은 기준으로 총액을 계산합니다.",
@@ -3789,7 +3815,8 @@
     "taiwan-souvenir-list",
     "airport-arrival-city-transfer-guide",
     "osaka-kyoto-3n4d",
-    "cebu-3n4d-course"
+    "cebu-3n4d-course",
+    "kaohsiung-tainan-3n4d-course"
    ],
    "ctaTitle": "내 날짜로 타이베이 3박4일 다시 계산하면?",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·투어·eSIM을 같은 기준으로 총액으로 보여줍니다. 주말 체크인은 숙소가 6만 원 이상 올라갑니다.",
@@ -3851,7 +3878,14 @@
     "bali-ubud-seminyak-3n4d-course",
     "shanghai-2n3d-3n4d-course",
     "cebu-3n4d-course",
-    "hanoi-halong-3n4d-course"
+    "hanoi-halong-3n4d-course",
+    "kaohsiung-tainan-3n4d-course",
+    "kota-kinabalu-3n4d-course",
+    "bohol-3n4d-course",
+    "beijing-3n4d-course",
+    "qingdao-2n3d-course",
+    "sydney-4n5d-course",
+    "eastern-europe-prague-vienna-budapest"
    ],
    "ctaTitle": "내 여행 경비로 수수료를 계산하면?",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·투어·eSIM을 같은 기준으로 계산합니다. 현지 지출은 통화별 카드·현금 비율로 나눠 보세요.",
@@ -4076,7 +4110,9 @@
     "travel-insurance-guide",
     "incheon-airport-parking-bus",
     "hongkong-macau-3n4d-course",
-    "hanoi-halong-3n4d-course"
+    "hanoi-halong-3n4d-course",
+    "kaohsiung-tainan-3n4d-course",
+    "sydney-4n5d-course"
    ],
    "ctaTitle": "내 결제 금액으로 수수료 차이 계산",
    "ctaText": "환율과 결제 금액을 넣으면 원화 실부담과 면세 환급액까지 같은 기준으로 계산합니다.",
@@ -4128,7 +4164,11 @@
     "japan-rental-car-etc-guide",
     "guam-4n5d-course",
     "hawaii-oahu-5n7d-course",
-    "cebu-3n4d-course"
+    "cebu-3n4d-course",
+    "kota-kinabalu-3n4d-course",
+    "bohol-3n4d-course",
+    "sydney-4n5d-course",
+    "switzerland-jungfrau-zermatt-pass"
    ],
    "ctaTitle": "출국 전 준비, 빠진 항목 없는지 확인",
    "ctaText": "D-30부터 당일까지 네 단계로 묶은 체크리스트에서 보험·서류·수하물을 한 번에 점검합니다.",
@@ -4282,7 +4322,10 @@
     "eu-west-4countries-10d",
     "paris-london-5n7d",
     "europe-train-eurail-vs-point",
-    "europe-pickpocket-tax-refund-guide"
+    "europe-pickpocket-tax-refund-guide",
+    "sydney-4n5d-course",
+    "switzerland-jungfrau-zermatt-pass",
+    "eastern-europe-prague-vienna-budapest"
    ],
    "ctaTitle": "유럽 일정, 며칠로 잡을까",
    "ctaText": "180일 안 90일 규칙과 도시 이동 시간을 넣어 9~11일 일정의 실지출을 계산해 보세요.",
@@ -4504,7 +4547,9 @@
     "airport-arrival-city-transfer-guide",
     "osaka-kyoto-3n4d",
     "fukuoka-yufuin-3n4d-course",
-    "japan-rental-car-etc-guide"
+    "japan-rental-car-etc-guide",
+    "japan-shinkansen-jr-pass-guide",
+    "beppu-onsen-1n2d-course"
    ],
    "ctaTitle": "내 이동 횟수로 패스 본전 계산",
    "ctaText": "하루에 지하철을 몇 번 타는지 넣으면 IC카드와 24·48·72시간 패스 중 어느 쪽이 싼지 계산해 줍니다.",
@@ -4612,7 +4657,8 @@
     "japan-ic-card",
     "osaka-vs-fukuoka-comparison",
     "japan-esim",
-    "airport-arrival-city-transfer-guide"
+    "airport-arrival-city-transfer-guide",
+    "beppu-onsen-1n2d-course"
    ],
    "ctaTitle": "내 날짜로 후쿠오카·유후인 경비 계산",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·투어·eSIM을 같은 기준으로 계산해 3안으로 보여줍니다. 유후인 료칸은 날짜에 따라 값이 크게 달라집니다.",
@@ -4711,7 +4757,8 @@
     "currency-payment-fees",
     "taiwan-hongkong-gift-list",
     "overseas-roaming-esim-install-troubleshooting",
-    "shanghai-2n3d-3n4d-course"
+    "shanghai-2n3d-3n4d-course",
+    "kaohsiung-tainan-3n4d-course"
    ],
    "ctaTitle": "내 날짜로 홍콩·마카오 숙소 비교",
    "ctaText": "출발일과 인원을 넣으면 홍콩·마카오 호텔을 같은 기준으로 보여줍니다. 주말과 연말은 같은 방도 값이 두 배 가까이 뜁니다.",
@@ -4853,7 +4900,9 @@
     "airport-arrival-city-transfer-guide",
     "currency-payment-fees",
     "hongkong-macau-3n4d-course",
-    "flight-cheap-booking-baggage"
+    "flight-cheap-booking-baggage",
+    "qingdao-2n3d-course",
+    "beijing-3n4d-course"
    ],
    "ctaTitle": "내 날짜로 상하이 숙소 비교",
    "ctaText": "출발일과 인원을 넣으면 난징루·인민광장·루자쭈이 호텔을 같은 기준으로 보여줍니다. 설 연휴에는 같은 방이 두 배로 뜁니다.",
@@ -5017,7 +5066,8 @@
     "entry-immigration-guide",
     "luggage-size-weight-airline-guide",
     "travel-insurance-guide",
-    "airport-checkin-customs-guide"
+    "airport-checkin-customs-guide",
+    "sydney-4n5d-course"
    ],
    "ctaTitle": "내 날짜로 하와이 경비를 다시 계산하면?",
    "ctaText": "출발일과 인원을 넣으면 항공·숙소·렌터카·투어를 같은 기준으로 계산해 3안으로 보여줍니다.",
@@ -5284,7 +5334,9 @@
     "taipei-3n4d-course-budget",
     "entry-immigration-guide",
     "travel-insurance-guide",
-    "currency-payment-fees"
+    "currency-payment-fees",
+    "bohol-3n4d-course",
+    "kota-kinabalu-3n4d-course"
    ],
    "ctaTitle": "세부 3박4일, 숙소·항공 한 번에",
    "ctaText": "출발일과 인원을 넣으면 막탄·시티 호텔과 항공을 같은 기준으로 비교합니다.",
@@ -5366,6 +5418,556 @@
     [
      "2인 경비는 얼마나 드나요?",
      "항공과 크루즈 요금을 빼면 18만 3,746원~36만 9,790원입니다. 하노이 숙소 2박(3만 2,656~21만 8,700원), 하롱베이 관람료 2인 5만 7,310원, 86번 버스 왕복 2인 1만 420원, 식비 8끼 8만 3,360원(1끼 1인 10만동 가정)입니다."
+    ]
+   ]
+  },
+  {
+   "slug": "beppu-onsen-1n2d-course",
+   "category": "일본",
+   "navTitle": "벳푸 온천 1박2일 — 지옥순례 2,400엔·모래찜질",
+   "h1": "벳푸 온천 1박2일, <em>지옥 7곳</em>을 이틀로 나누면 온천에 들어갈 저녁이 남습니다",
+   "seoTitle": "벳푸 온천 1박2일 — 지옥순례 2,400엔·모래찜질 1,500엔 | 트립픽",
+   "dek": "지옥 공통관람권은 2,400엔에 이틀 유효, 7곳 중 5곳이 간나와에 모여 있습니다. 모래찜질 1,500엔, 로프웨이 1,800엔, 하카타에서 소닉 6,910엔(할인권 2,550엔)까지 1박2일 총액을 계산했습니다.",
+   "desc": "벳푸 1박2일. 지옥 공통관람권 2,400엔(7곳·이틀 유효), 모래찜질 1,500엔, 로프웨이 1,800엔, 하카타→벳푸 소닉 6,910엔·큐슈넷조기3 2,550엔, 1박2일 2인 교통·입장료 16만~32만 원. 2026-11 확인.",
+   "keywords": "벳푸 1박2일, 벳푸 지옥순례, 지옥 공통관람권 2400엔, 벳푸 모래찜질, 다케가와라 온천, 벳푸 로프웨이, 하카타 벳푸 소닉, 큐슈넷조기3, 벳푸 료칸",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/beppu-onsen-1n2d-course.jpg",
+   "ogImage": "images/og/v60-beppu-og.jpg",
+   "imageAlt": "벳푸 온천가와 벳푸 타워가 보이는 시가지",
+   "imageCredit": "사진: 663highland / Wikimedia Commons, CC BY 2.5",
+   "tours": [],
+   "essentials": [
+    "jp-esim-usimsa-3d",
+    "cp-washbag-bromi"
+   ],
+   "related": [
+    "fukuoka-yufuin-3n4d-course",
+    "japan-ryokan-onsen-etiquette-budget",
+    "japan-shinkansen-jr-pass-guide",
+    "fukuoka-yufuin",
+    "japan-ic-card",
+    "entry-immigration-guide"
+   ],
+   "ctaTitle": "벳푸 1박2일 총액 계산",
+   "ctaText": "인원과 날짜를 넣으면 벳푸 숙소·항공·투어를 같은 기준으로 계산합니다.",
+   "fxNote": "1엔 8.439원 · 2026-11-25 고시 기준",
+   "read": 12,
+   "faq": [
+    [
+     "지옥 공통관람권은 하루에 다 돌아야 하나요?",
+     "아닙니다. 구입일과 그다음 날 이틀 동안 쓸 수 있고, 입장은 지옥마다 한 번씩입니다. 7곳 중 5곳(우미·오니이시보즈·가마도·오니야마·시라이케)이 간나와에 모여 있고, 치노이케·다쓰마키는 약 3km 떨어져 16번 버스를 탑니다. 첫날 5곳, 둘째 날 2곳으로 나누면 저녁 온천 시간이 남습니다."
+    ],
+    [
+     "지옥 온천에 들어갈 수 있나요?",
+     "지옥은 원천을 보는 관광시설이라 입욕은 안 됩니다. 대신 우미·치노이케·가마도·오니이시보즈 네 곳에 무료 족욕이 있고, 오니이시보즈 옆 오니이시노유는 보통욕 성인 620엔으로 따로 들어갈 수 있습니다. 온천은 숙소나 시영 공중탕에서 하세요."
+    ],
+    [
+     "하카타에서 벳푸까지 얼마인가요?",
+     "JR 특급 소닉 정상요금이 자유석 6,380엔·지정석 6,910엔이고 1시간 50분~2시간 20분입니다. 큐슈넷긴표는 3,500엔, 3일 전까지 사는 큐슈넷조기3은 2,550엔까지 내려갑니다. 고속버스 도요노쿠니호는 3,250엔·약 2시간 50분입니다."
+    ],
+    [
+     "모래찜질은 어디서 얼마인가요?",
+     "다케가와라 온천 모래찜질이 1,500엔(6세 이상, 예약 없이 순서대로)이고 셋째 수요일은 휴관입니다. 해변 쪽은 민간 Sand SPA가 모래찜질과 대욕장을 합쳐 2,500엔(6~12세 1,800엔)을 받습니다. 겨울에는 18시에 마감합니다."
+    ],
+    [
+     "1박2일 2인 경비는 얼마인가요?",
+     "숙소·식사를 빼고 교통과 입장료만 16만 5,404~31만 7,642원입니다. 하카타↔벳푸 왕복 2인이 8만 6,078원(할인권)에서 23만 3,253원(정상 지정석)까지 갈리고, 지옥 공통권 2인 4만 507원, 모래찜질·로프웨이 2인 2만 5,317~3만 380원이 더해집니다."
+    ]
+   ]
+  },
+  {
+   "slug": "kaohsiung-tainan-3n4d-course",
+   "category": "대만·괌",
+   "navTitle": "가오슝·타이난 3박4일 — 고속철 1,490대만달러·치진섬 30元",
+   "h1": "가오슝·타이난 3박4일, <em>이지카드로는 고속철</em>을 못 탑니다",
+   "seoTitle": "가오슝·타이난 3박4일 — 고속철 1,490대만달러·치진섬 페리 | 트립픽",
+   "dek": "타이베이→가오슝 1,490, 타이난 1,350대만달러. 이지카드는 카드값 100대만달러이고 일반 카드로는 고속철 개찰구를 통과할 수 없습니다. 치진섬 페리 30대만달러까지 4일 동선과 경비를 정리했습니다.",
+   "desc": "가오슝·타이난 3박4일. THSR 타이베이→타이난 1,350·줘잉 1,490대만달러(얼리버드 35%), 이지카드 100대만달러, 치진섬 페리 30대만달러, 2인 교통·식비 약 20만 6,873원. 2026-11 확인.",
+   "keywords": "가오슝 3박4일, 타이난 여행, 대만 고속철 요금, THSR 1490, 이지카드 100대만달러, 치진섬 페리 30元, 가오슝 야시장, 타이난 야시장, 대만 얼리버드",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/kaohsiung-tainan-3n4d-course.jpg",
+   "ogImage": "images/og/v60-kaohsiung-og.jpg",
+   "imageAlt": "가오슝 항구와 아시아신만구의 항공 전경",
+   "imageCredit": "사진: 臺灣港務股份有限公司高雄港務分公司 / Wikimedia Commons, CC BY-SA 4.0",
+   "tours": [],
+   "essentials": [
+    "tw-esim-lingsim-1d",
+    "cp-umbrella-crocodile"
+   ],
+   "related": [
+    "taipei-3n4d-course-budget",
+    "taiwan-hongkong-gift-list",
+    "currency-payment-fees",
+    "entry-immigration-guide",
+    "hongkong-macau-3n4d-course",
+    "travel-card-fees-comparison"
+   ],
+   "ctaTitle": "가오슝·타이난 3박4일 계산",
+   "ctaText": "날짜와 인원을 넣으면 두 도시 숙소와 항공을 같은 기준으로 비교합니다.",
+   "fxNote": "1대만달러 40.7631원 · 2026-11-25 고시 기준",
+   "read": 11,
+   "faq": [
+    [
+     "이지카드로 고속철을 탈 수 있나요?",
+     "일반 이지카드로는 안 됩니다. 발행사 안내 기준으로 고속철은 제휴 신용카드형에 자동충전을 켠 경우 자유석만 태그 승차가 됩니다. 여행자가 편의점·MRT 안내소에서 사는 일반 카드는 시내 MRT·버스·페리·편의점용이고, 고속철 표는 앱이나 창구에서 따로 사야 합니다."
+    ],
+    [
+     "이지카드 100대만달러는 보증금인가요?",
+     "아닙니다. 발행사 공식 안내는 일반카드 100대만달러에 보증금도 잔액도 포함되지 않는다고 적습니다. 카드값으로 나가는 돈이고, 타려면 100대만달러 단위로 충전해야 합니다. 환불 시 수수료 20대만달러가 붙지만 5회 이상 사용하고 3개월이 지났으면 면제됩니다."
+    ],
+    [
+     "고속철 얼리버드는 얼마나 싸고 언제까지 사나요?",
+     "정가에서 35%·20%·10% 세 단계이고 일반석 지정석 편도에만 있습니다. 탑승 5일 전까지만 살 수 있고, 온라인 예약·T Express 앱·제휴 편의점에서만 판매합니다. 역 창구와 자동발매기에서는 팔지 않습니다."
+    ],
+    [
+     "치진섬 페리는 얼마인가요?",
+     "구산–치진 보행자 편도 30대만달러(약 1,223원)이고 약 5분 걸립니다. 2024년 11월 1일 개편 이후 교통카드와 현금 요금이 같아, 카드 할인은 없습니다. 자전거를 실으면 40, 오토바이는 60대만달러입니다."
+    ],
+    [
+     "3박4일 2인 경비는 얼마인가요?",
+     "항공·숙소를 빼고 약 20만 6,873원입니다. 고속철 얼리버드 2인 7만 1,539원, MRT·버스 2만 4,458원, 치진섬 페리 4,892원, 이지카드 8,153원, 야시장·식비 8끼 9만 7,831원으로 계산했습니다."
+    ]
+   ]
+  },
+  {
+   "slug": "kota-kinabalu-3n4d-course",
+   "category": "동남아",
+   "navTitle": "코타키나발루 3박4일 — 톤주아루 25링깃·보트 58링깃",
+   "h1": "코타키나발루 3박4일, <em>섬 이틀 + 석양 하루</em>가 실패가 적습니다",
+   "seoTitle": "코타키나발루 3박4일 — 톤주아루 25링깃·보트 58링깃 | 트립픽",
+   "dek": "톤주아루 해양공원 입장료는 외국인 25링깃, 2섬 왕복 보트는 58링깃, 터미널비 7링깃입니다. 배는 08:00~15:00, 귀환 막배는 16:00. 선착장이 사우스 제티로 옮겨진 것까지 확인했습니다.",
+   "desc": "코타키나발루 3박4일. 사바공원청 외국인 25링깃, 2섬 보트 58링깃·터미널 7링깃, 귀환 막배 16시, 씨워킹 180~250링깃, 2인 섬·교통 약 14만 800원. 2026-11 확인.",
+   "keywords": "코타키나발루 3박4일, 톤주아루 해양공원 입장료, 사피섬 마누칸 보트, 제셀톤 포인트 사우스 제티, 코타키나발루 호핑, 탄중아루 선셋, 반딧불 투어, 코타키나발루 그랩",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/kota-kinabalu-3n4d-course.jpg",
+   "ogImage": "images/og/v60-kota-kinabalu-og.jpg",
+   "imageAlt": "코타키나발루 시내와 앞바다 전경",
+   "imageCredit": "사진: FILMR Production / Wikimedia Commons, CC BY 3.0",
+   "tours": [],
+   "essentials": [
+    "cp-waterproof-sinji",
+    "cp-powerbank-spidy"
+   ],
+   "related": [
+    "bohol-3n4d-course",
+    "cebu-3n4d-course",
+    "sea-grab-taxi-scam-guide",
+    "entry-immigration-guide",
+    "currency-payment-fees",
+    "travel-insurance-guide"
+   ],
+   "ctaTitle": "코타키나발루 3박4일 계산",
+   "ctaText": "날짜와 인원을 넣으면 시내·리조트 숙소와 항공을 함께 비교합니다.",
+   "fxNote": "1링깃 ≈ 320원(2026-11 추정) · 결제 시점 환율 확인",
+   "read": 11,
+   "faq": [
+    [
+     "톤주아루 해양공원 입장료는 얼마인가요?",
+     "사바공원청 기준 외국인 성인 25링깃(하루), 17세 이하·60세 이상 20링깃입니다. 하루에 5개 섬 모두 해당하고 배삯과 별도입니다. 사바관광청 한국어 페이지에는 외국인 10링깃으로 적힌 옛 표가 있어, 예산은 25링깃으로 잡는 편이 안전합니다."
+    ],
+    [
+     "섬 보트는 어디서 타고 얼마인가요?",
+     "제셀톤 포인트 터미널이 재개발로 코타키나발루항 사우스 제티로 옮겨 운영 중입니다. 성인 왕복 1섬 48링깃, 2섬 58링깃, 3섬 68링깃이고 터미널 이용료 7링깃이 따로 붙습니다. 배는 08:00~15:00에 나가고 섬에서 돌아오는 마지막 배가 16:00입니다."
+    ],
+    [
+     "호핑투어를 사는 게 나은가요, 직접 가는 게 나은가요?",
+     "2인이라면 직접 가는 비용이 1인 83링깃(입장료 25+보트 58)에 터미널비·장비·식사가 붙습니다. 상품은 픽업·점심·그늘 테이블·한국어 가이드가 붙어 3만~12만 원대입니다. 차액이 2만 원 안쪽이면 상품이 편하고, 3~4인 가족은 차량 단독 상품이 1인당으로 더 쌉니다."
+    ],
+    [
+     "바다에서 수영해도 되나요?",
+     "2026년 10월 사피섬 인근에서 악어가 목격된 뒤 혼자 수영·스노클링이 금지됐습니다. 가이드 안내를 따르고 일행과 함께 들어가세요. 산호 보호구역에서는 옥시벤존·옥티노세이트가 든 자외선 차단제를 쓸 수 없습니다."
+    ],
+    [
+     "3박4일 2인 경비는 얼마인가요?",
+     "항공·숙소·식사를 빼고 약 14만 800원입니다. 공원 입장료 2인×2일 3만 2,000원, 2섬 보트 7만 4,240원, 터미널비 8,960원, 그랩 1만 9,200원, 스노클 장비 6,400원으로 계산했습니다."
+    ]
+   ]
+  },
+  {
+   "slug": "bohol-3n4d-course",
+   "category": "동남아",
+   "navTitle": "보홀 3박4일 — 오션젯 960페소·발리카삭 호핑",
+   "h1": "보홀 3박4일, <em>세부 경유</em>와 <em>팡라오 직항</em>으로 하루가 갈립니다",
+   "seoTitle": "보홀 3박4일 — 오션젯 960페소·발리카삭 호핑 | 트립픽",
+   "dek": "세부 피어1→타그빌라란 오션젯은 투어리스트 960페소·약 2시간, 하루 10편입니다. 알로나까지 30~40분, 버진 아일랜드는 2026년 2월 재개장해 2시간마다 250명까지입니다.",
+   "desc": "보홀 3박4일. 오션젯 세부→타그빌라란 960페소(비즈니스 1,440)·약 2시간, 알로나 30~40분, 버진 아일랜드 재개장·정원 250명, 무비자 30일·eTravel, 2인 약 19만~28만 원. 2026-11 확인.",
+   "keywords": "보홀 3박4일, 세부 보홀 배, 오션젯 960페소, 타그빌라란 알로나, 발리카삭 호핑, 버진 아일랜드 재개장, 팡라오 직항, 보홀 육상관광, 필리핀 무비자 30일",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/bohol-3n4d-course.jpg",
+   "ogImage": "images/og/v60-bohol-og.jpg",
+   "imageAlt": "보홀 초콜릿 힐스의 언덕들",
+   "imageCredit": "사진: P199 / Wikimedia Commons, CC BY-SA 3.0",
+   "tours": [],
+   "essentials": [
+    "cp-waterproof-sinji",
+    "cp-powerbank-spidy"
+   ],
+   "related": [
+    "cebu-3n4d-course",
+    "kota-kinabalu-3n4d-course",
+    "sea-grab-taxi-scam-guide",
+    "entry-immigration-guide",
+    "travel-insurance-guide",
+    "currency-payment-fees"
+   ],
+   "ctaTitle": "보홀 3박4일 계산",
+   "ctaText": "날짜와 인원을 넣으면 알로나 숙소와 팡라오·세부 항공을 함께 비교합니다.",
+   "fxNote": "1페소 21.0544원 · 2026-11-25 고시 기준",
+   "read": 11,
+   "faq": [
+    [
+     "세부에서 보홀까지 배는 얼마인가요?",
+     "오션젯 세부 피어1→타그빌라란 투어리스트·오픈에어 960페소, 비즈니스 1,440페소입니다(2026년 9월 21일부터, 연료할증 포함). 약 2시간이고 공시 운항표 기준 하루 10편(07:00~17:40)입니다. 터미널 이용료 약 25페소는 현금으로 따로 냅니다."
+    ],
+    [
+     "배 체크인과 짐 규정은 어떻게 되나요?",
+     "체크인은 출발 30분 전에 마감됩니다. 투어리스트·오픈에어는 10kg까지 무료이고 바퀴 달린 캐리어는 위탁해야 합니다. 비즈니스는 20kg에 세 변 130cm 이하 캐리어 1개를 들고 탈 수 있습니다."
+    ],
+    [
+     "버진 아일랜드는 지금 갈 수 있나요?",
+     "2024년 9월 폐쇄됐다가 2026년 2월 3일 새 규칙으로 다시 열었습니다. 06:00~18:00 운영에 모래톱 방문은 2시간마다 250명까지, 사진은 한 그룹에 3분입니다. 입장료는 보도·업체 안내 기준 외국인 100페소 안팎이니 투어비 포함 여부를 확인하세요."
+    ],
+    [
+     "발리카삭 환경 이용료는 투어비에 포함인가요?",
+     "업체마다 다릅니다. 공식 금액을 확인하지 못했고 후기마다 금액이 달라, 예약할 때 환경료·장비·점심 포함 여부를 문장으로 확인하고 답을 문자로 남겨 두세요. 조인 투어는 1인 1,000~2,500페소, 단독 보트는 2,500페소 이상이 일반적입니다."
+    ],
+    [
+     "3박4일 2인 경비는 얼마인가요?",
+     "항공·숙소·식사를 빼고 약 19만 8,554~28만 2,979원입니다. 오션젯 왕복 2인 8만 849원, 터미널비 2,105원, 항구↔알로나 왕복 2만 1,054원에 호핑 4만 2,109~10만 5,272원, 육상관광 5만 2,636~7만 3,690원이 붙습니다."
+    ]
+   ]
+  },
+  {
+   "slug": "beijing-3n4d-course",
+   "category": "중국",
+   "navTitle": "베이징 3박4일 — 자금성 40위안·만리장성·무비자",
+   "h1": "베이징 3박4일, <em>자금성 예약</em>이 하루의 절반을 정합니다",
+   "seoTitle": "베이징 3박4일 — 자금성 40위안·만리장성·무비자 | 트립픽",
+   "dek": "자금성은 겨울 40위안, 관람 7일 전 20:00(한국 21:00)에 표가 열리고 월요일은 쉽니다. 공항철도 25위안, 무비자는 2026년 12월 31일까지 30일. 만리장성 두 곳과 결제 준비까지 정리했습니다.",
+   "desc": "베이징 3박4일. 자금성 40위안(비수기)·7일 전 예약·월요일 휴관, 공항철도 25위안, 무비자 30일(2026-12-31까지), 무톈위 40~45위안·케이블카 왕복 140위안, 2인 교통·입장료 약 8만 7,620원. 2026-11 확인.",
+   "keywords": "베이징 3박4일, 자금성 예약, 자금성 입장료 40위안, 만리장성 무톈위, 팔달령, 베이징 공항철도 25위안, 중국 무비자 30일, 알리페이 위챗페이, 베이징 겨울",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/beijing-3n4d-course.jpg",
+   "ogImage": "images/og/v60-beijing-og.jpg",
+   "imageAlt": "징산공원에서 내려다본 자금성",
+   "imageCredit": "사진: Pixelflake / Wikimedia Commons, CC BY-SA 3.0",
+   "tours": [],
+   "essentials": [
+    "cp-adapter-nemotab",
+    "cp-powerbank-spidy"
+   ],
+   "related": [
+    "shanghai-2n3d-3n4d-course",
+    "qingdao-2n3d-course",
+    "entry-immigration-guide",
+    "currency-payment-fees",
+    "zhangjiajie-special-terms",
+    "packing-powerbank-liquid"
+   ],
+   "ctaTitle": "베이징 3박4일 계산",
+   "ctaText": "날짜와 인원을 넣으면 베이징 숙소·항공·투어를 같은 기준으로 비교합니다.",
+   "fxNote": "1위안 200.9646원 · 2026-11-25 고시 기준",
+   "read": 12,
+   "faq": [
+    [
+     "자금성 표는 언제, 어떻게 예약하나요?",
+     "관람일 7일 전 베이징 시각 20:00(한국 21:00)에 공식 예매 사이트와 위챗 미니앱에서 열립니다. 당일표와 현장 판매가 없고, 외국인은 여권번호로 실명 예약한 뒤 입장 때 같은 여권을 내야 합니다. 월요일은 휴관입니다(법정 공휴일 월요일 제외)."
+    ],
+    [
+     "자금성 입장료와 운영시간은?",
+     "비수기(11/1~3/31) 40위안, 성수기(4/1~10/31) 60위안이고 진보관·종표관은 각 10위안입니다. 비수기는 08:30 개장, 15:30 입장 마감, 16:30 폐관입니다. 남쪽 오문으로만 들어가고 신무문·동화문으로 나옵니다."
+    ],
+    [
+     "중국 무비자는 언제까지인가요?",
+     "한국 여권은 2026년 12월 31일까지 30일 무비자입니다. 30일은 입국 다음 날부터 셉니다. 2027년 연장은 2026년 11월 19일 기준 발표되지 않았으니, 12월에 들어가 1월에 나오는 일정은 출발 전 주한중국대사관 공지를 확인하세요."
+    ],
+    [
+     "만리장성은 무톈위와 팔달령 중 어디가 낫나요?",
+     "첫 방문·가족이면 케이블카와 셔틀이 있는 무톈위(40~45위안)가 편합니다. 팔달령(35위안)은 고속철 접근이 쉽고 18세 미만·60세 이상이 여권으로 무료지만, 2026년 11월 16일부터 북선 케이블카가 임시 운휴입니다. 무톈위는 겨울 08:00~17:30(표 16:30까지)입니다."
+    ],
+    [
+     "결제와 인터넷은 어떻게 준비하나요?",
+     "알리페이·위챗페이에 해외 카드를 연동하고 공항에서 소액 결제로 테스트하세요. 구글 지도·구글 계정은 중국 내 접속이 제한되므로 현지 지도 앱과 로밍·eSIM을 준비해야 합니다. 입국카드는 s.nia.gov.cn나 위챗·알리페이 미니앱에서 미리 쓸 수 있습니다."
+    ]
+   ]
+  },
+  {
+   "slug": "qingdao-2n3d-course",
+   "category": "중국",
+   "navTitle": "칭다오 2박3일 — 맥주박물관 60위안·8호선 40분",
+   "h1": "칭다오 2박3일, <em>5·4광장</em>에 묵으면 공항이 두 번 편해집니다",
+   "seoTitle": "칭다오 2박3일 — 맥주박물관 60위안·8호선 40분 | 트립픽",
+   "dek": "맥주박물관 성인권 60위안, 8호선으로 공항→5·4광장 40분. 다만 박물관은 2026년 12월 1일부터 2027년 2월 28일까지 휴관합니다. 무비자 30일과 해안 세 구역 동선까지 정리했습니다.",
+   "desc": "칭다오 2박3일. 맥주박물관 60위안(12~2월 휴관), 공항 8호선 5·4광장 40분, 무비자 30일(2026-12-31까지), 잔교·팔대관·소어산 동선, 2인 교통·입장료 약 4만 1,801원. 2026-11 확인.",
+   "keywords": "칭다오 2박3일, 칭다오 맥주박물관 입장료, 칭다오 8호선 공항, 5·4광장 숙소, 칭다오 팔대관, 잔교 소어산, 칭다오 무비자, 칭다오 호캉스, 라오산 예약",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/qingdao-2n3d-course.jpg",
+   "ogImage": "images/og/v60-qingdao-og.jpg",
+   "imageAlt": "칭다오 맥주박물관이 있는 칭다오 맥주공장 옛 건물",
+   "imageCredit": "사진: Lennartbj / Wikimedia Commons, CC BY-SA 4.0",
+   "tours": [],
+   "essentials": [
+    "cp-adapter-nemotab",
+    "cp-powerbank-spidy"
+   ],
+   "related": [
+    "beijing-3n4d-course",
+    "shanghai-2n3d-3n4d-course",
+    "entry-immigration-guide",
+    "hotel-booking-timing-refund-tips",
+    "packing-powerbank-liquid",
+    "currency-payment-fees"
+   ],
+   "ctaTitle": "칭다오 2박3일 계산",
+   "ctaText": "날짜와 인원을 넣으면 5·4광장 숙소와 항공을 같은 기준으로 비교합니다.",
+   "fxNote": "1위안 200.9646원 · 2026-11-25 고시 기준",
+   "read": 11,
+   "faq": [
+    [
+     "맥주박물관 입장료와 운영시간은?",
+     "일반 성인권 60위안으로 A·B관과 시음 2잔, 맥주콩이 포함됩니다. 11~12월은 08:30~17:30(입장 마감 16:30)이고, 2026년 6월부터 시간대별 온라인 예약과 실명 확인을 합니다. 2호선 리진루역 C출구에서 도보 10~15분입니다."
+    ],
+    [
+     "12월에 가도 맥주박물관을 볼 수 있나요?",
+     "2026년 12월 1일부터 2027년 2월 28일까지 유지보수로 휴관한다고 판매처가 공지했습니다. 그 기간에는 운상해천 전망대나 시립미술관 같은 실내 일정으로 바꾸고, 맥주거리(덩저우루)만 걸어 보는 편이 낫습니다."
+    ],
+    [
+     "공항에서 시내까지 얼마나 걸리나요?",
+     "2026년 9월 22일 8호선 남쪽 구간이 열려 자오둥 공항역에서 5·4광장역까지 갈아타지 않고 40분 이내입니다. 쾌속열차는 아침 3편·저녁 5편이고, 일반 열차는 더 걸립니다. 요금은 7위안 안팎이라는 보도가 있어 공식 앱에서 확인하세요."
+    ],
+    [
+     "숙소는 어디에 잡는 게 좋나요?",
+     "첫 칭다오 2박3일이면 5·4광장역 도보 10분 안쪽이 가장 효율적입니다. 첫날과 마지막 날 모두 환승 없이 공항을 오갈 수 있고, 해안 야경·쇼핑몰·2·3호선 환승이 한곳에 있습니다. 야시장·맥주거리가 목적이면 타이둥, 옛 건물 사진이면 잔교 쪽입니다."
+    ],
+    [
+     "2박3일 2인 경비는 얼마인가요?",
+     "항공·숙소·식사를 빼고 약 4만 1,801원입니다. 공항 8호선 왕복 2인 5,627원, 지하철 3일 8,039원, 맥주박물관 2인 2만 4,116원, 천주교당 4,019원으로 계산했습니다. 라오산을 넣으면 입장·셔틀·케이블카가 따로 붙습니다."
+    ]
+   ]
+  },
+  {
+   "slug": "sydney-4n5d-course",
+   "category": "유럽·장거리",
+   "navTitle": "시드니 4박5일 — 오팔 19.30달러·공항역 18.61달러",
+   "h1": "시드니 4박5일, <em>오팔 상한</em>과 <em>공항역 이용료</em>를 따로 계산해야 합니다",
+   "seoTitle": "시드니 4박5일 — 오팔 19.30달러·공항역 18.61달러 | 트립픽",
+   "dek": "오팔 성인 일일 상한은 월~목 19.30, 금·주말 9.65호주달러, 주간 50호주달러입니다. 공항역 이용료 18.61호주달러는 상한에 포함되지 않습니다. ETA 앱 수수료 20호주달러까지 정리했습니다.",
+   "desc": "시드니 4박5일. 오팔 일일 상한 19.30/9.65호주달러·주간 50, 공항역 18.61호주달러 별도, ETA 앱 20호주달러, 블루마운틴 기차 2시간, 2인 교통·ETA 약 19만 1,124원. 2026-11 확인.",
+   "keywords": "시드니 4박5일, 오팔카드 요금, 오팔 일일 상한, 시드니 공항역 요금, 호주 ETA 20호주달러, 블루마운틴 당일치기, 시드니 오페라하우스, 본다이 비치, 시드니 컨택리스",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/sydney-4n5d-course.jpg",
+   "ogImage": "images/og/v60-sydney-og.jpg",
+   "imageAlt": "시드니 오페라하우스와 서큘러키 항만",
+   "imageCredit": "사진: BAVhah / Wikimedia Commons, CC BY-SA 4.0",
+   "tours": [],
+   "essentials": [
+    "cp-neckpillow-rango",
+    "cp-adapter-nemotab"
+   ],
+   "related": [
+    "oceania-eta-nzeta",
+    "europe-ees-etias-guide",
+    "hawaii-oahu-5n7d-course",
+    "currency-payment-fees",
+    "travel-card-fees-comparison",
+    "travel-insurance-guide"
+   ],
+   "ctaTitle": "시드니 4박5일 계산",
+   "ctaText": "날짜와 인원을 넣으면 시드니 숙소·항공·투어를 같은 기준으로 비교합니다.",
+   "fxNote": "1호주달러 891.2656원 · 2026-11-25 고시 기준",
+   "read": 11,
+   "faq": [
+    [
+     "오팔 카드를 꼭 사야 하나요?",
+     "아닙니다. 비접촉 Visa·Mastercard·Amex 카드나 그 카드를 등록한 휴대전화로 태그하면 성인 오팔과 같은 요금·상한이 적용됩니다. 탑승과 하차에 같은 카드·기기를 써야 하고, 하차 태그를 잊으면 최대 요금이 청구됩니다."
+    ],
+    [
+     "시드니 교통비 상한은 얼마인가요?",
+     "성인 기준 월~목 하루 19.30호주달러, 금·토·일·공휴일 9.65호주달러, 월~일 주간 50호주달러입니다. 여기에 공항역 이용료 1회 18.61호주달러(주간 한도 37.75)가 별도로 붙어, 공항을 왕복하는 주는 최대 87.22호주달러입니다."
+    ],
+    [
+     "공항에서 시내까지 얼마인가요?",
+     "T8 기차로 센트럴까지 13~15분이고, 기본 운임에 공항역 이용료 18.61호주달러가 더해집니다. 공항역에서 오팔 카드를 사면 최소 35호주달러 충전이 필요하니, 컨택리스 카드가 있으면 그대로 태그하는 편이 간단합니다."
+    ],
+    [
+     "호주 ETA는 어떻게 신청하나요?",
+     "호주 내무부 ETA 앱으로 신청하며 앱 이용 수수료가 20호주달러이고 그 외 비용은 없습니다. 여권과 같은 이름으로 신청해야 하고, 승인 후 여권과 연결됩니다. 출발 전에 승인 상태를 확인하세요."
+    ],
+    [
+     "4박5일 2인 교통비는 얼마인가요?",
+     "주간 상한 2인 8만 9,127원, 공항역 왕복 2인 6만 6,346원, ETA 2인 3만 5,651원으로 약 19만 1,124원입니다. 상한까지 꽉 채운 값이라, 하루 1~2회만 움직이면 실제 결제액은 더 적습니다."
+    ]
+   ]
+  },
+  {
+   "slug": "switzerland-jungfrau-zermatt-pass",
+   "category": "유럽·장거리",
+   "navTitle": "스위스 4박5일 — 융프라우·체르마트 패스 손익",
+   "h1": "스위스 4박5일, <em>융프라우 50%</em>를 받느냐가 패스를 바꿉니다",
+   "seoTitle": "스위스 4박5일 — 융프라우·체르마트 패스 손익 | 트립픽",
+   "dek": "Swiss Travel Pass 4일 309프랑, Half Fare Card 150프랑. 융프라우요흐는 트래블 패스 25%, 하프 페어 50% 할인입니다. 좌석 예약 10프랑과 인터라켄 공사까지 반영해 계산했습니다.",
+   "desc": "스위스 4박5일. Swiss Travel Pass 3일 254·4일 309프랑, Half Fare Card 150프랑, 융프라우 25%/50%, 좌석 예약 10프랑(5~10월 의무), 체르마트 산악열차 할인 확인. 2026-11 확인.",
+   "keywords": "스위스 4박5일, 스위스 트래블 패스 가격, 하프 페어 카드 150프랑, 융프라우요흐 할인, 융프라우 좌석 예약 10프랑, 체르마트 고르너그라트, 인터라켄 공사, 융프라우 트래블 패스",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/switzerland-jungfrau-zermatt-pass.jpg",
+   "ogImage": "images/og/v60-switzerland-og.jpg",
+   "imageAlt": "융프라우요흐 스핑크스 전망대와 융프라우 봉우리",
+   "imageCredit": "사진: Pmau / Wikimedia Commons, CC BY-SA 4.0",
+   "tours": [],
+   "essentials": [
+    "cp-carrier-sm0320",
+    "cp-adapter-philips-70w"
+   ],
+   "related": [
+    "europe-train-eurail-vs-point",
+    "europe-ees-etias-guide",
+    "eastern-europe-prague-vienna-budapest",
+    "paris-london-5n7d",
+    "europe-pickpocket-tax-refund-guide",
+    "travel-insurance-guide"
+   ],
+   "ctaTitle": "스위스 4박5일 계산",
+   "ctaText": "날짜와 인원을 넣으면 인터라켄·체르마트 숙소와 항공을 함께 비교합니다.",
+   "fxNote": "프랑 기준 · 결제 시점 환율 확인",
+   "read": 12,
+   "faq": [
+    [
+     "Swiss Travel Pass와 Half Fare Card 중 무엇이 싸나요?",
+     "융프라우요흐를 한 번 가고 시내 이동이 많지 않다면 Half Fare Card(150프랑)가 유리합니다. 융프라우에서 50%를 받아 약 250.60프랑이면 되기 때문입니다. 4일권 309프랑과의 차액 159프랑을 넘게 기차·유람선에 쓸 것 같으면 트래블 패스가 낫습니다."
+    ],
+    [
+     "융프라우요흐는 패스로 얼마나 할인되나요?",
+     "Swiss Travel Pass 소지자는 25%, Half Fare Card 소지자는 50%입니다. 티켓 최저가는 100.60프랑부터이고(겨울철·출발지에 따라 다름), 좌석 예약은 10프랑이며 5월 1일~10월 31일은 의무입니다."
+    ],
+    [
+     "체르마트 산악열차도 패스로 할인되나요?",
+     "노선마다 다릅니다. 고르너그라트·마터호른 글래시어 파라다이스 등은 25%·50%·할인 없음이 섞여 있어 역 창구에서 확인해야 합니다. 마을 안은 전기차·도보만 가능하고, 큰 짐은 숙소 픽업이나 락커를 이용하세요."
+    ],
+    [
+     "12월에 인터라켄 구간 공사가 있나요?",
+     "2026년 10월 19일부터 12월 11일까지 인터라켄 서역–동역 구간이 공사로 막혀 대체버스를 탑니다. 이 기간에는 환승 시간을 20~30분 더 잡으세요. 융프라우 철도도 노선별 정비 운휴가 있었으니 출발 전 공식 시간표를 확인하세요."
+    ],
+    [
+     "융프라우 트래블 패스는 어떤가요?",
+     "3일 210프랑(하프 페어·트래블 패스 소지 시 165프랑)이고 융프라우 지역 기차·곤돌라·유람선이 포함되지만 융프라우요흐는 추가권 63프랑(여름 89프랑)입니다. 그린델발트에 3일 머물며 산악 교통을 많이 탈 때 유리합니다."
+    ]
+   ]
+  },
+  {
+   "slug": "eastern-europe-prague-vienna-budapest",
+   "category": "유럽·장거리",
+   "navTitle": "동유럽 6박7일 — 프라하·비엔나·부다페스트 기차",
+   "h1": "동유럽 6박7일, <em>프라하 인·부다페스트 아웃</em>이면 7시간을 안 탑니다",
+   "seoTitle": "동유럽 6박7일 — 프라하·비엔나·부다페스트 기차 | 트립픽",
+   "dek": "프라하→비엔나 4시간 12분, 비엔나→부다페스트 2시간 39분. 레기오젯 조기 요금은 16.90·11.90유로입니다. 세체니 온천 13,200포린트와 대여 없는 준비물까지 정리했습니다.",
+   "desc": "동유럽 6박7일. 프라하→비엔나 Railjet 4시간 12분·레기오젯 16.90유로, 비엔나→부다페스트 2시간 39분·11.90유로, 세체니 온천 13,200포린트, 부다페스트 카드 72시간 85유로. 2026-11 확인.",
+   "keywords": "동유럽 6박7일, 프라하 비엔나 부다페스트, 프라하 비엔나 기차 4시간, 레기오젯 요금, 비엔나 부다페스트 기차, 세체니 온천 입장료, 부다페스트 카드, 솅겐 90일",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/eastern-europe-prague-vienna-budapest.jpg",
+   "ogImage": "images/og/v60-eastern-europe-og.jpg",
+   "imageAlt": "카를교와 블타바강 건너로 보이는 프라하 성",
+   "imageCredit": "사진: Moyan Brenn / Wikimedia Commons, CC BY 2.0",
+   "tours": [],
+   "essentials": [
+    "cp-carrier-natgeo-28",
+    "cp-adapter-philips-70w"
+   ],
+   "related": [
+    "europe-train-eurail-vs-point",
+    "europe-ees-etias-guide",
+    "europe-pickpocket-tax-refund-guide",
+    "switzerland-jungfrau-zermatt-pass",
+    "paris-london-5n7d",
+    "currency-payment-fees"
+   ],
+   "ctaTitle": "동유럽 6박7일 계산",
+   "ctaText": "날짜와 인원을 넣으면 세 도시 숙소와 항공을 같은 기준으로 비교합니다.",
+   "fxNote": "1유로 1,472.7541원 · 2026-11-25 고시 기준",
+   "read": 12,
+   "faq": [
+    [
+     "세 도시 순서는 어떻게 잡나요?",
+     "프라하에서 들어와 비엔나를 거쳐 부다페스트로 나가는 순서가 가장 효율적입니다. 프라하–비엔나 4시간 12분, 비엔나–부다페스트 2시간 39분이면 되지만, 프라하–부다페스트 직행은 6시간 51분입니다. 오픈조 항공권으로 같은 길을 두 번 가지 마세요."
+    ],
+    [
+     "기차표는 얼마이고 언제 사나요?",
+     "레기오젯 조기 요금이 프라하–비엔나 16.90유로, 비엔나–부다페스트 11.90유로, 프라하–부다페스트 26.90유로입니다(2026-11-10 조회). ČD 조기 요금은 18.50·30유로부터입니다. 6개월 전부터 열리고, 레기오젯은 며칠 전에도 저렴한 좌석이 남아 있는 편입니다."
+    ],
+    [
+     "레기오젯과 국영철도 표를 섞어 쓸 수 있나요?",
+     "안 됩니다. ČD·ÖBB 표로 레기오젯에 탈 수 없고 반대도 마찬가지입니다. 레기오젯은 좌석 지정이 표에 포함되고 출발 15분 전까지 앱에서 변경·취소가 됩니다. ČD·ÖBB 주간 열차는 좌석 예약이 선택(ÖBB 3유로)입니다."
+    ],
+    [
+     "세체니 온천은 얼마이고 무엇을 챙기나요?",
+     "월~목 13,200포린트, 금·주말 14,800포린트, 성수기 15,800포린트이고 09시 전 아침권은 10,500포린트입니다. 수영복·수건·슬리퍼 대여가 없고 구매만 가능하니(6,300·6,900·4,200포린트) 한국에서 챙겨 가세요."
+    ],
+    [
+     "부다페스트 역은 어디서 내리나요?",
+     "비엔나발 열차는 켈레티, 프라하발 직행은 뉴가티, 레기오젯은 켈렌펠드·델리에 섭니다. 숙소와 가까운 역을 골라 표를 사야 택시비를 아낄 수 있습니다. 부다페스트 카드 72시간권(85유로)은 대중교통 무제한에 루카치 온천이 포함됩니다."
+    ]
+   ]
+  },
+  {
+   "slug": "japan-shinkansen-jr-pass-guide",
+   "category": "일본",
+   "navTitle": "일본 신칸센·JR패스 본전 — 7일권 50,000엔",
+   "h1": "일본 신칸센·JR패스, <em>도쿄–오사카 왕복</em>이면 사지 마세요",
+   "seoTitle": "일본 신칸센·JR패스 본전 계산 — 7일권 50,000엔 | 트립픽",
+   "dek": "JR패스 7일권은 50,000엔, 도쿄–신오사카 노조미 왕복은 29,440엔이라 왕복만 하면 2만 엔 손해입니다. 노조미 추가권 4,960엔, 특대 수하물 좌석, 스마트EX까지 구간별로 계산했습니다.",
+   "desc": "일본 신칸센·JR패스 본전. 7일권 50,000엔(여행사 53,000), 도쿄–신오사카 14,720엔, 노조미 추가권 4,960엔, 하카타까지 도는 일정 57,520엔, 특대 수하물 좌석 조건. 2026-11 확인.",
+   "keywords": "JR패스 본전, JR패스 7일 50000엔, 신칸센 요금, 도쿄 오사카 노조미 14720엔, 노조미 추가권 4960엔, 스마트EX 예약, 특대 수하물 좌석, JR규슈 레일패스",
+   "published": "2026-11-26",
+   "updated": "2026-11-26",
+   "image": "images/v60/japan-shinkansen-jr-pass-guide.jpg",
+   "ogImage": "images/og/v60-jr-pass-og.jpg",
+   "imageAlt": "도카이도 신칸센을 달리는 N700S 노조미",
+   "imageCredit": "사진: MaedaAkihiko / Wikimedia Commons, CC BY-SA 4.0",
+   "tours": [],
+   "essentials": [
+    "jp-esim-lingsim-1d",
+    "cp-luggagescale-homeplanet"
+   ],
+   "related": [
+    "japan-ic-card",
+    "osaka-amazing-pass",
+    "tokyo-subway-ticket",
+    "beppu-onsen-1n2d-course",
+    "airport-arrival-city-transfer-guide",
+    "flight-cheap-booking-baggage"
+   ],
+   "ctaTitle": "일본 신칸센·JR패스 계산",
+   "ctaText": "날짜와 인원을 넣으면 도쿄·오사카 숙소와 항공을 같은 기준으로 비교합니다.",
+   "fxNote": "1엔 8.439원 · 2026-11-25 고시 기준",
+   "read": 12,
+   "faq": [
+    [
+     "도쿄–오사카 왕복이면 JR패스가 이득인가요?",
+     "아닙니다. 도쿄–신오사카 노조미 지정석 정가가 편도 14,720엔이라 왕복 29,440엔이고, 7일권은 50,000엔입니다. 왕복만 하면 20,560엔 손해입니다. 하카타까지 찍고 돌아오는 일정(정가 57,520엔)이라야 7,520엔 이득이 됩니다."
+    ],
+    [
+     "노조미는 패스로 탈 수 없나요?",
+     "지정석·자유석 모두 패스만으로는 탈 수 없습니다. JR패스 소지자 전용 노조미·미즈호 티켓을 승차 전에 사야 하고, 도쿄–교토·신오사카 4,960엔, 도쿄–히로시마 6,500엔입니다. 패스로 탈 수 있는 히카리·고다마·사쿠라를 쓰면 추가 요금이 없습니다."
+    ],
+    [
+     "패스 가격은 얼마인가요?",
+     "보통차 성인 기준 공식 온라인 7일 50,000엔, 14일 80,000엔, 21일 100,000엔입니다. 해외 지정 여행사는 2026년 10월 1일 구매분부터 53,000·84,000·105,000엔으로 올랐습니다. 그린차 7일은 70,000엔(여행사 74,000엔)입니다."
+    ],
+    [
+     "큰 캐리어는 어떻게 들고 타나요?",
+     "세 변 합이 160cm를 넘는 짐은 도카이도·산요·규슈 신칸센에서 특대 수하물 스페이스가 있는 좌석을 예약해야 합니다. 예약 없이 타면 별도 요금이 붙고, 250cm를 넘으면 반입이 제한됩니다. 짐이 여러 개면 숙소 간 택배로 보내는 편이 쌀 수 있습니다."
+    ],
+    [
+     "지역 패스만 사는 게 나은 경우는?",
+     "오사카를 거점으로 간사이·히로시마를 도는 일정이면 JR서일본 지역 패스가 낫고, 규슈만 돌면 JR규슈 레일패스(3일 15,000엔 수준)로 충분합니다. 도쿄가 일정에 없으면 전국 패스는 대부분 과합니다. 지역 패스는 가격이 자주 바뀌니 각 사 공식 사이트에서 확인하세요."
     ]
    ]
   }
