@@ -1781,7 +1781,7 @@ def render_tripcom(tc: dict, klook: dict | None = None) -> str:
     <div class="tc-group" data-tc-group="hotel">
       <div class="ess-ghead"><h3>🏨 도시별 숙소</h3><span class="n">{len(tc["hotels"])}</span><span class="line" aria-hidden="true"></span><span class="ess-gnote">체크인 날짜를 넣으면 그날 최저가로 열립니다</span></div>
       <div class="tc-grid">{hotels}</div>
-      <p class="tc-empty" id="tcEmpty" hidden>이 분류에 해당하는 숙소가 아직 없습니다. ‘전체’로 돌아가면 도시 15곳을 모두 볼 수 있습니다.</p>
+      <p class="tc-empty" id="tcEmpty" hidden>이 분류에 해당하는 숙소가 아직 없습니다. ‘전체’로 돌아가면 도시 {len(tc["hotels"])}곳을 모두 볼 수 있습니다.</p>
       <p class="ess-cp-note">{esc(tc["disclosure"])} 링크는 {esc(src["checked"])} 트립닷컴 파트너스에서 발급했고, 요율은 호텔 5~7%·국제선 항공 0.5~0.8%(예약 건수에 따라)입니다.</p>
     </div>
     <div class="tc-group tc-group--act" data-tc-group="ticket" id="tcTickets">
