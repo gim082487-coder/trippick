@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT.parent / "deploy_site"
 SITE = "https://trippick.pages.dev"
-LASTMOD = "2026-11-26"
+LASTMOD = "2026-11-27"
 
 NEW = ["japan-winter-clothing", "tokyo-disney-parks", "japan-ic-card", "usj-express-pass"]
 BACKLINKS = {

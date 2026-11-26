@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT.parent / "deploy_site"
 SITE = "https://trippick.pages.dev"
-LASTMOD = "2026-11-26"
+LASTMOD = "2026-11-27"
 ACTION = ROOT.parent.parent / "scheduled-actions" / "🔍-구글-서치콘솔-색인-요청-재시도" / "action.md"
 NOTES = ROOT.parent.parent / "scheduled-actions" / "🚀-매일-트립픽-콘텐츠-seo-수익화-업그레이드" / "notes.md"
 

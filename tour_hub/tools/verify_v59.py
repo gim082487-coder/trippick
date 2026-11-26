@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT.parent / "deploy_site"
 SITE = "https://trippick.pages.dev"
-LASTMOD = "2026-11-26"
+LASTMOD = "2026-11-27"
 ACTION = ROOT.parent.parent / "scheduled-actions" / "🔍-구글-서치콘솔-색인-요청-재시도" / "action.md"
 
 NEW = ["phu-quoc-3n4d-4n5d-course", "cebu-3n4d-course", "hanoi-halong-3n4d-course"]

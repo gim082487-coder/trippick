@@ -123,7 +123,7 @@ def main() -> None:
     html = (OUT / "index.html").read_text(encoding="utf-8")
     check(html.count('class="pick"') == 21, f"홈 코스 카드 {html.count('class=\"pick\"')}장")
     check(html.count('class="panel"') + html.count('class="panel active"') == 21, "홈 코스 패널 21개 아님")
-    check(html.count('data-course="') == 21, "data-course 21개 아님")
+    check(html.count('class="pick" role="tab" data-course="') == 21, "코스 카드(data-course) 21개 아님")
     check(html.count('class="cguide"') == 42, f"가이드 링크 {html.count('class=\"cguide\"')}개 (기대 42)")
     check(html.count(">요금 보기<") >= 25, "트립닷컴 카드 '요금 보기' 25건 미만")
     for cid in NEW:

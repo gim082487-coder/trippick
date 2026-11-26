@@ -24,6 +24,9 @@ ROOT = Path(__file__).parent
 DATA = ROOT / "data"
 TEMPLATE = ROOT / "template.html"
 INDEX = ROOT / "index.html"
+# v62: 홈이 링크하는 사이트 공통 CSS 버전(build_pages.py 의 CSS_V 와 같아야 한다)
+CSS_V_HOME = "62"
+_PROTECTED = re.compile(r"<(script|style|pre|textarea)\b[^>]*>.*?</\1>", re.S | re.I)
 
 COUNTRIES = [
     ("kr", "국내 (서울·경주·제주·부산·강원)", "f-kr"),
@@ -935,6 +938,18 @@ def render_course_picker(courses: dict, tours_by_id: dict, ess_by_id: dict) -> s
         n = sum(len(d["items"]) for d in c["days"])
         out.append(course_pick(c, idx, n))
     return ("\n      ").join(out)
+
+
+def render_course_index(courses: dict) -> str:
+    """v62: 모바일 코스 빠른 선택 칩 — 21편을 한눈에 보고 바로 열 수 있게."""
+    out = []
+    for idx, c in enumerate(courses["courses"]):
+        short = re.sub(r"\s*\d+박\s*\d+일\s*$", "", c["title"]).strip()
+        cur = "true" if idx == 0 else "false"
+        out.append(f'<button type="button" class="pidx" data-course="{c["id"]}" aria-current="{cur}"'
+                   f' aria-controls="course-{c["id"]}"><span class="pidx-n">{idx + 1:02d}</span>'
+                   f'<b>{esc(short)}</b></button>')
+    return "\n      ".join(out)
 
 
 def render_course_panels(courses: dict, tours_by_id: dict, ess_by_id: dict,
@@ -2877,6 +2892,38 @@ def render_ad_slots() -> dict:
     }
 
 
+def compact_html(html: str) -> str:
+    """v62: 태그 사이 들여쓰기·빈 줄만 걷어낸다(홈 기준 약 110KB).
+    script·style·pre·textarea 안쪽은 한 글자도 건드리지 않는다(템플릿 문자열·코드 들여쓰기 보존)."""
+    parts, last = [], 0
+    for m in _PROTECTED.finditer(html):
+        parts.append(_compact_text(html[last:m.start()]))
+        parts.append(m.group(0))
+        last = m.end()
+    parts.append(_compact_text(html[last:]))
+    return "".join(parts)
+
+
+def _compact_text(s: str) -> str:
+    s = re.sub(r"(?m)^[ \t]+", "", s)    # 줄 앞 들여쓰기(요소 사이 공백은 줄바꿈으로 유지)
+    s = re.sub(r"(?m)^[ \t]*\n", "", s)  # 빈 줄
+    return s
+
+
+def extern_home_css(html: str) -> str:
+    """v62: 홈에 인라인돼 있던 CSS(약 200KB)를 사이트 공통 assets/site.css 로 옮긴다.
+
+    template.html 의 <style> 은 그대로 두어 build_pages.py 가 site.css 를 계속 추출한다.
+    인라인 CSS 는 site.css 의 부분집합임을 확인했고(규칙 1,887개 중 1,886개 동일),
+    같은 파일을 모든 페이지가 쓰므로 첫 방문 뒤에는 캐시로 다시 받지 않는다.
+    """
+    m = re.search(r"<style>.*?</style>[ \t]*\n?", html, re.S)
+    if not m:
+        return html
+    link = f'<link rel="stylesheet" href="assets/site.css?v={CSS_V_HOME}" />\n'
+    return html[:m.start()] + link + html[m.end():]
+
+
 def main() -> int:
     global GIFT_COUNTRIES, GUIDES_COUNT, STAYS_COUNT
     check = "--check" in sys.argv
@@ -2955,6 +3002,7 @@ def main() -> int:
 
     html = replace_block(html, "<!-- @CITYSELECT -->", render_city_select(data))
     html = replace_block(html, "<!-- @COURSE_PICKER -->", render_course_picker(courses, tours_by_id, ess_by_id))
+    html = replace_block(html, "<!-- @COURSE_INDEX -->", render_course_index(courses))
     html = replace_block(html, "<!-- @COURSE_PANELS -->", render_course_panels(courses, tours_by_id, ess_by_id, tc_by_id, guides_by_slug))
     html = replace_block(html, "<!-- @COUNTRY_TABS -->", render_country_tabs(data))
     html = replace_block(html, "<!-- @CITY_CHIPS -->", render_city_chips(data))
@@ -2998,6 +3046,9 @@ def main() -> int:
 
     # Cloudflare Pages 가 200 으로 서빙하는 확장자 없는 주소로 정본·내부 링크를 맞춘다
     html = clean_site_urls(html)
+    # v62: 홈 인라인 CSS(약 200KB) → assets/site.css, 태그 사이 들여쓰기 제거(약 110KB)
+    html = extern_home_css(html)
+    html = compact_html(html)
 
     out_path = INDEX
     for i, a in enumerate(sys.argv):
