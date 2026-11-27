@@ -129,3 +129,12 @@
 - `verify_v34` Chromium 렌더 검사 실패 0
 - 로컬 1280·390 렌더(`tools/v64_shots.py`): 신규 8편+허브 3곳+`/guides/` **가로 넘침 0·깨진 이미지 0·pageerror 0**. 스크린샷 `v64_shots/v64_*`
 - 사이트맵: `sitemap.xml` **188 URL** · `sitemap-index.xml` 분할(core 15·hubs 26·guides 147) 합 188·중복 0
+
+### 3. 배포·라이브 검증
+- 커밋 `08a0c4e` → `main` 푸시(71cdf2e→08a0c4e), Cloudflare Pages 반영 **15:35:33**
+- 신규 8편 라이브 HTTP **200** (58,720~62,217B): ESTA 61,061 · ETA 58,941 · KIX 62,217 · NYC 60,376 · 나고야 62,214 · 식당 60,530 · 마카오 58,720 · 파리 59,365
+- `sitemap.xml` **188 URL 전부 HTTP 200**(중복 0) · `sitemap-index.xml`·`core`·`hubs`·`guides`·`robots.txt` 200
+- `/guides/` "가이드 146편" · `/macau`·`/paris`·`/osaka` 허브에 신규 편 링크 · Googlebot UA 200
+- IndexNow **12 URL**(신규 8+`/guides/`+`sitemap.xml`+`sitemap-index.xml`+`sitemap-guides.xml`) 제출 **HTTP 200**, 키 파일 200
+- 라이브 1280·390 렌더(`tools/v64_shots.py --live`): 8편+허브 3곳+`/guides/` **가로 넘침 0·깨진 이미지 0·pageerror 0**, 표 7~9·FAQ 5·제휴 7~11. 스크린샷 `v64_shots/live_*`, 리포트 `v64_shots/live_report.json`
+- 서치콘솔 색인 작업 파일 갱신: `scheduled-actions/🔍-구글-서치콘솔-색인-요청-재시도/action.md` 사이트맵 180→188, 최우선 목록 맨 앞에 v64 8편 추가, `notes.md`에 v64 반영 메모
