@@ -693,6 +693,27 @@
    "license": "CC BY-SA 4.0",
    "place": "Tokaido Shinkansen, Japan",
    "alt": "도카이도 신칸센을 달리는 N700S 노조미"
+  },
+  "v63/tokyo-3n4d-course-budget": {
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v51/japan-ic-card.jpg",
+   "pexels_id": 5905655,
+   "credit": "사진: Pexels (Imani Williams)",
+   "alt": "도쿄 지하철 개찰구에서 IC카드로 통과하는 사람들"
+  },
+  "v63/visa-free-stay-duration-guide": {
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v33/passport-application.jpg",
+   "pexels_id": 4922086,
+   "credit": "사진: Ekaterina Belinskaya / Pexels",
+   "alt": "여권 스탬프가 찍힌 여권 면을 손에 든 모습"
+  },
+  "v63/southeast-asia-rental-car-license-guide": {
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v52/japan-rental-car-etc-guide.jpg",
+   "pexels_id": 40248235,
+   "credit": "사진: Pexels (Faheem Ahamad)",
+   "alt": "렌터카 차 안에서 본 내비게이션과 도로 풍경"
   }
  }
 }

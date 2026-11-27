@@ -9,7 +9,7 @@
   "aff": 2,
   "per": 3296,
   "h2": 11,
-  "indeg": 33
+  "indeg": 38
  },
  {
   "file": "airport-checkin-customs-guide.html",
@@ -57,7 +57,7 @@
   "aff": 3,
   "per": 1944,
   "h2": 10,
-  "indeg": 9
+  "indeg": 12
  },
  {
   "file": "bangkok-3-packages.html",
@@ -81,7 +81,7 @@
   "aff": 0,
   "per": 3625,
   "h2": 5,
-  "indeg": 13
+  "indeg": 17
  },
  {
   "file": "bangkok-airport.html",
@@ -93,7 +93,7 @@
   "aff": 0,
   "per": 2460,
   "h2": 6,
-  "indeg": 22
+  "indeg": 23
  },
  {
   "file": "bangkok-pattaya-3n5d-course-budget.html",
@@ -105,7 +105,43 @@
   "aff": 6,
   "per": 1034,
   "h2": 10,
-  "indeg": 12
+  "indeg": 13
+ },
+ {
+  "file": "beijing-3n4d-course.html",
+  "slug": "beijing-3n4d-course",
+  "title": "베이징 3박4일 — 자금성 40위안·만리장성·무비자 | 트립픽",
+  "h1": "베이징 3박4일, 자금성 예약 이 하루의 절반을 정합니다",
+  "desc": "베이징 3박4일. 자금성 40위안(비수기)·7일 전 예약·월요일 휴관, 공항철도 25위안, 무비자 30일(2026-12-31까지), 무톈위 40~45위안·케이블카 왕복 140위안, 2인 교통·입장료 약 8만 7,620원. 2026-11 확인.",
+  "chars": 3907,
+  "aff": 5,
+  "per": 781,
+  "h2": 8,
+  "indeg": 10
+ },
+ {
+  "file": "beppu-onsen-1n2d-course.html",
+  "slug": "beppu-onsen-1n2d-course",
+  "title": "벳푸 온천 1박2일 — 지옥순례 2,400엔·모래찜질 1,500엔 | 트립픽",
+  "h1": "벳푸 온천 1박2일, 지옥 7곳 을 이틀로 나누면 온천에 들어갈 저녁이 남습니다",
+  "desc": "벳푸 1박2일. 지옥 공통관람권 2,400엔(7곳·이틀 유효), 모래찜질 1,500엔, 로프웨이 1,800엔, 하카타→벳푸 소닉 6,910엔·큐슈넷조기3 2,550엔, 1박2일 2인 교통·입장료 16만~32만 원. 2026-11 확인.",
+  "chars": 4439,
+  "aff": 5,
+  "per": 888,
+  "h2": 7,
+  "indeg": 6
+ },
+ {
+  "file": "bohol-3n4d-course.html",
+  "slug": "bohol-3n4d-course",
+  "title": "보홀 3박4일 — 오션젯 960페소·발리카삭 호핑 | 트립픽",
+  "h1": "보홀 3박4일, 세부 경유 와 팡라오 직항 으로 하루가 갈립니다",
+  "desc": "보홀 3박4일. 오션젯 세부→타그빌라란 960페소(비즈니스 1,440)·약 2시간, 알로나 30~40분, 버진 아일랜드 재개장·정원 250명, 무비자 30일·eTravel, 2인 약 19만~28만 원. 2026-11 확인.",
+  "chars": 3893,
+  "aff": 5,
+  "per": 779,
+  "h2": 7,
+  "indeg": 8
  },
  {
   "file": "busan-haeundae-gwangalli-2d.html",
@@ -141,7 +177,7 @@
   "aff": 4,
   "per": 1113,
   "h2": 8,
-  "indeg": 1
+  "indeg": 10
  },
  {
   "file": "chiang-mai-3n4d-course.html",
@@ -165,7 +201,7 @@
   "aff": 4,
   "per": 1092,
   "h2": 6,
-  "indeg": 26
+  "indeg": 34
  },
  {
   "file": "danang-food-route.html",
@@ -189,7 +225,7 @@
   "aff": 5,
   "per": 1285,
   "h2": 9,
-  "indeg": 9
+  "indeg": 11
  },
  {
   "file": "danang-hoian-rainy.html",
@@ -216,6 +252,18 @@
   "indeg": 8
  },
  {
+  "file": "eastern-europe-prague-vienna-budapest.html",
+  "slug": "eastern-europe-prague-vienna-budapest",
+  "title": "동유럽 6박7일 — 프라하·비엔나·부다페스트 기차 | 트립픽",
+  "h1": "동유럽 6박7일, 프라하 인·부다페스트 아웃 이면 7시간을 안 탑니다",
+  "desc": "동유럽 6박7일. 프라하→비엔나 Railjet 4시간 12분·레기오젯 16.90유로, 비엔나→부다페스트 2시간 39분·11.90유로, 세체니 온천 13,200포린트, 부다페스트 카드 72시간 85유로. 2026-11 확인.",
+  "chars": 3835,
+  "aff": 5,
+  "per": 767,
+  "h2": 7,
+  "indeg": 5
+ },
+ {
   "file": "entry-immigration-guide.html",
   "slug": "entry-immigration-guide",
   "title": "입국신고서·전자여행허가 2026 — 비짓재팬웹·TWAC·TDAC·SGAC·ETA·ESTA 총정리 | 트립픽",
@@ -225,7 +273,7 @@
   "aff": 0,
   "per": 6147,
   "h2": 11,
-  "indeg": 55
+  "indeg": 75
  },
  {
   "file": "esim-roaming-insurance-guide.html",
@@ -237,7 +285,7 @@
   "aff": 0,
   "per": 4654,
   "h2": 8,
-  "indeg": 15
+  "indeg": 17
  },
  {
   "file": "eu-west-4countries-10d.html",
@@ -261,7 +309,7 @@
   "aff": 0,
   "per": 3437,
   "h2": 8,
-  "indeg": 13
+  "indeg": 24
  },
  {
   "file": "europe-pickpocket-tax-refund-guide.html",
@@ -273,7 +321,7 @@
   "aff": 4,
   "per": 1336,
   "h2": 8,
-  "indeg": 10
+  "indeg": 14
  },
  {
   "file": "europe-shopping-tax-refund.html",
@@ -297,7 +345,7 @@
   "aff": 4,
   "per": 1122,
   "h2": 7,
-  "indeg": 11
+  "indeg": 21
  },
  {
   "file": "flight-cheap-booking-baggage.html",
@@ -333,7 +381,7 @@
   "aff": 4,
   "per": 1287,
   "h2": 9,
-  "indeg": 5
+  "indeg": 9
  },
  {
   "file": "fukuoka-yufuin.html",
@@ -345,7 +393,7 @@
   "aff": 0,
   "per": 2791,
   "h2": 7,
-  "indeg": 14
+  "indeg": 16
  },
  {
   "file": "gangwon-bustour.html",
@@ -405,7 +453,7 @@
   "aff": 0,
   "per": 2279,
   "h2": 7,
-  "indeg": 16
+  "indeg": 17
  },
  {
   "file": "guam-vs-saipan-comparison.html",
@@ -441,7 +489,7 @@
   "aff": 4,
   "per": 1057,
   "h2": 7,
-  "indeg": 2
+  "indeg": 3
  },
  {
   "file": "hawaii-hyatt-vs-sheraton.html",
@@ -465,7 +513,7 @@
   "aff": 3,
   "per": 1766,
   "h2": 9,
-  "indeg": 3
+  "indeg": 5
  },
  {
   "file": "hongkong-macau-3n4d-course.html",
@@ -477,7 +525,7 @@
   "aff": 4,
   "per": 1386,
   "h2": 10,
-  "indeg": 17
+  "indeg": 18
  },
  {
   "file": "hotel-booking-timing-refund-tips.html",
@@ -489,7 +537,7 @@
   "aff": 3,
   "per": 1400,
   "h2": 7,
-  "indeg": 15
+  "indeg": 16
  },
  {
   "file": "incheon-airport-parking-bus.html",
@@ -537,7 +585,7 @@
   "aff": 0,
   "per": 2217,
   "h2": 7,
-  "indeg": 20
+  "indeg": 19
  },
  {
   "file": "italy-rome-florence-venice.html",
@@ -597,7 +645,7 @@
   "aff": 4,
   "per": 1120,
   "h2": 9,
-  "indeg": 9
+  "indeg": 16
  },
  {
   "file": "japan-mounjaro-injection-guide.html",
@@ -621,7 +669,7 @@
   "aff": 4,
   "per": 1382,
   "h2": 10,
-  "indeg": 10
+  "indeg": 13
  },
  {
   "file": "japan-ryokan-onsen-etiquette-budget.html",
@@ -633,7 +681,19 @@
   "aff": 5,
   "per": 919,
   "h2": 8,
-  "indeg": 9
+  "indeg": 12
+ },
+ {
+  "file": "japan-shinkansen-jr-pass-guide.html",
+  "slug": "japan-shinkansen-jr-pass-guide",
+  "title": "일본 신칸센·JR패스 본전 계산 — 7일권 50,000엔 | 트립픽",
+  "h1": "일본 신칸센·JR패스, 도쿄–오사카 왕복 이면 사지 마세요",
+  "desc": "일본 신칸센·JR패스 본전. 7일권 50,000엔(여행사 53,000), 도쿄–신오사카 14,720엔, 노조미 추가권 4,960엔, 하카타까지 도는 일정 57,520엔, 특대 수하물 좌석 조건. 2026-11 확인.",
+  "chars": 3935,
+  "aff": 5,
+  "per": 787,
+  "h2": 7,
+  "indeg": 3
  },
  {
   "file": "japan-shopping-gift-list.html",
@@ -669,7 +729,7 @@
   "aff": 4,
   "per": 1037,
   "h2": 8,
-  "indeg": 9
+  "indeg": 10
  },
  {
   "file": "jeju-3n4d-course-budget.html",
@@ -720,6 +780,30 @@
   "indeg": 5
  },
  {
+  "file": "kaohsiung-tainan-3n4d-course.html",
+  "slug": "kaohsiung-tainan-3n4d-course",
+  "title": "가오슝·타이난 3박4일 — 고속철 1,490대만달러·치진섬 페리 | 트립픽",
+  "h1": "가오슝·타이난 3박4일, 이지카드로는 고속철 을 못 탑니다",
+  "desc": "가오슝·타이난 3박4일. THSR 타이베이→타이난 1,350·줘잉 1,490대만달러(얼리버드 35%), 이지카드 100대만달러, 치진섬 페리 30대만달러, 2인 교통·식비 약 20만 6,873원. 2026-11 확인.",
+  "chars": 3796,
+  "aff": 5,
+  "per": 759,
+  "h2": 7,
+  "indeg": 2
+ },
+ {
+  "file": "kota-kinabalu-3n4d-course.html",
+  "slug": "kota-kinabalu-3n4d-course",
+  "title": "코타키나발루 3박4일 — 톤주아루 25링깃·보트 58링깃 | 트립픽",
+  "h1": "코타키나발루 3박4일, 섬 이틀 + 석양 하루 가 실패가 적습니다",
+  "desc": "코타키나발루 3박4일. 사바공원청 외국인 25링깃, 2섬 보트 58링깃·터미널 7링깃, 귀환 막배 16시, 씨워킹 180~250링깃, 2인 섬·교통 약 14만 800원. 2026-11 확인.",
+  "chars": 3865,
+  "aff": 5,
+  "per": 773,
+  "h2": 7,
+  "indeg": 4
+ },
+ {
   "file": "kyoto-bustour-vs-diy.html",
   "slug": "kyoto-bustour-vs-diy",
   "title": "교토 버스투어 vs 자유일정 비용·시간 비교 (2인 기준 2026) | 트립픽",
@@ -753,7 +837,7 @@
   "aff": 0,
   "per": 3476,
   "h2": 7,
-  "indeg": 11
+  "indeg": 13
  },
  {
   "file": "nhatrang-3n4d-food-resort.html",
@@ -789,7 +873,7 @@
   "aff": 0,
   "per": 2214,
   "h2": 5,
-  "indeg": 5
+  "indeg": 10
  },
  {
   "file": "okinawa-3n4d-course.html",
@@ -825,7 +909,7 @@
   "aff": 0,
   "per": 3550,
   "h2": 7,
-  "indeg": 27
+  "indeg": 30
  },
  {
   "file": "osaka-food-route.html",
@@ -873,7 +957,7 @@
   "aff": 14,
   "per": 453,
   "h2": 10,
-  "indeg": 7
+  "indeg": 8
  },
  {
   "file": "overseas-roaming-esim-install-troubleshooting.html",
@@ -909,7 +993,7 @@
   "aff": 0,
   "per": 3145,
   "h2": 5,
-  "indeg": 54
+  "indeg": 56
  },
  {
   "file": "paris-london-5n7d.html",
@@ -921,7 +1005,7 @@
   "aff": 3,
   "per": 1385,
   "h2": 6,
-  "indeg": 23
+  "indeg": 26
  },
  {
   "file": "passport-application-guide.html",
@@ -933,7 +1017,7 @@
   "aff": 0,
   "per": 5309,
   "h2": 8,
-  "indeg": 9
+  "indeg": 11
  },
  {
   "file": "passport-phone-lost-emergency.html",
@@ -945,7 +1029,7 @@
   "aff": 0,
   "per": 6257,
   "h2": 7,
-  "indeg": 9
+  "indeg": 11
  },
  {
   "file": "phu-quoc-3n4d-4n5d-course.html",
@@ -957,7 +1041,19 @@
   "aff": 4,
   "per": 1280,
   "h2": 8,
-  "indeg": 1
+  "indeg": 2
+ },
+ {
+  "file": "qingdao-2n3d-course.html",
+  "slug": "qingdao-2n3d-course",
+  "title": "칭다오 2박3일 — 맥주박물관 60위안·8호선 40분 | 트립픽",
+  "h1": "칭다오 2박3일, 5·4광장 에 묵으면 공항이 두 번 편해집니다",
+  "desc": "칭다오 2박3일. 맥주박물관 60위안(12~2월 휴관), 공항 8호선 5·4광장 40분, 무비자 30일(2026-12-31까지), 잔교·팔대관·소어산 동선, 2인 교통·입장료 약 4만 1,801원. 2026-11 확인.",
+  "chars": 3805,
+  "aff": 5,
+  "per": 761,
+  "h2": 7,
+  "indeg": 7
  },
  {
   "file": "sapporo-biei-winter.html",
@@ -1005,7 +1101,7 @@
   "aff": 4,
   "per": 1313,
   "h2": 8,
-  "indeg": 24
+  "indeg": 31
  },
  {
   "file": "seoul-seongsu-bukchon-1d.html",
@@ -1029,7 +1125,7 @@
   "aff": 3,
   "per": 1634,
   "h2": 8,
-  "indeg": 10
+  "indeg": 17
  },
  {
   "file": "singapore-3n4d-course-budget.html",
@@ -1041,7 +1137,7 @@
   "aff": 4,
   "per": 1448,
   "h2": 9,
-  "indeg": 9
+  "indeg": 10
  },
  {
   "file": "sokcho-yangyang-2d.html",
@@ -1065,7 +1161,7 @@
   "aff": 6,
   "per": 919,
   "h2": 8,
-  "indeg": 7
+  "indeg": 8
  },
  {
   "file": "southeast-asia-gift-list.html",
@@ -1090,6 +1186,18 @@
   "per": 4466,
   "h2": 6,
   "indeg": 15
+ },
+ {
+  "file": "southeast-asia-rental-car-license-guide.html",
+  "slug": "southeast-asia-rental-car-license-guide",
+  "title": "동남아 렌터카·국제운전면허 — 태국·베트남·필리핀·발리 (2026) | 트립픽",
+  "h1": "동남아 렌터카, 같은 국제면허 로 태국은 되고 발리는 안 됩니다",
+  "desc": "동남아 렌터카·국제운전면허(2026-11). 태국 IDP+한국면허, 베트남 상호인정(입국일부터 1년), 필리핀 90일, 말레이시아 12개월 미만 IDP, 발리는 한국 IDP 불인정(대사관 발리 분관). 발급 9,000원·보증금·면책금 확인 5가지.",
+  "chars": 4502,
+  "aff": 7,
+  "per": 643,
+  "h2": 10,
+  "indeg": 2
  },
  {
   "file": "spain-barcelona-madrid.html",
@@ -1140,6 +1248,30 @@
   "indeg": 3
  },
  {
+  "file": "switzerland-jungfrau-zermatt-pass.html",
+  "slug": "switzerland-jungfrau-zermatt-pass",
+  "title": "스위스 4박5일 — 융프라우·체르마트 패스 손익 | 트립픽",
+  "h1": "스위스 4박5일, 융프라우 50% 를 받느냐가 패스를 바꿉니다",
+  "desc": "스위스 4박5일. Swiss Travel Pass 3일 254·4일 309프랑, Half Fare Card 150프랑, 융프라우 25%/50%, 좌석 예약 10프랑(5~10월 의무), 체르마트 산악열차 할인 확인. 2026-11 확인.",
+  "chars": 3813,
+  "aff": 5,
+  "per": 763,
+  "h2": 6,
+  "indeg": 4
+ },
+ {
+  "file": "sydney-4n5d-course.html",
+  "slug": "sydney-4n5d-course",
+  "title": "시드니 4박5일 — 오팔 19.30달러·공항역 18.61달러 | 트립픽",
+  "h1": "시드니 4박5일, 오팔 상한 과 공항역 이용료 를 따로 계산해야 합니다",
+  "desc": "시드니 4박5일. 오팔 일일 상한 19.30/9.65호주달러·주간 50, 공항역 18.61호주달러 별도, ETA 앱 20호주달러, 블루마운틴 기차 2시간, 2인 교통·ETA 약 19만 1,124원. 2026-11 확인.",
+  "chars": 3774,
+  "aff": 5,
+  "per": 755,
+  "h2": 7,
+  "indeg": 5
+ },
+ {
   "file": "taipei-3n4d-course-budget.html",
   "slug": "taipei-3n4d-course-budget",
   "title": "타이베이 3박4일 코스·경비 — 공항 MRT 160대만달러·예스진지 | 트립픽",
@@ -1149,7 +1281,7 @@
   "aff": 5,
   "per": 1138,
   "h2": 8,
-  "indeg": 5
+  "indeg": 9
  },
  {
   "file": "taipei-food-route.html",
@@ -1161,7 +1293,7 @@
   "aff": 0,
   "per": 2981,
   "h2": 6,
-  "indeg": 17
+  "indeg": 18
  },
  {
   "file": "taipei-yehliu.html",
@@ -1173,7 +1305,7 @@
   "aff": 0,
   "per": 2447,
   "h2": 7,
-  "indeg": 19
+  "indeg": 20
  },
  {
   "file": "taiwan-hongkong-gift-list.html",
@@ -1185,7 +1317,7 @@
   "aff": 0,
   "per": 4441,
   "h2": 7,
-  "indeg": 11
+  "indeg": 15
  },
  {
   "file": "taiwan-souvenir-list.html",
@@ -1212,6 +1344,18 @@
   "indeg": 19
  },
  {
+  "file": "tokyo-3n4d-course-budget.html",
+  "slug": "tokyo-3n4d-course-budget",
+  "title": "도쿄 3박4일 코스·경비 — 지하철 72시간 1,500엔·전망대 비교 | 트립픽",
+  "h1": "도쿄 3박4일, 전망대 하나 와 동네 두 곳 만 정하면 됩니다",
+  "desc": "도쿄 3박4일 코스·경비. 지하철 72시간권 1,500엔, 게이세이 본선 1,060엔(82분), 하네다 게이큐 330엔, 스카이트리 1,800엔~·시부야 스카이 2,700엔~·도쿄타워 1,500엔·도청 무료, 디즈니 8,900엔~, 2인 교통·입장료 7만 3,619원. 2026-11 확인.",
+  "chars": 4306,
+  "aff": 6,
+  "per": 718,
+  "h2": 8,
+  "indeg": 1
+ },
+ {
   "file": "tokyo-disney-parks.html",
   "slug": "tokyo-disney-parks",
   "title": "도쿄 디즈니랜드 vs 디즈니씨 — 1일권 10,900~12,400엔 비교 (2026) | 트립픽",
@@ -1221,7 +1365,7 @@
   "aff": 4,
   "per": 1241,
   "h2": 9,
-  "indeg": 6
+  "indeg": 9
  },
  {
   "file": "tokyo-food-route.html",
@@ -1233,7 +1377,7 @@
   "aff": 0,
   "per": 2631,
   "h2": 6,
-  "indeg": 19
+  "indeg": 22
  },
  {
   "file": "tokyo-fuji-tour.html",
@@ -1245,7 +1389,7 @@
   "aff": 0,
   "per": 2707,
   "h2": 7,
-  "indeg": 12
+  "indeg": 13
  },
  {
   "file": "tokyo-package-4d-vs-3d.html",
@@ -1269,7 +1413,7 @@
   "aff": 0,
   "per": 2497,
   "h2": 6,
-  "indeg": 25
+  "indeg": 29
  },
  {
   "file": "tongyeong-geoje-2d.html",
@@ -1293,7 +1437,7 @@
   "aff": 0,
   "per": 5643,
   "h2": 11,
-  "indeg": 23
+  "indeg": 25
  },
  {
   "file": "travel-card-packing-guide.html",
@@ -1329,7 +1473,7 @@
   "aff": 0,
   "per": 4227,
   "h2": 8,
-  "indeg": 21
+  "indeg": 24
  },
  {
   "file": "travel-medication-rules-guide.html",
@@ -1377,7 +1521,7 @@
   "aff": 0,
   "per": 2357,
   "h2": 5,
-  "indeg": 17
+  "indeg": 16
  },
  {
   "file": "usj-express-pass.html",
@@ -1426,6 +1570,18 @@
   "per": 2719,
   "h2": 5,
   "indeg": 23
+ },
+ {
+  "file": "visa-free-stay-duration-guide.html",
+  "slug": "visa-free-stay-duration-guide",
+  "title": "무비자 체류기간 총정리 — 일본·태국 90일, 베트남 45일 (2026) | 트립픽",
+  "h1": "무비자 체류기간, 90일·45일·30일 은 협정이 갈랐습니다",
+  "desc": "목적지별 무비자 체류기간(2026-11). 일본·대만·홍콩·마카오·태국·말레이시아 90일, 베트남 45일, 괌 45일, 중국 30일(~2026-12-31), 필리핀 30일(29일 연장), 인도네시아 VOA 500,000루피아. 여권 6개월·귀국항공권·긴급여권 제한까지.",
+  "chars": 3787,
+  "aff": 6,
+  "per": 631,
+  "h2": 7,
+  "indeg": 1
  },
  {
   "file": "visit-japan-web-guide.html",
@@ -1497,6 +1653,6 @@
   "aff": 0,
   "per": 2300,
   "h2": 5,
-  "indeg": 5
+  "indeg": 7
  }
 ]

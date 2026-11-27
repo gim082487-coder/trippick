@@ -7,7 +7,7 @@
 2. 신규 코스 일차의 tc 항목이 tripcom.json 실제 항목을 가리키고, 그 URL 에 Allianceid·trip_sub3
 3. tripcom.json 신규 상품 25건(입장권 2·공항픽업 13·eSIM 10) — 제휴 파라미터·중복 없는 trip_sub1
 4. 홈 산출물 — 코스 카드 21·패널 21·가이드 링크 40·'요금 보기' 카드, 깨진 참조 없음
-5. 내부 링크 0건 실패(build_pages --check-links 결과 파일), sitemap 177 URL 유지
+5. 내부 링크 0건 실패(build_pages --check-links 결과 파일), sitemap 180 URL 유지
 6. notes.md 상단 v61 기록
 """
 from __future__ import annotations
@@ -135,7 +135,7 @@ def main() -> None:
     # sitemap 은 이번에 URL 을 늘리지 않는다
     sm = (OUT / "sitemap.xml").read_text(encoding="utf-8")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-    check(len(locs) == 177, f"sitemap {len(locs)} URL (기대 177)")
+    check(len(locs) == 180, f"sitemap {len(locs)} URL (기대 180)")
     check((ROOT / "sitemap.xml").read_text(encoding="utf-8") == sm, "build.py·build_pages sitemap 불일치")
 
     # notes.md

@@ -49,7 +49,7 @@ def check(ok, msg):
 
 guides = load("guides.json")["guides"]
 by = {g["slug"]: g for g in guides}
-check(len(guides) == 135, f"가이드 {len(guides)}편 (기대 135)")
+check(len(guides) == 138, f"가이드 {len(guides)}편 (기대 138)")
 
 # ---------------------------------------------------------------- 1. 신규 3편
 for slug, hubword in NEW.items():
@@ -100,7 +100,7 @@ for f in guide_files:
     html = read(f)
     if 'class="bm-btn"' in html and f'data-bm="/guides/{f.name}"' in html and "data-bm-item=" in html:
         bms += 1
-check(bms == 135, f"★ 참고 글 저장 버튼이 있는 가이드 {bms}편 (기대 135)")
+check(bms == 138, f"★ 참고 글 저장 버튼이 있는 가이드 {bms}편 (기대 138)")
 
 # ---------------------------------------------------------------- 3. D-Day 위젯
 home = read(OUT / "index.html")
@@ -150,7 +150,7 @@ if js.exists():
 # ---------------------------------------------------------------- 5. sitemap·action
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 177, f"sitemap {len(locs)} URL (기대 177)")
+check(len(locs) == 180, f"sitemap {len(locs)} URL (기대 180)")
 for slug in NEW:
     check(f"/guides/{slug}" in sm, f"sitemap 에 /guides/{slug} 없음")
 if ACTION.exists():

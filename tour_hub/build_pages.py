@@ -5931,18 +5931,34 @@ def coupons_page(out_root: Path, base: str) -> Path:
     )
 
 
+def _urlset(rows, b: str) -> str:
+    items = "\n".join(
+        f"  <url><loc>{u}</loc><lastmod>{TODAY.isoformat()}</lastmod><changefreq>{c}</changefreq><priority>{p}</priority></url>"
+        for u, p, c in rows
+    )
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{items}\n</urlset>\n"
+    )
+    return clean_site_urls(xml, b)
+
+
 def write_sitemap(out_root: Path, base: str):
+    """사이트맵 4종을 쓴다.
+
+    v63: 서치콘솔이 /sitemap.xml 을 5회 연속 '가져올 수 없음'으로 보고해,
+    기존 /sitemap.xml 은 그대로 두고 사이트맵 인덱스(/sitemap-index.xml)와
+    분할 사이트맵(core·hubs·guides)을 함께 생성한다. 세 분할 사이트맵의 URL 합은
+    /sitemap.xml 과 정확히 같다(중복·누락 0).
+    """
     b = base.rstrip("/")
-    urls = [(f"{b}/", "1.0", "weekly")]
-    urls += [
-        (f"{b}/cities/", "0.9", "weekly"),
-    ]
-    urls += [(f"{b}/{h['slug']}.html", "0.9", "weekly") for h in hub_list()]
-    urls += [
-        (f"{b}/guides/", "0.9", "weekly"),
-    ]
-    urls += [(f"{b}/guides/{g['slug']}.html", "0.8", "monthly") for g in GUIDES_LIST]
-    urls += [
+    root_rows = [(f"{b}/", "1.0", "weekly")]
+    cities_rows = [(f"{b}/cities/", "0.9", "weekly")]
+    hubs_rows = [(f"{b}/{h['slug']}.html", "0.9", "weekly") for h in hub_list()]
+    guides_head = [(f"{b}/guides/", "0.9", "weekly")]
+    guides_rows = [(f"{b}/guides/{g['slug']}.html", "0.8", "monthly") for g in GUIDES_LIST]
+    tool_rows = [
         (f"{b}/exchange.html", "0.8", "monthly"),
         (f"{b}/quiz.html", "0.9", "monthly"),
         (f"{b}/baggage.html", "0.8", "monthly"),
@@ -5957,16 +5973,29 @@ def write_sitemap(out_root: Path, base: str):
         (f"{b}/privacy.html", "0.4", "yearly"),
         (f"{b}/terms.html", "0.4", "yearly"),
     ]
-    items = "\n".join(
-        f"  <url><loc>{u}</loc><lastmod>{TODAY.isoformat()}</lastmod><changefreq>{c}</changefreq><priority>{p}</priority></url>"
-        for u, p, c in urls
+
+    all_rows = root_rows + cities_rows + hubs_rows + guides_head + guides_rows + tool_rows
+    (out_root / "sitemap.xml").write_text(_urlset(all_rows, b), encoding="utf-8")
+
+    parts = [
+        ("sitemap-core.xml", root_rows + cities_rows + tool_rows),
+        ("sitemap-hubs.xml", hubs_rows),
+        ("sitemap-guides.xml", guides_head + guides_rows),
+    ]
+    for name, rows in parts:
+        (out_root / name).write_text(_urlset(rows, b), encoding="utf-8")
+
+    entries = "\n".join(
+        f"  <sitemap><loc>{b}/{name}</loc><lastmod>{TODAY.isoformat()}</lastmod></sitemap>"
+        for name, _ in parts
     )
-    xml = (
+    index_xml = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f"{items}\n</urlset>\n"
+        '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{entries}\n</sitemapindex>\n"
     )
-    (out_root / "sitemap.xml").write_text(clean_site_urls(xml, b), encoding="utf-8")
+    (out_root / "sitemap-index.xml").write_text(clean_site_urls(index_xml, b), encoding="utf-8")
+    print(f"[build_pages] sitemap.xml {len(all_rows)} URL · sitemap-index.xml + 분할 3종(core {len(parts[0][1])}·hubs {len(parts[1][1])}·guides {len(parts[2][1])})")
 
 
 def write_indexnow_key(out_root: Path):
