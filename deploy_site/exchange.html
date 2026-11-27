@@ -333,7 +333,7 @@
         </div>
         <div class="side-card">
           <h3>이 페이지 기준</h3>
-          <p>환율은 공개 환율 API 두 곳(jsDelivr currency-api → open.er-api.com)을 차례로 시도하고, 둘 다 연결되지 않으면 마지막으로 받아 둔 2026.11.27 고시값을 그대로 보여줍니다.</p>
+          <p>환율은 공개 환율 API 두 곳(open.er-api.com → jsDelivr currency-api)을 차례로 시도하고, 둘 다 연결되지 않으면 마지막으로 받아 둔 2026.11.27 고시값을 그대로 보여줍니다.</p>
           <p>일본 면세 제도는 일본 세관 <b>2026.11.1 리펀드 방식</b> 안내와 관광청 안내를 기준으로 정리했습니다. 매장·환급 사업자별 수수료와 운영 방식은 다를 수 있습니다.</p>
         </div>
       </aside>
@@ -492,8 +492,8 @@
   // 실시간 환율 1회
   window.__fxLive = false;
   var SOURCES = [
-    { url: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json', kind: 'fawaz' },
-    { url: DATA.api, kind: 'er' }
+    { url: DATA.api, kind: 'er' },
+    { url: 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json', kind: 'fawaz' }
   ];
   function tryFetch(i) {
     if (i >= SOURCES.length) { window.__fxLive = false; setStatus(); return; }
@@ -506,6 +506,11 @@
         // 3일 넘게 갱신이 멈춘 응답(예: er-api 장애)은 버리고 다음 소스로 넘어간다
         if (src.kind === 'er' && j && j.time_last_update_unix
             && Date.now() - j.time_last_update_unix * 1000 > 72 * 3600 * 1000) {
+          throw new Error('stale');
+        }
+        // jsDelivr 는 고시일(date)이 하루 늦게 올라오고 멈추는 때도 있어 같은 72시간 기준을 적용한다.
+        if (src.kind === 'fawaz' && j && j.date
+            && Date.now() - Date.parse(j.date + 'T00:00:00Z') > 72 * 3600 * 1000) {
           throw new Error('stale');
         }
         var next = {}, ok = 0, base = src.kind === 'er' ? (j && j.rates) : (j && j.krw);
