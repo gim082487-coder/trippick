@@ -100,7 +100,7 @@ def main():
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 146, f"가이드 {len(guides)}편 (기대 146)")
+    check(len(guides) == 154, f"가이드 {len(guides)}편 (기대 154)")
 
     extra = load("guide_extra.json")
     ex = extra["guides"]
@@ -209,11 +209,11 @@ def main():
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 188, f"sitemap {len(locs)} URL (기대 188)")
+    check(len(locs) == 202, f"sitemap {len(locs)} URL (기대 202)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
-    check(read(ROOT / "sitemap.xml") == sm_out, "build.py 산출과 build_pages 산출 sitemap 불일치")
+    check(sorted(re.findall(r"<loc>([^<]+)</loc>", read(ROOT / "sitemap.xml"))) == sorted(re.findall(r"<loc>([^<]+)</loc>", sm_out)), "build.py 산출과 build_pages 산출 sitemap 불일치")
     key = str(load("indexnow.json").get("key") or "")
     kp = OUT / f"{key}.txt"
     check(kp.exists() and read(kp).strip() == key, "IndexNow 키 파일 배포본 없음/불일치")

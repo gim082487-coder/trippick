@@ -9,7 +9,7 @@
   "aff": 2,
   "per": 3296,
   "h2": 11,
-  "indeg": 41
+  "indeg": 40
  },
  {
   "file": "airport-checkin-customs-guide.html",
@@ -77,11 +77,11 @@
   "title": "방콕 3박4일 — 파타야 당일치기 vs 시내 집중, 2인 128만 원 (2026) | 트립픽",
   "h1": "방콕 3박4일, 파타야를 넣으면 시내가 하루 로 줄어듭니다",
   "desc": "방콕 3박4일 코스·예산. 사원 3곳 1,000밧, 공항철도 45밧, BTS 1일권 150밧, 파타야 버스 144밧·그랩 왕복 2,000~3,000밧, 숙소 3만 8,837~20만 7,399원. 2인 128만~188만 원, 12월 비 1.0일. 2026-11 확인.",
-  "chars": 3671,
+  "chars": 3709,
   "aff": 0,
-  "per": 3671,
+  "per": 3709,
   "h2": 5,
-  "indeg": 17
+  "indeg": 20
  },
  {
   "file": "bangkok-airport.html",
@@ -105,7 +105,7 @@
   "aff": 6,
   "per": 1034,
   "h2": 10,
-  "indeg": 13
+  "indeg": 16
  },
  {
   "file": "beijing-3n4d-course.html",
@@ -137,11 +137,11 @@
   "title": "보홀 3박4일 — 오션젯 960페소·발리카삭 호핑 | 트립픽",
   "h1": "보홀 3박4일, 세부 경유 와 팡라오 직항 으로 하루가 갈립니다",
   "desc": "보홀 3박4일. 오션젯 세부→타그빌라란 960페소(비즈니스 1,440)·약 2시간, 알로나 30~40분, 버진 아일랜드 재개장·정원 250명, 무비자 30일·eTravel, 2인 약 19만~28만 원. 2026-11 확인.",
-  "chars": 3893,
+  "chars": 3931,
   "aff": 5,
-  "per": 779,
+  "per": 786,
   "h2": 7,
-  "indeg": 8
+  "indeg": 12
  },
  {
   "file": "busan-haeundae-gwangalli-2d.html",
@@ -173,11 +173,23 @@
   "title": "세부 3박4일 코스·경비 — 오슬롭 1,000페소·MyBus 50페소 | 트립픽",
   "h1": "세부 3박4일, 막탄 2박 + 시티 1박 이 기본입니다",
   "desc": "세부 3박4일 코스. 오슬롭 고래상어 1,000페소(6~10시), 공항 MyBus 50페소, 숙소 1박 3만 6,684~32만 3,657원, 무비자 30일·eTravel, 2인 23만~109만 원(항공 제외). 2026-11 확인.",
-  "chars": 4453,
+  "chars": 4491,
   "aff": 4,
-  "per": 1113,
+  "per": 1123,
   "h2": 8,
-  "indeg": 10
+  "indeg": 15
+ },
+ {
+  "file": "cebu-bohol-ferry-transfer-guide.html",
+  "slug": "cebu-bohol-ferry-transfer-guide",
+  "title": "세부·보홀 이동 총정리 — 오션젯 요금·수하물·막탄공항 픽업 (2026) | 트립픽",
+  "h1": "세부에서 보홀, 페리 960페소 앞뒤가 더 깁니다",
+  "desc": "세부·보홀 이동(2026-11). 오션젯 960/1,450페소·2시간·07:00~17:40, 터미널료 25, 수하물 10/20kg·초과 10~25페소/kg, 알로나 30~40분, 오슬롭 1,000페소, 2인 19만~28만 원.",
+  "chars": 3705,
+  "aff": 5,
+  "per": 741,
+  "h2": 6,
+  "indeg": 6
  },
  {
   "file": "chiang-mai-3n4d-course.html",
@@ -185,11 +197,11 @@
   "title": "치앙마이 3박4일 코스·경비 — 공항택시 150밧·썽태우 30밧·숙소 실제가 (2026) | 트립픽",
   "h1": "치앙마이 3박4일, 정액택시 150밧 과 썽태우 30밧으로 도는 법",
   "desc": "치앙마이 3박4일 코스를 정액택시 150밧, 썽태우 1인 30밧, 도이수텝 30밧, 도이인타논 300밧, 코끼리 보호구역 반나절 2,500밧으로 계산했습니다. 숙소 3박 실제 가격과 2인 경비 78만원까지 2026년 11월 기준.",
-  "chars": 5190,
+  "chars": 5228,
   "aff": 3,
-  "per": 1730,
+  "per": 1743,
   "h2": 9,
-  "indeg": 10
+  "indeg": 12
  },
  {
   "file": "currency-payment-fees.html",
@@ -201,7 +213,7 @@
   "aff": 4,
   "per": 1092,
   "h2": 6,
-  "indeg": 33
+  "indeg": 36
  },
  {
   "file": "danang-food-route.html",
@@ -221,11 +233,11 @@
   "title": "다낭·호이안 3박5일 코스·경비 — 바나힐 100만동·미케비치 | 트립픽",
   "h1": "다낭·호이안 3박5일, 2인 112만~160만 원 실경비",
   "desc": "다낭·호이안 3박5일 2인 경비는 절약형 112만·표준형 136만·여유형 160만 원. 바나힐 100만동(51,900원), 호이안 입장권 12만동, 미케비치 숙소 76,453원부터. 2026-11-21 조회.",
-  "chars": 6423,
+  "chars": 6463,
   "aff": 5,
-  "per": 1285,
+  "per": 1293,
   "h2": 9,
-  "indeg": 11
+  "indeg": 13
  },
  {
   "file": "danang-hoian-rainy.html",
@@ -249,7 +261,7 @@
   "aff": 12,
   "per": 448,
   "h2": 9,
-  "indeg": 8
+  "indeg": 9
  },
  {
   "file": "eastern-europe-prague-vienna-budapest.html",
@@ -273,7 +285,7 @@
   "aff": 0,
   "per": 6187,
   "h2": 11,
-  "indeg": 78
+  "indeg": 79
  },
  {
   "file": "esim-roaming-insurance-guide.html",
@@ -309,7 +321,7 @@
   "aff": 0,
   "per": 3437,
   "h2": 8,
-  "indeg": 32
+  "indeg": 35
  },
  {
   "file": "europe-pickpocket-tax-refund-guide.html",
@@ -321,7 +333,7 @@
   "aff": 4,
   "per": 1336,
   "h2": 8,
-  "indeg": 16
+  "indeg": 20
  },
  {
   "file": "europe-shopping-tax-refund.html",
@@ -357,7 +369,7 @@
   "aff": 3,
   "per": 2171,
   "h2": 8,
-  "indeg": 19
+  "indeg": 21
  },
  {
   "file": "flight-delay-card-lost-emergency.html",
@@ -489,7 +501,7 @@
   "aff": 4,
   "per": 1057,
   "h2": 7,
-  "indeg": 3
+  "indeg": 5
  },
  {
   "file": "hawaii-hyatt-vs-sheraton.html",
@@ -521,11 +533,23 @@
   "title": "홍콩·마카오 3박4일 코스 — 교통·숙소·2인 경비 (2026) | 트립픽",
   "h1": "홍콩·마카오 3박4일, 셔틀 65홍콩달러 와 페리 194의 차이",
   "desc": "홍콩·마카오 3박4일 코스를 에어포트익스프레스 73~120홍콩달러, 대교 셔틀 65·페리 194홍콩달러, 옥토퍼스 200, 피크트램 116, 디즈니 669~939홍콩달러로 계산했습니다. 숙소 실제 가격과 2인 현지 경비까지 2026년 11월 기준.",
-  "chars": 5542,
+  "chars": 5580,
   "aff": 4,
-  "per": 1386,
+  "per": 1395,
   "h2": 10,
-  "indeg": 20
+  "indeg": 22
+ },
+ {
+  "file": "hongkong-octopus-ael-guide.html",
+  "slug": "hongkong-octopus-ael-guide",
+  "title": "홍콩 교통 총정리 — 공항철도 요금·2~4인 그룹티켓·옥토퍼스·A21 버스 (2026) | 트립픽",
+  "h1": "홍콩 공항철도, 2인 그룹이면 HK$170",
+  "desc": "홍콩 교통(2026-11). AEL 홍콩역 120·가우룽 105·칭이 73, 그룹 2/3/4인 170/230/280, 옥토퍼스 150, A21 34.6·N21 23.8, 3박4일 2인 12만~18만 원.",
+  "chars": 3791,
+  "aff": 6,
+  "per": 632,
+  "h2": 6,
+  "indeg": 6
  },
  {
   "file": "hotel-booking-timing-refund-tips.html",
@@ -593,11 +617,11 @@
   "title": "이탈리아 6박8일 코스·경비 (로마→피렌체 97분·바티칸 €25) | 트립픽",
   "h1": "이탈리아 6박8일, 열차 세 번 이면 끝납니다",
   "desc": "로마·피렌체·베네치아 6박8일. 이탈로 97분 €29.90, 피우미치노→테르미니 €14·32분, 바티칸 €20·온라인 €25, 콜로세움 투어 69,154원~, 로마 숙소 212,872원. 2026-11 확인.",
-  "chars": 3398,
+  "chars": 3436,
   "aff": 3,
-  "per": 1133,
+  "per": 1145,
   "h2": 6,
-  "indeg": 10
+  "indeg": 12
  },
  {
   "file": "japan-convenience-store-must-buy.html",
@@ -633,7 +657,7 @@
   "aff": 0,
   "per": 2314,
   "h2": 6,
-  "indeg": 45
+  "indeg": 47
  },
  {
   "file": "japan-ic-card.html",
@@ -645,7 +669,7 @@
   "aff": 4,
   "per": 1120,
   "h2": 9,
-  "indeg": 17
+  "indeg": 23
  },
  {
   "file": "japan-mounjaro-injection-guide.html",
@@ -669,7 +693,7 @@
   "aff": 4,
   "per": 1392,
   "h2": 10,
-  "indeg": 13
+  "indeg": 14
  },
  {
   "file": "japan-restaurant-reservation-guide.html",
@@ -681,7 +705,7 @@
   "aff": 5,
   "per": 770,
   "h2": 7,
-  "indeg": 3
+  "indeg": 5
  },
  {
   "file": "japan-ryokan-onsen-etiquette-budget.html",
@@ -729,7 +753,7 @@
   "aff": 0,
   "per": 3579,
   "h2": 5,
-  "indeg": 34
+  "indeg": 35
  },
  {
   "file": "japan-winter-clothing.html",
@@ -741,7 +765,7 @@
   "aff": 4,
   "per": 1037,
   "h2": 8,
-  "indeg": 10
+  "indeg": 12
  },
  {
   "file": "jeju-3n4d-course-budget.html",
@@ -801,7 +825,7 @@
   "aff": 6,
   "per": 699,
   "h2": 7,
-  "indeg": 3
+  "indeg": 6
  },
  {
   "file": "kaohsiung-tainan-3n4d-course.html",
@@ -809,11 +833,11 @@
   "title": "가오슝·타이난 3박4일 — 고속철 1,490대만달러·치진섬 페리 | 트립픽",
   "h1": "가오슝·타이난 3박4일, 이지카드로는 고속철 을 못 탑니다",
   "desc": "가오슝·타이난 3박4일. THSR 타이베이→타이난 1,350·줘잉 1,490대만달러(얼리버드 35%), 이지카드 100대만달러, 치진섬 페리 30대만달러, 2인 교통·식비 약 20만 6,873원. 2026-11 확인.",
-  "chars": 3796,
+  "chars": 3842,
   "aff": 5,
-  "per": 759,
+  "per": 768,
   "h2": 7,
-  "indeg": 2
+  "indeg": 3
  },
  {
   "file": "kota-kinabalu-3n4d-course.html",
@@ -828,16 +852,40 @@
   "indeg": 4
  },
  {
+  "file": "kyoto-2n3d-course-budget.html",
+  "slug": "kyoto-2n3d-course-budget",
+  "title": "교토 2박3일 코스·경비 — 교통 1일권 1,100엔·사찰 입장료 (2026) | 트립픽",
+  "h1": "교토 2박3일, 동쪽과 서쪽을 하루에 넣지 마세요",
+  "desc": "교토 2박3일(2026-11). 지하철·버스 1일 1,100엔·지하철 800엔·버스 230엔, 청수사·금각사 500엔, 하루카 2,700엔, 동쪽/서쪽 분리 동선, 2인 12만 8,496원.",
+  "chars": 3636,
+  "aff": 6,
+  "per": 606,
+  "h2": 7,
+  "indeg": 3
+ },
+ {
   "file": "kyoto-bustour-vs-diy.html",
   "slug": "kyoto-bustour-vs-diy",
   "title": "교토 버스투어 vs 자유일정 비용·시간 비교 (2인 기준 2026) | 트립픽",
   "h1": "교토 버스투어 56,050원, 자유일정과 7만 원 차이입니다",
   "desc": "교토 하루 일정을 버스투어(56,050원)와 자유일정(전철+1일권 1,100엔)으로 비교. 2인 총액 160,900원 vs 91,300원, 은각사·청수사 입장료, 시내버스 230엔, 오사카→교토 400~580엔까지 정리했습니다.",
-  "chars": 3100,
+  "chars": 3138,
   "aff": 0,
-  "per": 3100,
+  "per": 3138,
   "h2": 7,
-  "indeg": 4
+  "indeg": 7
+ },
+ {
+  "file": "london-transport-heathrow-guide.html",
+  "slug": "london-transport-heathrow-guide",
+  "title": "런던 교통 총정리 2026 — 오이스터 vs 컨택리스·히드로공항 요금·하루 상한 | 트립픽",
+  "h1": "런던 교통, 공항 £5.90부터 £26까지",
+  "desc": "런던 교통(2026-11). 피카딜리 £5.90·엘리자베스 £15.50·히드로익스프레스 £26(30일 전 £10), 존1-2 하루 £8.90·주 £44.70, 버스 £1.85·호퍼, 오이스터 £10.50, 2인 3일 16만 원.",
+  "chars": 3997,
+  "aff": 6,
+  "per": 666,
+  "h2": 7,
+  "indeg": 5
  },
  {
   "file": "luggage-size-weight-airline-guide.html",
@@ -857,11 +905,11 @@
   "title": "마카오 1박2일 코스·경비 — 홍콩 페리·금바 버스·무료 셔틀 (2026) | 트립픽",
   "h1": "마카오 1박2일, 페리 HK$194 와 금바 HK$65 사이",
   "desc": "마카오 1박2일(2026-11). 터보젯 194/212/242HK$, 코타이워터젯 192/209/242HK$, 금바 65/70HK$ 24시간, 버스 MOP6·LRT 6~12MOP, 세나도·성바울·콜로안 코스, 에그타르트 MOP11~13, 2인 15만~24만 원.",
-  "chars": 4046,
+  "chars": 4084,
   "aff": 6,
-  "per": 674,
+  "per": 681,
   "h2": 6,
-  "indeg": 5
+  "indeg": 6
  },
  {
   "file": "nagoya-3n4d-course-budget.html",
@@ -873,7 +921,7 @@
   "aff": 6,
   "per": 756,
   "h2": 7,
-  "indeg": 2
+  "indeg": 5
  },
  {
   "file": "narita-haneda-transfer.html",
@@ -897,7 +945,7 @@
   "aff": 6,
   "per": 725,
   "h2": 6,
-  "indeg": 2
+  "indeg": 5
  },
  {
   "file": "nhatrang-3n4d-food-resort.html",
@@ -905,11 +953,11 @@
   "title": "나트랑 3박4일 총정리 — 반미·분까 가격과 리조트 3곳, 1인 86만원 계산 (2026) | 트립픽",
   "h1": "나트랑 3박4일, 숙소 5.5만원과 26만원 사이",
   "desc": "나트랑 3박4일 맛집·리조트. 파나마 1박 55,113원·아미아나 261,873원(2인), 반미 25,000동·분까 45,000동, 1인 약 81만 8,000원. 2026-11-20 확인.",
-  "chars": 3955,
+  "chars": 3995,
   "aff": 0,
-  "per": 3955,
+  "per": 3995,
   "h2": 8,
-  "indeg": 14
+  "indeg": 16
  },
  {
   "file": "nhatrang-dalat-tour-vs-free.html",
@@ -933,7 +981,7 @@
   "aff": 0,
   "per": 2214,
   "h2": 5,
-  "indeg": 10
+  "indeg": 13
  },
  {
   "file": "okinawa-3n4d-course.html",
@@ -969,7 +1017,7 @@
   "aff": 0,
   "per": 3550,
   "h2": 7,
-  "indeg": 32
+  "indeg": 33
  },
  {
   "file": "osaka-food-route.html",
@@ -989,11 +1037,11 @@
   "title": "오사카·교토 3박4일 경비 총정리 (2인 187만원·항목별 계산) | 트립픽",
   "h1": "오사카·교토 3박4일, 2인 187만원 을 항목별로 뜯어봤습니다",
   "desc": "오사카·교토 3박4일 2인 실경비 187만원 내역. 항공권·숙소·주유패스·난카이 라피트·식비·현장 추가금을 항목별로 계산하고, 같은 일정에서 30만원을 줄이는 방법과 줄이면 안 되는 항목을 정리했습니다.",
-  "chars": 4550,
+  "chars": 4588,
   "aff": 0,
-  "per": 4550,
+  "per": 4588,
   "h2": 8,
-  "indeg": 42
+  "indeg": 45
  },
  {
   "file": "osaka-usj-transfer.html",
@@ -1061,11 +1109,11 @@
   "title": "파리·런던 5박7일 일정·경비 (유로스타 £39·루브르 €32·히드로 £26) | 트립픽",
   "h1": "파리·런던 5박7일, 2시간 16분 이 두 도시를 붙입니다",
   "desc": "파리·런던 5박7일 경비. 유로스타 £39·2시간 16분, CDG→시내 RER B €14, 루브르 비EEA €32, 숙소 파리 197,653원·런던 479,398원(1박·2인), 2인 5박 1,859,466원. 2026-11 확인.",
-  "chars": 4154,
+  "chars": 4192,
   "aff": 3,
-  "per": 1385,
+  "per": 1397,
   "h2": 6,
-  "indeg": 31
+  "indeg": 33
  },
  {
   "file": "paris-metro-navigo-guide.html",
@@ -1077,7 +1125,7 @@
   "aff": 6,
   "per": 628,
   "h2": 6,
-  "indeg": 3
+  "indeg": 5
  },
  {
   "file": "passport-application-guide.html",
@@ -1109,11 +1157,11 @@
   "title": "푸꾸옥 3박4일·4박5일 — 케이블카 85만동·사파리 95만동 | 트립픽",
   "h1": "푸꾸옥 3박4일, 남부 케이블카 와 북부 사파리 중 하나",
   "desc": "푸꾸옥 3박4일·4박5일 코스. 혼똠 케이블카 850,000동(아쿠아토피아 포함), 사파리 950,000동, 빈원더스 1,050,000동, 공항 무료 빈버스, 숙소 1박 5만 1,978~45만 5,768원, 2인 42만~116만 원. 2026-11 확인.",
-  "chars": 5122,
+  "chars": 5162,
   "aff": 4,
-  "per": 1280,
+  "per": 1290,
   "h2": 8,
-  "indeg": 2
+  "indeg": 8
  },
  {
   "file": "qingdao-2n3d-course.html",
@@ -1128,6 +1176,18 @@
   "indeg": 7
  },
  {
+  "file": "rome-vatican-colosseum-booking-guide.html",
+  "slug": "rome-vatican-colosseum-booking-guide",
+  "title": "로마 바티칸·콜로세움·보르게세 예약 총정리 — 요금·로마패스·공항 기차 (2026) | 트립픽",
+  "h1": "로마는 세 곳만 예약 하면 됩니다",
+  "desc": "로마 예약(2026-11). 콜로세움 €18(풀 24)·바티칸 €25(수수료 포함)·보르게세 18·판테온 7. 레오나르도 익스프레스 €14·공항택시 €55·ATAC 48시간 15·로마패스 38/62.90, 3박4일 2인 30만 원.",
+  "chars": 3738,
+  "aff": 6,
+  "per": 623,
+  "h2": 6,
+  "indeg": 4
+ },
+ {
   "file": "sapporo-biei-winter.html",
   "slug": "sapporo-biei-winter",
   "title": "삿포로 비에이·후라노 겨울 투어 예약과 눈축제 2027 일정 (비용 비교) | 트립픽",
@@ -1137,7 +1197,7 @@
   "aff": 0,
   "per": 3456,
   "h2": 7,
-  "indeg": 9
+  "indeg": 11
  },
  {
   "file": "sapporo-hokkaido-3n4d-winter.html",
@@ -1149,7 +1209,7 @@
   "aff": 4,
   "per": 1615,
   "h2": 12,
-  "indeg": 11
+  "indeg": 13
  },
  {
   "file": "sapporo-winter.html",
@@ -1161,7 +1221,7 @@
   "aff": 0,
   "per": 2379,
   "h2": 7,
-  "indeg": 18
+  "indeg": 20
  },
  {
   "file": "sea-grab-taxi-scam-guide.html",
@@ -1173,7 +1233,7 @@
   "aff": 4,
   "per": 1328,
   "h2": 8,
-  "indeg": 31
+  "indeg": 37
  },
  {
   "file": "seoul-seongsu-bukchon-1d.html",
@@ -1257,7 +1317,7 @@
   "aff": 0,
   "per": 4466,
   "h2": 6,
-  "indeg": 15
+  "indeg": 16
  },
  {
   "file": "southeast-asia-rental-car-license-guide.html",
@@ -1341,7 +1401,7 @@
   "aff": 5,
   "per": 755,
   "h2": 7,
-  "indeg": 5
+  "indeg": 8
  },
  {
   "file": "taipei-3n4d-course-budget.html",
@@ -1349,11 +1409,11 @@
   "title": "타이베이 3박4일 코스·경비 — 공항 MRT 160대만달러·예스진지 | 트립픽",
   "h1": "타이베이 3박4일, 2인 141만~193만 원 코스와 예산",
   "desc": "타이베이 3박4일 2인 경비는 절약형 141만·표준형 156만·여유형 193만 원. 공항 MRT 160대만달러, 101 전망대 온라인 19,900원, 예스진지 35,000원, 2026-11-21 조회.",
-  "chars": 5691,
+  "chars": 5737,
   "aff": 5,
-  "per": 1138,
+  "per": 1147,
   "h2": 8,
-  "indeg": 9
+  "indeg": 11
  },
  {
   "file": "taipei-food-route.html",
@@ -1365,7 +1425,7 @@
   "aff": 0,
   "per": 2981,
   "h2": 6,
-  "indeg": 18
+  "indeg": 21
  },
  {
   "file": "taipei-yehliu.html",
@@ -1401,7 +1461,31 @@
   "aff": 0,
   "per": 2583,
   "h2": 5,
-  "indeg": 18
+  "indeg": 20
+ },
+ {
+  "file": "taiwan-transport-thsr-guide.html",
+  "slug": "taiwan-transport-thsr-guide",
+  "title": "대만 교통 총정리 — 공항 MRT·이지카드·THSR 패스 손익 (2026) | 트립픽",
+  "h1": "대만 교통, THSR 패스는 타이난부터 이득입니다",
+  "desc": "대만 교통(2026-11). 공항 MRT 160(35~39분)·이지카드 100·MRT 24/48/72시간 180/280/380· THSR 3일 2,200·자유 2일 2,500·타이베이–타이난 1,350, 3박4일 1인 3만 원.",
+  "chars": 3891,
+  "aff": 6,
+  "per": 648,
+  "h2": 7,
+  "indeg": 7
+ },
+ {
+  "file": "thailand-cities-comparison-guide.html",
+  "slug": "thailand-cities-comparison-guide",
+  "title": "태국 여행지 비교 — 방콕·치앙마이·파타야·푸껫 계절·이동·숙소 (2026) | 트립픽",
+  "h1": "방콕·치앙마이·파타야·푸껫, 같은 9월이 다릅니다",
+  "desc": "태국 4도시(2026-11). 월별 강수(TMD), 방콕 ARL 45밧·치앙마이 150밧·파타야 버스 144밧, 숙소 방콕 3.8만·치앙마이 2.3만 원부터, 사원 입장료 900밧, 2인 이동·입장 8만 원.",
+  "chars": 3558,
+  "aff": 6,
+  "per": 593,
+  "h2": 7,
+  "indeg": 4
  },
  {
   "file": "thailand-souvenir-list.html",
@@ -1413,7 +1497,7 @@
   "aff": 0,
   "per": 2429,
   "h2": 5,
-  "indeg": 19
+  "indeg": 20
  },
  {
   "file": "tokyo-3n4d-course-budget.html",
@@ -1509,7 +1593,7 @@
   "aff": 0,
   "per": 5643,
   "h2": 11,
-  "indeg": 27
+  "indeg": 30
  },
  {
   "file": "travel-card-packing-guide.html",
@@ -1545,7 +1629,7 @@
   "aff": 0,
   "per": 4227,
   "h2": 8,
-  "indeg": 24
+  "indeg": 26
  },
  {
   "file": "travel-medication-rules-guide.html",
@@ -1565,11 +1649,11 @@
   "title": "영국 ETA 신청 방법·수수료 £20·유효기간 2년·환승 기준 (2026) | 트립픽",
   "h1": "영국 ETA, £20 과 6개월 만 확인하면 됩니다",
   "desc": "영국 ETA 신청(2026-11). GOV.UK 기준 £20, 유효 2년 또는 여권 만료, 1회 6개월, 처리 1일~3영업일. 한국 2025-01-08부터 대상, landside 환승 필요·airside 불필요, ETA로 불가한 활동과 거절 시 비자 전환.",
-  "chars": 3708,
+  "chars": 3973,
   "aff": 6,
-  "per": 618,
+  "per": 662,
   "h2": 6,
-  "indeg": 4
+  "indeg": 6
  },
  {
   "file": "ulleung-2n3d.html",
@@ -1605,7 +1689,7 @@
   "aff": 6,
   "per": 684,
   "h2": 7,
-  "indeg": 7
+  "indeg": 10
  },
  {
   "file": "us-west-4canyons.html",
@@ -1632,6 +1716,18 @@
   "indeg": 4
  },
  {
+  "file": "vietnam-4cities-comparison-guide.html",
+  "slug": "vietnam-4cities-comparison-guide",
+  "title": "베트남 4대 도시 비교 — 하노이·다낭·나트랑·푸꾸옥 계절·물가·숙소 (2026) | 트립픽",
+  "h1": "하노이·다낭·나트랑·푸꾸옥, 우기 달력이 다릅니다",
+  "desc": "베트남 4도시(2026-11). 월별 강수(1991~2020), 하노이 86번 50,000동, 다낭 15분, 나트랑 49분, 푸꾸옥 10~15분. 숙소 5.5만~59만 원, 케이블카 850,000동·사파리 950,000동.",
+  "chars": 3784,
+  "aff": 6,
+  "per": 631,
+  "h2": 8,
+  "indeg": 8
+ },
+ {
   "file": "vietnam-esim.html",
   "slug": "vietnam-esim",
   "title": "베트남 eSIM vs 로밍 — 2인 5일 2,000원 vs 99,000원 (2026) | 트립픽",
@@ -1641,7 +1737,7 @@
   "aff": 0,
   "per": 2369,
   "h2": 7,
-  "indeg": 37
+  "indeg": 38
  },
  {
   "file": "vietnam-golf-54-vs-36.html",
@@ -1665,7 +1761,7 @@
   "aff": 0,
   "per": 2719,
   "h2": 5,
-  "indeg": 23
+  "indeg": 25
  },
  {
   "file": "visa-free-stay-duration-guide.html",
@@ -1677,7 +1773,7 @@
   "aff": 6,
   "per": 642,
   "h2": 7,
-  "indeg": 4
+  "indeg": 13
  },
  {
   "file": "visit-japan-web-guide.html",

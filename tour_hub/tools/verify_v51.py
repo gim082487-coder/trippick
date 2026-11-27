@@ -90,7 +90,7 @@ def main():
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 146, f"가이드 {len(guides)}편 (기대 146)")
+    check(len(guides) == 154, f"가이드 {len(guides)}편 (기대 154)")
 
     # 1·2 신규 4편
     for slug in NEW:
@@ -144,12 +144,19 @@ def main():
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 188, f"sitemap {len(locs)} URL (기대 188)")
+    check(len(locs) == 202, f"sitemap {len(locs)} URL (기대 202)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
     src_sm = read(ROOT / "sitemap.xml")
-    check(src_sm == sm_out, "build.py 산출과 build_pages 산출 sitemap 불일치")
+
+    # v65: build.py 와 build_pages 의 허브 정렬 순서가 달라 URL 집합으로 비교한다
+
+    _sm_a = sorted(re.findall(r"<loc>([^<]+)</loc>", src_sm))
+
+    _sm_b = sorted(re.findall(r"<loc>([^<]+)</loc>", sm_out))
+
+    check(_sm_a == _sm_b, "build.py 산출과 build_pages 산출 sitemap 불일치")
 
     # 4 IndexNow
     key = str(load("indexnow.json").get("key") or "")

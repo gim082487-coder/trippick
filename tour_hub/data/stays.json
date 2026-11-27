@@ -566,12 +566,12 @@
    "name": "삿포로",
    "country": "일본",
    "note": "삿포로역·오도리 시내와 조잔케이 온천이 갈립니다. 시내는 역 도보권으로 잡고, 온천은 조잔케이에서 1박을 따로 쓰는 편이 좋습니다.",
-   "count": 4,
+   "count": 9,
    "top": "삿포로 그랜드 호텔",
    "listUrl": "https://kr.trip.com/hotels/list?city=641&display=%EC%82%BF%ED%8F%AC%EB%A1%9C&optionId=641&optionType=City&optionName=%EC%82%BF%ED%8F%AC%EB%A1%9C&Allianceid=11407530&SID=336341874&trip_sub1=hotel_sapporo&trip_sub3=D21372570",
    "cityId": "641",
    "scope": "intl",
-   "hub": null,
+   "hub": "sapporo",
    "guides": [
     {
      "slug": "sapporo-hokkaido-3n4d-winter",
@@ -778,6 +778,116 @@
     {
      "slug": "currency-payment-fees",
      "label": "환전·결제 수수료"
+    }
+   ]
+  },
+  {
+   "id": "newyork",
+   "name": "뉴욕",
+   "country": "미국",
+   "note": "맨해튼은 미드타운·다운타운·어퍼 웨스트로 숙소값이 갈립니다. 미드타운은 극장가·센트럴 파크, 다운타운은 월스트리트·브루클린 브리지, 어퍼 웨스트는 공원과 박물관 쪽입니다.",
+   "count": 5,
+   "top": "브라이언트 파크 호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=633&display=%EB%89%B4%EC%9A%95&optionId=633&optionType=City&optionName=%EB%89%B4%EC%9A%95&Allianceid=11407530&SID=336341874&trip_sub1=hotel_newyork&trip_sub3=D21372570",
+   "cityId": "633",
+   "scope": "intl",
+   "hub": "newyork",
+   "guides": [
+    {
+     "slug": "new-york-4n5d-course-budget",
+     "label": "뉴욕 4박5일"
+    },
+    {
+     "slug": "us-esta-application-guide",
+     "label": "미국 ESTA"
+    }
+   ]
+  },
+  {
+   "id": "nagoya",
+   "name": "나고야",
+   "country": "일본",
+   "note": "나고야역·메이에키는 신칸센과 공항 접근이 좋고, 사카에·니시키는 쇼핑·야식이 중심입니다. 지브리파크와 시라카와고는 시내에서 따로 반나절을 잡아야 합니다.",
+   "count": 5,
+   "top": "나고야 JR 게이트 타워 호텔",
+   "listUrl": "https://kr.trip.com/hotels/list?city=360&display=%EB%82%98%EA%B3%A0%EC%95%BC&optionId=360&optionType=City&optionName=%EB%82%98%EA%B3%A0%EC%95%BC&Allianceid=11407530&SID=336341874&trip_sub1=hotel_nagoya&trip_sub3=D21372570",
+   "cityId": "360",
+   "scope": "intl",
+   "hub": "nagoya",
+   "guides": [
+    {
+     "slug": "nagoya-3n4d-course-budget",
+     "label": "나고야 3박4일"
+    },
+    {
+     "slug": "japan-ic-card",
+     "label": "일본 IC카드"
+    }
+   ]
+  },
+  {
+   "id": "phuquoc",
+   "name": "푸꾸옥",
+   "country": "베트남",
+   "note": "즈엉동은 야시장·시내, 롱비치(바이쯔엉)는 리조트 해변, 즈엉바오는 선셋타운·케이블카 쪽입니다. 11~4월이 건기이고 6~9월은 비가 많습니다.",
+   "count": 5,
+   "top": "라하나 리조트 푸꾸옥 & 스파",
+   "listUrl": "https://kr.trip.com/hotels/list?city=5649&display=%ED%91%B8%EA%BE%B8%EC%98%A5+%EC%84%AC&optionId=5649&optionType=City&optionName=%ED%91%B8%EA%BE%B8%EC%98%A5+%EC%84%AC&Allianceid=11407530&SID=336341874&trip_sub1=hotel_phuquoc&trip_sub3=D21372570",
+   "cityId": "5649",
+   "scope": "intl",
+   "hub": "phuquoc",
+   "guides": [
+    {
+     "slug": "phu-quoc-3n4d-4n5d-course",
+     "label": "푸꾸옥 3박4일"
+    },
+    {
+     "slug": "vietnam-4cities-comparison-guide",
+     "label": "베트남 4도시 비교"
+    }
+   ]
+  },
+  {
+   "id": "cebu",
+   "name": "세부",
+   "country": "필리핀",
+   "note": "막탄은 공항과 리조트, 세부시티는 성당·쇼핑·야시장, 모알보알은 남쪽 3시간 거리 다이빙 마을입니다. 보홀로 넘어가려면 피어1에서 오션젯을 탑니다.",
+   "count": 5,
+   "top": "블루워터 마리바고 비치 리조트",
+   "listUrl": "https://kr.trip.com/hotels/list?city=1239&display=%EC%84%B8%EB%B6%80&optionId=1239&optionType=City&optionName=%EC%84%B8%EB%B6%80&Allianceid=11407530&SID=336341874&trip_sub1=hotel_cebu&trip_sub3=D21372570",
+   "cityId": "1239",
+   "scope": "intl",
+   "hub": "cebu",
+   "guides": [
+    {
+     "slug": "cebu-3n4d-course",
+     "label": "세부 3박4일"
+    },
+    {
+     "slug": "cebu-bohol-ferry-transfer-guide",
+     "label": "세부·보홀 이동"
+    }
+   ]
+  },
+  {
+   "id": "sydney",
+   "name": "시드니",
+   "country": "호주",
+   "note": "서큘러키는 오페라하우스·페리 선착장, 센트럴은 기차·경전철, 달링하버는 전시장·가족 숙소가 모입니다. 공항은 T8 기차로 센트럴까지 13~15분입니다.",
+   "count": 5,
+   "top": "더 풀러턴 호텔 시드니",
+   "listUrl": "https://kr.trip.com/hotels/list?city=501&display=%EC%8B%9C%EB%93%9C%EB%8B%88&optionId=501&optionType=City&optionName=%EC%8B%9C%EB%93%9C%EB%8B%88&Allianceid=11407530&SID=336341874&trip_sub1=hotel_sydney&trip_sub3=D21372570",
+   "cityId": "501",
+   "scope": "intl",
+   "hub": "sydney",
+   "guides": [
+    {
+     "slug": "sydney-4n5d-course",
+     "label": "시드니 4박5일"
+    },
+    {
+     "slug": "oceania-eta-nzeta",
+     "label": "호주 ETA"
     }
    ]
   }
@@ -5045,6 +5155,961 @@
    "pointTags": [
     "인민광장",
     "리뷰 다수"
+   ]
+  },
+  {
+   "region": "newyork",
+   "id": "2092657",
+   "name": "하이 뉴욕 시티 - 호스텔",
+   "en": "HI New York City Hostel",
+   "star": 2,
+   "type": "hotel",
+   "typeLabel": "호스텔",
+   "score": 8.9,
+   "reviews": 421,
+   "sub": {
+    "청결도": "8.8",
+    "시설": "8.8",
+    "위치": "8.9",
+    "서비스": "9.1"
+   },
+   "zone": "어퍼 웨스트 사이드",
+   "access": "센트럴 파크 인근 · 891 Amsterdam Ave",
+   "reason": "리뷰 421개·8.9 — 어퍼 웨스트 사이드에서 센트럴 파크가 가깝고, 2인 1박 11만 8,148원으로 이 도시 조회분 5곳 중 가장 낮습니다. 도미토리(침대 2개) 기준입니다.",
+   "price": 118148,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/newyork-2092657.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=633&hotelId=2092657&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_newyork_2092657&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "호스텔",
+    "센트럴파크"
+   ]
+  },
+  {
+   "region": "newyork",
+   "id": "2192841",
+   "name": "더블트리 바이 힐튼 뉴욕 다운타운",
+   "en": "DoubleTree by Hilton New York Downtown",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.3,
+   "reviews": 2001,
+   "sub": {
+    "청결도": "8.6",
+    "시설": "7.8",
+    "위치": "8.8",
+    "서비스": "8.1"
+   },
+   "zone": "파이낸셜 디스트릭트",
+   "access": "월스트리트 인근 · 8 Stone St",
+   "reason": "리뷰 2,001개·8.3 — 월스트리트 도보권이고 위치 8.8입니다. 리뷰 수가 가장 많아 시설 편차를 가늠하기 좋고 1박 18만 6,919원입니다.",
+   "price": 186919,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/newyork-2192841.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=633&hotelId=2192841&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_newyork_2192841&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "월스트리트",
+    "리뷰 최다"
+   ]
+  },
+  {
+   "region": "newyork",
+   "id": "105237897",
+   "name": "모토 바이 힐튼 뉴욕 시티 타임스 스퀘어",
+   "en": "Motto by Hilton New York City Times Square",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.6,
+   "reviews": 733,
+   "sub": {
+    "청결도": "8.8",
+    "시설": "8.1",
+    "위치": "9.1",
+    "서비스": "8.4"
+   },
+   "zone": "타임스 스퀘어",
+   "access": "센트럴 파크 인근 · 150 A W 48th St",
+   "reason": "리뷰 733개·8.6 — 타임스 스퀘어 권역에서 위치 9.1입니다. 벽장형 침대의 컴팩트 룸이지만 1박 20만 8,093원으로 미드타운 4성급 중 낮은 편입니다.",
+   "price": 208093,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/newyork-105237897.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=633&hotelId=105237897&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_newyork_105237897&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "타임스스퀘어",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "newyork",
+   "id": "1565906",
+   "name": "하얏트 리젠시 타임스 스퀘어",
+   "en": "Hyatt Regency Times Square",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.7,
+   "reviews": 153,
+   "sub": {
+    "청결도": "8.9",
+    "시설": "8.3",
+    "위치": "9.1",
+    "서비스": "8.4"
+   },
+   "zone": "타임스 스퀘어",
+   "access": "센트럴 파크 인근 · 1605 Broadway",
+   "reason": "2025년 문을 연 호텔로 리뷰 153개·8.7, 위치 9.1입니다. 브로드웨이 1605번지라 극장가와 센트럴 파크가 도보권이고 1박 30만 3,888원입니다.",
+   "price": 303888,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/newyork-1565906.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=633&hotelId=1565906&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_newyork_1565906&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "신축",
+    "브로드웨이"
+   ]
+  },
+  {
+   "region": "newyork",
+   "id": "2193990",
+   "name": "브라이언트 파크 호텔",
+   "en": "Bryant Park Hotel",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 102,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "9.3",
+    "위치": "9.3",
+    "서비스": "9.3"
+   },
+   "zone": "브라이언트 파크",
+   "access": "브라이언트 공원 인근 · 40 W 40th St",
+   "reason": "리뷰 102개·9.3 — 청결·시설·위치·서비스가 모두 9.3으로 이 도시 조회분 중 평점이 가장 높습니다. 브라이언트 공원 바로 앞, 1박 53만 4,667원입니다.",
+   "price": 534667,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/newyork-2193990.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=633&hotelId=2193990&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_newyork_2193990&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "평점 최고",
+    "브라이언트파크"
+   ]
+  },
+  {
+   "region": "nagoya",
+   "id": "8344318",
+   "name": "나고야 JR 게이트 타워 호텔",
+   "en": "Nagoya JR Gate Tower Hotel",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.4,
+   "reviews": 3321,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.1",
+    "위치": "9.6",
+    "서비스": "9.2"
+   },
+   "zone": "나고야역",
+   "access": "메이테쓰나고야 인근 · 나카무라구 1-1-3",
+   "reason": "리뷰 3,321개·9.4 — 위치 9.6으로 나고야역·메이테쓰나고야와 바로 연결됩니다. 1박 21만 7,056원.",
+   "price": 217056,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/nagoya-8344318.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=360&hotelId=8344318&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nagoya_8344318&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "역 직결",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "nagoya",
+   "id": "5086203",
+   "name": "미쓰이 가든 호텔 나고야 프리미어",
+   "en": "Mitsui Garden Hotel Nagoya Premier",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 2314,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.1",
+    "위치": "9.5",
+    "서비스": "9.3"
+   },
+   "zone": "메이에키",
+   "access": "메이테쓰나고야·나고야 지하철역 인근",
+   "reason": "리뷰 2,314개·9.3 — 고층 야경과 일출 전망 평가가 높고 위치 9.5입니다. 1박 14만 8,773원.",
+   "price": 148773,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/nagoya-5086203.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=360&hotelId=5086203&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nagoya_5086203&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "고층 야경",
+    "조식"
+   ]
+  },
+  {
+   "region": "nagoya",
+   "id": "703777",
+   "name": "나고야 도큐 호텔",
+   "en": "Nagoya Tokyu Hotel",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 1580,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.9",
+    "위치": "9.1",
+    "서비스": "9.3"
+   },
+   "zone": "사카에",
+   "access": "사카에 4-6-8",
+   "reason": "리뷰 1,580개·9.2 — 사카에 중심의 5성급으로 서비스 9.3, 일식당·가이세키 평가가 높습니다. 1박 13만 7,967원.",
+   "price": 137967,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/nagoya-703777.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=360&hotelId=703777&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nagoya_703777&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "가이세키",
+    "사카에"
+   ]
+  },
+  {
+   "region": "nagoya",
+   "id": "72147574",
+   "name": "액세스 바이 르와지르 호텔 나고야",
+   "en": "Access by Loisir Hotel Nagoya",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 476,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "9.0",
+    "위치": "9.3",
+    "서비스": "9.5"
+   },
+   "zone": "사카에마치",
+   "access": "사카에마치·히가시사쿠라 1-9-22",
+   "reason": "리뷰 476개·9.2 — 서비스 9.5로 이 도시 조회분 중 가장 높고, 1박 6만 6,144원으로 최저가입니다.",
+   "price": 66144,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/nagoya-72147574.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=360&hotelId=72147574&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nagoya_72147574&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "가성비",
+    "서비스 최고"
+   ]
+  },
+  {
+   "region": "nagoya",
+   "id": "93970929",
+   "name": "코코 호텔 나고야 사카에",
+   "en": "Koko Hotel Nagoya Sakae",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 1429,
+   "sub": {
+    "청결도": "8.9",
+    "시설": "8.3",
+    "위치": "9.4",
+    "서비스": "8.9"
+   },
+   "zone": "사카에",
+   "access": "사카에 지하철역 인근 · 니시키 3-15-21",
+   "reason": "리뷰 1,429개·8.9 — 사카에 지하철역 도보권으로 위치 9.4, 일본식 조식 평가가 좋습니다. 1박 7만 4,163원.",
+   "price": 74163,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/nagoya-93970929.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=360&hotelId=93970929&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_nagoya_93970929&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "일본식 조식",
+    "지하철"
+   ]
+  },
+  {
+   "region": "phuquoc",
+   "id": "10200862",
+   "name": "씨셸스 푸꾸옥 호텔 & 스파",
+   "en": "Seashells Phu Quoc Hotel & Spa",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 2185,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.8",
+    "위치": "9.4",
+    "서비스": "8.7"
+   },
+   "zone": "즈엉동",
+   "access": "푸꾸옥 야시장 인근 · 01 Võ Thị Sáu",
+   "reason": "리뷰 2,185개·9.0 — 야시장 인근 위치 9.4, 오션뷰와 비치풀 평가가 높습니다. 조식 포함 1박 30만 9,983원.",
+   "price": 309983,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuquoc-10200862.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=5649&hotelId=10200862&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuquoc_10200862&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "야시장",
+    "오션뷰"
+   ]
+  },
+  {
+   "region": "phuquoc",
+   "id": "31583072",
+   "name": "베스트 웨스턴 프리미어 소나씨 푸꾸옥",
+   "en": "Best Western Premier Sonasea Phu Quoc",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 1377,
+   "sub": {
+    "청결도": "8.5",
+    "시설": "8.7",
+    "위치": "9.2",
+    "서비스": "8.7"
+   },
+   "zone": "롱비치(바이쯔엉)",
+   "access": "Sonasea 공용해변 인근 · Đường Bào",
+   "reason": "리뷰 1,377개·8.8 — 롱비치 해변 구간의 5성 리조트로 위치 9.2. 조식 포함 1박 27만 750원입니다.",
+   "price": 270750,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuquoc-31583072.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=5649&hotelId=31583072&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuquoc_31583072&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "villa"
+   ],
+   "pointTags": [
+    "비치 리조트",
+    "조식 포함"
+   ]
+  },
+  {
+   "region": "phuquoc",
+   "id": "9585235",
+   "name": "라하나 리조트 푸꾸옥 & 스파",
+   "en": "Lahana Resort Phu Quoc & Spa",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 688,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.1",
+    "위치": "9.2",
+    "서비스": "9.5"
+   },
+   "zone": "즈엉동",
+   "access": "푸꾸옥 야시장·공항 인근 · 91/3 Tran Hung Dao",
+   "reason": "리뷰 688개·9.3 — 청결 9.4·서비스 9.5로 이 도시 조회분 중 평점이 가장 높습니다. 일몰 뷰와 풀사이드 레스토랑, 조식 포함 1박 29만 2,007원.",
+   "price": 292007,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuquoc-9585235.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=5649&hotelId=9585235&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuquoc_9585235&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "value"
+   ],
+   "pointTags": [
+    "평점 최고",
+    "일몰 뷰"
+   ]
+  },
+  {
+   "region": "phuquoc",
+   "id": "91307436",
+   "name": "세일링 클럽 시그니처 리조트 푸꾸옥",
+   "en": "Sailing Club Signature Resort Phu Quoc",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 528,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "9.2",
+    "위치": "9.0",
+    "서비스": "9.2"
+   },
+   "zone": "즈엉바오",
+   "access": "Regent Club 인근 · Group 6, Đường Bào",
+   "reason": "리뷰 528개·9.2 — 침실 2개·개인 수영장 빌라로 4인까지 묵습니다. 불꽃놀이 전망 평가가 높고 조식 포함 1박 59만 2,363원입니다.",
+   "price": 592363,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuquoc-91307436.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=5649&hotelId=91307436&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuquoc_91307436&trip_sub3=D21372570",
+   "themes": [
+    "villa",
+    "pool"
+   ],
+   "pointTags": [
+    "개인 풀",
+    "빌라"
+   ]
+  },
+  {
+   "region": "phuquoc",
+   "id": "2562937",
+   "name": "시 스타 리조트",
+   "en": "Sea Star Resort",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 305,
+   "sub": {
+    "청결도": "8.6",
+    "시설": "8.6",
+    "위치": "9.5",
+    "서비스": "8.9"
+   },
+   "zone": "롱비치",
+   "access": "즈엉동 인근 · 98/2 Trần Hưng Đạo",
+   "reason": "리뷰 305개·8.9 — 위치 9.5로 해변·시내 접근이 좋고, 1박 7만 983원으로 이 도시 조회분 최저가입니다.",
+   "price": 70983,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuquoc-2562937.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=5649&hotelId=2562937&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuquoc_2562937&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "ocean"
+   ],
+   "pointTags": [
+    "가성비",
+    "오션뷰"
+   ]
+  },
+  {
+   "region": "cebu",
+   "id": "102030816",
+   "name": "머큐어 막탄 세부",
+   "en": "Mercure Mactan Cebu",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 1885,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.7",
+    "위치": "9.1",
+    "서비스": "8.9"
+   },
+   "zone": "막탄 뉴타운",
+   "access": "막탄섬 · Newtown Blvd",
+   "reason": "리뷰 1,885개·8.9 — 공항과 가까운 막탄 뉴타운, 풀·비치·바 평가가 좋습니다. 1박 7만 6,553원.",
+   "price": 76553,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/cebu-102030816.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1239&hotelId=102030816&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_cebu_102030816&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "station"
+   ],
+   "pointTags": [
+    "공항 인접",
+    "비치 클럽"
+   ]
+  },
+  {
+   "region": "cebu",
+   "id": "759892",
+   "name": "블루워터 마리바고 비치 리조트",
+   "en": "Bluewater Maribago Beach Resort",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 799,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.7",
+    "위치": "9.0",
+    "서비스": "9.2"
+   },
+   "zone": "막탄 마리바고",
+   "access": "마리바고 해변 · Buyong",
+   "reason": "리뷰 799개·9.0 — 세부 업스케일 호텔 1위, 청결 9.2·서비스 9.2입니다. 라군 수영장과 전용 해변, 1박 13만 8,006원.",
+   "price": 138006,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/cebu-759892.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1239&hotelId=759892&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_cebu_759892&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "pool",
+    "villa"
+   ],
+   "pointTags": [
+    "전용 해변",
+    "리조트"
+   ]
+  },
+  {
+   "region": "cebu",
+   "id": "5902851",
+   "name": "솔레아 막탄 리조트 앤 워터파크",
+   "en": "Solea Mactan Resort and Waterpark",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.4,
+   "reviews": 801,
+   "sub": {
+    "청결도": "8.3",
+    "시설": "8.5",
+    "위치": "8.1",
+    "서비스": "8.5"
+   },
+   "zone": "막탄 코도바",
+   "access": "막탄섬 · Victor Wahing Street",
+   "reason": "리뷰 801개·8.4 — 2026년 리모델링한 워터파크 리조트로 아이 동반에 맞습니다. 1박 10만 541원.",
+   "price": 100541,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/cebu-5902851.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1239&hotelId=5902851&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_cebu_5902851&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "villa"
+   ],
+   "pointTags": [
+    "워터파크",
+    "가족"
+   ]
+  },
+  {
+   "region": "cebu",
+   "id": "10549822",
+   "name": "도요코 인 세부",
+   "en": "Toyoko Inn Cebu",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 1132,
+   "sub": {
+    "청결도": "8.9",
+    "시설": "8.3",
+    "위치": "8.9",
+    "서비스": "8.9"
+   },
+   "zone": "세부시티 만다웨",
+   "access": "SM J Mall 인근 · 165 A. S. Fortuna St",
+   "reason": "리뷰 1,132개·8.8 — 무료 공항 셔틀과 일본식 조식 평가가 높습니다. 시티 쇼핑·야시장 동선에 맞고 1박 5만 6,110원입니다.",
+   "price": 56110,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/cebu-10549822.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1239&hotelId=10549822&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_cebu_10549822&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "공항 셔틀",
+    "일본식 조식"
+   ]
+  },
+  {
+   "region": "cebu",
+   "id": "99386475",
+   "name": "쎄프리 프레미어 잉 막탄 공항 호텔",
+   "en": "Sempre Premier Inn - Mactan Airport Hotel",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 274,
+   "sub": {
+    "청결도": "8.8",
+    "시설": "8.5",
+    "위치": "9.0",
+    "서비스": "8.9"
+   },
+   "zone": "막탄 공항",
+   "access": "막탄섬 · ML Quezon National Hwy",
+   "reason": "리뷰 274개·8.8 — 공항 셔틀(06:00~01:00)이 있어 새벽 도착·출발에 맞습니다. 옥상 레스토랑, 1박 4만 3,415원으로 최저가.",
+   "price": 43415,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/cebu-99386475.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=1239&hotelId=99386475&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_cebu_99386475&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "공항 셔틀",
+    "새벽 출발"
+   ]
+  },
+  {
+   "region": "sydney",
+   "id": "9341526",
+   "name": "더 캡슐 호텔",
+   "en": "The Capsule Hotel",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.4,
+   "reviews": 398,
+   "sub": {
+    "청결도": "8.2",
+    "시설": "7.6",
+    "위치": "9.4",
+    "서비스": "8.4"
+   },
+   "zone": "CBD(조지스트리트)",
+   "access": "달링 하버 인근 · 640 George St",
+   "reason": "리뷰 398개·8.4 — 조지스트리트 위치 9.4, 여성전용 캡슐(침대 2개) 1박 8만 9,632원으로 최저가입니다.",
+   "price": 89632,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sydney-9341526.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=501&hotelId=9341526&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sydney_9341526&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "캡슐",
+    "위치 최고"
+   ]
+  },
+  {
+   "region": "sydney",
+   "id": "29958862",
+   "name": "베리우 그린 스퀘어",
+   "en": "Veriu Green Square",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 415,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.8",
+    "위치": "9.3",
+    "서비스": "9.0"
+   },
+   "zone": "그린 스퀘어",
+   "access": "공항 인근 · 18 O'Riordan St",
+   "reason": "리뷰 415개·9.1 — 공항과 시내 사이 그린 스퀘어, 위치 9.3입니다. 1박 13만 2,442원.",
+   "price": 132442,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sydney-29958862.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=501&hotelId=29958862&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sydney_29958862&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "공항 인근",
+    "평점"
+   ]
+  },
+  {
+   "region": "sydney",
+   "id": "736187",
+   "name": "더 풀러턴 호텔 시드니",
+   "en": "The Fullerton Hotel Sydney",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 887,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "8.8",
+    "위치": "9.6",
+    "서비스": "9.0"
+   },
+   "zone": "CBD 마틴 플레이스",
+   "access": "오페라하우스 인근 · 1 Martin Pl",
+   "reason": "리뷰 887개·9.2 — 마틴 플레이스의 역사적 건물을 리노베이션, 위치 9.6입니다. 조식 포함 1박 27만 7,164원.",
+   "price": 277164,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sydney-736187.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=501&hotelId=736187&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sydney_736187&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "위치 최고",
+    "조식 포함"
+   ]
+  },
+  {
+   "region": "sydney",
+   "id": "734373",
+   "name": "메리턴 스위트 켄트 스트리트, 시드니",
+   "en": "Meriton Suites Kent Street",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.7,
+   "reviews": 364,
+   "sub": {
+    "청결도": "8.6",
+    "시설": "8.4",
+    "위치": "9.4",
+    "서비스": "8.6"
+   },
+   "zone": "달링 하버",
+   "access": "달링 하버·전시장 인근 · 528 Kent St",
+   "reason": "리뷰 364개·8.7 — 달링 하버 도보권 위치 9.4, 스튜디오 스위트에 실내 온수풀이 있습니다. 1박 32만 5,388원.",
+   "price": 325388,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sydney-734373.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=501&hotelId=734373&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sydney_734373&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "station"
+   ],
+   "pointTags": [
+    "스위트",
+    "달링하버"
+   ]
+  },
+  {
+   "region": "sydney",
+   "id": "714671",
+   "name": "샹그릴라 시드니",
+   "en": "Shangri-La Sydney",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 1182,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.7",
+    "위치": "9.1",
+    "서비스": "8.8"
+   },
+   "zone": "록스",
+   "access": "오페라하우스·달링 하버 인근 · 176 Cumberland St",
+   "reason": "리뷰 1,182개·8.9 — 록스의 하버뷰 호텔로 고층 레스토랑·수영장 평가가 높습니다. 1박 40만 2,192원.",
+   "price": 402192,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sydney-714671.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=501&hotelId=714671&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sydney_714671&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "하버뷰",
+    "고층 레스토랑"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "705841",
+   "name": "삿포로 뷰 호텔 오도리 파크",
+   "en": "Sapporo View Hotel Odori Park",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 954,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.8",
+    "위치": "8.9",
+    "서비스": "9.1"
+   },
+   "zone": "오도리",
+   "access": "오도리 공원·삿포로역 인근 · Odori Nishi 8",
+   "reason": "리뷰 954개·9.0 — 오도리 공원 앞, 일본식 조식과 정원 뷰 평가가 높습니다. 1박 8만 7,205원으로 이 도시 조회분 최저가.",
+   "price": 87205,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-705841.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=705841&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_705841&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "오도리 공원",
+    "일본식 조식"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "62987948",
+   "name": "솔라리아 니시테츠 호텔 삿포로",
+   "en": "Solaria Nishitetsu Hotel Sapporo",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 1073,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.1",
+    "위치": "9.4",
+    "서비스": "9.1"
+   },
+   "zone": "삿포로역·다마코지",
+   "access": "삿포로역·다마코지 상점가 인근 · Kita 4 Nishi 5",
+   "reason": "리뷰 1,073개·9.3 — 청결 9.4·위치 9.4, 야외 온천과 다양한 조식이 강점입니다. 1박 24만 9,868원.",
+   "price": 249868,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-62987948.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=62987948&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_62987948&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "station"
+   ],
+   "pointTags": [
+    "야외 온천",
+    "조식"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "31315741",
+   "name": "베셀 호텔 캄파나 스스키노",
+   "en": "Vessel Hotel Campana Susukino",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 2332,
+   "sub": {
+    "청결도": "9.5",
+    "시설": "9.3",
+    "위치": "9.0",
+    "서비스": "9.4"
+   },
+   "zone": "스스키노",
+   "access": "스스키노·삿포로역 인근 · Minami 5 Nishi 6",
+   "reason": "리뷰 2,332개·9.3 — 청결 9.5·서비스 9.4, 대욕장과 조식 평가가 높습니다. 1박 19만 9,942원.",
+   "price": 199942,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-31315741.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=31315741&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_31315741&trip_sub3=D21372570",
+   "themes": [
+    "onsen",
+    "value"
+   ],
+   "pointTags": [
+    "대욕장",
+    "조식"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "52762809",
+   "name": "호텔 포르자 삿포로 스테이션",
+   "en": "Hotel Forza Sapporo Station",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 2226,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "8.9",
+    "위치": "9.5",
+    "서비스": "9.1"
+   },
+   "zone": "삿포로역",
+   "access": "삿포로역·오도리 공원 인근 · Kita 3 Nishi 2",
+   "reason": "리뷰 2,226개·9.2 — 삿포로역 도보권 위치 9.5, 조식과 전망 평가가 좋습니다. 1박 17만 9,208원.",
+   "price": 179208,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-52762809.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=52762809&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_52762809&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "삿포로역",
+    "조식"
+   ]
+  },
+  {
+   "region": "sapporo",
+   "id": "44402748",
+   "name": "더 비 삿포로",
+   "en": "the b sapporo",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 1527,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "8.8",
+    "위치": "9.5",
+    "서비스": "9.1"
+   },
+   "zone": "오도리",
+   "access": "오도리 공원·삿포로역 인근 · Minami 3 Nishi 2",
+   "reason": "리뷰 1,527개·9.2 — 청결 9.4·위치 9.5로 가성비가 좋습니다. 1박 10만 973원.",
+   "price": 100973,
+   "priceBasis": "2027-01-15~16 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/sapporo-44402748.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=641&hotelId=44402748&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_sapporo_44402748&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "가성비",
+    "청결"
    ]
   }
  ]

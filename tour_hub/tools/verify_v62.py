@@ -63,7 +63,7 @@ check(".pick-idx" in css and ".pidx" in css, "site.css 에 .pick-idx/.pidx 규�
 check(index.count('class="pick"') == 21, "코스 카드 21장 유지")
 check(index.count('class="cguide"') == 42, f"코스 가이드 링크 {index.count('class=\"cguide\"')}개(기대 42)")
 sm = (OUT / "sitemap.xml").read_text(encoding="utf-8")
-check(sm.count("<loc>") == 188, f"sitemap {sm.count('<loc>')} URL(기대 188)")
+check(sm.count("<loc>") == 202, f"sitemap {sm.count('<loc>')} URL(기대 202)")
 
 print()
 print("실패 없음" if not fails else "실패:\n  - " + "\n  - ".join(fails))

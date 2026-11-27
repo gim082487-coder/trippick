@@ -4,9 +4,13 @@
   <url><loc>https://trippick.pages.dev/cities/</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/osaka</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/tokyo</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://trippick.pages.dev/nagoya</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/fukuoka</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://trippick.pages.dev/sapporo</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/okinawa</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/danang</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://trippick.pages.dev/phuquoc</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://trippick.pages.dev/cebu</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/nhatrang</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/bangkok</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/taipei</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -19,6 +23,8 @@
   <url><loc>https://trippick.pages.dev/london</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/rome</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/barcelona</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://trippick.pages.dev/newyork</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://trippick.pages.dev/sydney</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/jeju</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/seoul</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/busan</loc><lastmod>2026-11-27</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -175,6 +181,14 @@
   <url><loc>https://trippick.pages.dev/guides/japan-restaurant-reservation-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://trippick.pages.dev/guides/macau-1n2d-ferry-bus-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://trippick.pages.dev/guides/paris-metro-navigo-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://trippick.pages.dev/guides/london-transport-heathrow-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://trippick.pages.dev/guides/rome-vatican-colosseum-booking-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://trippick.pages.dev/guides/taiwan-transport-thsr-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://trippick.pages.dev/guides/cebu-bohol-ferry-transfer-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://trippick.pages.dev/guides/kyoto-2n3d-course-budget</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://trippick.pages.dev/guides/hongkong-octopus-ael-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://trippick.pages.dev/guides/vietnam-4cities-comparison-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://trippick.pages.dev/guides/thailand-cities-comparison-guide</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://trippick.pages.dev/exchange</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://trippick.pages.dev/quiz</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://trippick.pages.dev/baggage</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>

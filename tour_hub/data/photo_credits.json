@@ -770,6 +770,54 @@
    "pexels_id": 18411385,
    "credit": "사진: Mo Eid / Pexels",
    "alt": "에펠탑과 파리 시내가 보이는 드론 항공샷"
+  },
+  "v65/london-transport-heathrow-guide": {
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v55/london.jpg",
+   "credit": "사진: Pexels",
+   "alt": "템스강 위 런던 타워 브리지"
+  },
+  "v65/rome-vatican-colosseum-booking-guide": {
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v55/rome.jpg",
+   "credit": "사진: Pexels",
+   "alt": "로마 콜로세움과 포로 로마노"
+  },
+  "v65/taiwan-transport-thsr-guide": {
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v45/taipei-3n4d.jpg",
+   "credit": "사진: 트립픽 보유 이미지(2026)",
+   "alt": "타이베이 101과 도심 스카이라인"
+  },
+  "v65/cebu-bohol-ferry-transfer-guide": {
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v59/cebu-3n4d-course.jpg",
+   "credit": "사진: Pexels (Elaine Bernadine Castro)",
+   "alt": "세부 막탄 해변과 리조트"
+  },
+  "v65/kyoto-2n3d-course-budget": {
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/courses/hero_kyoto_street.jpg",
+   "credit": "사진: 트립픽 보유 이미지(2026)",
+   "alt": "교토 기온의 전통 거리"
+  },
+  "v65/hongkong-octopus-ael-guide": {
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v55/hongkong.jpg",
+   "credit": "사진: Pexels",
+   "alt": "홍콩 빅토리아 하버 야경"
+  },
+  "v65/vietnam-4cities-comparison-guide": {
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v59/phu-quoc-3n4d-4n5d-course.jpg",
+   "credit": "사진: Pexels (Quang Nguyen Vinh)",
+   "alt": "푸꾸옥 해변과 리조트"
+  },
+  "v65/thailand-cities-comparison-guide": {
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v56/bangkok-3n4d-course.jpg",
+   "credit": "사진: Pexels (Meaw Zara)",
+   "alt": "방콕 왓아룬과 짜오프라야강"
   }
  }
 }

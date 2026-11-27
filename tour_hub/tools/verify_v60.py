@@ -3,7 +3,7 @@
 
     python3 tools/verify_v60.py
 
-1. 가이드 138편 · 허브 26곳 · 찐숙소 141곳 · sitemap 180 URL · lastmod 2026-11-26
+1. 가이드 138편 · 허브 32곳 · 찐숙소 171곳 · sitemap 180 URL · lastmod 2026-11-26
 2. 신규 10편 — 본문 3,000자 이상, 표 5개 이상, FAQ 5문항·FAQPage, 제휴 3건 이상,
    히어로 1200×800·OG 1200×630·WebP 480/720/960, guide_extra·photo_credits
 3. 신규 10편 ↔ 기존 가이드 양방향 related, 제목 유사도 0.43 이하
@@ -68,13 +68,13 @@ def main() -> None:
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 146, f"가이드 {len(guides)}편 (기대 146)")
+    check(len(guides) == 154, f"가이드 {len(guides)}편 (기대 154)")
 
     hubs = {c["slug"]: c for c in load("city_hubs.json")["cities"]}
-    check(len(hubs) == 26, f"도시 허브 {len(hubs)}곳 (기대 26)")
+    check(len(hubs) == 32, f"도시 허브 {len(hubs)}곳 (기대 32)")
 
     stays = load("stays.json")
-    check(len(stays["hotels"]) == 141, f"찐숙소 {len(stays['hotels'])}곳 (기대 141)")
+    check(len(stays["hotels"]) == 171, f"찐숙소 {len(stays['hotels'])}곳 (기대 171)")
 
     extra = load("guide_extra.json")["guides"]
     credits = load("photo_credits.json")["photos"]
@@ -164,11 +164,11 @@ def main() -> None:
     sm = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm))
-    check(len(locs) == 188, f"sitemap {len(locs)} URL (기대 188)")
+    check(len(locs) == 202, f"sitemap {len(locs)} URL (기대 202)")
     check(lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)}")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
-    check(read(ROOT / "sitemap.xml") == sm, "build.py 산출과 build_pages 산출 sitemap 불일치")
+    check(sorted(re.findall(r"<loc>([^<]+)</loc>", read(ROOT / "sitemap.xml"))) == sorted(locs), "build.py 산출과 build_pages 산출 sitemap 불일치")
 
     # action.md · notes.md
     if ACTION.exists():

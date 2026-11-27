@@ -49,7 +49,7 @@ def check(ok, msg):
 
 guides = load("guides.json")["guides"]
 by = {g["slug"]: g for g in guides}
-check(len(guides) == 146, f"가이드 {len(guides)}편 (기대 146)")
+check(len(guides) == 154, f"가이드 {len(guides)}편 (기대 154)")
 
 # ---------------------------------------------------------------- 1. 신규 3편
 for slug, hubword in NEW.items():
@@ -100,7 +100,7 @@ for f in guide_files:
     html = read(f)
     if 'class="bm-btn"' in html and f'data-bm="/guides/{f.name}"' in html and "data-bm-item=" in html:
         bms += 1
-check(bms == 146, f"★ 참고 글 저장 버튼이 있는 가이드 {bms}편 (기대 146)")
+check(bms == 154, f"★ 참고 글 저장 버튼이 있는 가이드 {bms}편 (기대 154)")
 
 # ---------------------------------------------------------------- 3. D-Day 위젯
 home = read(OUT / "index.html")
@@ -111,7 +111,7 @@ for name, html in (("홈", home), ("/checklist", checklist)):
     check(m is not None, f"{name}: tpTripData 없음")
     if m:
         payload = json.loads(m.group(1).replace("<\\/", "</"))
-        check(len(payload.get("cities") or []) == 26, f"{name}: 도시 {len(payload.get('cities') or [])}곳 (기대 26)")
+        check(len(payload.get("cities") or []) == 32, f"{name}: 도시 {len(payload.get('cities') or [])}곳 (기대 32)")
         stages = [s["d"] for s in payload.get("stages") or []]
         check(stages == ["D-14", "D-7", "D-3", "D-1", "현지"], f"{name}: 단계 {stages}")
         for c in payload["cities"]:
@@ -150,7 +150,7 @@ if js.exists():
 # ---------------------------------------------------------------- 5. sitemap·action
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 188, f"sitemap {len(locs)} URL (기대 188)")
+check(len(locs) == 202, f"sitemap {len(locs)} URL (기대 202)")
 for slug in NEW:
     check(f"/guides/{slug}" in sm, f"sitemap 에 /guides/{slug} 없음")
 if ACTION.exists():

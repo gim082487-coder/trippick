@@ -1389,6 +1389,13 @@ def trip_widget_payload(hubs: list, guides: list, ess_by_id: dict) -> dict:
         "chiangmai": ["chiang-mai-3n4d-course", "thailand-souvenir-list"],
         "bali": ["bali-ubud-seminyak-3n4d-course", "entry-immigration-guide"],
         "shanghai": ["shanghai-2n3d-3n4d-course", "currency-payment-fees"],
+        # v65: 삿포로·나고야·푸꾸옥·세부·뉴욕·시드니 허브
+        "sapporo": ["airport-arrival-city-transfer-guide", "sapporo-hokkaido-3n4d-winter"],
+        "nagoya": ["nagoya-3n4d-course-budget", "japan-ic-card"],
+        "phuquoc": ["phu-quoc-3n4d-4n5d-course", "vietnam-4cities-comparison-guide"],
+        "cebu": ["cebu-3n4d-course", "cebu-bohol-ferry-transfer-guide"],
+        "newyork": ["new-york-4n5d-course-budget", "us-esta-application-guide"],
+        "sydney": ["sydney-4n5d-course", "oceania-eta-nzeta"],
     }
     country_ess = {"jp": "jp-esim-usimsa-3d", "vn": "vn-esim-usimsa-3d",
                    "th": "th-esim-usimsa-3d", "tw": "tw-esim-usimsa-3d",
@@ -1400,7 +1407,9 @@ def trip_widget_payload(hubs: list, guides: list, ess_by_id: dict) -> dict:
              "guam": "괌", "saipan": "사이판", "singapore": "싱가포르", "hongkong": "홍콩", "macau": "마카오",
              "okinawa": "오키나와",
              "paris": "파리", "london": "런던", "rome": "로마", "barcelona": "바르셀로나",
-             "chiangmai": "치앙마이", "bali": "발리", "shanghai": "상하이"}
+             "chiangmai": "치앙마이", "bali": "발리", "shanghai": "상하이",
+             "sapporo": "삿포로", "nagoya": "나고야", "phuquoc": "푸꾸옥", "cebu": "세부",
+             "newyork": "뉴욕", "sydney": "시드니"}
     cities = []
     for h in hubs:
         slug = h["slug"]

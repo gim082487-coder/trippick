@@ -1620,10 +1620,11 @@ _hub_cache = None
 _SEASON_CACHE = None
 # v25: 13곳 — 해외 7곳 뒤에 국내 6곳(제주 + 신규 서울·부산·강릉·여수·경주)
 HUB_ORDER = [
-    "osaka", "tokyo", "fukuoka", "okinawa", "danang", "nhatrang", "bangkok", "taipei",
+    "osaka", "tokyo", "nagoya", "fukuoka", "sapporo", "okinawa",
+    "danang", "phuquoc", "cebu", "nhatrang", "bangkok", "taipei",
     "singapore", "hongkong", "macau", "guam", "saipan",
-    "paris", "london", "rome", "barcelona",
-    "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju",
+    "paris", "london", "rome", "barcelona", "newyork", "sydney",
+    "jeju", "seoul", "busan", "gangneung", "yeosu", "gyeongju", "chiangmai", "bali", "shanghai",
 ]
 
 
@@ -2162,10 +2163,12 @@ def hub_page(out_root: Path, hub: dict, base: str) -> Path:
     guides = hub_guides(hub)
     hotels = [h for h in TRIPCOM["hotels"] if h.get("cityId") in (hub.get("hotels") or [])]
     flight = next((f for f in TRIPCOM["flights"] if hub.get("flight") and hub["flight"] in f["route"]), None)
+    # v65: 허브 slug 와 트립닷컴 cityId 가 다른 도시(푸꾸옥 phu_quoc)를 위해 tripcomCity 허용
+    _act_city = hub.get("tripcomCity") or slug
     hub_acts = [
         a for a in (TRIPCOM.get("tickets") or []) + (TRIPCOM.get("transfers") or []) + (TRIPCOM.get("cars") or [])
         + (TRIPCOM.get("esims") or []) + (TRIPCOM.get("rails") or [])
-        if a.get("cityId") == slug
+        if a.get("cityId") == _act_city
     ]
     hub_tickets = [a for a in hub_acts if a["category"] == "ticket"]
     hub_pickups = [a for a in hub_acts if a["category"] in ("transfer", "car")]
@@ -3474,6 +3477,7 @@ STAY_COUNTRY_ISO = {
     "danang": "vn", "nhatrang": "vn", "bangkok": "th", "taipei": "tw",
     "paris": "fr", "london": "gb", "rome": "it", "barcelona": "es",
     "sapporo": "jp", "singapore": "sg",
+    "newyork": "us", "nagoya": "jp", "phuquoc": "vn", "cebu": "ph", "sydney": "au",
 }
 
 
