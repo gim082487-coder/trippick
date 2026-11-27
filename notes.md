@@ -193,7 +193,7 @@
 - 사이트맵: `sitemap.xml` **202 URL** · `sitemap-index.xml` 분할(core 15·hubs 32·guides 155) 합 202·중복 0
 
 ### 6. 배포·라이브 검증
-- 커밋 `426fa17` → `main` 푸시(f827f66→426fa17), Cloudflare Pages 반영 확인.
+- 커밋 `426fa17`(본문) → `main` 푸시(f827f66→426fa17), Cloudflare Pages 반영 확인. 이어 `f80b746`(라이브 스크린샷·notes)과 `09a2c00`(대만·세부 원화 환산 정정)을 푸시해 라이브에 반영했다.
 - 라이브 HTTP **200**: `/sapporo` `/nagoya` `/phuquoc` `/cebu` `/newyork` `/sydney` `/cities/` `/stays` `/guides/` `sitemap.xml` `sitemap-index.xml` `sitemap-hubs.xml` `sitemap-guides.xml` + 신규 가이드 8편
 - 라이브 본문 확인: `/guides/` "가이드 154편" · `/stays` "171곳" · `/newyork` "찐숙소 5곳"·"JFK 공항픽업" · 런던 가이드 "£5.90"·"피카딜리선" · `sitemap.xml` 202 `<loc>`
 - IndexNow **20 URL**(허브 6·가이드 8·사이트맵 3·`/cities/`·`/stays`·`sitemap-guides.xml`) 제출 **HTTP 200**, 키 파일 200
