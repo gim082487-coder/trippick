@@ -29,6 +29,7 @@
    "image": "images/courses/osaka.jpg",
    "imageAlt": "후시미이나리 신사의 도리이 터널",
    "guides": [
+    "kansai-airport-osaka-kyoto-transfer",
     "overseas-roaming-esim-install-troubleshooting",
     "japan-convenience-store-must-buy",
     "airport-arrival-city-transfer-guide",
@@ -40,7 +41,6 @@
     "kyoto-bustour-vs-diy",
     "osaka-usj-transfer",
     "osaka-3d-package",
-    "japan-souvenir-list",
     "japan-donki-tax-free-guide",
     "usj-express-pass",
     "japan-ic-card",
@@ -773,6 +773,7 @@
     }
    ],
    "guides": [
+    "macau-1n2d-ferry-bus-guide",
     "hongkong-macau-3n4d-course",
     "taiwan-hongkong-gift-list",
     "currency-payment-fees",
@@ -828,6 +829,7 @@
     }
    ],
    "guides": [
+    "paris-metro-navigo-guide",
     "paris-london-5n7d",
     "europe-shopping-tax-refund",
     "europe-pickpocket-tax-refund-guide",
