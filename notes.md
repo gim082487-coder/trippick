@@ -199,3 +199,49 @@
 - IndexNow **20 URL**(허브 6·가이드 8·사이트맵 3·`/cities/`·`/stays`·`sitemap-guides.xml`) 제출 **HTTP 200**, 키 파일 200
 - 라이브 1280·390 렌더(`tools/v65_shots.py --live`): 허브 6·가이드 8·`/cities/`·`/stays`·`/guides/` **가로 넘침 0·깨진 이미지 0·pageerror 0**, sitemap·robots 200. 스크린샷 `v65_shots/live_*`, 리포트 `v65_shots/live_report.json`
 - 서치콘솔 색인 작업 파일 갱신: `scheduled-actions/🔍-구글-서치콘솔-색인-요청-재시도/action.md` 사이트맵 188→202·최우선 목록 맨 앞에 v65 허브 6곳·가이드 8편, `notes.md`에 v65 반영 메모
+
+## v66 (2026-11-27) — 신규 가이드 12편 + 사이트맵 214 URL
+
+사용자 지시: "대규모 글쓰기 ㄱㄱㄱ"
+
+### 1. 신규 가이드 12편 (154 → 166편)
+| 슬러그 | 제목 | 핵심 확인값(2026-11-27) |
+|---|---|---|
+| `la-las-vegas-grand-canyon-course` | 미서부 6박7일 | 그랜드캐니언 차 $35·비거주자 16세+ 1인 $100(2026-01-01~)·유니버설 $99.95·리조트피 세후 $51.02~62.36·LA 메트로 $1.75/상한 $5 |
+| `london-4n5d-course-budget` | 런던 4박5일 | 대영박물관·내셔널갤러리 무료(금 20:30·21:00), 옥스퍼드 왕복 £37.70, 세븐시스터즈 £18~32, 뮤지컬 £21~39, 상한 £8.90 |
+| `dubai-stopover-3n4d-guide` | 두바이 3박4일 | 무비자 90일, 부르즈 실버 AED 189·골드 399, 사파리 AED 99~199, 놀 실버 25(19 충전), 지하철 3~7.50 |
+| `melbourne-sydney-6n7d-guide` | 멜버른·시드니 6박7일 | 스카이버스 $25.90, 펭귄퍼레이드 $34, 오션로드 투어 $107~159, 오팔 주중 $19.30·금~일 $9.65, 공항 이용료 $18.61, 국내선 $104~ |
+| `japan-small-cities-comparison` | 일본 소도시 5곳 | 공항버스 다카마쓰 1,300(2026-10-01 인상)·마쓰야마 1,000·시즈오카 1,200·구마모토 1,400·가고시마 1,500엔, 마쓰야마 전차 250·구마모토 시전 200엔 |
+| `okinawa-rental-car-bus-guide` | 오키나와 렌터카 vs 유이레일 | 유이레일 290~390·1일권 1,000·2일권 1,800, 렌터카 24시간 6,600엔, 나하~교다 ETC 1,040·현금 1,610엔(35.5% 할인 2027-03-31까지) |
+| `europe-night-train-ryanair-guide` | 유럽 항공 vs 고속열차 | 라이언에어 10kg 기내 £12.49~36·20kg £21.49~59.99, 이지젯 15kg £6.99~, 유로스타 £39·2시간 28분, TGV €39, 프레차로사 €37.90·이탈로 €19~29 |
+| `travel-adapter-voltage-world-guide` | 전압·어댑터 | 한국 220V C/F·일본 100V A/B·미국 120V A/B·영국/홍콩/싱가포르/말레이시아 230V G·호주 230V I, 100–240V면 어댑터만 |
+| `bali-driver-nusa-penida-guide` | 발리 기사·누사페니다 | 기사 55만~85만 루피아, 그랩 2만~4만, 사누르~누사페니다 17만~21만 5천(45분)+섬 입장 2만 5천, 빠당빠당 1만 5천 |
+| `fukuoka-hakata-tenjin-shopping-guide` | 후쿠오카 쇼핑 | 하카타역 락커 대 1,000·지하철 900엔, 토스 버스 280엔, 텐진 10~20시·캐널/라라포트 10~21시, 면세 세전 5,000엔·90일·공항 환급(2026-11-01~) |
+| `malaysia-kuala-lumpur-2n3d-guide` | 쿠알라룸푸르 2박3일 | KLIA 익스프레스 RM55·28분(2027-01-01 RM65), 바투 KTM RM2.60, 페트로나스 RM127/137, 관광세 RM10 |
+| `hawaii-island-hopping-guide` | 하와이 섬 비교 | 주내선 $49~129·35~55분, 렌터카 오아후 $42~60(수수료 20~40%), 할레아칼라 $30+일출 $1, 화산 $30, 와이키키 주차 $30~50 |
+
+- 기존 154편과 슬러그·주제 중복 0. `sydney-4n5d-course`(시드니만), `okinawa-3n4d-course`(코스), `fukuoka-yufuin-3n4d-course`, `hawaii-oahu-5n7d-course`, `us-west-4canyons`(패키지)와는 범위를 나눠 썼다.
+- 본문 공백 제외 3,000자 이상(3,000~3,7xx), 표 7~10개, h2 5개 이상, FAQ 5문항, 제휴 링크 6~8건, 도구 링크 포함.
+- 히어로 1200×800 + WebP 480/720/960 + OG 1200×630 12편 생성(`tools/make_v66_images.py`). 사진: 펙셀스 신규 5장(그랜드캐니언 34921087·두바이 35791378·멜버른 29813638·플러그 3639031·페트로나스 1324500, `images/v66_src/`), 기존 7장 재사용. `photo_credits.json`에 v66 12건 기록.
+- 허브 연결: `/london`·`/fukuoka`(관련 가이드 13편 표기)·`/okinawa`·`/sydney` 목록에 신규 편 추가. 역링크 14개 가이드(sydney·okinawa·fukuoka-yufuin·london-transport·paris-london·bali·hawaii·japan-rental-car·europe-train·travel-card-packing·japan-shinkansen·us-west-4canyons·singapore·new-york·visa-free·airport-transfer·japan-ic-card·packing-powerbank)에 본문 링크. 지역 코드 `my`(말레이시아) 추가.
+
+### 2. 검증
+- `build.py` → 상품 84·도시 30·코스 21·필수품 65, 홈 1,033KB
+- `build_pages.py --out ../deploy_site --check-links` → **HTML 217개·내부 링크 24,295개 실패 0**
+- `verify_v34·36·41·42·43·44·45·48·51·52·53·54·59·60·61·62·63·64·65` 기대값(166편·214 URL·167 guides) 갱신 후 전부 PASS + **신규 `tools/verify_v66.py` PASS**
+- `v50_content_audit.py` → 166편 **1,800자 미만 0편**, 제목 유사도 최대 **0.42**
+- SEO 제목 60자 제한: 신규 8편 제목을 60자 이하로 줄여 `verify_v48` 통과
+- 사이트맵: `sitemap.xml` **214 URL**, `sitemap-index.xml` 분할(core 15·hubs 32·guides 167) 합 214·중복 0
+- 로컬 1280·390 렌더(`tools/v66_shots.py`): 12편+허브 4곳+`/guides/` **가로 넘침 0·깨진 이미지 0·pageerror 0**
+
+### 3. 배포·라이브 검증
+- 커밋 `9570591`(본문·이미지·deploy_site) → `main` 푸시(f92d951→9570591)
+- 라이브 HTTP **200**: 신규 12편(58,070~61,378B)·`/london`·`/fukuoka`·`/okinawa`·`/sydney`·`/guides/`(가이드 166편 표기)·`sitemap.xml` 214 `<loc>`·`sitemap-index.xml`·`sitemap-guides.xml`·`sitemap-hubs.xml`
+- **사이트맵 214 URL 전부 HTTP 200**(curl, 중복 0)
+- IndexNow **20 URL**(신규 12+허브 4+`/guides/`+사이트맵 3) 제출 **HTTP 200**, 키 파일 200
+- 라이브 1280·390 렌더(`tools/v66_shots.py --live`): 34뷰 **가로 넘침 0·깨진 이미지 0·pageerror 0**, 표 7~10·FAQ 5·제휴 8~11. 스크린샷 `v66_shots/live_*`, 리포트 `v66_shots/live_report.json`
+- 서치콘솔 색인 작업 파일 갱신: `scheduled-actions/🔍-구글-서치콘솔-색인-요청-재시도/action.md` 사이트맵 202→214·최우선 목록 맨 앞에 v66 12편, `notes.md`에 v66 반영
+
+### 4. 링크 검증 한계 (기록)
+- 트립닷컴 호텔 목록 URL은 curl로 HTTP 200 + 호텔 데이터의 `cityName`(라스베이거스·두바이·멜버른·KL 등) 일치 확인.
+- 항공권(`/flights/...`)·액티비티(`/things-to-do/...`)·공항픽업(`/airport-transfers/...`) 페이지는 2026-11-27 현재 자동 요청에 `Trip.com-Verification`(아이콘 CAPTCHA)를 반환해 페이지 내용을 검증하지 못했다. 기존 사이트에서 검증된 동일 URL 패턴(도시 코드·partner 파라미터)으로 생성했고 HTTP 상태는 200(챌린지 페이지)임을 확인했다. CAPTCHA는 우회하지 않았다.
