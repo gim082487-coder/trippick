@@ -191,3 +191,11 @@
 - `verify_v34` Chromium 렌더 검사 실패 0
 - 로컬 1280·390 렌더(`tools/v65_shots.py`): 허브 6곳+가이드 8편+`/cities/`·`/stays`·`/guides/` **가로 넘침 0·깨진 이미지 0·pageerror 0**, 허브 찐숙소 카드 5~9장·`/stays` 171장
 - 사이트맵: `sitemap.xml` **202 URL** · `sitemap-index.xml` 분할(core 15·hubs 32·guides 155) 합 202·중복 0
+
+### 6. 배포·라이브 검증
+- 커밋 `426fa17` → `main` 푸시(f827f66→426fa17), Cloudflare Pages 반영 확인.
+- 라이브 HTTP **200**: `/sapporo` `/nagoya` `/phuquoc` `/cebu` `/newyork` `/sydney` `/cities/` `/stays` `/guides/` `sitemap.xml` `sitemap-index.xml` `sitemap-hubs.xml` `sitemap-guides.xml` + 신규 가이드 8편
+- 라이브 본문 확인: `/guides/` "가이드 154편" · `/stays` "171곳" · `/newyork` "찐숙소 5곳"·"JFK 공항픽업" · 런던 가이드 "£5.90"·"피카딜리선" · `sitemap.xml` 202 `<loc>`
+- IndexNow **20 URL**(허브 6·가이드 8·사이트맵 3·`/cities/`·`/stays`·`sitemap-guides.xml`) 제출 **HTTP 200**, 키 파일 200
+- 라이브 1280·390 렌더(`tools/v65_shots.py --live`): 허브 6·가이드 8·`/cities/`·`/stays`·`/guides/` **가로 넘침 0·깨진 이미지 0·pageerror 0**, sitemap·robots 200. 스크린샷 `v65_shots/live_*`, 리포트 `v65_shots/live_report.json`
+- 서치콘솔 색인 작업 파일 갱신: `scheduled-actions/🔍-구글-서치콘솔-색인-요청-재시도/action.md` 사이트맵 188→202·최우선 목록 맨 앞에 v65 허브 6곳·가이드 8편, `notes.md`에 v65 반영 메모
