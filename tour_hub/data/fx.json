@@ -1,8 +1,8 @@
 {
   "api": "https://open.er-api.com/v6/latest/KRW",
   "apiNote": "open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) → 실패 시 cdn.jsdelivr.net/@fawazahmed0/currency-api — 하루 1회 갱신",
-  "fallbackUpdatedKst": "2026-11-25 09:02",
-  "fallbackSource": "2026-11-25 00:02 UTC(한국 09:02) open.er-api.com 고시값(1 KRW 기준 역산). 주 API가 2026-11-23 00:02 UTC 이후 하루 1회 정상 갱신되고 있어(2026-11-25 확인) jsDelivr 백업 대신 주 API 값을 씁니다. 전일 대비 변동은 모두 1% 미만(엔 -0.16%·달러 -0.13%·위안 +0.54%·홍콩달러 +0.22%)이라 고정 환산 기준(staticBasis)·planner.json fx는 그대로 유지했습니다.",
+  "fallbackUpdatedKst": "2026-11-27 09:02",
+  "fallbackSource": "2026-11-27 00:02 UTC(한국 09:02) open.er-api.com 고시값(1 KRW 기준 역산). 주 API가 2026-11-23 00:02 UTC 이후 하루 1회 정상 갱신되고 있어(2026-11-27 확인, time_last_update_utc=Fri, 27 Nov 2026 00:02:31 +0000) jsDelivr 백업 대신 주 API 값을 씁니다. 전일(2026-11-25) 대비 변동은 모두 1% 미만(엔 +0.04%·달러 +0.13%·유로 +0.15%·위안 +0.18%·홍콩달러 +0.10%)이라 고정 환산 기준(staticBasis)·planner.json fx는 그대로 유지했습니다. 2026-11-26 고시는 주·백업 소스 모두 미발행이라 11-25 값을 유지했고, 오늘 11-27 고시로 하루 지연을 해소했습니다.",
   "currencies": [
     {
       "code": "JPY",
@@ -11,7 +11,7 @@
       "symbol": "¥",
       "unit": 100,
       "decimals": 0,
-      "krw": 8.439,
+      "krw": 8.4426,
       "presets": [
         1000,
         5000,
@@ -41,7 +41,7 @@
       "symbol": "฿",
       "unit": 1,
       "decimals": 0,
-      "krw": 39.582,
+      "krw": 39.4773,
       "presets": [
         500,
         1000,
@@ -56,7 +56,7 @@
       "symbol": "NT$",
       "unit": 1,
       "decimals": 0,
-      "krw": 40.7631,
+      "krw": 40.7764,
       "presets": [
         500,
         1000,
@@ -71,7 +71,7 @@
       "symbol": "₱",
       "unit": 1,
       "decimals": 1,
-      "krw": 21.0544,
+      "krw": 21.0588,
       "presets": [
         1000,
         5000,
@@ -86,7 +86,7 @@
       "symbol": "US$",
       "unit": 1,
       "decimals": 2,
-      "krw": 1342.2819,
+      "krw": 1344.086,
       "presets": [
         50,
         100,
@@ -101,7 +101,7 @@
       "symbol": "€",
       "unit": 1,
       "decimals": 2,
-      "krw": 1472.7541,
+      "krw": 1474.9263,
       "presets": [
         50,
         100,
@@ -131,7 +131,7 @@
       "symbol": "HK$",
       "unit": 1,
       "decimals": 1,
-      "krw": 171.3502,
+      "krw": 171.5266,
       "presets": [
         500,
         1000,
@@ -146,7 +146,7 @@
       "symbol": "CN¥",
       "unit": 1,
       "decimals": 0,
-      "krw": 200.9646,
+      "krw": 201.3288,
       "presets": [
         500,
         1000,

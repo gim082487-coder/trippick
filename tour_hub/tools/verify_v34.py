@@ -2,12 +2,22 @@
 """v34 로컬 검증 — 홈/캘린더/체크리스트/패스/환율/숙소 페이지를 1280·390px 로 열어
    묶음 CTA·유럽 링크·클릭 추적(tp_clicks_v1)·가로 넘침·콘솔 에러를 확인한다.
 
-   LD_LIBRARY_PATH=/workspace/.tools/sysroot/usr/lib/x86_64-linux-gnu python3 tools/verify_v34.py
+   LD_LIBRARY_PATH=/workspace/.tools/chromelibs/root/usr/lib/x86_64-linux-gnu:/workspace/.tools/sysroot/usr/lib/x86_64-linux-gnu \
+     python3 tools/verify_v34.py
+
+   2026-11-27 갱신: 계산기 데이터는 fetch() 로 받으므로 file:// 로는 동작하지 않는다(브라우저가 file 스킴
+   fetch 를 막음). 로컬 HTTP 서버로 deploy_site 를 서빙해 라이브와 같은 조건으로 검사하고,
+   v50 지연 로드는 #planner 로 스크롤해 부트시킨 뒤, /stays 는 v21+ 기본 필터에서 숨겨진 파리 카드를
+   필터를 눌러 표시한 뒤 잰다.
 """
 from __future__ import annotations
 
+import functools
+import http.server
 import json
+import socketserver
 import sys
+import threading
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
@@ -17,6 +27,19 @@ SITE = ROOT.parent / "deploy_site"
 SHOTS = Path("/workspace/v34_shots")
 SHOTS.mkdir(exist_ok=True)
 FAIL = []
+BASE = ""
+
+
+def start_server(port=8123):
+    """deploy_site 를 로컬 HTTP 로 서빙한다(file:// 로는 fetch·폰트 CORS 때문에 라이브와 조건이 달라진다)."""
+    global BASE
+    handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(SITE))
+    handler.log_message = lambda *a, **k: None
+    socketserver.TCPServer.allow_reuse_address = True
+    httpd = socketserver.TCPServer(("127.0.0.1", port), handler)
+    threading.Thread(target=httpd.serve_forever, daemon=True).start()
+    BASE = f"http://127.0.0.1:{port}"
+    return httpd
 
 
 def check(cond, msg):
@@ -29,11 +52,13 @@ def open_page(ctx, name, width):
     page = ctx.new_page()
     errors = []
     # file:// 로 열면 사이트 루트 절대경로(/images/...) 리소스만 실패한다(라이브에서는 200). 그건 제외한다.
-    page.on("console", lambda m: errors.append(m.text) if (m.type == "error" and "Failed to load resource" not in m.text) else None)
+    skip = ("Failed to load resource", "Access to font", "blocked by CORS policy")
+    page.on("console", lambda m: errors.append(m.text)
+            if (m.type == "error" and not any(s in m.text for s in skip)) else None)
     page.on("pageerror", lambda e: errors.append("PAGEERROR " + str(e)))
-    page.on("requestfailed", lambda r: errors.append("REQFAIL " + r.url[-70:]) if not r.url.startswith("file:///") else None)
+    page.on("requestfailed", lambda r: errors.append("REQFAIL " + r.url[-70:]))
     page.on("pageerror", lambda e: errors.append(str(e)))
-    page.goto((SITE / name).as_uri(), wait_until="load")
+    page.goto(f"{BASE}/{name}", wait_until="load")
     page.wait_for_timeout(400)
     return page, errors
 
@@ -51,6 +76,19 @@ def run(width):
         # ---- 홈 예산 계산기
         page, errs = open_page(ctx, "index.html", width)
         page.wait_for_selector("#plBody .plan", timeout=8000)
+        # v50: 계산기 데이터는 #planner 가까이 와야 fetch 로 부트된다. 스크롤로 부트시킨 뒤 묶음을 검사한다.
+        page.evaluate("() => document.getElementById('planner').scrollIntoView()")
+        page.mouse.wheel(0, 200)
+        try:
+            page.wait_for_selector("#plBody[data-tp-city]", timeout=8000)
+        except Exception:
+            # 스크롤만으로 부트가 안 되면 탭 클릭으로 한 번 더 트리거한다(지연 로드 경로 확인).
+            try:
+                page.click("[data-plan-tab]", timeout=3000)
+                page.wait_for_selector("#plBody[data-tp-city]", timeout=8000)
+            except Exception:
+                pass
+        page.wait_for_timeout(400)
         page.wait_for_timeout(300)
         info = page.evaluate("""() => {
             const h = document.getElementById('plBundle');
@@ -152,7 +190,22 @@ def run(width):
 
         # ---- /stays 배지 겹침 + 클릭 추적
         page, errs = open_page(ctx, "stays.html", width)
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(1200)
+        # v21+: 기본 필터(all)에서는 파리 카드가 숨김 상태라 필터를 눌러 표시한다.
+        # v23: 640px 이하는 지역 칩이 '지역' 폴드(#sfFold) 안에 접혀 있어 먼저 펼친다.
+        for _ in range(3):
+            if page.evaluate("""() => { const c = document.querySelector('.scard[data-region="paris"]');
+                                         return !!(c && c.getBoundingClientRect().height > 0); }"""):
+                break
+            try:
+                page.click("#sfFold", timeout=2000)
+            except Exception:
+                pass
+            try:
+                page.click('.gf-chip[data-region="paris"]', timeout=4000)
+            except Exception:
+                pass
+            page.wait_for_timeout(500)
         geo = page.evaluate("""() => {
             const card = document.querySelector('.scard[data-region="paris"]');
             if (!card) return null;
@@ -189,8 +242,12 @@ def run(width):
 
 
 if __name__ == "__main__":
-    for w in (1280, 390):
-        run(w)
+    httpd = start_server()
+    try:
+        for w in (1280, 390):
+            run(w)
+    finally:
+        httpd.shutdown()
     print("\n실패:", len(FAIL))
     for f in FAIL:
         print(" -", f)
