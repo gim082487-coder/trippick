@@ -138,3 +138,4 @@
 - IndexNow **12 URL**(신규 8+`/guides/`+`sitemap.xml`+`sitemap-index.xml`+`sitemap-guides.xml`) 제출 **HTTP 200**, 키 파일 200
 - 라이브 1280·390 렌더(`tools/v64_shots.py --live`): 8편+허브 3곳+`/guides/` **가로 넘침 0·깨진 이미지 0·pageerror 0**, 표 7~9·FAQ 5·제휴 7~11. 스크린샷 `v64_shots/live_*`, 리포트 `v64_shots/live_report.json`
 - 서치콘솔 색인 작업 파일 갱신: `scheduled-actions/🔍-구글-서치콘솔-색인-요청-재시도/action.md` 사이트맵 180→188, 최우선 목록 맨 앞에 v64 8편 추가, `notes.md`에 v64 반영 메모
+- 배포 후 검증에서 마카오 택시 기본요금을 DSAT 공식(1,600m까지 MOP21, 공항·타이파 페리 승차 +MOP8)으로 확인해 MOP19→MOP21로 정정하고 재배포(`afb7340`, 라이브 15:38:21). 해당 URL IndexNow 재제출 200.
