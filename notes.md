@@ -53,7 +53,7 @@
 - `staticBasis`·`planner.json fx`는 기준(2026-11-20) 대비 최대 +0.89%(AUD)/+0.71%(JPY)로 3% 미만이라 유지. `/exchange` 고시일 `2026.11.27`·환율표 반영 확인.
 
 ### 2. verify_v34 실행 환경 정상화 (도구 수정)
-- 이 환경에 Chromium 시스템 라이브러리가 없어 v34는 계속 실행 불가였습니다. `LD_LIBRARY_PATH=/workspace/.tools/chromelibs/root/usr/lib/x86_64-linux-gnu:/workspace/.tools/sysroot/usr/lib/x86_64-linux-gnu`로 실행되도록 안내를 docstring에 적었습니다.
+- 이 환경에 Chromium 시스템 라이브러리가 없어 v34는 계속 실행 불가였습니다. `tools/verify_v34.py`가 시작할 때 `/workspace/.tools/chromelibs/root/usr/lib/x86_64-linux-gnu`·`/workspace/.tools/sysroot/usr/lib/x86_64-linux-gnu`를 `LD_LIBRARY_PATH`에 스스로 넣도록 해, 이제 `python3 tools/verify_v34.py`만으로 실행됩니다.
 - 그 위에서 드러난 3가지 **검사 스크립트 노후화**를 고쳤습니다(사이트 코드 문제 아님):
   1. `file://`로 열면 계산기 데이터 `fetch()`가 막혀(v50 지연 로드) 홈 묶음 CTA가 늘 0개로 보였습니다 → `deploy_site`를 로컬 HTTP(127.0.0.1)로 서빙해 라이브와 같은 조건으로 검사.
   2. v50 지연 로드 때문에 홈은 `#planner`로 스크롤해 부트시킨 뒤 측정(안 되면 탭 클릭으로 재시도).

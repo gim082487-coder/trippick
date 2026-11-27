@@ -15,10 +15,19 @@ from __future__ import annotations
 import functools
 import http.server
 import json
+import os
 import socketserver
 import sys
 import threading
 from pathlib import Path
+
+# 이 실행 환경의 Chromium은 시스템 라이브러리를 따로 풀어 둔 디렉터리를 필요로 한다.
+# (없는 환경에서는 그냥 건너뛴다. Playwright가 자체 라이브러리로 뜨는 경우도 있다.)
+_LIBS = [p for p in ("/workspace/.tools/chromelibs/root/usr/lib/x86_64-linux-gnu",
+                    "/workspace/.tools/sysroot/usr/lib/x86_64-linux-gnu") if Path(p).is_dir()]
+if _LIBS:
+    _prev = os.environ.get("LD_LIBRARY_PATH")
+    os.environ["LD_LIBRARY_PATH"] = ":".join(_LIBS + ([_prev] if _prev else []))
 
 from playwright.sync_api import sync_playwright
 
