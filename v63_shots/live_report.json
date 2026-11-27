@@ -1,0 +1,146 @@
+{
+ "pc_tokyo": {
+  "url": "/guides/tokyo-3n4d-course-budget",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 1,
+  "tables": 8,
+  "faq": 6,
+  "sponsored": 11,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_pc_tokyo.png"
+ },
+ "pc_visa": {
+  "url": "/guides/visa-free-stay-duration-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 2,
+  "tables": 5,
+  "faq": 6,
+  "sponsored": 8,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_pc_visa.png"
+ },
+ "pc_rental": {
+  "url": "/guides/southeast-asia-rental-car-license-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 3,
+  "tables": 8,
+  "faq": 6,
+  "sponsored": 9,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_pc_rental.png"
+ },
+ "pc_hub_tokyo": {
+  "url": "/tokyo",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 22,
+  "tables": 1,
+  "faq": 6,
+  "sponsored": 28,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_pc_hub_tokyo.png"
+ },
+ "pc_guides_index": {
+  "url": "/guides/",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 137,
+  "tables": 0,
+  "faq": 1,
+  "sponsored": 0,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_pc_guides_index.png"
+ },
+ "mo_tokyo": {
+  "url": "/guides/tokyo-3n4d-course-budget",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 1,
+  "tables": 8,
+  "faq": 6,
+  "sponsored": 11,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_mo_tokyo.png"
+ },
+ "mo_visa": {
+  "url": "/guides/visa-free-stay-duration-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 2,
+  "tables": 5,
+  "faq": 6,
+  "sponsored": 8,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_mo_visa.png"
+ },
+ "mo_rental": {
+  "url": "/guides/southeast-asia-rental-car-license-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 3,
+  "tables": 8,
+  "faq": 6,
+  "sponsored": 9,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_mo_rental.png"
+ },
+ "mo_hub_tokyo": {
+  "url": "/tokyo",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 22,
+  "tables": 1,
+  "faq": 6,
+  "sponsored": 28,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_mo_hub_tokyo.png"
+ },
+ "mo_guides_index": {
+  "url": "/guides/",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 137,
+  "tables": 0,
+  "faq": 1,
+  "sponsored": 0,
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v63_shots/live_mo_guides_index.png"
+ },
+ "sitemap/sitemap.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-index.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-core.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-hubs.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-guides.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/robots.txt": {
+  "http": 200,
+  "ct": "text/plain; charset=utf-8"
+ }
+}
