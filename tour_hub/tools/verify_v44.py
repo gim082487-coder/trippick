@@ -40,7 +40,7 @@ def load(name):
 
 # ---------------------------------------------------------------- 1. 가이드
 guides = load("guides.json")["guides"]
-check(len(guides) == 166, f"가이드 {len(guides)}편 (기대 166)")
+check(len(guides) == 171, f"가이드 {len(guides)}편 (기대 171)")
 by = {g["slug"]: g for g in guides}
 for slug in NEW:
     g = by.get(slug)
@@ -109,7 +109,7 @@ for slug in NEW[:2]:
 
 # ---------------------------------------------------------------- 4. sitemap·색인·action
 locs = re.findall(r"<loc>([^<]+)</loc>", read(OUT / "sitemap.xml"))
-check(len(locs) == 214, f"sitemap {len(locs)} URL (기대 214)")
+check(len(locs) == 219, f"sitemap {len(locs)} URL (기대 219)")
 check("https://trippick.pages.dev/sos" in locs, "sitemap 에 /sos 없음")
 idx = json.loads(read(OUT / "search_index.json"))
 items = idx.get("items") or []

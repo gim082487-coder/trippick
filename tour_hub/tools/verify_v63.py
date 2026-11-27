@@ -35,8 +35,8 @@ def check(ok: bool, msg: str):
 guides = json.loads((DATA / "guides.json").read_text(encoding="utf-8"))["guides"]
 by_slug = {g["slug"]: g for g in guides}
 
-print("[1] 가이드 166편")
-check(len(guides) == 166, f"가이드 {len(guides)}편 (기대 166)")
+print("[1] 가이드 171편")
+check(len(guides) == 171, f"가이드 {len(guides)}편 (기대 171)")
 
 NEW = {
     "tokyo-3n4d-course-budget": ["1,060엔", "1,500엔", "1,800엔", "2,700엔", "72시간"],
@@ -89,7 +89,7 @@ for slug in NEW:
 print("[3] 사이트맵")
 sm = ET.parse(OUT / "sitemap.xml").getroot()
 locs = [e.text for e in sm.findall("sm:url/sm:loc", NS)]
-check(len(locs) == 214, f"sitemap.xml {len(locs)} URL (기대 214)")
+check(len(locs) == 219, f"sitemap.xml {len(locs)} URL (기대 219)")
 check(len(set(locs)) == len(locs), "sitemap.xml 중복 0")
 for slug in NEW:
     check(f"https://trippick.pages.dev/guides/{slug}" in locs, f"sitemap 포함 {slug}")
@@ -120,7 +120,7 @@ print("[4] 레거시 정리·색인")
 check(not (ROOT / "exchange.html").exists(), "레거시 tour_hub/exchange.html 제거")
 check((ROOT / "content" / "pages" / "exchange.html").exists(), "정본 content/pages/exchange.html 유지")
 gi = (OUT / "guides" / "index.html").read_text(encoding="utf-8")
-check("166편" in gi, "/guides/ 166편 표기")
+check("171편" in gi, "/guides/ 171편 표기")
 tokyo = (OUT / "tokyo.html").read_text(encoding="utf-8")
 check("tokyo-3n4d-course-budget" in tokyo, "/tokyo 허브에 신규 가이드 연결")
 check((OUT / "exchange.html").exists(), "/exchange 빌드 정상")

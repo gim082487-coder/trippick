@@ -895,6 +895,39 @@
    "alt": "하와이 해변과 화산 지형",
    "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
    "from": "images/v54/hawaii-oahu-5n7d-course.jpg"
+  },
+  "v67/paris-4n5d-budget": {
+   "credit": "사진: Pexels",
+   "alt": "에펠탑과 파리 시내 전경",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v55/paris.jpg"
+  },
+  "v67/bangkok-3n4d-budget": {
+   "credit": "이미지: 판매처",
+   "alt": "노을 진 방콕 왕궁과 사원 지붕",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/n_bk_p1.jpg"
+  },
+  "v67/phuket-3n4d-budget": {
+   "credit": "사진: Pexels (Fernando B M)",
+   "alt": "푸껫 해변과 맑은 바다",
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v67_src/pexels-29437727.jpg",
+   "url": "https://www.pexels.com/photo/29437727/"
+  },
+  "v67/rome-south-italy-daytrip-guide": {
+   "credit": "사진: Pexels (Greta Soave)",
+   "alt": "포지타노의 형형색색 건물과 아말피 해안",
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v67_src/pexels-10436112.jpg",
+   "url": "https://www.pexels.com/photo/10436112/"
+  },
+  "v67/osaka-kobe-nara-daytrip-guide": {
+   "credit": "사진: Pexels (Dmitry Romanoff)",
+   "alt": "고베 항구와 포트타워",
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v67_src/pexels-35317275.jpg",
+   "url": "https://www.pexels.com/photo/35317275/"
   }
  }
 }
