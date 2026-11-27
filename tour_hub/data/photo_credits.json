@@ -818,6 +818,83 @@
    "from": "images/v56/bangkok-3n4d-course.jpg",
    "credit": "사진: Pexels (Meaw Zara)",
    "alt": "방콕 왓아룬과 짜오프라야강"
+  },
+  "v66/la-las-vegas-grand-canyon-course": {
+   "credit": "사진: Pexels (Rino Adamo)",
+   "alt": "그랜드캐니언 사우스림의 협곡",
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v66_src/pexels-34921087.jpg",
+   "url": "https://www.pexels.com/photo/34921087/"
+  },
+  "v66/london-4n5d-course-budget": {
+   "credit": "사진: Pexels",
+   "alt": "템스강과 런던 시내",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v55/london.jpg"
+  },
+  "v66/dubai-stopover-3n4d-guide": {
+   "credit": "사진: Pexels (San Photography)",
+   "alt": "두바이 스카이라인과 부르즈 할리파",
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v66_src/pexels-35791378.jpg",
+   "url": "https://www.pexels.com/photo/35791378/"
+  },
+  "v66/melbourne-sydney-6n7d-guide": {
+   "credit": "사진: Pexels (Harry Tucker)",
+   "alt": "멜버른 스카이라인과 야라강",
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v66_src/pexels-29813638.jpg",
+   "url": "https://www.pexels.com/photo/29813638/"
+  },
+  "v66/japan-small-cities-comparison": {
+   "credit": "사진: 트립픽 보유 이미지(2026)",
+   "alt": "일본 온천 소도시의 거리",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v60/beppu-onsen-1n2d-course.jpg"
+  },
+  "v66/okinawa-rental-car-bus-guide": {
+   "credit": "사진: Pexels",
+   "alt": "오키나와 해안 도로와 바다",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v56/okinawa.jpg"
+  },
+  "v66/europe-night-train-ryanair-guide": {
+   "credit": "사진: 트립픽 보유 이미지(2026)",
+   "alt": "유럽 고속열차 TGV",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v37/tgv.jpg"
+  },
+  "v66/travel-adapter-voltage-world-guide": {
+   "credit": "사진: Pexels (Castorly Stock)",
+   "alt": "국가별 전원 플러그와 어댑터",
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v66_src/pexels-3639031.jpg",
+   "url": "https://www.pexels.com/photo/3639031/"
+  },
+  "v66/bali-driver-nusa-penida-guide": {
+   "credit": "사진: Pexels",
+   "alt": "발리 해안과 사원",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v59/bali.jpg"
+  },
+  "v66/fukuoka-hakata-tenjin-shopping-guide": {
+   "credit": "사진: 트립픽 보유 이미지(2026)",
+   "alt": "후쿠오카·유후인 여행지 풍경",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v52/fukuoka-yufuin-3n4d-course.jpg"
+  },
+  "v66/malaysia-kuala-lumpur-2n3d-guide": {
+   "credit": "사진: Pexels (Humphrey Muleba)",
+   "alt": "쿠알라룸푸르 페트로나스 트윈타워",
+   "source": "Pexels (Pexels License — 무료 상업적 사용)",
+   "from": "images/v66_src/pexels-1324500.jpg",
+   "url": "https://www.pexels.com/photo/1324500/"
+  },
+  "v66/hawaii-island-hopping-guide": {
+   "credit": "사진: Pexels",
+   "alt": "하와이 해변과 화산 지형",
+   "source": "기존 트립픽 사용 이미지(펙셀스 라이선스·보유 이미지)",
+   "from": "images/v54/hawaii-oahu-5n7d-course.jpg"
   }
  }
 }

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""v65 검증 — 신규 허브 6곳·찐숙소 30곳·가이드 8편·상품 10건·사이트맵 202 URL.
+"""v65 검증 — 신규 허브 6곳·찐숙소 30곳·가이드 8편·상품 10건·사이트맵 214 URL.
 
     python3 tools/verify_v65.py
 
-1. city_hubs 32곳 · stays 171곳(지역 40) · guides 154편 · tripcom 입장권 23·픽업 33·eSIM 28
+1. city_hubs 32곳 · stays 171곳(지역 40) · guides 166편 · tripcom 입장권 23·픽업 33·eSIM 28
 2. 신규 허브 6곳: 페이지 존재, 찐숙소 수, 가이드 수, 현지 기본 정보, 이미지 파일
 3. 신규 가이드 8편: 본문 3,000자(공백 제외)·표 5개·h2 5개·FAQ 5문항·제휴 5건·이미지·OG
-4. 사이트맵 202 URL · sitemap-index 3분할 합계 일치 · 중복 0
+4. 사이트맵 214 URL · sitemap-index 3분할 합계 일치 · 중복 0
 5. 신규 상품의 파트너스 코드(Allianceid·SID·trip_sub1·trip_sub3)와 상태
 """
 from __future__ import annotations
@@ -49,7 +49,7 @@ stays = load("stays.json")
 tc = load("tripcom.json")
 
 print("[1] 데이터 규모")
-check(len(guides) == 154, f"가이드 {len(guides)}편 (기대 154)")
+check(len(guides) == 166, f"가이드 {len(guides)}편 (기대 166)")
 check(len(hubs) == 32, f"도시 허브 {len(hubs)}곳 (기대 32)")
 check(len(stays["hotels"]) == 171, f"찐숙소 {len(stays['hotels'])}곳 (기대 171)")
 check(len(stays["regions"]) == 40, f"숙소 지역 {len(stays['regions'])}곳 (기대 40)")
@@ -129,10 +129,10 @@ for kind in ("tickets", "transfers", "esims"):
               and "trip_sub1=" in u and "trip_sub3=" in u)
         check(ok and a.get("status") == "verified_200_ko", f"{a['id']}: 코드·상태")
 
-print("[5] 사이트맵 202 URL")
+print("[5] 사이트맵 214 URL")
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 202, f"sitemap.xml {len(locs)} URL (기대 202)")
+check(len(locs) == 214, f"sitemap.xml {len(locs)} URL (기대 214)")
 check(len(set(locs)) == len(locs), "sitemap 중복 0")
 for slug in HUBS:
     check(f"{SITE}/{slug}" in locs, f"sitemap 에 /{slug}")
@@ -151,7 +151,7 @@ for p in parts:
     print(f"    · {name}: {n}")
 check(tot == len(locs), f"sitemap-index 합계 {tot} = sitemap {len(locs)}")
 check(len(re.findall(r"<loc>", read(OUT / "sitemap-hubs.xml"))) == 32, "sitemap-hubs 32")
-check(len(re.findall(r"<loc>", read(OUT / "sitemap-guides.xml"))) == 155, "sitemap-guides 155")
+check(len(re.findall(r"<loc>", read(OUT / "sitemap-guides.xml"))) == 167, "sitemap-guides 167")
 
 print("[6] 표기 숫자")
 cities = read(OUT / "cities" / "index.html")
@@ -159,7 +159,7 @@ check("CITY GUIDES · 32곳" in re.sub(r"\s+", " ", cities) or "도시 32곳" in
 st = read(OUT / "stays.html")
 check("171" in st, "/stays 171곳 표기")
 gi = read(OUT / "guides" / "index.html")
-check("가이드 154편" in re.sub(r"\s+", " ", gi), "/guides/ 154편 표기")
+check("가이드 166편" in re.sub(r"\s+", " ", gi), "/guides/ 166편 표기")
 
 print()
 if fails:
@@ -167,4 +167,4 @@ if fails:
     for f in fails:
         print("  -", f)
     raise SystemExit(1)
-print("[verify_v65] PASS — 허브 32 · 숙소 171 · 가이드 154 · 상품 84+ · 사이트맵 202")
+print("[verify_v65] PASS — 허브 32 · 숙소 171 · 가이드 166 · 상품 84+ · 사이트맵 214")
