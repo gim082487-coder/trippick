@@ -135,7 +135,7 @@ def main() -> None:
     # sitemap 은 이번에 URL 을 늘리지 않는다
     sm = (OUT / "sitemap.xml").read_text(encoding="utf-8")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-    check(len(locs) == 222, f"sitemap {len(locs)} URL (기대 222)")
+    check(len(locs) == 225, f"sitemap {len(locs)} URL (기대 225)")
     check(sorted(re.findall(r"<loc>([^<]+)</loc>", (ROOT / "sitemap.xml").read_text(encoding="utf-8"))) == sorted(locs), "build.py·build_pages sitemap 불일치")
 
     # notes.md

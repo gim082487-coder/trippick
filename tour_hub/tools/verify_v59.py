@@ -71,7 +71,7 @@ def main() -> None:
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 174, f"가이드 {len(guides)}편 (기대 174)")
+    check(len(guides) == 177, f"가이드 {len(guides)}편 (기대 177)")
 
     hubs = {c["slug"]: c for c in load("city_hubs.json")["cities"]}
     check(len(hubs) == 32, f"도시 허브 {len(hubs)}곳 (기대 32)")
@@ -197,7 +197,7 @@ def main() -> None:
     sm = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm))
-    check(len(locs) == 222, f"sitemap {len(locs)} URL (기대 222)")
+    check(len(locs) == 225, f"sitemap {len(locs)} URL (기대 225)")
     check(lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)}")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
@@ -208,7 +208,7 @@ def main() -> None:
     # 5. action.md
     if ACTION.exists():
         act = read(ACTION)
-        check("222개" in act, "action.md 사이트맵 수(222개) 미갱신")
+        check("225개" in act, "action.md 사이트맵 수(225개) 미갱신")
         for slug in NEW:
             check(slug in act, f"action.md 에 v59 신규 URL({slug}) 없음")
         for slug in HUBS:
