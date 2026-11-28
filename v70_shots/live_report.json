@@ -1,0 +1,130 @@
+{
+ "pc_mounjaro": {
+  "url": "/guides/japan-mounjaro-travel-destinations",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 1,
+  "tables": 12,
+  "faq": 5,
+  "sponsored": 11,
+  "h1": "마운자로 들고 일본, 네 도시 이동·소식·냉장 기준",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v70_shots/live_pc_mounjaro.png"
+ },
+ "pc_daebudo": {
+  "url": "/guides/daebudo-daytrip-1n2d-course",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 2,
+  "tables": 12,
+  "faq": 5,
+  "sponsored": 9,
+  "h1": "대부도, 물때가 일정표입니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v70_shots/live_pc_daebudo.png"
+ },
+ "pc_guides_index": {
+  "url": "/guides/",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 178,
+  "tables": 0,
+  "faq": 0,
+  "sponsored": 0,
+  "h1": "예약 전에 숫자로 확인하는 여행 가이드",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v70_shots/live_pc_guides_index.png"
+ },
+ "pc_stays": {
+  "url": "/stays",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 184,
+  "tables": 0,
+  "faq": 0,
+  "sponsored": 588,
+  "h1": "찐숙소 182곳 — 권역으로 고르고, 예산·테마로 좁힙니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v70_shots/live_pc_stays.png"
+ },
+ "mo_mounjaro": {
+  "url": "/guides/japan-mounjaro-travel-destinations",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 1,
+  "tables": 12,
+  "faq": 5,
+  "sponsored": 11,
+  "h1": "마운자로 들고 일본, 네 도시 이동·소식·냉장 기준",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v70_shots/live_mo_mounjaro.png"
+ },
+ "mo_daebudo": {
+  "url": "/guides/daebudo-daytrip-1n2d-course",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 2,
+  "tables": 12,
+  "faq": 5,
+  "sponsored": 9,
+  "h1": "대부도, 물때가 일정표입니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v70_shots/live_mo_daebudo.png"
+ },
+ "mo_guides_index": {
+  "url": "/guides/",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 178,
+  "tables": 0,
+  "faq": 0,
+  "sponsored": 0,
+  "h1": "예약 전에 숫자로 확인하는 여행 가이드",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v70_shots/live_mo_guides_index.png"
+ },
+ "mo_stays": {
+  "url": "/stays",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 184,
+  "tables": 0,
+  "faq": 0,
+  "sponsored": 588,
+  "h1": "찐숙소 182곳 — 권역으로 고르고, 예산·테마로 좁힙니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v70_shots/live_mo_stays.png"
+ },
+ "sitemap/sitemap.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-index.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-core.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-hubs.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-guides.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/robots.txt": {
+  "http": 200,
+  "ct": "text/plain; charset=utf-8"
+ }
+}
