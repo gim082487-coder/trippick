@@ -342,3 +342,12 @@
 - `v50_content_audit.py` → 174편 **1,800자 미만 0편**, 제목 유사도 최대 0.50(기존 오키나와 쌍)
 - 사이트맵: `sitemap.xml` **222 URL**, `sitemap-index.xml` 분할(core 15·hubs 32·guides 175) 합 222·중복 0
 - 로컬 1280·390 렌더(`tools/v68_shots.py`): 신규 3편+푸껫 가이드+`/stays`·`/stays#phuket`·`/stays#kobe`+`/guides/` **가로 넘침 0·깨진 이미지 0·pageerror 0**, 표 8~11·FAQ 5
+
+### 5. 배포·라이브 검증
+- 커밋 `ee79408` → `main` 푸시(422d552→ee79408).
+- 라이브 HTTP **200**: 신규 3편(59,081~62,238B)·`/stays`(1,359,876B)·`/guides/`(459,734B)·`/guides/phuket-3n4d-budget`·`/guides/osaka-kobe-nara-daytrip-guide`·사이트맵 4종·`robots.txt`
+- **사이트맵 222 URL 전부 HTTP 200**(중복 0, 병렬 검사) · `sitemap-guides.xml` 175 · `sitemap-hubs.xml` 32
+- 라이브 본문 확인: 중국 "2026년 12월 31일·200위안·3%·50위안·5,000달러" / 보라카이 "535페소·45,066·388,896·크리스털 코브" / 사이판 "G-CNMI ETA·45일·169,355·1,279,300" / `/stays` "푸껫·고베·182곳·61,611·73,253"
+- IndexNow **16 URL**(신규 3·`/stays`·`/guides/`·연결 가이드 2·역링크 가이드 5·사이트맵 4) 제출 **HTTP 200**, 키 파일 200
+- 라이브 1280·390 렌더(`tools/v68_shots.py --live`): 16뷰 + 사이트맵 6종 **가로 넘침 0·깨진 이미지 0·pageerror 0**, 표 8~11·FAQ 5·제휴 8~9. 스크린샷 `v68_shots/live_*`, 리포트 `v68_shots/live_report.json`, 숙소 지역 섹션 캡처 `v68_shots/live_region_phuket.png`·`live_region_kobe.png`
+- 서치콘솔 색인 작업 파일 갱신: `scheduled-actions/🔍-구글-서치콘솔-색인-요청-재시도/action.md` 사이트맵 219→222(guides 175)·최우선 목록 맨 앞에 v68 3편+`/stays` 추가
