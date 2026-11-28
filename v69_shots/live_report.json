@@ -1,0 +1,156 @@
+{
+ "pc_usa_rental": {
+  "url": "/guides/usa-rental-car-insurance-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 1,
+  "tables": 8,
+  "faq": 5,
+  "sponsored": 8,
+  "h1": "미국 렌터카, 차값보다 보험이 큽니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_pc_usa_rental.png"
+ },
+ "pc_barcelona": {
+  "url": "/guides/barcelona-gaudi-montserrat-3n4d-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 2,
+  "tables": 9,
+  "faq": 5,
+  "sponsored": 8,
+  "h1": "바르셀로나 3박4일, 가우디는 예약 순서가 일정입니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_pc_barcelona.png"
+ },
+ "pc_turkey": {
+  "url": "/guides/turkey-istanbul-cappadocia-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 3,
+  "tables": 9,
+  "faq": 5,
+  "sponsored": 8,
+  "h1": "튀르키예 6박7일, 무비자 90일로 이스탄불·카파도키아",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_pc_turkey.png"
+ },
+ "pc_guides_index": {
+  "url": "/guides/",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 176,
+  "tables": 0,
+  "faq": 0,
+  "sponsored": 0,
+  "h1": "예약 전에 숫자로 확인하는 여행 가이드",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_pc_guides_index.png"
+ },
+ "pc_home": {
+  "url": "/",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 178,
+  "tables": 31,
+  "faq": 8,
+  "sponsored": 620,
+  "h1": "설레는 여행은,\n동선에서 시작됩니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_pc_home.png"
+ },
+ "mo_usa_rental": {
+  "url": "/guides/usa-rental-car-insurance-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 1,
+  "tables": 8,
+  "faq": 5,
+  "sponsored": 8,
+  "h1": "미국 렌터카, 차값보다 보험이 큽니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_mo_usa_rental.png"
+ },
+ "mo_barcelona": {
+  "url": "/guides/barcelona-gaudi-montserrat-3n4d-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 2,
+  "tables": 9,
+  "faq": 5,
+  "sponsored": 8,
+  "h1": "바르셀로나 3박4일, 가우디는 예약 순서가 일정입니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_mo_barcelona.png"
+ },
+ "mo_turkey": {
+  "url": "/guides/turkey-istanbul-cappadocia-guide",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 3,
+  "tables": 9,
+  "faq": 5,
+  "sponsored": 8,
+  "h1": "튀르키예 6박7일, 무비자 90일로 이스탄불·카파도키아",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_mo_turkey.png"
+ },
+ "mo_guides_index": {
+  "url": "/guides/",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 176,
+  "tables": 0,
+  "faq": 0,
+  "sponsored": 0,
+  "h1": "예약 전에 숫자로 확인하는 여행 가이드",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_mo_guides_index.png"
+ },
+ "mo_home": {
+  "url": "/",
+  "http": 200,
+  "overflow": 0,
+  "broken": 0,
+  "imgs": 178,
+  "tables": 31,
+  "faq": 8,
+  "sponsored": 620,
+  "h1": "설레는 여행은,\n동선에서 시작됩니다",
+  "pageerrors": [],
+  "shot": "/workspace/trippick_repo/v69_shots/live_mo_home.png"
+ },
+ "sitemap/sitemap.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-index.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-core.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-hubs.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/sitemap-guides.xml": {
+  "http": 200,
+  "ct": "application/xml"
+ },
+ "sitemap/robots.txt": {
+  "http": 200,
+  "ct": "text/plain; charset=utf-8"
+ }
+}

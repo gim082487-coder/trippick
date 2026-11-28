@@ -351,3 +351,35 @@
 - IndexNow **16 URL**(신규 3·`/stays`·`/guides/`·연결 가이드 2·역링크 가이드 5·사이트맵 4) 제출 **HTTP 200**, 키 파일 200
 - 라이브 1280·390 렌더(`tools/v68_shots.py --live`): 16뷰 + 사이트맵 6종 **가로 넘침 0·깨진 이미지 0·pageerror 0**, 표 8~11·FAQ 5·제휴 8~9. 스크린샷 `v68_shots/live_*`, 리포트 `v68_shots/live_report.json`, 숙소 지역 섹션 캡처 `v68_shots/live_region_phuket.png`·`live_region_kobe.png`
 - 서치콘솔 색인 작업 파일 갱신: `scheduled-actions/🔍-구글-서치콘솔-색인-요청-재시도/action.md` 사이트맵 219→222(guides 175)·최우선 목록 맨 앞에 v68 3편+`/stays` 추가
+
+## v69 (2026-11-28 14:0x~) — 미국 렌터카·바르셀로나 가우디·튀르키예 가이드 3편 + 사이트맵 225 URL
+
+작업 지시: v69 핸드오프(고검색량·고단가 가이드 3편). `browser_*` 금지 조건에 따라 curl·Playwright(headless)·빌드 스크립트로만 확인했다.
+
+### 배포
+- 커밋 **`b9368e7`** → `main` 푸시(`b007507..b9368e7`), Cloudflare Pages 반영 확인
+- 가이드 **174 → 177편** · 사이트맵 **222 → 225 URL**(core 15 · hubs 32 · guides 178) · 내부 링크 25,545개 실패 0
+
+### 신규 가이드 3편
+- `/guides/usa-rental-car-insurance-guide` — 미국 렌터카 보험·통행료. 국제면허 9,000원·1년, CA DMV 방문객 자국면허·IDP 불요/FLHSMV IDP 병기, Enterprise DW $26.99~49.99·SLP $8.44~42.38·PEC $5.99~15.67·PAI $2.68~8.50, 5일 보험 439,786~601,135원, SunPass Toll-by-Plate $2.50·Mini $4.99·PRO $14.95, 골든게이트 $10.25/10.50/11.25, MTA CRZ $9/$2.25, PlatePass FL $9.99/$14.99·NY $33.99, Enterprise TollPass $4.95/최대 $34.65, AAA $3.5476/갤런
+- `/guides/barcelona-gaudi-montserrat-3n4d-guide` — 사그라다 26/36/40유로·구엘 18(13.50)·카사 바트요 29(34/39/49)유로, T-Casual 13·단권 2.90·공항 5.90, Aerobús 7.75/13.30, 몬세라트 Trans 50·Tot 71.50·산악철도 9/15·케이블카 10/15, 2인 436,550원
+- `/guides/turkey-istanbul-cappadocia-guide` — 무비자 180일 중 90일·여권 150일, 이스탄불카트 165+46.20리라, Havaist 470/515리라, 하기아 25유로·톱카프 2,750리라·갈라타 30유로·뮤지엄패스 105유로(2곳이면 개별권 유리), 괴레메 20+암흑교회 6유로, 열기구 260/160유로, 그린 50~65·레드 47~65유로, IST–ASR 1시간 25분, 2인 638,743원(열기구 제외)
+
+### 이미지·링크
+- 히어로 1200×800 + WebP 480/720/960 + OG 1200×630 3편(`tools/make_v69_images.py`). 펙셀스 신규 3장(2986512·33053358·38220564), `photo_credits.json`에 v69 3건.
+- 역링크 6편 추가(`tools/apply_v69_links.py`): japan-rental-car·southeast-asia-rental-car·us-esta·travel-insurance → 미국 렌터카, spain-barcelona-madrid → 바르셀로나, visa-free-stay-duration → 튀르키예.
+
+### 검증
+- `build.py` 상품 84·도시 30·코스 21·필수품 65 → `build_pages --out ../deploy_site --check-links` **HTML 228개·내부 링크 25,545개 실패 0**
+- `verify_v34·36·41~45·48·51~54·59~69` 기대값(177편·225 URL·guides 178) 갱신 후 전부 PASS + 신규 `tools/verify_v69.py` PASS
+- `v50_content_audit.py` → 177편 **1,800자 미만 0편**
+- 로컬·라이브 1280·390 렌더(`tools/v69_shots.py`): 신규 3편+`/guides/`+홈 **가로 넘침 0·깨진 이미지 0·pageerror 0**, 표 8~9·FAQ 5·제휴 8. 스크린샷 `v69_shots/`(로컬 `v69_*`, 라이브 `live_*`)
+
+### 라이브
+- 신규 3편 **200**(61,901 / 63,348 / 62,184B) · `/guides/` "가이드 177편" · `/sitemap.xml` **225 URL 전부 200**(중복 0) · `sitemap-index`·core·hubs·guides 200 · `robots.txt` 200
+- IndexNow 8 URL(신규 3·`/guides/`·사이트맵 3·`robots.txt`) 제출 **HTTP 200**, 키 파일 200
+- 서치콘솔 색인 작업 파일 갱신: `action.md` 225개 URL·guides 178, 최우선 목록 맨 앞에 v69 3편
+
+### 확인 기준
+- 환율: 1달러 1,335.11원·1유로 1,461.99원(트립픽 고정 환산), 1리라 26.31원(2026-11-28 00:02 UTC open.er-api, 사이트와 같은 소스)
+- 모든 요금은 공식 페이지(사그라다·구엘·카사 바트요·TMB/ATM·Aerobús·FGC·muze.gov.tr·millisaraylar·TÜRSAB·Voyager·터키항공·Enterprise·Golden Gate·MTA·PLHSMV/DMV·도로교통공단·AAA)에서 확인한 값만 사용. 확인되지 않은 추정가는 넣지 않았고, 바실리카 시스턴은 "공식 가격 미게시·현장 확인"으로 표기.
