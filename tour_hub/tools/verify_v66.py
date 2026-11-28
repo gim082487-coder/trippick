@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""v66 검증 — 신규 가이드 12편 + 사이트맵 219 URL + 허브·지역 연결.
+"""v66 검증 — 신규 가이드 12편 + 사이트맵 222 URL + 허브·지역 연결.
 
     python3 tools/verify_v66.py
 
-1. 가이드 171편 · 도시 허브 32곳 · 찐숙소 171곳 · 지역 코드 12개(말레이시아 추가)
+1. 가이드 174편 · 도시 허브 32곳 · 찐숙소 182곳 · 지역 코드 12개(말레이시아 추가)
 2. 신규 12편: 본문 3,000자(공백 제외)·표 5개·h2 5개·FAQ 5문항·제휴 5건·이미지·OG·확인값
-3. 사이트맵 219 URL · sitemap-index 3분할 합계 일치 · sitemap-guides 172 · 중복 0
+3. 사이트맵 222 URL · sitemap-index 3분할 합계 일치 · sitemap-guides 175 · 중복 0
 4. 허브 연결: /london /fukuoka /okinawa /sydney 에 신규 편 링크, /guides/ 171편 표기
 5. 역링크: 기존 가이드에서 신규 편으로 가는 본문 링크
 """
@@ -48,7 +48,7 @@ hubs = load("city_hubs.json")["cities"]
 extra = load("guide_extra.json")
 
 print("[1] 데이터 규모")
-check(len(guides) == 171, f"가이드 {len(guides)}편 (기대 171)")
+check(len(guides) == 174, f"가이드 {len(guides)}편 (기대 174)")
 check(len(hubs) == 32, f"도시 허브 {len(hubs)}곳 (기대 32)")
 check("my" in {r["code"] for r in extra["regions"]}, "지역 코드에 말레이시아(my)")
 
@@ -116,10 +116,10 @@ BACK = {
 for src, dst in BACK.items():
     check(f"{dst}.html" in read(G / f"{src}.html"), f"역링크 {src} → {dst}")
 
-print("[4] 사이트맵 219 URL")
+print("[4] 사이트맵 222 URL")
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 219, f"sitemap.xml {len(locs)} URL (기대 219)")
+check(len(locs) == 222, f"sitemap.xml {len(locs)} URL (기대 222)")
 check(len(set(locs)) == len(locs), "sitemap 중복 0")
 for slug in NEW:
     check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug}")
@@ -134,13 +134,13 @@ for p in parts:
     print(f"    · {name}: {n}")
 check(tot == len(locs), f"sitemap-index 합계 {tot} = sitemap {len(locs)}")
 check(len(re.findall(r"<loc>", read(OUT / "sitemap-hubs.xml"))) == 32, "sitemap-hubs 32")
-check(len(re.findall(r"<loc>", read(OUT / "sitemap-guides.xml"))) == 172, "sitemap-guides 172")
+check(len(re.findall(r"<loc>", read(OUT / "sitemap-guides.xml"))) == 175, "sitemap-guides 175")
 
 print("[5] 표기 숫자")
 gi = re.sub(r"\s+", " ", read(OUT / "guides" / "index.html"))
-check("가이드 171편" in gi, "/guides/ 171편 표기")
+check("가이드 174편" in gi, "/guides/ 171편 표기")
 st = read(OUT / "stays.html")
-check("171" in st, "/stays 171곳 표기")
+check("182" in st, "/stays 182곳 표기")
 
 print()
 if fails:
@@ -148,4 +148,4 @@ if fails:
     for f in fails:
         print("  -", f)
     raise SystemExit(1)
-print("[verify_v66] PASS — 가이드 171 · 신규 12 · 사이트맵 219 · 허브 32 · 숙소 171")
+print("[verify_v66] PASS — 가이드 174 · 신규 12 · 사이트맵 222 · 허브 32 · 숙소 182")

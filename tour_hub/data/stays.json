@@ -4,13 +4,14 @@
   "aid": "11407530",
   "sid": "336341874",
   "trip_sub3": "D21372570",
-  "checked": "2026-11-21",
+  "checked": "2026-11-28",
   "method": "kr.trip.com 숙소 목록(도시별, 성인 2명·KRW)에서 평점·리뷰 수·세부 점수·위치·1박 최저가·대표 이미지를 그대로 옮겼습니다. 신규 국내 19곳은 2026-11-20~21 조회분, 해외 30곳은 2026-11-19~20 조회분입니다(카드마다 기준일 표기). 각 숙소 상세 페이지에서 이름·도시를 다시 확인했고, 예약 버튼은 그 숙소 상세 페이지에 파트너스 코드(Allianceid/SID/trip_sub3)를 붙인 딥링크입니다.",
   "priceNote": "가격은 카드에 적힌 조회 날짜의 1박·성인 2명·세금·서비스비용 포함 최저가입니다. 같은 숙소도 날짜·객실·잔여 상황에 따라 달라집니다.",
   "rate": "숙소 5~7% (예약 건수에 따라)",
   "v53": "2026-11-25: 홍콩(cityId 58)·마카오(cityId 59) 숙소 4곳씩 8곳을 추가했습니다. 트립닷컴 숙소 목록(2026-12-10~11, 성인 2명, KRW)에서 평점·리뷰 수·성급·1박 최저가·대표 이미지를 옮겼고, 상세 페이지 HTTP 200과 한국어 호텔명을 확인한 뒤 파트너스 코드(Allianceid/SID/trip_sub3)를 붙였습니다.",
   "v56": "2026-11-26: 오키나와 지역(나하 4·온나 2 = 6곳)을 새로 넣고, 홍콩에 MK 스테이·엠파이어 프레스티지 침사추이, 마카오에 베네시안 마카오·골든 크라운 차이나를 추가했습니다. 가격은 트립닷컴 숙소 목록에서 2026-12-10~11(온나 12-11~12) 성인 2명·세금 포함 최저가로 조회한 값이고, 카드마다 기준일을 적었습니다.",
-  "v59": "2026-11-26: 치앙마이(5)·발리(5)·상하이(5) 숙소 15곳을 새로 넣었습니다. 가격은 트립닷컴 숙소 목록에서 2026-12-10~11 성인 2명·세금 포함 1박 최저가로 조회한 값이고, 성급·존·공항/역 거리는 같은 호텔 상세 페이지에서 확인했습니다."
+  "v59": "2026-11-26: 치앙마이(5)·발리(5)·상하이(5) 숙소 15곳을 새로 넣었습니다. 가격은 트립닷컴 숙소 목록에서 2026-12-10~11 성인 2명·세금 포함 1박 최저가로 조회한 값이고, 성급·존·공항/역 거리는 같은 호텔 상세 페이지에서 확인했습니다.",
+  "v68": "2026-11-28: 푸껫(6곳)·고베(5곳) 지역을 새로 넣었습니다. 트립닷컴 숙소 목록을 2026-12-10~11 · 성인 2명 · KRW · 세금&서비스비용 포함 조건으로 조회해 1박 최저가·평점·리뷰 수를 그대로 옮겼고, 각 호텔 상세 페이지(HTTP 200)에서 한국어명·주소를 확인했습니다. 료칸 2곳(아리마 온센 겟코엔 코로칸·고베 미나토 온센 렌)은 목록에 세금 포함 표기가 없어 넣지 않았습니다."
  },
  "themes": [
   {
@@ -890,6 +891,50 @@
      "label": "호주 ETA"
     }
    ]
+  },
+  {
+   "id": "phuket",
+   "name": "푸껫",
+   "country": "태국",
+   "note": "빠통·카론·카타 세 해변과 푸켓 타운. 공항에서 스마트버스가 어디서나 100밧이라 차 없이도 해변을 옮겨 다닐 수 있습니다.",
+   "count": 6,
+   "top": "호텔 미드타운 라트사다",
+   "cityId": "725",
+   "scope": "intl",
+   "hub": "",
+   "guides": [
+    {
+     "slug": "phuket-3n4d-budget",
+     "label": "푸껫 3박4일 경비"
+    },
+    {
+     "slug": "thailand-cities-comparison-guide",
+     "label": "태국 4도시 비교"
+    }
+   ],
+   "listUrl": "https://kr.trip.com/hotels/list?city=725&display=%ED%91%B8%EA%BB%AB&optionId=725&optionType=City&optionName=%ED%91%B8%EA%BB%AB&Allianceid=11407530&SID=336341874&trip_sub1=hotel_phuket&trip_sub3=D21372570"
+  },
+  {
+   "id": "kobe",
+   "name": "고베",
+   "country": "일본",
+   "note": "산노미야·모토마치·하버랜드가 한 줄로 이어집니다. 오사카 우메다에서 한큐 330엔·28분이라 오사카 숙소를 두고 당일치기로도 닿습니다.",
+   "count": 5,
+   "top": "더 로열 파크 캔버스 고베 산노미야",
+   "cityId": "423",
+   "scope": "intl",
+   "hub": "osaka",
+   "guides": [
+    {
+     "slug": "osaka-kobe-nara-daytrip-guide",
+     "label": "고베·나라 당일치기"
+    },
+    {
+     "slug": "osaka-kyoto-3n4d",
+     "label": "오사카·교토 3박4일"
+    }
+   ],
+   "listUrl": "https://kr.trip.com/hotels/list?city=423&display=%EA%B3%A0%EB%B2%A0&optionId=423&optionType=City&optionName=%EA%B3%A0%EB%B2%A0&Allianceid=11407530&SID=336341874&trip_sub1=hotel_kobe&trip_sub3=D21372570"
   }
  ],
  "hotels": [
@@ -6110,6 +6155,356 @@
    "pointTags": [
     "가성비",
     "청결"
+   ]
+  },
+  {
+   "region": "phuket",
+   "id": "702258",
+   "name": "다라 호텔",
+   "en": "Dara Hotel",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.9,
+   "reviews": 2046,
+   "sub": {
+    "청결도": "8.9",
+    "시설": "8.8",
+    "위치": "9.0",
+    "서비스": "8.9"
+   },
+   "zone": "푸켓 타운",
+   "access": "차오파 로드 · 시내 중심, 푸켓 타운 버스터미널 도보권",
+   "reason": "리뷰 2,046개·8.9 — 이 도시 조회분 12곳 중 1박 6만 1,611원으로 가장 낮습니다. 푸켓 타운이라 야시장·올드타운이 도보권이고, 해변은 스마트버스로 나갑니다.",
+   "price": 61611,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuket-702258.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=725&hotelId=702258&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuket_702258&trip_sub3=D21372570",
+   "themes": [
+    "value"
+   ],
+   "pointTags": [
+    "야시장",
+    "올드타운"
+   ]
+  },
+  {
+   "region": "phuket",
+   "id": "703557",
+   "name": "호텔 미드타운 라트사다",
+   "en": "Hotel Midtown Ratsada",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 642,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "8.9",
+    "위치": "9.7",
+    "서비스": "9.3"
+   },
+   "zone": "푸켓 타운",
+   "access": "랏사다 로드 · 푸켓 타운 버스터미널 인근",
+   "reason": "리뷰 642개·9.3 — 위치 9.7·청결 9.4로 이 도시 조회분 중 평점이 가장 높습니다. 버스터미널이 가까워 공항버스·섬 이동 출발점으로 쓰기 좋고 1박 7만 8,697원입니다.",
+   "price": 78697,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuket-703557.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=725&hotelId=703557&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuket_703557&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "평점 최고",
+    "버스터미널"
+   ]
+  },
+  {
+   "region": "phuket",
+   "id": "702180",
+   "name": "더 로얄 파라다이스 호텔 & 스파",
+   "en": "The Royal Paradise Hotel & Spa",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.7,
+   "reviews": 1413,
+   "sub": {
+    "청결도": "8.7",
+    "시설": "8.5",
+    "위치": "8.9",
+    "서비스": "8.8"
+   },
+   "zone": "빠통 비치",
+   "access": "랏우팃 200피 로드 · 정실론 쇼핑센터 도보권",
+   "reason": "리뷰 1,413개·8.7 — 빠통 한가운데라 방라 로드·정실론·해변이 모두 도보권입니다. 야간 이동이 편한 대신 해변까지 도보 10분 안팎, 1박 14만 7,775원입니다.",
+   "price": 147775,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuket-702180.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=725&hotelId=702180&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuket_702180&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "station"
+   ],
+   "pointTags": [
+    "빠통 중심",
+    "쇼핑"
+   ]
+  },
+  {
+   "region": "phuket",
+   "id": "21847079",
+   "name": "아우리코 카타 리조트 & 스파",
+   "en": "Aurico Kata Resort & Spa",
+   "star": 4,
+   "type": "resort",
+   "typeLabel": "리조트",
+   "score": 8.6,
+   "reviews": 1160,
+   "sub": {
+    "청결도": "8.5",
+    "시설": "8.6",
+    "위치": "8.8",
+    "서비스": "8.6"
+   },
+   "zone": "카타 비치",
+   "access": "타이나 로드 · 카론 해변 방면, 카타 비치 도보권",
+   "reason": "리뷰 1,160개·8.6 — 카타·카론 사이에 있어 두 해변을 걸어서 오갑니다. 가족 단위 객실이 많고 1박 15만 3,775원입니다.",
+   "price": 153775,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuket-21847079.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=725&hotelId=21847079&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuket_21847079&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "villa"
+   ],
+   "pointTags": [
+    "카타",
+    "가족"
+   ]
+  },
+  {
+   "region": "phuket",
+   "id": "83988303",
+   "name": "판와부리 비치프런트 리조트",
+   "en": "Panwaburi Beachfront Resort",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 8.8,
+   "reviews": 1418,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.9",
+    "위치": "8.1",
+    "서비스": "9.0"
+   },
+   "zone": "케이프 판와",
+   "access": "아오욘 해변 · 케이프 판와 남쪽",
+   "reason": "리뷰 1,418개·8.8 — 청결 9.1·서비스 9.0의 5성급인데 위치 평가는 8.1입니다. 시내와 떨어져 조용하고, 1박 16만 8,295원으로 5성급 중 낮은 편입니다.",
+   "price": 168295,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuket-83988303.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=725&hotelId=83988303&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuket_83988303&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean"
+   ],
+   "pointTags": [
+    "5성급",
+    "한적"
+   ]
+  },
+  {
+   "region": "phuket",
+   "id": "998415",
+   "name": "만다라바 리조트 앤 스파 카론 비치",
+   "en": "Mandarava Resort and Spa Phuket",
+   "star": 5,
+   "type": "resort",
+   "typeLabel": "리조트",
+   "score": 9.1,
+   "reviews": 611,
+   "sub": {
+    "청결도": "9.3",
+    "시설": "9.1",
+    "위치": "8.9",
+    "서비스": "9.2"
+   },
+   "zone": "카론 비치",
+   "access": "파탁 로드 · 카론 해변 언덕",
+   "reason": "리뷰 611개·9.1 — 청결 9.3·서비스 9.2로 카론 조회분 중 가장 높습니다. 언덕 위 리조트라 해변까지 셔틀을 타고, 1박 30만 1,937원입니다.",
+   "price": 301937,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/phuket-998415.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=725&hotelId=998415&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_phuket_998415&trip_sub3=D21372570",
+   "themes": [
+    "pool",
+    "ocean",
+    "onsen"
+   ],
+   "pointTags": [
+    "리조트",
+    "스파"
+   ]
+  },
+  {
+   "region": "kobe",
+   "id": "54594014",
+   "name": "고베 플라자 호텔 웨스트",
+   "en": "Kobe Plaza Hotel West",
+   "star": 3,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.2,
+   "reviews": 440,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.8",
+    "위치": "9.3",
+    "서비스": "9.3"
+   },
+   "zone": "모토마치",
+   "access": "모토마치도리 3-4-7 · 모토마치역·난킨마치(차이나타운) 도보권",
+   "reason": "리뷰 440개·9.2 — 청결·서비스가 모두 9.3인 3성급입니다. 차이나타운과 모토마치 쇼핑가가 도보권이고 1박 7만 3,253원으로 이 도시 조회분 최저가입니다.",
+   "price": 73253,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/kobe-54594014.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=423&hotelId=54594014&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_kobe_54594014&trip_sub3=D21372570",
+   "themes": [
+    "value",
+    "station"
+   ],
+   "pointTags": [
+    "모토마치",
+    "차이나타운"
+   ]
+  },
+  {
+   "region": "kobe",
+   "id": "704939",
+   "name": "호텔 몬테 에르마나 고베 아마리",
+   "en": "Hotel Monte Hermana Kobe Amalie",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 1227,
+   "sub": {
+    "청결도": "9.1",
+    "시설": "8.8",
+    "위치": "9.1",
+    "서비스": "9.0"
+   },
+   "zone": "산노미야",
+   "access": "나카야마테도리 2-2-28 · 산노미야역 도보 7분",
+   "reason": "리뷰 1,227개·9.0 — 산노미야역 도보 7분, 이쿠타 신사·기타노 이진칸이 가깝습니다. 조식 뷔페 평가가 좋고 1박 8만 1,570원입니다.",
+   "price": 81570,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/kobe-704939.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=423&hotelId=704939&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_kobe_704939&trip_sub3=D21372570",
+   "themes": [
+    "station",
+    "value"
+   ],
+   "pointTags": [
+    "산노미야",
+    "조식"
+   ]
+  },
+  {
+   "region": "kobe",
+   "id": "55210543",
+   "name": "호텔 몬토레 고베",
+   "en": "Hotel Monterey Kobe",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.1,
+   "reviews": 1447,
+   "sub": {
+    "청결도": "9.2",
+    "시설": "8.9",
+    "위치": "9.2",
+    "서비스": "9.1"
+   },
+   "zone": "산노미야",
+   "access": "시모야마테도리 2-11-13 · 산노미야 시 지하철역 인근",
+   "reason": "리뷰 1,447개·9.1 — 산노미야 지하철역이 가까워 오사카·교토 이동이 편합니다. 고베 시내 관광의 중심에 있고 1박 14만 1,761원입니다.",
+   "price": 141761,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/kobe-55210543.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=423&hotelId=55210543&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_kobe_55210543&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "지하철",
+    "시내 중심"
+   ]
+  },
+  {
+   "region": "kobe",
+   "id": "63372661",
+   "name": "더 로열 파크 캔버스 고베 산노미야",
+   "en": "The Royal Park Canvas - Kobe Sannomiya",
+   "star": 4,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.3,
+   "reviews": 1799,
+   "sub": {
+    "청결도": "9.4",
+    "시설": "9.1",
+    "위치": "9.3",
+    "서비스": "9.2"
+   },
+   "zone": "산노미야",
+   "access": "시모야마테도리 2-3-1 · 산노미야 시 지하철역 인근",
+   "reason": "리뷰 1,799개·9.3 — 청결 9.4로 이 도시 조회분 중 평점이 가장 높습니다. 쇼핑가·이쿠타 신사·하버랜드가 모두 도보권이고 1박 15만 7,634원입니다.",
+   "price": 157634,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/kobe-63372661.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=423&hotelId=63372661&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_kobe_63372661&trip_sub3=D21372570",
+   "themes": [
+    "station"
+   ],
+   "pointTags": [
+    "평점 최고",
+    "쇼핑가"
+   ]
+  },
+  {
+   "region": "kobe",
+   "id": "1465318",
+   "name": "고베 메리켄 파크 오리엔탈 호텔",
+   "en": "Kobe Meriken Park Oriental Hotel",
+   "star": 5,
+   "type": "hotel",
+   "typeLabel": "호텔",
+   "score": 9.0,
+   "reviews": 1595,
+   "sub": {
+    "청결도": "9.0",
+    "시설": "8.7",
+    "위치": "9.2",
+    "서비스": "9.0"
+   },
+   "zone": "하버랜드",
+   "access": "하토바초 5-6 · 메리켄 공원·포트 타워 인근",
+   "reason": "리뷰 1,595개·9.0 — 메리켄 공원과 포트 타워 사이의 5성급으로 위치 9.2입니다. 발코니 오션뷰와 조식 평가가 높고 1박 15만 3,930원입니다.",
+   "price": 153930,
+   "priceBasis": "2026-12-10~11 · 1박 · 2인 · 세금·봉사료 포함 최저가",
+   "img": "images/stays/kobe-1465318.jpg",
+   "url": "https://kr.trip.com/hotels/detail/?cityId=423&hotelId=1465318&curr=KRW&Allianceid=11407530&SID=336341874&trip_sub1=stays_kobe_1465318&trip_sub3=D21372570",
+   "themes": [
+    "ocean",
+    "station"
+   ],
+   "pointTags": [
+    "오션뷰",
+    "메리켄공원"
    ]
   }
  ]

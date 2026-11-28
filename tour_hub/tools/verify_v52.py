@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT.parent / "deploy_site"
 SITE = "https://trippick.pages.dev"
-LASTMOD = "2026-11-27"
+LASTMOD = "2026-11-28"
 
 NEW = ["fukuoka-yufuin-3n4d-course", "japan-rental-car-etc-guide", "hongkong-macau-3n4d-course"]
 BACKLINKS = {
@@ -93,7 +93,7 @@ def main():
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 171, f"가이드 {len(guides)}편 (기대 171)")
+    check(len(guides) == 174, f"가이드 {len(guides)}편 (기대 174)")
 
     # 1·2 신규 4편
     for slug in NEW:
@@ -155,7 +155,7 @@ def main():
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm_out))
-    check(len(locs) == 219, f"sitemap {len(locs)} URL (기대 219)")
+    check(len(locs) == 222, f"sitemap {len(locs)} URL (기대 222)")
     check(locs and lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)} (기대 {LASTMOD})")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")

@@ -3,7 +3,7 @@
 
     python3 tools/verify_v60.py
 
-1. 가이드 138편 · 허브 32곳 · 찐숙소 171곳 · sitemap 180 URL · lastmod 2026-11-26
+1. 가이드 138편 · 허브 32곳 · 찐숙소 182곳 · sitemap 180 URL · lastmod 2026-11-26
 2. 신규 10편 — 본문 3,000자 이상, 표 5개 이상, FAQ 5문항·FAQPage, 제휴 3건 이상,
    히어로 1200×800·OG 1200×630·WebP 480/720/960, guide_extra·photo_credits
 3. 신규 10편 ↔ 기존 가이드 양방향 related, 제목 유사도 0.43 이하
@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT.parent / "deploy_site"
 SITE = "https://trippick.pages.dev"
-LASTMOD = "2026-11-27"
+LASTMOD = "2026-11-28"
 ACTION = ROOT.parent.parent / "scheduled-actions" / "🔍-구글-서치콘솔-색인-요청-재시도" / "action.md"
 NOTES = ROOT.parent.parent / "scheduled-actions" / "🚀-매일-트립픽-콘텐츠-seo-수익화-업그레이드" / "notes.md"
 
@@ -68,13 +68,13 @@ def main() -> None:
     gspec = load("guides.json")
     guides = gspec["guides"]
     by = {g["slug"]: g for g in guides}
-    check(len(guides) == 171, f"가이드 {len(guides)}편 (기대 171)")
+    check(len(guides) == 174, f"가이드 {len(guides)}편 (기대 174)")
 
     hubs = {c["slug"]: c for c in load("city_hubs.json")["cities"]}
     check(len(hubs) == 32, f"도시 허브 {len(hubs)}곳 (기대 32)")
 
     stays = load("stays.json")
-    check(len(stays["hotels"]) == 171, f"찐숙소 {len(stays['hotels'])}곳 (기대 171)")
+    check(len(stays["hotels"]) == 182, f"찐숙소 {len(stays['hotels'])}곳 (기대 182)")
 
     extra = load("guide_extra.json")["guides"]
     credits = load("photo_credits.json")["photos"]
@@ -164,7 +164,7 @@ def main() -> None:
     sm = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm)
     lastmods = set(re.findall(r"<lastmod>([^<]+)</lastmod>", sm))
-    check(len(locs) == 219, f"sitemap {len(locs)} URL (기대 219)")
+    check(len(locs) == 222, f"sitemap {len(locs)} URL (기대 222)")
     check(lastmods == {LASTMOD}, f"lastmod {sorted(lastmods)}")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
@@ -173,7 +173,7 @@ def main() -> None:
     # action.md · notes.md
     if ACTION.exists():
         act = read(ACTION)
-        check("219개" in act, "action.md 사이트맵 수(219개) 미갱신")
+        check("222개" in act, "action.md 사이트맵 수(222개) 미갱신")
         for slug in NEW:
             check(slug in act, f"action.md 에 v60 신규 URL({slug}) 없음")
         check(act.startswith("---\ntitle:"), "action.md 프론트매터 손상")

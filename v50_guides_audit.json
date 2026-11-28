@@ -9,7 +9,7 @@
   "aff": 2,
   "per": 3322,
   "h2": 11,
-  "indeg": 46
+  "indeg": 49
  },
  {
   "file": "airport-checkin-customs-guide.html",
@@ -137,11 +137,11 @@
   "title": "베이징 3박4일 — 자금성 40위안·만리장성·무비자 | 트립픽",
   "h1": "베이징 3박4일, 자금성 예약 이 하루의 절반을 정합니다",
   "desc": "베이징 3박4일. 자금성 40위안(비수기)·7일 전 예약·월요일 휴관, 공항철도 25위안, 무비자 30일(2026-12-31까지), 무톈위 40~45위안·케이블카 왕복 140위안, 2인 교통·입장료 약 8만 7,620원. 2026-11 확인.",
-  "chars": 3907,
+  "chars": 3955,
   "aff": 5,
-  "per": 781,
+  "per": 791,
   "h2": 8,
-  "indeg": 9
+  "indeg": 12
  },
  {
   "file": "beppu-onsen-1n2d-course.html",
@@ -161,11 +161,23 @@
   "title": "보홀 3박4일 — 오션젯 960페소·발리카삭 호핑 | 트립픽",
   "h1": "보홀 3박4일, 세부 경유 와 팡라오 직항 으로 하루가 갈립니다",
   "desc": "보홀 3박4일. 오션젯 세부→타그빌라란 960페소(비즈니스 1,440)·약 2시간, 알로나 30~40분, 버진 아일랜드 재개장·정원 250명, 무비자 30일·eTravel, 2인 약 19만~28만 원. 2026-11 확인.",
-  "chars": 3931,
+  "chars": 3957,
   "aff": 5,
-  "per": 786,
+  "per": 791,
   "h2": 7,
-  "indeg": 12
+  "indeg": 15
+ },
+ {
+  "file": "boracay-3n4d-course-budget.html",
+  "slug": "boracay-3n4d-course-budget",
+  "title": "보라카이 3박4일 — 제티 535페소와 숙소 3안, 둘 39만~79만 (2026) | 트립픽",
+  "h1": "보라카이 3박4일, 제티 500페소 부터 시작합니다",
+  "desc": "보라카이 3박4일(2026-11). 제티 1인 535페소(2인 왕복 45,066원), 칼리보 육로 38,065원, 호핑 현장 750~850페소, 숙소 1박 45,063~177,655원, 2인 현지 388,896~786,672원.",
+  "chars": 3766,
+  "aff": 6,
+  "per": 628,
+  "h2": 7,
+  "indeg": 3
  },
  {
   "file": "busan-haeundae-gwangalli-2d.html",
@@ -197,11 +209,11 @@
   "title": "세부 3박4일 코스·경비 — 오슬롭 1,000페소·MyBus 50페소 | 트립픽",
   "h1": "세부 3박4일, 막탄 2박 + 시티 1박 이 기본입니다",
   "desc": "세부 3박4일 코스. 오슬롭 고래상어 1,000페소(6~10시), 공항 MyBus 50페소, 숙소 1박 3만 6,684~32만 3,657원, 무비자 30일·eTravel, 2인 23만~109만 원(항공 제외). 2026-11 확인.",
-  "chars": 4491,
+  "chars": 4521,
   "aff": 4,
-  "per": 1123,
+  "per": 1130,
   "h2": 8,
-  "indeg": 15
+  "indeg": 19
  },
  {
   "file": "cebu-bohol-ferry-transfer-guide.html",
@@ -213,7 +225,7 @@
   "aff": 5,
   "per": 741,
   "h2": 6,
-  "indeg": 6
+  "indeg": 7
  },
  {
   "file": "chiang-mai-3n4d-course.html",
@@ -228,6 +240,18 @@
   "indeg": 12
  },
  {
+  "file": "china-visa-free-alipay-wechat-pay-guide.html",
+  "slug": "china-visa-free-alipay-wechat-pay-guide",
+  "title": "중국 무비자 입국·알리페이 결제 — 200위안 3% (2026) | 트립픽",
+  "h1": "중국 무비자 30일, 결제는 알리페이·위챗페이 하나로",
+  "desc": "중국 무비자 30일(~2026-12-31)과 알리페이·위챗페이 실전(2026-11). 200위안 이하 수수료 0, 초과 시 3%, 1건 $5,000·연 $50,000, 자기부상 50위안·지하철 7위안, 출국 세금 환급 11%-2%.",
+  "chars": 4181,
+  "aff": 7,
+  "per": 597,
+  "h2": 9,
+  "indeg": 3
+ },
+ {
   "file": "currency-payment-fees.html",
   "slug": "currency-payment-fees",
   "title": "해외여행 환전·카드·ATM 수수료 — 달러 1.75% vs 대만달러 12.99% | 트립픽",
@@ -237,7 +261,7 @@
   "aff": 4,
   "per": 1092,
   "h2": 6,
-  "indeg": 41
+  "indeg": 42
  },
  {
   "file": "danang-food-route.html",
@@ -509,11 +533,11 @@
   "title": "괌 4박5일 코스 — 투몬·렌터카·공항 택시·2인 경비 (2026) | 트립픽",
   "h1": "괌 4박5일, 투몬 4박 + 남부 드라이브 2인 161만 원",
   "desc": "괌 4박5일 2026. 무료 G-CNMI ETA 45일·ESTA 40.62달러, 공항→투몬 택시 7.20달러+짐, 레드 셔틀 15달러·렌터카 45달러, 사랑의 절벽 3달러·피시아이 16달러, 숙소 4박 536,184원~, 2인 1,608,617원.",
-  "chars": 5486,
+  "chars": 5515,
   "aff": 3,
-  "per": 1829,
+  "per": 1838,
   "h2": 8,
-  "indeg": 9
+  "indeg": 13
  },
  {
   "file": "guam-resorts.html",
@@ -537,7 +561,7 @@
   "aff": 16,
   "per": 435,
   "h2": 11,
-  "indeg": 12
+  "indeg": 15
  },
  {
   "file": "gyeongju-hwangridangil-2d.html",
@@ -1185,7 +1209,7 @@
   "aff": 6,
   "per": 595,
   "h2": 8,
-  "indeg": 5
+  "indeg": 6
  },
  {
   "file": "osaka-kyoto-3n4d.html",
@@ -1197,7 +1221,7 @@
   "aff": 0,
   "per": 4631,
   "h2": 8,
-  "indeg": 48
+  "indeg": 49
  },
  {
   "file": "osaka-usj-transfer.html",
@@ -1341,7 +1365,7 @@
   "aff": 6,
   "per": 641,
   "h2": 9,
-  "indeg": 3
+  "indeg": 4
  },
  {
   "file": "qingdao-2n3d-course.html",
@@ -1378,6 +1402,18 @@
   "per": 629,
   "h2": 6,
   "indeg": 7
+ },
+ {
+  "file": "saipan-3n4d-course-budget.html",
+  "slug": "saipan-3n4d-course-budget",
+  "title": "사이판 3박4일 코스·경비 — G-CNMI ETA 무료, 2인 128만 (2026) | 트립픽",
+  "h1": "사이판 3박4일, ETA는 무료 입니다",
+  "desc": "사이판 3박4일(2026-11). G-CNMI ETA 무료·45일·2년, 마나가하 1인 63달러, 그로토 투어 45~55달러, 렌터카 50~80달러, 숙소 1박 141,487~238,257원, 2인 현지 1,279,300~1,569,610원.",
+  "chars": 3740,
+  "aff": 6,
+  "per": 623,
+  "h2": 7,
+  "indeg": 4
  },
  {
   "file": "sapporo-biei-winter.html",
@@ -1425,7 +1461,7 @@
   "aff": 4,
   "per": 1328,
   "h2": 8,
-  "indeg": 42
+  "indeg": 43
  },
  {
   "file": "seoul-seongsu-bukchon-1d.html",
@@ -1445,11 +1481,11 @@
   "title": "상하이 2박3일·3박4일 코스·경비 — 무비자 30일·공항 지하철 7위안 (2026) | 트립픽",
   "h1": "상하이 2박3일 vs 3박4일, 무비자 30일 과 57만·74만 원",
   "desc": "상하이 2박3일·3박4일을 무비자 30일(2026-12-31까지), 공항 지하철 7위안·자기부상 50위안, 예원 40·상하이타워 180·황푸강 크루즈 120~150위안, 디즈니 475~799위안으로 계산했습니다. 숙소 실제 가격과 2인 경비까지 2026년 11월 기준.",
-  "chars": 4902,
+  "chars": 4943,
   "aff": 3,
-  "per": 1634,
+  "per": 1648,
   "h2": 8,
-  "indeg": 16
+  "indeg": 20
  },
  {
   "file": "singapore-3n4d-course-budget.html",
@@ -1677,7 +1713,7 @@
   "aff": 6,
   "per": 600,
   "h2": 7,
-  "indeg": 9
+  "indeg": 10
  },
  {
   "file": "thailand-souvenir-list.html",
@@ -1797,7 +1833,7 @@
   "aff": 0,
   "per": 5643,
   "h2": 11,
-  "indeg": 30
+  "indeg": 31
  },
  {
   "file": "travel-card-packing-guide.html",
@@ -1833,7 +1869,7 @@
   "aff": 0,
   "per": 4227,
   "h2": 8,
-  "indeg": 30
+  "indeg": 33
  },
  {
   "file": "travel-medication-rules-guide.html",
@@ -1893,7 +1929,7 @@
   "aff": 6,
   "per": 684,
   "h2": 7,
-  "indeg": 17
+  "indeg": 19
  },
  {
   "file": "us-west-4canyons.html",
@@ -1977,7 +2013,7 @@
   "aff": 6,
   "per": 648,
   "h2": 7,
-  "indeg": 18
+  "indeg": 20
  },
  {
   "file": "visit-japan-web-guide.html",
@@ -2049,6 +2085,6 @@
   "aff": 0,
   "per": 2300,
   "h2": 5,
-  "indeg": 7
+  "indeg": 8
  }
 ]

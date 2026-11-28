@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""v64 검증 — 신규 가이드 8편 + 사이트맵 219 URL + 허브 연결.
+"""v64 검증 — 신규 가이드 8편 + 사이트맵 222 URL + 허브 연결.
 
     python3 tools/verify_v64.py
 
-1. 가이드 171편 · 신규 8편(미국 ESTA·영국 ETA·간사이공항·뉴욕 4박5일·나고야 3박4일·
+1. 가이드 174편 · 신규 8편(미국 ESTA·영국 ETA·간사이공항·뉴욕 4박5일·나고야 3박4일·
    일본 식당 예약·마카오 1박2일·파리 교통권) 메타·본문·이미지
 2. 본문 3,000자 이상 · 표 5개 이상 · h2 6개 이상 · FAQ 5문항 · 제휴 링크 5건 이상
-3. sitemap.xml 219 URL + /sitemap-index.xml 3분할 합계 일치 · 중복 0
+3. sitemap.xml 222 URL + /sitemap-index.xml 3분할 합계 일치 · 중복 0
 4. 허브·기존 가이드 상호 연결 · 도구 링크 2종 이상
 """
 from __future__ import annotations
@@ -36,8 +36,8 @@ def check(ok: bool, msg: str):
 guides = json.loads((DATA / "guides.json").read_text(encoding="utf-8"))["guides"]
 by_slug = {g["slug"]: g for g in guides}
 
-print("[1] 가이드 171편")
-check(len(guides) == 171, f"가이드 {len(guides)}편 (기대 171)")
+print("[1] 가이드 174편")
+check(len(guides) == 174, f"가이드 {len(guides)}편 (기대 174)")
 
 NEW = {
     "us-esta-application-guide": ["$40.62", "2년", "90일", "72시간", "10.62"],
@@ -92,7 +92,7 @@ for slug in NEW:
 print("[3] 사이트맵")
 sm = ET.parse(OUT / "sitemap.xml").getroot()
 locs = [e.text for e in sm.findall("sm:url/sm:loc", NS)]
-check(len(locs) == 219, f"sitemap.xml {len(locs)} URL (기대 219)")
+check(len(locs) == 222, f"sitemap.xml {len(locs)} URL (기대 222)")
 check(len(set(locs)) == len(locs), "sitemap.xml 중복 0")
 for slug in NEW:
     check(f"https://trippick.pages.dev/guides/{slug}" in locs, f"sitemap 포함 {slug}")
@@ -121,7 +121,7 @@ check("Sitemap: https://trippick.pages.dev/sitemap-index.xml" in robots, "robots
 
 print("[4] 허브·기존 가이드 연결")
 gi = (OUT / "guides" / "index.html").read_text(encoding="utf-8")
-check("171편" in gi, "/guides/ 171편 표기")
+check("174편" in gi, "/guides/ 171편 표기")
 for hub, slug in (("macau", "macau-1n2d-ferry-bus-guide"),
                   ("paris", "paris-metro-navigo-guide"),
                   ("osaka", "kansai-airport-osaka-kyoto-transfer")):

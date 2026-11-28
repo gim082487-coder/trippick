@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""v67 검증 — 릴스 착지 경비 가이드 2편 + 신규 가이드 3편 + 클룩 쿠폰 8건 + 사이트맵 219 URL.
+"""v67 검증 — 릴스 착지 경비 가이드 2편 + 신규 가이드 3편 + 클룩 쿠폰 8건 + 사이트맵 222 URL.
 
     python3 tools/verify_v67.py
 
-1. 가이드 171편 · 허브 32곳 · 찐숙소 171곳
+1. 가이드 174편 · 허브 32곳 · 찐숙소 182곳
 2. 신규 5편: 본문 3,000자(공백 제외)·표 7개·h2 6개·FAQ 5문항·제휴 5건·이미지·OG·확인값
 3. /coupons: 6개 카테고리 37건 · 클룩 코드 4종 · 클룩 링크 aid=144067 유지 · 검증일 2026-11-27
-4. 사이트맵 219 URL · sitemap-index 3분할 합계 일치 · sitemap-guides 172 · 중복 0
+4. 사이트맵 222 URL · sitemap-index 3분할 합계 일치 · sitemap-guides 175 · 중복 0
 5. 허브 연결(파리·방콕·오사카·로마)·역링크·다낭 3박5일 페이지
 """
 from __future__ import annotations
@@ -48,9 +48,9 @@ hubs = load("city_hubs.json")["cities"]
 stays = load("stays.json")
 
 print("[1] 데이터 규모")
-check(len(guides) == 171, f"가이드 {len(guides)}편 (기대 171)")
+check(len(guides) == 174, f"가이드 {len(guides)}편 (기대 174)")
 check(len(hubs) == 32, f"도시 허브 {len(hubs)}곳 (기대 32)")
-check(len(stays["hotels"]) == 171, f"찐숙소 {len(stays['hotels'])}곳 (기대 171)")
+check(len(stays["hotels"]) == 182, f"찐숙소 {len(stays['hotels'])}곳 (기대 182)")
 
 print("[2] 신규 5편")
 NEW = {
@@ -109,10 +109,10 @@ check(len(kl) >= 8, f"클룩 링크 {len(kl)}건 (기대 8+)")
 check(all("aid=144067" in u for u in kl), "클룩 링크 전부 aid=144067 유지")
 check("37건" in cp, "본문 37건 표기")
 
-print("[4] 사이트맵 219 URL")
+print("[4] 사이트맵 222 URL")
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 219, f"sitemap.xml {len(locs)} URL (기대 219)")
+check(len(locs) == 222, f"sitemap.xml {len(locs)} URL (기대 222)")
 check(len(set(locs)) == len(locs), "sitemap 중복 0")
 for slug in NEW:
     check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug}")
@@ -127,7 +127,7 @@ for p in parts:
     print(f"    · {name}: {n}")
 check(tot == len(locs), f"sitemap-index 합계 {tot} = sitemap {len(locs)}")
 check(len(re.findall(r"<loc>", read(OUT / "sitemap-hubs.xml"))) == 32, "sitemap-hubs 32")
-check(len(re.findall(r"<loc>", read(OUT / "sitemap-guides.xml"))) == 172, "sitemap-guides 172")
+check(len(re.findall(r"<loc>", read(OUT / "sitemap-guides.xml"))) == 175, "sitemap-guides 175")
 
 print("[5] 허브·역링크")
 HUB = {"paris": "paris-4n5d-budget", "bangkok": "bangkok-3n4d-budget", "osaka": "osaka-kobe-nara-daytrip-guide",
@@ -157,8 +157,8 @@ check("/guides/danang-hoian-3n5d" in read(OUT / "danang.html"), "/danang 허브�
 
 print("[7] 표기 숫자")
 gi = re.sub(r"\s+", " ", read(OUT / "guides" / "index.html"))
-check("가이드 171편" in gi, "/guides/ 171편 표기")
-check("171" in read(OUT / "stays.html"), "/stays 171곳 표기")
+check("가이드 174편" in gi, "/guides/ 171편 표기")
+check("182" in read(OUT / "stays.html"), "/stays 182곳 표기")
 
 print()
 if fails:
@@ -166,4 +166,4 @@ if fails:
     for f in fails:
         print("  -", f)
     raise SystemExit(1)
-print("[verify_v67] PASS — 가이드 171 · 신규 5 · 쿠폰 37 · 사이트맵 219 · 허브 32 · 숙소 171")
+print("[verify_v67] PASS — 가이드 174 · 신규 5 · 쿠폰 37 · 사이트맵 222 · 허브 32 · 숙소 182")

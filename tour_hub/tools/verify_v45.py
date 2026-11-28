@@ -47,7 +47,7 @@ def check(ok, msg):
 def main():
     guides = load("guides.json")["guides"]
     by_slug = {g["slug"]: g for g in guides}
-    check(len(guides) == 171, f"가이드 {len(guides)}편 (기대 171)")
+    check(len(guides) == 174, f"가이드 {len(guides)}편 (기대 174)")
 
     # 1·2·7 신규 가이드
     for slug in NEW:
