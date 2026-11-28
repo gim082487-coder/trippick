@@ -48,7 +48,7 @@ hubs = load("city_hubs.json")["cities"]
 extra = load("guide_extra.json")
 
 print("[1] 데이터 규모")
-check(len(guides) == 177, f"가이드 {len(guides)}편 (기대 177)")
+check(len(guides) == 179, f"가이드 {len(guides)}편 (기대 179)")
 check(len(hubs) == 32, f"도시 허브 {len(hubs)}곳 (기대 32)")
 check("my" in {r["code"] for r in extra["regions"]}, "지역 코드에 말레이시아(my)")
 
@@ -119,7 +119,7 @@ for src, dst in BACK.items():
 print("[4] 사이트맵 225 URL")
 sm = read(OUT / "sitemap.xml")
 locs = re.findall(r"<loc>([^<]+)</loc>", sm)
-check(len(locs) == 225, f"sitemap.xml {len(locs)} URL (기대 225)")
+check(len(locs) == 227, f"sitemap.xml {len(locs)} URL (기대 227)")
 check(len(set(locs)) == len(locs), "sitemap 중복 0")
 for slug in NEW:
     check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug}")
@@ -134,11 +134,11 @@ for p in parts:
     print(f"    · {name}: {n}")
 check(tot == len(locs), f"sitemap-index 합계 {tot} = sitemap {len(locs)}")
 check(len(re.findall(r"<loc>", read(OUT / "sitemap-hubs.xml"))) == 32, "sitemap-hubs 32")
-check(len(re.findall(r"<loc>", read(OUT / "sitemap-guides.xml"))) == 178, "sitemap-guides 178")
+check(len(re.findall(r"<loc>", read(OUT / "sitemap-guides.xml"))) == 180, "sitemap-guides 178")
 
 print("[5] 표기 숫자")
 gi = re.sub(r"\s+", " ", read(OUT / "guides" / "index.html"))
-check("가이드 177편" in gi, "/guides/ 171편 표기")
+check("가이드 179편" in gi, "/guides/ 171편 표기")
 st = read(OUT / "stays.html")
 check("182" in st, "/stays 182곳 표기")
 

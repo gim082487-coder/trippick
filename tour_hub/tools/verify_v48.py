@@ -73,7 +73,7 @@ def flat_types(objs: list[dict]) -> Counter:
 def main():
     gspec = load("guides.json")
     guides = gspec["guides"]
-    check(len(guides) == 177, f"가이드 {len(guides)}편 (기대 177)")
+    check(len(guides) == 179, f"가이드 {len(guides)}편 (기대 179)")
 
     # 1. 신규 3편
     for slug in NEW:
@@ -148,7 +148,7 @@ def main():
     # 4. sitemap
     sm_out = read(OUT / "sitemap.xml")
     locs = re.findall(r"<loc>([^<]+)</loc>", sm_out)
-    check(len(locs) == 225, f"sitemap {len(locs)} URL (기대 225)")
+    check(len(locs) == 227, f"sitemap {len(locs)} URL (기대 227)")
     for slug in NEW:
         check(f"{SITE}/guides/{slug}" in locs, f"sitemap 에 /guides/{slug} 없음")
     for tool in ("exchange", "quiz", "baggage", "checklist", "sos", "stays", "passes", "calendar"):
