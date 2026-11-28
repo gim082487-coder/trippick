@@ -1,8 +1,8 @@
 {
   "api": "https://open.er-api.com/v6/latest/KRW",
   "apiNote": "open.er-api.com(ExchangeRate-API 무료 공개 엔드포인트) → 실패 시 cdn.jsdelivr.net/@fawazahmed0/currency-api — 하루 1회 갱신",
-  "fallbackUpdatedKst": "2026-11-27 09:02",
-  "fallbackSource": "2026-11-27 00:02 UTC(한국 09:02) open.er-api.com 고시값(1 KRW 기준 역산). 주 API가 2026-11-23 00:02 UTC 이후 하루 1회 정상 갱신되고 있어(2026-11-27 확인, time_last_update_utc=Fri, 27 Nov 2026 00:02:31 +0000) jsDelivr 백업 대신 주 API 값을 씁니다. 전일(2026-11-25) 대비 변동은 모두 1% 미만(엔 +0.04%·달러 +0.13%·유로 +0.15%·위안 +0.18%·홍콩달러 +0.10%)이라 고정 환산 기준(staticBasis)·planner.json fx는 그대로 유지했습니다. 2026-11-26 고시는 주·백업 소스 모두 미발행이라 11-25 값을 유지했고, 오늘 11-27 고시로 하루 지연을 해소했습니다.",
+  "fallbackUpdatedKst": "2026-11-28 09:02",
+  "fallbackSource": "2026-11-28 00:02 UTC(한국 09:02) open.er-api.com 고시값(1 KRW 기준 역산, time_last_update_utc=Sat, 28 Nov 2026 00:02:31 +0000). 주 API가 2026-11-23 이후 하루 1회 정상 갱신 중이라 jsDelivr 백업 없이 주 API 값을 씁니다. 전일(2026-11-27) 대비 변동은 모두 1% 미만(엔 -0.80%·동 -0.66%·바트 -0.35%·대만달러 -0.73%·페소 -0.65%·달러 -0.67%·유로 -0.88%·싱가포르달러 -0.62%·홍콩달러 -0.55%·위안 +0.04%·호주달러 -0.36%·파운드 -0.53%)으로, 고정 환산 기준(staticBasis)·planner.json fx는 그대로 유지했습니다.",
   "currencies": [
     {
       "code": "JPY",
@@ -11,7 +11,7 @@
       "symbol": "¥",
       "unit": 100,
       "decimals": 0,
-      "krw": 8.4426,
+      "krw": 8.3748,
       "presets": [
         1000,
         5000,
@@ -26,7 +26,7 @@
       "symbol": "₫",
       "unit": 100,
       "decimals": 0,
-      "krw": 0.0521,
+      "krw": 0.0518,
       "presets": [
         100000,
         500000,
@@ -41,7 +41,7 @@
       "symbol": "฿",
       "unit": 1,
       "decimals": 0,
-      "krw": 39.4773,
+      "krw": 39.3391,
       "presets": [
         500,
         1000,
@@ -56,7 +56,7 @@
       "symbol": "NT$",
       "unit": 1,
       "decimals": 0,
-      "krw": 40.7764,
+      "krw": 40.4793,
       "presets": [
         500,
         1000,
@@ -71,7 +71,7 @@
       "symbol": "₱",
       "unit": 1,
       "decimals": 1,
-      "krw": 21.0588,
+      "krw": 20.9214,
       "presets": [
         1000,
         5000,
@@ -86,7 +86,7 @@
       "symbol": "US$",
       "unit": 1,
       "decimals": 2,
-      "krw": 1344.086,
+      "krw": 1335.1135,
       "presets": [
         50,
         100,
@@ -101,7 +101,7 @@
       "symbol": "€",
       "unit": 1,
       "decimals": 2,
-      "krw": 1474.9263,
+      "krw": 1461.9883,
       "presets": [
         50,
         100,
@@ -116,7 +116,7 @@
       "symbol": "S$",
       "unit": 1,
       "decimals": 2,
-      "krw": 1041.6667,
+      "krw": 1035.1967,
       "presets": [
         50,
         100,
@@ -131,7 +131,7 @@
       "symbol": "HK$",
       "unit": 1,
       "decimals": 1,
-      "krw": 171.5266,
+      "krw": 170.5902,
       "presets": [
         500,
         1000,
@@ -146,7 +146,7 @@
       "symbol": "CN¥",
       "unit": 1,
       "decimals": 0,
-      "krw": 201.3288,
+      "krw": 201.4099,
       "presets": [
         500,
         1000,
@@ -161,7 +161,7 @@
       "symbol": "A$",
       "unit": 1,
       "decimals": 2,
-      "krw": 891.2656,
+      "krw": 888.0995,
       "presets": [
         100,
         200,
@@ -176,7 +176,7 @@
       "symbol": "£",
       "unit": 1,
       "decimals": 2,
-      "krw": 1760.5634,
+      "krw": 1751.3135,
       "presets": [
         50,
         100,
